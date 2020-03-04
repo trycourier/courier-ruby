@@ -18,8 +18,8 @@ module Courier
   end
 
   class Client
-    def initialize(api_key)
-      @api_key = api_key
+    def initialize(api_key = nil)
+      @api_key = api_key || ENV['COURIER_AUTH_TOKEN']
       @uri = URI.parse('https://api.trycourier.app/send')
     end
 
@@ -43,6 +43,7 @@ module Courier
       req = Net::HTTP::Post.new(@uri)
       req["authorization"] = "Bearer #{@api_key}"
       req["content-type"] = "application/json"
+      req["User-Agent"] = "courier-ruby/#{Courier::VERSION}"
       req.body = body.to_json
 
       res = http.request(req)
