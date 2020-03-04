@@ -28,6 +28,12 @@ begin
   res = client.send({
     "event" => Event,
     "recipient" => Recipient,
+
+    "profile" => {
+      "email": "example@example.com",
+      "phone_number": "555-867-5309"
+    },
+
     "data" => {
       "world" => "Ruby!"
     }
