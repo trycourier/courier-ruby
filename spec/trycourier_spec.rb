@@ -1,5 +1,5 @@
 EventId = ENV["COURIER_NOTIFICATION_ID"]
-ApiKey = ENV["COURIER_API_KEY"]
+AuthToken = ENV["COURIER_AUTH_TOKEN"]
 
 RSpec.describe Courier do
   it "has a version number" do
@@ -7,7 +7,7 @@ RSpec.describe Courier do
   end
 
   it "catches no 'event'" do
-    client = Courier::Client.new ApiKey
+    client = Courier::Client.new AuthToken
     expect { client.send({
       "recipient" => "@rubysdk",
       "data" => {
@@ -17,7 +17,7 @@ RSpec.describe Courier do
   end
 
   it "catches response error" do
-    client = Courier::Client.new "INVALID_API_KEY"
+    client = Courier::Client.new "INVALID_AUTH_TOKEN"
     expect { client.send({
       "event" => EventId,
       "recipient" => "@rubysdk",
@@ -28,7 +28,7 @@ RSpec.describe Courier do
   end
 
   it "sends" do
-    client = Courier::Client.new ApiKey
+    client = Courier::Client.new AuthToken
     res = client.send({
       "event" => EventId,
       "recipient" => "@rubysdk",

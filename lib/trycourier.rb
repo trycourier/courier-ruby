@@ -18,9 +18,12 @@ module Courier
   end
 
   class Client
-    def initialize(api_key = nil)
-      @api_key = api_key || ENV['COURIER_AUTH_TOKEN']
+    def initialize(auth_token = nil)
+      @auth_token = auth_token || ENV['COURIER_AUTH_TOKEN']
       @uri = URI.parse('https://api.trycourier.app/send')
+      if @auth_token == nil or @auth_token == ""
+        raise InputError, "Client requires an auth_token be supplied."
+      end
     end
 
     def send(body)
@@ -41,7 +44,7 @@ module Courier
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       req = Net::HTTP::Post.new(@uri)
-      req["authorization"] = "Bearer #{@api_key}"
+      req["authorization"] = "Bearer #{@auth_token}"
       req["content-type"] = "application/json"
       req["User-Agent"] = "courier-ruby/#{Courier::VERSION}"
       req.body = body.to_json

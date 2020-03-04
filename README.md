@@ -24,10 +24,10 @@ Or install it yourself as:
 require "trycourier"
 
 begin
-  client = Courier::Client.new ApiKey
+  client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
   res = client.send({
-    "event" => Event,
-    "recipient" => Recipient,
+    "event" => "your-event-id",
+    "recipient" => "your-recipient-id",
 
     "profile" => {
       "email": "example@example.com",
