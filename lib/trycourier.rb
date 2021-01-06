@@ -41,7 +41,7 @@ module Courier
 
       http = Net::HTTP.new(@uri.host, @uri.port)
       http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
       req = Net::HTTP::Post.new(@uri)
       req["authorization"] = "Bearer #{@auth_token}"
