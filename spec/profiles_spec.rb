@@ -1,8 +1,8 @@
 require_relative "spec_helper"
 
 RSpec.describe Courier::Profiles do
-  let(:client) {Courier::Client.new(auth_token:AUTH_TOKEN_MOCK)}
-  let(:profile) {{"name" => "Jane Doe", "email" => "jane@doe.test"}}
+  let(:client) { Courier::Client.new(auth_token: AUTH_TOKEN_MOCK) }
+  let(:profile) { {"name" => "Jane Doe", "email" => "jane@doe.test"} }
 
   context "get" do
     it "gets profile" do
@@ -19,7 +19,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect{client.profiles.get(RECIPIENT_ID)}.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.get(RECIPIENT_ID) }.to raise_error(Courier::CourierAPIException)
     end
   end
 
@@ -47,7 +47,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect{client.profiles.get_subscriptions(RECIPIENT_ID)}.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.get_subscriptions(RECIPIENT_ID) }.to raise_error(Courier::CourierAPIException)
     end
   end
 
@@ -78,7 +78,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect{client.profiles.add(RECIPIENT_ID, profile)}.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.add(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIException)
     end
 
     it "fails to replace with exception" do
@@ -87,7 +87,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect{client.profiles.replace(RECIPIENT_ID, profile)}.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.replace(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIException)
     end
   end
 
@@ -119,20 +119,20 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect{client.profiles.merge(RECIPIENT_ID, profile)}.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.merge(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIException)
     end
   end
 
   context "patch" do
     it "patches operations" do
-      operations=[
+      operations = [
         {
           "op" => "add",
           "path" => "/number",
-          "value" =>  4
+          "value" => 4
         },
         {
-          "op" =>"replace",
+          "op" => "replace",
           "path" => "/number",
           "value" => 5
         },
@@ -152,18 +152,19 @@ RSpec.describe Courier::Profiles do
     end
 
     it "fails to patch with exception" do
-      operations=[
+      operations = [
         {
-            "op" => "add",
-            "path" => "/number",
-            "value" =>  4
-        }]
+          "op" => "add",
+          "path" => "/number",
+          "value" => 4
+        }
+      ]
       stub_request(:patch, "https://api.courier.com/profiles/" + RECIPIENT_ID)
         .with(
           body: {"patch" => operations},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect{client.profiles.patch(RECIPIENT_ID, operations)}.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.patch(RECIPIENT_ID, operations) }.to raise_error(Courier::CourierAPIException)
     end
   end
 end

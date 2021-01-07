@@ -40,7 +40,7 @@ module Courier
     end
 
     def list(cursor: nil)
-      params= {}
+      params = {}
       if cursor
         params["cursor"] = cursor
       end

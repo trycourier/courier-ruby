@@ -1,7 +1,7 @@
 require_relative "spec_helper"
 
 RSpec.describe Courier::Brands do
-  let(:client) {Courier::Client.new(auth_token:AUTH_TOKEN_MOCK)}
+  let(:client) { Courier::Client.new(auth_token: AUTH_TOKEN_MOCK) }
 
   context "list brands" do
     it "lists brands without parameters" do
@@ -29,7 +29,7 @@ RSpec.describe Courier::Brands do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect {client.brands.list}.to raise_error(Courier::CourierAPIException)
+      expect { client.brands.list }.to raise_error(Courier::CourierAPIException)
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe Courier::Brands do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect {client.brands.get(BRAND_ID)}.to raise_error(Courier::CourierAPIException)
+      expect { client.brands.get(BRAND_ID) }.to raise_error(Courier::CourierAPIException)
     end
   end
 
@@ -94,7 +94,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect{client.brands.create("My Brand", {})}.to raise_error(Courier::CourierAPIException)
+      expect { client.brands.create("My Brand", {}) }.to raise_error(Courier::CourierAPIException)
     end
   end
 
@@ -128,7 +128,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect{client.brands.replace(BRAND_ID, "My Brand", {})}.to raise_error(Courier::CourierAPIException)
+      expect { client.brands.replace(BRAND_ID, "My Brand", {}) }.to raise_error(Courier::CourierAPIException)
     end
   end
 end

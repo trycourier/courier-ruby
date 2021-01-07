@@ -72,7 +72,7 @@ module Courier
 
       url = @base_url + "/send"
       res = @session.send(url, "POST", body: body)
-      
+
       code = res.code.to_i
       obj = JSON.parse res.read_body
 
