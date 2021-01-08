@@ -59,4 +59,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## v1.0.0 - 2020-3-3
 Initial release by @troygoode 
 
-[unreleased]: https://github.com/trycourier/courier-ruby-rails/compare/v0.1.3...HEAD
+[unreleased]: https://github.com/trycourier/courier-ruby/compare/v1.0.2...HEAD
+[v1.0.2]: https://github.com/trycourier/courier-ruby/compare/v1.0.1...v1.0.2
+[v1.0.1]: https://github.com/trycourier/courier-ruby/compare/v1.0.0...v1.0.1
