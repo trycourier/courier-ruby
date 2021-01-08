@@ -52,7 +52,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Minor bug fixes to ensure proper SSL certification by @scarney81
 
-## v1.0.2 - 2021-1-6
+## [v1.0.1] - 2020-3-4
 ### Added
 - Support for Send API by @troy
 
