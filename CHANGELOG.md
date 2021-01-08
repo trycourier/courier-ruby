@@ -56,6 +56,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Support for Send API by @troy
 
-Initial release.
+## v1.0.0 - 2020-3-3
+Initial release by @troygoode 
 
 [unreleased]: https://github.com/trycourier/courier-ruby-rails/compare/v0.1.3...HEAD
