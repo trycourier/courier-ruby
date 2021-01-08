@@ -10,8 +10,7 @@ module Courier
   class Events
     @@key = "/events"
 
-    def initialize(base_url, session)
-      @base_url = base_url + @@key
+    def initialize(session)
       @session = session
     end
 
@@ -40,13 +39,13 @@ module Courier
     end
 
     def list
-      res = @session.send(@base_url, "GET")
+      res = @session.send(@@key, "GET")
       checkErr(res)
     end
 
     def get(event_id)
-      url = @base_url + "/" + event_id.to_s
-      res = @session.send(url, "GET")
+      path = @@key + "/" + event_id.to_s
+      res = @session.send(path, "GET")
       checkErr(res)
     end
 
@@ -55,13 +54,13 @@ module Courier
     end
 
     def replace(event_id, id, type: "notification")
-      url = @base_url + "/" + event_id.to_s
+      path = @@key + "/" + event_id.to_s
 
       payload = {
         "id" => id,
         "type" => type
       }
-      res = @session.send(url, "PUT", body: payload)
+      res = @session.send(path, "PUT", body: payload)
       checkErr2(res)
     end
   end

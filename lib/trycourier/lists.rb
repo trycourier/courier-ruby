@@ -10,9 +10,7 @@ module Courier
   class Lists
     @@key = "/lists"
 
-    def initialize(base_url, session)
-      @url_no_key = base_url
-      @base_url = base_url + @@key
+    def initialize(session)
       @session = session
     end
 
@@ -41,7 +39,7 @@ module Courier
     end
 
     def send(event, list: nil, pattern: nil, data: {}, brand: nil, override: nil, idempotency_key: nil)
-      url = @url_no_key + "/send/list"
+      path = "/send/list"
       payload = {
         "event": event,
         "data": data
@@ -64,7 +62,7 @@ module Courier
         headers["idempotency_key"] = idempotency_key
       end
 
-      res = @session.send(url, "POST", body: payload, headers: headers)
+      res = @session.send(path, "POST", body: payload, headers: headers)
       checkErr(res)
     end
 
@@ -76,67 +74,67 @@ module Courier
       if pattern
         params["pattern"] = pattern
       end
-      res = @session.send(@base_url, "GET", params: params)
+      res = @session.send(@@key, "GET", params: params)
       checkErr(res)
     end
 
     def get(list_id)
-      url = @base_url + "/" + list_id.to_s
-      res = @session.send(url, "GET")
+      path = @@key + "/" + list_id.to_s
+      res = @session.send(path, "GET")
       checkErr(res)
     end
 
     def put(list_id, name)
-      url = @base_url + "/" + list_id.to_s
+      path = @@key + "/" + list_id.to_s
 
       payload = {
         "name": name.to_s
       }
 
-      res = @session.send(url, "PUT", body: payload)
+      res = @session.send(path, "PUT", body: payload)
       checkErr2(res)
     end
 
     def delete(list_id)
-      url = @base_url + "/" + list_id.to_s
-      res = @session.send(url, "DELETE")
+      path = @@key + "/" + list_id.to_s
+      res = @session.send(path, "DELETE")
       checkErr2(res)
     end
 
     def restore(list_id)
-      url = @base_url + "/" + list_id.to_s + "/restore"
-      res = @session.send(url, "PUT")
+      path = @@key + "/" + list_id.to_s + "/restore"
+      res = @session.send(path, "PUT")
       checkErr2(res)
     end
 
     def get_subscriptions(list_id, cursor: nil)
-      url = @base_url + "/" + list_id.to_s + "/subscriptions"
+      path = @@key + "/" + list_id.to_s + "/subscriptions"
       params = {}
       if cursor
         params["cursor"] = cursor
       end
-      res = @session.send(url, "GET", params: params)
+      res = @session.send(path, "GET", params: params)
       checkErr(res)
     end
 
     def put_subscriptions(list_id, recipients)
-      url = @base_url + "/" + list_id.to_s + "/subscriptions"
+      path = @@key + "/" + list_id.to_s + "/subscriptions"
       payload = {
         "recipients": recipients
       }
-      res = @session.send(url, "PUT", body: payload)
+      res = @session.send(path, "PUT", body: payload)
       checkErr2(res)
     end
 
     def subscribe(list_id, recipient_id)
-      url = @base_url + "/" + list_id.to_s + "/subscriptions/" + recipient_id.to_s
-      res = @session.send(url, "PUT")
+      path = @@key + "/" + list_id.to_s + "/subscriptions/" + recipient_id.to_s
+      res = @session.send(path, "PUT")
       checkErr2(res)
     end
 
     def unsubscribe(list_id, recipient_id)
-      url = @base_url + "/" + list_id.to_s + "/subscriptions/" + recipient_id.to_s
-      res = @session.send(url, "DELETE")
+      path = @@key + "/" + list_id.to_s + "/subscriptions/" + recipient_id.to_s
+      res = @session.send(path, "DELETE")
       checkErr2(res)
     end
   end

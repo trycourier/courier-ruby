@@ -10,8 +10,7 @@ module Courier
   class Brands
     @@key = "/brands"
 
-    def initialize(base_url, session)
-      @base_url = base_url + @@key
+    def initialize(session)
       @session = session
     end
 
@@ -44,13 +43,13 @@ module Courier
       if cursor
         params["cursor"] = cursor
       end
-      res = @session.send(@base_url, "GET", params: params)
+      res = @session.send(@@key, "GET", params: params)
       checkErr(res)
     end
 
     def get(brand_id)
-      url = @base_url + "/" + brand_id.to_s
-      res = @session.send(url, "GET")
+      path = @@key + "/" + brand_id.to_s
+      res = @session.send(path, "GET")
       checkErr(res)
     end
 
@@ -59,8 +58,6 @@ module Courier
     end
 
     def create(name, settings, id: nil, snippets: nil, idempotency_key: nil)
-      url = @base_url
-
       headers = {}
       if idempotency_key
         headers["idempotency_key"] = idempotency_key
@@ -77,12 +74,12 @@ module Courier
         payload["snippets"] = snippets
       end
 
-      res = @session.send(url, "POST", body: payload, headers: headers)
+      res = @session.send(@@key, "POST", body: payload, headers: headers)
       checkErr(res)
     end
 
     def replace(brand_id, name, settings, snippets: nil)
-      url = @base_url + "/" + brand_id
+      path = @@key + "/" + brand_id
 
       payload = {
         "name" => name,
@@ -92,13 +89,13 @@ module Courier
         payload["snippets"] = snippets
       end
 
-      res = @session.send(url, "PUT", body: payload)
+      res = @session.send(path, "PUT", body: payload)
       checkErr2(res)
     end
 
     def delete(brand_id)
-      url = @base_url + "/" + brand_id
-      res = @session.send(url, "DELETE")
+      path = @@key + "/" + brand_id
+      res = @session.send(path, "DELETE")
       checkErr2(res)
     end
   end

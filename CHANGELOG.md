@@ -13,7 +13,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - ENV variable `COURIER_BASE_URL`
 - Support for Lists API by @jrweingart
   - `POST /send/list` with `client.lists.send` method
-  - `GET /profiles/{recipient_id}/lists` with `client.lists.find_by_recipient_id` method
   - `GET /lists` with `client.lists.list` method
   - `GET /lists/{list_id}` with `client.lists.get` method
   - `PUT /lists/{list_id}` with `client.lists.put` method

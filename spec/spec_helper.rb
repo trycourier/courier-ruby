@@ -17,7 +17,7 @@ TOKEN_AUTH_HEADERS = {
   "Authorization" => "Bearer " + AUTH_TOKEN_MOCK,
   "Content-Type" => "application/json",
   "Host" => "api.courier.com",
-  "User-Agent" => "courier-ruby/1.0.1"
+  "User-Agent" => "courier-ruby/#{Courier::VERSION}"
 }
 
 RSpec.configure do |config|

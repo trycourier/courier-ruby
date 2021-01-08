@@ -8,7 +8,9 @@ module Courier
   class CourierAPIException < StandardError; end
 
   class CourierAPISession
-    def initialize
+
+    def initialize(base_url)
+      @base_url = base_url
       @auth_token = nil
       @username = nil
       @password = nil
@@ -26,8 +28,8 @@ module Courier
       @auth_method = "basic"
     end
 
-    def send(url, method, params: nil, body: nil, headers: nil)
-      uri = URI.parse(url)
+    def send(path, method, params: nil, body: nil, headers: nil)
+      uri = URI.parse(@base_url + path.to_s)
       if params
         uri.query = URI.encode_www_form(params)
       end
@@ -80,5 +82,8 @@ module Courier
         false
       end
     end
+
+    #getter for base url (for testing)
+    attr_reader :base_url
   end
 end

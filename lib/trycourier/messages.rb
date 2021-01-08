@@ -1,4 +1,3 @@
-require "trycourier/version"
 require "net/http"
 require "json"
 require "openssl"
@@ -10,8 +9,7 @@ module Courier
   class Messages
     @@key = "/messages"
 
-    def initialize(base_url, session)
-      @base_url = base_url + @@key
+    def initialize(session)
       @session = session
     end
 
@@ -49,25 +47,23 @@ module Courier
       if recipient
         params["recipient"] = recipient
       end
-      res = @session.send(@base_url, "GET", params: params)
+      res = @session.send(@@key, "GET", params: params)
       checkErr(res)
     end
 
     def get(message_id)
-      url = @base_url + "/" + message_id.to_s
-      res = @session.send(url, "GET")
+      path = @@key + "/" + message_id.to_s
+      res = @session.send(path, "GET")
       checkErr(res)
     end
 
     def get_history(message_id, type: nil)
-      url = @base_url + "/" + message_id.to_s + "/history"
-
+      path = @@key + "/" + message_id.to_s + "/history"
       params = {}
       if type
         params["type"] = type
       end
-      res = @session.send(url, "GET", params: params)
-
+      res = @session.send(path, "GET", params: params)
       checkErr(res)
     end
   end

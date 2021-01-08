@@ -9,19 +9,19 @@ RSpec.describe Courier do
     it "sets url from param" do
       ENV["COURIER_BASE_URL"] = nil
       client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK, base_url: "https://someurl.com")
-      expect(client.base_url).to eq("https://someurl.com")
+      expect(client.session.base_url).to eq("https://someurl.com")
     end
 
     it "sets base url from env" do
       ENV["COURIER_BASE_URL"] = "https://someurl.com"
       client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK)
-      expect(client.base_url).to eq("https://someurl.com")
+      expect(client.session.base_url).to eq("https://someurl.com")
     end
 
     it "sets base url to default" do
       ENV["COURIER_BASE_URL"] = nil
       client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK)
-      expect(client.base_url).to eq(DEFAULT_COURIER_URL)
+      expect(client.session.base_url).to eq(DEFAULT_COURIER_URL)
     end
   end
 
@@ -93,7 +93,7 @@ RSpec.describe Courier do
             "Authorization" => "Bearer " + AUTH_TOKEN_MOCK,
             "Content-Type" => "application/json",
             "Host" => "api.courier.com",
-            "User-Agent" => "courier-ruby/1.0.1"
+            "User-Agent" => "courier-ruby/#{Courier::VERSION}"
           }
         )
         .to_return(body: "{\"messageId\": \"1-5e2b2615-05efbb3acab9172f88dd3f6f\"}", status: 200)
@@ -118,7 +118,7 @@ RSpec.describe Courier do
             "Authorization" => "Basic " + Base64.strict_encode64(AUTH_USERNAME_MOCK + ":" + AUTH_PASSWORD_MOCK),
             "Content-Type" => "application/json",
             "Host" => "api.courier.com",
-            "User-Agent" => "courier-ruby/1.0.1"
+            "User-Agent" => "courier-ruby/#{Courier::VERSION}"
           }
         )
         .to_return(body: "{\"messageId\": \"1-5e2b2615-05efbb3acab9172f88dd3f6f\"}", status: 200)

@@ -1,4 +1,3 @@
-require "trycourier/version"
 require "net/http"
 require "json"
 require "openssl"
@@ -10,8 +9,7 @@ module Courier
   class Profiles
     @@key = "/profiles"
 
-    def initialize(base_url, session)
-      @base_url = base_url + @@key
+    def initialize(session)
       @session = session
     end
 
@@ -40,20 +38,20 @@ module Courier
     end
 
     def get(recipient_id)
-      url = @base_url + "/" + recipient_id.to_s
-      res = @session.send(url, "GET")
+      path = @@key + "/" + recipient_id.to_s
+      res = @session.send(path, "GET")
       checkErr(res)
     end
 
     def get_subscriptions(recipient_id, cursor: nil)
-      url = @base_url + "/" + recipient_id.to_s + "/subscriptions"
+      path = @@key + "/" + recipient_id.to_s + "/subscriptions"
 
       params = {}
       if cursor
         params["cursor"] = cursor
       end
 
-      res = @session.send(url, "GET", params: params)
+      res = @session.send(path, "GET", params: params)
       checkErr(res)
     end
 
@@ -62,18 +60,18 @@ module Courier
     end
 
     def replace(recipient_id, profile)
-      url = @base_url + "/" + recipient_id.to_s
+      path = @@key + "/" + recipient_id.to_s
 
       payload = {
         'profile': profile
       }
 
-      res = @session.send(url, "PUT", body: payload)
+      res = @session.send(path, "PUT", body: payload)
       checkErr2(res)
     end
 
     def merge(recipient_id, profile, idempotency_key: nil)
-      url = @base_url + "/" + recipient_id.to_s
+      path = @@key + "/" + recipient_id.to_s
       payload = {
         'profile': profile
       }
@@ -81,16 +79,16 @@ module Courier
       if idempotency_key
         headers["Idempotency-Key"] = idempotency_key
       end
-      res = @session.send(url, "POST", body: payload, headers: headers)
+      res = @session.send(path, "POST", body: payload, headers: headers)
       checkErr(res)
     end
 
     def patch(recipient_id, operations)
-      url = @base_url + "/" + recipient_id.to_s
+      path = @@key + "/" + recipient_id.to_s
       payload = {
         'patch': operations
       }
-      res = @session.send(url, "PATCH", body: payload)
+      res = @session.send(path, "PATCH", body: payload)
       checkErr(res)
     end
   end

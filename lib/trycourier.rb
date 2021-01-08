@@ -30,7 +30,7 @@ module Courier
 
   class Client
     def initialize(auth_token: nil, base_url: nil, username: nil, password: nil)
-      @base_url = if base_url
+      base = if base_url
         base_url
       elsif ENV["COURIER_BASE_URL"]
         ENV["COURIER_BASE_URL"]
@@ -38,7 +38,7 @@ module Courier
         "https://api.courier.com"
       end
 
-      @session = Courier::CourierAPISession.new
+      @session = Courier::CourierAPISession.new(base)
 
       if auth_token
         @session.init_token_auth(auth_token)
@@ -50,11 +50,11 @@ module Courier
         @session.init_basic_auth(ENV["COURIER_AUTH_USERNAME"], ENV["COURIER_AUTH_PASSWORD"])
       end
 
-      @messages = Courier::Messages.new(@base_url, @session)
-      @profiles = Courier::Profiles.new(@base_url, @session)
-      @lists = Courier::Lists.new(@base_url, @session)
-      @events = Courier::Events.new(@base_url, @session)
-      @brands = Courier::Brands.new(@base_url, @session)
+      @messages = Courier::Messages.new(@session)
+      @profiles = Courier::Profiles.new(@session)
+      @lists = Courier::Lists.new(@session)
+      @events = Courier::Events.new(@session)
+      @brands = Courier::Brands.new(@session)
     end
 
     def send(body)
@@ -70,8 +70,7 @@ module Courier
         raise InputError, "The 'profile' key in the Hash supplied to Client#send must also be a Hash."
       end
 
-      url = @base_url + "/send"
-      res = @session.send(url, "POST", body: body)
+      res = @session.send("/send", "POST", body: body)
 
       code = res.code.to_i
       obj = JSON.parse res.read_body
@@ -86,7 +85,6 @@ module Courier
     end
 
     # getters for all class variables
-    attr_reader :base_url
 
     attr_reader :session
 
