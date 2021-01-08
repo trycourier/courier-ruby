@@ -48,7 +48,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - `PUT /brands/brand_id` with `client.brands.replace` method
   - `DELETE /brands/brand_id` with `client.brands.delete` method
 
-## v1.0.1 - 2020-3-3
+## [v1.0.2] - 2021-1-6
 ### Added
 - Minor bug fixes to ensure proper SSL certification by @scarney81
 
