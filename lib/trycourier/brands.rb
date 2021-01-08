@@ -1,41 +1,9 @@
-require "trycourier/version"
-require "net/http"
-require "json"
-require "openssl"
-
 module Courier
-  # generic error to catch all exceptions
-  class CourierAPIException < StandardError; end
-
   class Brands
     @@key = "/brands"
 
     def initialize(session)
       @session = session
-    end
-
-    def checkErr(res)
-      code = res.code.to_i
-      obj = JSON.parse res.read_body
-
-      if code == 200
-        obj
-      elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-        err = "#{code}: #{message}"
-        raise CourierAPIException, err
-      end
-    end
-
-    def checkErr2(res)
-      code = res.code.to_i
-      if code >= 400
-        obj = JSON.parse res.read_body
-        if (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-          err = "#{code}: #{message}"
-          raise CourierAPIException, err
-        end
-      end
-      res
     end
 
     def list(cursor: nil)
@@ -44,13 +12,13 @@ module Courier
         params["cursor"] = cursor
       end
       res = @session.send(@@key, "GET", params: params)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def get(brand_id)
       path = @@key + "/" + brand_id.to_s
       res = @session.send(path, "GET")
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def add(name, settings, id: nil, snippets: nil, idempotency_key: nil)
@@ -75,7 +43,7 @@ module Courier
       end
 
       res = @session.send(@@key, "POST", body: payload, headers: headers)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def replace(brand_id, name, settings, snippets: nil)
@@ -90,13 +58,13 @@ module Courier
       end
 
       res = @session.send(path, "PUT", body: payload)
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
 
     def delete(brand_id)
       path = @@key + "/" + brand_id
       res = @session.send(path, "DELETE")
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
   end
 end

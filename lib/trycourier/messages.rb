@@ -1,28 +1,9 @@
-require "net/http"
-require "json"
-require "openssl"
-
 module Courier
-  # generic error to catch all exceptions
-  class CourierAPIException < StandardError; end
-
   class Messages
     @@key = "/messages"
 
     def initialize(session)
       @session = session
-    end
-
-    def checkErr(res)
-      code = res.code.to_i
-      obj = JSON.parse res.read_body
-
-      if code == 200
-        obj
-      elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-        err = "#{code}: #{message}"
-        raise CourierAPIException, err
-      end
     end
 
     def list(cursor: nil, event: nil, list_id: nil, message_id: nil,
@@ -48,13 +29,13 @@ module Courier
         params["recipient"] = recipient
       end
       res = @session.send(@@key, "GET", params: params)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def get(message_id)
       path = @@key + "/" + message_id.to_s
       res = @session.send(path, "GET")
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def get_history(message_id, type: nil)
@@ -64,7 +45,7 @@ module Courier
         params["type"] = type
       end
       res = @session.send(path, "GET", params: params)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
   end
 end

@@ -57,7 +57,7 @@ RSpec.describe Courier::Lists do
           body: {"event" => NOTIFICATION_ID, "list" => LIST_ID, "data" => {}},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.send(NOTIFICATION_ID, list: LIST_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.send(NOTIFICATION_ID, list: LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.list }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.list }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -104,7 +104,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.get(LIST_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.get(LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -125,7 +125,7 @@ RSpec.describe Courier::Lists do
           body: {"name" => "My List"},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.put(LIST_ID, "My List") }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.put(LIST_ID, "My List") }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -144,7 +144,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.delete(LIST_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.delete(LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -163,7 +163,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.restore(LIST_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.restore(LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -191,7 +191,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect { client.lists.get_subscriptions(LIST_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.get_subscriptions(LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -210,7 +210,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Error Message\"}", status: 400)
-      expect { client.lists.put_subscriptions(LIST_ID, ["1234", "5678"]) }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.put_subscriptions(LIST_ID, ["1234", "5678"]) }.to raise_error(Courier::CourierAPIError)
     end
 
     it "adds a single subscriber" do
@@ -227,7 +227,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Error Message\"}", status: 400)
-      expect { client.lists.subscribe(LIST_ID, RECIPIENT_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.subscribe(LIST_ID, RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -246,7 +246,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Error Message\"}", status: 400)
-      expect { client.lists.unsubscribe(LIST_ID, RECIPIENT_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.lists.unsubscribe(LIST_ID, RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 end

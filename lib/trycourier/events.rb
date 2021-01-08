@@ -1,12 +1,4 @@
-require "trycourier/version"
-require "net/http"
-require "json"
-require "openssl"
-
 module Courier
-  # generic error to catch all exceptions
-  class CourierAPIException < StandardError; end
-
   class Events
     @@key = "/events"
 
@@ -14,39 +6,15 @@ module Courier
       @session = session
     end
 
-    def checkErr(res)
-      code = res.code.to_i
-      obj = JSON.parse res.read_body
-
-      if code == 200
-        obj
-      elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-        err = "#{code}: #{message}"
-        raise CourierAPIException, err
-      end
-    end
-
-    def checkErr2(res)
-      code = res.code.to_i
-      if code >= 400
-        obj = JSON.parse res.read_body
-        if (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-          err = "#{code}: #{message}"
-          raise CourierAPIException, err
-        end
-      end
-      res
-    end
-
     def list
       res = @session.send(@@key, "GET")
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def get(event_id)
       path = @@key + "/" + event_id.to_s
       res = @session.send(path, "GET")
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def add(event_id, id, type: "notification")
@@ -61,7 +29,7 @@ module Courier
         "type" => type
       }
       res = @session.send(path, "PUT", body: payload)
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
   end
 end

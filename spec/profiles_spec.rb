@@ -19,7 +19,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect { client.profiles.get(RECIPIENT_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.get(RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -47,7 +47,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect { client.profiles.get_subscriptions(RECIPIENT_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.get_subscriptions(RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -55,7 +55,7 @@ RSpec.describe Courier::Profiles do
     it "adds a profile with ADD" do
       stub_request(:put, "https://api.courier.com/profiles/" + RECIPIENT_ID)
         .with(
-          body: {"profile" => profile},
+          body: {"profile": profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
       res = client.profiles.add(RECIPIENT_ID, profile)
@@ -78,7 +78,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.profiles.add(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.add(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIError)
     end
 
     it "fails to replace with exception" do
@@ -87,7 +87,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.profiles.replace(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.replace(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -119,7 +119,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.profiles.merge(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.merge(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -164,7 +164,7 @@ RSpec.describe Courier::Profiles do
           body: {"patch" => operations},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.profiles.patch(RECIPIENT_ID, operations) }.to raise_error(Courier::CourierAPIException)
+      expect { client.profiles.patch(RECIPIENT_ID, operations) }.to raise_error(Courier::CourierAPIError)
     end
   end
 end

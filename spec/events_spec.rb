@@ -19,7 +19,7 @@ RSpec.describe Courier::Events do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.events.list }.to raise_error(Courier::CourierAPIException)
+      expect { client.events.list }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe Courier::Events do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect { client.events.get(EVENT_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.events.get(EVENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -94,7 +94,7 @@ RSpec.describe Courier::Events do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.events.add(EVENT_ID, NOTIFICATION_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.events.add(EVENT_ID, NOTIFICATION_ID) }.to raise_error(Courier::CourierAPIError)
     end
 
     it "fails to replace with exception" do
@@ -104,7 +104,7 @@ RSpec.describe Courier::Events do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.events.replace(EVENT_ID, NOTIFICATION_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.events.replace(EVENT_ID, NOTIFICATION_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 end

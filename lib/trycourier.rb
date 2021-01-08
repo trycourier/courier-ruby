@@ -5,19 +5,12 @@ require "trycourier/profiles"
 require "trycourier/session"
 require "trycourier/messages"
 require "trycourier/version"
+require "trycourier/exceptions"
 require "net/http"
 require "json"
 require "openssl"
 
 module Courier
-  # only exception for all other errors
-  class CourierAPIException < StandardError; end
-
-  # previous exceptions for send() (so it doesn't break)
-  class ResponseError < StandardError; end
-
-  class InputError < StandardError; end
-
   class SendResponse
     attr_reader :code
     attr_reader :message_id
@@ -58,18 +51,6 @@ module Courier
     end
 
     def send(body)
-      if !body.is_a?(Hash)
-        raise InputError, "Client#send must be passed a Hash as first argument."
-      elsif body["event"].nil?
-        raise InputError, "Must specify the 'event' key in Hash supplied to Client#send."
-      elsif body["recipient"].nil?
-        raise InputError, "Must specify the 'recipient' key in Hash supplied to Client#send."
-      elsif !body["data"].nil? && !body["data"].is_a?(Hash)
-        raise InputError, "The 'data' key in the Hash supplied to Client#send must also be a Hash."
-      elsif !body["profile"].nil? && !body["profile"].is_a?(Hash)
-        raise InputError, "The 'profile' key in the Hash supplied to Client#send must also be a Hash."
-      end
-
       res = @session.send("/send", "POST", body: body)
 
       code = res.code.to_i

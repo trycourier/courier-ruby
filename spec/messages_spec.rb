@@ -30,7 +30,7 @@ RSpec.describe Courier::Messages do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.messages.list }.to raise_error(Courier::CourierAPIException)
+      expect { client.messages.list }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe Courier::Messages do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.messages.get(MESSAGE_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.messages.get(MESSAGE_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -77,7 +77,7 @@ RSpec.describe Courier::Messages do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.messages.get_history(MESSAGE_ID) }.to raise_error(Courier::CourierAPIException)
+      expect { client.messages.get_history(MESSAGE_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 end

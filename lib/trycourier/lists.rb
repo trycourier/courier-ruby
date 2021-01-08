@@ -1,41 +1,9 @@
-require "trycourier/version"
-require "net/http"
-require "json"
-require "openssl"
-
 module Courier
-  # generic error to catch all exceptions
-  class CourierAPIException < StandardError; end
-
   class Lists
     @@key = "/lists"
 
     def initialize(session)
       @session = session
-    end
-
-    def checkErr(res)
-      code = res.code.to_i
-      obj = JSON.parse res.read_body
-
-      if code < 400
-        obj
-      elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-        err = "#{code}: #{message}"
-        raise CourierAPIException, err
-      end
-    end
-
-    def checkErr2(res)
-      code = res.code.to_i
-      if code >= 400
-        obj = JSON.parse res.read_body
-        if (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-          err = "#{code}: #{message}"
-          raise CourierAPIException, err
-        end
-      end
-      res
     end
 
     def send(event, list: nil, pattern: nil, data: {}, brand: nil, override: nil, idempotency_key: nil)
@@ -63,7 +31,7 @@ module Courier
       end
 
       res = @session.send(path, "POST", body: payload, headers: headers)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def list(cursor: nil, pattern: nil)
@@ -75,13 +43,13 @@ module Courier
         params["pattern"] = pattern
       end
       res = @session.send(@@key, "GET", params: params)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def get(list_id)
       path = @@key + "/" + list_id.to_s
       res = @session.send(path, "GET")
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def put(list_id, name)
@@ -92,19 +60,19 @@ module Courier
       }
 
       res = @session.send(path, "PUT", body: payload)
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
 
     def delete(list_id)
       path = @@key + "/" + list_id.to_s
       res = @session.send(path, "DELETE")
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
 
     def restore(list_id)
       path = @@key + "/" + list_id.to_s + "/restore"
       res = @session.send(path, "PUT")
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
 
     def get_subscriptions(list_id, cursor: nil)
@@ -114,7 +82,7 @@ module Courier
         params["cursor"] = cursor
       end
       res = @session.send(path, "GET", params: params)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def put_subscriptions(list_id, recipients)
@@ -123,19 +91,19 @@ module Courier
         "recipients": recipients
       }
       res = @session.send(path, "PUT", body: payload)
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
 
     def subscribe(list_id, recipient_id)
       path = @@key + "/" + list_id.to_s + "/subscriptions/" + recipient_id.to_s
       res = @session.send(path, "PUT")
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
 
     def unsubscribe(list_id, recipient_id)
       path = @@key + "/" + list_id.to_s + "/subscriptions/" + recipient_id.to_s
       res = @session.send(path, "DELETE")
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
   end
 end

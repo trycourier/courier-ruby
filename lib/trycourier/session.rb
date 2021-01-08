@@ -1,12 +1,8 @@
 require "net/http"
 require "json"
 require "openssl"
-require "base64"
 
 module Courier
-  # generic error to catch all exceptions
-  class CourierAPIException < StandardError; end
-
   class CourierAPISession
 
     def initialize(base_url)

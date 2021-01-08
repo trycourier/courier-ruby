@@ -1,11 +1,4 @@
-require "net/http"
-require "json"
-require "openssl"
-
 module Courier
-  # generic error to catch all exceptions
-  class CourierAPIException < StandardError; end
-
   class Profiles
     @@key = "/profiles"
 
@@ -13,34 +6,10 @@ module Courier
       @session = session
     end
 
-    def checkErr(res)
-      code = res.code.to_i
-      obj = JSON.parse res.read_body
-
-      if code == 200
-        obj
-      elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-        err = "#{code}: #{message}"
-        raise CourierAPIException, err
-      end
-    end
-
-    def checkErr2(res)
-      code = res.code.to_i
-      if code >= 400
-        obj = JSON.parse res.read_body
-        if (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-          err = "#{code}: #{message}"
-          raise CourierAPIException, err
-        end
-      end
-      res
-    end
-
     def get(recipient_id)
       path = @@key + "/" + recipient_id.to_s
       res = @session.send(path, "GET")
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def get_subscriptions(recipient_id, cursor: nil)
@@ -52,7 +21,7 @@ module Courier
       end
 
       res = @session.send(path, "GET", params: params)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def add(recipient_id, profile)
@@ -67,7 +36,7 @@ module Courier
       }
 
       res = @session.send(path, "PUT", body: payload)
-      checkErr2(res)
+      ErrorHandler.check_err_non_json(res)
     end
 
     def merge(recipient_id, profile, idempotency_key: nil)
@@ -80,7 +49,7 @@ module Courier
         headers["Idempotency-Key"] = idempotency_key
       end
       res = @session.send(path, "POST", body: payload, headers: headers)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
 
     def patch(recipient_id, operations)
@@ -89,7 +58,7 @@ module Courier
         'patch': operations
       }
       res = @session.send(path, "PATCH", body: payload)
-      checkErr(res)
+      ErrorHandler.check_err(res)
     end
   end
 end

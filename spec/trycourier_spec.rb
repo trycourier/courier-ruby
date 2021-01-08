@@ -61,30 +61,6 @@ RSpec.describe Courier do
   end
 
   context "Send" do
-    it "catches no 'event'" do
-      client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK)
-      expect {
-        client.send({
-          "recipient" => "@rubysdk",
-          "data" => {
-            "world" => "Ruby!"
-          }
-        })
-      }.to raise_error(Courier::InputError)
-    end
-
-    it "catches no 'recipient'" do
-      client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK)
-      expect {
-        client.send({
-          "event" => "@rubysdk",
-          "data" => {
-            "world" => "Ruby!"
-          }
-        })
-      }.to raise_error(Courier::InputError)
-    end
-
     it "sends with token auth" do
       stub_request(:post, "https://api.courier.com/send")
         .with(
