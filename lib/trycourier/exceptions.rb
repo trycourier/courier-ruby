@@ -17,7 +17,7 @@ module Courier
         obj
       elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
         err = "#{code}: #{message}"
-        raise CourierAPIError, err
+        raise CourierAPIError.new err
       end
     end
 
@@ -27,7 +27,7 @@ module Courier
         obj = JSON.parse res.read_body
         if (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
           err = "#{code}: #{message}"
-          raise CourierAPIError, err
+          raise CourierAPIError.new err
         end
       end
       res

@@ -22,7 +22,7 @@ module Courier
     end
 
     def add(name, settings, id: nil, snippets: nil, idempotency_key: nil)
-      replace(name, settings, id: id, snippets: snippets, idempotency_key: idempotency_key)
+      create(name, settings, id: id, snippets: snippets, idempotency_key: idempotency_key)
     end
 
     def create(name, settings, id: nil, snippets: nil, idempotency_key: nil)

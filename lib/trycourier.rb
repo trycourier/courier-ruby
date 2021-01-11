@@ -22,7 +22,7 @@ module Courier
   end
 
   class Client
-    def initialize(auth_token: nil, base_url: nil, username: nil, password: nil)
+    def initialize(auth_token: nil, username: nil, password: nil, base_url: nil)
       base = if base_url
         base_url
       elsif ENV["COURIER_BASE_URL"]
@@ -61,7 +61,7 @@ module Courier
         SendResponse.new(code, message_id)
       elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
         err = "#{code}: #{message}"
-        raise ResponseError, err
+        raise CourierAPIError, err
       end
     end
 

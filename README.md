@@ -19,34 +19,318 @@ Or install it yourself as:
     $ gem install trycourier
 
 ## Usage
-
+After installing, make sure to include this line at the top of your ruby file:
 ```ruby
 require "trycourier"
+```
+To create a Courier Python client, all you need to do is pass in your authentication information. Then, you can start sending!
+### Using token authentication (most secure)
+```ruby
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+```
 
-begin
-  client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
-  res = client.send({
+### Using basic authentication
+```ruby
+client = Courier::Client.new(username: "USERNAME", password: "PASSWORD") # or set via COURIER_AUTH_USERNAME and COURIER_AUTH_PASSWORD env vars
+```
+### Sending a message to an individual recipient
+```ruby
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+res = client.send({
     "event" => "your-event-id",
     "recipient" => "your-recipient-id",
 
-    "profile" => {
+    "profile" => { #optional (include any key-value pairs required by your chosen integrations. This information can also be stored in the recipient's profile in Courier)
       "email": "example@example.com",
       "phone_number": "555-867-5309"
     },
 
-    "data" => {
+    "data" => { #any data you want to pass to a message template
       "world" => "Ruby!"
     }
   })
-
   puts res.code # the HTTP response code
-  puts res.message_id # if 200, this will be the Courier message ID for this notification
-rescue Courier::ResponseError => re
+  puts res.message_id # if the code is 200, this will be the Courier message ID for this notification
+rescue Courier::CourierAPIError => re #error sent from from the API
   puts re.message
-rescue Courier::InputError => ie
-  puts ie.message
 end
+```
+## Advanced Usage
 
+### Lists
+```ruby
+require "trycourier"
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+
+"""
+Creating a List
+"""
+res = client.lists.put(list_id, name)
+puts res
+
+"""
+Example: send a message to a list
+"""
+resp = client.lists.send(
+  "your-event-id",
+  "your.list.id",
+  brand: "your-brand-id", # optional
+  data: {}, # optional
+  override: {} # optional
+)
+puts resp['messageId'])
+
+"""
+Example: send a message to a list pattern
+"""
+resp = client.lists.send(
+  "your-event-id",
+  "your.list.*", #PATTERN (will send to all list ids that start with "your.list.")
+  brand: "your-brand-id", # optional
+  data: {}, # optional
+  override: {} # optional
+)
+puts resp['messageId'])
+
+"""
+Example: get all lists
+"""
+resp = client.lists.list(
+  cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA", # optional
+)
+puts resp
+
+"""
+Example: get a specific list
+"""
+resp = client.lists.get(list_id)
+puts resp
+
+
+"""
+Example: delete a list
+"""
+client.lists.delete(list_id)
+
+"""
+Example: restore a list
+"""
+client.lists.restore(list_id)
+
+"""
+Example: get a list's subscribptions
+"""
+resp = client.lists.get_subscriptions(list_id,
+  cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA", # optional
+)
+puts resp
+
+"""
+Example: replace many recipients to a new or existing list
+"""
+client.lists.put_subscriptions(list_id, [
+  "RECIPIENT_ID_1",
+  "RECIPIENT_ID_2"
+])
+
+"""
+Example: Example: subscribe single recipient to a new or existing list
+"""
+client.lists.subscribe(list_id, recipient_id)
+
+"""
+Example: unsubscribe recipient from list
+"""
+client.lists.unsubscribe(list_id, recipient_id)
+```
+### Profiles
+```Ruby
+"""
+Example: create a recipient's profile
+"""
+resp = client.profiles.add(
+  recipient_id,
+  {
+    "email":"example@example.com",
+    "name":"Example Name"
+  }
+)
+
+"""
+Example: replace or create a recipient's profile
+"""
+resp = client.profiles.replace(
+  recipient_id,
+  {
+    "email": "example@example.com"
+  }
+)
+puts resp['status']
+
+"""
+Example: merge or create a recipient's profile
+"""
+resp = client.profiles.merge(
+  recipient_id,
+  {
+    "phone_number" => "+15555555555"
+  }
+)
+puts resp['status']
+
+"""
+Example: get the subscribed lists of a recipient
+"""
+resp = client.profiles.get_subscriptions(
+  recipient_id,
+  cursor #optional
+)
+puts resp
+
+"""
+Example: edit the contents of a recipient's profile with a patch operation 
+(follows JSON Patch conventions: RFC 6902). 
+"""
+resp = client.profiles.patch(
+  recipient_id,
+  [
+    { 
+      "op" => "add", #operation 1: add this email to profile
+      "path" => "/parent",
+      "value" => "example@example.com"
+    }
+    {
+      "op" => "replace", #operation 2: update with new email
+      "path" => "/parent",
+      "value" => "jane@doe.com"
+    }
+    {
+      "op" => "copy", #operation 3: copy that email to /emergency_contact
+      "from" => "/parent",
+      "path" => "/emergency_contact"
+    }
+    ...
+  ]
+)
+puts resp
+
+
+"""
+Example: get a recipient's profile
+"""
+resp = client.profiles.get(recipient_id)
+puts resp
+```
+
+### Messages
+```Ruby
+"""
+Example: fetch the statuses of messages you've previously sent.
+"""
+resp = client.messages.list(
+  cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA", # optional
+  event: "your-event-id", # optional
+  list: "your-list-id", #optional
+  message_id: "your-message-id" #optional
+  notification: ["message-status-1", "message-status-2",...] #optional
+  recipient: "recipient-id" # optional
+)
+puts resp
+
+"""
+Example: fetch the status of a message you've previously sent
+"""
+resp = client.messages.get(message_id)
+puts resp
+
+"""
+Example: fetch the array of events of a message you've previously sent.
+"""
+resp = client.messages.get_history(
+message_id,
+type: "list-type" #optional ("FILTERED", "RENDERED", "MAPPED", "PROFILE_LOADED")
+)
+puts resp
+```
+
+### Events
+```Ruby
+"""
+Example: fetch the list of events
+"""
+resp = client.events.list
+puts resp
+
+"""
+Example: fetch a specific event by event ID
+"""
+resp = client.events.get(event_id)
+puts resp
+
+"""
+Example: create or replace an event
+"""
+resp = client.events.replace(
+  event_id,
+  notification_id,
+  type: "notificaton" ## optional, defaults to notification
+)
+puts resp
+
+"""
+Example: get all brands
+"""
+resp = client.brands.list(
+  cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA", # optional
+)
+puts resp
+
+"""
+Example: get a specific brand
+"""
+resp = client.brands.get(brand_id)
+puts resp
+
+"""
+Example: create a brand
+"""
+resp = client.brands.create(
+  name,
+  { #settings
+    "color" => {
+      "primary" => "#0000FF",
+      "secondary" => "#FF0000",
+      "tertiary" => "#00FF00"
+    }
+  },
+  id: "my-brand-id", #optional
+  snippets: {}, #optional
+  idempotency_key: "my-idemp-key", #optional
+)
+puts resp
+
+"""
+Example: replace a brand
+"""
+resp = client.brands.replace(
+  brand_id,
+  name,
+  { #setttings
+    "color" => {
+      "primary" => "#FF0000",
+      "secondary" => "#00FF00",
+      "tertiary" => "#0000FF"
+    }
+  },
+  snippets: {} #optional
+)
+puts resp
+
+"""
+Example: delete a brand
+"""
+resp = client.brands.delete(brand_id)
+puts resp
 ```
 
 ## Development
