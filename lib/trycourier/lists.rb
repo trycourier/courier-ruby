@@ -6,14 +6,14 @@ module Courier
       @session = session
     end
 
-    def send(event, list_id: nil, pattern: nil, data: {}, brand: nil, override: nil, idempotency_key: nil)
+    def send(event, list: nil, pattern: nil, data: {}, brand: nil, override: nil, idempotency_key: nil)
       path = "/send/list"
       payload = {
         "event": event,
         "data": data
       }
-      if list_id
-        payload["list"] = list_id
+      if list
+        payload["list"] = list
       end
       if pattern
         payload["pattern"] = pattern

@@ -11,7 +11,7 @@ RSpec.describe Courier::Lists do
           headers: TOKEN_AUTH_HEADERS
         )
         .to_return(body: "{\"status\": \"ok\"}", status: 200)
-      res = client.lists.send(NOTIFICATION_ID, list_id: LIST_ID)
+      res = client.lists.send(NOTIFICATION_ID, list: LIST_ID)
       expect(res).to eq({"status" => "ok"})
     end
 
@@ -33,7 +33,7 @@ RSpec.describe Courier::Lists do
           headers: TOKEN_AUTH_HEADERS
         )
         .to_return(body: "{\"status\": \"ok\"}", status: 200)
-      res = client.lists.send(NOTIFICATION_ID, list_id: LIST_ID, brand: BRAND_ID, override: {"provider": {}})
+      res = client.lists.send(NOTIFICATION_ID, list: LIST_ID, brand: BRAND_ID, override: {"provider": {}})
       expect(res).to eq({"status" => "ok"})
       # ALSO NEED TO TEST OVERRIDE OBJECT!
     end
@@ -46,7 +46,7 @@ RSpec.describe Courier::Lists do
           headers: idemp_headers
         )
         .to_return(body: "{\"status\": \"ok\"}", status: 200)
-      res = client.lists.send(NOTIFICATION_ID, list_id: LIST_ID, idempotency_key: "idempotency_mock")
+      res = client.lists.send(NOTIFICATION_ID, list: LIST_ID, idempotency_key: "idempotency_mock")
       expect(res).to eq({"status" => "ok"})
       # ALSO NEED TO TEST IDEMPOTENCY KEY!
     end
@@ -57,7 +57,7 @@ RSpec.describe Courier::Lists do
           body: {"event" => NOTIFICATION_ID, "list" => LIST_ID, "data" => {}},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.send(NOTIFICATION_ID, list_id: LIST_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.send(NOTIFICATION_ID, list: LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
