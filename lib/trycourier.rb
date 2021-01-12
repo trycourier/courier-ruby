@@ -22,7 +22,7 @@ module Courier
   end
 
   class Client
-    def initialize(auth_token: nil, username: nil, password: nil, base_url: nil)
+    def initialize(auth_token = nil, username: nil, password: nil, base_url: nil)
       base = if base_url
         base_url
       elsif ENV["COURIER_BASE_URL"]
@@ -51,6 +51,18 @@ module Courier
     end
 
     def send(body)
+      if not body.is_a?(Hash)
+        raise InputError, "Client#send must be passed a Hash as first argument."
+      elsif body["event"] == nil && body[:event] == nil
+        raise InputError, "Must specify the 'event' key in Hash supplied to Client#send."
+      elsif body["recipient"] == nil && body[:recipient] == nil
+        raise InputError, "Must specify the 'recipient' key in Hash supplied to Client#send."
+      elsif (body["data"] != nil and not body["data"].is_a?(Hash)) || (body[:data] != nil and not body[:data].is_a?(Hash))
+        raise InputError, "The 'data' key in the Hash supplied to Client#send must also be a Hash."
+      elsif (body["profile"] != nil and not body["profile"].is_a?(Hash)) || (body[:profile] != nil and not body[:profile].is_a?(Hash))
+        raise InputError, "The 'profile' key in the Hash supplied to Client#send must also be a Hash."
+      end
+
       res = @session.send("/send", "POST", body: body)
 
       code = res.code.to_i
