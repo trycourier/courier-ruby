@@ -26,7 +26,7 @@ require "trycourier"
 To create a Courier Python client, all you need to do is pass in your authentication information. Then, you can start sending!
 ### Using token authentication (most secure)
 ```ruby
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var (recommended)
 ```
 
 ### Using basic authentication
@@ -72,8 +72,8 @@ puts res
 Example: send a message to a list
 """
 resp = client.lists.send(
-  "your-event-id",
-  "your.list.id",
+  event: "your-event-id",
+  list: "your.list.id",
   brand: "your-brand-id", # optional
   data: {}, # optional
   override: {} # optional
@@ -84,8 +84,8 @@ puts resp['messageId'])
 Example: send a message to a list pattern
 """
 resp = client.lists.send(
-  "your-event-id",
-  "your.list.*", #PATTERN (will send to all list ids that start with "your.list.")
+  event: "your-event-id",
+  pattern: "your.list.*", #PATTERN (will send to all list ids that start with "your.list.")
   brand: "your-brand-id", # optional
   data: {}, # optional
   override: {} # optional
@@ -103,24 +103,24 @@ puts resp
 """
 Example: get a specific list
 """
-resp = client.lists.get(list_id)
+resp = client.lists.get(list_id: "your-list-id")
 puts resp
 
 
 """
 Example: delete a list
 """
-client.lists.delete(list_id)
+client.lists.delete(list_id: "your-list-id")
 
 """
 Example: restore a list
 """
-client.lists.restore(list_id)
+client.lists.restore(list_id: "your-list-id")
 
 """
 Example: get a list's subscribptions
 """
-resp = client.lists.get_subscriptions(list_id,
+resp = client.lists.get_subscriptions(list_id: "your-list-id",
   cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA", # optional
 )
 puts resp
@@ -128,7 +128,7 @@ puts resp
 """
 Example: replace many recipients to a new or existing list
 """
-client.lists.put_subscriptions(list_id, [
+client.lists.put_subscriptions(list_id: "your-list-id", recipients: [
   "RECIPIENT_ID_1",
   "RECIPIENT_ID_2"
 ])
@@ -136,12 +136,12 @@ client.lists.put_subscriptions(list_id, [
 """
 Example: Example: subscribe single recipient to a new or existing list
 """
-client.lists.subscribe(list_id, recipient_id)
+client.lists.subscribe(list_id: "your-list-id", recipient_id: "your-recipient-id")
 
 """
 Example: unsubscribe recipient from list
 """
-client.lists.unsubscribe(list_id, recipient_id)
+client.lists.unsubscribe(list_id: "your-list-id", recipient_id: "your-recipient-id")
 ```
 ### Profiles
 ```Ruby
@@ -149,10 +149,10 @@ client.lists.unsubscribe(list_id, recipient_id)
 Example: create a recipient's profile
 """
 resp = client.profiles.add(
-  recipient_id,
-  {
-    "email":"example@example.com",
-    "name":"Example Name"
+  recipient_id: "your-recipient-id",
+  profile: {
+    "email" => "example@example.com",
+    "name" => "Example Name"
   }
 )
 
@@ -160,9 +160,9 @@ resp = client.profiles.add(
 Example: replace or create a recipient's profile
 """
 resp = client.profiles.replace(
-  recipient_id,
-  {
-    "email": "example@example.com"
+  recipient_id: "your-recipient-id",
+  profile: {
+    "email" => "example@example.com"
   }
 )
 puts resp['status']
@@ -171,8 +171,8 @@ puts resp['status']
 Example: merge or create a recipient's profile
 """
 resp = client.profiles.merge(
-  recipient_id,
-  {
+  recipient_id: "your-recipient-id",
+  profile: {
     "phone_number" => "+15555555555"
   }
 )
@@ -182,8 +182,8 @@ puts resp['status']
 Example: get the subscribed lists of a recipient
 """
 resp = client.profiles.get_subscriptions(
-  recipient_id,
-  cursor #optional
+  recipient_id: "your-recipient-id",
+  cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA" #optional
 )
 puts resp
 
@@ -192,8 +192,8 @@ Example: edit the contents of a recipient's profile with a patch operation
 (follows JSON Patch conventions: RFC 6902). 
 """
 resp = client.profiles.patch(
-  recipient_id,
-  [
+  recipient_id: "your-recipient-id",
+  operations: [
     { 
       "op" => "add", #operation 1: add this email to profile
       "path" => "/parent",
@@ -218,7 +218,7 @@ puts resp
 """
 Example: get a recipient's profile
 """
-resp = client.profiles.get(recipient_id)
+resp = client.profiles.get(recipient_id: "your-recipient-id")
 puts resp
 ```
 
@@ -240,14 +240,14 @@ puts resp
 """
 Example: fetch the status of a message you've previously sent
 """
-resp = client.messages.get(message_id)
+resp = client.messages.get(message_id: "your-message-id")
 puts resp
 
 """
 Example: fetch the array of events of a message you've previously sent.
 """
 resp = client.messages.get_history(
-message_id,
+message_id: "your-message-id",
 type: "list-type" #optional ("FILTERED", "RENDERED", "MAPPED", "PROFILE_LOADED")
 )
 puts resp
@@ -264,15 +264,15 @@ puts resp
 """
 Example: fetch a specific event by event ID
 """
-resp = client.events.get(event_id)
+resp = client.events.get(event_id: "your-event-id")
 puts resp
 
 """
 Example: create or replace an event
 """
 resp = client.events.replace(
-  event_id,
-  notification_id,
+  event_id: "your-event-id",
+  notification_id: "notification_id",
   type: "notificaton" ## optional, defaults to notification
 )
 puts resp
@@ -288,15 +288,15 @@ puts resp
 """
 Example: get a specific brand
 """
-resp = client.brands.get(brand_id)
+resp = client.brands.get(brand_id: "brand_id")
 puts resp
 
 """
 Example: create a brand
 """
 resp = client.brands.create(
-  name,
-  { #settings
+  name: "brand-name",
+  settings: { 
     "color" => {
       "primary" => "#0000FF",
       "secondary" => "#FF0000",
@@ -313,9 +313,9 @@ puts resp
 Example: replace a brand
 """
 resp = client.brands.replace(
-  brand_id,
-  name,
-  { #setttings
+  brand_id: "your-brand-id",
+  name: "brand-name",
+  settings: {}
     "color" => {
       "primary" => "#FF0000",
       "secondary" => "#00FF00",
@@ -329,9 +329,20 @@ puts resp
 """
 Example: delete a brand
 """
-resp = client.brands.delete(brand_id)
+resp = client.brands.delete(brand_id: "your-brand-id")
 puts resp
 ```
+
+### Notes on input and errors
+With the exception of passing an auth token to create a client, and ```client.send(body)```, every parameter (optional or required) is sent using keyword arguments.
+In the case of ```client.send(body)```, if the hash does not have the required components, it will throw an InputError exception, which can be caught with rescue blocks:
+```ruby
+rescue InputError
+``` 
+Any other errors from the API are thrown as a CourierAPIError. Catch these errors by putting this after your method calls:
+```ruby
+rescue CourierAPIError
+``` 
 
 ## Development
 

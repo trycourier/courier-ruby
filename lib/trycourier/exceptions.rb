@@ -5,6 +5,7 @@ require "openssl"
 
 module Courier
   #ResponseError in order to maintain v1.0.2 signature.
+  class InputError < StandardError; end
   class ResponseError < StandardError; end
   class CourierAPIError < ResponseError; end  
 

@@ -8,19 +8,19 @@ RSpec.describe Courier do
   context "BaseURL" do
     it "sets url from param" do
       ENV["COURIER_BASE_URL"] = nil
-      client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK, base_url: "https://someurl.com")
+      client = Courier::Client.new(AUTH_TOKEN_MOCK, base_url: "https://someurl.com")
       expect(client.session.base_url).to eq("https://someurl.com")
     end
 
     it "sets base url from env" do
       ENV["COURIER_BASE_URL"] = "https://someurl.com"
-      client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK)
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
       expect(client.session.base_url).to eq("https://someurl.com")
     end
 
     it "sets base url to default" do
       ENV["COURIER_BASE_URL"] = nil
-      client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK)
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
       expect(client.session.base_url).to eq(DEFAULT_COURIER_URL)
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Courier do
     end
 
     it "initializes token auth from param" do
-      client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK)
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
       expect(client.session.isAuthenticated).to eq(true)
     end
 
@@ -61,7 +61,48 @@ RSpec.describe Courier do
   end
 
   context "Send" do
-    it "sends with token auth" do
+    it "catches no 'event' with input as strings" do
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
+      expect { client.send({
+        "recipient" => "@rubysdk",
+        "data" => {
+          "world" => "Ruby!"
+        }
+      }) }.to raise_error(Courier::InputError)
+    end
+
+    it "catches no 'event' with input as keys" do
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
+      expect { client.send({
+        :recipient => "@rubysdk",
+        :data => {
+          :world => "Ruby!"
+        }
+      }) }.to raise_error(Courier::InputError)
+    end
+
+    it "catches no 'recipient' with input as strings" do
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
+      expect { client.send({
+        "event" => EVENT_ID,
+        "data" => {
+          "world" => "Ruby!"
+        }
+      }) }.to raise_error(Courier::InputError)
+    end
+
+    it "catches no 'recipient' with input as keys" do
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
+      expect { client.send({
+        :event => EVENT_ID,
+        :data => {
+          :world => "Ruby!"
+        }
+      }) }.to raise_error(Courier::InputError)
+    end
+
+
+    it "sends with token auth with input as strings" do
       stub_request(:post, "https://api.courier.com/send")
         .with(
           body: {"event" => NOTIFICATION_ID, "recipient" => RECIPIENT_ID, "data" => {"world" => "Ruby!"}},
@@ -74,12 +115,37 @@ RSpec.describe Courier do
         )
         .to_return(body: "{\"messageId\": \"1-5e2b2615-05efbb3acab9172f88dd3f6f\"}", status: 200)
 
-      client = Courier::Client.new(auth_token: AUTH_TOKEN_MOCK)
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
       res = client.send({
-        "event" => NOTIFICATION_ID,
+        "event"=> NOTIFICATION_ID,
         "recipient" => RECIPIENT_ID,
         "data" => {
           "world" => "Ruby!"
+        }
+      })
+      expect(res.code).to eq(200)
+      expect(res.message_id).to eq("1-5e2b2615-05efbb3acab9172f88dd3f6f")
+    end
+
+    it "sends with token auth with input as keys" do
+      stub_request(:post, "https://api.courier.com/send")
+        .with(
+          body: {"event" => NOTIFICATION_ID, "recipient" => RECIPIENT_ID, "data" => {"world" => "Ruby!"}},
+          headers: {
+            "Authorization" => "Bearer " + AUTH_TOKEN_MOCK,
+            "Content-Type" => "application/json",
+            "Host" => "api.courier.com",
+            "User-Agent" => "courier-ruby/#{Courier::VERSION}"
+          }
+        )
+        .to_return(body: "{\"messageId\": \"1-5e2b2615-05efbb3acab9172f88dd3f6f\"}", status: 200)
+
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
+      res = client.send({
+        :event => NOTIFICATION_ID,
+        :recipient => RECIPIENT_ID,
+        :data => {
+          :world => "Ruby!"
         }
       })
       expect(res.code).to eq(200)

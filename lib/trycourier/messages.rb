@@ -32,13 +32,13 @@ module Courier
       ErrorHandler.check_err(res)
     end
 
-    def get(message_id)
+    def get(message_id:)
       path = @@key + "/" + message_id.to_s
       res = @session.send(path, "GET")
       ErrorHandler.check_err(res)
     end
 
-    def get_history(message_id, type: nil)
+    def get_history(message_id:, type: nil)
       path = @@key + "/" + message_id.to_s + "/history"
       params = {}
       if type

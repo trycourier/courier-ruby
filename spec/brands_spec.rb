@@ -1,7 +1,7 @@
 require_relative "spec_helper"
 
 RSpec.describe Courier::Brands do
-  let(:client) { Courier::Client.new(auth_token: AUTH_TOKEN_MOCK) }
+  let(:client) { Courier::Client.new(AUTH_TOKEN_MOCK) }
 
   context "list brands" do
     it "lists brands without parameters" do
@@ -39,7 +39,7 @@ RSpec.describe Courier::Brands do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"status\": \"DELIVERED\"}", status: 200)
-      res = client.brands.get(BRAND_ID)
+      res = client.brands.get(brand_id: BRAND_ID)
       expect(res).to eq({"status" => "DELIVERED"})
     end
 
@@ -48,7 +48,7 @@ RSpec.describe Courier::Brands do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.brands.get(BRAND_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.brands.get(brand_id: BRAND_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"id\": \"1234\", \"name\": \"My Brand\"}", status: 200)
-      res = client.brands.create("My Brand", {})
+      res = client.brands.create(name: "My Brand", settings: {})
       expect(res).to eq({"id" => "1234", "name" => "My Brand"})
     end
 
@@ -71,7 +71,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"id\": \"1234\", \"name\": \"My Brand\"}", status: 200)
-      res = client.brands.create("My Brand", {}, id: "1234", snippets: {"format" => "handlebars", "name" => "test", "value" => "{{test}}"})
+      res = client.brands.create(name: "My Brand", settings: {}, id: "1234", snippets: {"format" => "handlebars", "name" => "test", "value" => "{{test}}"})
       expect(res).to eq({"id" => "1234", "name" => "My Brand"})
     end
 
@@ -83,7 +83,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: idemp_headers
         ).to_return(body: "{\"id\": \"1234\", \"name\": \"My Brand\"}", status: 200)
-      res = client.brands.create("My Brand", {}, idempotency_key: "idemp_mock")
+      res = client.brands.create(name: "My Brand", settings: {}, idempotency_key: "idemp_mock")
       expect(res).to eq({"id" => "1234", "name" => "My Brand"})
     end
 
@@ -94,7 +94,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.brands.create("My Brand", {}) }.to raise_error(Courier::CourierAPIError)
+      expect { client.brands.create(name: "My Brand", settings: {}) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -106,7 +106,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 200)
-      res = client.brands.replace(BRAND_ID, "My Brand", {})
+      res = client.brands.replace(brand_id: BRAND_ID, name: "My Brand", settings: {})
       expect(res.code.to_i).to eq(200)
     end
 
@@ -117,7 +117,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 200)
-      res = client.brands.replace(BRAND_ID, "My Brand", {}, snippets: {"format" => "handlebars", "name" => "test", "value" => "{{test}}"})
+      res = client.brands.replace(brand_id: BRAND_ID, name: "My Brand", settings: {}, snippets: {"format" => "handlebars", "name" => "test", "value" => "{{test}}"})
       expect(res.code.to_i).to eq(200)
     end
 
@@ -128,7 +128,7 @@ RSpec.describe Courier::Brands do
           body: payload,
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.brands.replace(BRAND_ID, "My Brand", {}) }.to raise_error(Courier::CourierAPIError)
+      expect { client.brands.replace(brand_id: BRAND_ID, name: "My Brand", settings: {}) }.to raise_error(Courier::CourierAPIError)
     end
   end
 end

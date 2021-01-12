@@ -1,7 +1,7 @@
 require_relative "spec_helper"
 
 RSpec.describe Courier::Messages do
-  let(:client) { Courier::Client.new(auth_token: AUTH_TOKEN_MOCK) }
+  let(:client) { Courier::Client.new(AUTH_TOKEN_MOCK) }
 
   context "list" do
     it "succeeds without parameters" do
@@ -40,7 +40,7 @@ RSpec.describe Courier::Messages do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"id\": \"my.message.id\", \"name\": \"My Message\"}", status: 200)
-      res = client.messages.get(MESSAGE_ID)
+      res = client.messages.get(message_id: MESSAGE_ID)
       expect(res).to eq({"id" => "my.message.id", "name" => "My Message"})
     end
 
@@ -49,7 +49,7 @@ RSpec.describe Courier::Messages do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.messages.get(MESSAGE_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.messages.get(message_id: MESSAGE_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -59,7 +59,7 @@ RSpec.describe Courier::Messages do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"results\": []}", status: 200)
-      res = client.messages.get_history(MESSAGE_ID)
+      res = client.messages.get_history(message_id: MESSAGE_ID)
       expect(res).to eq({"results" => []})
     end
 
@@ -68,7 +68,7 @@ RSpec.describe Courier::Messages do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"results\": []}", status: 200)
-      res = client.messages.get_history(MESSAGE_ID, type: "test_type")
+      res = client.messages.get_history(message_id: MESSAGE_ID, type: "test_type")
       expect(res).to eq({"results" => []})
     end
 
@@ -77,7 +77,7 @@ RSpec.describe Courier::Messages do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.messages.get_history(MESSAGE_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.messages.get_history(message_id: MESSAGE_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 end

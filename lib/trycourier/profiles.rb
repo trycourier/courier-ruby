@@ -6,13 +6,13 @@ module Courier
       @session = session
     end
 
-    def get(recipient_id)
+    def get(recipient_id:)
       path = @@key + "/" + recipient_id.to_s
       res = @session.send(path, "GET")
       ErrorHandler.check_err(res)
     end
 
-    def get_subscriptions(recipient_id, cursor: nil)
+    def get_subscriptions(recipient_id:, cursor: nil)
       path = @@key + "/" + recipient_id.to_s + "/subscriptions"
 
       params = {}
@@ -24,11 +24,11 @@ module Courier
       ErrorHandler.check_err(res)
     end
 
-    def add(recipient_id, profile)
-      replace(recipient_id, profile)
+    def add(recipient_id:, profile:)
+      replace(recipient_id: recipient_id, profile: profile)
     end
 
-    def replace(recipient_id, profile)
+    def replace(recipient_id:, profile:)
       path = @@key + "/" + recipient_id.to_s
 
       payload = {
@@ -39,7 +39,7 @@ module Courier
       ErrorHandler.check_err_non_json(res)
     end
 
-    def merge(recipient_id, profile, idempotency_key: nil)
+    def merge(recipient_id:, profile:, idempotency_key: nil)
       path = @@key + "/" + recipient_id.to_s
       payload = {
         'profile': profile
@@ -52,7 +52,7 @@ module Courier
       ErrorHandler.check_err(res)
     end
 
-    def patch(recipient_id, operations)
+    def patch(recipient_id:, operations:)
       path = @@key + "/" + recipient_id.to_s
       payload = {
         'patch': operations

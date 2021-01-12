@@ -1,7 +1,7 @@
 require_relative "spec_helper"
 
 RSpec.describe Courier::Profiles do
-  let(:client) { Courier::Client.new(auth_token: AUTH_TOKEN_MOCK) }
+  let(:client) { Courier::Client.new(AUTH_TOKEN_MOCK) }
   let(:profile) { {"name" => "Jane Doe", "email" => "jane@doe.test"} }
 
   context "get" do
@@ -10,7 +10,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"profile\":{}}", status: 200)
-      res = client.profiles.get(RECIPIENT_ID)
+      res = client.profiles.get(recipient_id: RECIPIENT_ID)
       expect(res).to eq({"profile" => {}})
     end
 
@@ -19,7 +19,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect { client.profiles.get(RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.profiles.get(recipient_id: RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"paging\": {}, \"results\": []}", status: 200)
-      res = client.profiles.get_subscriptions(RECIPIENT_ID)
+      res = client.profiles.get_subscriptions(recipient_id: RECIPIENT_ID)
       expect(res).to eq({"paging" => {}, "results" => []})
     end
 
@@ -38,7 +38,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"paging\": {}, \"results\": []}", status: 200)
-      res = client.profiles.get_subscriptions(RECIPIENT_ID, cursor: "1234")
+      res = client.profiles.get_subscriptions(recipient_id: RECIPIENT_ID, cursor: "1234")
       expect(res).to eq({"paging" => {}, "results" => []})
     end
 
@@ -47,7 +47,7 @@ RSpec.describe Courier::Profiles do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect { client.profiles.get_subscriptions(RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.profiles.get_subscriptions(recipient_id: RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -58,7 +58,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile": profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
-      res = client.profiles.add(RECIPIENT_ID, profile)
+      res = client.profiles.add(recipient_id: RECIPIENT_ID, profile: profile)
       expect(res.code.to_i).to eq(204)
     end
 
@@ -68,7 +68,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
-      res = client.profiles.replace(RECIPIENT_ID, profile)
+      res = client.profiles.replace(recipient_id: RECIPIENT_ID, profile: profile)
       expect(res.code.to_i).to eq(204)
     end
 
@@ -78,7 +78,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.profiles.add(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIError)
+      expect { client.profiles.add(recipient_id: RECIPIENT_ID, profile: profile) }.to raise_error(Courier::CourierAPIError)
     end
 
     it "fails to replace with exception" do
@@ -87,7 +87,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.profiles.replace(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIError)
+      expect { client.profiles.replace(recipient_id: RECIPIENT_ID, profile: profile) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -98,7 +98,7 @@ RSpec.describe Courier::Profiles do
           headers: TOKEN_AUTH_HEADERS,
           body: {"profile" => profile}
         ).to_return(body: "{\"status\": \"SUCCESS\"}", status: 200)
-      res = client.profiles.merge(RECIPIENT_ID, profile)
+      res = client.profiles.merge(recipient_id: RECIPIENT_ID, profile: profile)
       expect(res).to eq({"status" => "SUCCESS"})
     end
 
@@ -109,7 +109,7 @@ RSpec.describe Courier::Profiles do
           headers: idemp_headers,
           body: {"profile" => profile}
         ).to_return(body: "{\"status\": \"SUCCESS\"}", status: 200)
-      res = client.profiles.merge(RECIPIENT_ID, profile, idempotency_key: "idempotency_mock")
+      res = client.profiles.merge(recipient_id: RECIPIENT_ID, profile: profile, idempotency_key: "idempotency_mock")
       expect(res).to eq({"status" => "SUCCESS"})
     end
 
@@ -119,7 +119,7 @@ RSpec.describe Courier::Profiles do
           body: {"profile" => profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.profiles.merge(RECIPIENT_ID, profile) }.to raise_error(Courier::CourierAPIError)
+      expect { client.profiles.merge(recipient_id: RECIPIENT_ID, profile: profile) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -147,7 +147,7 @@ RSpec.describe Courier::Profiles do
           headers: TOKEN_AUTH_HEADERS,
           body: {"patch" => operations}
         ).to_return(body: "{\"status\": \"SUCCESS\"}", status: 200)
-      res = client.profiles.patch(RECIPIENT_ID, operations)
+      res = client.profiles.patch(recipient_id: RECIPIENT_ID, operations: operations)
       expect(res).to eq({"status" => "SUCCESS"})
     end
 
@@ -164,7 +164,7 @@ RSpec.describe Courier::Profiles do
           body: {"patch" => operations},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.profiles.patch(RECIPIENT_ID, operations) }.to raise_error(Courier::CourierAPIError)
+      expect { client.profiles.patch(recipient_id: RECIPIENT_ID, operations: operations) }.to raise_error(Courier::CourierAPIError)
     end
   end
 end

@@ -15,17 +15,17 @@ module Courier
       ErrorHandler.check_err(res)
     end
 
-    def get(brand_id)
+    def get(brand_id:)
       path = @@key + "/" + brand_id.to_s
       res = @session.send(path, "GET")
       ErrorHandler.check_err(res)
     end
 
-    def add(name, settings, id: nil, snippets: nil, idempotency_key: nil)
-      create(name, settings, id: id, snippets: snippets, idempotency_key: idempotency_key)
+    def add(name:, settings:, id: nil, snippets: nil, idempotency_key: nil)
+      create(name: name, settings: settings, id: id, snippets: snippets, idempotency_key: idempotency_key)
     end
 
-    def create(name, settings, id: nil, snippets: nil, idempotency_key: nil)
+    def create(name:, settings:, id: nil, snippets: nil, idempotency_key: nil)
       headers = {}
       if idempotency_key
         headers["idempotency_key"] = idempotency_key
@@ -46,7 +46,7 @@ module Courier
       ErrorHandler.check_err(res)
     end
 
-    def replace(brand_id, name, settings, snippets: nil)
+    def replace(brand_id:, name:, settings:, snippets: nil)
       path = @@key + "/" + brand_id
 
       payload = {
@@ -61,7 +61,7 @@ module Courier
       ErrorHandler.check_err_non_json(res)
     end
 
-    def delete(brand_id)
+    def delete(brand_id:)
       path = @@key + "/" + brand_id
       res = @session.send(path, "DELETE")
       ErrorHandler.check_err_non_json(res)

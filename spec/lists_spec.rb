@@ -1,7 +1,7 @@
 require_relative "spec_helper"
 
 RSpec.describe Courier::Lists do
-  let(:client) { Courier::Client.new(auth_token: AUTH_TOKEN_MOCK) }
+  let(:client) { Courier::Client.new(AUTH_TOKEN_MOCK) }
 
   context "send" do
     it "sends to list" do
@@ -11,7 +11,7 @@ RSpec.describe Courier::Lists do
           headers: TOKEN_AUTH_HEADERS
         )
         .to_return(body: "{\"status\": \"ok\"}", status: 200)
-      res = client.lists.send(NOTIFICATION_ID, list: LIST_ID)
+      res = client.lists.send(event: NOTIFICATION_ID, list: LIST_ID)
       expect(res).to eq({"status" => "ok"})
     end
 
@@ -22,7 +22,7 @@ RSpec.describe Courier::Lists do
           headers: TOKEN_AUTH_HEADERS
         )
         .to_return(body: "{\"status\": \"ok\"}", status: 200)
-      res = client.lists.send(NOTIFICATION_ID, pattern: "my_list.*")
+      res = client.lists.send(event: NOTIFICATION_ID, pattern: "my_list.*")
       expect(res).to eq({"status" => "ok"})
     end
 
@@ -33,7 +33,7 @@ RSpec.describe Courier::Lists do
           headers: TOKEN_AUTH_HEADERS
         )
         .to_return(body: "{\"status\": \"ok\"}", status: 200)
-      res = client.lists.send(NOTIFICATION_ID, list: LIST_ID, brand: BRAND_ID, override: {"provider": {}})
+      res = client.lists.send(event: NOTIFICATION_ID, list: LIST_ID, brand: BRAND_ID, override: {"provider": {}})
       expect(res).to eq({"status" => "ok"})
       # ALSO NEED TO TEST OVERRIDE OBJECT!
     end
@@ -46,7 +46,7 @@ RSpec.describe Courier::Lists do
           headers: idemp_headers
         )
         .to_return(body: "{\"status\": \"ok\"}", status: 200)
-      res = client.lists.send(NOTIFICATION_ID, list: LIST_ID, idempotency_key: "idempotency_mock")
+      res = client.lists.send(event: NOTIFICATION_ID, list: LIST_ID, idempotency_key: "idempotency_mock")
       expect(res).to eq({"status" => "ok"})
       # ALSO NEED TO TEST IDEMPOTENCY KEY!
     end
@@ -57,7 +57,7 @@ RSpec.describe Courier::Lists do
           body: {"event" => NOTIFICATION_ID, "list" => LIST_ID, "data" => {}},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.send(NOTIFICATION_ID, list: LIST_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.send(event: NOTIFICATION_ID, list: LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -95,7 +95,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"id\": \"my.list.id\", \"name\": \"My List\"}", status: 200)
-      res = client.lists.get(LIST_ID)
+      res = client.lists.get(list_id: LIST_ID)
       expect(res).to eq({"id" => "my.list.id", "name" => "My List"})
     end
 
@@ -104,7 +104,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.get(LIST_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.get(list_id: LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -115,7 +115,7 @@ RSpec.describe Courier::Lists do
           body: {"name" => "My List Name"},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
-      res = client.lists.put(LIST_ID, "My List Name")
+      res = client.lists.put(list_id: LIST_ID, name: "My List Name")
       expect(res.code.to_i).to eq(204)
     end
 
@@ -125,7 +125,7 @@ RSpec.describe Courier::Lists do
           body: {"name" => "My List Name"},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.put(LIST_ID, "My List Name") }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.put(list_id: LIST_ID, name: "My List Name") }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -135,7 +135,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
-      res = client.lists.delete(LIST_ID)
+      res = client.lists.delete(list_id: LIST_ID)
       expect(res.code.to_i).to eq(204)
     end
 
@@ -144,7 +144,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.delete(LIST_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.delete(list_id: LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -154,7 +154,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
-      res = client.lists.restore(LIST_ID)
+      res = client.lists.restore(list_id: LIST_ID)
       expect(res.code.to_i).to eq(204)
     end
 
@@ -163,7 +163,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"an error occurred\"}", status: 400)
-      expect { client.lists.restore(LIST_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.restore(list_id: LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -173,7 +173,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"paging\": {}, \"items\": []}", status: 200)
-      res = client.lists.get_subscriptions(LIST_ID)
+      res = client.lists.get_subscriptions(list_id: LIST_ID)
       expect(res).to eq({"paging" => {}, "items" => []})
     end
 
@@ -182,7 +182,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"paging\": {}, \"items\": []}", status: 200)
-      res = client.lists.get_subscriptions(LIST_ID, cursor: "1234")
+      res = client.lists.get_subscriptions(list_id: LIST_ID, cursor: "1234")
       expect(res).to eq({"paging" => {}, "items" => []})
     end
 
@@ -191,7 +191,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Not Found\"}", status: 400)
-      expect { client.lists.get_subscriptions(LIST_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.get_subscriptions(list_id: LIST_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -201,7 +201,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
-      res = client.lists.put_subscriptions(LIST_ID, ["1234", "5678"])
+      res = client.lists.put_subscriptions(list_id: LIST_ID, recipients: ["1234", "5678"])
       expect(res.code.to_i).to eq(204)
     end
 
@@ -210,7 +210,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Error Message\"}", status: 400)
-      expect { client.lists.put_subscriptions(LIST_ID, ["1234", "5678"]) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.put_subscriptions(list_id: LIST_ID, recipients: ["1234", "5678"]) }.to raise_error(Courier::CourierAPIError)
     end
 
     it "adds a single subscriber" do
@@ -218,7 +218,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
-      res = client.lists.subscribe(LIST_ID, RECIPIENT_ID)
+      res = client.lists.subscribe(list_id: LIST_ID, recipient_id: RECIPIENT_ID)
       expect(res.code.to_i).to eq(204)
     end
 
@@ -227,7 +227,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Error Message\"}", status: 400)
-      expect { client.lists.subscribe(LIST_ID, RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.subscribe(list_id: LIST_ID, recipient_id: RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 
@@ -237,7 +237,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
-      res = client.lists.unsubscribe(LIST_ID, RECIPIENT_ID)
+      res = client.lists.unsubscribe(list_id: LIST_ID, recipient_id: RECIPIENT_ID)
       expect(res.code.to_i).to eq(204)
     end
 
@@ -246,7 +246,7 @@ RSpec.describe Courier::Lists do
         .with(
           headers: TOKEN_AUTH_HEADERS
         ).to_return(body: "{\"message\": \"Error Message\"}", status: 400)
-      expect { client.lists.unsubscribe(LIST_ID, RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
+      expect { client.lists.unsubscribe(list_id: LIST_ID, recipient_id: RECIPIENT_ID) }.to raise_error(Courier::CourierAPIError)
     end
   end
 end
