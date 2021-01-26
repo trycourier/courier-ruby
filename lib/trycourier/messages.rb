@@ -1,6 +1,6 @@
 module Courier
   class Messages
-    @@key = "/messages"
+    KEY = "/messages"
 
     def initialize(session)
       @session = session
@@ -28,18 +28,18 @@ module Courier
       if recipient
         params["recipient"] = recipient
       end
-      res = @session.send(@@key, "GET", params: params)
+      res = @session.send(KEY, "GET", params: params)
       ErrorHandler.check_err(res)
     end
 
     def get(message_id:)
-      path = @@key + "/" + message_id.to_s
+      path = "#{KEY}/#{message_id}"
       res = @session.send(path, "GET")
       ErrorHandler.check_err(res)
     end
 
     def get_history(message_id:, type: nil)
-      path = @@key + "/" + message_id.to_s + "/history"
+      path ="#{KEY}/#{message_id}/history"
       params = {}
       if type
         params["type"] = type

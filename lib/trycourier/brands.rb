@@ -1,6 +1,6 @@
 module Courier
   class Brands
-    @@key = "/brands"
+    KEY = "/brands"
 
     def initialize(session)
       @session = session
@@ -11,12 +11,12 @@ module Courier
       if cursor
         params["cursor"] = cursor
       end
-      res = @session.send(@@key, "GET", params: params)
+      res = @session.send(KEY, "GET", params: params)
       ErrorHandler.check_err(res)
     end
 
     def get(brand_id:)
-      path = @@key + "/" + brand_id.to_s
+      path = "#{KEY}/#{brand_id}"
       res = @session.send(path, "GET")
       ErrorHandler.check_err(res)
     end
@@ -42,12 +42,12 @@ module Courier
         payload["snippets"] = snippets
       end
 
-      res = @session.send(@@key, "POST", body: payload, headers: headers)
+      res = @session.send(KEY, "POST", body: payload, headers: headers)
       ErrorHandler.check_err(res)
     end
 
     def replace(brand_id:, name:, settings:, snippets: nil)
-      path = @@key + "/" + brand_id
+      path = "#{KEY}/#{brand_id}"
 
       payload = {
         "name" => name,
@@ -62,7 +62,7 @@ module Courier
     end
 
     def delete(brand_id:)
-      path = @@key + "/" + brand_id
+      path = "#{KEY}/#{brand_id}"
       res = @session.send(path, "DELETE")
       ErrorHandler.check_err_non_json(res)
     end

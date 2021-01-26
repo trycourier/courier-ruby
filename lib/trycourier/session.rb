@@ -7,10 +7,6 @@ module Courier
 
     def initialize(base_url)
       @base_url = base_url
-      @auth_token = nil
-      @username = nil
-      @password = nil
-      @auth_method = nil
     end
 
     def init_token_auth(auth_token)
@@ -71,7 +67,7 @@ module Courier
       http.request(req)
     end
 
-    def isAuthenticated
+    def is_authenticated
       if !@auth_method.nil?
         true
       else

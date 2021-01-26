@@ -1,19 +1,19 @@
 module Courier
   class Profiles
-    @@key = "/profiles"
+    KEY = "/profiles"
 
     def initialize(session)
       @session = session
     end
 
     def get(recipient_id:)
-      path = @@key + "/" + recipient_id.to_s
+      path = "#{KEY}/#{recipient_id}"
       res = @session.send(path, "GET")
       ErrorHandler.check_err(res)
     end
 
     def get_subscriptions(recipient_id:, cursor: nil)
-      path = @@key + "/" + recipient_id.to_s + "/subscriptions"
+      path = "#{KEY}/#{recipient_id}/subscriptions"
 
       params = {}
       if cursor
@@ -29,7 +29,7 @@ module Courier
     end
 
     def replace(recipient_id:, profile:)
-      path = @@key + "/" + recipient_id.to_s
+      path = "#{KEY}/#{recipient_id}"
 
       payload = {
         'profile': profile
@@ -40,7 +40,7 @@ module Courier
     end
 
     def merge(recipient_id:, profile:, idempotency_key: nil)
-      path = @@key + "/" + recipient_id.to_s
+      path = "#{KEY}/#{recipient_id}"
       payload = {
         'profile': profile
       }
@@ -53,7 +53,7 @@ module Courier
     end
 
     def patch(recipient_id:, operations:)
-      path = @@key + "/" + recipient_id.to_s
+      path = "#{KEY}/#{recipient_id}"
       payload = {
         'patch': operations
       }

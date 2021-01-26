@@ -30,25 +30,25 @@ RSpec.describe Courier do
       ENV["COURIER_AUTH_TOKEN"] = nil
       ENV["COURIER_AUTH_USERNAME"] = nil
       client = Courier::Client.new
-      expect(client.session.isAuthenticated).to eq(false)
+      expect(client.session.is_authenticated).to eq(false)
     end
 
     it "initializes token auth from param" do
       client = Courier::Client.new(AUTH_TOKEN_MOCK)
-      expect(client.session.isAuthenticated).to eq(true)
+      expect(client.session.is_authenticated).to eq(true)
     end
 
     it "initializes token auth from env" do
       ENV["COURIER_AUTH_TOKEN"] = AUTH_TOKEN_MOCK
       client = Courier::Client.new
-      expect(client.session.isAuthenticated).to eq(true)
+      expect(client.session.is_authenticated).to eq(true)
     end
 
     it "initializes basic auth from params" do
       ENV["COURIER_AUTH_TOKEN"] = nil
       ENV["CORUER_AUTH_USERNAME"] = nil
       client = Courier::Client.new(username: "jane", password: "doe")
-      expect(client.session.isAuthenticated).to eq(true)
+      expect(client.session.is_authenticated).to eq(true)
     end
 
     it "initializes basic auth from env" do
@@ -56,7 +56,7 @@ RSpec.describe Courier do
       ENV["COURIER_AUTH_USERNAME"] = "jane"
       ENV["COURIER_AUTH_PASSWORD"] = "doe"
       client = Courier::Client.new
-      expect(client.session.isAuthenticated).to eq(true)
+      expect(client.session.is_authenticated).to eq(true)
     end
   end
 
