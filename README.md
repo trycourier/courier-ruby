@@ -23,7 +23,7 @@ After installing, make sure to include this line at the top of your ruby file:
 ```ruby
 require "trycourier"
 ```
-To create a Courier Python client, all you need to do is pass in your authentication information. Then, you can start sending!
+To create a Courier Ruby client, all you need to do is pass in your authentication information. Then, you can start sending!
 ### Using token authentication (most secure)
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var (recommended)
