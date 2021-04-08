@@ -19,21 +19,29 @@ Or install it yourself as:
     $ gem install trycourier
 
 ## Usage
+
 After installing, make sure to include this line at the top of your ruby file:
+
 ```ruby
 require "trycourier"
 ```
+
 To create a Courier Ruby client, all you need to do is pass in your authentication information. Then, you can start sending!
+
 ### Using token authentication (most secure)
+
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var (recommended)
 ```
 
 ### Using basic authentication
+
 ```ruby
 client = Courier::Client.new(username: "USERNAME", password: "PASSWORD") # or set via COURIER_AUTH_USERNAME and COURIER_AUTH_PASSWORD env vars
 ```
+
 ### Sending a message to an individual recipient
+
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
 res = client.send({
@@ -55,9 +63,11 @@ rescue Courier::CourierAPIError => re #error sent from from the API
   puts re.message
 end
 ```
+
 ## Advanced Usage
 
 ### Lists
+
 ```ruby
 require "trycourier"
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
@@ -143,7 +153,9 @@ Example: unsubscribe recipient from list
 """
 client.lists.unsubscribe(list_id: "your-list-id", recipient_id: "your-recipient-id")
 ```
+
 ### Profiles
+
 ```Ruby
 """
 Example: create a recipient's profile
@@ -188,13 +200,13 @@ resp = client.profiles.get_subscriptions(
 puts resp
 
 """
-Example: edit the contents of a recipient's profile with a patch operation 
-(follows JSON Patch conventions: RFC 6902). 
+Example: edit the contents of a recipient's profile with a patch operation
+(follows JSON Patch conventions: RFC 6902).
 """
 resp = client.profiles.patch(
   recipient_id: "your-recipient-id",
   operations: [
-    { 
+    {
       "op" => "add", #operation 1: add this email to profile
       "path" => "/parent",
       "value" => "example@example.com"
@@ -223,6 +235,7 @@ puts resp
 ```
 
 ### Messages
+
 ```Ruby
 """
 Example: fetch the statuses of messages you've previously sent.
@@ -254,6 +267,7 @@ puts resp
 ```
 
 ### Events
+
 ```Ruby
 """
 Example: fetch the list of events
@@ -296,7 +310,7 @@ Example: create a brand
 """
 resp = client.brands.create(
   name: "brand-name",
-  settings: { 
+  settings: {
     "color" => {
       "primary" => "#0000FF",
       "secondary" => "#FF0000",
@@ -333,16 +347,60 @@ resp = client.brands.delete(brand_id: "your-brand-id")
 puts resp
 ```
 
+### Automations
+
+````Ruby
+"""
+Example: invoke ad-hoc automation
+"""
+steps = [
+  {
+    "action" => "send"
+  }
+]
+automation = {
+  "steps" => steps
+}
+
+resp = client.automations.invoke(
+  automation: automation,
+  brand: "your-brand-id", # optional
+  data: {}, # optional
+  profile: {
+    "email" => "example@example.com",
+  }, # optional
+  recipient: "your-recipient-id", # optional
+  template: "your-notification-template-id" # optional
+)
+puts resp['runId']
+
+"""
+Example: invoke automation template
+"""
+resp = client.automations.invoke_template(
+  template_id: "your-automation-template-id",
+  brand: "your-brand-id", # optional
+  data: {}, # optional
+  profile: {
+    "email" => "example@example.com",
+  }, # optional
+  recipient: "your-recipient-id", # optional
+  template: "your-notification-template-id" # optional
+)
+puts resp['runId']
+
 ### Notes on input and errors
 With the exception of passing an auth token to create a client, and ```client.send(body)```, every parameter (optional or required) is sent using keyword arguments.
 In the case of ```client.send(body)```, if the hash does not have the required components, it will throw an InputError exception, which can be caught with rescue blocks:
 ```ruby
 rescue InputError
-``` 
+````
+
 Any other errors from the API are thrown as a CourierAPIError. Catch these errors by putting this after your method calls:
+
 ```ruby
 rescue CourierAPIError
-``` 
+```
 
 ## Development
 
