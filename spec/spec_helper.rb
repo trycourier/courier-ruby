@@ -12,6 +12,7 @@ LIST_ID = "TESTListID"
 BRAND_ID = "TESTBrandID"
 MESSAGE_ID = "TESTMessageID"
 EVENT_ID = "TESTEventID"
+AUTOMATION_TEMPLATE_ID = "TESTAutomationTemplateID"
 DEFAULT_COURIER_URL = "https://api.courier.com"
 TOKEN_AUTH_HEADERS = {
   "Authorization" => "Bearer " + AUTH_TOKEN_MOCK,

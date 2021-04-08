@@ -5,8 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
-## [v1.1.0] - 2021-01-26
+## [v1.2.0] - 2021-04-08
+
 ### Added
+
+- Support for [Automation API](https://docs.courier.com/reference/automation-api) by @tk26
+  - `POST /automations/invoke` with `client.automations.invoke` method
+  - `POST /automations/{template_id}/invoke` with `client.automations.invoke_template` method
+
+## [v1.1.0] - 2021-01-26
+
+### Added
+
 - Support for Basic Auth
   - ENV variables `COURIER_AUTH_USERNAME` and `COURIER_AUTH_PASSWORD` OR set with params
 - Token Auth using ENV variables
@@ -14,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Base URL parameter (with default of api.courier.com)
   - ENV variable `COURIER_BASE_URL`
 - Support for Lists API by @jrweingart
+
   - `POST /send/list` with `client.lists.send` method
   - `GET /lists` with `client.lists.list` method
   - `GET /lists/{list_id}` with `client.lists.get` method
@@ -26,6 +37,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - `DELETE /lists/{list_id}/subscriptions/{recipient_id}` with `client.lists.unsubscribe` method
 
 - Support for Profiles API by @jrweingart
+
   - `GET /profiles/{recipient_id}` with `client.profiles.get` method
   - `GET /profiles/{recipient_id}/lists` with `client.profiles.get_subscriptions` method
   - `PUT /profiles/{recipient_id}` with `client.profiles.replace` and `client.profiles.add` methods
@@ -33,11 +45,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - `POST /profiles/{recipient_id}` with `client.profiles.merge` method
 
 - Support for Messages API by @jrweingart
+
   - `GET /messages` with `client.messages.list` method
   - `GET /messages/{message_id}` with `client.messages.get` method
   - `GET /messages/{message_id}/history` with `client.messages.get_history` method
 
 - Support for Events API by @jrweingart
+
   - `GET /events` with `client.events.list` method
   - `GET /events/{event_id}` with `client.event.get` method
   - `PUT /events/{event_id}` with `client.events.replace` and `client.events.add` methods
@@ -50,17 +64,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - `DELETE /brands/brand_id` with `client.brands.delete` method
 
 ## [v1.0.2] - 2021-01-06
+
 ### Added
+
 - Minor bug fixes to ensure proper SSL certification by @scarney81
 
 ## [v1.0.1] - 2020-03-04
+
 ### Added
+
 - Support for Send API by @troy
 
 ## v1.0.0 - 2020-03-03
+
 Initial release by @troygoode
 
-[unreleased]: https://github.com/trycourier/courier-ruby/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/trycourier/courier-ruby/compare/v1.2.0...HEAD
+[v1.2.0]: https://github.com/trycourier/courier-ruby/compare/v1.1.0...v1.2.0
 [v1.1.0]: https://github.com/trycourier/courier-ruby/compare/v1.0.2...v1.1.0
 [v1.0.2]: https://github.com/trycourier/courier-ruby/compare/v1.0.1...v1.0.2
 [v1.0.1]: https://github.com/trycourier/courier-ruby/compare/v1.0.0...v1.0.1

@@ -4,6 +4,7 @@ require "trycourier/lists"
 require "trycourier/profiles"
 require "trycourier/session"
 require "trycourier/messages"
+require "trycourier/automations"
 require "trycourier/version"
 require "trycourier/exceptions"
 require "net/http"
@@ -48,6 +49,7 @@ module Courier
       @lists = Courier::Lists.new(@session)
       @events = Courier::Events.new(@session)
       @brands = Courier::Brands.new(@session)
+      @automations = Courier::Automations.new(@session)
     end
 
     def send(body)
@@ -90,5 +92,7 @@ module Courier
     attr_reader :lists
 
     attr_reader :brands
+
+    attr_reader :automations
   end
 end
