@@ -5,6 +5,7 @@ require "trycourier/profiles"
 require "trycourier/session"
 require "trycourier/messages"
 require "trycourier/automations"
+require "trycourier/bulk"
 require "trycourier/version"
 require "trycourier/exceptions"
 require "net/http"
@@ -50,6 +51,7 @@ module Courier
       @events = Courier::Events.new(@session)
       @brands = Courier::Brands.new(@session)
       @automations = Courier::Automations.new(@session)
+      @bulk = Courier::Bulk.new(@session)
     end
 
     def send(body)
@@ -94,5 +96,7 @@ module Courier
     attr_reader :brands
 
     attr_reader :automations
+
+    attr_reader :bulk
   end
 end
