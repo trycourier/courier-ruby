@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name = "trycourier"
   spec.version = Courier::VERSION
   spec.authors = ["Courier"]
-spec.email = ["support@courier.com"]
+  spec.email = ["support@courier.com"]
 
   spec.summary = "Wraps calls to the Courier REST API"
   spec.description = "Courier is the smartest way to design & deliver notifications. Design your notifications once, deliver them to any channel through one API."
