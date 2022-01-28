@@ -21,7 +21,7 @@ RSpec.describe Courier::Automations do
         )
         .to_return(body: "{\"runId\": \"1234\"}", status: 200)
 
-        res = client.automations.invoke(automation: automation)
+      res = client.automations.invoke(automation: automation)
 
       expect(res).to eq({"runId" => "1234"})
     end
@@ -45,7 +45,7 @@ RSpec.describe Courier::Automations do
         )
         .to_return(body: "{\"runId\": \"1234\"}", status: 200)
 
-        res = client.automations.invoke_template(template_id: AUTOMATION_TEMPLATE_ID)
+      res = client.automations.invoke_template(template_id: AUTOMATION_TEMPLATE_ID)
 
       expect(res).to eq({"runId" => "1234"})
     end

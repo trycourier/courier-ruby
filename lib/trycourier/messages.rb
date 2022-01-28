@@ -39,7 +39,7 @@ module Courier
     end
 
     def get_history(message_id:, type: nil)
-      path ="#{KEY}/#{message_id}/history"
+      path = "#{KEY}/#{message_id}/history"
       params = {}
       if type
         params["type"] = type

@@ -7,7 +7,7 @@ module Courier
     end
 
     def create_job(message:, idempotency_key: nil, idempotency_expiry: nil)
-      path = "#{KEY}"
+      path = KEY.to_s
       payload = {
         "message": message
       }

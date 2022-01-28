@@ -16,7 +16,7 @@ RSpec.describe Courier::Bulk do
         )
         .to_return(body: "{\"jobId\": \"1234\"}", status: 201)
 
-        res = client.bulk.create_job(message: message)
+      res = client.bulk.create_job(message: message)
 
       expect(res).to eq({"jobId" => "1234"})
     end
@@ -37,9 +37,9 @@ RSpec.describe Courier::Bulk do
         )
         .to_return(body: "{\"errors\": [], \"total\": 1}", status: 200)
 
-        res = client.bulk.ingest_job(job_id: "1234", users: users)
+      res = client.bulk.ingest_job(job_id: "1234", users: users)
 
-        expect(res).to eq({"errors" => [], "total" => 1})
+      expect(res).to eq({"errors" => [], "total" => 1})
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe Courier::Bulk do
         )
         .to_return(body: "", status: 202)
 
-        res = client.bulk.run_job(job_id: "1234")
+      res = client.bulk.run_job(job_id: "1234")
     end
   end
 
@@ -65,9 +65,9 @@ RSpec.describe Courier::Bulk do
         )
         .to_return(body: "{ \"job\": { \"definition\": { \"event\": \"foo\" }, \"enqueued\": 1, \"failures\": 0, \"received\": 1, \"status\": \"COMPLETED\" }}", status: 200)
 
-        res = client.bulk.get_job(job_id: "1234")
+      res = client.bulk.get_job(job_id: "1234")
 
-        expect(res).to eq({"job" => {"definition" => { "event" => "foo"}, "enqueued" => 1, "failures" => 0, "received" => 1, "status" => "COMPLETED"}})
+      expect(res).to eq({"job" => {"definition" => {"event" => "foo"}, "enqueued" => 1, "failures" => 0, "received" => 1, "status" => "COMPLETED"}})
     end
   end
 
@@ -80,9 +80,9 @@ RSpec.describe Courier::Bulk do
         )
         .to_return(body: "{ \"items\": [ { \"recipient\": \"johndoe\" } ], \"paging\": { \"cursor\": null, \"more\": false } }", status: 200)
 
-        res = client.bulk.get_job_users(job_id: "1234")
+      res = client.bulk.get_job_users(job_id: "1234")
 
-        expect(res).to eq({"items" => [{ "recipient" => "johndoe" }], "paging" => { "cursor" => nil, "more" => false}})
+      expect(res).to eq({"items" => [{"recipient" => "johndoe"}], "paging" => {"cursor" => nil, "more" => false}})
     end
   end
 end

@@ -4,7 +4,6 @@ require "openssl"
 
 module Courier
   class CourierAPISession
-
     def initialize(base_url)
       @base_url = base_url
     end
@@ -75,7 +74,7 @@ module Courier
       end
     end
 
-    #getter for base url (for testing)
+    # getter for base url (for testing)
     attr_reader :base_url
   end
 end
