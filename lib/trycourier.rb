@@ -23,6 +23,16 @@ module Courier
     end
   end
 
+  class SendMessageResponse
+    attr_reader :code
+    attr_reader :request_id
+
+    def initialize(code, request_id)
+      @code = code
+      @request_id = request_id
+    end
+  end
+
   class Client
     def initialize(auth_token = nil, username: nil, password: nil, base_url: nil)
       base = if base_url
@@ -75,6 +85,27 @@ module Courier
       if code == 200
         message_id = obj["messageId"]
         SendResponse.new(code, message_id)
+      elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
+        err = "#{code}: #{message}"
+        raise CourierAPIError, err
+      end
+    end
+
+    def send_message(body)
+      if !body.is_a?(Hash)
+        raise InputError, "Client#send_message must be passed a Hash as first argument."
+      elsif (!body["message"].nil? && !body["message"].is_a?(Hash)) || (!body[:message].nil? && !body[:message].is_a?(Hash))
+        raise InputError, "The 'message' key in the Hash supplied to Client#send_message must also be a Hash."
+      end
+
+      res = @session.send("/send", "POST", body: body)
+
+      code = res.code.to_i
+      obj = JSON.parse res.read_body
+
+      if code == 202
+        request_id = obj["requestId"]
+        SendMessageResponse.new(code, request_id)
       elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
         err = "#{code}: #{message}"
         raise CourierAPIError, err
