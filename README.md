@@ -66,6 +66,25 @@ end
 
 ## Advanced Usage
 
+### Send API enhanced
+
+```ruby
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+res = client.send_message({
+    message => {
+      template => "my-template",
+      to => {
+        email => "foo@bar.com"
+      }
+    }
+  })
+  puts res.code # the HTTP response code
+  puts res.request_id # if the code is 202, this will be the Courier request ID for this message
+rescue Courier::CourierAPIError => re #error sent from from the API
+  puts re.message
+end
+```
+
 ### Lists
 
 ```ruby
