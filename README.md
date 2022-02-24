@@ -71,10 +71,10 @@ end
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
 res = client.send_message({
-    message => {
-      template => "my-template",
-      to => {
-        email => "foo@bar.com"
+    "message" => {
+      "template" => "my-template",
+      "to" => {
+        "email" => "foo@bar.com"
       }
     }
   })
