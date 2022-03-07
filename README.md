@@ -44,6 +44,29 @@ client = Courier::Client.new(username: "USERNAME", password: "PASSWORD") # or se
 
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+res = client.send_message({
+    "message" => {
+      "to" => {
+        "email" => "foo@bar.com"
+      }
+      "content" => {
+        "title" => "hello {{name}}",
+        "body" => "Welcome to Courier!"
+      },
+      "data" => {
+        "name" => "Ruby"
+      }
+    }
+  })
+  puts res.code # the HTTP response code
+  puts res.request_id # if the code is 202, this will be the Courier request ID for this message
+rescue Courier::CourierAPIError => re #error sent from from the API
+  puts re.message
+end
+```
+
+```ruby
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
 res = client.send({
     "event" => "your-event-id",
     "recipient" => "your-recipient-id",
@@ -65,25 +88,6 @@ end
 ```
 
 ## Advanced Usage
-
-### Send API enhanced
-
-```ruby
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
-res = client.send_message({
-    "message" => {
-      "template" => "my-template",
-      "to" => {
-        "email" => "foo@bar.com"
-      }
-    }
-  })
-  puts res.code # the HTTP response code
-  puts res.request_id # if the code is 202, this will be the Courier request ID for this message
-rescue Courier::CourierAPIError => re #error sent from from the API
-  puts re.message
-end
-```
 
 ### Lists
 
