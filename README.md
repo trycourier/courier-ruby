@@ -87,6 +87,36 @@ rescue Courier::CourierAPIError => re #error sent from from the API
 end
 ```
 
+### Sending a message to an individual with metadata
+
+```ruby
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+res = client.send_message({
+    "message" => {
+      "to" => {
+        "email" => "foo@bar.com"
+      }
+      "content" => {
+        "title" => "hello {{name}}",
+        "body" => "Welcome to Courier!"
+      },
+      "data" => {
+        "name" => "Ruby"
+      },
+      "metadata" => {
+        "utm" => {
+          "source" => "Ruby"
+        }
+      }
+    }
+  })
+  puts res.code # the HTTP response code
+  puts res.request_id # if the code is 202, this will be the Courier request ID for this message
+rescue Courier::CourierAPIError => re #error sent from from the API
+  puts re.message
+end
+```
+
 ## Advanced Usage
 
 ### Lists
