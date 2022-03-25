@@ -214,5 +214,36 @@ RSpec.describe Courier do
       expect(res.code).to eq(202)
       expect(res.request_id).to eq("1-5e2b2615-05efbb3acab9172f88dd3f6f")
     end
+
+    it "sends with a message object containing timeout in the request" do
+      stub_request(:post, "https://api.courier.com/send")
+        .with(
+          body: {"message" => {"template" => "my-template", "to" => {"email" => "foo@bar.com"}, "timeout" => {"message" => 86400}}},
+          headers: {
+            "Authorization" => "Bearer " + AUTH_TOKEN_MOCK,
+            "Content-Type" => "application/json",
+            "Host" => "api.courier.com",
+            "User-Agent" => "courier-ruby/#{Courier::VERSION}"
+          }
+        )
+        .to_return(body: "{\"requestId\": \"1-5e2b2615-05efbb3acab9172f88dd3f6f\"}", status: 202)
+
+      client = Courier::Client.new(AUTH_TOKEN_MOCK)
+
+      res = client.send_message({
+        message: {
+          template: "my-template",
+          to: {
+            email: "foo@bar.com"
+          },
+          timeout: {
+            message: 86400
+          }
+        }
+      })
+
+      expect(res.code).to eq(202)
+      expect(res.request_id).to eq("1-5e2b2615-05efbb3acab9172f88dd3f6f")
+    end
   end
 end
