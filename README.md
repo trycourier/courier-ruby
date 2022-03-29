@@ -455,6 +455,57 @@ Any other errors from the API are thrown as a CourierAPIError. Catch these error
 rescue CourierAPIError
 ```
 
+### Audiences
+
+List of supported operators for audience filtering: https://www.courier.com/docs/reference/audieces/operators
+
+```Ruby
+"""
+Example: create or update an Audience
+"""
+resp = client.audiences.put(
+  audience_id: "your-audience-id",
+  filter: {
+    "operator": "EQ",
+    "value": "en-US",
+    "path": "locale"
+  }
+)
+
+"""
+Example: Get all members of an Audience
+"""
+resp = client.audiences.get_audience_members(
+  audience_id: "your-audience-id",
+  cursor: nil
+)
+puts resp['status']
+
+"""
+Example: Send to an Audience
+"""
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+res = client.send_message({
+    "message" => {
+      "to" => {
+        "audience_id" => "your-audience-id"
+      }
+      "content" => {
+        "title" => "hello {{name}}",
+        "body" => "Welcome to Courier!"
+      },
+      "data" => {
+        "name" => "Ruby"
+      }
+    }
+  })
+  puts res.code # the HTTP response code
+  puts res.request_id # if the code is 202, this will be the Courier request ID for this message
+rescue Courier::CourierAPIError => re #error sent from from the API
+  puts re.message
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -468,3 +519,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/trycou
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+```
+
+```
