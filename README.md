@@ -106,7 +106,8 @@ res = client.send_message({
       "metadata" => {
         "utm" => {
           "source" => "Ruby"
-        }
+        },
+        "trace_id" => "feed-me-hungry"
       }
     }
   })
