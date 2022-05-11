@@ -119,6 +119,75 @@ rescue Courier::CourierAPIError => re #error sent from from the API
 end
 ```
 
+### Sending a message to an individual with granular metadata
+
+```ruby
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+res = client.send_message({
+    "message" => {
+      "to" => {
+        "email" => "foo@bar.com"
+      },
+      "content" => {
+			  "version" => "2020-01-01",
+        "elements" => [
+				  {
+            "type" => "text",
+            "content" => "Thanks for signing up, {{name}}"
+          },
+          {
+            "type" => "action",
+            "content" => "Click Me!",
+            "href" => "https://www.example.com"
+          }
+        ]
+		  },
+      "routing" => {
+        "method" => "all",
+        "channels" => [
+          "email"
+        ]
+		  },
+      "data" => {
+        "name" => "Ruby"
+      },
+      "metadata" => {
+        "utm" => {
+          "source" => "Ruby"
+        },
+      },
+      "channels" => {
+        "email" => {
+          "routing_method" => "all",
+          "providers" => [
+            "sendgrid",
+            "mailjet"
+          ],
+          "metadata" => {
+            "utm" => {
+              "medium" => "email"
+            }
+          }
+        }
+      },
+      "providers" => {
+        "sendgrid" => {
+          "metadata" => {
+            "utm" => {
+              "source" => "sendgrid"
+            }
+          }
+        }
+      }
+    }
+  })
+  puts res.code # the HTTP response code
+  puts res.request_id # if the code is 202, this will be the Courier request ID for this message
+rescue Courier::CourierAPIError => re #error sent from from the API
+  puts re.message
+end
+```
+
 ## Advanced Usage
 
 ### Lists

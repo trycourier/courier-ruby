@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Added example for advance use of UTM metadata
 
 ## [v1.5.0] - 2022-03-28
 - Support for audiences API
