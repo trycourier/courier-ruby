@@ -237,7 +237,13 @@ RSpec.describe Courier do
             email: "foo@bar.com"
           },
           timeout: {
-            message: 86400
+            message: 86400,
+            channel: {
+              email: 3000,
+            },
+            provider: {
+              sendgrid: 0
+            }
           }
         }
       })
