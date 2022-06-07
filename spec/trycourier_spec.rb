@@ -218,7 +218,7 @@ RSpec.describe Courier do
     it "sends with a message object containing timeout in the request" do
       stub_request(:post, "https://api.courier.com/send")
         .with(
-          body: {"message" => {"template" => "my-template", "to" => {"email" => "foo@bar.com"}, "timeout" => {"message" => 86400}}},
+          body: {"message" => {"template" => "my-template", "to" => {"email" => "foo@bar.com"}, "timeout" => {"message" => 86400, "channel" => {"email" => 3000}, "provider" => {"sendgrid" => 0}}}},
           headers: {
             "Authorization" => "Bearer " + AUTH_TOKEN_MOCK,
             "Content-Type" => "application/json",
