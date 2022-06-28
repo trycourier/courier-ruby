@@ -9,7 +9,7 @@ module Courier
     def invoke(automation:, brand: nil, data: nil, profile: nil, recipient: nil, template: nil)
       path = "#{KEY}/invoke"
       payload = {
-        "automation": automation
+        automation: automation
       }
 
       if brand

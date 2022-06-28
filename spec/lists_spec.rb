@@ -29,17 +29,17 @@ RSpec.describe Courier::Lists do
     it "sends with options" do
       stub_request(:post, "https://api.courier.com/send/list")
         .with(
-          body: {"event" => NOTIFICATION_ID, "list" => LIST_ID, "data" => {}, "brand" => BRAND_ID, "override" => {'provider': {}}},
+          body: {"event" => NOTIFICATION_ID, "list" => LIST_ID, "data" => {}, "brand" => BRAND_ID, "override" => {provider: {}}},
           headers: TOKEN_AUTH_HEADERS
         )
         .to_return(body: "{\"status\": \"ok\"}", status: 200)
-      res = client.lists.send(event: NOTIFICATION_ID, list: LIST_ID, brand: BRAND_ID, override: {"provider": {}})
+      res = client.lists.send(event: NOTIFICATION_ID, list: LIST_ID, brand: BRAND_ID, override: {provider: {}})
       expect(res).to eq({"status" => "ok"})
       # ALSO NEED TO TEST OVERRIDE OBJECT!
     end
 
     it "sends with idempotency" do
-      idemp_headers = TOKEN_AUTH_HEADERS.merge({"idempotency_key": "idempotency_mock"})
+      idemp_headers = TOKEN_AUTH_HEADERS.merge({idempotency_key: "idempotency_mock"})
       stub_request(:post, "https://api.courier.com/send/list")
         .with(
           body: {"event" => NOTIFICATION_ID, "list" => LIST_ID, "data" => {}},

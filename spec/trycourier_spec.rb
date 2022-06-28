@@ -239,7 +239,7 @@ RSpec.describe Courier do
           timeout: {
             message: 86400,
             channel: {
-              email: 3000,
+              email: 3000
             },
             provider: {
               sendgrid: 0

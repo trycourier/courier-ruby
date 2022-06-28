@@ -13,12 +13,12 @@ RSpec.describe Courier::Audiences do
 
       stub_request(:put, "https://api.courier.com/audiences/software-engineers-from-sf")
         .with(
-          body: { "filter" => filter },
+          body: {"filter" => filter},
           headers: TOKEN_AUTH_HEADERS
         )
         .to_return(body: '{"audience":{"id":"software-engineers-from-sf","name":"","description":"","created_at":"2022-03-24T18:56:49.181Z","updated_at":"2022-03-24T19:54:37.982Z","filter":{"path":"title","value":"Software Engineer","operator":"EQ"}}}', status: 200)
 
-      res = client.audiences.put(audience_id: "software-engineers-from-sf", payload: { "filter" => filter })
+      res = client.audiences.put(audience_id: "software-engineers-from-sf", payload: {"filter" => filter})
 
       expect(res).to eq({"audience" => {"id" => "software-engineers-from-sf", "name" => "", "description" => "", "created_at" => "2022-03-24T18:56:49.181Z", "updated_at" => "2022-03-24T19:54:37.982Z", "filter" => {"path" => "title", "value" => "Software Engineer", "operator" => "EQ"}}})
     end
@@ -41,7 +41,7 @@ RSpec.describe Courier::Audiences do
         "filter" => {"path" => "title", "value" => "Software Engineer", "operator" => "EQ"},
         "id" => "software-engineers-from-sf",
         "name" => "",
-        "updated_at" => "2022-03-24T19:54:37.982Z",
+        "updated_at" => "2022-03-24T19:54:37.982Z"
       })
     end
   end

@@ -55,7 +55,7 @@ RSpec.describe Courier::Profiles do
     it "adds a profile with ADD" do
       stub_request(:put, "https://api.courier.com/profiles/" + RECIPIENT_ID)
         .with(
-          body: {"profile": profile},
+          body: {profile: profile},
           headers: TOKEN_AUTH_HEADERS
         ).to_return(status: 204)
       res = client.profiles.add(recipient_id: RECIPIENT_ID, profile: profile)
@@ -103,7 +103,7 @@ RSpec.describe Courier::Profiles do
     end
 
     it "merges with idempotency" do
-      idemp_headers = TOKEN_AUTH_HEADERS.merge({"idempotency_key": "idempotency_mock"})
+      idemp_headers = TOKEN_AUTH_HEADERS.merge({idempotency_key: "idempotency_mock"})
       stub_request(:post, "https://api.courier.com/profiles/" + RECIPIENT_ID)
         .with(
           headers: idemp_headers,

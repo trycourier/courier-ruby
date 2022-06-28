@@ -32,7 +32,7 @@ module Courier
       path = "#{KEY}/#{recipient_id}"
 
       payload = {
-        'profile': profile
+        profile: profile
       }
 
       res = @session.send(path, "PUT", body: payload)
@@ -42,7 +42,7 @@ module Courier
     def merge(recipient_id:, profile:, idempotency_key: nil)
       path = "#{KEY}/#{recipient_id}"
       payload = {
-        'profile': profile
+        profile: profile
       }
       headers = {}
       if idempotency_key
@@ -55,7 +55,7 @@ module Courier
     def patch(recipient_id:, operations:)
       path = "#{KEY}/#{recipient_id}"
       payload = {
-        'patch': operations
+        patch: operations
       }
       res = @session.send(path, "PATCH", body: payload)
       ErrorHandler.check_err(res)

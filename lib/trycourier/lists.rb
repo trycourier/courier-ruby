@@ -9,8 +9,8 @@ module Courier
     def send(event:, list: nil, pattern: nil, data: {}, brand: nil, override: nil, idempotency_key: nil)
       path = "/send/list"
       payload = {
-        "event": event,
-        "data": data
+        event: event,
+        data: data
       }
       if list
         payload["list"] = list
@@ -56,7 +56,7 @@ module Courier
       path = "#{KEY}/#{list_id}"
 
       payload = {
-        "name": name.to_s
+        name: name.to_s
       }
 
       res = @session.send(path, "PUT", body: payload)
@@ -88,7 +88,7 @@ module Courier
     def put_subscriptions(list_id:, recipients:)
       path = "#{KEY}/#{list_id}/subscriptions"
       payload = {
-        "recipients": recipients
+        recipients: recipients
       }
       res = @session.send(path, "PUT", body: payload)
       ErrorHandler.check_err_non_json(res)
