@@ -40,6 +40,5 @@ module Courier
       res = @session.send(path, "PUT", body: payload)
       ErrorHandler.check_err(res)
     end
-
   end
 end

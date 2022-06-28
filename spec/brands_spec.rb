@@ -76,7 +76,7 @@ RSpec.describe Courier::Brands do
     end
 
     it "creates a brand with idempotency" do
-      idemp_headers = TOKEN_AUTH_HEADERS.merge({"idempotency_key": "idemp_mock"})
+      idemp_headers = TOKEN_AUTH_HEADERS.merge({idempotency_key: "idemp_mock"})
       payload = {"name" => "My Brand", "settings" => {}}
       stub_request(:post, "https://api.courier.com/brands")
         .with(

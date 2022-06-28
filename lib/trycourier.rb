@@ -80,7 +80,7 @@ module Courier
         raise InputError, "The 'profile' key in the Hash supplied to Client#send must also be a Hash."
       end
 
-      res = @session.send("/send", "POST", body: body)
+      res = @session.send(:"/send", "POST", body: body)
 
       code = res.code.to_i
       obj = JSON.parse res.read_body
@@ -101,7 +101,7 @@ module Courier
         raise InputError, "The 'message' key in the Hash supplied to Client#send_message must also be a Hash."
       end
 
-      res = @session.send("/send", "POST", body: body)
+      res = @session.send(:"/send", "POST", body: body)
 
       code = res.code.to_i
       obj = JSON.parse res.read_body
@@ -134,7 +134,5 @@ module Courier
     attr_reader :bulk
 
     attr_reader :audiences
-
-
   end
 end

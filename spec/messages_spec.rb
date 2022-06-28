@@ -21,7 +21,7 @@ RSpec.describe Courier::Messages do
         )
         .to_return(body: "{\"paging\": {}, \"items\": []}", status: 200)
       res = client.messages.list(cursor: "12", event: "34", recipient: "56",
-                                 notification: "78", message_id: "91", list_id: "23")
+        notification: "78", message_id: "91", list_id: "23")
       expect(res).to eq({"paging" => {}, "items" => []})
     end
 

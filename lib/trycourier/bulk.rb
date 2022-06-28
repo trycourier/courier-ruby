@@ -9,7 +9,7 @@ module Courier
     def create_job(message:, idempotency_key: nil, idempotency_expiry: nil)
       path = KEY.to_s
       payload = {
-        "message": message
+        message: message
       }
 
       headers = {}
@@ -27,7 +27,7 @@ module Courier
     def ingest_job(job_id:, users:, idempotency_key: nil, idempotency_expiry: nil)
       path = "#{KEY}/#{job_id}"
       payload = {
-        "users": users
+        users: users
       }
 
       headers = {}
