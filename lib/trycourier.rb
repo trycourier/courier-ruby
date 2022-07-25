@@ -7,6 +7,7 @@ require "trycourier/messages"
 require "trycourier/automations"
 require "trycourier/bulk"
 require "trycourier/audiences"
+require "trycourier/audit_events"
 require "trycourier/version"
 require "trycourier/exceptions"
 
@@ -65,6 +66,7 @@ module Courier
       @automations = Courier::Automations.new(@session)
       @bulk = Courier::Bulk.new(@session)
       @audiences = Courier::Audiences.new(@session)
+      @audit_events = Courier::AuditEvents.new(@session)
     end
 
     def send(body)
@@ -135,6 +137,7 @@ module Courier
 
     attr_reader :audiences
 
+    attr_reader :audit_events
 
   end
 end

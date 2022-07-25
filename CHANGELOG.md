@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Added example for advance use of UTM metadata
+
+## [v1.6.0] - 2022-07-25
+
+- Support for audit events API
 
 ## [v1.5.0] - 2022-03-28
+
 - Support for audiences API
 
 ## [v1.4.0] - 2022-01-31
@@ -95,7 +99,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Initial release by @troygoode
 
-[unreleased]: https://github.com/trycourier/courier-ruby/compare/v1.5.0...HEAD
+[unreleased]: https://github.com/trycourier/courier-ruby/compare/v1.6.0...HEAD
+[v1.6.0]: https://github.com/trycourier/courier-ruby/compare/v1.5.0...v1.6.0
 [v1.5.0]: https://github.com/trycourier/courier-ruby/compare/v1.4.0...v1.5.0
 [v1.4.0]: https://github.com/trycourier/courier-ruby/compare/v1.3.0...v1.4.0
 [v1.3.0]: https://github.com/trycourier/courier-ruby/compare/v1.2.0...v1.3.0
