@@ -577,6 +577,20 @@ rescue Courier::CourierAPIError => re #error sent from from the API
 end
 ```
 
+### Audit Events
+
+```Ruby
+"""
+Example: List audit events
+"""
+resp = client.audit_events.list()
+
+"""
+Example: Get a specific audit event
+"""
+resp = client.audit_events.get(audit_event_id: "audit-event-id")
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
