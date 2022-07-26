@@ -10,7 +10,7 @@ RSpec.describe Courier::AuditEvents do
           body: {},
           headers: TOKEN_AUTH_HEADERS
         )
-        .to_return(body: "{ \"actor\": { \"email\": \"foo@bar.com\", \"id\": \"foo-user\" }, \"auditEventId\": \"dmC5ao2JWuy05cfCXhfCo\", \"source\": \"courier.studio\", \"target\": {}, \"timestamp\": \"2022-07-22T22:33:59.552Z\", \"type\": \"notification:published\", \"workspaceId\": \"my-workspace\" }", status: 200)
+        .to_return(body: "{ \"actor\": { \"email\": \"foo@bar.com\", \"id\": \"foo-user\" }, \"auditEventId\": \"dmC5ao2JWuy05cfCXhfCo\", \"source\": \"courier.studio\", \"target\": {}, \"timestamp\": \"2022-07-22T22:33:59.552Z\", \"type\": \"notification:published\" }", status: 200)
 
       res = client.audit_events.get(audit_event_id: "dmC5ao2JWuy05cfCXhfCo")
 
@@ -23,8 +23,7 @@ RSpec.describe Courier::AuditEvents do
         "source" => "courier.studio",
         "target" => {},
         "timestamp" => "2022-07-22T22:33:59.552Z",
-        "type" => "notification:published",
-        "workspaceId" => "my-workspace"
+        "type" => "notification:published"
       })
     end
   end
@@ -36,7 +35,7 @@ RSpec.describe Courier::AuditEvents do
           body: {},
           headers: TOKEN_AUTH_HEADERS
         )
-        .to_return(body: "{ \"results\": [ { \"actor\": { \"email\": \"foo@bar.com\", \"id\": \"foo-user\" }, \"auditEventId\": \"dmC5ao2JWuy05cfCXhfCo\", \"source\": \"courier.studio\", \"target\": {}, \"timestamp\": \"2022-07-22T22:33:59.552Z\", \"type\": \"notification:published\", \"workspaceId\": \"my-workspace\" } ], \"paging\": { \"cursor\": null, \"more\": false } }", status: 200)
+        .to_return(body: "{ \"results\": [ { \"actor\": { \"email\": \"foo@bar.com\", \"id\": \"foo-user\" }, \"auditEventId\": \"dmC5ao2JWuy05cfCXhfCo\", \"source\": \"courier.studio\", \"target\": {}, \"timestamp\": \"2022-07-22T22:33:59.552Z\", \"type\": \"notification:published\" } ], \"paging\": { \"cursor\": null, \"more\": false } }", status: 200)
 
       res = client.audit_events.list()
 
@@ -49,8 +48,7 @@ RSpec.describe Courier::AuditEvents do
         "source" => "courier.studio",
         "target" => {},
         "timestamp" => "2022-07-22T22:33:59.552Z",
-        "type" => "notification:published",
-        "workspaceId" => "my-workspace"
+        "type" => "notification:published"
       }], "paging" => {"cursor" => nil, "more" => false}})
     end
   end
