@@ -38,6 +38,12 @@ module Courier
       ErrorHandler.check_err(res)
     end
 
+    def cancel(message_id:)
+      path = "#{KEY}/#{message_id}/cancel"
+      res = @session.send(path, "POST")
+      ErrorHandler.check_err(res)
+    end
+
     def get_history(message_id:, type: nil)
       path = "#{KEY}/#{message_id}/history"
       params = {}
