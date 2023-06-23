@@ -7,7 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v1.7.0] - 2023-06-22
 
-- Support for cancle message API
+- Support for cancel message API
 
 ## [v1.6.0] - 2022-07-25
 
