@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    trycourier (1.6.0)
+    trycourier (1.7.0)
 
 GEM
   remote: https://rubygems.org/

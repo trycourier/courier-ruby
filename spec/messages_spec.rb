@@ -53,6 +53,25 @@ RSpec.describe Courier::Messages do
     end
   end
 
+  context "cancel" do
+    it "cancels message" do
+      stub_request(:post, "https://api.courier.com/messages/" + MESSAGE_ID + "/cancel")
+        .with(
+          headers: TOKEN_AUTH_HEADERS
+        ).to_return(body: "{\"id\": \"my.message.id\", \"name\": \"My Message\"}", status: 200)
+      res = client.messages.cancel(message_id: MESSAGE_ID)
+      expect(res).to eq({"id" => "my.message.id", "name" => "My Message"})
+    end
+
+    it "fails with exception" do
+      stub_request(:post, "https://api.courier.com/messages/" + MESSAGE_ID + "/cancel")
+        .with(
+          headers: TOKEN_AUTH_HEADERS
+        ).to_return(body: "{\"message\": \"an error occurred\"}", status: 409)
+      expect { client.messages.cancel(message_id: MESSAGE_ID) }.to raise_error(Courier::CourierAPIError)
+    end
+  end
+
   context "get history" do
     it "gets without parameters" do
       stub_request(:get, "https://api.courier.com/messages/" + MESSAGE_ID + "/history")
