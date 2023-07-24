@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [v1.8.0] - 2023-07-24
+
+- Support for Accounts API
+
 ## [v1.7.0] - 2023-06-22
 
 - Support for cancel message API
