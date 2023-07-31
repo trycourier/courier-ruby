@@ -44,7 +44,7 @@ RSpec.describe Courier::Accounts do
           body: {},
           headers: TOKEN_AUTH_HEADERS
         )
-        .to_return(body: "{ \"items\": [{\"name\": \"ACME Inc\"}], \"has_more\": false }", status: 200)
+        .to_return(body: "{ \"items\": [{\"name\": \"ACME Inc\"}], \"has_more\": false, \"url\": \"/accounts\" }", status: 200)
 
       res = client.accounts.get_accounts()
 
@@ -54,7 +54,8 @@ RSpec.describe Courier::Accounts do
             "name" => "ACME Inc"
           }
         ],
-        "has_more" => false
+        "has_more" => false,
+        "url" => "/accounts"
       })
     end
   end

@@ -12,14 +12,14 @@ module Courier
       ErrorHandler.check_err(res)
     end
 
-    def get_accounts(limit: nil, starting_after: nil)
+    def get_accounts(limit: nil, cursor: nil)
       params = {}
       if limit
         params["limit"] = limit
       end
 
-      if starting_after
-        params["starting_after"] = starting_after
+      if cursor
+        params["cursor"] = cursor
       end
 
       res = @session.send(KEY, "GET", params: params)
