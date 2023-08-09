@@ -69,7 +69,7 @@ module Courier
       @bulk = Courier::Bulk.new(@session)
       @audiences = Courier::Audiences.new(@session)
       @audit_events = Courier::AuditEvents.new(@session)
-      @accounts = Courier::Accounts.new(@session)
+      @tenants = Courier::Tenants.new(@session)
       @auth_tokens = Courier::AuthTokens.new(@session)
     end
 
