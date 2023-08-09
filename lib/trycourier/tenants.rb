@@ -1,18 +1,18 @@
 module Courier
-  class Accounts
-    KEY = "/accounts"
+  class Tenants
+    KEY = "/tenants"
 
     def initialize(session)
       @session = session
     end
 
-    def get_account(account_id:)
-      path = "#{KEY}/#{account_id}"
+    def get_tenant(tenant_id:)
+      path = "#{KEY}/#{tenant_id}"
       res = @session.send(path, "GET")
       ErrorHandler.check_err(res)
     end
 
-    def get_accounts(limit: nil, cursor: nil)
+    def get_tenants(limit: nil, cursor: nil)
       params = {}
       if limit
         params["limit"] = limit
@@ -26,15 +26,15 @@ module Courier
       ErrorHandler.check_err(res)
     end
 
-    def put_account(account_id:, account:)
-      path = "#{KEY}/#{account_id}"
+    def put_tenant(tenant_id:, tenant:)
+      path = "#{KEY}/#{tenant_id}"
 
-      res = @session.send(path, "PUT", body: account, headers: {})
+      res = @session.send(path, "PUT", body: tenant, headers: {})
       ErrorHandler.check_err(res)
     end
 
-    def delete_account(account_id:)
-      path = "#{KEY}/#{account_id}"
+    def delete_tenant(tenant_id:)
+      path = "#{KEY}/#{tenant_id}"
       res = @session.send(path, "DELETE")
       ErrorHandler.check_err_non_json(res)
     end

@@ -8,7 +8,7 @@ require "trycourier/automations"
 require "trycourier/bulk"
 require "trycourier/audiences"
 require "trycourier/audit_events"
-require "trycourier/accounts"
+require "trycourier/tenants"
 require "trycourier/auth_tokens"
 require "trycourier/version"
 require "trycourier/exceptions"
@@ -69,7 +69,7 @@ module Courier
       @bulk = Courier::Bulk.new(@session)
       @audiences = Courier::Audiences.new(@session)
       @audit_events = Courier::AuditEvents.new(@session)
-      @accounts = Courier::Accounts.new(@session)
+      @tenants = Courier::Tenants.new(@session)
       @auth_tokens = Courier::AuthTokens.new(@session)
     end
 
@@ -143,7 +143,7 @@ module Courier
 
     attr_reader :audit_events
 
-    attr_reader :accounts
+    attr_reader :tenants
 
     attr_reader :auth_tokens
 
