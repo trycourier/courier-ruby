@@ -143,7 +143,7 @@ module Courier
 
     attr_reader :audit_events
 
-    attr_reader :accounts
+    attr_reader :tenants
 
     attr_reader :auth_tokens
 
