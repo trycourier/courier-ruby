@@ -4,7 +4,7 @@ require_relative "lib/gemconfig"
 
 Gem::Specification.new do |spec|
   spec.name = "trycourier"
-  spec.version = "0.0.71"
+  spec.version = "3.0.0.beta1"
   spec.authors = Courier::Gemconfig::AUTHORS
   spec.email = Courier::Gemconfig::EMAIL
   spec.summary = Courier::Gemconfig::SUMMARY
