@@ -1,151 +1,119 @@
-require "trycourier/events"
-require "trycourier/brands"
-require "trycourier/lists"
-require "trycourier/profiles"
-require "trycourier/session"
-require "trycourier/messages"
-require "trycourier/automations"
-require "trycourier/bulk"
-require "trycourier/audiences"
-require "trycourier/audit_events"
-require "trycourier/tenants"
-require "trycourier/auth_tokens"
-require "trycourier/version"
-require "trycourier/exceptions"
+# frozen_string_literal: true
 
-require "net/http"
-require "json"
-require "openssl"
+require_relative "environment"
+require_relative "types_export"
+require_relative "requests"
+require_relative "trycourier/audiences/client"
+require_relative "trycourier/audit_events/client"
+require_relative "trycourier/auth_tokens/client"
+require_relative "trycourier/automations/client"
+require_relative "trycourier/brands/client"
+require_relative "trycourier/bulk/client"
+require_relative "trycourier/lists/client"
+require_relative "trycourier/messages/client"
+require_relative "trycourier/notifications/client"
+require_relative "trycourier/profiles/client"
+require_relative "trycourier/templates/client"
+require_relative "trycourier/tenants/client"
+require_relative "trycourier/translations/client"
+require_relative "trycourier/users/client"
+require_relative "trycourier/send/types/message"
+require_relative "trycourier/types/send_message_response"
 
 module Courier
-  class SendResponse
-    attr_reader :code
-    attr_reader :message_id
-
-    def initialize(code, message_id)
-      @code = code
-      @message_id = message_id
-    end
-  end
-
-  class SendMessageResponse
-    attr_reader :code
-    attr_reader :request_id
-
-    def initialize(code, request_id)
-      @code = code
-      @request_id = request_id
-    end
-  end
-
   class Client
-    def initialize(auth_token = nil, username: nil, password: nil, base_url: nil)
-      base = if base_url
-        base_url
-      elsif ENV["COURIER_BASE_URL"]
-        ENV["COURIER_BASE_URL"]
-      else
-        "https://api.courier.com"
-      end
+    attr_reader :audiences, :audit_events, :auth_tokens, :automations, :brands, :bulk, :lists, :messages,
+                :notifications, :profiles, :templates, :tenants, :translations, :users
 
-      @session = Courier::CourierAPISession.new(base)
-
-      if auth_token
-        @session.init_token_auth(auth_token)
-      elsif ENV["COURIER_AUTH_TOKEN"]
-        @session.init_token_auth(ENV["COURIER_AUTH_TOKEN"])
-      elsif username && password
-        @session.init_basic_auth(username, password)
-      elsif ENV["COURIER_AUTH_USERNAME"] && ENV["COURIER_AUTH_PASSWORD"]
-        @session.init_basic_auth(ENV["COURIER_AUTH_USERNAME"], ENV["COURIER_AUTH_PASSWORD"])
-      end
-
-      @messages = Courier::Messages.new(@session)
-      @profiles = Courier::Profiles.new(@session)
-      @lists = Courier::Lists.new(@session)
-      @events = Courier::Events.new(@session)
-      @brands = Courier::Brands.new(@session)
-      @automations = Courier::Automations.new(@session)
-      @bulk = Courier::Bulk.new(@session)
-      @audiences = Courier::Audiences.new(@session)
-      @audit_events = Courier::AuditEvents.new(@session)
-      @tenants = Courier::Tenants.new(@session)
-      @auth_tokens = Courier::AuthTokens.new(@session)
+    # @param environment [Environment]
+    # @param max_retries [Long] The number of times to retry a failed request, defaults to 2.
+    # @param timeout_in_seconds [Long]
+    # @param authorization_token [String]
+    # @return [Client]
+    def initialize(authorization_token:, environment: Environment::PRODUCTION, max_retries: nil,
+                   timeout_in_seconds: nil)
+      @request_client = RequestClient.new(environment: environment, max_retries: max_retries,
+                                          timeout_in_seconds: timeout_in_seconds, authorization_token: authorization_token)
+      @audiences = AudiencesClient.new(request_client: @request_client)
+      @audit_events = AuditEventsClient.new(request_client: @request_client)
+      @auth_tokens = AuthTokensClient.new(request_client: @request_client)
+      @automations = AutomationsClient.new(request_client: @request_client)
+      @brands = BrandsClient.new(request_client: @request_client)
+      @bulk = BulkClient.new(request_client: @request_client)
+      @lists = ListsClient.new(request_client: @request_client)
+      @messages = MessagesClient.new(request_client: @request_client)
+      @notifications = NotificationsClient.new(request_client: @request_client)
+      @profiles = ProfilesClient.new(request_client: @request_client)
+      @templates = TemplatesClient.new(request_client: @request_client)
+      @tenants = TenantsClient.new(request_client: @request_client)
+      @translations = TranslationsClient.new(request_client: @request_client)
+      @users = Users::Client.new(request_client: @request_client)
     end
 
-    def send(body)
-      if !body.is_a?(Hash)
-        raise InputError, "Client#send must be passed a Hash as first argument."
-      elsif body["event"].nil? && body[:event].nil?
-        raise InputError, "Must specify the 'event' key in Hash supplied to Client#send."
-      elsif body["recipient"].nil? && body[:recipient].nil?
-        raise InputError, "Must specify the 'recipient' key in Hash supplied to Client#send."
-      elsif (!body["data"].nil? && !body["data"].is_a?(Hash)) || (!body[:data].nil? && !body[:data].is_a?(Hash))
-        raise InputError, "The 'data' key in the Hash supplied to Client#send must also be a Hash."
-      elsif (!body["profile"].nil? && !body["profile"].is_a?(Hash)) || (!body[:profile].nil? && !body[:profile].is_a?(Hash))
-        raise InputError, "The 'profile' key in the Hash supplied to Client#send must also be a Hash."
+    # Use the send API to send a message to one or more recipients.
+    #
+    # @param message [Hash] Defines the message to be deliveredRequest of type Send::Message, as a Hash
+    # @param request_options [RequestOptions]
+    # @return [SendMessageResponse]
+    def send(message:, request_options: nil)
+      response = @request_client.conn.post("/send") do |req|
+        req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
+        unless request_options&.authorization_token.nil?
+          req.headers["Authorization"] =
+            request_options.authorization_token
+        end
+        req.headers = { **req.headers, **(request_options&.additional_headers || {}) }.compact
+        req.body = { **(request_options&.additional_body_parameters || {}), message: message }.compact
       end
+      SendMessageResponse.from_json(json_object: response.body)
+    end
+  end
 
-      res = @session.send("/send", "POST", body: body)
+  class AsyncClient
+    attr_reader :audiences, :audit_events, :auth_tokens, :automations, :brands, :bulk, :lists, :messages,
+                :notifications, :profiles, :templates, :tenants, :translations, :users
 
-      code = res.code.to_i
-      obj = JSON.parse res.read_body
-
-      if code == 200
-        message_id = obj["messageId"]
-        SendResponse.new(code, message_id)
-      elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-        err = "#{code}: #{message}"
-        raise CourierAPIError, err
-      end
+    # @param environment [Environment]
+    # @param max_retries [Long] The number of times to retry a failed request, defaults to 2.
+    # @param timeout_in_seconds [Long]
+    # @param authorization_token [String]
+    # @return [AsyncClient]
+    def initialize(authorization_token:, environment: Environment::PRODUCTION, max_retries: nil,
+                   timeout_in_seconds: nil)
+      @async_request_client = AsyncRequestClient.new(environment: environment, max_retries: max_retries,
+                                                     timeout_in_seconds: timeout_in_seconds, authorization_token: authorization_token)
+      @audiences = AsyncAudiencesClient.new(request_client: @async_request_client)
+      @audit_events = AsyncAuditEventsClient.new(request_client: @async_request_client)
+      @auth_tokens = AsyncAuthTokensClient.new(request_client: @async_request_client)
+      @automations = AsyncAutomationsClient.new(request_client: @async_request_client)
+      @brands = AsyncBrandsClient.new(request_client: @async_request_client)
+      @bulk = AsyncBulkClient.new(request_client: @async_request_client)
+      @lists = AsyncListsClient.new(request_client: @async_request_client)
+      @messages = AsyncMessagesClient.new(request_client: @async_request_client)
+      @notifications = AsyncNotificationsClient.new(request_client: @async_request_client)
+      @profiles = AsyncProfilesClient.new(request_client: @async_request_client)
+      @templates = AsyncTemplatesClient.new(request_client: @async_request_client)
+      @tenants = AsyncTenantsClient.new(request_client: @async_request_client)
+      @translations = AsyncTranslationsClient.new(request_client: @async_request_client)
+      @users = Users::AsyncClient.new(request_client: @async_request_client)
     end
 
-    def send_message(body)
-      if !body.is_a?(Hash)
-        raise InputError, "Client#send_message must be passed a Hash as first argument."
-      elsif (!body["message"].nil? && !body["message"].is_a?(Hash)) || (!body[:message].nil? && !body[:message].is_a?(Hash))
-        raise InputError, "The 'message' key in the Hash supplied to Client#send_message must also be a Hash."
+    # Use the send API to send a message to one or more recipients.
+    #
+    # @param message [Hash] Defines the message to be deliveredRequest of type Send::Message, as a Hash
+    # @param request_options [RequestOptions]
+    # @return [SendMessageResponse]
+    def send(message:, request_options: nil)
+      response = @async_request_client.conn.post("/send") do |req|
+        req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
+        unless request_options&.authorization_token.nil?
+          req.headers["Authorization"] =
+            request_options.authorization_token
+        end
+        req.headers = { **req.headers, **(request_options&.additional_headers || {}) }.compact
+        req.body = { **(request_options&.additional_body_parameters || {}), message: message }.compact
       end
-
-      res = @session.send("/send", "POST", body: body)
-
-      code = res.code.to_i
-      obj = JSON.parse res.read_body
-
-      if code == 202
-        request_id = obj["requestId"]
-        SendMessageResponse.new(code, request_id)
-      elsif (message = obj["Message"].nil? ? obj["message"] : obj["Message"])
-        err = "#{code}: #{message}"
-        raise CourierAPIError, err
-      end
+      SendMessageResponse.from_json(json_object: response.body)
     end
-
-    # getters for all class variables
-
-    attr_reader :session
-
-    attr_reader :messages
-
-    attr_reader :profiles
-
-    attr_reader :events
-
-    attr_reader :lists
-
-    attr_reader :brands
-
-    attr_reader :automations
-
-    attr_reader :bulk
-
-    attr_reader :audiences
-
-    attr_reader :audit_events
-
-    attr_reader :tenants
-
-    attr_reader :auth_tokens
-
   end
 end
