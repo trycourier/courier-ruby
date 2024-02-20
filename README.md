@@ -1,6 +1,11 @@
 # `trycourier`
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://buildwithfern.com/?utm_source=trycourier/courier-ruby/readme)
 
 This Gem helps you send notifications through [Courier](https://www.trycourier.com/), the smartest way to design &amp; deliver notifications. Design your notifications once using our drag &amp; drop editor, then deliver to any channel through one API. Email, mobile push, SMS, Slack &mdash; you name it!
+
+## Beta Notice
+Please note that this SDK is in BETA, versions >3.x are currently in beta (starting with 3.0.0-beta1), to ensure stability and to not experience any breaking changes please continue using version **2.0.0**.
+While in beta, please feel free to install and use this gem at the risk that we may make breaking changes where necessary. If you have any issues using it, we will respond to github issues as soon as possible.
 
 ## Installation
 
@@ -31,21 +36,14 @@ To create a Courier Ruby client, all you need to do is pass in your authenticati
 ### Using token authentication (most secure)
 
 ```ruby
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var (recommended)
-```
-
-### Using basic authentication
-
-```ruby
-client = Courier::Client.new(username: "USERNAME", password: "PASSWORD") # or set via COURIER_AUTH_USERNAME and COURIER_AUTH_PASSWORD env vars
+client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
 ```
 
 ### Sending a message to an individual recipient
 
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
-res = client.send_message({
-    "message" => {
+res = client.send(message: {
       "to" => {
         "email" => "foo@bar.com"
       }
@@ -56,18 +54,13 @@ res = client.send_message({
       "data" => {
         "name" => "Ruby"
       }
-    }
   })
-  puts res.code # the HTTP response code
   puts res.request_id # if the code is 202, this will be the Courier request ID for this message
-rescue Courier::CourierAPIError => re #error sent from from the API
-  puts re.message
-end
 ```
 
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
-res = client.send({
+res = client.send(message: {
     "event" => "your-event-id",
     "recipient" => "your-recipient-id",
 
@@ -80,19 +73,14 @@ res = client.send({
       "world" => "Ruby!"
     }
   })
-  puts res.code # the HTTP response code
   puts res.message_id # if the code is 200, this will be the Courier message ID for this notification
-rescue Courier::CourierAPIError => re #error sent from from the API
-  puts re.message
-end
 ```
 
 ### Sending a message to an individual with metadata
 
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
-res = client.send_message({
-    "message" => {
+res = client.send(message: {
       "to" => {
         "email" => "foo@bar.com"
       }
@@ -110,21 +98,15 @@ res = client.send_message({
         "tags" => ["tag-1", "tag-2"],
         "trace_id" => "feed-me-hungry"
       }
-    }
   })
-  puts res.code # the HTTP response code
   puts res.request_id # if the code is 202, this will be the Courier request ID for this message
-rescue Courier::CourierAPIError => re #error sent from from the API
-  puts re.message
-end
 ```
 
 ### Sending a message to an individual with granular metadata
 
 ```ruby
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
-res = client.send_message({
-    "message" => {
+res = client.send(message: {
       "to" => {
         "email" => "foo@bar.com"
       },
@@ -179,13 +161,8 @@ res = client.send_message({
           }
         }
       }
-    }
   })
-  puts res.code # the HTTP response code
   puts res.request_id # if the code is 202, this will be the Courier request ID for this message
-rescue Courier::CourierAPIError => re #error sent from from the API
-  puts re.message
-end
 ```
 
 ## Advanced Usage
@@ -199,32 +176,8 @@ client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN e
 """
 Creating a List
 """
-res = client.lists.put(list_id, name)
+res = client.lists.update(list_id: list_id, request: { name: name})
 puts res
-
-"""
-Example: send a message to a list
-"""
-resp = client.lists.send(
-  event: "your-event-id",
-  list: "your.list.id",
-  brand: "your-brand-id", # optional
-  data: {}, # optional
-  override: {} # optional
-)
-puts resp['messageId'])
-
-"""
-Example: send a message to a list pattern
-"""
-resp = client.lists.send(
-  event: "your-event-id",
-  pattern: "your.list.*", #PATTERN (will send to all list ids that start with "your.list.")
-  brand: "your-brand-id", # optional
-  data: {}, # optional
-  override: {} # optional
-)
-puts resp['messageId'])
 
 """
 Example: get all lists
@@ -240,7 +193,6 @@ Example: get a specific list
 resp = client.lists.get(list_id: "your-list-id")
 puts resp
 
-
 """
 Example: delete a list
 """
@@ -252,40 +204,45 @@ Example: restore a list
 client.lists.restore(list_id: "your-list-id")
 
 """
-Example: get a list's subscribptions
+Example: get a list's subscriptions
 """
-resp = client.lists.get_subscriptions(list_id: "your-list-id",
-  cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA", # optional
+resp = client.lists.get_subscribers(
+    list_id: "your-list-id",
+    cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA", # optional
 )
 puts resp
 
 """
 Example: replace many recipients to a new or existing list
 """
-client.lists.put_subscriptions(list_id: "your-list-id", recipients: [
-  "RECIPIENT_ID_1",
-  "RECIPIENT_ID_2"
-])
+client.lists.update_subscribers(
+    list_id: "your-list-id",
+    request: [{
+        recipient_id: "RECIPIENT_ID_1"
+    },{
+        recipient_id: "RECIPIENT_ID_2"
+    }]
+)
 
 """
 Example: Example: subscribe single recipient to a new or existing list
 """
-client.lists.subscribe(list_id: "your-list-id", recipient_id: "your-recipient-id")
+client.lists.subscribe(list_id: "your-list-id", user_id: "your-user-id")
 
 """
 Example: unsubscribe recipient from list
 """
-client.lists.unsubscribe(list_id: "your-list-id", recipient_id: "your-recipient-id")
+client.lists.unsubscribe(list_id: "your-list-id", user_id: "your-user-id")
 ```
 
 ### Profiles
 
 ```Ruby
 """
-Example: create a recipient's profile
+Example: merge or create a recipient's profile
 """
-resp = client.profiles.add(
-  recipient_id: "your-recipient-id",
+resp = client.profiles.create(
+  user_id: "your-user-id",
   profile: {
     "email" => "example@example.com",
     "name" => "Example Name"
@@ -296,7 +253,7 @@ resp = client.profiles.add(
 Example: replace or create a recipient's profile
 """
 resp = client.profiles.replace(
-  recipient_id: "your-recipient-id",
+  user_id: "your-user-id",
   profile: {
     "email" => "example@example.com"
   }
@@ -304,21 +261,10 @@ resp = client.profiles.replace(
 puts resp['status']
 
 """
-Example: merge or create a recipient's profile
-"""
-resp = client.profiles.merge(
-  recipient_id: "your-recipient-id",
-  profile: {
-    "phone_number" => "+15555555555"
-  }
-)
-puts resp['status']
-
-"""
 Example: get the subscribed lists of a recipient
 """
-resp = client.profiles.get_subscriptions(
-  recipient_id: "your-recipient-id",
+resp = client.profiles.get_list_subscriptions(
+  user_id: "your-user-id",
   cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA" #optional
 )
 puts resp
@@ -327,9 +273,9 @@ puts resp
 Example: edit the contents of a recipient's profile with a patch operation
 (follows JSON Patch conventions: RFC 6902).
 """
-resp = client.profiles.patch(
-  recipient_id: "your-recipient-id",
-  operations: [
+resp = client.profiles.replace(
+  user_id: "your-user-id",
+  profile: [
     {
       "op" => "add", #operation 1: add this email to profile
       "path" => "/parent",
@@ -354,7 +300,7 @@ puts resp
 """
 Example: get a recipient's profile
 """
-resp = client.profiles.get(recipient_id: "your-recipient-id")
+resp = client.profiles.get(user_id: "your-user-id")
 puts resp
 ```
 
@@ -369,7 +315,7 @@ resp = client.messages.list(
   event: "your-event-id", # optional
   list: "your-list-id", #optional
   message_id: "your-message-id" #optional
-  notification: ["message-status-1", "message-status-2",...] #optional
+  notification: "message-statua" #optional
   recipient: "recipient-id" # optional
 )
 puts resp
@@ -384,90 +330,9 @@ puts resp
 Example: fetch the array of events of a message you've previously sent.
 """
 resp = client.messages.get_history(
-message_id: "your-message-id",
-type: "list-type" #optional ("FILTERED", "RENDERED", "MAPPED", "PROFILE_LOADED")
+  message_id: "your-message-id",
+  type: "list-type" #optional ("FILTERED", "RENDERED", "MAPPED", "PROFILE_LOADED")
 )
-puts resp
-```
-
-### Events
-
-```Ruby
-"""
-Example: fetch the list of events
-"""
-resp = client.events.list
-puts resp
-
-"""
-Example: fetch a specific event by event ID
-"""
-resp = client.events.get(event_id: "your-event-id")
-puts resp
-
-"""
-Example: create or replace an event
-"""
-resp = client.events.replace(
-  event_id: "your-event-id",
-  notification_id: "notification_id",
-  type: "notificaton" ## optional, defaults to notification
-)
-puts resp
-
-"""
-Example: get all brands
-"""
-resp = client.brands.list(
-  cursor: "MTU4OTQ5NTI1ODY4NywxLTVlYmRjNWRhLTEwODZlYWFjMWRmMjEwMTNjM2I0ZjVhMA", # optional
-)
-puts resp
-
-"""
-Example: get a specific brand
-"""
-resp = client.brands.get(brand_id: "brand_id")
-puts resp
-
-"""
-Example: create a brand
-"""
-resp = client.brands.create(
-  name: "brand-name",
-  settings: {
-    "color" => {
-      "primary" => "#0000FF",
-      "secondary" => "#FF0000",
-      "tertiary" => "#00FF00"
-    }
-  },
-  id: "my-brand-id", #optional
-  snippets: {}, #optional
-  idempotency_key: "my-idemp-key", #optional
-)
-puts resp
-
-"""
-Example: replace a brand
-"""
-resp = client.brands.replace(
-  brand_id: "your-brand-id",
-  name: "brand-name",
-  settings: {}
-    "color" => {
-      "primary" => "#FF0000",
-      "secondary" => "#00FF00",
-      "tertiary" => "#0000FF"
-    }
-  },
-  snippets: {} #optional
-)
-puts resp
-
-"""
-Example: delete a brand
-"""
-resp = client.brands.delete(brand_id: "your-brand-id")
 puts resp
 ```
 
@@ -486,45 +351,37 @@ automation = {
   "steps" => steps
 }
 
-resp = client.automations.invoke(
-  automation: automation,
-  brand: "your-brand-id", # optional
-  data: {}, # optional
-  profile: {
-    "email" => "example@example.com",
-  }, # optional
-  recipient: "your-recipient-id", # optional
-  template: "your-notification-template-id" # optional
+resp = client.automations.invoke_ad_hoc_automation(
+  request: {
+    automation: automation,
+    brand: "your-brand-id", # optional
+    data: {}, # optional
+    profile: {
+      "email" => "example@example.com",
+    }, # optional
+    recipient: "your-recipient-id", # optional
+    template: "your-notification-template-id" # optional
+  }
 )
-puts resp['runId']
+puts resp.run_id
 
 """
 Example: invoke automation template
 """
-resp = client.automations.invoke_template(
+resp = client.automations.invoke_automation_template(
   template_id: "your-automation-template-id",
-  brand: "your-brand-id", # optional
-  data: {}, # optional
-  profile: {
-    "email" => "example@example.com",
-  }, # optional
-  recipient: "your-recipient-id", # optional
-  template: "your-notification-template-id" # optional
+  request: {
+    brand: "your-brand-id", # optional
+    data: {}, # optional
+    profile: {
+      "email" => "example@example.com",
+    }, # optional
+    recipient: "your-recipient-id", # optional
+    template: "your-notification-template-id" # optional
+  }
 )
-puts resp['runId']
-
-### Notes on input and errors
-With the exception of passing an auth token to create a client, and ```client.send(body)```, every parameter (optional or required) is sent using keyword arguments.
-In the case of ```client.send(body)```, if the hash does not have the required components, it will throw an InputError exception, which can be caught with rescue blocks:
-```ruby
-rescue InputError
+puts resp.run_id
 ````
-
-Any other errors from the API are thrown as a CourierAPIError. Catch these errors by putting this after your method calls:
-
-```ruby
-rescue CourierAPIError
-```
 
 ### Audiences
 
@@ -534,7 +391,7 @@ List of supported operators for audience filtering: https://www.courier.com/docs
 """
 Example: create or update an Audience
 """
-resp = client.audiences.put(
+resp = client.audiences.update(
   audience_id: "your-audience-id",
   filter: {
     "operator": "EQ",
@@ -546,18 +403,15 @@ resp = client.audiences.put(
 """
 Example: Get all members of an Audience
 """
-resp = client.audiences.get_audience_members(
-  audience_id: "your-audience-id",
-  cursor: nil
+resp = client.audiences.list_members(
+  audience_id: "your-audience-id"
 )
-puts resp['status']
 
 """
 Example: Send to an Audience
 """
 client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
-res = client.send_message({
-    "message" => {
+res = client.send(message: {
       "to" => {
         "audience_id" => "your-audience-id"
       }
@@ -568,13 +422,8 @@ res = client.send_message({
       "data" => {
         "name" => "Ruby"
       }
-    }
   })
-  puts res.code # the HTTP response code
-  puts res.request_id # if the code is 202, this will be the Courier request ID for this message
-rescue Courier::CourierAPIError => re #error sent from from the API
-  puts re.message
-end
+puts res.request_id # if the code is 202, this will be the Courier request ID for this message
 ```
 
 ### Audit Events
@@ -583,19 +432,13 @@ end
 """
 Example: List audit events
 """
-resp = client.audit_events.list()
+resp = client.audit_events.list
 
 """
 Example: Get a specific audit event
 """
 resp = client.audit_events.get(audit_event_id: "audit-event-id")
 ```
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
@@ -604,7 +447,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/trycou
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-```
-
-```
