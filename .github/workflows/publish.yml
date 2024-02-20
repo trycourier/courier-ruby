@@ -1,6 +1,9 @@
-name: Publish
+name: Publish Gem
 
-on: [push]
+on:
+    push:
+    workflow_dispatch:
+
 jobs:
     publish:
         if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
