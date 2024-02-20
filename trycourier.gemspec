@@ -1,32 +1,25 @@
-require_relative "lib/trycourier/version"
+# frozen_string_literal: true
+
+require_relative "lib/gemconfig"
 
 Gem::Specification.new do |spec|
   spec.name = "trycourier"
-  spec.version = Courier::VERSION
-  spec.authors = ["Courier"]
-  spec.email = ["support@courier.com"]
-
-  spec.summary = "Wraps calls to the Courier REST API"
-  spec.description = "Courier is the smartest way to design & deliver notifications. Design your notifications once, deliver them to any channel through one API."
-  spec.homepage = "https://github.com/trycourier/courier-ruby"
-  spec.license = "MIT"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
-
-  spec.metadata["allowed_push_host"] = "https://rubygems.org"
-
+  spec.version = "3.0.0-beta1"
+  spec.authors = Courier::Gemconfig::AUTHORS
+  spec.email = Courier::Gemconfig::EMAIL
+  spec.summary = Courier::Gemconfig::SUMMARY
+  spec.description = Courier::Gemconfig::DESCRIPTION
+  spec.homepage = Courier::Gemconfig::HOMEPAGE
+  spec.required_ruby_version = ">= 2.7.0"
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = spec.homepage
-  spec.metadata["changelog_uri"] = spec.homepage
-
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files = Dir.chdir(File.expand_path("..", __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
+  spec.metadata["source_code_uri"] = Courier::Gemconfig::SOURCE_CODE_URI
+  spec.metadata["changelog_uri"] = Courier::Gemconfig::CHANGELOG_URI
+  spec.files = Dir.glob("lib/**/*")
   spec.bindir = "exe"
-  spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-
-  spec.add_development_dependency "rspec", "~> 3.2"
-  spec.add_development_dependency "webmock", ">=1.24.2"
+  spec.add_dependency "async-http-faraday", ">= 0.0", "< 1.0"
+  spec.add_dependency "faraday", ">= 1.10", "< 3.0"
+  spec.add_dependency "faraday-net_http", ">= 1.0", "< 4.0"
+  spec.add_dependency "faraday-retry", ">= 1.0", "< 3.0"
 end
