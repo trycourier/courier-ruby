@@ -3,10 +3,6 @@
 
 This Gem helps you send notifications through [Courier](https://www.trycourier.com/), the smartest way to design &amp; deliver notifications. Design your notifications once using our drag &amp; drop editor, then deliver to any channel through one API. Email, mobile push, SMS, Slack &mdash; you name it!
 
-## Beta Notice
-Please note that this SDK is in BETA, versions >3.x are currently in beta (starting with 3.0.0-beta1), to ensure stability and to not experience any breaking changes please continue using version **2.0.0**.
-While in beta, please feel free to install and use this gem at the risk that we may make breaking changes where necessary. If you have any issues using it, we will respond to github issues as soon as possible.
-
 ## Installation
 
 Add this line to your application's Gemfile:
