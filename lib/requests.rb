@@ -21,7 +21,7 @@ module Courier
       @headers = {
         "X-Fern-Language": "Ruby",
         "X-Fern-SDK-Name": "Courier",
-        "X-Fern-SDK-Version": "3.0.0-beta1",
+        "X-Fern-SDK-Version": "3.1.3",
         "Authorization": %(Bearer #{authorization_token || ENV["COURIER_AUTH_TOKEN"]})
       }
       @conn = Faraday.new(@base_url, headers: @headers) do |faraday|
@@ -48,7 +48,7 @@ module Courier
       @headers = {
         "X-Fern-Language": "Ruby",
         "X-Fern-SDK-Name": "Courier",
-        "X-Fern-SDK-Version": "3.0.0-beta1",
+        "X-Fern-SDK-Version": "3.1.3",
         "Authorization": %(Bearer #{authorization_token || ENV["COURIER_AUTH_TOKEN"]})
       }
       @conn = Faraday.new(@base_url, headers: @headers) do |faraday|
@@ -98,7 +98,7 @@ module Courier
     # @param additional_body_parameters [Hash{String => Object}]
     # @param timeout_in_seconds [Long]
     # @param idempotency_key [String]
-    # @param idempotency_expiry [Integer]
+    # @param idempotency_expiry [String] The expiry can either be an ISO8601 datetime or a duration like "1 Day".
     # @return [IdempotencyRequestOptions]
     def initialize(authorization_token: nil, additional_headers: nil, additional_query_parameters: nil,
                    additional_body_parameters: nil, timeout_in_seconds: nil, idempotency_key: nil, idempotency_expiry: nil)
@@ -114,7 +114,7 @@ module Courier
       @timeout_in_seconds = timeout_in_seconds
       # @type [String]
       @idempotency_key = idempotency_key
-      # @type [Integer]
+      # @type [String] The expiry can either be an ISO8601 datetime or a duration like "1 Day".
       @idempotency_expiry = idempotency_expiry
     end
   end
