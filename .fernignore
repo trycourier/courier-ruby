@@ -3,3 +3,4 @@
 README.md
 test/
 lib/gemconfig.rb
+lib/trycourier/send/types/message_recipient.rb

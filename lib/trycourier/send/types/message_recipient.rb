@@ -20,18 +20,19 @@ module Courier
         begin
           struct.is_a?(Array) != false || raise("Passed value for field struct is not the expected type, validation failed.")
           return unless json_object.nil?
-  json_object.map do | v |
-  v = v.to_json
-  Send::Recipient.from_json(json_object: v)
-end
-else
-  nil
-end
+          json_object.map do |v|
+            v = v.to_json
+            Send::Recipient.from_json(json_object: v)
+          end
+        else
+          nil
+        end
         rescue StandardError
           # noop
         end
- return struct
+        return struct
       end
+
       # Leveraged for Union-type generation, validate_raw attempts to parse the given hash and check each fields type against the current object's property definitions.
       #
       # @param obj [Object] 
