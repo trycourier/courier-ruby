@@ -24,9 +24,6 @@ module Courier
             v = v.to_json
             Send::Recipient.from_json(json_object: v)
           end
-        else
-          nil
-        end
         rescue StandardError
           # noop
         end
