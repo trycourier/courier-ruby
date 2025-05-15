@@ -32,13 +32,13 @@ To create a Courier Ruby client, all you need to do is pass in your authenticati
 ### Using token authentication (most secure)
 
 ```ruby
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+client = Courier::Client.new(authorization_token: COURIER_AUTH_TOKEN) # or set via COURIER_AUTH_TOKEN env var
 ```
 
 ### Sending a message to an individual recipient
 
 ```ruby
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+client = Courier::Client.new(authorization_token: COURIER_AUTH_TOKEN) # or set via COURIER_AUTH_TOKEN env var
 res = client.send(message: {
       "to" => {
         "email" => "foo@bar.com"
@@ -55,7 +55,7 @@ res = client.send(message: {
 ```
 
 ```ruby
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+client = Courier::Client.new(authorization_token: COURIER_AUTH_TOKEN) # or set via COURIER_AUTH_TOKEN env var
 res = client.send(message: {
     "event" => "your-event-id",
     "recipient" => "your-recipient-id",
@@ -75,7 +75,7 @@ res = client.send(message: {
 ### Sending a message to an individual with metadata
 
 ```ruby
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+client = Courier::Client.new(authorization_token: COURIER_AUTH_TOKEN) # or set via COURIER_AUTH_TOKEN env var
 res = client.send(message: {
       "to" => {
         "email" => "foo@bar.com"
@@ -101,7 +101,7 @@ res = client.send(message: {
 ### Sending a message to an individual with granular metadata
 
 ```ruby
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+client = Courier::Client.new(authorization_token: COURIER_AUTH_TOKEN) # or set via COURIER_AUTH_TOKEN env var
 res = client.send(message: {
       "to" => {
         "email" => "foo@bar.com"
@@ -167,7 +167,7 @@ res = client.send(message: {
 
 ```ruby
 require "trycourier"
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+client = Courier::Client.new(authorization_token: COURIER_AUTH_TOKEN) # or set via COURIER_AUTH_TOKEN env var
 
 """
 Creating a List
@@ -406,7 +406,7 @@ resp = client.audiences.list_members(
 """
 Example: Send to an Audience
 """
-client = Courier::Client.new "your-auth-token" # or set via COURIER_AUTH_TOKEN env var
+client = Courier::Client.new(authorization_token: COURIER_AUTH_TOKEN) # or set via COURIER_AUTH_TOKEN env var
 res = client.send(message: {
       "to" => {
         "audience_id" => "your-audience-id"
