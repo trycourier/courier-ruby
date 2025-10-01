@@ -2,8 +2,8 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Send#send_message
-    class SendSendMessageParams < Courier::Internal::Type::BaseModel
+    # @see Courier::Resources::Send#message
+    class SendMessageParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 

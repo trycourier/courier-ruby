@@ -2,11 +2,11 @@
 
 module Courier
   module Models
-    class SendSendMessageResponse < Courier::Internal::Type::BaseModel
+    class SendMessageResponse < Courier::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Courier::Models::SendSendMessageResponse,
+            Courier::Models::SendMessageResponse,
             Courier::Internal::AnyHash
           )
         end
