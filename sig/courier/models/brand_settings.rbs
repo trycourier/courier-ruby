@@ -1,0 +1,66 @@
+module Courier
+  module Models
+    type brand_settings =
+      {
+        colors: Courier::BrandSettings::Colors?,
+        email: Courier::BrandSettings::Email?,
+        inapp: top
+      }
+
+    class BrandSettings < Courier::Internal::Type::BaseModel
+      attr_accessor colors: Courier::BrandSettings::Colors?
+
+      attr_accessor email: Courier::BrandSettings::Email?
+
+      attr_reader inapp: top?
+
+      def inapp=: (top) -> top
+
+      def initialize: (
+        ?colors: Courier::BrandSettings::Colors?,
+        ?email: Courier::BrandSettings::Email?,
+        ?inapp: top
+      ) -> void
+
+      def to_hash: -> {
+        colors: Courier::BrandSettings::Colors?,
+        email: Courier::BrandSettings::Email?,
+        inapp: top
+      }
+
+      type colors = { primary: String?, secondary: String?, tertiary: String? }
+
+      class Colors < Courier::Internal::Type::BaseModel
+        attr_accessor primary: String?
+
+        attr_accessor secondary: String?
+
+        attr_accessor tertiary: String?
+
+        def initialize: (
+          ?primary: String?,
+          ?secondary: String?,
+          ?tertiary: String?
+        ) -> void
+
+        def to_hash: -> {
+          primary: String?,
+          secondary: String?,
+          tertiary: String?
+        }
+      end
+
+      type email = { footer: top, header: top }
+
+      class Email < Courier::Internal::Type::BaseModel
+        attr_accessor footer: top
+
+        attr_accessor header: top
+
+        def initialize: (footer: top, header: top) -> void
+
+        def to_hash: -> { footer: top, header: top }
+      end
+    end
+  end
+end

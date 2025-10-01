@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type paging = { more: bool, cursor: String? }
+
+    class Paging < Courier::Internal::Type::BaseModel
+      attr_accessor more: bool
+
+      attr_accessor cursor: String?
+
+      def initialize: (more: bool, ?cursor: String?) -> void
+
+      def to_hash: -> { more: bool, cursor: String? }
+    end
+  end
+end

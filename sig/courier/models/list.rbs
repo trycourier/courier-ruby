@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    type list =
+      { id: String, name: String, created: Integer?, updated: Integer? }
+
+    class List < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor name: String
+
+      attr_accessor created: Integer?
+
+      attr_accessor updated: Integer?
+
+      def initialize: (
+        id: String,
+        name: String,
+        ?created: Integer?,
+        ?updated: Integer?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        name: String,
+        created: Integer?,
+        updated: Integer?
+      }
+    end
+  end
+end

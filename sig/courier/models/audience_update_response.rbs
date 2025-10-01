@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type audience_update_response = { audience: Courier::Audience }
+
+    class AudienceUpdateResponse < Courier::Internal::Type::BaseModel
+      attr_accessor audience: Courier::Audience
+
+      def initialize: (audience: Courier::Audience) -> void
+
+      def to_hash: -> { audience: Courier::Audience }
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Courier
+  module Models
+    class AutomationStep = Automations::AutomationStep
+
+    module Automations
+      type automation_step = { if_: String?, ref: String? }
+
+      class AutomationStep < Courier::Internal::Type::BaseModel
+        attr_accessor if_: String?
+
+        attr_accessor ref: String?
+
+        def initialize: (?if_: String?, ?ref: String?) -> void
+
+        def to_hash: -> { if_: String?, ref: String? }
+      end
+    end
+  end
+end

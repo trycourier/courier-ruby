@@ -1,0 +1,65 @@
+module Courier
+  module Models
+    type bulk_list_users_response =
+      {
+        items: ::Array[Courier::Models::BulkListUsersResponse::Item],
+        paging: Courier::Paging
+      }
+
+    class BulkListUsersResponse < Courier::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Courier::Models::BulkListUsersResponse::Item]
+
+      attr_accessor paging: Courier::Paging
+
+      def initialize: (
+        items: ::Array[Courier::Models::BulkListUsersResponse::Item],
+        paging: Courier::Paging
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Courier::Models::BulkListUsersResponse::Item],
+        paging: Courier::Paging
+      }
+
+      type item =
+        {
+          status: Courier::Models::BulkListUsersResponse::Item::status,
+          message_id: String?
+        }
+
+      class Item < Courier::Models::InboundBulkMessageUser
+        def status: -> Courier::Models::BulkListUsersResponse::Item::status
+
+        def status=: (
+          Courier::Models::BulkListUsersResponse::Item::status _
+        ) -> Courier::Models::BulkListUsersResponse::Item::status
+
+        def message_id: -> String?
+
+        def message_id=: (String? _) -> String?
+
+        def initialize: (
+          status: Courier::Models::BulkListUsersResponse::Item::status,
+          ?message_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          status: Courier::Models::BulkListUsersResponse::Item::status,
+          message_id: String?
+        }
+
+        type status = :PENDING | :ENQUEUED | :ERROR
+
+        module Status
+          extend Courier::Internal::Type::Enum
+
+          PENDING: :PENDING
+          ENQUEUED: :ENQUEUED
+          ERROR: :ERROR
+
+          def self?.values: -> ::Array[Courier::Models::BulkListUsersResponse::Item::status]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type ms_teams_base_properties = { service_url: String, tenant_id: String }
+
+    class MsTeamsBaseProperties < Courier::Internal::Type::BaseModel
+      attr_accessor service_url: String
+
+      attr_accessor tenant_id: String
+
+      def initialize: (service_url: String, tenant_id: String) -> void
+
+      def to_hash: -> { service_url: String, tenant_id: String }
+    end
+  end
+end

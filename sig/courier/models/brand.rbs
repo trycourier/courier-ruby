@@ -1,0 +1,55 @@
+module Courier
+  module Models
+    type brand =
+      {
+        created: Integer,
+        name: String,
+        published: Integer,
+        settings: Courier::BrandSettings,
+        updated: Integer,
+        version: String,
+        id: String?,
+        snippets: Courier::BrandSnippets?
+      }
+
+    class Brand < Courier::Internal::Type::BaseModel
+      attr_accessor created: Integer
+
+      attr_accessor name: String
+
+      attr_accessor published: Integer
+
+      attr_accessor settings: Courier::BrandSettings
+
+      attr_accessor updated: Integer
+
+      attr_accessor version: String
+
+      attr_accessor id: String?
+
+      attr_accessor snippets: Courier::BrandSnippets?
+
+      def initialize: (
+        created: Integer,
+        name: String,
+        published: Integer,
+        settings: Courier::BrandSettings,
+        updated: Integer,
+        version: String,
+        ?id: String?,
+        ?snippets: Courier::BrandSnippets?
+      ) -> void
+
+      def to_hash: -> {
+        created: Integer,
+        name: String,
+        published: Integer,
+        settings: Courier::BrandSettings,
+        updated: Integer,
+        version: String,
+        id: String?,
+        snippets: Courier::BrandSnippets?
+      }
+    end
+  end
+end

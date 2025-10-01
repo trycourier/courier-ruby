@@ -1,0 +1,9 @@
+module Courier
+  module Resources
+    class Automations
+      class Invoke
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end

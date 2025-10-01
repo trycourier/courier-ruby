@@ -1,0 +1,46 @@
+module Courier
+  module Models
+    class AutomationInvokeParams = Automations::AutomationInvokeParams
+
+    module Automations
+      type automation_invoke_params =
+        {
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          profile: top,
+          recipient: String?,
+          template: String?
+        }
+
+      class AutomationInvokeParams < Courier::Internal::Type::BaseModel
+        attr_accessor brand: String?
+
+        attr_accessor data: ::Hash[Symbol, top]?
+
+        attr_reader profile: top?
+
+        def profile=: (top) -> top
+
+        attr_accessor recipient: String?
+
+        attr_accessor template: String?
+
+        def initialize: (
+          ?brand: String?,
+          ?data: ::Hash[Symbol, top]?,
+          ?profile: top,
+          ?recipient: String?,
+          ?template: String?
+        ) -> void
+
+        def to_hash: -> {
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          profile: top,
+          recipient: String?,
+          template: String?
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module Courier
+  module Models
+    type audience_list_response =
+      { items: ::Array[Courier::Audience], paging: Courier::Paging }
+
+    class AudienceListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Courier::Audience]
+
+      attr_accessor paging: Courier::Paging
+
+      def initialize: (
+        items: ::Array[Courier::Audience],
+        paging: Courier::Paging
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Courier::Audience],
+        paging: Courier::Paging
+      }
+    end
+  end
+end

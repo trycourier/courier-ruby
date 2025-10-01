@@ -1,0 +1,44 @@
+module Courier
+  module Resources
+    class Tenants
+      attr_reader default_preferences: Courier::Resources::Tenants::DefaultPreferences
+
+      def retrieve: (
+        String tenant_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Tenant
+
+      def update: (
+        String tenant_id,
+        name: String,
+        ?brand_id: String?,
+        ?default_preferences: Courier::DefaultPreferences?,
+        ?parent_tenant_id: String?,
+        ?properties: ::Hash[Symbol, top]?,
+        ?user_profile: ::Hash[Symbol, top]?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Tenant
+
+      def list: (
+        ?cursor: String?,
+        ?limit: Integer?,
+        ?parent_tenant_id: String?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::TenantListResponse
+
+      def delete: (
+        String tenant_id,
+        ?request_options: Courier::request_opts
+      ) -> nil
+
+      def list_users: (
+        String tenant_id,
+        ?cursor: String?,
+        ?limit: Integer?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::TenantListUsersResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

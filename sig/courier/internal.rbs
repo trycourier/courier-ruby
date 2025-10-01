@@ -1,0 +1,9 @@
+module Courier
+  module Internal
+    extend Courier::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Courier::FilePart
+
+    OMIT: Object
+  end
+end
