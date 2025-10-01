@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type message_history_response = { results: ::Array[::Hash[Symbol, top]] }
+
+    class MessageHistoryResponse < Courier::Internal::Type::BaseModel
+      attr_accessor results: ::Array[::Hash[Symbol, top]]
+
+      def initialize: (results: ::Array[::Hash[Symbol, top]]) -> void
+
+      def to_hash: -> { results: ::Array[::Hash[Symbol, top]] }
+    end
+  end
+end

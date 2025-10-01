@@ -1,0 +1,837 @@
+module Courier
+  module Models
+    type automation_invoke_ad_hoc_params =
+      {
+        automation: Courier::AutomationInvokeAdHocParams::Automation,
+        brand: String?,
+        data: ::Hash[Symbol, top]?,
+        profile: top,
+        recipient: String?,
+        template: String?
+      }
+      & Courier::Internal::Type::request_parameters
+
+    class AutomationInvokeAdHocParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor automation: Courier::AutomationInvokeAdHocParams::Automation
+
+      attr_accessor brand: String?
+
+      attr_accessor data: ::Hash[Symbol, top]?
+
+      attr_reader profile: top?
+
+      def profile=: (top) -> top
+
+      attr_accessor recipient: String?
+
+      attr_accessor template: String?
+
+      def initialize: (
+        automation: Courier::AutomationInvokeAdHocParams::Automation,
+        ?brand: String?,
+        ?data: ::Hash[Symbol, top]?,
+        ?profile: top,
+        ?recipient: String?,
+        ?template: String?,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        automation: Courier::AutomationInvokeAdHocParams::Automation,
+        brand: String?,
+        data: ::Hash[Symbol, top]?,
+        profile: top,
+        recipient: String?,
+        template: String?,
+        request_options: Courier::RequestOptions
+      }
+
+      type automation =
+        {
+          steps: ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::step],
+          cancelation_token: String?
+        }
+
+      class Automation < Courier::Internal::Type::BaseModel
+        attr_accessor steps: ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::step]
+
+        attr_accessor cancelation_token: String?
+
+        def initialize: (
+          steps: ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::step],
+          ?cancelation_token: String?
+        ) -> void
+
+        def to_hash: -> {
+          steps: ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::step],
+          cancelation_token: String?
+        }
+
+        type step =
+          Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToDigestStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationCancelStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationDelayStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationInvokeStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationSendStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationV2SendStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationSendListStep
+          | Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep
+
+        module Step
+          extend Courier::Internal::Type::Union
+
+          type automation_add_to_digest_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToDigestStep::action,
+              subscription_topic_id: String
+            }
+
+          class AutomationAddToDigestStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToDigestStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToDigestStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToDigestStep::action
+
+            def subscription_topic_id: -> String
+
+            def subscription_topic_id=: (String _) -> String
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToDigestStep::action,
+              subscription_topic_id: String
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToDigestStep::action,
+              subscription_topic_id: String
+            }
+
+            type action = :"add-to-digest"
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              ADD_TO_DIGEST: :"add-to-digest"
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToDigestStep::action]
+            end
+          end
+
+          type automation_add_to_batch_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::action,
+              max_wait_period: String,
+              retain: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain,
+              wait_period: String,
+              batch_id: String?,
+              batch_key: String?,
+              category_key: String?,
+              max_items: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::max_items?,
+              scope: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::scope?
+            }
+
+          class AutomationAddToBatchStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::action
+
+            def max_wait_period: -> String
+
+            def max_wait_period=: (String _) -> String
+
+            def retain: -> Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain
+
+            def retain=: (
+              Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain _
+            ) -> Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain
+
+            def wait_period: -> String
+
+            def wait_period=: (String _) -> String
+
+            def batch_id: -> String?
+
+            def batch_id=: (String? _) -> String?
+
+            def batch_key: -> String?
+
+            def batch_key=: (String? _) -> String?
+
+            def category_key: -> String?
+
+            def category_key=: (String? _) -> String?
+
+            def max_items: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::max_items?
+
+            def max_items=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::max_items? _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::max_items?
+
+            def scope: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::scope?
+
+            def scope=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::scope? _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::scope?
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::action,
+              max_wait_period: String,
+              retain: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain,
+              wait_period: String,
+              ?batch_id: String?,
+              ?batch_key: String?,
+              ?category_key: String?,
+              ?max_items: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::max_items?,
+              ?scope: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::scope?
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::action,
+              max_wait_period: String,
+              retain: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain,
+              wait_period: String,
+              batch_id: String?,
+              batch_key: String?,
+              category_key: String?,
+              max_items: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::max_items?,
+              scope: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::scope?
+            }
+
+            type action = :"add-to-batch"
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              ADD_TO_BATCH: :"add-to-batch"
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::action]
+            end
+
+            type retain =
+              {
+                count: Integer,
+                type: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain::type_,
+                sort_key: String?
+              }
+
+            class Retain < Courier::Internal::Type::BaseModel
+              attr_accessor count: Integer
+
+              attr_accessor type: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain::type_
+
+              attr_accessor sort_key: String?
+
+              def initialize: (
+                count: Integer,
+                type: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain::type_,
+                ?sort_key: String?
+              ) -> void
+
+              def to_hash: -> {
+                count: Integer,
+                type: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain::type_,
+                sort_key: String?
+              }
+
+              type type_ = :first | :last | :highest | :lowest
+
+              module Type
+                extend Courier::Internal::Type::Enum
+
+                FIRST: :first
+                LAST: :last
+                HIGHEST: :highest
+                LOWEST: :lowest
+
+                def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::Retain::type_]
+              end
+            end
+
+            type max_items = String | Integer
+
+            module MaxItems
+              extend Courier::Internal::Type::Union
+
+              def self?.variants: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::max_items]
+            end
+
+            type scope = :user | :global | :dynamic
+
+            module Scope
+              extend Courier::Internal::Type::Enum
+
+              USER: :user
+              GLOBAL: :global
+              DYNAMIC: :dynamic
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationAddToBatchStep::scope]
+            end
+          end
+
+          type automation_throttle_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::action,
+              max_allowed: Integer,
+              on_throttle: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::OnThrottle,
+              period: String,
+              scope: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::scope,
+              should_alert: bool,
+              throttle_key: String?
+            }
+
+          class AutomationThrottleStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::action
+
+            def max_allowed: -> Integer
+
+            def max_allowed=: (Integer _) -> Integer
+
+            def on_throttle: -> Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::OnThrottle
+
+            def on_throttle=: (
+              Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::OnThrottle _
+            ) -> Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::OnThrottle
+
+            def period: -> String
+
+            def period=: (String _) -> String
+
+            def scope: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::scope
+
+            def scope=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::scope _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::scope
+
+            def should_alert: -> bool
+
+            def should_alert=: (bool _) -> bool
+
+            def throttle_key: -> String?
+
+            def throttle_key=: (String? _) -> String?
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::action,
+              max_allowed: Integer,
+              on_throttle: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::OnThrottle,
+              period: String,
+              scope: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::scope,
+              should_alert: bool,
+              ?throttle_key: String?
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::action,
+              max_allowed: Integer,
+              on_throttle: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::OnThrottle,
+              period: String,
+              scope: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::scope,
+              should_alert: bool,
+              throttle_key: String?
+            }
+
+            type action = :throttle
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              THROTTLE: :throttle
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::action]
+            end
+
+            type on_throttle = { node_id: String }
+
+            class OnThrottle < Courier::Internal::Type::BaseModel
+              attr_accessor node_id: String
+
+              def initialize: (node_id: String) -> void
+
+              def to_hash: -> { node_id: String }
+            end
+
+            type scope = :user | :global | :dynamic
+
+            module Scope
+              extend Courier::Internal::Type::Enum
+
+              USER: :user
+              GLOBAL: :global
+              DYNAMIC: :dynamic
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationThrottleStep::scope]
+            end
+          end
+
+          type automation_cancel_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationCancelStep::action,
+              cancelation_token: String?
+            }
+
+          class AutomationCancelStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationCancelStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationCancelStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationCancelStep::action
+
+            def cancelation_token: -> String?
+
+            def cancelation_token=: (String? _) -> String?
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationCancelStep::action,
+              ?cancelation_token: String?
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationCancelStep::action,
+              cancelation_token: String?
+            }
+
+            type action = :cancel
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              CANCEL: :cancel
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationCancelStep::action]
+            end
+          end
+
+          type automation_delay_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationDelayStep::action,
+              duration: String?,
+              until_: String?
+            }
+
+          class AutomationDelayStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationDelayStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationDelayStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationDelayStep::action
+
+            def duration: -> String?
+
+            def duration=: (String? _) -> String?
+
+            def until_: -> String?
+
+            def until_=: (String? _) -> String?
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationDelayStep::action,
+              ?duration: String?,
+              ?until_: String?
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationDelayStep::action,
+              duration: String?,
+              until_: String?
+            }
+
+            type action = :delay
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              DELAY: :delay
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationDelayStep::action]
+            end
+          end
+
+          type automation_fetch_data_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action,
+              merge_strategy: Courier::Models::Automations::merge_algorithm,
+              webhook: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook,
+              idempotency_expiry: String?,
+              idempotency_key: String?
+            }
+
+          class AutomationFetchDataStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action
+
+            def merge_strategy: -> Courier::Models::Automations::merge_algorithm
+
+            def merge_strategy=: (
+              Courier::Models::Automations::merge_algorithm _
+            ) -> Courier::Models::Automations::merge_algorithm
+
+            def webhook: -> Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook
+
+            def webhook=: (
+              Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook _
+            ) -> Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook
+
+            def idempotency_expiry: -> String?
+
+            def idempotency_expiry=: (String? _) -> String?
+
+            def idempotency_key: -> String?
+
+            def idempotency_key=: (String? _) -> String?
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action,
+              merge_strategy: Courier::Models::Automations::merge_algorithm,
+              webhook: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook,
+              ?idempotency_expiry: String?,
+              ?idempotency_key: String?
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action,
+              merge_strategy: Courier::Models::Automations::merge_algorithm,
+              webhook: Courier::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook,
+              idempotency_expiry: String?,
+              idempotency_key: String?
+            }
+
+            type action = :"fetch-data"
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              FETCH_DATA: :"fetch-data"
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action]
+            end
+
+            type webhook =
+              {
+                method_: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_,
+                url: String,
+                body: ::Hash[Symbol, top]?,
+                headers: ::Hash[Symbol, top]?,
+                params: ::Hash[Symbol, top]?
+              }
+
+            class Webhook < Courier::Internal::Type::BaseModel
+              attr_accessor method_: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_
+
+              attr_accessor url: String
+
+              attr_accessor body: ::Hash[Symbol, top]?
+
+              attr_accessor headers: ::Hash[Symbol, top]?
+
+              attr_accessor params: ::Hash[Symbol, top]?
+
+              def initialize: (
+                method_: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_,
+                url: String,
+                ?body: ::Hash[Symbol, top]?,
+                ?headers: ::Hash[Symbol, top]?,
+                ?params: ::Hash[Symbol, top]?
+              ) -> void
+
+              def to_hash: -> {
+                method_: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_,
+                url: String,
+                body: ::Hash[Symbol, top]?,
+                headers: ::Hash[Symbol, top]?,
+                params: ::Hash[Symbol, top]?
+              }
+
+              type method_ = :GET | :POST
+
+              module Method
+                extend Courier::Internal::Type::Enum
+
+                GET: :GET
+                POST: :POST
+
+                def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_]
+              end
+            end
+          end
+
+          type automation_invoke_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action,
+              template: String
+            }
+
+          class AutomationInvokeStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action
+
+            def template: -> String
+
+            def template=: (String _) -> String
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action,
+              template: String
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action,
+              template: String
+            }
+
+            type action = :invoke
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              INVOKE: :invoke
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action]
+            end
+          end
+
+          type automation_send_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendStep::action,
+              brand: String?,
+              data: ::Hash[Symbol, top]?,
+              override: ::Hash[Symbol, top]?,
+              profile: top,
+              recipient: String?,
+              template: String?
+            }
+
+          class AutomationSendStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendStep::action
+
+            def brand: -> String?
+
+            def brand=: (String? _) -> String?
+
+            def data: -> ::Hash[Symbol, top]?
+
+            def data=: (::Hash[Symbol, top]? _) -> ::Hash[Symbol, top]?
+
+            def override: -> ::Hash[Symbol, top]?
+
+            def override=: (::Hash[Symbol, top]? _) -> ::Hash[Symbol, top]?
+
+            def profile: -> top?
+
+            def profile=: (top _) -> top
+
+            def recipient: -> String?
+
+            def recipient=: (String? _) -> String?
+
+            def template: -> String?
+
+            def template=: (String? _) -> String?
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendStep::action,
+              ?brand: String?,
+              ?data: ::Hash[Symbol, top]?,
+              ?override: ::Hash[Symbol, top]?,
+              ?profile: top,
+              ?recipient: String?,
+              ?template: String?
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendStep::action,
+              brand: String?,
+              data: ::Hash[Symbol, top]?,
+              override: ::Hash[Symbol, top]?,
+              profile: top,
+              recipient: String?,
+              template: String?
+            }
+
+            type action = :send
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              SEND: :send
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendStep::action]
+            end
+          end
+
+          type automation_v2_send_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationV2SendStep::action,
+              message: Courier::Models::message
+            }
+
+          class AutomationV2SendStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationV2SendStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationV2SendStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationV2SendStep::action
+
+            def message: -> Courier::Models::message
+
+            def message=: (
+              Courier::Models::message _
+            ) -> Courier::Models::message
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationV2SendStep::action,
+              message: Courier::Models::message
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationV2SendStep::action,
+              message: Courier::Models::message
+            }
+
+            type action = :send
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              SEND: :send
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationV2SendStep::action]
+            end
+          end
+
+          type automation_send_list_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendListStep::action,
+              list: String,
+              brand: String?,
+              data: ::Hash[Symbol, top]?,
+              override: ::Hash[Symbol, top]?,
+              template: String?
+            }
+
+          class AutomationSendListStep < Courier::Models::Automations::AutomationStep
+            def action: -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendListStep::action
+
+            def action=: (
+              Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendListStep::action _
+            ) -> Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendListStep::action
+
+            def list: -> String
+
+            def list=: (String _) -> String
+
+            def brand: -> String?
+
+            def brand=: (String? _) -> String?
+
+            def data: -> ::Hash[Symbol, top]?
+
+            def data=: (::Hash[Symbol, top]? _) -> ::Hash[Symbol, top]?
+
+            def override: -> ::Hash[Symbol, top]?
+
+            def override=: (::Hash[Symbol, top]? _) -> ::Hash[Symbol, top]?
+
+            def template: -> String?
+
+            def template=: (String? _) -> String?
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendListStep::action,
+              list: String,
+              ?brand: String?,
+              ?data: ::Hash[Symbol, top]?,
+              ?override: ::Hash[Symbol, top]?,
+              ?template: String?
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendListStep::action,
+              list: String,
+              brand: String?,
+              data: ::Hash[Symbol, top]?,
+              override: ::Hash[Symbol, top]?,
+              template: String?
+            }
+
+            type action = :"send-list"
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              SEND_LIST: :"send-list"
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationSendListStep::action]
+            end
+          end
+
+          type automation_update_profile_step =
+            {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action,
+              merge: Courier::Models::Automations::merge_algorithm,
+              profile: top,
+              recipient_id: String
+            }
+
+          class AutomationUpdateProfileStep < Courier::Internal::Type::BaseModel
+            attr_accessor action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action
+
+            attr_accessor merge: Courier::Models::Automations::merge_algorithm
+
+            attr_accessor profile: top
+
+            attr_accessor recipient_id: String
+
+            def initialize: (
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action,
+              merge: Courier::Models::Automations::merge_algorithm,
+              profile: top,
+              recipient_id: String
+            ) -> void
+
+            def to_hash: -> {
+              action: Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action,
+              merge: Courier::Models::Automations::merge_algorithm,
+              profile: top,
+              recipient_id: String
+            }
+
+            type action = :"update-profile"
+
+            module Action
+              extend Courier::Internal::Type::Enum
+
+              UPDATE_PROFILE: :"update-profile"
+
+              def self?.values: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action]
+            end
+          end
+
+          def self?.variants: -> ::Array[Courier::Models::AutomationInvokeAdHocParams::Automation::step]
+        end
+      end
+    end
+  end
+end

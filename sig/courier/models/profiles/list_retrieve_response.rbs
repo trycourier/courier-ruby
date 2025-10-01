@@ -1,0 +1,64 @@
+module Courier
+  module Models
+    module Profiles
+      type list_retrieve_response =
+        {
+          paging: Courier::Paging,
+          results: ::Array[Courier::Models::Profiles::ListRetrieveResponse::Result]
+        }
+
+      class ListRetrieveResponse < Courier::Internal::Type::BaseModel
+        attr_accessor paging: Courier::Paging
+
+        attr_accessor results: ::Array[Courier::Models::Profiles::ListRetrieveResponse::Result]
+
+        def initialize: (
+          paging: Courier::Paging,
+          results: ::Array[Courier::Models::Profiles::ListRetrieveResponse::Result]
+        ) -> void
+
+        def to_hash: -> {
+          paging: Courier::Paging,
+          results: ::Array[Courier::Models::Profiles::ListRetrieveResponse::Result]
+        }
+
+        type result =
+          {
+            id: String,
+            created: String,
+            name: String,
+            updated: String,
+            preferences: Courier::Lists::RecipientPreferences?
+          }
+
+        class Result < Courier::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created: String
+
+          attr_accessor name: String
+
+          attr_accessor updated: String
+
+          attr_accessor preferences: Courier::Lists::RecipientPreferences?
+
+          def initialize: (
+            id: String,
+            created: String,
+            name: String,
+            updated: String,
+            ?preferences: Courier::Lists::RecipientPreferences?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created: String,
+            name: String,
+            updated: String,
+            preferences: Courier::Lists::RecipientPreferences?
+          }
+        end
+      end
+    end
+  end
+end

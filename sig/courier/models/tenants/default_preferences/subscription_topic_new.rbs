@@ -1,0 +1,46 @@
+module Courier
+  module Models
+    module Tenants
+      module DefaultPreferences
+        type subscription_topic_new =
+          {
+            status: Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew::status,
+            custom_routing: ::Array[Courier::Models::Tenants::DefaultPreferences::channel_classification]?,
+            has_custom_routing: bool?
+          }
+
+        class SubscriptionTopicNew < Courier::Internal::Type::BaseModel
+          attr_accessor status: Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew::status
+
+          attr_accessor custom_routing: ::Array[Courier::Models::Tenants::DefaultPreferences::channel_classification]?
+
+          attr_accessor has_custom_routing: bool?
+
+          def initialize: (
+            status: Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew::status,
+            ?custom_routing: ::Array[Courier::Models::Tenants::DefaultPreferences::channel_classification]?,
+            ?has_custom_routing: bool?
+          ) -> void
+
+          def to_hash: -> {
+            status: Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew::status,
+            custom_routing: ::Array[Courier::Models::Tenants::DefaultPreferences::channel_classification]?,
+            has_custom_routing: bool?
+          }
+
+          type status = :OPTED_OUT | :OPTED_IN | :REQUIRED
+
+          module Status
+            extend Courier::Internal::Type::Enum
+
+            OPTED_OUT: :OPTED_OUT
+            OPTED_IN: :OPTED_IN
+            REQUIRED: :REQUIRED
+
+            def self?.values: -> ::Array[Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew::status]
+          end
+        end
+      end
+    end
+  end
+end

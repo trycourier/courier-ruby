@@ -1,0 +1,54 @@
+module Courier
+  module Models
+    type content =
+      Courier::Content::ElementalContent
+      | Courier::Content::ElementalContentSugar
+
+    module Content
+      extend Courier::Internal::Type::Union
+
+      type elemental_content =
+        {
+          elements: ::Array[Courier::Models::elemental_node],
+          version: String,
+          brand: top
+        }
+
+      class ElementalContent < Courier::Internal::Type::BaseModel
+        attr_accessor elements: ::Array[Courier::Models::elemental_node]
+
+        attr_accessor version: String
+
+        attr_reader brand: top?
+
+        def brand=: (top) -> top
+
+        def initialize: (
+          elements: ::Array[Courier::Models::elemental_node],
+          version: String,
+          ?brand: top
+        ) -> void
+
+        def to_hash: -> {
+          elements: ::Array[Courier::Models::elemental_node],
+          version: String,
+          brand: top
+        }
+      end
+
+      type elemental_content_sugar = { body: String, title: String }
+
+      class ElementalContentSugar < Courier::Internal::Type::BaseModel
+        attr_accessor body: String
+
+        attr_accessor title: String
+
+        def initialize: (body: String, title: String) -> void
+
+        def to_hash: -> { body: String, title: String }
+      end
+
+      def self?.variants: -> ::Array[Courier::Models::content]
+    end
+  end
+end

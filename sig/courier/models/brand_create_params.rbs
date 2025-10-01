@@ -1,0 +1,41 @@
+module Courier
+  module Models
+    type brand_create_params =
+      {
+        name: String,
+        settings: Courier::BrandSettings,
+        id: String?,
+        snippets: Courier::BrandSnippets?
+      }
+      & Courier::Internal::Type::request_parameters
+
+    class BrandCreateParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_accessor settings: Courier::BrandSettings
+
+      attr_accessor id: String?
+
+      attr_accessor snippets: Courier::BrandSnippets?
+
+      def initialize: (
+        name: String,
+        settings: Courier::BrandSettings,
+        ?id: String?,
+        ?snippets: Courier::BrandSnippets?,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        settings: Courier::BrandSettings,
+        id: String?,
+        snippets: Courier::BrandSnippets?,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

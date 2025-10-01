@@ -1,0 +1,78 @@
+module Courier
+  module Models
+    type filter_config =
+      Courier::FilterConfig::UnionMember0 | Courier::NestedFilterConfig
+
+    module FilterConfig
+      extend Courier::Internal::Type::Union
+
+      type union_member0 =
+        {
+          operator: Courier::Models::FilterConfig::UnionMember0::operator,
+          path: String,
+          value: String
+        }
+
+      class UnionMember0 < Courier::Internal::Type::BaseModel
+        attr_accessor operator: Courier::Models::FilterConfig::UnionMember0::operator
+
+        attr_accessor path: String
+
+        attr_accessor value: String
+
+        def initialize: (
+          operator: Courier::Models::FilterConfig::UnionMember0::operator,
+          path: String,
+          value: String
+        ) -> void
+
+        def to_hash: -> {
+          operator: Courier::Models::FilterConfig::UnionMember0::operator,
+          path: String,
+          value: String
+        }
+
+        type operator =
+          :ENDS_WITH
+          | :EQ
+          | :EXISTS
+          | :GT
+          | :GTE
+          | :INCLUDES
+          | :IS_AFTER
+          | :IS_BEFORE
+          | :LT
+          | :LTE
+          | :NEQ
+          | :OMIT
+          | :STARTS_WITH
+          | :AND
+          | :OR
+
+        module Operator
+          extend Courier::Internal::Type::Enum
+
+          ENDS_WITH: :ENDS_WITH
+          EQ: :EQ
+          EXISTS: :EXISTS
+          GT: :GT
+          GTE: :GTE
+          INCLUDES: :INCLUDES
+          IS_AFTER: :IS_AFTER
+          IS_BEFORE: :IS_BEFORE
+          LT: :LT
+          LTE: :LTE
+          NEQ: :NEQ
+          OMIT: :OMIT
+          STARTS_WITH: :STARTS_WITH
+          AND: :AND
+          OR: :OR
+
+          def self?.values: -> ::Array[Courier::Models::FilterConfig::UnionMember0::operator]
+        end
+      end
+
+      def self?.variants: -> ::Array[Courier::Models::filter_config]
+    end
+  end
+end

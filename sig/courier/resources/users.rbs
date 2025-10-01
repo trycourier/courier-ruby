@@ -1,0 +1,13 @@
+module Courier
+  module Resources
+    class Users
+      attr_reader preferences: Courier::Resources::Users::Preferences
+
+      attr_reader tenants: Courier::Resources::Users::Tenants
+
+      attr_reader tokens: Courier::Resources::Users::Tokens
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

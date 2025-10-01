@@ -1,0 +1,62 @@
+module Courier
+  module Models
+    type audience_list_members_response =
+      {
+        items: ::Array[Courier::Models::AudienceListMembersResponse::Item],
+        paging: Courier::Paging
+      }
+
+    class AudienceListMembersResponse < Courier::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Courier::Models::AudienceListMembersResponse::Item]
+
+      attr_accessor paging: Courier::Paging
+
+      def initialize: (
+        items: ::Array[Courier::Models::AudienceListMembersResponse::Item],
+        paging: Courier::Paging
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Courier::Models::AudienceListMembersResponse::Item],
+        paging: Courier::Paging
+      }
+
+      type item =
+        {
+          added_at: String,
+          audience_id: String,
+          audience_version: Integer,
+          member_id: String,
+          reason: String
+        }
+
+      class Item < Courier::Internal::Type::BaseModel
+        attr_accessor added_at: String
+
+        attr_accessor audience_id: String
+
+        attr_accessor audience_version: Integer
+
+        attr_accessor member_id: String
+
+        attr_accessor reason: String
+
+        def initialize: (
+          added_at: String,
+          audience_id: String,
+          audience_version: Integer,
+          member_id: String,
+          reason: String
+        ) -> void
+
+        def to_hash: -> {
+          added_at: String,
+          audience_id: String,
+          audience_version: Integer,
+          member_id: String,
+          reason: String
+        }
+      end
+    end
+  end
+end

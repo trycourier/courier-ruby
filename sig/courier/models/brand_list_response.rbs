@@ -1,0 +1,22 @@
+module Courier
+  module Models
+    type brand_list_response =
+      { paging: Courier::Paging, results: ::Array[Courier::Brand] }
+
+    class BrandListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor paging: Courier::Paging
+
+      attr_accessor results: ::Array[Courier::Brand]
+
+      def initialize: (
+        paging: Courier::Paging,
+        results: ::Array[Courier::Brand]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Courier::Paging,
+        results: ::Array[Courier::Brand]
+      }
+    end
+  end
+end

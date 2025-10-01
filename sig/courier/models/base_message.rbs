@@ -1,0 +1,469 @@
+module Courier
+  module Models
+    type base_message =
+      {
+        brand_id: String?,
+        channels: ::Hash[Symbol, Courier::BaseMessage::Channel]?,
+        context: Courier::MessageContext?,
+        data: ::Hash[Symbol, top]?,
+        delay: Courier::BaseMessage::Delay?,
+        expiry: Courier::BaseMessage::Expiry?,
+        metadata: Courier::BaseMessage::Metadata?,
+        preferences: Courier::BaseMessage::Preferences?,
+        providers: ::Hash[Symbol, Courier::BaseMessage::Provider]?,
+        routing: Courier::BaseMessage::Routing?,
+        timeout: Courier::BaseMessage::Timeout?
+      }
+
+    class BaseMessage < Courier::Internal::Type::BaseModel
+      attr_accessor brand_id: String?
+
+      attr_accessor channels: ::Hash[Symbol, Courier::BaseMessage::Channel]?
+
+      attr_accessor context: Courier::MessageContext?
+
+      attr_accessor data: ::Hash[Symbol, top]?
+
+      attr_accessor delay: Courier::BaseMessage::Delay?
+
+      attr_accessor expiry: Courier::BaseMessage::Expiry?
+
+      attr_accessor metadata: Courier::BaseMessage::Metadata?
+
+      attr_accessor preferences: Courier::BaseMessage::Preferences?
+
+      attr_accessor providers: ::Hash[Symbol, Courier::BaseMessage::Provider]?
+
+      attr_accessor routing: Courier::BaseMessage::Routing?
+
+      attr_accessor timeout: Courier::BaseMessage::Timeout?
+
+      def initialize: (
+        ?brand_id: String?,
+        ?channels: ::Hash[Symbol, Courier::BaseMessage::Channel]?,
+        ?context: Courier::MessageContext?,
+        ?data: ::Hash[Symbol, top]?,
+        ?delay: Courier::BaseMessage::Delay?,
+        ?expiry: Courier::BaseMessage::Expiry?,
+        ?metadata: Courier::BaseMessage::Metadata?,
+        ?preferences: Courier::BaseMessage::Preferences?,
+        ?providers: ::Hash[Symbol, Courier::BaseMessage::Provider]?,
+        ?routing: Courier::BaseMessage::Routing?,
+        ?timeout: Courier::BaseMessage::Timeout?
+      ) -> void
+
+      def to_hash: -> {
+        brand_id: String?,
+        channels: ::Hash[Symbol, Courier::BaseMessage::Channel]?,
+        context: Courier::MessageContext?,
+        data: ::Hash[Symbol, top]?,
+        delay: Courier::BaseMessage::Delay?,
+        expiry: Courier::BaseMessage::Expiry?,
+        metadata: Courier::BaseMessage::Metadata?,
+        preferences: Courier::BaseMessage::Preferences?,
+        providers: ::Hash[Symbol, Courier::BaseMessage::Provider]?,
+        routing: Courier::BaseMessage::Routing?,
+        timeout: Courier::BaseMessage::Timeout?
+      }
+
+      type channel =
+        {
+          brand_id: String?,
+          if_: String?,
+          metadata: Courier::BaseMessage::Channel::Metadata?,
+          override: ::Hash[Symbol, top]?,
+          providers: ::Array[String]?,
+          routing_method: Courier::Models::routing_method?,
+          timeouts: Courier::BaseMessage::Channel::Timeouts?
+        }
+
+      class Channel < Courier::Internal::Type::BaseModel
+        attr_accessor brand_id: String?
+
+        attr_accessor if_: String?
+
+        attr_accessor metadata: Courier::BaseMessage::Channel::Metadata?
+
+        attr_accessor override: ::Hash[Symbol, top]?
+
+        attr_accessor providers: ::Array[String]?
+
+        attr_accessor routing_method: Courier::Models::routing_method?
+
+        attr_accessor timeouts: Courier::BaseMessage::Channel::Timeouts?
+
+        def initialize: (
+          ?brand_id: String?,
+          ?if_: String?,
+          ?metadata: Courier::BaseMessage::Channel::Metadata?,
+          ?override: ::Hash[Symbol, top]?,
+          ?providers: ::Array[String]?,
+          ?routing_method: Courier::Models::routing_method?,
+          ?timeouts: Courier::BaseMessage::Channel::Timeouts?
+        ) -> void
+
+        def to_hash: -> {
+          brand_id: String?,
+          if_: String?,
+          metadata: Courier::BaseMessage::Channel::Metadata?,
+          override: ::Hash[Symbol, top]?,
+          providers: ::Array[String]?,
+          routing_method: Courier::Models::routing_method?,
+          timeouts: Courier::BaseMessage::Channel::Timeouts?
+        }
+
+        type metadata = { utm: Courier::Utm? }
+
+        class Metadata < Courier::Internal::Type::BaseModel
+          attr_accessor utm: Courier::Utm?
+
+          def initialize: (?utm: Courier::Utm?) -> void
+
+          def to_hash: -> { utm: Courier::Utm? }
+        end
+
+        type timeouts = { channel: Integer?, provider: Integer? }
+
+        class Timeouts < Courier::Internal::Type::BaseModel
+          attr_accessor channel: Integer?
+
+          attr_accessor provider: Integer?
+
+          def initialize: (?channel: Integer?, ?provider: Integer?) -> void
+
+          def to_hash: -> { channel: Integer?, provider: Integer? }
+        end
+      end
+
+      type delay = { duration: Integer?, until_: String? }
+
+      class Delay < Courier::Internal::Type::BaseModel
+        attr_accessor duration: Integer?
+
+        attr_accessor until_: String?
+
+        def initialize: (?duration: Integer?, ?until_: String?) -> void
+
+        def to_hash: -> { duration: Integer?, until_: String? }
+      end
+
+      type expiry =
+        {
+          expires_in: Courier::Models::BaseMessage::Expiry::expires_in,
+          expires_at: String?
+        }
+
+      class Expiry < Courier::Internal::Type::BaseModel
+        attr_accessor expires_in: Courier::Models::BaseMessage::Expiry::expires_in
+
+        attr_accessor expires_at: String?
+
+        def initialize: (
+          expires_in: Courier::Models::BaseMessage::Expiry::expires_in,
+          ?expires_at: String?
+        ) -> void
+
+        def to_hash: -> {
+          expires_in: Courier::Models::BaseMessage::Expiry::expires_in,
+          expires_at: String?
+        }
+
+        type expires_in = String | Integer
+
+        module ExpiresIn
+          extend Courier::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Courier::Models::BaseMessage::Expiry::expires_in]
+        end
+      end
+
+      type metadata =
+        {
+          event: String?,
+          tags: ::Array[String]?,
+          trace_id: String?,
+          utm: Courier::Utm?
+        }
+
+      class Metadata < Courier::Internal::Type::BaseModel
+        attr_accessor event: String?
+
+        attr_accessor tags: ::Array[String]?
+
+        attr_accessor trace_id: String?
+
+        attr_accessor utm: Courier::Utm?
+
+        def initialize: (
+          ?event: String?,
+          ?tags: ::Array[String]?,
+          ?trace_id: String?,
+          ?utm: Courier::Utm?
+        ) -> void
+
+        def to_hash: -> {
+          event: String?,
+          tags: ::Array[String]?,
+          trace_id: String?,
+          utm: Courier::Utm?
+        }
+      end
+
+      type preferences = { subscription_topic_id: String }
+
+      class Preferences < Courier::Internal::Type::BaseModel
+        attr_accessor subscription_topic_id: String
+
+        def initialize: (subscription_topic_id: String) -> void
+
+        def to_hash: -> { subscription_topic_id: String }
+      end
+
+      type provider =
+        {
+          if_: String?,
+          metadata: Courier::BaseMessage::Provider::Metadata?,
+          override: ::Hash[Symbol, top]?,
+          timeouts: Integer?
+        }
+
+      class Provider < Courier::Internal::Type::BaseModel
+        attr_accessor if_: String?
+
+        attr_accessor metadata: Courier::BaseMessage::Provider::Metadata?
+
+        attr_accessor override: ::Hash[Symbol, top]?
+
+        attr_accessor timeouts: Integer?
+
+        def initialize: (
+          ?if_: String?,
+          ?metadata: Courier::BaseMessage::Provider::Metadata?,
+          ?override: ::Hash[Symbol, top]?,
+          ?timeouts: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          if_: String?,
+          metadata: Courier::BaseMessage::Provider::Metadata?,
+          override: ::Hash[Symbol, top]?,
+          timeouts: Integer?
+        }
+
+        type metadata = { utm: Courier::Utm? }
+
+        class Metadata < Courier::Internal::Type::BaseModel
+          attr_accessor utm: Courier::Utm?
+
+          def initialize: (?utm: Courier::Utm?) -> void
+
+          def to_hash: -> { utm: Courier::Utm? }
+        end
+      end
+
+      type routing =
+        {
+          channels: ::Array[Courier::Models::BaseMessage::Routing::channel],
+          method_: Courier::Models::routing_method
+        }
+
+      class Routing < Courier::Internal::Type::BaseModel
+        attr_accessor channels: ::Array[Courier::Models::BaseMessage::Routing::channel]
+
+        attr_accessor method_: Courier::Models::routing_method
+
+        def initialize: (
+          channels: ::Array[Courier::Models::BaseMessage::Routing::channel],
+          method_: Courier::Models::routing_method
+        ) -> void
+
+        def to_hash: -> {
+          channels: ::Array[Courier::Models::BaseMessage::Routing::channel],
+          method_: Courier::Models::routing_method
+        }
+
+        type channel =
+          Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel
+          | Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider
+          | String
+
+        module Channel
+          extend Courier::Internal::Type::Union
+
+          type routing_strategy_channel =
+            {
+              channel: String,
+              config: ::Hash[Symbol, top]?,
+              if_: String?,
+              method_: Courier::Models::routing_method?,
+              providers: ::Hash[Symbol, Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]?
+            }
+
+          class RoutingStrategyChannel < Courier::Internal::Type::BaseModel
+            attr_accessor channel: String
+
+            attr_accessor config: ::Hash[Symbol, top]?
+
+            attr_accessor if_: String?
+
+            attr_accessor method_: Courier::Models::routing_method?
+
+            attr_accessor providers: ::Hash[Symbol, Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]?
+
+            def initialize: (
+              channel: String,
+              ?config: ::Hash[Symbol, top]?,
+              ?if_: String?,
+              ?method_: Courier::Models::routing_method?,
+              ?providers: ::Hash[Symbol, Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]?
+            ) -> void
+
+            def to_hash: -> {
+              channel: String,
+              config: ::Hash[Symbol, top]?,
+              if_: String?,
+              method_: Courier::Models::routing_method?,
+              providers: ::Hash[Symbol, Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]?
+            }
+
+            type provider =
+              {
+                if_: String?,
+                metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata?,
+                override: ::Hash[Symbol, top]?,
+                timeouts: Integer?
+              }
+
+            class Provider < Courier::Internal::Type::BaseModel
+              attr_accessor if_: String?
+
+              attr_accessor metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata?
+
+              attr_accessor override: ::Hash[Symbol, top]?
+
+              attr_accessor timeouts: Integer?
+
+              def initialize: (
+                ?if_: String?,
+                ?metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata?,
+                ?override: ::Hash[Symbol, top]?,
+                ?timeouts: Integer?
+              ) -> void
+
+              def to_hash: -> {
+                if_: String?,
+                metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata?,
+                override: ::Hash[Symbol, top]?,
+                timeouts: Integer?
+              }
+
+              type metadata = { utm: Courier::Utm? }
+
+              class Metadata < Courier::Internal::Type::BaseModel
+                attr_accessor utm: Courier::Utm?
+
+                def initialize: (?utm: Courier::Utm?) -> void
+
+                def to_hash: -> { utm: Courier::Utm? }
+              end
+            end
+          end
+
+          type routing_strategy_provider =
+            {
+              metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata,
+              name: String,
+              config: ::Hash[Symbol, top]?,
+              if_: String?
+            }
+
+          class RoutingStrategyProvider < Courier::Internal::Type::BaseModel
+            attr_accessor metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata
+
+            attr_accessor name: String
+
+            attr_accessor config: ::Hash[Symbol, top]?
+
+            attr_accessor if_: String?
+
+            def initialize: (
+              metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata,
+              name: String,
+              ?config: ::Hash[Symbol, top]?,
+              ?if_: String?
+            ) -> void
+
+            def to_hash: -> {
+              metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata,
+              name: String,
+              config: ::Hash[Symbol, top]?,
+              if_: String?
+            }
+
+            type metadata = { utm: Courier::Utm? }
+
+            class Metadata < Courier::Internal::Type::BaseModel
+              attr_accessor utm: Courier::Utm?
+
+              def initialize: (?utm: Courier::Utm?) -> void
+
+              def to_hash: -> { utm: Courier::Utm? }
+            end
+          end
+
+          def self?.variants: -> ::Array[Courier::Models::BaseMessage::Routing::channel]
+        end
+      end
+
+      type timeout =
+        {
+          channel: ::Hash[Symbol, Integer]?,
+          criteria: Courier::Models::BaseMessage::Timeout::criteria?,
+          escalation: Integer?,
+          message: Integer?,
+          provider: ::Hash[Symbol, Integer]?
+        }
+
+      class Timeout < Courier::Internal::Type::BaseModel
+        attr_accessor channel: ::Hash[Symbol, Integer]?
+
+        attr_accessor criteria: Courier::Models::BaseMessage::Timeout::criteria?
+
+        attr_accessor escalation: Integer?
+
+        attr_accessor message: Integer?
+
+        attr_accessor provider: ::Hash[Symbol, Integer]?
+
+        def initialize: (
+          ?channel: ::Hash[Symbol, Integer]?,
+          ?criteria: Courier::Models::BaseMessage::Timeout::criteria?,
+          ?escalation: Integer?,
+          ?message: Integer?,
+          ?provider: ::Hash[Symbol, Integer]?
+        ) -> void
+
+        def to_hash: -> {
+          channel: ::Hash[Symbol, Integer]?,
+          criteria: Courier::Models::BaseMessage::Timeout::criteria?,
+          escalation: Integer?,
+          message: Integer?,
+          provider: ::Hash[Symbol, Integer]?
+        }
+
+        type criteria = :"no-escalation" | :delivered | :viewed | :engaged
+
+        module Criteria
+          extend Courier::Internal::Type::Enum
+
+          NO_ESCALATION: :"no-escalation"
+          DELIVERED: :delivered
+          VIEWED: :viewed
+          ENGAGED: :engaged
+
+          def self?.values: -> ::Array[Courier::Models::BaseMessage::Timeout::criteria]
+        end
+      end
+    end
+  end
+end

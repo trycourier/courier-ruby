@@ -1,0 +1,26 @@
+module Courier
+  module Models
+    module Lists
+      type subscription_subscribe_params =
+        { recipients: ::Array[Courier::Lists::PutSubscriptionsRecipient] }
+        & Courier::Internal::Type::request_parameters
+
+      class SubscriptionSubscribeParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_accessor recipients: ::Array[Courier::Lists::PutSubscriptionsRecipient]
+
+        def initialize: (
+          recipients: ::Array[Courier::Lists::PutSubscriptionsRecipient],
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          recipients: ::Array[Courier::Lists::PutSubscriptionsRecipient],
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

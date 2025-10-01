@@ -1,0 +1,106 @@
+module Courier
+  module Models
+    type notification_list_response =
+      {
+        paging: Courier::Paging,
+        results: ::Array[Courier::Models::NotificationListResponse::Result]
+      }
+
+    class NotificationListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor paging: Courier::Paging
+
+      attr_accessor results: ::Array[Courier::Models::NotificationListResponse::Result]
+
+      def initialize: (
+        paging: Courier::Paging,
+        results: ::Array[Courier::Models::NotificationListResponse::Result]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Courier::Paging,
+        results: ::Array[Courier::Models::NotificationListResponse::Result]
+      }
+
+      type result =
+        {
+          id: String,
+          created_at: Integer,
+          note: String,
+          routing: Courier::MessageRouting,
+          topic_id: String,
+          updated_at: Integer,
+          tags: Courier::Models::NotificationListResponse::Result::Tags?,
+          title: String?
+        }
+
+      class Result < Courier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Integer
+
+        attr_accessor note: String
+
+        attr_accessor routing: Courier::MessageRouting
+
+        attr_accessor topic_id: String
+
+        attr_accessor updated_at: Integer
+
+        attr_accessor tags: Courier::Models::NotificationListResponse::Result::Tags?
+
+        attr_accessor title: String?
+
+        def initialize: (
+          id: String,
+          created_at: Integer,
+          note: String,
+          routing: Courier::MessageRouting,
+          topic_id: String,
+          updated_at: Integer,
+          ?tags: Courier::Models::NotificationListResponse::Result::Tags?,
+          ?title: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Integer,
+          note: String,
+          routing: Courier::MessageRouting,
+          topic_id: String,
+          updated_at: Integer,
+          tags: Courier::Models::NotificationListResponse::Result::Tags?,
+          title: String?
+        }
+
+        type tags =
+          {
+            data: ::Array[Courier::Models::NotificationListResponse::Result::Tags::Data]
+          }
+
+        class Tags < Courier::Internal::Type::BaseModel
+          attr_accessor data: ::Array[Courier::Models::NotificationListResponse::Result::Tags::Data]
+
+          def initialize: (
+            data: ::Array[Courier::Models::NotificationListResponse::Result::Tags::Data]
+          ) -> void
+
+          def to_hash: -> {
+            data: ::Array[Courier::Models::NotificationListResponse::Result::Tags::Data]
+          }
+
+          type data = { id: String, name: String }
+
+          class Data < Courier::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String
+
+            def initialize: (id: String, name: String) -> void
+
+            def to_hash: -> { id: String, name: String }
+          end
+        end
+      end
+    end
+  end
+end
