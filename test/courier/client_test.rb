@@ -40,7 +40,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+      courier.send_.message(message: {content: {elements: [{}], version: "version"}})
     end
 
     assert_requested(:any, /./, times: 3)
@@ -52,7 +52,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+      courier.send_.message(message: {content: {elements: [{}], version: "version"}})
     end
 
     assert_requested(:any, /./, times: 4)
@@ -64,7 +64,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(
+      courier.send_.message(
         message: {content: {elements: [{}], version: "version"}},
         request_options: {max_retries: 3}
       )
@@ -79,7 +79,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(
+      courier.send_.message(
         message: {content: {elements: [{}], version: "version"}},
         request_options: {max_retries: 4}
       )
@@ -98,7 +98,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+      courier.send_.message(message: {content: {elements: [{}], version: "version"}})
     end
 
     assert_requested(:any, /./, times: 2)
@@ -116,7 +116,7 @@ class CourierTest < Minitest::Test
 
     assert_raises(Courier::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
-      courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+      courier.send_.message(message: {content: {elements: [{}], version: "version"}})
       Thread.current.thread_variable_set(:time_now, nil)
     end
 
@@ -134,7 +134,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+      courier.send_.message(message: {content: {elements: [{}], version: "version"}})
     end
 
     assert_requested(:any, /./, times: 2)
@@ -147,7 +147,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+      courier.send_.message(message: {content: {elements: [{}], version: "version"}})
     end
 
     3.times do
@@ -161,7 +161,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(
+      courier.send_.message(
         message: {content: {elements: [{}], version: "version"}},
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
@@ -178,7 +178,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::InternalServerError) do
-      courier.send_.send_message(
+      courier.send_.message(
         message: {content: {elements: [{}], version: "version"}},
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
@@ -201,7 +201,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::APIConnectionError) do
-      courier.send_.send_message(
+      courier.send_.message(
         message: {content: {elements: [{}], version: "version"}},
         request_options: {extra_headers: {}}
       )
@@ -233,7 +233,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::APIConnectionError) do
-      courier.send_.send_message(
+      courier.send_.message(
         message: {content: {elements: [{}], version: "version"}},
         request_options: {extra_headers: {}}
       )
@@ -260,7 +260,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::APIConnectionError) do
-      courier.send_.send_message(
+      courier.send_.message(
         message: {content: {elements: [{}], version: "version"}},
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
@@ -290,7 +290,7 @@ class CourierTest < Minitest::Test
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Courier::Errors::APIConnectionError) do
-      courier.send_.send_message(
+      courier.send_.message(
         message: {content: {elements: [{}], version: "version"}},
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
@@ -307,7 +307,7 @@ class CourierTest < Minitest::Test
 
     courier = Courier::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+    courier.send_.message(message: {content: {elements: [{}], version: "version"}})
 
     assert_requested(:any, /./) do |req|
       headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")

@@ -141,7 +141,7 @@ module Courier
 
   module RoutingMethod = Courier::Models::RoutingMethod
 
-  class SendSendMessageParams = Courier::Models::SendSendMessageParams
+  class SendMessageParams = Courier::Models::SendMessageParams
 
   class SlackBaseProperties = Courier::Models::SlackBaseProperties
 

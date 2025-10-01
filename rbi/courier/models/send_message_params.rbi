@@ -2,13 +2,13 @@
 
 module Courier
   module Models
-    class SendSendMessageParams < Courier::Internal::Type::BaseModel
+    class SendMessageParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Courier::SendSendMessageParams, Courier::Internal::AnyHash)
+          T.any(Courier::SendMessageParams, Courier::Internal::AnyHash)
         end
 
       # Defines the message to be delivered

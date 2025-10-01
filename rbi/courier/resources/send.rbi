@@ -12,9 +12,9 @@ module Courier
               Courier::Message::TemplateMessage::OrHash
             ),
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::Models::SendSendMessageResponse)
+        ).returns(Courier::Models::SendMessageResponse)
       end
-      def send_message(
+      def message(
         # Defines the message to be delivered
         message:,
         request_options: {}

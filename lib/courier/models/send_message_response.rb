@@ -2,8 +2,8 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Send#send_message
-    class SendSendMessageResponse < Courier::Internal::Type::BaseModel
+    # @see Courier::Resources::Send#message
+    class SendMessageResponse < Courier::Internal::Type::BaseModel
       # @!attribute request_id
       #   A successful call to `POST /send` returns a `202` status code along with a
       #   `requestId` in the response body.
@@ -22,7 +22,7 @@ module Courier
 
       # @!method initialize(request_id:)
       #   Some parameter documentations has been truncated, see
-      #   {Courier::Models::SendSendMessageResponse} for more details.
+      #   {Courier::Models::SendMessageResponse} for more details.
       #
       #   @param request_id [String] A successful call to `POST /send` returns a `202` status code along with a `requ
     end
