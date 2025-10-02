@@ -129,7 +129,7 @@ module Courier
           end
         end
 
-        class Item < Courier::Models::Tenants::BaseTemplateTenantAssociation
+        class Item < Courier::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
@@ -137,6 +137,14 @@ module Courier
                 Courier::Internal::AnyHash
               )
             end
+
+          # The template's id
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The timestamp at which the template was created
+          sig { returns(String) }
+          attr_accessor :created_at
 
           # The template's data containing it's routing configs
           sig do
@@ -152,22 +160,55 @@ module Courier
           end
           attr_writer :data
 
+          # The timestamp at which the template was published
+          sig { returns(String) }
+          attr_accessor :published_at
+
+          # The timestamp at which the template was last updated
+          sig { returns(String) }
+          attr_accessor :updated_at
+
+          # The version of the template
+          sig { returns(String) }
+          attr_accessor :version
+
           sig do
             params(
+              id: String,
+              created_at: String,
               data:
-                Courier::Models::Tenants::TemplateListResponse::Item::Data::OrHash
+                Courier::Models::Tenants::TemplateListResponse::Item::Data::OrHash,
+              published_at: String,
+              updated_at: String,
+              version: String
             ).returns(T.attached_class)
           end
           def self.new(
+            # The template's id
+            id:,
+            # The timestamp at which the template was created
+            created_at:,
             # The template's data containing it's routing configs
-            data:
+            data:,
+            # The timestamp at which the template was published
+            published_at:,
+            # The timestamp at which the template was last updated
+            updated_at:,
+            # The version of the template
+            version:
           )
           end
 
           sig do
             override.returns(
               {
-                data: Courier::Models::Tenants::TemplateListResponse::Item::Data
+                id: String,
+                created_at: String,
+                data:
+                  Courier::Models::Tenants::TemplateListResponse::Item::Data,
+                published_at: String,
+                updated_at: String,
+                version: String
               }
             )
           end

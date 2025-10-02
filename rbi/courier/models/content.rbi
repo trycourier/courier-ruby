@@ -9,10 +9,799 @@ module Courier
       Variants =
         T.type_alias do
           T.any(
-            Courier::Tenants::ElementalContent,
+            Courier::Content::ElementalContent,
             Courier::Content::ElementalContentSugar
           )
         end
+
+      class ElementalContent < Courier::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Courier::Content::ElementalContent,
+              Courier::Internal::AnyHash
+            )
+          end
+
+        sig do
+          returns(
+            T::Array[
+              T.any(
+                Courier::Content::ElementalContent::Element::UnionMember0,
+                Courier::Content::ElementalContent::Element::UnionMember1,
+                Courier::Content::ElementalContent::Element::Type,
+                Courier::Content::ElementalContent::Element::UnionMember3,
+                Courier::Content::ElementalContent::Element::UnionMember4,
+                Courier::Content::ElementalContent::Element::UnionMember5,
+                Courier::Content::ElementalContent::Element::UnionMember7
+              )
+            ]
+          )
+        end
+        attr_accessor :elements
+
+        # For example, "2022-01-01"
+        sig { returns(String) }
+        attr_accessor :version
+
+        sig { returns(T.nilable(T.anything)) }
+        attr_reader :brand
+
+        sig { params(brand: T.anything).void }
+        attr_writer :brand
+
+        sig do
+          params(
+            elements:
+              T::Array[
+                T.any(
+                  Courier::Content::ElementalContent::Element::UnionMember0::OrHash,
+                  Courier::Content::ElementalContent::Element::UnionMember1::OrHash,
+                  Courier::Content::ElementalContent::Element::Type::OrHash,
+                  Courier::Content::ElementalContent::Element::UnionMember3::OrHash,
+                  Courier::Content::ElementalContent::Element::UnionMember4::OrHash,
+                  Courier::Content::ElementalContent::Element::UnionMember5::OrHash,
+                  Courier::Content::ElementalContent::Element::UnionMember7::OrHash
+                )
+              ],
+            version: String,
+            brand: T.anything
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          elements:,
+          # For example, "2022-01-01"
+          version:,
+          brand: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              elements:
+                T::Array[
+                  T.any(
+                    Courier::Content::ElementalContent::Element::UnionMember0,
+                    Courier::Content::ElementalContent::Element::UnionMember1,
+                    Courier::Content::ElementalContent::Element::Type,
+                    Courier::Content::ElementalContent::Element::UnionMember3,
+                    Courier::Content::ElementalContent::Element::UnionMember4,
+                    Courier::Content::ElementalContent::Element::UnionMember5,
+                    Courier::Content::ElementalContent::Element::UnionMember7
+                  )
+                ],
+              version: String,
+              brand: T.anything
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Element
+          extend Courier::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Courier::Content::ElementalContent::Element::UnionMember0,
+                Courier::Content::ElementalContent::Element::UnionMember1,
+                Courier::Content::ElementalContent::Element::Type,
+                Courier::Content::ElementalContent::Element::UnionMember3,
+                Courier::Content::ElementalContent::Element::UnionMember4,
+                Courier::Content::ElementalContent::Element::UnionMember5,
+                Courier::Content::ElementalContent::Element::UnionMember7
+              )
+            end
+
+          class UnionMember0 < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Content::ElementalContent::Element::UnionMember0,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :channels
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :if_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :loop_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :ref
+
+            sig do
+              returns(
+                T.nilable(
+                  Courier::Content::ElementalContent::Element::UnionMember0::Type::OrSymbol
+                )
+              )
+            end
+            attr_reader :type
+
+            sig do
+              params(
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember0::Type::OrSymbol
+              ).void
+            end
+            attr_writer :type
+
+            sig do
+              params(
+                channels: T.nilable(T::Array[String]),
+                if_: T.nilable(String),
+                loop_: T.nilable(String),
+                ref: T.nilable(String),
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember0::Type::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              channels: nil,
+              if_: nil,
+              loop_: nil,
+              ref: nil,
+              type: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  channels: T.nilable(T::Array[String]),
+                  if_: T.nilable(String),
+                  loop_: T.nilable(String),
+                  ref: T.nilable(String),
+                  type:
+                    Courier::Content::ElementalContent::Element::UnionMember0::Type::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module Type
+              extend Courier::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Courier::Content::ElementalContent::Element::UnionMember0::Type
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              TEXT =
+                T.let(
+                  :text,
+                  Courier::Content::ElementalContent::Element::UnionMember0::Type::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Courier::Content::ElementalContent::Element::UnionMember0::Type::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class UnionMember1 < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Content::ElementalContent::Element::UnionMember1,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :channels
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :if_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :loop_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :ref
+
+            sig do
+              returns(
+                T.nilable(
+                  Courier::Content::ElementalContent::Element::UnionMember1::Type::OrSymbol
+                )
+              )
+            end
+            attr_reader :type
+
+            sig do
+              params(
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember1::Type::OrSymbol
+              ).void
+            end
+            attr_writer :type
+
+            sig do
+              params(
+                channels: T.nilable(T::Array[String]),
+                if_: T.nilable(String),
+                loop_: T.nilable(String),
+                ref: T.nilable(String),
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember1::Type::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              channels: nil,
+              if_: nil,
+              loop_: nil,
+              ref: nil,
+              type: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  channels: T.nilable(T::Array[String]),
+                  if_: T.nilable(String),
+                  loop_: T.nilable(String),
+                  ref: T.nilable(String),
+                  type:
+                    Courier::Content::ElementalContent::Element::UnionMember1::Type::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module Type
+              extend Courier::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Courier::Content::ElementalContent::Element::UnionMember1::Type
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              META =
+                T.let(
+                  :meta,
+                  Courier::Content::ElementalContent::Element::UnionMember1::Type::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Courier::Content::ElementalContent::Element::UnionMember1::Type::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class Type < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Content::ElementalContent::Element::Type,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Courier::Content::ElementalContent::Element::Type::Type::OrSymbol
+              )
+            end
+            attr_accessor :type
+
+            sig do
+              params(
+                type:
+                  Courier::Content::ElementalContent::Element::Type::Type::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(type:)
+            end
+
+            sig do
+              override.returns(
+                {
+                  type:
+                    Courier::Content::ElementalContent::Element::Type::Type::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module Type
+              extend Courier::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Courier::Content::ElementalContent::Element::Type::Type
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              CHANNEL =
+                T.let(
+                  :channel,
+                  Courier::Content::ElementalContent::Element::Type::Type::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Courier::Content::ElementalContent::Element::Type::Type::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class UnionMember3 < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Content::ElementalContent::Element::UnionMember3,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :channels
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :if_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :loop_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :ref
+
+            sig do
+              returns(
+                T.nilable(
+                  Courier::Content::ElementalContent::Element::UnionMember3::Type::OrSymbol
+                )
+              )
+            end
+            attr_reader :type
+
+            sig do
+              params(
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember3::Type::OrSymbol
+              ).void
+            end
+            attr_writer :type
+
+            sig do
+              params(
+                channels: T.nilable(T::Array[String]),
+                if_: T.nilable(String),
+                loop_: T.nilable(String),
+                ref: T.nilable(String),
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember3::Type::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              channels: nil,
+              if_: nil,
+              loop_: nil,
+              ref: nil,
+              type: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  channels: T.nilable(T::Array[String]),
+                  if_: T.nilable(String),
+                  loop_: T.nilable(String),
+                  ref: T.nilable(String),
+                  type:
+                    Courier::Content::ElementalContent::Element::UnionMember3::Type::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module Type
+              extend Courier::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Courier::Content::ElementalContent::Element::UnionMember3::Type
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              IMAGE =
+                T.let(
+                  :image,
+                  Courier::Content::ElementalContent::Element::UnionMember3::Type::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Courier::Content::ElementalContent::Element::UnionMember3::Type::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class UnionMember4 < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Content::ElementalContent::Element::UnionMember4,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :channels
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :if_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :loop_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :ref
+
+            sig do
+              returns(
+                T.nilable(
+                  Courier::Content::ElementalContent::Element::UnionMember4::Type::OrSymbol
+                )
+              )
+            end
+            attr_reader :type
+
+            sig do
+              params(
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember4::Type::OrSymbol
+              ).void
+            end
+            attr_writer :type
+
+            sig do
+              params(
+                channels: T.nilable(T::Array[String]),
+                if_: T.nilable(String),
+                loop_: T.nilable(String),
+                ref: T.nilable(String),
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember4::Type::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              channels: nil,
+              if_: nil,
+              loop_: nil,
+              ref: nil,
+              type: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  channels: T.nilable(T::Array[String]),
+                  if_: T.nilable(String),
+                  loop_: T.nilable(String),
+                  ref: T.nilable(String),
+                  type:
+                    Courier::Content::ElementalContent::Element::UnionMember4::Type::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module Type
+              extend Courier::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Courier::Content::ElementalContent::Element::UnionMember4::Type
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              ACTION =
+                T.let(
+                  :action,
+                  Courier::Content::ElementalContent::Element::UnionMember4::Type::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Courier::Content::ElementalContent::Element::UnionMember4::Type::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class UnionMember5 < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Content::ElementalContent::Element::UnionMember5,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :channels
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :if_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :loop_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :ref
+
+            sig do
+              returns(
+                T.nilable(
+                  Courier::Content::ElementalContent::Element::UnionMember5::Type::OrSymbol
+                )
+              )
+            end
+            attr_reader :type
+
+            sig do
+              params(
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember5::Type::OrSymbol
+              ).void
+            end
+            attr_writer :type
+
+            sig do
+              params(
+                channels: T.nilable(T::Array[String]),
+                if_: T.nilable(String),
+                loop_: T.nilable(String),
+                ref: T.nilable(String),
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember5::Type::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              channels: nil,
+              if_: nil,
+              loop_: nil,
+              ref: nil,
+              type: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  channels: T.nilable(T::Array[String]),
+                  if_: T.nilable(String),
+                  loop_: T.nilable(String),
+                  ref: T.nilable(String),
+                  type:
+                    Courier::Content::ElementalContent::Element::UnionMember5::Type::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module Type
+              extend Courier::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Courier::Content::ElementalContent::Element::UnionMember5::Type
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              DIVIDER =
+                T.let(
+                  :divider,
+                  Courier::Content::ElementalContent::Element::UnionMember5::Type::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Courier::Content::ElementalContent::Element::UnionMember5::Type::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class UnionMember7 < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Content::ElementalContent::Element::UnionMember7,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_accessor :channels
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :if_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :loop_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :ref
+
+            sig do
+              returns(
+                T.nilable(
+                  Courier::Content::ElementalContent::Element::UnionMember7::Type::OrSymbol
+                )
+              )
+            end
+            attr_reader :type
+
+            sig do
+              params(
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember7::Type::OrSymbol
+              ).void
+            end
+            attr_writer :type
+
+            sig do
+              params(
+                channels: T.nilable(T::Array[String]),
+                if_: T.nilable(String),
+                loop_: T.nilable(String),
+                ref: T.nilable(String),
+                type:
+                  Courier::Content::ElementalContent::Element::UnionMember7::Type::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              channels: nil,
+              if_: nil,
+              loop_: nil,
+              ref: nil,
+              type: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  channels: T.nilable(T::Array[String]),
+                  if_: T.nilable(String),
+                  loop_: T.nilable(String),
+                  ref: T.nilable(String),
+                  type:
+                    Courier::Content::ElementalContent::Element::UnionMember7::Type::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module Type
+              extend Courier::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Courier::Content::ElementalContent::Element::UnionMember7::Type
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              QUOTE =
+                T.let(
+                  :quote,
+                  Courier::Content::ElementalContent::Element::UnionMember7::Type::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Courier::Content::ElementalContent::Element::UnionMember7::Type::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[Courier::Content::ElementalContent::Element::Variants]
+            )
+          end
+          def self.variants
+          end
+        end
+      end
 
       class ElementalContentSugar < Courier::Internal::Type::BaseModel
         OrHash =
