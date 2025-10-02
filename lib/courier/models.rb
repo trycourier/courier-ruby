@@ -59,10 +59,6 @@ module Courier
 
   AuthIssueTokenParams = Courier::Models::AuthIssueTokenParams
 
-  AutomationInvokeAdHocParams = Courier::Models::AutomationInvokeAdHocParams
-
-  AutomationInvokeByTemplateParams = Courier::Models::AutomationInvokeByTemplateParams
-
   Automations = Courier::Models::Automations
 
   BaseMessage = Courier::Models::BaseMessage
@@ -99,12 +95,6 @@ module Courier
 
   DefaultPreferences = Courier::Models::DefaultPreferences
 
-  ElementalChannelNode = Courier::Models::ElementalChannelNode
-
-  ElementalGroupNode = Courier::Models::ElementalGroupNode
-
-  ElementalNode = Courier::Models::ElementalNode
-
   Filter = Courier::Models::Filter
 
   FilterConfig = Courier::Models::FilterConfig
@@ -133,11 +123,11 @@ module Courier
 
   MessageCancelParams = Courier::Models::MessageCancelParams
 
+  MessageContentParams = Courier::Models::MessageContentParams
+
   MessageContext = Courier::Models::MessageContext
 
   MessageDetails = Courier::Models::MessageDetails
-
-  MessageGetContentParams = Courier::Models::MessageGetContentParams
 
   MessageHistoryParams = Courier::Models::MessageHistoryParams
 
@@ -179,8 +169,6 @@ module Courier
 
   RequestArchiveParams = Courier::Models::RequestArchiveParams
 
-  RoutingMethod = Courier::Models::RoutingMethod
-
   SendMessageParams = Courier::Models::SendMessageParams
 
   SlackBaseProperties = Courier::Models::SlackBaseProperties
@@ -206,6 +194,4 @@ module Courier
   UserRecipient = Courier::Models::UserRecipient
 
   Users = Courier::Models::Users
-
-  Utm = Courier::Models::Utm
 end

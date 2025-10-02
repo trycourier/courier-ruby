@@ -17,24 +17,28 @@ module Courier
       # values safely.
       #
       # @example
-      #   # `routing_method` is a `Courier::RoutingMethod`
-      #   case routing_method
-      #   when Courier::RoutingMethod::ALL
+      #   # `merge_algorithm` is a `Courier::Automations::MergeAlgorithm`
+      #   case merge_algorithm
+      #   when Courier::Automations::MergeAlgorithm::REPLACE
       #     # ...
-      #   when Courier::RoutingMethod::SINGLE
+      #   when Courier::Automations::MergeAlgorithm::NONE
+      #     # ...
+      #   when Courier::Automations::MergeAlgorithm::OVERWRITE
       #     # ...
       #   else
-      #     puts(routing_method)
+      #     puts(merge_algorithm)
       #   end
       #
       # @example
-      #   case routing_method
-      #   in :all
+      #   case merge_algorithm
+      #   in :replace
       #     # ...
-      #   in :single
+      #   in :none
+      #     # ...
+      #   in :overwrite
       #     # ...
       #   else
-      #     puts(routing_method)
+      #     puts(merge_algorithm)
       #   end
       module Enum
         include Courier::Internal::Type::Converter

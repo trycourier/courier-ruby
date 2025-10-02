@@ -1,0 +1,52 @@
+module Courier
+  module Models
+    module Tenants
+      type elemental_channel_node =
+        {
+          channel: String,
+          channels: ::Array[String]?,
+          elements: ::Array[Courier::Models::Tenants::elemental_node]?,
+          if_: String?,
+          loop_: String?,
+          raw: ::Hash[Symbol, top]?,
+          ref: String?
+        }
+
+      class ElementalChannelNode < Courier::Internal::Type::BaseModel
+        attr_accessor channel: String
+
+        attr_accessor channels: ::Array[String]?
+
+        attr_accessor elements: ::Array[Courier::Models::Tenants::elemental_node]?
+
+        attr_accessor if_: String?
+
+        attr_accessor loop_: String?
+
+        attr_accessor raw: ::Hash[Symbol, top]?
+
+        attr_accessor ref: String?
+
+        def initialize: (
+          channel: String,
+          ?channels: ::Array[String]?,
+          ?elements: ::Array[Courier::Models::Tenants::elemental_node]?,
+          ?if_: String?,
+          ?loop_: String?,
+          ?raw: ::Hash[Symbol, top]?,
+          ?ref: String?
+        ) -> void
+
+        def to_hash: -> {
+          channel: String,
+          channels: ::Array[String]?,
+          elements: ::Array[Courier::Models::Tenants::elemental_node]?,
+          if_: String?,
+          loop_: String?,
+          raw: ::Hash[Symbol, top]?,
+          ref: String?
+        }
+      end
+    end
+  end
+end

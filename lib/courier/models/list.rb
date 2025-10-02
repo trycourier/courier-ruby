@@ -16,19 +16,19 @@ module Courier
 
       # @!attribute created
       #
-      #   @return [Integer, nil]
-      optional :created, Integer, nil?: true
+      #   @return [String, nil]
+      optional :created, String, nil?: true
 
       # @!attribute updated
       #
-      #   @return [Integer, nil]
-      optional :updated, Integer, nil?: true
+      #   @return [String, nil]
+      optional :updated, String, nil?: true
 
       # @!method initialize(id:, name:, created: nil, updated: nil)
       #   @param id [String]
       #   @param name [String]
-      #   @param created [Integer, nil]
-      #   @param updated [Integer, nil]
+      #   @param created [String, nil]
+      #   @param updated [String, nil]
     end
   end
 end

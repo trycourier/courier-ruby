@@ -187,8 +187,9 @@ module Courier
         attr_accessor :brand_id
 
         # A JavaScript conditional expression to determine if the message should be sent
-        # through the channel. Has access to the data and profile object. For example,
-        # `data.name === profile.name`
+        # through the channel. Has access to the data and profile object. Only applies
+        # when a custom routing strategy is defined. For example,
+        # `data.name === profile.name`.
         sig { returns(T.nilable(String)) }
         attr_accessor :if_
 
@@ -214,7 +215,11 @@ module Courier
         # The method for selecting the providers to send the message with. Single will
         # send to one of the available providers for this channel, all will send the
         # message through all channels. Defaults to `single`.
-        sig { returns(T.nilable(Courier::RoutingMethod::OrSymbol)) }
+        sig do
+          returns(
+            T.nilable(Courier::BaseMessage::Channel::RoutingMethod::OrSymbol)
+          )
+        end
         attr_accessor :routing_method
 
         sig { returns(T.nilable(Courier::BaseMessage::Channel::Timeouts)) }
@@ -235,7 +240,8 @@ module Courier
               T.nilable(Courier::BaseMessage::Channel::Metadata::OrHash),
             override: T.nilable(T::Hash[Symbol, T.anything]),
             providers: T.nilable(T::Array[String]),
-            routing_method: T.nilable(Courier::RoutingMethod::OrSymbol),
+            routing_method:
+              T.nilable(Courier::BaseMessage::Channel::RoutingMethod::OrSymbol),
             timeouts: T.nilable(Courier::BaseMessage::Channel::Timeouts::OrHash)
           ).returns(T.attached_class)
         end
@@ -244,8 +250,9 @@ module Courier
           # the brand configured as default brand will be used.
           brand_id: nil,
           # A JavaScript conditional expression to determine if the message should be sent
-          # through the channel. Has access to the data and profile object. For example,
-          # `data.name === profile.name`
+          # through the channel. Has access to the data and profile object. Only applies
+          # when a custom routing strategy is defined. For example,
+          # `data.name === profile.name`.
           if_: nil,
           metadata: nil,
           # Channel specific overrides.
@@ -269,7 +276,10 @@ module Courier
               metadata: T.nilable(Courier::BaseMessage::Channel::Metadata),
               override: T.nilable(T::Hash[Symbol, T.anything]),
               providers: T.nilable(T::Array[String]),
-              routing_method: T.nilable(Courier::RoutingMethod::OrSymbol),
+              routing_method:
+                T.nilable(
+                  Courier::BaseMessage::Channel::RoutingMethod::OrSymbol
+                ),
               timeouts: T.nilable(Courier::BaseMessage::Channel::Timeouts)
             }
           )
@@ -286,22 +296,125 @@ module Courier
               )
             end
 
-          sig { returns(T.nilable(Courier::Utm)) }
+          sig do
+            returns(T.nilable(Courier::BaseMessage::Channel::Metadata::Utm))
+          end
           attr_reader :utm
 
-          sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
+          sig do
+            params(
+              utm:
+                T.nilable(Courier::BaseMessage::Channel::Metadata::Utm::OrHash)
+            ).void
+          end
           attr_writer :utm
 
           sig do
-            params(utm: T.nilable(Courier::Utm::OrHash)).returns(
-              T.attached_class
-            )
+            params(
+              utm:
+                T.nilable(Courier::BaseMessage::Channel::Metadata::Utm::OrHash)
+            ).returns(T.attached_class)
           end
           def self.new(utm: nil)
           end
 
-          sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
+          sig do
+            override.returns(
+              { utm: T.nilable(Courier::BaseMessage::Channel::Metadata::Utm) }
+            )
+          end
           def to_hash
+          end
+
+          class Utm < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::BaseMessage::Channel::Metadata::Utm,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :campaign
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :content
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :medium
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :source
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :term
+
+            sig do
+              params(
+                campaign: T.nilable(String),
+                content: T.nilable(String),
+                medium: T.nilable(String),
+                source: T.nilable(String),
+                term: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              campaign: nil,
+              content: nil,
+              medium: nil,
+              source: nil,
+              term: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  campaign: T.nilable(String),
+                  content: T.nilable(String),
+                  medium: T.nilable(String),
+                  source: T.nilable(String),
+                  term: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+        end
+
+        # The method for selecting the providers to send the message with. Single will
+        # send to one of the available providers for this channel, all will send the
+        # message through all channels. Defaults to `single`.
+        module RoutingMethod
+          extend Courier::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Courier::BaseMessage::Channel::RoutingMethod)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          ALL =
+            T.let(
+              :all,
+              Courier::BaseMessage::Channel::RoutingMethod::TaggedSymbol
+            )
+          SINGLE =
+            T.let(
+              :single,
+              Courier::BaseMessage::Channel::RoutingMethod::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Courier::BaseMessage::Channel::RoutingMethod::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 
@@ -475,10 +588,14 @@ module Courier
 
         # Identify the campaign that refers traffic to a specific website, and attributes
         # the browser's website session.
-        sig { returns(T.nilable(Courier::Utm)) }
+        sig { returns(T.nilable(Courier::BaseMessage::Metadata::Utm)) }
         attr_reader :utm
 
-        sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
+        sig do
+          params(
+            utm: T.nilable(Courier::BaseMessage::Metadata::Utm::OrHash)
+          ).void
+        end
         attr_writer :utm
 
         # Metadata such as utm tracking attached with the notification through this
@@ -488,7 +605,7 @@ module Courier
             event: T.nilable(String),
             tags: T.nilable(T::Array[String]),
             trace_id: T.nilable(String),
-            utm: T.nilable(Courier::Utm::OrHash)
+            utm: T.nilable(Courier::BaseMessage::Metadata::Utm::OrHash)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -514,11 +631,70 @@ module Courier
               event: T.nilable(String),
               tags: T.nilable(T::Array[String]),
               trace_id: T.nilable(String),
-              utm: T.nilable(Courier::Utm)
+              utm: T.nilable(Courier::BaseMessage::Metadata::Utm)
             }
           )
         end
         def to_hash
+        end
+
+        class Utm < Courier::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Courier::BaseMessage::Metadata::Utm,
+                Courier::Internal::AnyHash
+              )
+            end
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :campaign
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :content
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :medium
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :source
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :term
+
+          # Identify the campaign that refers traffic to a specific website, and attributes
+          # the browser's website session.
+          sig do
+            params(
+              campaign: T.nilable(String),
+              content: T.nilable(String),
+              medium: T.nilable(String),
+              source: T.nilable(String),
+              term: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            campaign: nil,
+            content: nil,
+            medium: nil,
+            source: nil,
+            term: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                campaign: T.nilable(String),
+                content: T.nilable(String),
+                medium: T.nilable(String),
+                source: T.nilable(String),
+                term: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
 
@@ -553,7 +729,8 @@ module Courier
           end
 
         # A JavaScript conditional expression to determine if the message should be sent
-        # through the channel. Has access to the data and profile object. For example,
+        # through the provider. Has access to the data and profile object. Only applies
+        # when a custom routing strategy is defined. For example,
         # `data.name === profile.name`
         sig { returns(T.nilable(String)) }
         attr_accessor :if_
@@ -587,7 +764,8 @@ module Courier
         end
         def self.new(
           # A JavaScript conditional expression to determine if the message should be sent
-          # through the channel. Has access to the data and profile object. For example,
+          # through the provider. Has access to the data and profile object. Only applies
+          # when a custom routing strategy is defined. For example,
           # `data.name === profile.name`
           if_: nil,
           metadata: nil,
@@ -619,22 +797,91 @@ module Courier
               )
             end
 
-          sig { returns(T.nilable(Courier::Utm)) }
+          sig do
+            returns(T.nilable(Courier::BaseMessage::Provider::Metadata::Utm))
+          end
           attr_reader :utm
 
-          sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
+          sig do
+            params(
+              utm:
+                T.nilable(Courier::BaseMessage::Provider::Metadata::Utm::OrHash)
+            ).void
+          end
           attr_writer :utm
 
           sig do
-            params(utm: T.nilable(Courier::Utm::OrHash)).returns(
-              T.attached_class
-            )
+            params(
+              utm:
+                T.nilable(Courier::BaseMessage::Provider::Metadata::Utm::OrHash)
+            ).returns(T.attached_class)
           end
           def self.new(utm: nil)
           end
 
-          sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
+          sig do
+            override.returns(
+              { utm: T.nilable(Courier::BaseMessage::Provider::Metadata::Utm) }
+            )
+          end
           def to_hash
+          end
+
+          class Utm < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::BaseMessage::Provider::Metadata::Utm,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :campaign
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :content
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :medium
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :source
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :term
+
+            sig do
+              params(
+                campaign: T.nilable(String),
+                content: T.nilable(String),
+                medium: T.nilable(String),
+                source: T.nilable(String),
+                term: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              campaign: nil,
+              content: nil,
+              medium: nil,
+              source: nil,
+              term: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  campaign: T.nilable(String),
+                  content: T.nilable(String),
+                  medium: T.nilable(String),
+                  source: T.nilable(String),
+                  term: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
           end
         end
       end
@@ -648,20 +895,10 @@ module Courier
         # A list of channels or providers to send the message through. Can also
         # recursively define sub-routing methods, which can be useful for defining
         # advanced push notification delivery strategies.
-        sig do
-          returns(
-            T::Array[
-              T.any(
-                Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel,
-                Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider,
-                String
-              )
-            ]
-          )
-        end
+        sig { returns(T::Array[T.any(String, Courier::MessageRouting)]) }
         attr_accessor :channels
 
-        sig { returns(Courier::RoutingMethod::OrSymbol) }
+        sig { returns(Courier::BaseMessage::Routing::Method::OrSymbol) }
         attr_accessor :method_
 
         # Allows you to customize which channel(s) Courier will potentially deliver the
@@ -669,15 +906,8 @@ module Courier
         # configuration or routing defined by the template.
         sig do
           params(
-            channels:
-              T::Array[
-                T.any(
-                  Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::OrHash,
-                  Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::OrHash,
-                  String
-                )
-              ],
-            method_: Courier::RoutingMethod::OrSymbol
+            channels: T::Array[T.any(String, Courier::MessageRouting)],
+            method_: Courier::BaseMessage::Routing::Method::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -692,314 +922,33 @@ module Courier
         sig do
           override.returns(
             {
-              channels:
-                T::Array[
-                  T.any(
-                    Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel,
-                    Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider,
-                    String
-                  )
-                ],
-              method_: Courier::RoutingMethod::OrSymbol
+              channels: T::Array[T.any(String, Courier::MessageRouting)],
+              method_: Courier::BaseMessage::Routing::Method::OrSymbol
             }
           )
         end
         def to_hash
         end
 
-        module Channel
-          extend Courier::Internal::Type::Union
+        module Method
+          extend Courier::Internal::Type::Enum
 
-          Variants =
+          TaggedSymbol =
             T.type_alias do
-              T.any(
-                Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel,
-                Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider,
-                String
-              )
+              T.all(Symbol, Courier::BaseMessage::Routing::Method)
             end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          class RoutingStrategyChannel < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig { returns(String) }
-            attr_accessor :channel
-
-            sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-            attr_accessor :config
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :if_
-
-            sig { returns(T.nilable(Courier::RoutingMethod::OrSymbol)) }
-            attr_accessor :method_
-
-            sig do
-              returns(
-                T.nilable(
-                  T::Hash[
-                    Symbol,
-                    Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider
-                  ]
-                )
-              )
-            end
-            attr_accessor :providers
-
-            sig do
-              params(
-                channel: String,
-                config: T.nilable(T::Hash[Symbol, T.anything]),
-                if_: T.nilable(String),
-                method_: T.nilable(Courier::RoutingMethod::OrSymbol),
-                providers:
-                  T.nilable(
-                    T::Hash[
-                      Symbol,
-                      Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::OrHash
-                    ]
-                  )
-              ).returns(T.attached_class)
-            end
-            def self.new(
-              channel:,
-              config: nil,
-              if_: nil,
-              method_: nil,
-              providers: nil
-            )
-            end
-
-            sig do
-              override.returns(
-                {
-                  channel: String,
-                  config: T.nilable(T::Hash[Symbol, T.anything]),
-                  if_: T.nilable(String),
-                  method_: T.nilable(Courier::RoutingMethod::OrSymbol),
-                  providers:
-                    T.nilable(
-                      T::Hash[
-                        Symbol,
-                        Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider
-                      ]
-                    )
-                }
-              )
-            end
-            def to_hash
-            end
-
-            class Provider < Courier::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider,
-                    Courier::Internal::AnyHash
-                  )
-                end
-
-              # A JavaScript conditional expression to determine if the message should be sent
-              # through the channel. Has access to the data and profile object. For example,
-              # `data.name === profile.name`
-              sig { returns(T.nilable(String)) }
-              attr_accessor :if_
-
-              sig do
-                returns(
-                  T.nilable(
-                    Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata
-                  )
-                )
-              end
-              attr_reader :metadata
-
-              sig do
-                params(
-                  metadata:
-                    T.nilable(
-                      Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata::OrHash
-                    )
-                ).void
-              end
-              attr_writer :metadata
-
-              # Provider specific overrides.
-              sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-              attr_accessor :override
-
-              sig { returns(T.nilable(Integer)) }
-              attr_accessor :timeouts
-
-              sig do
-                params(
-                  if_: T.nilable(String),
-                  metadata:
-                    T.nilable(
-                      Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata::OrHash
-                    ),
-                  override: T.nilable(T::Hash[Symbol, T.anything]),
-                  timeouts: T.nilable(Integer)
-                ).returns(T.attached_class)
-              end
-              def self.new(
-                # A JavaScript conditional expression to determine if the message should be sent
-                # through the channel. Has access to the data and profile object. For example,
-                # `data.name === profile.name`
-                if_: nil,
-                metadata: nil,
-                # Provider specific overrides.
-                override: nil,
-                timeouts: nil
-              )
-              end
-
-              sig do
-                override.returns(
-                  {
-                    if_: T.nilable(String),
-                    metadata:
-                      T.nilable(
-                        Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata
-                      ),
-                    override: T.nilable(T::Hash[Symbol, T.anything]),
-                    timeouts: T.nilable(Integer)
-                  }
-                )
-              end
-              def to_hash
-              end
-
-              class Metadata < Courier::Internal::Type::BaseModel
-                OrHash =
-                  T.type_alias do
-                    T.any(
-                      Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata,
-                      Courier::Internal::AnyHash
-                    )
-                  end
-
-                sig { returns(T.nilable(Courier::Utm)) }
-                attr_reader :utm
-
-                sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
-                attr_writer :utm
-
-                sig do
-                  params(utm: T.nilable(Courier::Utm::OrHash)).returns(
-                    T.attached_class
-                  )
-                end
-                def self.new(utm: nil)
-                end
-
-                sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
-                def to_hash
-                end
-              end
-            end
-          end
-
-          class RoutingStrategyProvider < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig do
-              returns(
-                Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata
-              )
-            end
-            attr_reader :metadata
-
-            sig do
-              params(
-                metadata:
-                  Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata::OrHash
-              ).void
-            end
-            attr_writer :metadata
-
-            sig { returns(String) }
-            attr_accessor :name
-
-            sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-            attr_accessor :config
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :if_
-
-            sig do
-              params(
-                metadata:
-                  Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata::OrHash,
-                name: String,
-                config: T.nilable(T::Hash[Symbol, T.anything]),
-                if_: T.nilable(String)
-              ).returns(T.attached_class)
-            end
-            def self.new(metadata:, name:, config: nil, if_: nil)
-            end
-
-            sig do
-              override.returns(
-                {
-                  metadata:
-                    Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata,
-                  name: String,
-                  config: T.nilable(T::Hash[Symbol, T.anything]),
-                  if_: T.nilable(String)
-                }
-              )
-            end
-            def to_hash
-            end
-
-            class Metadata < Courier::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata,
-                    Courier::Internal::AnyHash
-                  )
-                end
-
-              sig { returns(T.nilable(Courier::Utm)) }
-              attr_reader :utm
-
-              sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
-              attr_writer :utm
-
-              sig do
-                params(utm: T.nilable(Courier::Utm::OrHash)).returns(
-                  T.attached_class
-                )
-              end
-              def self.new(utm: nil)
-              end
-
-              sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
-              def to_hash
-              end
-            end
-          end
+          ALL = T.let(:all, Courier::BaseMessage::Routing::Method::TaggedSymbol)
+          SINGLE =
+            T.let(:single, Courier::BaseMessage::Routing::Method::TaggedSymbol)
 
           sig do
             override.returns(
-              T::Array[Courier::BaseMessage::Routing::Channel::Variants]
+              T::Array[Courier::BaseMessage::Routing::Method::TaggedSymbol]
             )
           end
-          def self.variants
+          def self.values
           end
         end
       end

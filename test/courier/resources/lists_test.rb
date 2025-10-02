@@ -16,8 +16,8 @@ class Courier::Test::Resources::ListsTest < Courier::Test::ResourceTest
       response => {
         id: String,
         name: String,
-        created: Integer | nil,
-        updated: Integer | nil
+        created: String | nil,
+        updated: String | nil
       }
     end
   end
@@ -28,16 +28,7 @@ class Courier::Test::Resources::ListsTest < Courier::Test::ResourceTest
     response = @courier.lists.update("list_id", name: "name")
 
     assert_pattern do
-      response => Courier::List
-    end
-
-    assert_pattern do
-      response => {
-        id: String,
-        name: String,
-        created: Integer | nil,
-        updated: Integer | nil
-      }
+      response => nil
     end
   end
 

@@ -8,7 +8,7 @@ module Courier
       # @overload issue_token(expires_in:, scope:, request_options: {})
       #
       # @param expires_in [String]
-      # @param scope [Symbol, Courier::Models::AuthIssueTokenParams::Scope]
+      # @param scope [String]
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Courier::Models::AuthIssueTokenResponse]

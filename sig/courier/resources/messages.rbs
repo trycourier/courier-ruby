@@ -29,10 +29,10 @@ module Courier
         ?request_options: Courier::request_opts
       ) -> Courier::MessageDetails
 
-      def get_content: (
+      def content: (
         String message_id,
         ?request_options: Courier::request_opts
-      ) -> Courier::Models::MessageGetContentResponse
+      ) -> Courier::Models::MessageContentResponse
 
       def history: (
         String message_id,

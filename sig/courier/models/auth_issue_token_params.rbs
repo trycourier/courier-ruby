@@ -1,10 +1,7 @@
 module Courier
   module Models
     type auth_issue_token_params =
-      {
-        expires_in: String,
-        scope: Courier::Models::AuthIssueTokenParams::scope
-      }
+      { expires_in: String, scope: String }
       & Courier::Internal::Type::request_parameters
 
     class AuthIssueTokenParams < Courier::Internal::Type::BaseModel
@@ -13,56 +10,19 @@ module Courier
 
       attr_accessor expires_in: String
 
-      attr_accessor scope: Courier::Models::AuthIssueTokenParams::scope
+      attr_accessor scope: String
 
       def initialize: (
         expires_in: String,
-        scope: Courier::Models::AuthIssueTokenParams::scope,
+        scope: String,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         expires_in: String,
-        scope: Courier::Models::AuthIssueTokenParams::scope,
+        scope: String,
         request_options: Courier::RequestOptions
       }
-
-      type scope =
-        :"read:preferences"
-        | :"write:preferences"
-        | :"read:user-tokens"
-        | :"write:user-tokens"
-        | :"read:brands"
-        | :"write:brands"
-        | :"read:brands{:id}"
-        | :"write:brands{:id}"
-        | :"write:track"
-        | :"inbox:read:messages"
-        | :"inbox:write:messages"
-        | :"inbox:write:event"
-        | :"inbox:write:events"
-        | :"user_id:$YOUR_USER_ID"
-
-      module Scope
-        extend Courier::Internal::Type::Enum
-
-        READ_PREFERENCES: :"read:preferences"
-        WRITE_PREFERENCES: :"write:preferences"
-        READ_USER_TOKENS: :"read:user-tokens"
-        WRITE_USER_TOKENS: :"write:user-tokens"
-        READ_BRANDS: :"read:brands"
-        WRITE_BRANDS: :"write:brands"
-        READ_BRANDS_ID: :"read:brands{:id}"
-        WRITE_BRANDS_ID: :"write:brands{:id}"
-        WRITE_TRACK: :"write:track"
-        INBOX_READ_MESSAGES: :"inbox:read:messages"
-        INBOX_WRITE_MESSAGES: :"inbox:write:messages"
-        INBOX_WRITE_EVENT: :"inbox:write:event"
-        INBOX_WRITE_EVENTS: :"inbox:write:events"
-        USER_ID_YOUR_USER_ID: :"user_id:$YOUR_USER_ID"
-
-        def self?.values: -> ::Array[Courier::Models::AuthIssueTokenParams::scope]
-      end
     end
   end
 end

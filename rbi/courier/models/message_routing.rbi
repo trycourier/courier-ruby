@@ -11,7 +11,7 @@ module Courier
       sig { returns(T::Array[Courier::MessageRoutingChannel]) }
       attr_accessor :channels
 
-      sig { returns(Courier::MessageRouting::Method::TaggedSymbol) }
+      sig { returns(Courier::MessageRouting::Method::OrSymbol) }
       attr_accessor :method_
 
       sig do
@@ -27,7 +27,7 @@ module Courier
         override.returns(
           {
             channels: T::Array[Courier::MessageRoutingChannel],
-            method_: Courier::MessageRouting::Method::TaggedSymbol
+            method_: Courier::MessageRouting::Method::OrSymbol
           }
         )
       end

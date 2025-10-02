@@ -6,6 +6,9 @@ module Courier
       # @return [Courier::Resources::Tenants::DefaultPreferences]
       attr_reader :default_preferences
 
+      # @return [Courier::Resources::Tenants::Templates]
+      attr_reader :templates
+
       # Get a Tenant
       #
       # @overload retrieve(tenant_id, request_options: {})
@@ -147,6 +150,7 @@ module Courier
       def initialize(client:)
         @client = client
         @default_preferences = Courier::Resources::Tenants::DefaultPreferences.new(client: client)
+        @templates = Courier::Resources::Tenants::Templates.new(client: client)
       end
     end
   end

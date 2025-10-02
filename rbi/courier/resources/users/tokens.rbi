@@ -4,6 +4,23 @@ module Courier
   module Resources
     class Users
       class Tokens
+        # Get single token available for a `:token`
+        sig do
+          params(
+            token: String,
+            user_id: String,
+            request_options: Courier::RequestOptions::OrHash
+          ).returns(Courier::Models::Users::TokenRetrieveResponse)
+        end
+        def retrieve(
+          # The full token string.
+          token,
+          # The user's ID. This can be any uniquely identifiable string.
+          user_id:,
+          request_options: {}
+        )
+        end
+
         # Apply a JSON Patch (RFC 6902) to the specified token.
         sig do
           params(
@@ -102,23 +119,6 @@ module Courier
           properties: nil,
           # Body param: Information about the device the token is associated with.
           tracking: nil,
-          request_options: {}
-        )
-        end
-
-        # Get single token available for a `:token`
-        sig do
-          params(
-            token: String,
-            user_id: String,
-            request_options: Courier::RequestOptions::OrHash
-          ).returns(Courier::Models::Users::TokenRetrieveSingleResponse)
-        end
-        def retrieve_single(
-          # The full token string.
-          token,
-          # The user's ID. This can be any uniquely identifiable string.
-          user_id:,
           request_options: {}
         )
         end

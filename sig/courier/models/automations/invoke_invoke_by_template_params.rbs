@@ -1,0 +1,17 @@
+module Courier
+  module Models
+    module Automations
+      type invoke_invoke_by_template_params =
+        {  } & Courier::Internal::Type::request_parameters
+
+      class InvokeInvokeByTemplateParams < Courier::Models::Automations::AutomationInvokeParams
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        def initialize: (?request_options: Courier::request_opts) -> void
+
+        def to_hash: -> { request_options: Courier::RequestOptions }
+      end
+    end
+  end
+end

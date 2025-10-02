@@ -32,7 +32,7 @@ module Courier
       required :type, enum: -> { Courier::InboundTrackEventParams::Type }
 
       # @!attribute user_id
-      #   The user id associated with the track
+      #   The user id associatiated with the track
       #
       #   @return [String, nil]
       optional :user_id, String, api_name: :userId, nil?: true
@@ -49,7 +49,7 @@ module Courier
       #
       #   @param type [Symbol, Courier::Models::InboundTrackEventParams::Type]
       #
-      #   @param user_id [String, nil] The user id associated with the track
+      #   @param user_id [String, nil] The user id associatiated with the track
       #
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
 

@@ -73,7 +73,7 @@ module Courier
           metadata: Courier::BaseMessage::Channel::Metadata?,
           override: ::Hash[Symbol, top]?,
           providers: ::Array[String]?,
-          routing_method: Courier::Models::routing_method?,
+          routing_method: Courier::Models::BaseMessage::Channel::routing_method?,
           timeouts: Courier::BaseMessage::Channel::Timeouts?
         }
 
@@ -88,7 +88,7 @@ module Courier
 
         attr_accessor providers: ::Array[String]?
 
-        attr_accessor routing_method: Courier::Models::routing_method?
+        attr_accessor routing_method: Courier::Models::BaseMessage::Channel::routing_method?
 
         attr_accessor timeouts: Courier::BaseMessage::Channel::Timeouts?
 
@@ -98,7 +98,7 @@ module Courier
           ?metadata: Courier::BaseMessage::Channel::Metadata?,
           ?override: ::Hash[Symbol, top]?,
           ?providers: ::Array[String]?,
-          ?routing_method: Courier::Models::routing_method?,
+          ?routing_method: Courier::Models::BaseMessage::Channel::routing_method?,
           ?timeouts: Courier::BaseMessage::Channel::Timeouts?
         ) -> void
 
@@ -108,18 +108,68 @@ module Courier
           metadata: Courier::BaseMessage::Channel::Metadata?,
           override: ::Hash[Symbol, top]?,
           providers: ::Array[String]?,
-          routing_method: Courier::Models::routing_method?,
+          routing_method: Courier::Models::BaseMessage::Channel::routing_method?,
           timeouts: Courier::BaseMessage::Channel::Timeouts?
         }
 
-        type metadata = { utm: Courier::Utm? }
+        type metadata = { utm: Courier::BaseMessage::Channel::Metadata::Utm? }
 
         class Metadata < Courier::Internal::Type::BaseModel
-          attr_accessor utm: Courier::Utm?
+          attr_accessor utm: Courier::BaseMessage::Channel::Metadata::Utm?
 
-          def initialize: (?utm: Courier::Utm?) -> void
+          def initialize: (
+            ?utm: Courier::BaseMessage::Channel::Metadata::Utm?
+          ) -> void
 
-          def to_hash: -> { utm: Courier::Utm? }
+          def to_hash: -> { utm: Courier::BaseMessage::Channel::Metadata::Utm? }
+
+          type utm =
+            {
+              campaign: String?,
+              content: String?,
+              medium: String?,
+              source: String?,
+              term: String?
+            }
+
+          class Utm < Courier::Internal::Type::BaseModel
+            attr_accessor campaign: String?
+
+            attr_accessor content: String?
+
+            attr_accessor medium: String?
+
+            attr_accessor source: String?
+
+            attr_accessor term: String?
+
+            def initialize: (
+              ?campaign: String?,
+              ?content: String?,
+              ?medium: String?,
+              ?source: String?,
+              ?term: String?
+            ) -> void
+
+            def to_hash: -> {
+              campaign: String?,
+              content: String?,
+              medium: String?,
+              source: String?,
+              term: String?
+            }
+          end
+        end
+
+        type routing_method = :all | :single
+
+        module RoutingMethod
+          extend Courier::Internal::Type::Enum
+
+          ALL: :all
+          SINGLE: :single
+
+          def self?.values: -> ::Array[Courier::Models::BaseMessage::Channel::routing_method]
         end
 
         type timeouts = { channel: Integer?, provider: Integer? }
@@ -182,7 +232,7 @@ module Courier
           event: String?,
           tags: ::Array[String]?,
           trace_id: String?,
-          utm: Courier::Utm?
+          utm: Courier::BaseMessage::Metadata::Utm?
         }
 
       class Metadata < Courier::Internal::Type::BaseModel
@@ -192,21 +242,58 @@ module Courier
 
         attr_accessor trace_id: String?
 
-        attr_accessor utm: Courier::Utm?
+        attr_accessor utm: Courier::BaseMessage::Metadata::Utm?
 
         def initialize: (
           ?event: String?,
           ?tags: ::Array[String]?,
           ?trace_id: String?,
-          ?utm: Courier::Utm?
+          ?utm: Courier::BaseMessage::Metadata::Utm?
         ) -> void
 
         def to_hash: -> {
           event: String?,
           tags: ::Array[String]?,
           trace_id: String?,
-          utm: Courier::Utm?
+          utm: Courier::BaseMessage::Metadata::Utm?
         }
+
+        type utm =
+          {
+            campaign: String?,
+            content: String?,
+            medium: String?,
+            source: String?,
+            term: String?
+          }
+
+        class Utm < Courier::Internal::Type::BaseModel
+          attr_accessor campaign: String?
+
+          attr_accessor content: String?
+
+          attr_accessor medium: String?
+
+          attr_accessor source: String?
+
+          attr_accessor term: String?
+
+          def initialize: (
+            ?campaign: String?,
+            ?content: String?,
+            ?medium: String?,
+            ?source: String?,
+            ?term: String?
+          ) -> void
+
+          def to_hash: -> {
+            campaign: String?,
+            content: String?,
+            medium: String?,
+            source: String?,
+            term: String?
+          }
+        end
       end
 
       type preferences = { subscription_topic_id: String }
@@ -250,168 +337,88 @@ module Courier
           timeouts: Integer?
         }
 
-        type metadata = { utm: Courier::Utm? }
+        type metadata = { utm: Courier::BaseMessage::Provider::Metadata::Utm? }
 
         class Metadata < Courier::Internal::Type::BaseModel
-          attr_accessor utm: Courier::Utm?
+          attr_accessor utm: Courier::BaseMessage::Provider::Metadata::Utm?
 
-          def initialize: (?utm: Courier::Utm?) -> void
+          def initialize: (
+            ?utm: Courier::BaseMessage::Provider::Metadata::Utm?
+          ) -> void
 
-          def to_hash: -> { utm: Courier::Utm? }
+          def to_hash: -> {
+            utm: Courier::BaseMessage::Provider::Metadata::Utm?
+          }
+
+          type utm =
+            {
+              campaign: String?,
+              content: String?,
+              medium: String?,
+              source: String?,
+              term: String?
+            }
+
+          class Utm < Courier::Internal::Type::BaseModel
+            attr_accessor campaign: String?
+
+            attr_accessor content: String?
+
+            attr_accessor medium: String?
+
+            attr_accessor source: String?
+
+            attr_accessor term: String?
+
+            def initialize: (
+              ?campaign: String?,
+              ?content: String?,
+              ?medium: String?,
+              ?source: String?,
+              ?term: String?
+            ) -> void
+
+            def to_hash: -> {
+              campaign: String?,
+              content: String?,
+              medium: String?,
+              source: String?,
+              term: String?
+            }
+          end
         end
       end
 
       type routing =
         {
-          channels: ::Array[Courier::Models::BaseMessage::Routing::channel],
-          method_: Courier::Models::routing_method
+          channels: ::Array[Courier::Models::message_routing_channel],
+          method_: Courier::Models::BaseMessage::Routing::method_
         }
 
       class Routing < Courier::Internal::Type::BaseModel
-        attr_accessor channels: ::Array[Courier::Models::BaseMessage::Routing::channel]
+        attr_accessor channels: ::Array[Courier::Models::message_routing_channel]
 
-        attr_accessor method_: Courier::Models::routing_method
+        attr_accessor method_: Courier::Models::BaseMessage::Routing::method_
 
         def initialize: (
-          channels: ::Array[Courier::Models::BaseMessage::Routing::channel],
-          method_: Courier::Models::routing_method
+          channels: ::Array[Courier::Models::message_routing_channel],
+          method_: Courier::Models::BaseMessage::Routing::method_
         ) -> void
 
         def to_hash: -> {
-          channels: ::Array[Courier::Models::BaseMessage::Routing::channel],
-          method_: Courier::Models::routing_method
+          channels: ::Array[Courier::Models::message_routing_channel],
+          method_: Courier::Models::BaseMessage::Routing::method_
         }
 
-        type channel =
-          Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel
-          | Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider
-          | String
+        type method_ = :all | :single
 
-        module Channel
-          extend Courier::Internal::Type::Union
+        module Method
+          extend Courier::Internal::Type::Enum
 
-          type routing_strategy_channel =
-            {
-              channel: String,
-              config: ::Hash[Symbol, top]?,
-              if_: String?,
-              method_: Courier::Models::routing_method?,
-              providers: ::Hash[Symbol, Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]?
-            }
+          ALL: :all
+          SINGLE: :single
 
-          class RoutingStrategyChannel < Courier::Internal::Type::BaseModel
-            attr_accessor channel: String
-
-            attr_accessor config: ::Hash[Symbol, top]?
-
-            attr_accessor if_: String?
-
-            attr_accessor method_: Courier::Models::routing_method?
-
-            attr_accessor providers: ::Hash[Symbol, Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]?
-
-            def initialize: (
-              channel: String,
-              ?config: ::Hash[Symbol, top]?,
-              ?if_: String?,
-              ?method_: Courier::Models::routing_method?,
-              ?providers: ::Hash[Symbol, Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]?
-            ) -> void
-
-            def to_hash: -> {
-              channel: String,
-              config: ::Hash[Symbol, top]?,
-              if_: String?,
-              method_: Courier::Models::routing_method?,
-              providers: ::Hash[Symbol, Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]?
-            }
-
-            type provider =
-              {
-                if_: String?,
-                metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata?,
-                override: ::Hash[Symbol, top]?,
-                timeouts: Integer?
-              }
-
-            class Provider < Courier::Internal::Type::BaseModel
-              attr_accessor if_: String?
-
-              attr_accessor metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata?
-
-              attr_accessor override: ::Hash[Symbol, top]?
-
-              attr_accessor timeouts: Integer?
-
-              def initialize: (
-                ?if_: String?,
-                ?metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata?,
-                ?override: ::Hash[Symbol, top]?,
-                ?timeouts: Integer?
-              ) -> void
-
-              def to_hash: -> {
-                if_: String?,
-                metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata?,
-                override: ::Hash[Symbol, top]?,
-                timeouts: Integer?
-              }
-
-              type metadata = { utm: Courier::Utm? }
-
-              class Metadata < Courier::Internal::Type::BaseModel
-                attr_accessor utm: Courier::Utm?
-
-                def initialize: (?utm: Courier::Utm?) -> void
-
-                def to_hash: -> { utm: Courier::Utm? }
-              end
-            end
-          end
-
-          type routing_strategy_provider =
-            {
-              metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata,
-              name: String,
-              config: ::Hash[Symbol, top]?,
-              if_: String?
-            }
-
-          class RoutingStrategyProvider < Courier::Internal::Type::BaseModel
-            attr_accessor metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata
-
-            attr_accessor name: String
-
-            attr_accessor config: ::Hash[Symbol, top]?
-
-            attr_accessor if_: String?
-
-            def initialize: (
-              metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata,
-              name: String,
-              ?config: ::Hash[Symbol, top]?,
-              ?if_: String?
-            ) -> void
-
-            def to_hash: -> {
-              metadata: Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata,
-              name: String,
-              config: ::Hash[Symbol, top]?,
-              if_: String?
-            }
-
-            type metadata = { utm: Courier::Utm? }
-
-            class Metadata < Courier::Internal::Type::BaseModel
-              attr_accessor utm: Courier::Utm?
-
-              def initialize: (?utm: Courier::Utm?) -> void
-
-              def to_hash: -> { utm: Courier::Utm? }
-            end
-          end
-
-          def self?.variants: -> ::Array[Courier::Models::BaseMessage::Routing::channel]
+          def self?.values: -> ::Array[Courier::Models::BaseMessage::Routing::method_]
         end
       end
 

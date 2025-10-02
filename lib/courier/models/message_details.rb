@@ -142,9 +142,12 @@ module Courier
       module Reason
         extend Courier::Internal::Type::Enum
 
+        BOUNCED = :BOUNCED
+        FAILED = :FAILED
         FILTERED = :FILTERED
         NO_CHANNELS = :NO_CHANNELS
         NO_PROVIDERS = :NO_PROVIDERS
+        OPT_IN_REQUIRED = :OPT_IN_REQUIRED
         PROVIDER_ERROR = :PROVIDER_ERROR
         UNPUBLISHED = :UNPUBLISHED
         UNSUBSCRIBED = :UNSUBSCRIBED

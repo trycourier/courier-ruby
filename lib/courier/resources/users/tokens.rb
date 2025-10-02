@@ -4,6 +4,33 @@ module Courier
   module Resources
     class Users
       class Tokens
+        # Get single token available for a `:token`
+        #
+        # @overload retrieve(token, user_id:, request_options: {})
+        #
+        # @param token [String] The full token string.
+        #
+        # @param user_id [String] The user's ID. This can be any uniquely identifiable string.
+        #
+        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Courier::Models::Users::TokenRetrieveResponse]
+        #
+        # @see Courier::Models::Users::TokenRetrieveParams
+        def retrieve(token, params)
+          parsed, options = Courier::Users::TokenRetrieveParams.dump_request(params)
+          user_id =
+            parsed.delete(:user_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :get,
+            path: ["users/%1$s/tokens/%2$s", user_id, token],
+            model: Courier::Models::Users::TokenRetrieveResponse,
+            options: options
+          )
+        end
+
         # Apply a JSON Patch (RFC 6902) to the specified token.
         #
         # @overload update(token, user_id:, patch:, request_options: {})
@@ -140,33 +167,6 @@ module Courier
             path: ["users/%1$s/tokens/%2$s", user_id, path_token],
             body: parsed,
             model: NilClass,
-            options: options
-          )
-        end
-
-        # Get single token available for a `:token`
-        #
-        # @overload retrieve_single(token, user_id:, request_options: {})
-        #
-        # @param token [String] The full token string.
-        #
-        # @param user_id [String] The user's ID. This can be any uniquely identifiable string.
-        #
-        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
-        #
-        # @return [Courier::Models::Users::TokenRetrieveSingleResponse]
-        #
-        # @see Courier::Models::Users::TokenRetrieveSingleParams
-        def retrieve_single(token, params)
-          parsed, options = Courier::Users::TokenRetrieveSingleParams.dump_request(params)
-          user_id =
-            parsed.delete(:user_id) do
-              raise ArgumentError.new("missing required path argument #{_1}")
-            end
-          @client.request(
-            method: :get,
-            path: ["users/%1$s/tokens/%2$s", user_id, token],
-            model: Courier::Models::Users::TokenRetrieveSingleResponse,
             options: options
           )
         end

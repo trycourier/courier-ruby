@@ -103,9 +103,9 @@ module Courier
         params(
           message_id: String,
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::Models::MessageGetContentResponse)
+        ).returns(Courier::Models::MessageContentResponse)
       end
-      def get_content(
+      def content(
         # A unique identifier associated with the message you wish to retrieve (results
         # from a send).
         message_id,

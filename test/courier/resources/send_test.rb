@@ -6,7 +6,8 @@ class Courier::Test::Resources::SendTest < Courier::Test::ResourceTest
   def test_message_required_params
     skip("Prism tests are disabled")
 
-    response = @courier.send_.message(message: {content: {elements: [{}], version: "version"}})
+    response =
+      @courier.send_.message(message: {content: {body: "Thanks for signing up, {{name}}", title: "Welcome!"}})
 
     assert_pattern do
       response => Courier::Models::SendMessageResponse
