@@ -53,21 +53,44 @@ module Courier
         end
 
         type item =
-          { data: Courier::Models::Tenants::TemplateListResponse::Item::Data }
+          {
+            id: String,
+            created_at: String,
+            data: Courier::Models::Tenants::TemplateListResponse::Item::Data,
+            published_at: String,
+            updated_at: String,
+            version: String
+          }
 
-        class Item < Courier::Models::Tenants::BaseTemplateTenantAssociation
-          def data: -> Courier::Models::Tenants::TemplateListResponse::Item::Data
+        class Item < Courier::Internal::Type::BaseModel
+          attr_accessor id: String
 
-          def data=: (
-            Courier::Models::Tenants::TemplateListResponse::Item::Data _
-          ) -> Courier::Models::Tenants::TemplateListResponse::Item::Data
+          attr_accessor created_at: String
+
+          attr_accessor data: Courier::Models::Tenants::TemplateListResponse::Item::Data
+
+          attr_accessor published_at: String
+
+          attr_accessor updated_at: String
+
+          attr_accessor version: String
 
           def initialize: (
-            data: Courier::Models::Tenants::TemplateListResponse::Item::Data
+            id: String,
+            created_at: String,
+            data: Courier::Models::Tenants::TemplateListResponse::Item::Data,
+            published_at: String,
+            updated_at: String,
+            version: String
           ) -> void
 
           def to_hash: -> {
-            data: Courier::Models::Tenants::TemplateListResponse::Item::Data
+            id: String,
+            created_at: String,
+            data: Courier::Models::Tenants::TemplateListResponse::Item::Data,
+            published_at: String,
+            updated_at: String,
+            version: String
           }
 
           type data = { routing: Courier::MessageRouting }

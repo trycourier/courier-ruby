@@ -4,7 +4,7 @@ module Courier
   module Models
     module Tenants
       # @see Courier::Resources::Tenants::Templates#retrieve
-      class BaseTemplateTenantAssociation < Courier::Internal::Type::BaseModel
+      class TemplateRetrieveResponse < Courier::Internal::Type::BaseModel
         # @!attribute id
         #   The template's id
         #

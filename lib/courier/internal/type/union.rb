@@ -8,7 +8,7 @@ module Courier
       # @example
       #   # `content` is a `Courier::Content`
       #   case content
-      #   when Courier::Tenants::ElementalContent
+      #   when Courier::Content::ElementalContent
       #     puts(content.elements)
       #   when Courier::Content::ElementalContentSugar
       #     puts(content.body)

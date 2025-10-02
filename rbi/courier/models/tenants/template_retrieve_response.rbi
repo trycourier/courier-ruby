@@ -3,11 +3,11 @@
 module Courier
   module Models
     module Tenants
-      class BaseTemplateTenantAssociation < Courier::Internal::Type::BaseModel
+      class TemplateRetrieveResponse < Courier::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Courier::Tenants::BaseTemplateTenantAssociation,
+              Courier::Models::Tenants::TemplateRetrieveResponse,
               Courier::Internal::AnyHash
             )
           end
