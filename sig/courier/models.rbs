@@ -59,6 +59,12 @@ module Courier
 
   class DefaultPreferences = Courier::Models::DefaultPreferences
 
+  class ElementalChannelNode = Courier::Models::ElementalChannelNode
+
+  class ElementalGroupNode = Courier::Models::ElementalGroupNode
+
+  module ElementalNode = Courier::Models::ElementalNode
+
   module Filter = Courier::Models::Filter
 
   module FilterConfig = Courier::Models::FilterConfig
