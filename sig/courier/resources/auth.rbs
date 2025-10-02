@@ -3,7 +3,7 @@ module Courier
     class Auth
       def issue_token: (
         expires_in: String,
-        scope: Courier::Models::AuthIssueTokenParams::scope,
+        scope: String,
         ?request_options: Courier::request_opts
       ) -> Courier::Models::AuthIssueTokenResponse
 

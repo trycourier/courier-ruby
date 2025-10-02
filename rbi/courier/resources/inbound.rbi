@@ -23,7 +23,7 @@ module Courier
         message_id:,
         properties:,
         type:,
-        # The user id associated with the track
+        # The user id associatiated with the track
         user_id: nil,
         request_options: {}
       )

@@ -27,7 +27,7 @@ module Courier
       sig { returns(Courier::InboundTrackEventParams::Type::OrSymbol) }
       attr_accessor :type
 
-      # The user id associated with the track
+      # The user id associatiated with the track
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -50,7 +50,7 @@ module Courier
         message_id:,
         properties:,
         type:,
-        # The user id associated with the track
+        # The user id associatiated with the track
         user_id: nil,
         request_options: {}
       )

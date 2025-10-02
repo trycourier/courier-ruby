@@ -11,18 +11,18 @@ module Courier
       sig { returns(String) }
       attr_accessor :name
 
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(String)) }
       attr_accessor :created
 
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(String)) }
       attr_accessor :updated
 
       sig do
         params(
           id: String,
           name: String,
-          created: T.nilable(Integer),
-          updated: T.nilable(Integer)
+          created: T.nilable(String),
+          updated: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(id:, name:, created: nil, updated: nil)
@@ -33,8 +33,8 @@ module Courier
           {
             id: String,
             name: String,
-            created: T.nilable(Integer),
-            updated: T.nilable(Integer)
+            created: T.nilable(String),
+            updated: T.nilable(String)
           }
         )
       end

@@ -184,12 +184,16 @@ module Courier
           T.type_alias { T.all(Symbol, Courier::MessageDetails::Reason) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        BOUNCED = T.let(:BOUNCED, Courier::MessageDetails::Reason::TaggedSymbol)
+        FAILED = T.let(:FAILED, Courier::MessageDetails::Reason::TaggedSymbol)
         FILTERED =
           T.let(:FILTERED, Courier::MessageDetails::Reason::TaggedSymbol)
         NO_CHANNELS =
           T.let(:NO_CHANNELS, Courier::MessageDetails::Reason::TaggedSymbol)
         NO_PROVIDERS =
           T.let(:NO_PROVIDERS, Courier::MessageDetails::Reason::TaggedSymbol)
+        OPT_IN_REQUIRED =
+          T.let(:OPT_IN_REQUIRED, Courier::MessageDetails::Reason::TaggedSymbol)
         PROVIDER_ERROR =
           T.let(:PROVIDER_ERROR, Courier::MessageDetails::Reason::TaggedSymbol)
         UNPUBLISHED =

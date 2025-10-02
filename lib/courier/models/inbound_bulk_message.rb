@@ -98,7 +98,7 @@ module Courier
           #   Describes the content of the message in a way that will work for email, push,
           #   chat, or any channel. Either this or template must be specified.
           #
-          #   @return [Courier::Models::Content::ElementalContent, Courier::Models::Content::ElementalContentSugar]
+          #   @return [Courier::Models::Tenants::ElementalContent, Courier::Models::Content::ElementalContentSugar]
           required :content, union: -> { Courier::Content }
 
           # @!method initialize(content:)
@@ -110,7 +110,7 @@ module Courier
           #   you might create an "Appointment Reminder" Notification or “Reset Password”
           #   Notifications.
           #
-          #   @param content [Courier::Models::Content::ElementalContent, Courier::Models::Content::ElementalContentSugar] Describes the content of the message in a way that will work for email, push,
+          #   @param content [Courier::Models::Tenants::ElementalContent, Courier::Models::Content::ElementalContentSugar] Describes the content of the message in a way that will work for email, push,
         end
 
         # @!method self.variants

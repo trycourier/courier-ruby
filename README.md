@@ -219,25 +219,25 @@ courier.send_.message(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :"read:preferences"
-puts(Courier::AuthIssueTokenParams::Scope::READ_PREFERENCES)
+# :OPTED_OUT
+puts(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT)
 
-# Revealed type: `T.all(Courier::AuthIssueTokenParams::Scope, Symbol)`
-T.reveal_type(Courier::AuthIssueTokenParams::Scope::READ_PREFERENCES)
+# Revealed type: `T.all(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status, Symbol)`
+T.reveal_type(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-courier.auth.issue_token(
-  scope: Courier::AuthIssueTokenParams::Scope::READ_PREFERENCES,
+courier.tenants.default_preferences.items.update(
+  status: Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT,
   # …
 )
 
 # Literal values are also permissible:
-courier.auth.issue_token(
-  scope: :"read:preferences",
+courier.tenants.default_preferences.items.update(
+  status: :OPTED_OUT,
   # …
 )
 ```

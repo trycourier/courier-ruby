@@ -3,6 +3,7 @@
 module Courier
   module Models
     module Automations
+      # @see Courier::Resources::Automations::Invoke#invoke_ad_hoc
       class AutomationInvokeResponse < Courier::Internal::Type::BaseModel
         # @!attribute run_id
         #

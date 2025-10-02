@@ -38,7 +38,7 @@ module Courier
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::List]
+      # @return [nil]
       #
       # @see Courier::Models::ListUpdateParams
       def update(list_id, params)
@@ -47,7 +47,7 @@ module Courier
           method: :put,
           path: ["lists/%1$s", list_id],
           body: parsed,
-          model: Courier::List,
+          model: NilClass,
           options: options
         )
       end

@@ -57,18 +57,18 @@ class Courier::Test::Resources::MessagesTest < Courier::Test::ResourceTest
     end
   end
 
-  def test_get_content
+  def test_content
     skip("Prism tests are disabled")
 
-    response = @courier.messages.get_content("message_id")
+    response = @courier.messages.content("message_id")
 
     assert_pattern do
-      response => Courier::Models::MessageGetContentResponse
+      response => Courier::Models::MessageContentResponse
     end
 
     assert_pattern do
       response => {
-        results: ^(Courier::Internal::Type::ArrayOf[Courier::Models::MessageGetContentResponse::Result])
+        results: ^(Courier::Internal::Type::ArrayOf[Courier::Models::MessageContentResponse::Result])
       }
     end
   end

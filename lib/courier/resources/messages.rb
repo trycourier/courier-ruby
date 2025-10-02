@@ -102,24 +102,24 @@ module Courier
       end
 
       # Some parameter documentations has been truncated, see
-      # {Courier::Models::MessageGetContentParams} for more details.
+      # {Courier::Models::MessageContentParams} for more details.
       #
       # Get message content
       #
-      # @overload get_content(message_id, request_options: {})
+      # @overload content(message_id, request_options: {})
       #
       # @param message_id [String] A unique identifier associated with the message you wish to retrieve (results fr
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::MessageGetContentResponse]
+      # @return [Courier::Models::MessageContentResponse]
       #
-      # @see Courier::Models::MessageGetContentParams
-      def get_content(message_id, params = {})
+      # @see Courier::Models::MessageContentParams
+      def content(message_id, params = {})
         @client.request(
           method: :get,
           path: ["messages/%1$s/output", message_id],
-          model: Courier::Models::MessageGetContentResponse,
+          model: Courier::Models::MessageContentResponse,
           options: params[:request_options]
         )
       end

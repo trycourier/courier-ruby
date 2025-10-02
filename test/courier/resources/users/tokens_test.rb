@@ -3,6 +3,16 @@
 require_relative "../../test_helper"
 
 class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
+  def test_retrieve_required_params
+    skip("Prism tests are disabled")
+
+    response = @courier.users.tokens.retrieve("token", user_id: "user_id")
+
+    assert_pattern do
+      response => Courier::Models::Users::TokenRetrieveResponse
+    end
+  end
+
   def test_update_required_params
     skip("Prism tests are disabled")
 
@@ -50,16 +60,6 @@ class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
 
     assert_pattern do
       response => nil
-    end
-  end
-
-  def test_retrieve_single_required_params
-    skip("Prism tests are disabled")
-
-    response = @courier.users.tokens.retrieve_single("token", user_id: "user_id")
-
-    assert_pattern do
-      response => Courier::Models::Users::TokenRetrieveSingleResponse
     end
   end
 end

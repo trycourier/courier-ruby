@@ -7,7 +7,7 @@ module Courier
       sig do
         params(
           expires_in: String,
-          scope: Courier::AuthIssueTokenParams::Scope::OrSymbol,
+          scope: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Models::AuthIssueTokenResponse)
       end

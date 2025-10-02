@@ -118,8 +118,9 @@ module Courier
 
         # @!attribute if_
         #   A JavaScript conditional expression to determine if the message should be sent
-        #   through the channel. Has access to the data and profile object. For example,
-        #   `data.name === profile.name`
+        #   through the channel. Has access to the data and profile object. Only applies
+        #   when a custom routing strategy is defined. For example,
+        #   `data.name === profile.name`.
         #
         #   @return [String, nil]
         optional :if_, String, api_name: :if, nil?: true
@@ -147,8 +148,8 @@ module Courier
         #   send to one of the available providers for this channel, all will send the
         #   message through all channels. Defaults to `single`.
         #
-        #   @return [Symbol, Courier::Models::RoutingMethod, nil]
-        optional :routing_method, enum: -> { Courier::RoutingMethod }, nil?: true
+        #   @return [Symbol, Courier::Models::BaseMessage::Channel::RoutingMethod, nil]
+        optional :routing_method, enum: -> { Courier::BaseMessage::Channel::RoutingMethod }, nil?: true
 
         # @!attribute timeouts
         #
@@ -161,7 +162,7 @@ module Courier
         #
         #   @param brand_id [String, nil] Id of the brand that should be used for rendering the message.
         #
-        #   @param if_ [String, nil] A JavaScript conditional expression to determine if the message should
+        #   @param if_ [String, nil] A JavaScript conditional expression to determine if the message should be sent
         #
         #   @param metadata [Courier::Models::BaseMessage::Channel::Metadata, nil]
         #
@@ -169,7 +170,7 @@ module Courier
         #
         #   @param providers [Array<String>, nil] A list of providers enabled for this channel. Courier will select
         #
-        #   @param routing_method [Symbol, Courier::Models::RoutingMethod, nil] The method for selecting the providers to send the message with.
+        #   @param routing_method [Symbol, Courier::Models::BaseMessage::Channel::RoutingMethod, nil] The method for selecting the providers to send the message with.
         #
         #   @param timeouts [Courier::Models::BaseMessage::Channel::Timeouts, nil]
 
@@ -177,11 +178,61 @@ module Courier
         class Metadata < Courier::Internal::Type::BaseModel
           # @!attribute utm
           #
-          #   @return [Courier::Models::Utm, nil]
-          optional :utm, -> { Courier::Utm }, nil?: true
+          #   @return [Courier::Models::BaseMessage::Channel::Metadata::Utm, nil]
+          optional :utm, -> { Courier::BaseMessage::Channel::Metadata::Utm }, nil?: true
 
           # @!method initialize(utm: nil)
-          #   @param utm [Courier::Models::Utm, nil]
+          #   @param utm [Courier::Models::BaseMessage::Channel::Metadata::Utm, nil]
+
+          # @see Courier::Models::BaseMessage::Channel::Metadata#utm
+          class Utm < Courier::Internal::Type::BaseModel
+            # @!attribute campaign
+            #
+            #   @return [String, nil]
+            optional :campaign, String, nil?: true
+
+            # @!attribute content
+            #
+            #   @return [String, nil]
+            optional :content, String, nil?: true
+
+            # @!attribute medium
+            #
+            #   @return [String, nil]
+            optional :medium, String, nil?: true
+
+            # @!attribute source
+            #
+            #   @return [String, nil]
+            optional :source, String, nil?: true
+
+            # @!attribute term
+            #
+            #   @return [String, nil]
+            optional :term, String, nil?: true
+
+            # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
+            #   @param campaign [String, nil]
+            #   @param content [String, nil]
+            #   @param medium [String, nil]
+            #   @param source [String, nil]
+            #   @param term [String, nil]
+          end
+        end
+
+        # The method for selecting the providers to send the message with. Single will
+        # send to one of the available providers for this channel, all will send the
+        # message through all channels. Defaults to `single`.
+        #
+        # @see Courier::Models::BaseMessage::Channel#routing_method
+        module RoutingMethod
+          extend Courier::Internal::Type::Enum
+
+          ALL = :all
+          SINGLE = :single
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # @see Courier::Models::BaseMessage::Channel#timeouts
@@ -307,8 +358,8 @@ module Courier
         #   Identify the campaign that refers traffic to a specific website, and attributes
         #   the browser's website session.
         #
-        #   @return [Courier::Models::Utm, nil]
-        optional :utm, -> { Courier::Utm }, nil?: true
+        #   @return [Courier::Models::BaseMessage::Metadata::Utm, nil]
+        optional :utm, -> { Courier::BaseMessage::Metadata::Utm }, nil?: true
 
         # @!method initialize(event: nil, tags: nil, trace_id: nil, utm: nil)
         #   Some parameter documentations has been truncated, see
@@ -323,7 +374,45 @@ module Courier
         #
         #   @param trace_id [String, nil] A unique ID used to correlate this request to processing on your servers. Note:
         #
-        #   @param utm [Courier::Models::Utm, nil] Identify the campaign that refers traffic to a specific website, and attributes
+        #   @param utm [Courier::Models::BaseMessage::Metadata::Utm, nil] Identify the campaign that refers traffic to a specific website, and attributes
+
+        # @see Courier::Models::BaseMessage::Metadata#utm
+        class Utm < Courier::Internal::Type::BaseModel
+          # @!attribute campaign
+          #
+          #   @return [String, nil]
+          optional :campaign, String, nil?: true
+
+          # @!attribute content
+          #
+          #   @return [String, nil]
+          optional :content, String, nil?: true
+
+          # @!attribute medium
+          #
+          #   @return [String, nil]
+          optional :medium, String, nil?: true
+
+          # @!attribute source
+          #
+          #   @return [String, nil]
+          optional :source, String, nil?: true
+
+          # @!attribute term
+          #
+          #   @return [String, nil]
+          optional :term, String, nil?: true
+
+          # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
+          #   Identify the campaign that refers traffic to a specific website, and attributes
+          #   the browser's website session.
+          #
+          #   @param campaign [String, nil]
+          #   @param content [String, nil]
+          #   @param medium [String, nil]
+          #   @param source [String, nil]
+          #   @param term [String, nil]
+        end
       end
 
       # @see Courier::Models::BaseMessage#preferences
@@ -345,7 +434,8 @@ module Courier
       class Provider < Courier::Internal::Type::BaseModel
         # @!attribute if_
         #   A JavaScript conditional expression to determine if the message should be sent
-        #   through the channel. Has access to the data and profile object. For example,
+        #   through the provider. Has access to the data and profile object. Only applies
+        #   when a custom routing strategy is defined. For example,
         #   `data.name === profile.name`
         #
         #   @return [String, nil]
@@ -371,7 +461,7 @@ module Courier
         #   Some parameter documentations has been truncated, see
         #   {Courier::Models::BaseMessage::Provider} for more details.
         #
-        #   @param if_ [String, nil] A JavaScript conditional expression to determine if the message should be sent
+        #   @param if_ [String, nil] A JavaScript conditional expression to determine if the message should be sent t
         #
         #   @param metadata [Courier::Models::BaseMessage::Provider::Metadata, nil]
         #
@@ -383,11 +473,46 @@ module Courier
         class Metadata < Courier::Internal::Type::BaseModel
           # @!attribute utm
           #
-          #   @return [Courier::Models::Utm, nil]
-          optional :utm, -> { Courier::Utm }, nil?: true
+          #   @return [Courier::Models::BaseMessage::Provider::Metadata::Utm, nil]
+          optional :utm, -> { Courier::BaseMessage::Provider::Metadata::Utm }, nil?: true
 
           # @!method initialize(utm: nil)
-          #   @param utm [Courier::Models::Utm, nil]
+          #   @param utm [Courier::Models::BaseMessage::Provider::Metadata::Utm, nil]
+
+          # @see Courier::Models::BaseMessage::Provider::Metadata#utm
+          class Utm < Courier::Internal::Type::BaseModel
+            # @!attribute campaign
+            #
+            #   @return [String, nil]
+            optional :campaign, String, nil?: true
+
+            # @!attribute content
+            #
+            #   @return [String, nil]
+            optional :content, String, nil?: true
+
+            # @!attribute medium
+            #
+            #   @return [String, nil]
+            optional :medium, String, nil?: true
+
+            # @!attribute source
+            #
+            #   @return [String, nil]
+            optional :source, String, nil?: true
+
+            # @!attribute term
+            #
+            #   @return [String, nil]
+            optional :term, String, nil?: true
+
+            # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
+            #   @param campaign [String, nil]
+            #   @param content [String, nil]
+            #   @param medium [String, nil]
+            #   @param source [String, nil]
+            #   @param term [String, nil]
+          end
         end
       end
 
@@ -398,13 +523,13 @@ module Courier
         #   recursively define sub-routing methods, which can be useful for defining
         #   advanced push notification delivery strategies.
         #
-        #   @return [Array<Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel, Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyProvider, String>]
-        required :channels, -> { Courier::Internal::Type::ArrayOf[union: Courier::BaseMessage::Routing::Channel] }
+        #   @return [Array<String, Courier::Models::MessageRouting>]
+        required :channels, -> { Courier::Internal::Type::ArrayOf[union: Courier::MessageRoutingChannel] }
 
         # @!attribute method_
         #
-        #   @return [Symbol, Courier::Models::RoutingMethod]
-        required :method_, enum: -> { Courier::RoutingMethod }, api_name: :method
+        #   @return [Symbol, Courier::Models::BaseMessage::Routing::Method]
+        required :method_, enum: -> { Courier::BaseMessage::Routing::Method }, api_name: :method
 
         # @!method initialize(channels:, method_:)
         #   Some parameter documentations has been truncated, see
@@ -414,154 +539,19 @@ module Courier
         #   message. If no routing key is specified, Courier will use the default routing
         #   configuration or routing defined by the template.
         #
-        #   @param channels [Array<Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel, Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyProvider, String>] A list of channels or providers to send the message through. Can also recursivel
+        #   @param channels [Array<String, Courier::Models::MessageRouting>] A list of channels or providers to send the message through. Can also recursivel
         #
-        #   @param method_ [Symbol, Courier::Models::RoutingMethod]
+        #   @param method_ [Symbol, Courier::Models::BaseMessage::Routing::Method]
 
-        module Channel
-          extend Courier::Internal::Type::Union
+        # @see Courier::Models::BaseMessage::Routing#method_
+        module Method
+          extend Courier::Internal::Type::Enum
 
-          variant -> { Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel }
+          ALL = :all
+          SINGLE = :single
 
-          variant -> { Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider }
-
-          variant String
-
-          class RoutingStrategyChannel < Courier::Internal::Type::BaseModel
-            # @!attribute channel
-            #
-            #   @return [String]
-            required :channel, String
-
-            # @!attribute config
-            #
-            #   @return [Hash{Symbol=>Object}, nil]
-            optional :config, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
-
-            # @!attribute if_
-            #
-            #   @return [String, nil]
-            optional :if_, String, api_name: :if, nil?: true
-
-            # @!attribute method_
-            #
-            #   @return [Symbol, Courier::Models::RoutingMethod, nil]
-            optional :method_, enum: -> { Courier::RoutingMethod }, api_name: :method, nil?: true
-
-            # @!attribute providers
-            #
-            #   @return [Hash{Symbol=>Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider}, nil]
-            optional :providers,
-                     -> {
-                       Courier::Internal::Type::HashOf[Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider]
-                     },
-                     nil?: true
-
-            # @!method initialize(channel:, config: nil, if_: nil, method_: nil, providers: nil)
-            #   @param channel [String]
-            #   @param config [Hash{Symbol=>Object}, nil]
-            #   @param if_ [String, nil]
-            #   @param method_ [Symbol, Courier::Models::RoutingMethod, nil]
-            #   @param providers [Hash{Symbol=>Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider}, nil]
-
-            class Provider < Courier::Internal::Type::BaseModel
-              # @!attribute if_
-              #   A JavaScript conditional expression to determine if the message should be sent
-              #   through the channel. Has access to the data and profile object. For example,
-              #   `data.name === profile.name`
-              #
-              #   @return [String, nil]
-              optional :if_, String, api_name: :if, nil?: true
-
-              # @!attribute metadata
-              #
-              #   @return [Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata, nil]
-              optional :metadata,
-                       -> {
-                         Courier::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata
-                       },
-                       nil?: true
-
-              # @!attribute override
-              #   Provider specific overrides.
-              #
-              #   @return [Hash{Symbol=>Object}, nil]
-              optional :override,
-                       Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown],
-                       nil?: true
-
-              # @!attribute timeouts
-              #
-              #   @return [Integer, nil]
-              optional :timeouts, Integer, nil?: true
-
-              # @!method initialize(if_: nil, metadata: nil, override: nil, timeouts: nil)
-              #   Some parameter documentations has been truncated, see
-              #   {Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider}
-              #   for more details.
-              #
-              #   @param if_ [String, nil] A JavaScript conditional expression to determine if the message should be sent
-              #
-              #   @param metadata [Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider::Metadata, nil]
-              #
-              #   @param override [Hash{Symbol=>Object}, nil] Provider specific overrides.
-              #
-              #   @param timeouts [Integer, nil]
-
-              # @see Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel::Provider#metadata
-              class Metadata < Courier::Internal::Type::BaseModel
-                # @!attribute utm
-                #
-                #   @return [Courier::Models::Utm, nil]
-                optional :utm, -> { Courier::Utm }, nil?: true
-
-                # @!method initialize(utm: nil)
-                #   @param utm [Courier::Models::Utm, nil]
-              end
-            end
-          end
-
-          class RoutingStrategyProvider < Courier::Internal::Type::BaseModel
-            # @!attribute metadata
-            #
-            #   @return [Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata]
-            required :metadata, -> { Courier::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata }
-
-            # @!attribute name
-            #
-            #   @return [String]
-            required :name, String
-
-            # @!attribute config
-            #
-            #   @return [Hash{Symbol=>Object}, nil]
-            optional :config, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
-
-            # @!attribute if_
-            #
-            #   @return [String, nil]
-            optional :if_, String, api_name: :if, nil?: true
-
-            # @!method initialize(metadata:, name:, config: nil, if_: nil)
-            #   @param metadata [Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyProvider::Metadata]
-            #   @param name [String]
-            #   @param config [Hash{Symbol=>Object}, nil]
-            #   @param if_ [String, nil]
-
-            # @see Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyProvider#metadata
-            class Metadata < Courier::Internal::Type::BaseModel
-              # @!attribute utm
-              #
-              #   @return [Courier::Models::Utm, nil]
-              optional :utm, -> { Courier::Utm }, nil?: true
-
-              # @!method initialize(utm: nil)
-              #   @param utm [Courier::Models::Utm, nil]
-            end
-          end
-
-          # @!method self.variants
-          #   @return [Array(Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyChannel, Courier::Models::BaseMessage::Routing::Channel::RoutingStrategyProvider, String)]
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 

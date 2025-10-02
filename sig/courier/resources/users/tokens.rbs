@@ -2,6 +2,12 @@ module Courier
   module Resources
     class Users
       class Tokens
+        def retrieve: (
+          String token,
+          user_id: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::Models::Users::TokenRetrieveResponse
+
         def update: (
           String token,
           user_id: String,
@@ -36,12 +42,6 @@ module Courier
           ?tracking: Courier::Users::UserToken::Tracking?,
           ?request_options: Courier::request_opts
         ) -> nil
-
-        def retrieve_single: (
-          String token,
-          user_id: String,
-          ?request_options: Courier::request_opts
-        ) -> Courier::Models::Users::TokenRetrieveSingleResponse
 
         def initialize: (client: Courier::Client) -> void
       end

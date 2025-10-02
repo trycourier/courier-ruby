@@ -13,7 +13,7 @@ module Courier
         name: String,
         ?preferences: Courier::Lists::RecipientPreferences?,
         ?request_options: Courier::request_opts
-      ) -> Courier::List
+      ) -> nil
 
       def list: (
         ?cursor: String?,

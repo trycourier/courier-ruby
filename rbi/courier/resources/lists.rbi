@@ -27,7 +27,7 @@ module Courier
           name: String,
           preferences: T.nilable(Courier::Lists::RecipientPreferences::OrHash),
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::List)
+        ).void
       end
       def update(
         # A unique identifier representing the list you wish to retrieve.
