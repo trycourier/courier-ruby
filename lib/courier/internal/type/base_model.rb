@@ -438,11 +438,9 @@ module Courier
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `base_message` is a `Courier::BaseMessage`
-        #   base_message => {
-        #     brand_id: brand_id,
-        #     channels: channels,
-        #     context: context
+        #   # `channel_preference` is a `Courier::ChannelPreference`
+        #   channel_preference => {
+        #     channel: channel
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

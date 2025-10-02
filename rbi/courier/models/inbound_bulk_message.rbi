@@ -159,7 +159,7 @@ module Courier
           sig do
             returns(
               T.any(
-                Courier::Content::ElementalContent,
+                Courier::Tenants::ElementalContent,
                 Courier::Content::ElementalContentSugar
               )
             )
@@ -173,7 +173,7 @@ module Courier
             params(
               content:
                 T.any(
-                  Courier::Content::ElementalContent::OrHash,
+                  Courier::Tenants::ElementalContent::OrHash,
                   Courier::Content::ElementalContentSugar::OrHash
                 )
             ).returns(T.attached_class)
@@ -190,7 +190,7 @@ module Courier
               {
                 content:
                   T.any(
-                    Courier::Content::ElementalContent,
+                    Courier::Tenants::ElementalContent,
                     Courier::Content::ElementalContentSugar
                   )
               }

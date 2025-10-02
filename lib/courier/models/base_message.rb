@@ -178,46 +178,11 @@ module Courier
         class Metadata < Courier::Internal::Type::BaseModel
           # @!attribute utm
           #
-          #   @return [Courier::Models::BaseMessage::Channel::Metadata::Utm, nil]
-          optional :utm, -> { Courier::BaseMessage::Channel::Metadata::Utm }, nil?: true
+          #   @return [Courier::Models::Utm, nil]
+          optional :utm, -> { Courier::Utm }, nil?: true
 
           # @!method initialize(utm: nil)
-          #   @param utm [Courier::Models::BaseMessage::Channel::Metadata::Utm, nil]
-
-          # @see Courier::Models::BaseMessage::Channel::Metadata#utm
-          class Utm < Courier::Internal::Type::BaseModel
-            # @!attribute campaign
-            #
-            #   @return [String, nil]
-            optional :campaign, String, nil?: true
-
-            # @!attribute content
-            #
-            #   @return [String, nil]
-            optional :content, String, nil?: true
-
-            # @!attribute medium
-            #
-            #   @return [String, nil]
-            optional :medium, String, nil?: true
-
-            # @!attribute source
-            #
-            #   @return [String, nil]
-            optional :source, String, nil?: true
-
-            # @!attribute term
-            #
-            #   @return [String, nil]
-            optional :term, String, nil?: true
-
-            # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
-            #   @param campaign [String, nil]
-            #   @param content [String, nil]
-            #   @param medium [String, nil]
-            #   @param source [String, nil]
-            #   @param term [String, nil]
-          end
+          #   @param utm [Courier::Models::Utm, nil]
         end
 
         # The method for selecting the providers to send the message with. Single will
@@ -358,8 +323,8 @@ module Courier
         #   Identify the campaign that refers traffic to a specific website, and attributes
         #   the browser's website session.
         #
-        #   @return [Courier::Models::BaseMessage::Metadata::Utm, nil]
-        optional :utm, -> { Courier::BaseMessage::Metadata::Utm }, nil?: true
+        #   @return [Courier::Models::Utm, nil]
+        optional :utm, -> { Courier::Utm }, nil?: true
 
         # @!method initialize(event: nil, tags: nil, trace_id: nil, utm: nil)
         #   Some parameter documentations has been truncated, see
@@ -374,45 +339,7 @@ module Courier
         #
         #   @param trace_id [String, nil] A unique ID used to correlate this request to processing on your servers. Note:
         #
-        #   @param utm [Courier::Models::BaseMessage::Metadata::Utm, nil] Identify the campaign that refers traffic to a specific website, and attributes
-
-        # @see Courier::Models::BaseMessage::Metadata#utm
-        class Utm < Courier::Internal::Type::BaseModel
-          # @!attribute campaign
-          #
-          #   @return [String, nil]
-          optional :campaign, String, nil?: true
-
-          # @!attribute content
-          #
-          #   @return [String, nil]
-          optional :content, String, nil?: true
-
-          # @!attribute medium
-          #
-          #   @return [String, nil]
-          optional :medium, String, nil?: true
-
-          # @!attribute source
-          #
-          #   @return [String, nil]
-          optional :source, String, nil?: true
-
-          # @!attribute term
-          #
-          #   @return [String, nil]
-          optional :term, String, nil?: true
-
-          # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
-          #   Identify the campaign that refers traffic to a specific website, and attributes
-          #   the browser's website session.
-          #
-          #   @param campaign [String, nil]
-          #   @param content [String, nil]
-          #   @param medium [String, nil]
-          #   @param source [String, nil]
-          #   @param term [String, nil]
-        end
+        #   @param utm [Courier::Models::Utm, nil] Identify the campaign that refers traffic to a specific website, and attributes
       end
 
       # @see Courier::Models::BaseMessage#preferences
@@ -473,46 +400,11 @@ module Courier
         class Metadata < Courier::Internal::Type::BaseModel
           # @!attribute utm
           #
-          #   @return [Courier::Models::BaseMessage::Provider::Metadata::Utm, nil]
-          optional :utm, -> { Courier::BaseMessage::Provider::Metadata::Utm }, nil?: true
+          #   @return [Courier::Models::Utm, nil]
+          optional :utm, -> { Courier::Utm }, nil?: true
 
           # @!method initialize(utm: nil)
-          #   @param utm [Courier::Models::BaseMessage::Provider::Metadata::Utm, nil]
-
-          # @see Courier::Models::BaseMessage::Provider::Metadata#utm
-          class Utm < Courier::Internal::Type::BaseModel
-            # @!attribute campaign
-            #
-            #   @return [String, nil]
-            optional :campaign, String, nil?: true
-
-            # @!attribute content
-            #
-            #   @return [String, nil]
-            optional :content, String, nil?: true
-
-            # @!attribute medium
-            #
-            #   @return [String, nil]
-            optional :medium, String, nil?: true
-
-            # @!attribute source
-            #
-            #   @return [String, nil]
-            optional :source, String, nil?: true
-
-            # @!attribute term
-            #
-            #   @return [String, nil]
-            optional :term, String, nil?: true
-
-            # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
-            #   @param campaign [String, nil]
-            #   @param content [String, nil]
-            #   @param medium [String, nil]
-            #   @param source [String, nil]
-            #   @param term [String, nil]
-          end
+          #   @param utm [Courier::Models::Utm, nil]
         end
       end
 

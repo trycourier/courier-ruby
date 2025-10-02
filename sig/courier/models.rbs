@@ -27,6 +27,8 @@ module Courier
 
   class Brand = Courier::Models::Brand
 
+  class BrandColors = Courier::Models::BrandColors
+
   class BrandCreateParams = Courier::Models::BrandCreateParams
 
   class BrandDeleteParams = Courier::Models::BrandDeleteParams
@@ -36,6 +38,8 @@ module Courier
   class BrandRetrieveParams = Courier::Models::BrandRetrieveParams
 
   class BrandSettings = Courier::Models::BrandSettings
+
+  class BrandSnippet = Courier::Models::BrandSnippet
 
   class BrandSnippets = Courier::Models::BrandSnippets
 
@@ -51,9 +55,13 @@ module Courier
 
   class BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  class ChannelPreference = Courier::Models::ChannelPreference
+
   module Content = Courier::Models::Content
 
   class DefaultPreferences = Courier::Models::DefaultPreferences
+
+  class Email = Courier::Models::Email
 
   module Filter = Courier::Models::Filter
 
@@ -129,6 +137,8 @@ module Courier
 
   class RequestArchiveParams = Courier::Models::RequestArchiveParams
 
+  class Rule = Courier::Models::Rule
+
   class SendMessageParams = Courier::Models::SendMessageParams
 
   class SlackBaseProperties = Courier::Models::SlackBaseProperties
@@ -154,4 +164,6 @@ module Courier
   class UserRecipient = Courier::Models::UserRecipient
 
   module Users = Courier::Models::Users
+
+  class Utm = Courier::Models::Utm
 end

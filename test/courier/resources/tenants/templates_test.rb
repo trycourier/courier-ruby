@@ -9,7 +9,7 @@ class Courier::Test::Resources::Tenants::TemplatesTest < Courier::Test::Resource
     response = @courier.tenants.templates.retrieve("template_id", tenant_id: "tenant_id")
 
     assert_pattern do
-      response => Courier::Models::Tenants::TemplateRetrieveResponse
+      response => Courier::Tenants::BaseTemplateTenantAssociation
     end
 
     assert_pattern do

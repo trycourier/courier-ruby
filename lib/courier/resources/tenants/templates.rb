@@ -14,7 +14,7 @@ module Courier
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Courier::Models::Tenants::TemplateRetrieveResponse]
+        # @return [Courier::Models::Tenants::BaseTemplateTenantAssociation]
         #
         # @see Courier::Models::Tenants::TemplateRetrieveParams
         def retrieve(template_id, params)
@@ -26,7 +26,7 @@ module Courier
           @client.request(
             method: :get,
             path: ["tenants/%1$s/templates/%2$s", tenant_id, template_id],
-            model: Courier::Models::Tenants::TemplateRetrieveResponse,
+            model: Courier::Tenants::BaseTemplateTenantAssociation,
             options: options
           )
         end
