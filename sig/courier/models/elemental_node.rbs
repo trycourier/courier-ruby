@@ -3,7 +3,7 @@ module Courier
     type elemental_node =
       Courier::ElementalNode::UnionMember0
       | Courier::ElementalNode::UnionMember1
-      | Courier::ElementalNode::UnionMember2
+      | Courier::ElementalNode::Type
       | Courier::ElementalNode::UnionMember3
       | Courier::ElementalNode::UnionMember4
       | Courier::ElementalNode::UnionMember5
@@ -115,23 +115,16 @@ module Courier
         end
       end
 
-      type union_member2 =
-        { type: Courier::Models::ElementalNode::UnionMember2::type_ }
+      type type_ = { type: Courier::Models::ElementalNode::Type::type_ }
 
-      class UnionMember2 < Courier::Models::ElementalChannelNode
-        def `type`: -> Courier::Models::ElementalNode::UnionMember2::type_?
-
-        def type=: (
-          Courier::Models::ElementalNode::UnionMember2::type_ _
-        ) -> Courier::Models::ElementalNode::UnionMember2::type_
+      class Type < Courier::Internal::Type::BaseModel
+        attr_accessor type: Courier::Models::ElementalNode::Type::type_
 
         def initialize: (
-          ?type: Courier::Models::ElementalNode::UnionMember2::type_
+          type: Courier::Models::ElementalNode::Type::type_
         ) -> void
 
-        def to_hash: -> {
-          type: Courier::Models::ElementalNode::UnionMember2::type_
-        }
+        def to_hash: -> { type: Courier::Models::ElementalNode::Type::type_ }
 
         type type_ = :channel
 
@@ -140,7 +133,7 @@ module Courier
 
           CHANNEL: :channel
 
-          def self?.values: -> ::Array[Courier::Models::ElementalNode::UnionMember2::type_]
+          def self?.values: -> ::Array[Courier::Models::ElementalNode::Type::type_]
         end
       end
 

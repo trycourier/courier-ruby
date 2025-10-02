@@ -2,14 +2,8 @@
 
 module Courier
   module Models
-    # The channel element allows a notification to be customized based on which
-    # channel it is sent through. For example, you may want to display a detailed
-    # message when the notification is sent through email, and a more concise message
-    # in a push notification. Channel elements are only valid as top-level elements;
-    # you cannot nest channel elements. If there is a channel element specified at the
-    # top-level of the document, all sibling elements must be channel elements. Note:
-    # As an alternative, most elements support a `channel` property. Which allows you
-    # to selectively display an individual element on a per channel basis. See the
+    # Allows you to group elements together. This can be useful when used in
+    # combination with "if" or "loop". See
     # [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
     # for more details.
     module ElementalNode
@@ -20,7 +14,7 @@ module Courier
           T.any(
             Courier::ElementalNode::UnionMember0,
             Courier::ElementalNode::UnionMember1,
-            Courier::ElementalNode::UnionMember2,
+            Courier::ElementalNode::Type,
             Courier::ElementalNode::UnionMember3,
             Courier::ElementalNode::UnionMember4,
             Courier::ElementalNode::UnionMember5,
@@ -201,50 +195,26 @@ module Courier
         end
       end
 
-      class UnionMember2 < Courier::Models::ElementalChannelNode
+      class Type < Courier::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              Courier::ElementalNode::UnionMember2,
-              Courier::Internal::AnyHash
-            )
+            T.any(Courier::ElementalNode::Type, Courier::Internal::AnyHash)
           end
 
+        sig { returns(Courier::ElementalNode::Type::Type::OrSymbol) }
+        attr_accessor :type
+
         sig do
-          returns(
-            T.nilable(Courier::ElementalNode::UnionMember2::Type::OrSymbol)
+          params(type: Courier::ElementalNode::Type::Type::OrSymbol).returns(
+            T.attached_class
           )
         end
-        attr_reader :type
-
-        sig do
-          params(
-            type: Courier::ElementalNode::UnionMember2::Type::OrSymbol
-          ).void
-        end
-        attr_writer :type
-
-        # The channel element allows a notification to be customized based on which
-        # channel it is sent through. For example, you may want to display a detailed
-        # message when the notification is sent through email, and a more concise message
-        # in a push notification. Channel elements are only valid as top-level elements;
-        # you cannot nest channel elements. If there is a channel element specified at the
-        # top-level of the document, all sibling elements must be channel elements. Note:
-        # As an alternative, most elements support a `channel` property. Which allows you
-        # to selectively display an individual element on a per channel basis. See the
-        # [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
-        # for more details.
-        sig do
-          params(
-            type: Courier::ElementalNode::UnionMember2::Type::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(type: nil)
+        def self.new(type:)
         end
 
         sig do
           override.returns(
-            { type: Courier::ElementalNode::UnionMember2::Type::OrSymbol }
+            { type: Courier::ElementalNode::Type::Type::OrSymbol }
           )
         end
         def to_hash
@@ -254,20 +224,15 @@ module Courier
           extend Courier::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Courier::ElementalNode::UnionMember2::Type)
-            end
+            T.type_alias { T.all(Symbol, Courier::ElementalNode::Type::Type) }
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           CHANNEL =
-            T.let(
-              :channel,
-              Courier::ElementalNode::UnionMember2::Type::TaggedSymbol
-            )
+            T.let(:channel, Courier::ElementalNode::Type::Type::TaggedSymbol)
 
           sig do
             override.returns(
-              T::Array[Courier::ElementalNode::UnionMember2::Type::TaggedSymbol]
+              T::Array[Courier::ElementalNode::Type::Type::TaggedSymbol]
             )
           end
           def self.values
