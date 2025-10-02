@@ -29,7 +29,7 @@ module Courier
               T.any(
                 Courier::ElementalNode::UnionMember0,
                 Courier::ElementalNode::UnionMember1,
-                Courier::ElementalNode::UnionMember2,
+                Courier::ElementalNode::Type,
                 Courier::ElementalNode::UnionMember3,
                 Courier::ElementalNode::UnionMember4,
                 Courier::ElementalNode::UnionMember5,
@@ -58,7 +58,7 @@ module Courier
                 T.any(
                   Courier::ElementalNode::UnionMember0::OrHash,
                   Courier::ElementalNode::UnionMember1::OrHash,
-                  Courier::ElementalNode::UnionMember2::OrHash,
+                  Courier::ElementalNode::Type::OrHash,
                   Courier::ElementalNode::UnionMember3::OrHash,
                   Courier::ElementalNode::UnionMember4::OrHash,
                   Courier::ElementalNode::UnionMember5::OrHash,
@@ -86,7 +86,7 @@ module Courier
                   T.any(
                     Courier::ElementalNode::UnionMember0,
                     Courier::ElementalNode::UnionMember1,
-                    Courier::ElementalNode::UnionMember2,
+                    Courier::ElementalNode::Type,
                     Courier::ElementalNode::UnionMember3,
                     Courier::ElementalNode::UnionMember4,
                     Courier::ElementalNode::UnionMember5,

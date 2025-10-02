@@ -99,8 +99,6 @@ module Courier
 
   DefaultPreferences = Courier::Models::DefaultPreferences
 
-  ElementalChannelNode = Courier::Models::ElementalChannelNode
-
   ElementalGroupNode = Courier::Models::ElementalGroupNode
 
   ElementalNode = Courier::Models::ElementalNode
