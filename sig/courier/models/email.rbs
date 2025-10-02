@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type email = { footer: top, header: top }
+
+    class Email < Courier::Internal::Type::BaseModel
+      attr_accessor footer: top
+
+      attr_accessor header: top
+
+      def initialize: (footer: top, header: top) -> void
+
+      def to_hash: -> { footer: top, header: top }
+    end
+  end
+end

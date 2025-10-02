@@ -10,7 +10,7 @@ module Courier
             template_id: String,
             tenant_id: String,
             request_options: Courier::RequestOptions::OrHash
-          ).returns(Courier::Models::Tenants::TemplateRetrieveResponse)
+          ).returns(Courier::Tenants::BaseTemplateTenantAssociation)
         end
         def retrieve(
           # Id of the template to be retrieved.

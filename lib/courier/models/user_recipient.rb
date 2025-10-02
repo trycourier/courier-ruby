@@ -110,21 +110,15 @@ module Courier
 
           # @!attribute channel_preferences
           #
-          #   @return [Array<Courier::Models::UserRecipient::Preferences::Notification::ChannelPreference>, nil]
+          #   @return [Array<Courier::Models::ChannelPreference>, nil]
           optional :channel_preferences,
-                   -> {
-                     Courier::Internal::Type::ArrayOf[Courier::UserRecipient::Preferences::Notification::ChannelPreference]
-                   },
+                   -> { Courier::Internal::Type::ArrayOf[Courier::ChannelPreference] },
                    nil?: true
 
           # @!attribute rules
           #
-          #   @return [Array<Courier::Models::UserRecipient::Preferences::Notification::Rule>, nil]
-          optional :rules,
-                   -> {
-                     Courier::Internal::Type::ArrayOf[Courier::UserRecipient::Preferences::Notification::Rule]
-                   },
-                   nil?: true
+          #   @return [Array<Courier::Models::Rule>, nil]
+          optional :rules, -> { Courier::Internal::Type::ArrayOf[Courier::Rule] }, nil?: true
 
           # @!attribute source
           #
@@ -133,35 +127,9 @@ module Courier
 
           # @!method initialize(status:, channel_preferences: nil, rules: nil, source: nil)
           #   @param status [Symbol, Courier::Models::Users::PreferenceStatus]
-          #   @param channel_preferences [Array<Courier::Models::UserRecipient::Preferences::Notification::ChannelPreference>, nil]
-          #   @param rules [Array<Courier::Models::UserRecipient::Preferences::Notification::Rule>, nil]
+          #   @param channel_preferences [Array<Courier::Models::ChannelPreference>, nil]
+          #   @param rules [Array<Courier::Models::Rule>, nil]
           #   @param source [Symbol, Courier::Models::UserRecipient::Preferences::Notification::Source, nil]
-
-          class ChannelPreference < Courier::Internal::Type::BaseModel
-            # @!attribute channel
-            #
-            #   @return [Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification]
-            required :channel, enum: -> { Courier::Tenants::DefaultPreferences::ChannelClassification }
-
-            # @!method initialize(channel:)
-            #   @param channel [Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification]
-          end
-
-          class Rule < Courier::Internal::Type::BaseModel
-            # @!attribute until_
-            #
-            #   @return [String]
-            required :until_, String, api_name: :until
-
-            # @!attribute start
-            #
-            #   @return [String, nil]
-            optional :start, String, nil?: true
-
-            # @!method initialize(until_:, start: nil)
-            #   @param until_ [String]
-            #   @param start [String, nil]
-          end
 
           # @see Courier::Models::UserRecipient::Preferences::Notification#source
           module Source
@@ -184,21 +152,15 @@ module Courier
 
           # @!attribute channel_preferences
           #
-          #   @return [Array<Courier::Models::UserRecipient::Preferences::Category::ChannelPreference>, nil]
+          #   @return [Array<Courier::Models::ChannelPreference>, nil]
           optional :channel_preferences,
-                   -> {
-                     Courier::Internal::Type::ArrayOf[Courier::UserRecipient::Preferences::Category::ChannelPreference]
-                   },
+                   -> { Courier::Internal::Type::ArrayOf[Courier::ChannelPreference] },
                    nil?: true
 
           # @!attribute rules
           #
-          #   @return [Array<Courier::Models::UserRecipient::Preferences::Category::Rule>, nil]
-          optional :rules,
-                   -> {
-                     Courier::Internal::Type::ArrayOf[Courier::UserRecipient::Preferences::Category::Rule]
-                   },
-                   nil?: true
+          #   @return [Array<Courier::Models::Rule>, nil]
+          optional :rules, -> { Courier::Internal::Type::ArrayOf[Courier::Rule] }, nil?: true
 
           # @!attribute source
           #
@@ -207,35 +169,9 @@ module Courier
 
           # @!method initialize(status:, channel_preferences: nil, rules: nil, source: nil)
           #   @param status [Symbol, Courier::Models::Users::PreferenceStatus]
-          #   @param channel_preferences [Array<Courier::Models::UserRecipient::Preferences::Category::ChannelPreference>, nil]
-          #   @param rules [Array<Courier::Models::UserRecipient::Preferences::Category::Rule>, nil]
+          #   @param channel_preferences [Array<Courier::Models::ChannelPreference>, nil]
+          #   @param rules [Array<Courier::Models::Rule>, nil]
           #   @param source [Symbol, Courier::Models::UserRecipient::Preferences::Category::Source, nil]
-
-          class ChannelPreference < Courier::Internal::Type::BaseModel
-            # @!attribute channel
-            #
-            #   @return [Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification]
-            required :channel, enum: -> { Courier::Tenants::DefaultPreferences::ChannelClassification }
-
-            # @!method initialize(channel:)
-            #   @param channel [Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification]
-          end
-
-          class Rule < Courier::Internal::Type::BaseModel
-            # @!attribute until_
-            #
-            #   @return [String]
-            required :until_, String, api_name: :until
-
-            # @!attribute start
-            #
-            #   @return [String, nil]
-            optional :start, String, nil?: true
-
-            # @!method initialize(until_:, start: nil)
-            #   @param until_ [String]
-            #   @param start [String, nil]
-          end
 
           # @see Courier::Models::UserRecipient::Preferences::Category#source
           module Source

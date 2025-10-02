@@ -1,7 +1,7 @@
 module Courier
   module Models
     module Tenants
-      type template_retrieve_response =
+      type base_template_tenant_association =
         {
           id: String,
           created_at: String,
@@ -10,7 +10,7 @@ module Courier
           version: String
         }
 
-      class TemplateRetrieveResponse < Courier::Internal::Type::BaseModel
+      class BaseTemplateTenantAssociation < Courier::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor created_at: String
