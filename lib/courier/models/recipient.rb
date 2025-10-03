@@ -75,16 +75,13 @@ module Courier
       class Preferences < Courier::Internal::Type::BaseModel
         # @!attribute notifications
         #
-        #   @return [Hash{Symbol=>Courier::Models::Recipient::Preferences::Notification}]
-        required :notifications,
-                 -> { Courier::Internal::Type::HashOf[Courier::Recipient::Preferences::Notification] }
+        #   @return [Hash{Symbol=>Courier::Models::Preference}]
+        required :notifications, -> { Courier::Internal::Type::HashOf[Courier::Preference] }
 
         # @!attribute categories
         #
-        #   @return [Hash{Symbol=>Courier::Models::Recipient::Preferences::Category}, nil]
-        optional :categories,
-                 -> { Courier::Internal::Type::HashOf[Courier::Recipient::Preferences::Category] },
-                 nil?: true
+        #   @return [Hash{Symbol=>Courier::Models::Preference}, nil]
+        optional :categories, -> { Courier::Internal::Type::HashOf[Courier::Preference] }, nil?: true
 
         # @!attribute template_id
         #
@@ -92,209 +89,9 @@ module Courier
         optional :template_id, String, api_name: :templateId, nil?: true
 
         # @!method initialize(notifications:, categories: nil, template_id: nil)
-        #   @param notifications [Hash{Symbol=>Courier::Models::Recipient::Preferences::Notification}]
-        #   @param categories [Hash{Symbol=>Courier::Models::Recipient::Preferences::Category}, nil]
+        #   @param notifications [Hash{Symbol=>Courier::Models::Preference}]
+        #   @param categories [Hash{Symbol=>Courier::Models::Preference}, nil]
         #   @param template_id [String, nil]
-
-        class Notification < Courier::Internal::Type::BaseModel
-          # @!attribute status
-          #
-          #   @return [Symbol, Courier::Models::Recipient::Preferences::Notification::Status]
-          required :status, enum: -> { Courier::Recipient::Preferences::Notification::Status }
-
-          # @!attribute channel_preferences
-          #
-          #   @return [Array<Courier::Models::Recipient::Preferences::Notification::ChannelPreference>, nil]
-          optional :channel_preferences,
-                   -> {
-                     Courier::Internal::Type::ArrayOf[Courier::Recipient::Preferences::Notification::ChannelPreference]
-                   },
-                   nil?: true
-
-          # @!attribute rules
-          #
-          #   @return [Array<Courier::Models::Recipient::Preferences::Notification::Rule>, nil]
-          optional :rules,
-                   -> {
-                     Courier::Internal::Type::ArrayOf[Courier::Recipient::Preferences::Notification::Rule]
-                   },
-                   nil?: true
-
-          # @!attribute source
-          #
-          #   @return [Symbol, Courier::Models::Recipient::Preferences::Notification::Source, nil]
-          optional :source, enum: -> { Courier::Recipient::Preferences::Notification::Source }, nil?: true
-
-          # @!method initialize(status:, channel_preferences: nil, rules: nil, source: nil)
-          #   @param status [Symbol, Courier::Models::Recipient::Preferences::Notification::Status]
-          #   @param channel_preferences [Array<Courier::Models::Recipient::Preferences::Notification::ChannelPreference>, nil]
-          #   @param rules [Array<Courier::Models::Recipient::Preferences::Notification::Rule>, nil]
-          #   @param source [Symbol, Courier::Models::Recipient::Preferences::Notification::Source, nil]
-
-          # @see Courier::Models::Recipient::Preferences::Notification#status
-          module Status
-            extend Courier::Internal::Type::Enum
-
-            OPTED_IN = :OPTED_IN
-            OPTED_OUT = :OPTED_OUT
-            REQUIRED = :REQUIRED
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          class ChannelPreference < Courier::Internal::Type::BaseModel
-            # @!attribute channel
-            #
-            #   @return [Symbol, Courier::Models::Recipient::Preferences::Notification::ChannelPreference::Channel]
-            required :channel, enum: -> { Courier::Recipient::Preferences::Notification::ChannelPreference::Channel }
-
-            # @!method initialize(channel:)
-            #   @param channel [Symbol, Courier::Models::Recipient::Preferences::Notification::ChannelPreference::Channel]
-
-            # @see Courier::Models::Recipient::Preferences::Notification::ChannelPreference#channel
-            module Channel
-              extend Courier::Internal::Type::Enum
-
-              DIRECT_MESSAGE = :direct_message
-              EMAIL = :email
-              PUSH = :push
-              SMS = :sms
-              WEBHOOK = :webhook
-              INBOX = :inbox
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
-          end
-
-          class Rule < Courier::Internal::Type::BaseModel
-            # @!attribute until_
-            #
-            #   @return [String]
-            required :until_, String, api_name: :until
-
-            # @!attribute start
-            #
-            #   @return [String, nil]
-            optional :start, String, nil?: true
-
-            # @!method initialize(until_:, start: nil)
-            #   @param until_ [String]
-            #   @param start [String, nil]
-          end
-
-          # @see Courier::Models::Recipient::Preferences::Notification#source
-          module Source
-            extend Courier::Internal::Type::Enum
-
-            SUBSCRIPTION = :subscription
-            LIST = :list
-            RECIPIENT = :recipient
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-        end
-
-        class Category < Courier::Internal::Type::BaseModel
-          # @!attribute status
-          #
-          #   @return [Symbol, Courier::Models::Recipient::Preferences::Category::Status]
-          required :status, enum: -> { Courier::Recipient::Preferences::Category::Status }
-
-          # @!attribute channel_preferences
-          #
-          #   @return [Array<Courier::Models::Recipient::Preferences::Category::ChannelPreference>, nil]
-          optional :channel_preferences,
-                   -> {
-                     Courier::Internal::Type::ArrayOf[Courier::Recipient::Preferences::Category::ChannelPreference]
-                   },
-                   nil?: true
-
-          # @!attribute rules
-          #
-          #   @return [Array<Courier::Models::Recipient::Preferences::Category::Rule>, nil]
-          optional :rules,
-                   -> { Courier::Internal::Type::ArrayOf[Courier::Recipient::Preferences::Category::Rule] },
-                   nil?: true
-
-          # @!attribute source
-          #
-          #   @return [Symbol, Courier::Models::Recipient::Preferences::Category::Source, nil]
-          optional :source, enum: -> { Courier::Recipient::Preferences::Category::Source }, nil?: true
-
-          # @!method initialize(status:, channel_preferences: nil, rules: nil, source: nil)
-          #   @param status [Symbol, Courier::Models::Recipient::Preferences::Category::Status]
-          #   @param channel_preferences [Array<Courier::Models::Recipient::Preferences::Category::ChannelPreference>, nil]
-          #   @param rules [Array<Courier::Models::Recipient::Preferences::Category::Rule>, nil]
-          #   @param source [Symbol, Courier::Models::Recipient::Preferences::Category::Source, nil]
-
-          # @see Courier::Models::Recipient::Preferences::Category#status
-          module Status
-            extend Courier::Internal::Type::Enum
-
-            OPTED_IN = :OPTED_IN
-            OPTED_OUT = :OPTED_OUT
-            REQUIRED = :REQUIRED
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          class ChannelPreference < Courier::Internal::Type::BaseModel
-            # @!attribute channel
-            #
-            #   @return [Symbol, Courier::Models::Recipient::Preferences::Category::ChannelPreference::Channel]
-            required :channel, enum: -> { Courier::Recipient::Preferences::Category::ChannelPreference::Channel }
-
-            # @!method initialize(channel:)
-            #   @param channel [Symbol, Courier::Models::Recipient::Preferences::Category::ChannelPreference::Channel]
-
-            # @see Courier::Models::Recipient::Preferences::Category::ChannelPreference#channel
-            module Channel
-              extend Courier::Internal::Type::Enum
-
-              DIRECT_MESSAGE = :direct_message
-              EMAIL = :email
-              PUSH = :push
-              SMS = :sms
-              WEBHOOK = :webhook
-              INBOX = :inbox
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
-          end
-
-          class Rule < Courier::Internal::Type::BaseModel
-            # @!attribute until_
-            #
-            #   @return [String]
-            required :until_, String, api_name: :until
-
-            # @!attribute start
-            #
-            #   @return [String, nil]
-            optional :start, String, nil?: true
-
-            # @!method initialize(until_:, start: nil)
-            #   @param until_ [String]
-            #   @param start [String, nil]
-          end
-
-          # @see Courier::Models::Recipient::Preferences::Category#source
-          module Source
-            extend Courier::Internal::Type::Enum
-
-            SUBSCRIPTION = :subscription
-            LIST = :list
-            RECIPIENT = :recipient
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-        end
       end
     end
   end

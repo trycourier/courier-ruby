@@ -455,104 +455,22 @@ module Courier
                 )
               end
 
-            sig do
-              returns(
-                T.nilable(
-                  Courier::SendMessageParams::Message::Channel::Metadata::Utm
-                )
-              )
-            end
+            sig { returns(T.nilable(Courier::Utm)) }
             attr_reader :utm
 
-            sig do
-              params(
-                utm:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::Channel::Metadata::Utm::OrHash
-                  )
-              ).void
-            end
+            sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
             attr_writer :utm
 
             sig do
-              params(
-                utm:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::Channel::Metadata::Utm::OrHash
-                  )
-              ).returns(T.attached_class)
+              params(utm: T.nilable(Courier::Utm::OrHash)).returns(
+                T.attached_class
+              )
             end
             def self.new(utm: nil)
             end
 
-            sig do
-              override.returns(
-                {
-                  utm:
-                    T.nilable(
-                      Courier::SendMessageParams::Message::Channel::Metadata::Utm
-                    )
-                }
-              )
-            end
+            sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
             def to_hash
-            end
-
-            class Utm < Courier::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Courier::SendMessageParams::Message::Channel::Metadata::Utm,
-                    Courier::Internal::AnyHash
-                  )
-                end
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :campaign
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :content
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :medium
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :source
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :term
-
-              sig do
-                params(
-                  campaign: T.nilable(String),
-                  content: T.nilable(String),
-                  medium: T.nilable(String),
-                  source: T.nilable(String),
-                  term: T.nilable(String)
-                ).returns(T.attached_class)
-              end
-              def self.new(
-                campaign: nil,
-                content: nil,
-                medium: nil,
-                source: nil,
-                term: nil
-              )
-              end
-
-              sig do
-                override.returns(
-                  {
-                    campaign: T.nilable(String),
-                    content: T.nilable(String),
-                    medium: T.nilable(String),
-                    source: T.nilable(String),
-                    term: T.nilable(String)
-                  }
-                )
-              end
-              def to_hash
-              end
             end
           end
 
@@ -749,21 +667,10 @@ module Courier
           sig { returns(T.nilable(String)) }
           attr_accessor :trace_id
 
-          sig do
-            returns(
-              T.nilable(Courier::SendMessageParams::Message::Metadata::Utm)
-            )
-          end
+          sig { returns(T.nilable(Courier::Utm)) }
           attr_reader :utm
 
-          sig do
-            params(
-              utm:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Metadata::Utm::OrHash
-                )
-            ).void
-          end
+          sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
           attr_writer :utm
 
           sig do
@@ -771,10 +678,7 @@ module Courier
               event: T.nilable(String),
               tags: T.nilable(T::Array[String]),
               trace_id: T.nilable(String),
-              utm:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Metadata::Utm::OrHash
-                )
+              utm: T.nilable(Courier::Utm::OrHash)
             ).returns(T.attached_class)
           end
           def self.new(event: nil, tags: nil, trace_id: nil, utm: nil)
@@ -786,69 +690,11 @@ module Courier
                 event: T.nilable(String),
                 tags: T.nilable(T::Array[String]),
                 trace_id: T.nilable(String),
-                utm:
-                  T.nilable(Courier::SendMessageParams::Message::Metadata::Utm)
+                utm: T.nilable(Courier::Utm)
               }
             )
           end
           def to_hash
-          end
-
-          class Utm < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendMessageParams::Message::Metadata::Utm,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :campaign
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :content
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :medium
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :source
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :term
-
-            sig do
-              params(
-                campaign: T.nilable(String),
-                content: T.nilable(String),
-                medium: T.nilable(String),
-                source: T.nilable(String),
-                term: T.nilable(String)
-              ).returns(T.attached_class)
-            end
-            def self.new(
-              campaign: nil,
-              content: nil,
-              medium: nil,
-              source: nil,
-              term: nil
-            )
-            end
-
-            sig do
-              override.returns(
-                {
-                  campaign: T.nilable(String),
-                  content: T.nilable(String),
-                  medium: T.nilable(String),
-                  source: T.nilable(String),
-                  term: T.nilable(String)
-                }
-              )
-            end
-            def to_hash
-            end
           end
         end
 
@@ -962,104 +808,22 @@ module Courier
                 )
               end
 
-            sig do
-              returns(
-                T.nilable(
-                  Courier::SendMessageParams::Message::Provider::Metadata::Utm
-                )
-              )
-            end
+            sig { returns(T.nilable(Courier::Utm)) }
             attr_reader :utm
 
-            sig do
-              params(
-                utm:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::Provider::Metadata::Utm::OrHash
-                  )
-              ).void
-            end
+            sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
             attr_writer :utm
 
             sig do
-              params(
-                utm:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::Provider::Metadata::Utm::OrHash
-                  )
-              ).returns(T.attached_class)
+              params(utm: T.nilable(Courier::Utm::OrHash)).returns(
+                T.attached_class
+              )
             end
             def self.new(utm: nil)
             end
 
-            sig do
-              override.returns(
-                {
-                  utm:
-                    T.nilable(
-                      Courier::SendMessageParams::Message::Provider::Metadata::Utm
-                    )
-                }
-              )
-            end
+            sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
             def to_hash
-            end
-
-            class Utm < Courier::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Courier::SendMessageParams::Message::Provider::Metadata::Utm,
-                    Courier::Internal::AnyHash
-                  )
-                end
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :campaign
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :content
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :medium
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :source
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :term
-
-              sig do
-                params(
-                  campaign: T.nilable(String),
-                  content: T.nilable(String),
-                  medium: T.nilable(String),
-                  source: T.nilable(String),
-                  term: T.nilable(String)
-                ).returns(T.attached_class)
-              end
-              def self.new(
-                campaign: nil,
-                content: nil,
-                medium: nil,
-                source: nil,
-                term: nil
-              )
-              end
-
-              sig do
-                override.returns(
-                  {
-                    campaign: T.nilable(String),
-                    content: T.nilable(String),
-                    medium: T.nilable(String),
-                    source: T.nilable(String),
-                    term: T.nilable(String)
-                  }
-                )
-              end
-              def to_hash
-              end
             end
           end
         end
@@ -1395,26 +1159,10 @@ module Courier
                   )
                 end
 
-              sig do
-                returns(
-                  T::Hash[
-                    Symbol,
-                    Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification
-                  ]
-                )
-              end
+              sig { returns(T::Hash[Symbol, Courier::Preference]) }
               attr_accessor :notifications
 
-              sig do
-                returns(
-                  T.nilable(
-                    T::Hash[
-                      Symbol,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category
-                    ]
-                  )
-                )
-              end
+              sig { returns(T.nilable(T::Hash[Symbol, Courier::Preference])) }
               attr_accessor :categories
 
               sig { returns(T.nilable(String)) }
@@ -1422,18 +1170,9 @@ module Courier
 
               sig do
                 params(
-                  notifications:
-                    T::Hash[
-                      Symbol,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::OrHash
-                    ],
+                  notifications: T::Hash[Symbol, Courier::Preference::OrHash],
                   categories:
-                    T.nilable(
-                      T::Hash[
-                        Symbol,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::OrHash
-                      ]
-                    ),
+                    T.nilable(T::Hash[Symbol, Courier::Preference::OrHash]),
                   template_id: T.nilable(String)
                 ).returns(T.attached_class)
               end
@@ -1443,635 +1182,13 @@ module Courier
               sig do
                 override.returns(
                   {
-                    notifications:
-                      T::Hash[
-                        Symbol,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification
-                      ],
-                    categories:
-                      T.nilable(
-                        T::Hash[
-                          Symbol,
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category
-                        ]
-                      ),
+                    notifications: T::Hash[Symbol, Courier::Preference],
+                    categories: T.nilable(T::Hash[Symbol, Courier::Preference]),
                     template_id: T.nilable(String)
                   }
                 )
               end
               def to_hash
-              end
-
-              class Notification < Courier::Internal::Type::BaseModel
-                OrHash =
-                  T.type_alias do
-                    T.any(
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification,
-                      Courier::Internal::AnyHash
-                    )
-                  end
-
-                sig do
-                  returns(
-                    Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status::OrSymbol
-                  )
-                end
-                attr_accessor :status
-
-                sig do
-                  returns(
-                    T.nilable(
-                      T::Array[
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference
-                      ]
-                    )
-                  )
-                end
-                attr_accessor :channel_preferences
-
-                sig do
-                  returns(
-                    T.nilable(
-                      T::Array[
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule
-                      ]
-                    )
-                  )
-                end
-                attr_accessor :rules
-
-                sig do
-                  returns(
-                    T.nilable(
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source::OrSymbol
-                    )
-                  )
-                end
-                attr_accessor :source
-
-                sig do
-                  params(
-                    status:
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status::OrSymbol,
-                    channel_preferences:
-                      T.nilable(
-                        T::Array[
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::OrHash
-                        ]
-                      ),
-                    rules:
-                      T.nilable(
-                        T::Array[
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule::OrHash
-                        ]
-                      ),
-                    source:
-                      T.nilable(
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source::OrSymbol
-                      )
-                  ).returns(T.attached_class)
-                end
-                def self.new(
-                  status:,
-                  channel_preferences: nil,
-                  rules: nil,
-                  source: nil
-                )
-                end
-
-                sig do
-                  override.returns(
-                    {
-                      status:
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status::OrSymbol,
-                      channel_preferences:
-                        T.nilable(
-                          T::Array[
-                            Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference
-                          ]
-                        ),
-                      rules:
-                        T.nilable(
-                          T::Array[
-                            Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule
-                          ]
-                        ),
-                      source:
-                        T.nilable(
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source::OrSymbol
-                        )
-                    }
-                  )
-                end
-                def to_hash
-                end
-
-                module Status
-                  extend Courier::Internal::Type::Enum
-
-                  TaggedSymbol =
-                    T.type_alias do
-                      T.all(
-                        Symbol,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status
-                      )
-                    end
-                  OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                  OPTED_IN =
-                    T.let(
-                      :OPTED_IN,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status::TaggedSymbol
-                    )
-                  OPTED_OUT =
-                    T.let(
-                      :OPTED_OUT,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status::TaggedSymbol
-                    )
-                  REQUIRED =
-                    T.let(
-                      :REQUIRED,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status::TaggedSymbol
-                    )
-
-                  sig do
-                    override.returns(
-                      T::Array[
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status::TaggedSymbol
-                      ]
-                    )
-                  end
-                  def self.values
-                  end
-                end
-
-                class ChannelPreference < Courier::Internal::Type::BaseModel
-                  OrHash =
-                    T.type_alias do
-                      T.any(
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference,
-                        Courier::Internal::AnyHash
-                      )
-                    end
-
-                  sig do
-                    returns(
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::OrSymbol
-                    )
-                  end
-                  attr_accessor :channel
-
-                  sig do
-                    params(
-                      channel:
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::OrSymbol
-                    ).returns(T.attached_class)
-                  end
-                  def self.new(channel:)
-                  end
-
-                  sig do
-                    override.returns(
-                      {
-                        channel:
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::OrSymbol
-                      }
-                    )
-                  end
-                  def to_hash
-                  end
-
-                  module Channel
-                    extend Courier::Internal::Type::Enum
-
-                    TaggedSymbol =
-                      T.type_alias do
-                        T.all(
-                          Symbol,
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel
-                        )
-                      end
-                    OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                    DIRECT_MESSAGE =
-                      T.let(
-                        :direct_message,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    EMAIL =
-                      T.let(
-                        :email,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    PUSH =
-                      T.let(
-                        :push,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    SMS =
-                      T.let(
-                        :sms,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    WEBHOOK =
-                      T.let(
-                        :webhook,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    INBOX =
-                      T.let(
-                        :inbox,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::TaggedSymbol
-                      )
-
-                    sig do
-                      override.returns(
-                        T::Array[
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel::TaggedSymbol
-                        ]
-                      )
-                    end
-                    def self.values
-                    end
-                  end
-                end
-
-                class Rule < Courier::Internal::Type::BaseModel
-                  OrHash =
-                    T.type_alias do
-                      T.any(
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule,
-                        Courier::Internal::AnyHash
-                      )
-                    end
-
-                  sig { returns(String) }
-                  attr_accessor :until_
-
-                  sig { returns(T.nilable(String)) }
-                  attr_accessor :start
-
-                  sig do
-                    params(until_: String, start: T.nilable(String)).returns(
-                      T.attached_class
-                    )
-                  end
-                  def self.new(until_:, start: nil)
-                  end
-
-                  sig do
-                    override.returns(
-                      { until_: String, start: T.nilable(String) }
-                    )
-                  end
-                  def to_hash
-                  end
-                end
-
-                module Source
-                  extend Courier::Internal::Type::Enum
-
-                  TaggedSymbol =
-                    T.type_alias do
-                      T.all(
-                        Symbol,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source
-                      )
-                    end
-                  OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                  SUBSCRIPTION =
-                    T.let(
-                      :subscription,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source::TaggedSymbol
-                    )
-                  LIST =
-                    T.let(
-                      :list,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source::TaggedSymbol
-                    )
-                  RECIPIENT =
-                    T.let(
-                      :recipient,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source::TaggedSymbol
-                    )
-
-                  sig do
-                    override.returns(
-                      T::Array[
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source::TaggedSymbol
-                      ]
-                    )
-                  end
-                  def self.values
-                  end
-                end
-              end
-
-              class Category < Courier::Internal::Type::BaseModel
-                OrHash =
-                  T.type_alias do
-                    T.any(
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category,
-                      Courier::Internal::AnyHash
-                    )
-                  end
-
-                sig do
-                  returns(
-                    Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status::OrSymbol
-                  )
-                end
-                attr_accessor :status
-
-                sig do
-                  returns(
-                    T.nilable(
-                      T::Array[
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference
-                      ]
-                    )
-                  )
-                end
-                attr_accessor :channel_preferences
-
-                sig do
-                  returns(
-                    T.nilable(
-                      T::Array[
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule
-                      ]
-                    )
-                  )
-                end
-                attr_accessor :rules
-
-                sig do
-                  returns(
-                    T.nilable(
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source::OrSymbol
-                    )
-                  )
-                end
-                attr_accessor :source
-
-                sig do
-                  params(
-                    status:
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status::OrSymbol,
-                    channel_preferences:
-                      T.nilable(
-                        T::Array[
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::OrHash
-                        ]
-                      ),
-                    rules:
-                      T.nilable(
-                        T::Array[
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule::OrHash
-                        ]
-                      ),
-                    source:
-                      T.nilable(
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source::OrSymbol
-                      )
-                  ).returns(T.attached_class)
-                end
-                def self.new(
-                  status:,
-                  channel_preferences: nil,
-                  rules: nil,
-                  source: nil
-                )
-                end
-
-                sig do
-                  override.returns(
-                    {
-                      status:
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status::OrSymbol,
-                      channel_preferences:
-                        T.nilable(
-                          T::Array[
-                            Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference
-                          ]
-                        ),
-                      rules:
-                        T.nilable(
-                          T::Array[
-                            Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule
-                          ]
-                        ),
-                      source:
-                        T.nilable(
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source::OrSymbol
-                        )
-                    }
-                  )
-                end
-                def to_hash
-                end
-
-                module Status
-                  extend Courier::Internal::Type::Enum
-
-                  TaggedSymbol =
-                    T.type_alias do
-                      T.all(
-                        Symbol,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status
-                      )
-                    end
-                  OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                  OPTED_IN =
-                    T.let(
-                      :OPTED_IN,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status::TaggedSymbol
-                    )
-                  OPTED_OUT =
-                    T.let(
-                      :OPTED_OUT,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status::TaggedSymbol
-                    )
-                  REQUIRED =
-                    T.let(
-                      :REQUIRED,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status::TaggedSymbol
-                    )
-
-                  sig do
-                    override.returns(
-                      T::Array[
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status::TaggedSymbol
-                      ]
-                    )
-                  end
-                  def self.values
-                  end
-                end
-
-                class ChannelPreference < Courier::Internal::Type::BaseModel
-                  OrHash =
-                    T.type_alias do
-                      T.any(
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference,
-                        Courier::Internal::AnyHash
-                      )
-                    end
-
-                  sig do
-                    returns(
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::OrSymbol
-                    )
-                  end
-                  attr_accessor :channel
-
-                  sig do
-                    params(
-                      channel:
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::OrSymbol
-                    ).returns(T.attached_class)
-                  end
-                  def self.new(channel:)
-                  end
-
-                  sig do
-                    override.returns(
-                      {
-                        channel:
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::OrSymbol
-                      }
-                    )
-                  end
-                  def to_hash
-                  end
-
-                  module Channel
-                    extend Courier::Internal::Type::Enum
-
-                    TaggedSymbol =
-                      T.type_alias do
-                        T.all(
-                          Symbol,
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel
-                        )
-                      end
-                    OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                    DIRECT_MESSAGE =
-                      T.let(
-                        :direct_message,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    EMAIL =
-                      T.let(
-                        :email,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    PUSH =
-                      T.let(
-                        :push,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    SMS =
-                      T.let(
-                        :sms,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    WEBHOOK =
-                      T.let(
-                        :webhook,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::TaggedSymbol
-                      )
-                    INBOX =
-                      T.let(
-                        :inbox,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::TaggedSymbol
-                      )
-
-                    sig do
-                      override.returns(
-                        T::Array[
-                          Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel::TaggedSymbol
-                        ]
-                      )
-                    end
-                    def self.values
-                    end
-                  end
-                end
-
-                class Rule < Courier::Internal::Type::BaseModel
-                  OrHash =
-                    T.type_alias do
-                      T.any(
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule,
-                        Courier::Internal::AnyHash
-                      )
-                    end
-
-                  sig { returns(String) }
-                  attr_accessor :until_
-
-                  sig { returns(T.nilable(String)) }
-                  attr_accessor :start
-
-                  sig do
-                    params(until_: String, start: T.nilable(String)).returns(
-                      T.attached_class
-                    )
-                  end
-                  def self.new(until_:, start: nil)
-                  end
-
-                  sig do
-                    override.returns(
-                      { until_: String, start: T.nilable(String) }
-                    )
-                  end
-                  def to_hash
-                  end
-                end
-
-                module Source
-                  extend Courier::Internal::Type::Enum
-
-                  TaggedSymbol =
-                    T.type_alias do
-                      T.all(
-                        Symbol,
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source
-                      )
-                    end
-                  OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                  SUBSCRIPTION =
-                    T.let(
-                      :subscription,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source::TaggedSymbol
-                    )
-                  LIST =
-                    T.let(
-                      :list,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source::TaggedSymbol
-                    )
-                  RECIPIENT =
-                    T.let(
-                      :recipient,
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source::TaggedSymbol
-                    )
-
-                  sig do
-                    override.returns(
-                      T::Array[
-                        Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source::TaggedSymbol
-                      ]
-                    )
-                  end
-                  def self.values
-                  end
-                end
               end
             end
           end
