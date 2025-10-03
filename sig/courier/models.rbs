@@ -7,5 +7,5 @@ module Courier
 
   class Recipient = Courier::Models::Recipient
 
-  class SendSendMessageParams = Courier::Models::SendSendMessageParams
+  class SendMessageParams = Courier::Models::SendMessageParams
 end
