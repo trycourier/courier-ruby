@@ -1,505 +1,289 @@
 module Courier
   module Models
     type recipient =
-      Courier::Recipient::AudienceRecipient
-      | Courier::Recipient::UnionMember1
-      | Courier::Recipient::UnionMember2
-      | Courier::UserRecipient
-      | Courier::Recipient::SlackRecipient
-      | Courier::Recipient::MsTeamsRecipient
-      | ::Hash[Symbol, top]
-      | Courier::Recipient::PagerdutyRecipient
-      | Courier::Recipient::WebhookRecipient
+      {
+        account_id: String?,
+        context: Courier::MessageContext?,
+        data: ::Hash[Symbol, top]?,
+        email: String?,
+        locale: String?,
+        phone_number: String?,
+        preferences: Courier::Recipient::Preferences?,
+        tenant_id: String?,
+        user_id: String?
+      }
 
-    module Recipient
-      extend Courier::Internal::Type::Union
+    class Recipient < Courier::Internal::Type::BaseModel
+      attr_accessor account_id: String?
 
-      type audience_recipient =
+      attr_accessor context: Courier::MessageContext?
+
+      attr_accessor data: ::Hash[Symbol, top]?
+
+      attr_accessor email: String?
+
+      attr_accessor locale: String?
+
+      attr_accessor phone_number: String?
+
+      attr_accessor preferences: Courier::Recipient::Preferences?
+
+      attr_accessor tenant_id: String?
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        ?account_id: String?,
+        ?context: Courier::MessageContext?,
+        ?data: ::Hash[Symbol, top]?,
+        ?email: String?,
+        ?locale: String?,
+        ?phone_number: String?,
+        ?preferences: Courier::Recipient::Preferences?,
+        ?tenant_id: String?,
+        ?user_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String?,
+        context: Courier::MessageContext?,
+        data: ::Hash[Symbol, top]?,
+        email: String?,
+        locale: String?,
+        phone_number: String?,
+        preferences: Courier::Recipient::Preferences?,
+        tenant_id: String?,
+        user_id: String?
+      }
+
+      type preferences =
         {
-          audience_id: String,
-          data: ::Hash[Symbol, top]?,
-          filters: ::Array[Courier::Recipient::AudienceRecipient::Filter]?
+          notifications: ::Hash[Symbol, Courier::Recipient::Preferences::Notification],
+          categories: ::Hash[Symbol, Courier::Recipient::Preferences::Category]?,
+          template_id: String?
         }
 
-      class AudienceRecipient < Courier::Internal::Type::BaseModel
-        attr_accessor audience_id: String
+      class Preferences < Courier::Internal::Type::BaseModel
+        attr_accessor notifications: ::Hash[Symbol, Courier::Recipient::Preferences::Notification]
 
-        attr_accessor data: ::Hash[Symbol, top]?
+        attr_accessor categories: ::Hash[Symbol, Courier::Recipient::Preferences::Category]?
 
-        attr_accessor filters: ::Array[Courier::Recipient::AudienceRecipient::Filter]?
+        attr_accessor template_id: String?
 
         def initialize: (
-          audience_id: String,
-          ?data: ::Hash[Symbol, top]?,
-          ?filters: ::Array[Courier::Recipient::AudienceRecipient::Filter]?
+          notifications: ::Hash[Symbol, Courier::Recipient::Preferences::Notification],
+          ?categories: ::Hash[Symbol, Courier::Recipient::Preferences::Category]?,
+          ?template_id: String?
         ) -> void
 
         def to_hash: -> {
-          audience_id: String,
-          data: ::Hash[Symbol, top]?,
-          filters: ::Array[Courier::Recipient::AudienceRecipient::Filter]?
+          notifications: ::Hash[Symbol, Courier::Recipient::Preferences::Notification],
+          categories: ::Hash[Symbol, Courier::Recipient::Preferences::Category]?,
+          template_id: String?
         }
 
-        type filter =
+        type notification =
           {
-            operator: Courier::Models::Recipient::AudienceRecipient::Filter::operator,
-            path: Courier::Models::Recipient::AudienceRecipient::Filter::path,
-            value: String
+            status: Courier::Models::Recipient::Preferences::Notification::status,
+            channel_preferences: ::Array[Courier::Recipient::Preferences::Notification::ChannelPreference]?,
+            rules: ::Array[Courier::Recipient::Preferences::Notification::Rule]?,
+            source: Courier::Models::Recipient::Preferences::Notification::source?
           }
 
-        class Filter < Courier::Internal::Type::BaseModel
-          attr_accessor operator: Courier::Models::Recipient::AudienceRecipient::Filter::operator
+        class Notification < Courier::Internal::Type::BaseModel
+          attr_accessor status: Courier::Models::Recipient::Preferences::Notification::status
 
-          attr_accessor path: Courier::Models::Recipient::AudienceRecipient::Filter::path
+          attr_accessor channel_preferences: ::Array[Courier::Recipient::Preferences::Notification::ChannelPreference]?
 
-          attr_accessor value: String
+          attr_accessor rules: ::Array[Courier::Recipient::Preferences::Notification::Rule]?
+
+          attr_accessor source: Courier::Models::Recipient::Preferences::Notification::source?
 
           def initialize: (
-            operator: Courier::Models::Recipient::AudienceRecipient::Filter::operator,
-            path: Courier::Models::Recipient::AudienceRecipient::Filter::path,
-            value: String
+            status: Courier::Models::Recipient::Preferences::Notification::status,
+            ?channel_preferences: ::Array[Courier::Recipient::Preferences::Notification::ChannelPreference]?,
+            ?rules: ::Array[Courier::Recipient::Preferences::Notification::Rule]?,
+            ?source: Courier::Models::Recipient::Preferences::Notification::source?
           ) -> void
 
           def to_hash: -> {
-            operator: Courier::Models::Recipient::AudienceRecipient::Filter::operator,
-            path: Courier::Models::Recipient::AudienceRecipient::Filter::path,
-            value: String
+            status: Courier::Models::Recipient::Preferences::Notification::status,
+            channel_preferences: ::Array[Courier::Recipient::Preferences::Notification::ChannelPreference]?,
+            rules: ::Array[Courier::Recipient::Preferences::Notification::Rule]?,
+            source: Courier::Models::Recipient::Preferences::Notification::source?
           }
 
-          type operator = :MEMBER_OF
+          type status = :OPTED_IN | :OPTED_OUT | :REQUIRED
 
-          module Operator
+          module Status
             extend Courier::Internal::Type::Enum
 
-            MEMBER_OF: :MEMBER_OF
+            OPTED_IN: :OPTED_IN
+            OPTED_OUT: :OPTED_OUT
+            REQUIRED: :REQUIRED
 
-            def self?.values: -> ::Array[Courier::Models::Recipient::AudienceRecipient::Filter::operator]
+            def self?.values: -> ::Array[Courier::Models::Recipient::Preferences::Notification::status]
           end
 
-          type path = :account_id
-
-          module Path
-            extend Courier::Internal::Type::Enum
-
-            ACCOUNT_ID: :account_id
-
-            def self?.values: -> ::Array[Courier::Models::Recipient::AudienceRecipient::Filter::path]
-          end
-        end
-      end
-
-      type union_member1 =
-        {
-          data: ::Hash[Symbol, top]?,
-          filters: ::Array[Courier::Recipient::UnionMember1::Filter]?,
-          list_id: String?
-        }
-
-      class UnionMember1 < Courier::Internal::Type::BaseModel
-        attr_accessor data: ::Hash[Symbol, top]?
-
-        attr_accessor filters: ::Array[Courier::Recipient::UnionMember1::Filter]?
-
-        attr_accessor list_id: String?
-
-        def initialize: (
-          ?data: ::Hash[Symbol, top]?,
-          ?filters: ::Array[Courier::Recipient::UnionMember1::Filter]?,
-          ?list_id: String?
-        ) -> void
-
-        def to_hash: -> {
-          data: ::Hash[Symbol, top]?,
-          filters: ::Array[Courier::Recipient::UnionMember1::Filter]?,
-          list_id: String?
-        }
-
-        type filter =
-          {
-            operator: Courier::Models::Recipient::UnionMember1::Filter::operator,
-            path: Courier::Models::Recipient::UnionMember1::Filter::path,
-            value: String
-          }
-
-        class Filter < Courier::Internal::Type::BaseModel
-          attr_accessor operator: Courier::Models::Recipient::UnionMember1::Filter::operator
-
-          attr_accessor path: Courier::Models::Recipient::UnionMember1::Filter::path
-
-          attr_accessor value: String
-
-          def initialize: (
-            operator: Courier::Models::Recipient::UnionMember1::Filter::operator,
-            path: Courier::Models::Recipient::UnionMember1::Filter::path,
-            value: String
-          ) -> void
-
-          def to_hash: -> {
-            operator: Courier::Models::Recipient::UnionMember1::Filter::operator,
-            path: Courier::Models::Recipient::UnionMember1::Filter::path,
-            value: String
-          }
-
-          type operator = :MEMBER_OF
-
-          module Operator
-            extend Courier::Internal::Type::Enum
-
-            MEMBER_OF: :MEMBER_OF
-
-            def self?.values: -> ::Array[Courier::Models::Recipient::UnionMember1::Filter::operator]
-          end
-
-          type path = :account_id
-
-          module Path
-            extend Courier::Internal::Type::Enum
-
-            ACCOUNT_ID: :account_id
-
-            def self?.values: -> ::Array[Courier::Models::Recipient::UnionMember1::Filter::path]
-          end
-        end
-      end
-
-      type union_member2 = { data: ::Hash[Symbol, top]?, list_pattern: String? }
-
-      class UnionMember2 < Courier::Internal::Type::BaseModel
-        attr_accessor data: ::Hash[Symbol, top]?
-
-        attr_accessor list_pattern: String?
-
-        def initialize: (
-          ?data: ::Hash[Symbol, top]?,
-          ?list_pattern: String?
-        ) -> void
-
-        def to_hash: -> { data: ::Hash[Symbol, top]?, list_pattern: String? }
-      end
-
-      type slack_recipient =
-        { slack: Courier::Models::Recipient::SlackRecipient::slack }
-
-      class SlackRecipient < Courier::Internal::Type::BaseModel
-        attr_accessor slack: Courier::Models::Recipient::SlackRecipient::slack
-
-        def initialize: (
-          slack: Courier::Models::Recipient::SlackRecipient::slack
-        ) -> void
-
-        def to_hash: -> {
-          slack: Courier::Models::Recipient::SlackRecipient::slack
-        }
-
-        type slack =
-          Courier::Recipient::SlackRecipient::Slack::SendToSlackChannel
-          | Courier::Recipient::SlackRecipient::Slack::SendToSlackEmail
-          | Courier::Recipient::SlackRecipient::Slack::SendToSlackUserID
-
-        module Slack
-          extend Courier::Internal::Type::Union
-
-          type send_to_slack_channel = { channel: String }
-
-          class SendToSlackChannel < Courier::Models::SlackBaseProperties
-            def channel: -> String
-
-            def channel=: (String _) -> String
-
-            def initialize: (channel: String) -> void
-
-            def to_hash: -> { channel: String }
-          end
-
-          type send_to_slack_email = { email: String }
-
-          class SendToSlackEmail < Courier::Models::SlackBaseProperties
-            def email: -> String
-
-            def email=: (String _) -> String
-
-            def initialize: (email: String) -> void
-
-            def to_hash: -> { email: String }
-          end
-
-          type send_to_slack_user_id = { user_id: String }
-
-          class SendToSlackUserID < Courier::Models::SlackBaseProperties
-            def user_id: -> String
-
-            def user_id=: (String _) -> String
-
-            def initialize: (user_id: String) -> void
-
-            def to_hash: -> { user_id: String }
-          end
-
-          def self?.variants: -> ::Array[Courier::Models::Recipient::SlackRecipient::slack]
-        end
-      end
-
-      type ms_teams_recipient =
-        { ms_teams: Courier::Models::Recipient::MsTeamsRecipient::ms_teams }
-
-      class MsTeamsRecipient < Courier::Internal::Type::BaseModel
-        attr_accessor ms_teams: Courier::Models::Recipient::MsTeamsRecipient::ms_teams
-
-        def initialize: (
-          ms_teams: Courier::Models::Recipient::MsTeamsRecipient::ms_teams
-        ) -> void
-
-        def to_hash: -> {
-          ms_teams: Courier::Models::Recipient::MsTeamsRecipient::ms_teams
-        }
-
-        type ms_teams =
-          Courier::Recipient::MsTeamsRecipient::MsTeams::SendToMsTeamsUserID
-          | Courier::Recipient::MsTeamsRecipient::MsTeams::SendToMsTeamsEmail
-          | Courier::Recipient::MsTeamsRecipient::MsTeams::SendToMsTeamsChannelID
-          | Courier::Recipient::MsTeamsRecipient::MsTeams::SendToMsTeamsConversationID
-          | Courier::Recipient::MsTeamsRecipient::MsTeams::SendToMsTeamsChannelName
-
-        module MsTeams
-          extend Courier::Internal::Type::Union
-
-          type send_to_ms_teams_user_id = { user_id: String }
-
-          class SendToMsTeamsUserID < Courier::Models::MsTeamsBaseProperties
-            def user_id: -> String
-
-            def user_id=: (String _) -> String
-
-            def initialize: (user_id: String) -> void
-
-            def to_hash: -> { user_id: String }
-          end
-
-          type send_to_ms_teams_email = { email: String }
-
-          class SendToMsTeamsEmail < Courier::Models::MsTeamsBaseProperties
-            def email: -> String
-
-            def email=: (String _) -> String
-
-            def initialize: (email: String) -> void
-
-            def to_hash: -> { email: String }
-          end
-
-          type send_to_ms_teams_channel_id = { channel_id: String }
-
-          class SendToMsTeamsChannelID < Courier::Models::MsTeamsBaseProperties
-            def channel_id: -> String
-
-            def channel_id=: (String _) -> String
-
-            def initialize: (channel_id: String) -> void
-
-            def to_hash: -> { channel_id: String }
-          end
-
-          type send_to_ms_teams_conversation_id = { conversation_id: String }
-
-          class SendToMsTeamsConversationID < Courier::Models::MsTeamsBaseProperties
-            def conversation_id: -> String
-
-            def conversation_id=: (String _) -> String
-
-            def initialize: (conversation_id: String) -> void
-
-            def to_hash: -> { conversation_id: String }
-          end
-
-          type send_to_ms_teams_channel_name =
-            { channel_name: String, team_id: String }
-
-          class SendToMsTeamsChannelName < Courier::Models::MsTeamsBaseProperties
-            def channel_name: -> String
-
-            def channel_name=: (String _) -> String
-
-            def team_id: -> String
-
-            def team_id=: (String _) -> String
-
-            def initialize: (channel_name: String, team_id: String) -> void
-
-            def to_hash: -> { channel_name: String, team_id: String }
-          end
-
-          def self?.variants: -> ::Array[Courier::Models::Recipient::MsTeamsRecipient::ms_teams]
-        end
-      end
-
-      type pagerduty_recipient =
-        { pagerduty: Courier::Recipient::PagerdutyRecipient::Pagerduty }
-
-      class PagerdutyRecipient < Courier::Internal::Type::BaseModel
-        attr_accessor pagerduty: Courier::Recipient::PagerdutyRecipient::Pagerduty
-
-        def initialize: (
-          pagerduty: Courier::Recipient::PagerdutyRecipient::Pagerduty
-        ) -> void
-
-        def to_hash: -> {
-          pagerduty: Courier::Recipient::PagerdutyRecipient::Pagerduty
-        }
-
-        type pagerduty =
-          {
-            event_action: String?,
-            routing_key: String?,
-            severity: String?,
-            source: String?
-          }
-
-        class Pagerduty < Courier::Internal::Type::BaseModel
-          attr_accessor event_action: String?
-
-          attr_accessor routing_key: String?
-
-          attr_accessor severity: String?
-
-          attr_accessor source: String?
-
-          def initialize: (
-            ?event_action: String?,
-            ?routing_key: String?,
-            ?severity: String?,
-            ?source: String?
-          ) -> void
-
-          def to_hash: -> {
-            event_action: String?,
-            routing_key: String?,
-            severity: String?,
-            source: String?
-          }
-        end
-      end
-
-      type webhook_recipient =
-        { webhook: Courier::Recipient::WebhookRecipient::Webhook }
-
-      class WebhookRecipient < Courier::Internal::Type::BaseModel
-        attr_accessor webhook: Courier::Recipient::WebhookRecipient::Webhook
-
-        def initialize: (
-          webhook: Courier::Recipient::WebhookRecipient::Webhook
-        ) -> void
-
-        def to_hash: -> {
-          webhook: Courier::Recipient::WebhookRecipient::Webhook
-        }
-
-        type webhook =
-          {
-            url: String,
-            authentication: Courier::Recipient::WebhookRecipient::Webhook::Authentication?,
-            headers: ::Hash[Symbol, String]?,
-            method_: Courier::Models::Recipient::WebhookRecipient::Webhook::method_?,
-            profile: Courier::Models::Recipient::WebhookRecipient::Webhook::profile?
-          }
-
-        class Webhook < Courier::Internal::Type::BaseModel
-          attr_accessor url: String
-
-          attr_accessor authentication: Courier::Recipient::WebhookRecipient::Webhook::Authentication?
-
-          attr_accessor headers: ::Hash[Symbol, String]?
-
-          attr_accessor method_: Courier::Models::Recipient::WebhookRecipient::Webhook::method_?
-
-          attr_accessor profile: Courier::Models::Recipient::WebhookRecipient::Webhook::profile?
-
-          def initialize: (
-            url: String,
-            ?authentication: Courier::Recipient::WebhookRecipient::Webhook::Authentication?,
-            ?headers: ::Hash[Symbol, String]?,
-            ?method_: Courier::Models::Recipient::WebhookRecipient::Webhook::method_?,
-            ?profile: Courier::Models::Recipient::WebhookRecipient::Webhook::profile?
-          ) -> void
-
-          def to_hash: -> {
-            url: String,
-            authentication: Courier::Recipient::WebhookRecipient::Webhook::Authentication?,
-            headers: ::Hash[Symbol, String]?,
-            method_: Courier::Models::Recipient::WebhookRecipient::Webhook::method_?,
-            profile: Courier::Models::Recipient::WebhookRecipient::Webhook::profile?
-          }
-
-          type authentication =
+          type channel_preference =
             {
-              mode: Courier::Models::Recipient::WebhookRecipient::Webhook::Authentication::mode,
-              token: String?,
-              password: String?,
-              username: String?
+              channel: Courier::Models::Recipient::Preferences::Notification::ChannelPreference::channel
             }
 
-          class Authentication < Courier::Internal::Type::BaseModel
-            attr_accessor mode: Courier::Models::Recipient::WebhookRecipient::Webhook::Authentication::mode
-
-            attr_accessor token: String?
-
-            attr_accessor password: String?
-
-            attr_accessor username: String?
+          class ChannelPreference < Courier::Internal::Type::BaseModel
+            attr_accessor channel: Courier::Models::Recipient::Preferences::Notification::ChannelPreference::channel
 
             def initialize: (
-              mode: Courier::Models::Recipient::WebhookRecipient::Webhook::Authentication::mode,
-              ?token: String?,
-              ?password: String?,
-              ?username: String?
+              channel: Courier::Models::Recipient::Preferences::Notification::ChannelPreference::channel
             ) -> void
 
             def to_hash: -> {
-              mode: Courier::Models::Recipient::WebhookRecipient::Webhook::Authentication::mode,
-              token: String?,
-              password: String?,
-              username: String?
+              channel: Courier::Models::Recipient::Preferences::Notification::ChannelPreference::channel
             }
 
-            type mode = :none | :basic | :bearer
+            type channel =
+              :direct_message | :email | :push | :sms | :webhook | :inbox
 
-            module Mode
+            module Channel
               extend Courier::Internal::Type::Enum
 
-              NONE: :none
-              BASIC: :basic
-              BEARER: :bearer
+              DIRECT_MESSAGE: :direct_message
+              EMAIL: :email
+              PUSH: :push
+              SMS: :sms
+              WEBHOOK: :webhook
+              INBOX: :inbox
 
-              def self?.values: -> ::Array[Courier::Models::Recipient::WebhookRecipient::Webhook::Authentication::mode]
+              def self?.values: -> ::Array[Courier::Models::Recipient::Preferences::Notification::ChannelPreference::channel]
             end
           end
 
-          type method_ = :POST | :PUT
+          type rule = { until_: String, start: String? }
 
-          module Method
-            extend Courier::Internal::Type::Enum
+          class Rule < Courier::Internal::Type::BaseModel
+            attr_accessor until_: String
 
-            POST: :POST
-            PUT: :PUT
+            attr_accessor start: String?
 
-            def self?.values: -> ::Array[Courier::Models::Recipient::WebhookRecipient::Webhook::method_]
+            def initialize: (until_: String, ?start: String?) -> void
+
+            def to_hash: -> { until_: String, start: String? }
           end
 
-          type profile = :limited | :expanded
+          type source = :subscription | :list | :recipient
 
-          module Profile
+          module Source
             extend Courier::Internal::Type::Enum
 
-            LIMITED: :limited
-            EXPANDED: :expanded
+            SUBSCRIPTION: :subscription
+            LIST: :list
+            RECIPIENT: :recipient
 
-            def self?.values: -> ::Array[Courier::Models::Recipient::WebhookRecipient::Webhook::profile]
+            def self?.values: -> ::Array[Courier::Models::Recipient::Preferences::Notification::source]
+          end
+        end
+
+        type category =
+          {
+            status: Courier::Models::Recipient::Preferences::Category::status,
+            channel_preferences: ::Array[Courier::Recipient::Preferences::Category::ChannelPreference]?,
+            rules: ::Array[Courier::Recipient::Preferences::Category::Rule]?,
+            source: Courier::Models::Recipient::Preferences::Category::source?
+          }
+
+        class Category < Courier::Internal::Type::BaseModel
+          attr_accessor status: Courier::Models::Recipient::Preferences::Category::status
+
+          attr_accessor channel_preferences: ::Array[Courier::Recipient::Preferences::Category::ChannelPreference]?
+
+          attr_accessor rules: ::Array[Courier::Recipient::Preferences::Category::Rule]?
+
+          attr_accessor source: Courier::Models::Recipient::Preferences::Category::source?
+
+          def initialize: (
+            status: Courier::Models::Recipient::Preferences::Category::status,
+            ?channel_preferences: ::Array[Courier::Recipient::Preferences::Category::ChannelPreference]?,
+            ?rules: ::Array[Courier::Recipient::Preferences::Category::Rule]?,
+            ?source: Courier::Models::Recipient::Preferences::Category::source?
+          ) -> void
+
+          def to_hash: -> {
+            status: Courier::Models::Recipient::Preferences::Category::status,
+            channel_preferences: ::Array[Courier::Recipient::Preferences::Category::ChannelPreference]?,
+            rules: ::Array[Courier::Recipient::Preferences::Category::Rule]?,
+            source: Courier::Models::Recipient::Preferences::Category::source?
+          }
+
+          type status = :OPTED_IN | :OPTED_OUT | :REQUIRED
+
+          module Status
+            extend Courier::Internal::Type::Enum
+
+            OPTED_IN: :OPTED_IN
+            OPTED_OUT: :OPTED_OUT
+            REQUIRED: :REQUIRED
+
+            def self?.values: -> ::Array[Courier::Models::Recipient::Preferences::Category::status]
+          end
+
+          type channel_preference =
+            {
+              channel: Courier::Models::Recipient::Preferences::Category::ChannelPreference::channel
+            }
+
+          class ChannelPreference < Courier::Internal::Type::BaseModel
+            attr_accessor channel: Courier::Models::Recipient::Preferences::Category::ChannelPreference::channel
+
+            def initialize: (
+              channel: Courier::Models::Recipient::Preferences::Category::ChannelPreference::channel
+            ) -> void
+
+            def to_hash: -> {
+              channel: Courier::Models::Recipient::Preferences::Category::ChannelPreference::channel
+            }
+
+            type channel =
+              :direct_message | :email | :push | :sms | :webhook | :inbox
+
+            module Channel
+              extend Courier::Internal::Type::Enum
+
+              DIRECT_MESSAGE: :direct_message
+              EMAIL: :email
+              PUSH: :push
+              SMS: :sms
+              WEBHOOK: :webhook
+              INBOX: :inbox
+
+              def self?.values: -> ::Array[Courier::Models::Recipient::Preferences::Category::ChannelPreference::channel]
+            end
+          end
+
+          type rule = { until_: String, start: String? }
+
+          class Rule < Courier::Internal::Type::BaseModel
+            attr_accessor until_: String
+
+            attr_accessor start: String?
+
+            def initialize: (until_: String, ?start: String?) -> void
+
+            def to_hash: -> { until_: String, start: String? }
+          end
+
+          type source = :subscription | :list | :recipient
+
+          module Source
+            extend Courier::Internal::Type::Enum
+
+            SUBSCRIPTION: :subscription
+            LIST: :list
+            RECIPIENT: :recipient
+
+            def self?.values: -> ::Array[Courier::Models::Recipient::Preferences::Category::source]
           end
         end
       end
-
-      def self?.variants: -> ::Array[Courier::Models::recipient]
-
-      RecipientDataMap: Courier::Internal::Type::Converter
     end
   end
 end

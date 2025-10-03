@@ -1,9 +1,0 @@
-module Courier
-  module Models
-    module Users
-      type token_list_response = ::Array[Courier::Users::UserToken]
-
-      TokenListResponse: Courier::Internal::Type::Converter
-    end
-  end
-end

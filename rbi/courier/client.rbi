@@ -16,51 +16,6 @@ module Courier
     sig { returns(Courier::Resources::Send) }
     attr_reader :send_
 
-    sig { returns(Courier::Resources::Audiences) }
-    attr_reader :audiences
-
-    sig { returns(Courier::Resources::AuditEvents) }
-    attr_reader :audit_events
-
-    sig { returns(Courier::Resources::Auth) }
-    attr_reader :auth
-
-    sig { returns(Courier::Resources::Automations) }
-    attr_reader :automations
-
-    sig { returns(Courier::Resources::Brands) }
-    attr_reader :brands
-
-    sig { returns(Courier::Resources::Bulk) }
-    attr_reader :bulk
-
-    sig { returns(Courier::Resources::Inbound) }
-    attr_reader :inbound
-
-    sig { returns(Courier::Resources::Lists) }
-    attr_reader :lists
-
-    sig { returns(Courier::Resources::Messages) }
-    attr_reader :messages
-
-    sig { returns(Courier::Resources::Requests) }
-    attr_reader :requests
-
-    sig { returns(Courier::Resources::Notifications) }
-    attr_reader :notifications
-
-    sig { returns(Courier::Resources::Profiles) }
-    attr_reader :profiles
-
-    sig { returns(Courier::Resources::Tenants) }
-    attr_reader :tenants
-
-    sig { returns(Courier::Resources::Translations) }
-    attr_reader :translations
-
-    sig { returns(Courier::Resources::Users) }
-    attr_reader :users
-
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

@@ -3,14 +3,16 @@
 require_relative "../test_helper"
 
 class Courier::Test::Resources::SendTest < Courier::Test::ResourceTest
-  def test_message_required_params
+  def test_send_message_required_params
     skip("Prism tests are disabled")
 
     response =
-      @courier.send_.message(message: {content: {body: "Thanks for signing up, {{name}}", title: "Welcome!"}})
+      @courier.send_.send_message(
+        message: {content: {body: "Thanks for signing up, {{name}}", title: "Welcome!"}}
+      )
 
     assert_pattern do
-      response => Courier::Models::SendMessageResponse
+      response => Courier::Models::SendSendMessageResponse
     end
 
     assert_pattern do
