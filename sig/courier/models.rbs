@@ -5,7 +5,11 @@ module Courier
 
   module MessageRoutingChannel = Courier::Models::MessageRoutingChannel
 
+  class Preference = Courier::Models::Preference
+
   class Recipient = Courier::Models::Recipient
 
   class SendMessageParams = Courier::Models::SendMessageParams
+
+  class Utm = Courier::Models::Utm
 end
