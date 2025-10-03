@@ -1,8 +1,8 @@
 module Courier
   module Models
-    type send_send_message_response = { request_id: String }
+    type send_message_response = { request_id: String }
 
-    class SendSendMessageResponse < Courier::Internal::Type::BaseModel
+    class SendMessageResponse < Courier::Internal::Type::BaseModel
       attr_accessor request_id: String
 
       def initialize: (request_id: String) -> void

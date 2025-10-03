@@ -1,99 +1,99 @@
 module Courier
   module Models
-    type send_send_message_params =
-      { message: Courier::SendSendMessageParams::Message }
+    type send_message_params =
+      { message: Courier::SendMessageParams::Message }
       & Courier::Internal::Type::request_parameters
 
-    class SendSendMessageParams < Courier::Internal::Type::BaseModel
+    class SendMessageParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      attr_accessor message: Courier::SendSendMessageParams::Message
+      attr_accessor message: Courier::SendMessageParams::Message
 
       def initialize: (
-        message: Courier::SendSendMessageParams::Message,
+        message: Courier::SendMessageParams::Message,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
-        message: Courier::SendSendMessageParams::Message,
+        message: Courier::SendMessageParams::Message,
         request_options: Courier::RequestOptions
       }
 
       type message =
         {
-          content: Courier::SendSendMessageParams::Message::Content,
+          content: Courier::SendMessageParams::Message::Content,
           brand_id: String?,
-          channels: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]?,
+          channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
           context: Courier::MessageContext?,
           data: ::Hash[Symbol, top]?,
-          delay: Courier::SendSendMessageParams::Message::Delay?,
-          expiry: Courier::SendSendMessageParams::Message::Expiry?,
-          metadata: Courier::SendSendMessageParams::Message::Metadata?,
-          preferences: Courier::SendSendMessageParams::Message::Preferences?,
-          providers: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]?,
-          routing: Courier::SendSendMessageParams::Message::Routing?,
-          timeout: Courier::SendSendMessageParams::Message::Timeout?,
-          to: Courier::Models::SendSendMessageParams::Message::to?
+          delay: Courier::SendMessageParams::Message::Delay?,
+          expiry: Courier::SendMessageParams::Message::Expiry?,
+          metadata: Courier::SendMessageParams::Message::Metadata?,
+          preferences: Courier::SendMessageParams::Message::Preferences?,
+          providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
+          routing: Courier::SendMessageParams::Message::Routing?,
+          timeout: Courier::SendMessageParams::Message::Timeout?,
+          to: Courier::Models::SendMessageParams::Message::to?
         }
 
       class Message < Courier::Internal::Type::BaseModel
-        attr_accessor content: Courier::SendSendMessageParams::Message::Content
+        attr_accessor content: Courier::SendMessageParams::Message::Content
 
         attr_accessor brand_id: String?
 
-        attr_accessor channels: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]?
+        attr_accessor channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?
 
         attr_accessor context: Courier::MessageContext?
 
         attr_accessor data: ::Hash[Symbol, top]?
 
-        attr_accessor delay: Courier::SendSendMessageParams::Message::Delay?
+        attr_accessor delay: Courier::SendMessageParams::Message::Delay?
 
-        attr_accessor expiry: Courier::SendSendMessageParams::Message::Expiry?
+        attr_accessor expiry: Courier::SendMessageParams::Message::Expiry?
 
-        attr_accessor metadata: Courier::SendSendMessageParams::Message::Metadata?
+        attr_accessor metadata: Courier::SendMessageParams::Message::Metadata?
 
-        attr_accessor preferences: Courier::SendSendMessageParams::Message::Preferences?
+        attr_accessor preferences: Courier::SendMessageParams::Message::Preferences?
 
-        attr_accessor providers: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]?
+        attr_accessor providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?
 
-        attr_accessor routing: Courier::SendSendMessageParams::Message::Routing?
+        attr_accessor routing: Courier::SendMessageParams::Message::Routing?
 
-        attr_accessor timeout: Courier::SendSendMessageParams::Message::Timeout?
+        attr_accessor timeout: Courier::SendMessageParams::Message::Timeout?
 
-        attr_accessor to: Courier::Models::SendSendMessageParams::Message::to?
+        attr_accessor to: Courier::Models::SendMessageParams::Message::to?
 
         def initialize: (
-          content: Courier::SendSendMessageParams::Message::Content,
+          content: Courier::SendMessageParams::Message::Content,
           ?brand_id: String?,
-          ?channels: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]?,
+          ?channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
           ?context: Courier::MessageContext?,
           ?data: ::Hash[Symbol, top]?,
-          ?delay: Courier::SendSendMessageParams::Message::Delay?,
-          ?expiry: Courier::SendSendMessageParams::Message::Expiry?,
-          ?metadata: Courier::SendSendMessageParams::Message::Metadata?,
-          ?preferences: Courier::SendSendMessageParams::Message::Preferences?,
-          ?providers: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]?,
-          ?routing: Courier::SendSendMessageParams::Message::Routing?,
-          ?timeout: Courier::SendSendMessageParams::Message::Timeout?,
-          ?to: Courier::Models::SendSendMessageParams::Message::to?
+          ?delay: Courier::SendMessageParams::Message::Delay?,
+          ?expiry: Courier::SendMessageParams::Message::Expiry?,
+          ?metadata: Courier::SendMessageParams::Message::Metadata?,
+          ?preferences: Courier::SendMessageParams::Message::Preferences?,
+          ?providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
+          ?routing: Courier::SendMessageParams::Message::Routing?,
+          ?timeout: Courier::SendMessageParams::Message::Timeout?,
+          ?to: Courier::Models::SendMessageParams::Message::to?
         ) -> void
 
         def to_hash: -> {
-          content: Courier::SendSendMessageParams::Message::Content,
+          content: Courier::SendMessageParams::Message::Content,
           brand_id: String?,
-          channels: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]?,
+          channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
           context: Courier::MessageContext?,
           data: ::Hash[Symbol, top]?,
-          delay: Courier::SendSendMessageParams::Message::Delay?,
-          expiry: Courier::SendSendMessageParams::Message::Expiry?,
-          metadata: Courier::SendSendMessageParams::Message::Metadata?,
-          preferences: Courier::SendSendMessageParams::Message::Preferences?,
-          providers: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]?,
-          routing: Courier::SendSendMessageParams::Message::Routing?,
-          timeout: Courier::SendSendMessageParams::Message::Timeout?,
-          to: Courier::Models::SendSendMessageParams::Message::to?
+          delay: Courier::SendMessageParams::Message::Delay?,
+          expiry: Courier::SendMessageParams::Message::Expiry?,
+          metadata: Courier::SendMessageParams::Message::Metadata?,
+          preferences: Courier::SendMessageParams::Message::Preferences?,
+          providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
+          routing: Courier::SendMessageParams::Message::Routing?,
+          timeout: Courier::SendMessageParams::Message::Timeout?,
+          to: Courier::Models::SendMessageParams::Message::to?
         }
 
         type content = { body: String, title: String }
@@ -112,11 +112,11 @@ module Courier
           {
             brand_id: String?,
             if_: String?,
-            metadata: Courier::SendSendMessageParams::Message::Channel::Metadata?,
+            metadata: Courier::SendMessageParams::Message::Channel::Metadata?,
             override: ::Hash[Symbol, top]?,
             providers: ::Array[String]?,
-            routing_method: Courier::Models::SendSendMessageParams::Message::Channel::routing_method?,
-            timeouts: Courier::SendSendMessageParams::Message::Channel::Timeouts?
+            routing_method: Courier::Models::SendMessageParams::Message::Channel::routing_method?,
+            timeouts: Courier::SendMessageParams::Message::Channel::Timeouts?
           }
 
         class Channel < Courier::Internal::Type::BaseModel
@@ -124,50 +124,50 @@ module Courier
 
           attr_accessor if_: String?
 
-          attr_accessor metadata: Courier::SendSendMessageParams::Message::Channel::Metadata?
+          attr_accessor metadata: Courier::SendMessageParams::Message::Channel::Metadata?
 
           attr_accessor override: ::Hash[Symbol, top]?
 
           attr_accessor providers: ::Array[String]?
 
-          attr_accessor routing_method: Courier::Models::SendSendMessageParams::Message::Channel::routing_method?
+          attr_accessor routing_method: Courier::Models::SendMessageParams::Message::Channel::routing_method?
 
-          attr_accessor timeouts: Courier::SendSendMessageParams::Message::Channel::Timeouts?
+          attr_accessor timeouts: Courier::SendMessageParams::Message::Channel::Timeouts?
 
           def initialize: (
             ?brand_id: String?,
             ?if_: String?,
-            ?metadata: Courier::SendSendMessageParams::Message::Channel::Metadata?,
+            ?metadata: Courier::SendMessageParams::Message::Channel::Metadata?,
             ?override: ::Hash[Symbol, top]?,
             ?providers: ::Array[String]?,
-            ?routing_method: Courier::Models::SendSendMessageParams::Message::Channel::routing_method?,
-            ?timeouts: Courier::SendSendMessageParams::Message::Channel::Timeouts?
+            ?routing_method: Courier::Models::SendMessageParams::Message::Channel::routing_method?,
+            ?timeouts: Courier::SendMessageParams::Message::Channel::Timeouts?
           ) -> void
 
           def to_hash: -> {
             brand_id: String?,
             if_: String?,
-            metadata: Courier::SendSendMessageParams::Message::Channel::Metadata?,
+            metadata: Courier::SendMessageParams::Message::Channel::Metadata?,
             override: ::Hash[Symbol, top]?,
             providers: ::Array[String]?,
-            routing_method: Courier::Models::SendSendMessageParams::Message::Channel::routing_method?,
-            timeouts: Courier::SendSendMessageParams::Message::Channel::Timeouts?
+            routing_method: Courier::Models::SendMessageParams::Message::Channel::routing_method?,
+            timeouts: Courier::SendMessageParams::Message::Channel::Timeouts?
           }
 
           type metadata =
             {
-              utm: Courier::SendSendMessageParams::Message::Channel::Metadata::Utm?
+              utm: Courier::SendMessageParams::Message::Channel::Metadata::Utm?
             }
 
           class Metadata < Courier::Internal::Type::BaseModel
-            attr_accessor utm: Courier::SendSendMessageParams::Message::Channel::Metadata::Utm?
+            attr_accessor utm: Courier::SendMessageParams::Message::Channel::Metadata::Utm?
 
             def initialize: (
-              ?utm: Courier::SendSendMessageParams::Message::Channel::Metadata::Utm?
+              ?utm: Courier::SendMessageParams::Message::Channel::Metadata::Utm?
             ) -> void
 
             def to_hash: -> {
-              utm: Courier::SendSendMessageParams::Message::Channel::Metadata::Utm?
+              utm: Courier::SendMessageParams::Message::Channel::Metadata::Utm?
             }
 
             type utm =
@@ -216,7 +216,7 @@ module Courier
             ALL: :all
             SINGLE: :single
 
-            def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::Channel::routing_method]
+            def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::Channel::routing_method]
           end
 
           type timeouts = { channel: Integer?, provider: Integer? }
@@ -246,22 +246,22 @@ module Courier
 
         type expiry =
           {
-            expires_in: Courier::Models::SendSendMessageParams::Message::Expiry::expires_in,
+            expires_in: Courier::Models::SendMessageParams::Message::Expiry::expires_in,
             expires_at: String?
           }
 
         class Expiry < Courier::Internal::Type::BaseModel
-          attr_accessor expires_in: Courier::Models::SendSendMessageParams::Message::Expiry::expires_in
+          attr_accessor expires_in: Courier::Models::SendMessageParams::Message::Expiry::expires_in
 
           attr_accessor expires_at: String?
 
           def initialize: (
-            expires_in: Courier::Models::SendSendMessageParams::Message::Expiry::expires_in,
+            expires_in: Courier::Models::SendMessageParams::Message::Expiry::expires_in,
             ?expires_at: String?
           ) -> void
 
           def to_hash: -> {
-            expires_in: Courier::Models::SendSendMessageParams::Message::Expiry::expires_in,
+            expires_in: Courier::Models::SendMessageParams::Message::Expiry::expires_in,
             expires_at: String?
           }
 
@@ -270,7 +270,7 @@ module Courier
           module ExpiresIn
             extend Courier::Internal::Type::Union
 
-            def self?.variants: -> ::Array[Courier::Models::SendSendMessageParams::Message::Expiry::expires_in]
+            def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::Expiry::expires_in]
           end
         end
 
@@ -279,7 +279,7 @@ module Courier
             event: String?,
             tags: ::Array[String]?,
             trace_id: String?,
-            utm: Courier::SendSendMessageParams::Message::Metadata::Utm?
+            utm: Courier::SendMessageParams::Message::Metadata::Utm?
           }
 
         class Metadata < Courier::Internal::Type::BaseModel
@@ -289,20 +289,20 @@ module Courier
 
           attr_accessor trace_id: String?
 
-          attr_accessor utm: Courier::SendSendMessageParams::Message::Metadata::Utm?
+          attr_accessor utm: Courier::SendMessageParams::Message::Metadata::Utm?
 
           def initialize: (
             ?event: String?,
             ?tags: ::Array[String]?,
             ?trace_id: String?,
-            ?utm: Courier::SendSendMessageParams::Message::Metadata::Utm?
+            ?utm: Courier::SendMessageParams::Message::Metadata::Utm?
           ) -> void
 
           def to_hash: -> {
             event: String?,
             tags: ::Array[String]?,
             trace_id: String?,
-            utm: Courier::SendSendMessageParams::Message::Metadata::Utm?
+            utm: Courier::SendMessageParams::Message::Metadata::Utm?
           }
 
           type utm =
@@ -356,7 +356,7 @@ module Courier
         type provider =
           {
             if_: String?,
-            metadata: Courier::SendSendMessageParams::Message::Provider::Metadata?,
+            metadata: Courier::SendMessageParams::Message::Provider::Metadata?,
             override: ::Hash[Symbol, top]?,
             timeouts: Integer?
           }
@@ -364,7 +364,7 @@ module Courier
         class Provider < Courier::Internal::Type::BaseModel
           attr_accessor if_: String?
 
-          attr_accessor metadata: Courier::SendSendMessageParams::Message::Provider::Metadata?
+          attr_accessor metadata: Courier::SendMessageParams::Message::Provider::Metadata?
 
           attr_accessor override: ::Hash[Symbol, top]?
 
@@ -372,32 +372,32 @@ module Courier
 
           def initialize: (
             ?if_: String?,
-            ?metadata: Courier::SendSendMessageParams::Message::Provider::Metadata?,
+            ?metadata: Courier::SendMessageParams::Message::Provider::Metadata?,
             ?override: ::Hash[Symbol, top]?,
             ?timeouts: Integer?
           ) -> void
 
           def to_hash: -> {
             if_: String?,
-            metadata: Courier::SendSendMessageParams::Message::Provider::Metadata?,
+            metadata: Courier::SendMessageParams::Message::Provider::Metadata?,
             override: ::Hash[Symbol, top]?,
             timeouts: Integer?
           }
 
           type metadata =
             {
-              utm: Courier::SendSendMessageParams::Message::Provider::Metadata::Utm?
+              utm: Courier::SendMessageParams::Message::Provider::Metadata::Utm?
             }
 
           class Metadata < Courier::Internal::Type::BaseModel
-            attr_accessor utm: Courier::SendSendMessageParams::Message::Provider::Metadata::Utm?
+            attr_accessor utm: Courier::SendMessageParams::Message::Provider::Metadata::Utm?
 
             def initialize: (
-              ?utm: Courier::SendSendMessageParams::Message::Provider::Metadata::Utm?
+              ?utm: Courier::SendMessageParams::Message::Provider::Metadata::Utm?
             ) -> void
 
             def to_hash: -> {
-              utm: Courier::SendSendMessageParams::Message::Provider::Metadata::Utm?
+              utm: Courier::SendMessageParams::Message::Provider::Metadata::Utm?
             }
 
             type utm =
@@ -442,22 +442,22 @@ module Courier
         type routing =
           {
             channels: ::Array[Courier::Models::message_routing_channel],
-            method_: Courier::Models::SendSendMessageParams::Message::Routing::method_
+            method_: Courier::Models::SendMessageParams::Message::Routing::method_
           }
 
         class Routing < Courier::Internal::Type::BaseModel
           attr_accessor channels: ::Array[Courier::Models::message_routing_channel]
 
-          attr_accessor method_: Courier::Models::SendSendMessageParams::Message::Routing::method_
+          attr_accessor method_: Courier::Models::SendMessageParams::Message::Routing::method_
 
           def initialize: (
             channels: ::Array[Courier::Models::message_routing_channel],
-            method_: Courier::Models::SendSendMessageParams::Message::Routing::method_
+            method_: Courier::Models::SendMessageParams::Message::Routing::method_
           ) -> void
 
           def to_hash: -> {
             channels: ::Array[Courier::Models::message_routing_channel],
-            method_: Courier::Models::SendSendMessageParams::Message::Routing::method_
+            method_: Courier::Models::SendMessageParams::Message::Routing::method_
           }
 
           type method_ = :all | :single
@@ -468,14 +468,14 @@ module Courier
             ALL: :all
             SINGLE: :single
 
-            def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::Routing::method_]
+            def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::Routing::method_]
           end
         end
 
         type timeout =
           {
             channel: ::Hash[Symbol, Integer]?,
-            criteria: Courier::Models::SendSendMessageParams::Message::Timeout::criteria?,
+            criteria: Courier::Models::SendMessageParams::Message::Timeout::criteria?,
             escalation: Integer?,
             message: Integer?,
             provider: ::Hash[Symbol, Integer]?
@@ -484,7 +484,7 @@ module Courier
         class Timeout < Courier::Internal::Type::BaseModel
           attr_accessor channel: ::Hash[Symbol, Integer]?
 
-          attr_accessor criteria: Courier::Models::SendSendMessageParams::Message::Timeout::criteria?
+          attr_accessor criteria: Courier::Models::SendMessageParams::Message::Timeout::criteria?
 
           attr_accessor escalation: Integer?
 
@@ -494,7 +494,7 @@ module Courier
 
           def initialize: (
             ?channel: ::Hash[Symbol, Integer]?,
-            ?criteria: Courier::Models::SendSendMessageParams::Message::Timeout::criteria?,
+            ?criteria: Courier::Models::SendMessageParams::Message::Timeout::criteria?,
             ?escalation: Integer?,
             ?message: Integer?,
             ?provider: ::Hash[Symbol, Integer]?
@@ -502,7 +502,7 @@ module Courier
 
           def to_hash: -> {
             channel: ::Hash[Symbol, Integer]?,
-            criteria: Courier::Models::SendSendMessageParams::Message::Timeout::criteria?,
+            criteria: Courier::Models::SendMessageParams::Message::Timeout::criteria?,
             escalation: Integer?,
             message: Integer?,
             provider: ::Hash[Symbol, Integer]?
@@ -518,12 +518,12 @@ module Courier
             VIEWED: :viewed
             ENGAGED: :engaged
 
-            def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::Timeout::criteria]
+            def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::Timeout::criteria]
           end
         end
 
         type to =
-          Courier::SendSendMessageParams::Message::To::UnionMember0
+          Courier::SendMessageParams::Message::To::UnionMember0
           | ::Array[Courier::Recipient]
 
         module To
@@ -537,7 +537,7 @@ module Courier
               email: String?,
               locale: String?,
               phone_number: String?,
-              preferences: Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences?,
+              preferences: Courier::SendMessageParams::Message::To::UnionMember0::Preferences?,
               tenant_id: String?,
               user_id: String?
             }
@@ -555,7 +555,7 @@ module Courier
 
             attr_accessor phone_number: String?
 
-            attr_accessor preferences: Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences?
+            attr_accessor preferences: Courier::SendMessageParams::Message::To::UnionMember0::Preferences?
 
             attr_accessor tenant_id: String?
 
@@ -568,7 +568,7 @@ module Courier
               ?email: String?,
               ?locale: String?,
               ?phone_number: String?,
-              ?preferences: Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences?,
+              ?preferences: Courier::SendMessageParams::Message::To::UnionMember0::Preferences?,
               ?tenant_id: String?,
               ?user_id: String?
             ) -> void
@@ -580,66 +580,66 @@ module Courier
               email: String?,
               locale: String?,
               phone_number: String?,
-              preferences: Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences?,
+              preferences: Courier::SendMessageParams::Message::To::UnionMember0::Preferences?,
               tenant_id: String?,
               user_id: String?
             }
 
             type preferences =
               {
-                notifications: ::Hash[Symbol, Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification],
-                categories: ::Hash[Symbol, Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category]?,
+                notifications: ::Hash[Symbol, Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification],
+                categories: ::Hash[Symbol, Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category]?,
                 template_id: String?
               }
 
             class Preferences < Courier::Internal::Type::BaseModel
-              attr_accessor notifications: ::Hash[Symbol, Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification]
+              attr_accessor notifications: ::Hash[Symbol, Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification]
 
-              attr_accessor categories: ::Hash[Symbol, Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category]?
+              attr_accessor categories: ::Hash[Symbol, Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category]?
 
               attr_accessor template_id: String?
 
               def initialize: (
-                notifications: ::Hash[Symbol, Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification],
-                ?categories: ::Hash[Symbol, Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category]?,
+                notifications: ::Hash[Symbol, Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification],
+                ?categories: ::Hash[Symbol, Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category]?,
                 ?template_id: String?
               ) -> void
 
               def to_hash: -> {
-                notifications: ::Hash[Symbol, Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification],
-                categories: ::Hash[Symbol, Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category]?,
+                notifications: ::Hash[Symbol, Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification],
+                categories: ::Hash[Symbol, Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category]?,
                 template_id: String?
               }
 
               type notification =
                 {
-                  status: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::status,
-                  channel_preferences: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]?,
-                  rules: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]?,
-                  source: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::source?
+                  status: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::status,
+                  channel_preferences: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]?,
+                  rules: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]?,
+                  source: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::source?
                 }
 
               class Notification < Courier::Internal::Type::BaseModel
-                attr_accessor status: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::status
+                attr_accessor status: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::status
 
-                attr_accessor channel_preferences: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]?
+                attr_accessor channel_preferences: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]?
 
-                attr_accessor rules: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]?
+                attr_accessor rules: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]?
 
-                attr_accessor source: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::source?
+                attr_accessor source: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::source?
 
                 def initialize: (
-                  status: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::status,
-                  ?channel_preferences: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]?,
-                  ?rules: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]?,
-                  ?source: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::source?
+                  status: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::status,
+                  ?channel_preferences: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]?,
+                  ?rules: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]?,
+                  ?source: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::source?
                 ) -> void
 
                 def to_hash: -> {
-                  status: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::status,
-                  channel_preferences: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]?,
-                  rules: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]?,
-                  source: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::source?
+                  status: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::status,
+                  channel_preferences: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]?,
+                  rules: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]?,
+                  source: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::source?
                 }
 
                 type status = :OPTED_IN | :OPTED_OUT | :REQUIRED
@@ -651,23 +651,23 @@ module Courier
                   OPTED_OUT: :OPTED_OUT
                   REQUIRED: :REQUIRED
 
-                  def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::status]
+                  def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::status]
                 end
 
                 type channel_preference =
                   {
-                    channel: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel
+                    channel: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel
                   }
 
                 class ChannelPreference < Courier::Internal::Type::BaseModel
-                  attr_accessor channel: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel
+                  attr_accessor channel: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel
 
                   def initialize: (
-                    channel: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel
+                    channel: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel
                   ) -> void
 
                   def to_hash: -> {
-                    channel: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel
+                    channel: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel
                   }
 
                   type channel =
@@ -683,7 +683,7 @@ module Courier
                     WEBHOOK: :webhook
                     INBOX: :inbox
 
-                    def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel]
+                    def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::channel]
                   end
                 end
 
@@ -708,39 +708,39 @@ module Courier
                   LIST: :list
                   RECIPIENT: :recipient
 
-                  def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::source]
+                  def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::source]
                 end
               end
 
               type category =
                 {
-                  status: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::status,
-                  channel_preferences: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]?,
-                  rules: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]?,
-                  source: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::source?
+                  status: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::status,
+                  channel_preferences: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]?,
+                  rules: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]?,
+                  source: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::source?
                 }
 
               class Category < Courier::Internal::Type::BaseModel
-                attr_accessor status: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::status
+                attr_accessor status: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::status
 
-                attr_accessor channel_preferences: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]?
+                attr_accessor channel_preferences: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]?
 
-                attr_accessor rules: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]?
+                attr_accessor rules: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]?
 
-                attr_accessor source: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::source?
+                attr_accessor source: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::source?
 
                 def initialize: (
-                  status: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::status,
-                  ?channel_preferences: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]?,
-                  ?rules: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]?,
-                  ?source: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::source?
+                  status: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::status,
+                  ?channel_preferences: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]?,
+                  ?rules: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]?,
+                  ?source: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::source?
                 ) -> void
 
                 def to_hash: -> {
-                  status: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::status,
-                  channel_preferences: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]?,
-                  rules: ::Array[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]?,
-                  source: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::source?
+                  status: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::status,
+                  channel_preferences: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]?,
+                  rules: ::Array[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]?,
+                  source: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::source?
                 }
 
                 type status = :OPTED_IN | :OPTED_OUT | :REQUIRED
@@ -752,23 +752,23 @@ module Courier
                   OPTED_OUT: :OPTED_OUT
                   REQUIRED: :REQUIRED
 
-                  def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::status]
+                  def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::status]
                 end
 
                 type channel_preference =
                   {
-                    channel: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel
+                    channel: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel
                   }
 
                 class ChannelPreference < Courier::Internal::Type::BaseModel
-                  attr_accessor channel: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel
+                  attr_accessor channel: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel
 
                   def initialize: (
-                    channel: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel
+                    channel: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel
                   ) -> void
 
                   def to_hash: -> {
-                    channel: Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel
+                    channel: Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel
                   }
 
                   type channel =
@@ -784,7 +784,7 @@ module Courier
                     WEBHOOK: :webhook
                     INBOX: :inbox
 
-                    def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel]
+                    def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::channel]
                   end
                 end
 
@@ -809,13 +809,13 @@ module Courier
                   LIST: :list
                   RECIPIENT: :recipient
 
-                  def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::source]
+                  def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::source]
                 end
               end
             end
           end
 
-          def self?.variants: -> ::Array[Courier::Models::SendSendMessageParams::Message::to]
+          def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::to]
 
           RecipientArray: Courier::Internal::Type::Converter
         end

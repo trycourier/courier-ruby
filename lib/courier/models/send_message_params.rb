@@ -2,8 +2,8 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Send#send_message
-    class SendSendMessageParams < Courier::Internal::Type::BaseModel
+    # @see Courier::Resources::Send#message
+    class SendMessageParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
@@ -11,14 +11,14 @@ module Courier
       #   The message property has the following primary top-level properties. They define
       #   the destination and content of the message.
       #
-      #   @return [Courier::Models::SendSendMessageParams::Message]
-      required :message, -> { Courier::SendSendMessageParams::Message }
+      #   @return [Courier::Models::SendMessageParams::Message]
+      required :message, -> { Courier::SendMessageParams::Message }
 
       # @!method initialize(message:, request_options: {})
       #   Some parameter documentations has been truncated, see
-      #   {Courier::Models::SendSendMessageParams} for more details.
+      #   {Courier::Models::SendMessageParams} for more details.
       #
-      #   @param message [Courier::Models::SendSendMessageParams::Message] The message property has the following primary top-level properties. They define
+      #   @param message [Courier::Models::SendMessageParams::Message] The message property has the following primary top-level properties. They define
       #
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
 
@@ -26,8 +26,8 @@ module Courier
         # @!attribute content
         #   Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
         #
-        #   @return [Courier::Models::SendSendMessageParams::Message::Content]
-        required :content, -> { Courier::SendSendMessageParams::Message::Content }
+        #   @return [Courier::Models::SendMessageParams::Message::Content]
+        required :content, -> { Courier::SendMessageParams::Message::Content }
 
         # @!attribute brand_id
         #
@@ -38,9 +38,9 @@ module Courier
         #   Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
         #   inbox, direct_message, banner, webhook.
         #
-        #   @return [Hash{Symbol=>Courier::Models::SendSendMessageParams::Message::Channel}, nil]
+        #   @return [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Channel}, nil]
         optional :channels,
-                 -> { Courier::Internal::Type::HashOf[Courier::SendSendMessageParams::Message::Channel] },
+                 -> { Courier::Internal::Type::HashOf[Courier::SendMessageParams::Message::Channel] },
                  nil?: true
 
         # @!attribute context
@@ -55,82 +55,82 @@ module Courier
 
         # @!attribute delay
         #
-        #   @return [Courier::Models::SendSendMessageParams::Message::Delay, nil]
-        optional :delay, -> { Courier::SendSendMessageParams::Message::Delay }, nil?: true
+        #   @return [Courier::Models::SendMessageParams::Message::Delay, nil]
+        optional :delay, -> { Courier::SendMessageParams::Message::Delay }, nil?: true
 
         # @!attribute expiry
         #
-        #   @return [Courier::Models::SendSendMessageParams::Message::Expiry, nil]
-        optional :expiry, -> { Courier::SendSendMessageParams::Message::Expiry }, nil?: true
+        #   @return [Courier::Models::SendMessageParams::Message::Expiry, nil]
+        optional :expiry, -> { Courier::SendMessageParams::Message::Expiry }, nil?: true
 
         # @!attribute metadata
         #
-        #   @return [Courier::Models::SendSendMessageParams::Message::Metadata, nil]
-        optional :metadata, -> { Courier::SendSendMessageParams::Message::Metadata }, nil?: true
+        #   @return [Courier::Models::SendMessageParams::Message::Metadata, nil]
+        optional :metadata, -> { Courier::SendMessageParams::Message::Metadata }, nil?: true
 
         # @!attribute preferences
         #
-        #   @return [Courier::Models::SendSendMessageParams::Message::Preferences, nil]
-        optional :preferences, -> { Courier::SendSendMessageParams::Message::Preferences }, nil?: true
+        #   @return [Courier::Models::SendMessageParams::Message::Preferences, nil]
+        optional :preferences, -> { Courier::SendMessageParams::Message::Preferences }, nil?: true
 
         # @!attribute providers
         #
-        #   @return [Hash{Symbol=>Courier::Models::SendSendMessageParams::Message::Provider}, nil]
+        #   @return [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Provider}, nil]
         optional :providers,
-                 -> { Courier::Internal::Type::HashOf[Courier::SendSendMessageParams::Message::Provider] },
+                 -> { Courier::Internal::Type::HashOf[Courier::SendMessageParams::Message::Provider] },
                  nil?: true
 
         # @!attribute routing
         #   Customize which channels/providers Courier may deliver the message through.
         #
-        #   @return [Courier::Models::SendSendMessageParams::Message::Routing, nil]
-        optional :routing, -> { Courier::SendSendMessageParams::Message::Routing }, nil?: true
+        #   @return [Courier::Models::SendMessageParams::Message::Routing, nil]
+        optional :routing, -> { Courier::SendMessageParams::Message::Routing }, nil?: true
 
         # @!attribute timeout
         #
-        #   @return [Courier::Models::SendSendMessageParams::Message::Timeout, nil]
-        optional :timeout, -> { Courier::SendSendMessageParams::Message::Timeout }, nil?: true
+        #   @return [Courier::Models::SendMessageParams::Message::Timeout, nil]
+        optional :timeout, -> { Courier::SendMessageParams::Message::Timeout }, nil?: true
 
         # @!attribute to
         #   The recipient or a list of recipients of the message
         #
-        #   @return [Courier::Models::SendSendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>, nil]
-        optional :to, union: -> { Courier::SendSendMessageParams::Message::To }, nil?: true
+        #   @return [Courier::Models::SendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>, nil]
+        optional :to, union: -> { Courier::SendMessageParams::Message::To }, nil?: true
 
         # @!method initialize(content:, brand_id: nil, channels: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, timeout: nil, to: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Courier::Models::SendSendMessageParams::Message} for more details.
+        #   {Courier::Models::SendMessageParams::Message} for more details.
         #
         #   The message property has the following primary top-level properties. They define
         #   the destination and content of the message.
         #
-        #   @param content [Courier::Models::SendSendMessageParams::Message::Content] Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
+        #   @param content [Courier::Models::SendMessageParams::Message::Content] Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
         #
         #   @param brand_id [String, nil]
         #
-        #   @param channels [Hash{Symbol=>Courier::Models::SendSendMessageParams::Message::Channel}, nil] Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
+        #   @param channels [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Channel}, nil] Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
         #
         #   @param context [Courier::Models::MessageContext, nil]
         #
         #   @param data [Hash{Symbol=>Object}, nil]
         #
-        #   @param delay [Courier::Models::SendSendMessageParams::Message::Delay, nil]
+        #   @param delay [Courier::Models::SendMessageParams::Message::Delay, nil]
         #
-        #   @param expiry [Courier::Models::SendSendMessageParams::Message::Expiry, nil]
+        #   @param expiry [Courier::Models::SendMessageParams::Message::Expiry, nil]
         #
-        #   @param metadata [Courier::Models::SendSendMessageParams::Message::Metadata, nil]
+        #   @param metadata [Courier::Models::SendMessageParams::Message::Metadata, nil]
         #
-        #   @param preferences [Courier::Models::SendSendMessageParams::Message::Preferences, nil]
+        #   @param preferences [Courier::Models::SendMessageParams::Message::Preferences, nil]
         #
-        #   @param providers [Hash{Symbol=>Courier::Models::SendSendMessageParams::Message::Provider}, nil]
+        #   @param providers [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Provider}, nil]
         #
-        #   @param routing [Courier::Models::SendSendMessageParams::Message::Routing, nil] Customize which channels/providers Courier may deliver the message through.
+        #   @param routing [Courier::Models::SendMessageParams::Message::Routing, nil] Customize which channels/providers Courier may deliver the message through.
         #
-        #   @param timeout [Courier::Models::SendSendMessageParams::Message::Timeout, nil]
+        #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #
-        #   @param to [Courier::Models::SendSendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>, nil] The recipient or a list of recipients of the message
+        #   @param to [Courier::Models::SendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>, nil] The recipient or a list of recipients of the message
 
-        # @see Courier::Models::SendSendMessageParams::Message#content
+        # @see Courier::Models::SendMessageParams::Message#content
         class Content < Courier::Internal::Type::BaseModel
           # @!attribute body
           #   The text content displayed in the notification.
@@ -167,8 +167,8 @@ module Courier
 
           # @!attribute metadata
           #
-          #   @return [Courier::Models::SendSendMessageParams::Message::Channel::Metadata, nil]
-          optional :metadata, -> { Courier::SendSendMessageParams::Message::Channel::Metadata }, nil?: true
+          #   @return [Courier::Models::SendMessageParams::Message::Channel::Metadata, nil]
+          optional :metadata, -> { Courier::SendMessageParams::Message::Channel::Metadata }, nil?: true
 
           # @!attribute override
           #   Channel specific overrides.
@@ -185,42 +185,42 @@ module Courier
           # @!attribute routing_method
           #   Defaults to `single`.
           #
-          #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::Channel::RoutingMethod, nil]
+          #   @return [Symbol, Courier::Models::SendMessageParams::Message::Channel::RoutingMethod, nil]
           optional :routing_method,
-                   enum: -> { Courier::SendSendMessageParams::Message::Channel::RoutingMethod },
+                   enum: -> { Courier::SendMessageParams::Message::Channel::RoutingMethod },
                    nil?: true
 
           # @!attribute timeouts
           #
-          #   @return [Courier::Models::SendSendMessageParams::Message::Channel::Timeouts, nil]
-          optional :timeouts, -> { Courier::SendSendMessageParams::Message::Channel::Timeouts }, nil?: true
+          #   @return [Courier::Models::SendMessageParams::Message::Channel::Timeouts, nil]
+          optional :timeouts, -> { Courier::SendMessageParams::Message::Channel::Timeouts }, nil?: true
 
           # @!method initialize(brand_id: nil, if_: nil, metadata: nil, override: nil, providers: nil, routing_method: nil, timeouts: nil)
           #   @param brand_id [String, nil] Brand id used for rendering.
           #
           #   @param if_ [String, nil] JS conditional with access to data/profile.
           #
-          #   @param metadata [Courier::Models::SendSendMessageParams::Message::Channel::Metadata, nil]
+          #   @param metadata [Courier::Models::SendMessageParams::Message::Channel::Metadata, nil]
           #
           #   @param override [Hash{Symbol=>Object}, nil] Channel specific overrides.
           #
           #   @param providers [Array<String>, nil] Providers enabled for this channel.
           #
-          #   @param routing_method [Symbol, Courier::Models::SendSendMessageParams::Message::Channel::RoutingMethod, nil] Defaults to `single`.
+          #   @param routing_method [Symbol, Courier::Models::SendMessageParams::Message::Channel::RoutingMethod, nil] Defaults to `single`.
           #
-          #   @param timeouts [Courier::Models::SendSendMessageParams::Message::Channel::Timeouts, nil]
+          #   @param timeouts [Courier::Models::SendMessageParams::Message::Channel::Timeouts, nil]
 
-          # @see Courier::Models::SendSendMessageParams::Message::Channel#metadata
+          # @see Courier::Models::SendMessageParams::Message::Channel#metadata
           class Metadata < Courier::Internal::Type::BaseModel
             # @!attribute utm
             #
-            #   @return [Courier::Models::SendSendMessageParams::Message::Channel::Metadata::Utm, nil]
-            optional :utm, -> { Courier::SendSendMessageParams::Message::Channel::Metadata::Utm }, nil?: true
+            #   @return [Courier::Models::SendMessageParams::Message::Channel::Metadata::Utm, nil]
+            optional :utm, -> { Courier::SendMessageParams::Message::Channel::Metadata::Utm }, nil?: true
 
             # @!method initialize(utm: nil)
-            #   @param utm [Courier::Models::SendSendMessageParams::Message::Channel::Metadata::Utm, nil]
+            #   @param utm [Courier::Models::SendMessageParams::Message::Channel::Metadata::Utm, nil]
 
-            # @see Courier::Models::SendSendMessageParams::Message::Channel::Metadata#utm
+            # @see Courier::Models::SendMessageParams::Message::Channel::Metadata#utm
             class Utm < Courier::Internal::Type::BaseModel
               # @!attribute campaign
               #
@@ -258,7 +258,7 @@ module Courier
 
           # Defaults to `single`.
           #
-          # @see Courier::Models::SendSendMessageParams::Message::Channel#routing_method
+          # @see Courier::Models::SendMessageParams::Message::Channel#routing_method
           module RoutingMethod
             extend Courier::Internal::Type::Enum
 
@@ -269,7 +269,7 @@ module Courier
             #   @return [Array<Symbol>]
           end
 
-          # @see Courier::Models::SendSendMessageParams::Message::Channel#timeouts
+          # @see Courier::Models::SendMessageParams::Message::Channel#timeouts
           class Timeouts < Courier::Internal::Type::BaseModel
             # @!attribute channel
             #
@@ -287,7 +287,7 @@ module Courier
           end
         end
 
-        # @see Courier::Models::SendSendMessageParams::Message#delay
+        # @see Courier::Models::SendMessageParams::Message#delay
         class Delay < Courier::Internal::Type::BaseModel
           # @!attribute duration
           #   The duration of the delay in milliseconds.
@@ -307,13 +307,13 @@ module Courier
           #   @param until_ [String, nil] ISO 8601 timestamp or opening_hours-like format.
         end
 
-        # @see Courier::Models::SendSendMessageParams::Message#expiry
+        # @see Courier::Models::SendMessageParams::Message#expiry
         class Expiry < Courier::Internal::Type::BaseModel
           # @!attribute expires_in
           #   Duration in ms or ISO8601 duration (e.g. P1DT4H).
           #
           #   @return [String, Integer]
-          required :expires_in, union: -> { Courier::SendSendMessageParams::Message::Expiry::ExpiresIn }
+          required :expires_in, union: -> { Courier::SendMessageParams::Message::Expiry::ExpiresIn }
 
           # @!attribute expires_at
           #   Epoch or ISO8601 timestamp with timezone.
@@ -328,7 +328,7 @@ module Courier
 
           # Duration in ms or ISO8601 duration (e.g. P1DT4H).
           #
-          # @see Courier::Models::SendSendMessageParams::Message::Expiry#expires_in
+          # @see Courier::Models::SendMessageParams::Message::Expiry#expires_in
           module ExpiresIn
             extend Courier::Internal::Type::Union
 
@@ -341,7 +341,7 @@ module Courier
           end
         end
 
-        # @see Courier::Models::SendSendMessageParams::Message#metadata
+        # @see Courier::Models::SendMessageParams::Message#metadata
         class Metadata < Courier::Internal::Type::BaseModel
           # @!attribute event
           #
@@ -360,16 +360,16 @@ module Courier
 
           # @!attribute utm
           #
-          #   @return [Courier::Models::SendSendMessageParams::Message::Metadata::Utm, nil]
-          optional :utm, -> { Courier::SendSendMessageParams::Message::Metadata::Utm }, nil?: true
+          #   @return [Courier::Models::SendMessageParams::Message::Metadata::Utm, nil]
+          optional :utm, -> { Courier::SendMessageParams::Message::Metadata::Utm }, nil?: true
 
           # @!method initialize(event: nil, tags: nil, trace_id: nil, utm: nil)
           #   @param event [String, nil]
           #   @param tags [Array<String>, nil]
           #   @param trace_id [String, nil]
-          #   @param utm [Courier::Models::SendSendMessageParams::Message::Metadata::Utm, nil]
+          #   @param utm [Courier::Models::SendMessageParams::Message::Metadata::Utm, nil]
 
-          # @see Courier::Models::SendSendMessageParams::Message::Metadata#utm
+          # @see Courier::Models::SendMessageParams::Message::Metadata#utm
           class Utm < Courier::Internal::Type::BaseModel
             # @!attribute campaign
             #
@@ -405,7 +405,7 @@ module Courier
           end
         end
 
-        # @see Courier::Models::SendSendMessageParams::Message#preferences
+        # @see Courier::Models::SendMessageParams::Message#preferences
         class Preferences < Courier::Internal::Type::BaseModel
           # @!attribute subscription_topic_id
           #   The subscription topic to apply to the message.
@@ -426,8 +426,8 @@ module Courier
 
           # @!attribute metadata
           #
-          #   @return [Courier::Models::SendSendMessageParams::Message::Provider::Metadata, nil]
-          optional :metadata, -> { Courier::SendSendMessageParams::Message::Provider::Metadata }, nil?: true
+          #   @return [Courier::Models::SendMessageParams::Message::Provider::Metadata, nil]
+          optional :metadata, -> { Courier::SendMessageParams::Message::Provider::Metadata }, nil?: true
 
           # @!attribute override
           #   Provider-specific overrides.
@@ -443,23 +443,23 @@ module Courier
           # @!method initialize(if_: nil, metadata: nil, override: nil, timeouts: nil)
           #   @param if_ [String, nil] JS conditional with access to data/profile.
           #
-          #   @param metadata [Courier::Models::SendSendMessageParams::Message::Provider::Metadata, nil]
+          #   @param metadata [Courier::Models::SendMessageParams::Message::Provider::Metadata, nil]
           #
           #   @param override [Hash{Symbol=>Object}, nil] Provider-specific overrides.
           #
           #   @param timeouts [Integer, nil]
 
-          # @see Courier::Models::SendSendMessageParams::Message::Provider#metadata
+          # @see Courier::Models::SendMessageParams::Message::Provider#metadata
           class Metadata < Courier::Internal::Type::BaseModel
             # @!attribute utm
             #
-            #   @return [Courier::Models::SendSendMessageParams::Message::Provider::Metadata::Utm, nil]
-            optional :utm, -> { Courier::SendSendMessageParams::Message::Provider::Metadata::Utm }, nil?: true
+            #   @return [Courier::Models::SendMessageParams::Message::Provider::Metadata::Utm, nil]
+            optional :utm, -> { Courier::SendMessageParams::Message::Provider::Metadata::Utm }, nil?: true
 
             # @!method initialize(utm: nil)
-            #   @param utm [Courier::Models::SendSendMessageParams::Message::Provider::Metadata::Utm, nil]
+            #   @param utm [Courier::Models::SendMessageParams::Message::Provider::Metadata::Utm, nil]
 
-            # @see Courier::Models::SendSendMessageParams::Message::Provider::Metadata#utm
+            # @see Courier::Models::SendMessageParams::Message::Provider::Metadata#utm
             class Utm < Courier::Internal::Type::BaseModel
               # @!attribute campaign
               #
@@ -496,7 +496,7 @@ module Courier
           end
         end
 
-        # @see Courier::Models::SendSendMessageParams::Message#routing
+        # @see Courier::Models::SendMessageParams::Message#routing
         class Routing < Courier::Internal::Type::BaseModel
           # @!attribute channels
           #   A list of channels or providers (or nested routing rules).
@@ -506,9 +506,11 @@ module Courier
 
           # @!attribute method_
           #
-          #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::Routing::Method]
+          #   @return [Symbol, Courier::Models::SendMessageParams::Message::Routing::Method]
           required :method_,
-                   enum: -> { Courier::SendSendMessageParams::Message::Routing::Method },
+                   enum: -> {
+                     Courier::SendMessageParams::Message::Routing::Method
+                   },
                    api_name: :method
 
           # @!method initialize(channels:, method_:)
@@ -516,9 +518,9 @@ module Courier
           #
           #   @param channels [Array<String, Courier::Models::MessageRouting>] A list of channels or providers (or nested routing rules).
           #
-          #   @param method_ [Symbol, Courier::Models::SendSendMessageParams::Message::Routing::Method]
+          #   @param method_ [Symbol, Courier::Models::SendMessageParams::Message::Routing::Method]
 
-          # @see Courier::Models::SendSendMessageParams::Message::Routing#method_
+          # @see Courier::Models::SendMessageParams::Message::Routing#method_
           module Method
             extend Courier::Internal::Type::Enum
 
@@ -530,7 +532,7 @@ module Courier
           end
         end
 
-        # @see Courier::Models::SendSendMessageParams::Message#timeout
+        # @see Courier::Models::SendMessageParams::Message#timeout
         class Timeout < Courier::Internal::Type::BaseModel
           # @!attribute channel
           #
@@ -539,12 +541,8 @@ module Courier
 
           # @!attribute criteria
           #
-          #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::Timeout::Criteria, nil]
-          optional :criteria,
-                   enum: -> {
-                     Courier::SendSendMessageParams::Message::Timeout::Criteria
-                   },
-                   nil?: true
+          #   @return [Symbol, Courier::Models::SendMessageParams::Message::Timeout::Criteria, nil]
+          optional :criteria, enum: -> { Courier::SendMessageParams::Message::Timeout::Criteria }, nil?: true
 
           # @!attribute escalation
           #
@@ -563,12 +561,12 @@ module Courier
 
           # @!method initialize(channel: nil, criteria: nil, escalation: nil, message: nil, provider: nil)
           #   @param channel [Hash{Symbol=>Integer}, nil]
-          #   @param criteria [Symbol, Courier::Models::SendSendMessageParams::Message::Timeout::Criteria, nil]
+          #   @param criteria [Symbol, Courier::Models::SendMessageParams::Message::Timeout::Criteria, nil]
           #   @param escalation [Integer, nil]
           #   @param message [Integer, nil]
           #   @param provider [Hash{Symbol=>Integer}, nil]
 
-          # @see Courier::Models::SendSendMessageParams::Message::Timeout#criteria
+          # @see Courier::Models::SendMessageParams::Message::Timeout#criteria
           module Criteria
             extend Courier::Internal::Type::Enum
 
@@ -584,13 +582,13 @@ module Courier
 
         # The recipient or a list of recipients of the message
         #
-        # @see Courier::Models::SendSendMessageParams::Message#to
+        # @see Courier::Models::SendMessageParams::Message#to
         module To
           extend Courier::Internal::Type::Union
 
-          variant -> { Courier::SendSendMessageParams::Message::To::UnionMember0 }
+          variant -> { Courier::SendMessageParams::Message::To::UnionMember0 }
 
-          variant -> { Courier::Models::SendSendMessageParams::Message::To::RecipientArray }
+          variant -> { Courier::Models::SendMessageParams::Message::To::RecipientArray }
 
           class UnionMember0 < Courier::Internal::Type::BaseModel
             # @!attribute account_id
@@ -628,9 +626,9 @@ module Courier
 
             # @!attribute preferences
             #
-            #   @return [Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences, nil]
+            #   @return [Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences, nil]
             optional :preferences,
-                     -> { Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences },
+                     -> { Courier::SendMessageParams::Message::To::UnionMember0::Preferences },
                      nil?: true
 
             # @!attribute tenant_id
@@ -657,26 +655,26 @@ module Courier
             #
             #   @param phone_number [String, nil]
             #
-            #   @param preferences [Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences, nil]
+            #   @param preferences [Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences, nil]
             #
             #   @param tenant_id [String, nil] Tenant id. Will load brand, default preferences and base context data.
             #
             #   @param user_id [String, nil]
 
-            # @see Courier::Models::SendSendMessageParams::Message::To::UnionMember0#preferences
+            # @see Courier::Models::SendMessageParams::Message::To::UnionMember0#preferences
             class Preferences < Courier::Internal::Type::BaseModel
               # @!attribute notifications
               #
-              #   @return [Hash{Symbol=>Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification}]
+              #   @return [Hash{Symbol=>Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification}]
               required :notifications,
-                       -> { Courier::Internal::Type::HashOf[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification] }
+                       -> { Courier::Internal::Type::HashOf[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification] }
 
               # @!attribute categories
               #
-              #   @return [Hash{Symbol=>Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category}, nil]
+              #   @return [Hash{Symbol=>Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category}, nil]
               optional :categories,
                        -> {
-                         Courier::Internal::Type::HashOf[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category]
+                         Courier::Internal::Type::HashOf[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category]
                        },
                        nil?: true
 
@@ -686,51 +684,51 @@ module Courier
               optional :template_id, String, api_name: :templateId, nil?: true
 
               # @!method initialize(notifications:, categories: nil, template_id: nil)
-              #   @param notifications [Hash{Symbol=>Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification}]
-              #   @param categories [Hash{Symbol=>Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category}, nil]
+              #   @param notifications [Hash{Symbol=>Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification}]
+              #   @param categories [Hash{Symbol=>Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category}, nil]
               #   @param template_id [String, nil]
 
               class Notification < Courier::Internal::Type::BaseModel
                 # @!attribute status
                 #
-                #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status]
+                #   @return [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status]
                 required :status,
-                         enum: -> { Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status }
+                         enum: -> { Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status }
 
                 # @!attribute channel_preferences
                 #
-                #   @return [Array<Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference>, nil]
+                #   @return [Array<Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference>, nil]
                 optional :channel_preferences,
                          -> {
-                           Courier::Internal::Type::ArrayOf[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]
+                           Courier::Internal::Type::ArrayOf[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference]
                          },
                          nil?: true
 
                 # @!attribute rules
                 #
-                #   @return [Array<Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule>, nil]
+                #   @return [Array<Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule>, nil]
                 optional :rules,
                          -> {
-                           Courier::Internal::Type::ArrayOf[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]
+                           Courier::Internal::Type::ArrayOf[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule]
                          },
                          nil?: true
 
                 # @!attribute source
                 #
-                #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source, nil]
+                #   @return [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source, nil]
                 optional :source,
                          enum: -> {
-                           Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source
+                           Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source
                          },
                          nil?: true
 
                 # @!method initialize(status:, channel_preferences: nil, rules: nil, source: nil)
-                #   @param status [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status]
-                #   @param channel_preferences [Array<Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference>, nil]
-                #   @param rules [Array<Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule>, nil]
-                #   @param source [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source, nil]
+                #   @param status [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Status]
+                #   @param channel_preferences [Array<Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference>, nil]
+                #   @param rules [Array<Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Rule>, nil]
+                #   @param source [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::Source, nil]
 
-                # @see Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification#status
+                # @see Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification#status
                 module Status
                   extend Courier::Internal::Type::Enum
 
@@ -745,14 +743,14 @@ module Courier
                 class ChannelPreference < Courier::Internal::Type::BaseModel
                   # @!attribute channel
                   #
-                  #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel]
+                  #   @return [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel]
                   required :channel,
-                           enum: -> { Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel }
+                           enum: -> { Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel }
 
                   # @!method initialize(channel:)
-                  #   @param channel [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel]
+                  #   @param channel [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference::Channel]
 
-                  # @see Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference#channel
+                  # @see Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification::ChannelPreference#channel
                   module Channel
                     extend Courier::Internal::Type::Enum
 
@@ -784,7 +782,7 @@ module Courier
                   #   @param start [String, nil]
                 end
 
-                # @see Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Notification#source
+                # @see Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Notification#source
                 module Source
                   extend Courier::Internal::Type::Enum
 
@@ -800,44 +798,44 @@ module Courier
               class Category < Courier::Internal::Type::BaseModel
                 # @!attribute status
                 #
-                #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Status]
+                #   @return [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status]
                 required :status,
-                         enum: -> { Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Status }
+                         enum: -> { Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status }
 
                 # @!attribute channel_preferences
                 #
-                #   @return [Array<Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference>, nil]
+                #   @return [Array<Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference>, nil]
                 optional :channel_preferences,
                          -> {
-                           Courier::Internal::Type::ArrayOf[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]
+                           Courier::Internal::Type::ArrayOf[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference]
                          },
                          nil?: true
 
                 # @!attribute rules
                 #
-                #   @return [Array<Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule>, nil]
+                #   @return [Array<Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule>, nil]
                 optional :rules,
                          -> {
-                           Courier::Internal::Type::ArrayOf[Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]
+                           Courier::Internal::Type::ArrayOf[Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule]
                          },
                          nil?: true
 
                 # @!attribute source
                 #
-                #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Source, nil]
+                #   @return [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source, nil]
                 optional :source,
                          enum: -> {
-                           Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Source
+                           Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source
                          },
                          nil?: true
 
                 # @!method initialize(status:, channel_preferences: nil, rules: nil, source: nil)
-                #   @param status [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Status]
-                #   @param channel_preferences [Array<Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference>, nil]
-                #   @param rules [Array<Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule>, nil]
-                #   @param source [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::Source, nil]
+                #   @param status [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Status]
+                #   @param channel_preferences [Array<Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference>, nil]
+                #   @param rules [Array<Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Rule>, nil]
+                #   @param source [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::Source, nil]
 
-                # @see Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category#status
+                # @see Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category#status
                 module Status
                   extend Courier::Internal::Type::Enum
 
@@ -852,14 +850,14 @@ module Courier
                 class ChannelPreference < Courier::Internal::Type::BaseModel
                   # @!attribute channel
                   #
-                  #   @return [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel]
+                  #   @return [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel]
                   required :channel,
-                           enum: -> { Courier::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel }
+                           enum: -> { Courier::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel }
 
                   # @!method initialize(channel:)
-                  #   @param channel [Symbol, Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel]
+                  #   @param channel [Symbol, Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference::Channel]
 
-                  # @see Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference#channel
+                  # @see Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category::ChannelPreference#channel
                   module Channel
                     extend Courier::Internal::Type::Enum
 
@@ -891,7 +889,7 @@ module Courier
                   #   @param start [String, nil]
                 end
 
-                # @see Courier::Models::SendSendMessageParams::Message::To::UnionMember0::Preferences::Category#source
+                # @see Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences::Category#source
                 module Source
                   extend Courier::Internal::Type::Enum
 
@@ -907,7 +905,7 @@ module Courier
           end
 
           # @!method self.variants
-          #   @return [Array(Courier::Models::SendSendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>)]
+          #   @return [Array(Courier::Models::SendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>)]
 
           # @type [Courier::Internal::Type::Converter]
           RecipientArray = Courier::Internal::Type::ArrayOf[-> { Courier::Recipient }]
