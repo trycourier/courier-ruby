@@ -21,51 +21,6 @@ module Courier
     # @return [Courier::Resources::Send]
     attr_reader :send_
 
-    # @return [Courier::Resources::Audiences]
-    attr_reader :audiences
-
-    # @return [Courier::Resources::AuditEvents]
-    attr_reader :audit_events
-
-    # @return [Courier::Resources::Auth]
-    attr_reader :auth
-
-    # @return [Courier::Resources::Automations]
-    attr_reader :automations
-
-    # @return [Courier::Resources::Brands]
-    attr_reader :brands
-
-    # @return [Courier::Resources::Bulk]
-    attr_reader :bulk
-
-    # @return [Courier::Resources::Inbound]
-    attr_reader :inbound
-
-    # @return [Courier::Resources::Lists]
-    attr_reader :lists
-
-    # @return [Courier::Resources::Messages]
-    attr_reader :messages
-
-    # @return [Courier::Resources::Requests]
-    attr_reader :requests
-
-    # @return [Courier::Resources::Notifications]
-    attr_reader :notifications
-
-    # @return [Courier::Resources::Profiles]
-    attr_reader :profiles
-
-    # @return [Courier::Resources::Tenants]
-    attr_reader :tenants
-
-    # @return [Courier::Resources::Translations]
-    attr_reader :translations
-
-    # @return [Courier::Resources::Users]
-    attr_reader :users
-
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -114,21 +69,6 @@ module Courier
       )
 
       @send_ = Courier::Resources::Send.new(client: self)
-      @audiences = Courier::Resources::Audiences.new(client: self)
-      @audit_events = Courier::Resources::AuditEvents.new(client: self)
-      @auth = Courier::Resources::Auth.new(client: self)
-      @automations = Courier::Resources::Automations.new(client: self)
-      @brands = Courier::Resources::Brands.new(client: self)
-      @bulk = Courier::Resources::Bulk.new(client: self)
-      @inbound = Courier::Resources::Inbound.new(client: self)
-      @lists = Courier::Resources::Lists.new(client: self)
-      @messages = Courier::Resources::Messages.new(client: self)
-      @requests = Courier::Resources::Requests.new(client: self)
-      @notifications = Courier::Resources::Notifications.new(client: self)
-      @profiles = Courier::Resources::Profiles.new(client: self)
-      @tenants = Courier::Resources::Tenants.new(client: self)
-      @translations = Courier::Resources::Translations.new(client: self)
-      @users = Courier::Resources::Users.new(client: self)
     end
   end
 end

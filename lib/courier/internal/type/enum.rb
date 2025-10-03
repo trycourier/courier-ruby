@@ -15,31 +15,6 @@ module Courier
       #
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
-      #
-      # @example
-      #   # `merge_algorithm` is a `Courier::Automations::MergeAlgorithm`
-      #   case merge_algorithm
-      #   when Courier::Automations::MergeAlgorithm::REPLACE
-      #     # ...
-      #   when Courier::Automations::MergeAlgorithm::NONE
-      #     # ...
-      #   when Courier::Automations::MergeAlgorithm::OVERWRITE
-      #     # ...
-      #   else
-      #     puts(merge_algorithm)
-      #   end
-      #
-      # @example
-      #   case merge_algorithm
-      #   in :replace
-      #     # ...
-      #   in :none
-      #     # ...
-      #   in :overwrite
-      #     # ...
-      #   else
-      #     puts(merge_algorithm)
-      #   end
       module Enum
         include Courier::Internal::Type::Converter
         include Courier::Internal::Util::SorbetRuntimeSupport

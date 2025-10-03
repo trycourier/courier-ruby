@@ -6,16 +6,13 @@ module Courier
       # Use the send API to send a message to one or more recipients.
       sig do
         params(
-          message:
-            T.any(
-              Courier::Message::ContentMessage::OrHash,
-              Courier::Message::TemplateMessage::OrHash
-            ),
+          message: Courier::SendSendMessageParams::Message::OrHash,
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::Models::SendMessageResponse)
+        ).returns(Courier::Models::SendSendMessageResponse)
       end
-      def message(
-        # Defines the message to be delivered
+      def send_message(
+        # The message property has the following primary top-level properties. They define
+        # the destination and content of the message.
         message:,
         request_options: {}
       )
