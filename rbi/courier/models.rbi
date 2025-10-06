@@ -3,8 +3,6 @@
 module Courier
   ElementalChannelNode = Courier::Models::ElementalChannelNode
 
-  ElementalGroupNode = Courier::Models::ElementalGroupNode
-
   ElementalNode = Courier::Models::ElementalNode
 
   MessageContext = Courier::Models::MessageContext

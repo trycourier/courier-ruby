@@ -24,8 +24,7 @@ module Courier
             Courier::ElementalNode::UnionMember3,
             Courier::ElementalNode::UnionMember4,
             Courier::ElementalNode::UnionMember5,
-            Courier::ElementalNode::UnionMember6,
-            Courier::ElementalNode::UnionMember7
+            Courier::ElementalNode::UnionMember6
           )
         end
 
@@ -707,79 +706,11 @@ module Courier
         end
       end
 
-      class UnionMember6 < Courier::Models::ElementalGroupNode
+      class UnionMember6 < Courier::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
               Courier::ElementalNode::UnionMember6,
-              Courier::Internal::AnyHash
-            )
-          end
-
-        sig do
-          returns(
-            T.nilable(Courier::ElementalNode::UnionMember6::Type::OrSymbol)
-          )
-        end
-        attr_reader :type
-
-        sig do
-          params(
-            type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
-          ).void
-        end
-        attr_writer :type
-
-        # Allows you to group elements together. This can be useful when used in
-        # combination with "if" or "loop". See
-        # [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
-        # for more details.
-        sig do
-          params(
-            type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(type: nil)
-        end
-
-        sig do
-          override.returns(
-            { type: Courier::ElementalNode::UnionMember6::Type::OrSymbol }
-          )
-        end
-        def to_hash
-        end
-
-        module Type
-          extend Courier::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Courier::ElementalNode::UnionMember6::Type)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          GROUP =
-            T.let(
-              :group,
-              Courier::ElementalNode::UnionMember6::Type::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[Courier::ElementalNode::UnionMember6::Type::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
-        end
-      end
-
-      class UnionMember7 < Courier::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              Courier::ElementalNode::UnionMember7,
               Courier::Internal::AnyHash
             )
           end
@@ -798,14 +729,14 @@ module Courier
 
         sig do
           returns(
-            T.nilable(Courier::ElementalNode::UnionMember7::Type::OrSymbol)
+            T.nilable(Courier::ElementalNode::UnionMember6::Type::OrSymbol)
           )
         end
         attr_reader :type
 
         sig do
           params(
-            type: Courier::ElementalNode::UnionMember7::Type::OrSymbol
+            type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
           ).void
         end
         attr_writer :type
@@ -816,7 +747,7 @@ module Courier
             if_: T.nilable(String),
             loop_: T.nilable(String),
             ref: T.nilable(String),
-            type: Courier::ElementalNode::UnionMember7::Type::OrSymbol
+            type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
@@ -829,7 +760,7 @@ module Courier
               if_: T.nilable(String),
               loop_: T.nilable(String),
               ref: T.nilable(String),
-              type: Courier::ElementalNode::UnionMember7::Type::OrSymbol
+              type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
             }
           )
         end
@@ -841,19 +772,19 @@ module Courier
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, Courier::ElementalNode::UnionMember7::Type)
+              T.all(Symbol, Courier::ElementalNode::UnionMember6::Type)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           QUOTE =
             T.let(
               :quote,
-              Courier::ElementalNode::UnionMember7::Type::TaggedSymbol
+              Courier::ElementalNode::UnionMember6::Type::TaggedSymbol
             )
 
           sig do
             override.returns(
-              T::Array[Courier::ElementalNode::UnionMember7::Type::TaggedSymbol]
+              T::Array[Courier::ElementalNode::UnionMember6::Type::TaggedSymbol]
             )
           end
           def self.values
