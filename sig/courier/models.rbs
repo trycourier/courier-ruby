@@ -1,4 +1,6 @@
 module Courier
+  module ElementalNode = Courier::Models::ElementalNode
+
   class MessageContext = Courier::Models::MessageContext
 
   class MessageRouting = Courier::Models::MessageRouting

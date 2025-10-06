@@ -181,7 +181,7 @@ You can provide typesafe request parameters like so:
 ```ruby
 courier.send_.message(
   message: Courier::SendMessageParams::Message.new(
-    content: Courier::SendMessageParams::Message::Content.new(body: "body", title: "title")
+    content: Courier::SendMessageParams::Message::Content::ElementalContentSugar.new(body: "body", title: "title")
   )
 )
 ```
@@ -195,7 +195,7 @@ courier.send_.message(message: {content: {body: "body", title: "title"}})
 # You can also splat a full Params class:
 params = Courier::SendMessageParams.new(
   message: Courier::SendMessageParams::Message.new(
-    content: Courier::SendMessageParams::Message::Content.new(body: "body", title: "title")
+    content: Courier::SendMessageParams::Message::Content::ElementalContentSugar.new(body: "body", title: "title")
   )
 )
 courier.send_.message(**params)

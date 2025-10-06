@@ -1,6 +1,8 @@
 # typed: strong
 
 module Courier
+  ElementalNode = Courier::Models::ElementalNode
+
   MessageContext = Courier::Models::MessageContext
 
   MessageRouting = Courier::Models::MessageRouting
