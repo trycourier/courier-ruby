@@ -39,6 +39,10 @@ module Courier
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
+  ElementalChannelNode = Courier::Models::ElementalChannelNode
+
+  ElementalGroupNode = Courier::Models::ElementalGroupNode
+
   ElementalNode = Courier::Models::ElementalNode
 
   MessageContext = Courier::Models::MessageContext

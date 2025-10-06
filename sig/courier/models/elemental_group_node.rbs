@@ -1,0 +1,40 @@
+module Courier
+  module Models
+    type elemental_group_node =
+      {
+        elements: ::Array[Courier::Models::elemental_node],
+        channels: ::Array[String]?,
+        if_: String?,
+        loop_: String?,
+        ref: String?
+      }
+
+    class ElementalGroupNode < Courier::Internal::Type::BaseModel
+      attr_accessor elements: ::Array[Courier::Models::elemental_node]
+
+      attr_accessor channels: ::Array[String]?
+
+      attr_accessor if_: String?
+
+      attr_accessor loop_: String?
+
+      attr_accessor ref: String?
+
+      def initialize: (
+        elements: ::Array[Courier::Models::elemental_node],
+        ?channels: ::Array[String]?,
+        ?if_: String?,
+        ?loop_: String?,
+        ?ref: String?
+      ) -> void
+
+      def to_hash: -> {
+        elements: ::Array[Courier::Models::elemental_node],
+        channels: ::Array[String]?,
+        if_: String?,
+        loop_: String?,
+        ref: String?
+      }
+    end
+  end
+end

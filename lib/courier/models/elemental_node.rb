@@ -2,6 +2,16 @@
 
 module Courier
   module Models
+    # The channel element allows a notification to be customized based on which
+    # channel it is sent through. For example, you may want to display a detailed
+    # message when the notification is sent through email, and a more concise message
+    # in a push notification. Channel elements are only valid as top-level elements;
+    # you cannot nest channel elements. If there is a channel element specified at the
+    # top-level of the document, all sibling elements must be channel elements. Note:
+    # As an alternative, most elements support a `channel` property. Which allows you
+    # to selectively display an individual element on a per channel basis. See the
+    # [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
+    # for more details.
     module ElementalNode
       extend Courier::Internal::Type::Union
 
@@ -9,6 +19,14 @@ module Courier
 
       variant -> { Courier::ElementalNode::UnionMember1 }
 
+      # The channel element allows a notification to be customized based on which channel it is sent through.
+      # For example, you may want to display a detailed message when the notification is sent through email,
+      # and a more concise message in a push notification. Channel elements are only valid as top-level
+      # elements; you cannot nest channel elements. If there is a channel element specified at the top-level
+      # of the document, all sibling elements must be channel elements.
+      # Note: As an alternative, most elements support a `channel` property. Which allows you to selectively
+      # display an individual element on a per channel basis. See the
+      # [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/) for more details.
       variant -> { Courier::ElementalNode::UnionMember2 }
 
       variant -> { Courier::ElementalNode::UnionMember3 }
@@ -17,6 +35,7 @@ module Courier
 
       variant -> { Courier::ElementalNode::UnionMember5 }
 
+      # Allows you to group elements together. This can be useful when used in combination with "if" or "loop". See [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/) for more details.
       variant -> { Courier::ElementalNode::UnionMember6 }
 
       variant -> { Courier::ElementalNode::UnionMember7 }
@@ -109,40 +128,26 @@ module Courier
         end
       end
 
-      class UnionMember2 < Courier::Internal::Type::BaseModel
-        # @!attribute channels
-        #
-        #   @return [Array<String>, nil]
-        optional :channels, Courier::Internal::Type::ArrayOf[String], nil?: true
-
-        # @!attribute if_
-        #
-        #   @return [String, nil]
-        optional :if_, String, api_name: :if, nil?: true
-
-        # @!attribute loop_
-        #
-        #   @return [String, nil]
-        optional :loop_, String, api_name: :loop, nil?: true
-
-        # @!attribute ref
-        #
-        #   @return [String, nil]
-        optional :ref, String, nil?: true
-
+      class UnionMember2 < Courier::Models::ElementalChannelNode
         # @!attribute type
         #
         #   @return [Symbol, Courier::Models::ElementalNode::UnionMember2::Type, nil]
         optional :type, enum: -> { Courier::ElementalNode::UnionMember2::Type }
 
-        # @!method initialize(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
-        #   @param channels [Array<String>, nil]
-        #   @param if_ [String, nil]
-        #   @param loop_ [String, nil]
-        #   @param ref [String, nil]
+        # @!method initialize(type: nil)
+        #   The channel element allows a notification to be customized based on which
+        #   channel it is sent through. For example, you may want to display a detailed
+        #   message when the notification is sent through email, and a more concise message
+        #   in a push notification. Channel elements are only valid as top-level elements;
+        #   you cannot nest channel elements. If there is a channel element specified at the
+        #   top-level of the document, all sibling elements must be channel elements. Note:
+        #   As an alternative, most elements support a `channel` property. Which allows you
+        #   to selectively display an individual element on a per channel basis. See the
+        #   [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
+        #   for more details.
+        #
         #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember2::Type]
 
-        # @see Courier::Models::ElementalNode::UnionMember2#type
         module Type
           extend Courier::Internal::Type::Enum
 
@@ -362,40 +367,20 @@ module Courier
         end
       end
 
-      class UnionMember6 < Courier::Internal::Type::BaseModel
-        # @!attribute channels
-        #
-        #   @return [Array<String>, nil]
-        optional :channels, Courier::Internal::Type::ArrayOf[String], nil?: true
-
-        # @!attribute if_
-        #
-        #   @return [String, nil]
-        optional :if_, String, api_name: :if, nil?: true
-
-        # @!attribute loop_
-        #
-        #   @return [String, nil]
-        optional :loop_, String, api_name: :loop, nil?: true
-
-        # @!attribute ref
-        #
-        #   @return [String, nil]
-        optional :ref, String, nil?: true
-
+      class UnionMember6 < Courier::Models::ElementalGroupNode
         # @!attribute type
         #
         #   @return [Symbol, Courier::Models::ElementalNode::UnionMember6::Type, nil]
         optional :type, enum: -> { Courier::ElementalNode::UnionMember6::Type }
 
-        # @!method initialize(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
-        #   @param channels [Array<String>, nil]
-        #   @param if_ [String, nil]
-        #   @param loop_ [String, nil]
-        #   @param ref [String, nil]
+        # @!method initialize(type: nil)
+        #   Allows you to group elements together. This can be useful when used in
+        #   combination with "if" or "loop". See
+        #   [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
+        #   for more details.
+        #
         #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember6::Type]
 
-        # @see Courier::Models::ElementalNode::UnionMember6#type
         module Type
           extend Courier::Internal::Type::Enum
 
