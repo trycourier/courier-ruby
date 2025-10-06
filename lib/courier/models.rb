@@ -39,6 +39,10 @@ module Courier
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
+  Alignment = Courier::Models::Alignment
+
+  ElementalBaseNode = Courier::Models::ElementalBaseNode
+
   ElementalChannelNode = Courier::Models::ElementalChannelNode
 
   ElementalNode = Courier::Models::ElementalNode
@@ -54,6 +58,8 @@ module Courier
   Recipient = Courier::Models::Recipient
 
   SendMessageParams = Courier::Models::SendMessageParams
+
+  TextStyle = Courier::Models::TextStyle
 
   Utm = Courier::Models::Utm
 end

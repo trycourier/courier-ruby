@@ -1,4 +1,8 @@
 module Courier
+  module Alignment = Courier::Models::Alignment
+
+  class ElementalBaseNode = Courier::Models::ElementalBaseNode
+
   class ElementalChannelNode = Courier::Models::ElementalChannelNode
 
   module ElementalNode = Courier::Models::ElementalNode
@@ -14,6 +18,8 @@ module Courier
   class Recipient = Courier::Models::Recipient
 
   class SendMessageParams = Courier::Models::SendMessageParams
+
+  module TextStyle = Courier::Models::TextStyle
 
   class Utm = Courier::Models::Utm
 end

@@ -37,40 +37,15 @@ module Courier
 
       variant -> { Courier::ElementalNode::UnionMember6 }
 
-      class UnionMember0 < Courier::Internal::Type::BaseModel
-        # @!attribute channels
-        #
-        #   @return [Array<String>, nil]
-        optional :channels, Courier::Internal::Type::ArrayOf[String], nil?: true
-
-        # @!attribute if_
-        #
-        #   @return [String, nil]
-        optional :if_, String, api_name: :if, nil?: true
-
-        # @!attribute loop_
-        #
-        #   @return [String, nil]
-        optional :loop_, String, api_name: :loop, nil?: true
-
-        # @!attribute ref
-        #
-        #   @return [String, nil]
-        optional :ref, String, nil?: true
-
+      class UnionMember0 < Courier::Models::ElementalBaseNode
         # @!attribute type
         #
         #   @return [Symbol, Courier::Models::ElementalNode::UnionMember0::Type, nil]
         optional :type, enum: -> { Courier::ElementalNode::UnionMember0::Type }
 
-        # @!method initialize(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
-        #   @param channels [Array<String>, nil]
-        #   @param if_ [String, nil]
-        #   @param loop_ [String, nil]
-        #   @param ref [String, nil]
+        # @!method initialize(type: nil)
         #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember0::Type]
 
-        # @see Courier::Models::ElementalNode::UnionMember0#type
         module Type
           extend Courier::Internal::Type::Enum
 
@@ -81,40 +56,15 @@ module Courier
         end
       end
 
-      class UnionMember1 < Courier::Internal::Type::BaseModel
-        # @!attribute channels
-        #
-        #   @return [Array<String>, nil]
-        optional :channels, Courier::Internal::Type::ArrayOf[String], nil?: true
-
-        # @!attribute if_
-        #
-        #   @return [String, nil]
-        optional :if_, String, api_name: :if, nil?: true
-
-        # @!attribute loop_
-        #
-        #   @return [String, nil]
-        optional :loop_, String, api_name: :loop, nil?: true
-
-        # @!attribute ref
-        #
-        #   @return [String, nil]
-        optional :ref, String, nil?: true
-
+      class UnionMember1 < Courier::Models::ElementalBaseNode
         # @!attribute type
         #
         #   @return [Symbol, Courier::Models::ElementalNode::UnionMember1::Type, nil]
         optional :type, enum: -> { Courier::ElementalNode::UnionMember1::Type }
 
-        # @!method initialize(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
-        #   @param channels [Array<String>, nil]
-        #   @param if_ [String, nil]
-        #   @param loop_ [String, nil]
-        #   @param ref [String, nil]
+        # @!method initialize(type: nil)
         #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember1::Type]
 
-        # @see Courier::Models::ElementalNode::UnionMember1#type
         module Type
           extend Courier::Internal::Type::Enum
 
@@ -155,40 +105,15 @@ module Courier
         end
       end
 
-      class UnionMember3 < Courier::Internal::Type::BaseModel
-        # @!attribute channels
-        #
-        #   @return [Array<String>, nil]
-        optional :channels, Courier::Internal::Type::ArrayOf[String], nil?: true
-
-        # @!attribute if_
-        #
-        #   @return [String, nil]
-        optional :if_, String, api_name: :if, nil?: true
-
-        # @!attribute loop_
-        #
-        #   @return [String, nil]
-        optional :loop_, String, api_name: :loop, nil?: true
-
-        # @!attribute ref
-        #
-        #   @return [String, nil]
-        optional :ref, String, nil?: true
-
+      class UnionMember3 < Courier::Models::ElementalBaseNode
         # @!attribute type
         #
         #   @return [Symbol, Courier::Models::ElementalNode::UnionMember3::Type, nil]
         optional :type, enum: -> { Courier::ElementalNode::UnionMember3::Type }
 
-        # @!method initialize(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
-        #   @param channels [Array<String>, nil]
-        #   @param if_ [String, nil]
-        #   @param loop_ [String, nil]
-        #   @param ref [String, nil]
+        # @!method initialize(type: nil)
         #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember3::Type]
 
-        # @see Courier::Models::ElementalNode::UnionMember3#type
         module Type
           extend Courier::Internal::Type::Enum
 
@@ -209,8 +134,8 @@ module Courier
         # @!attribute align
         #   The alignment of the action button. Defaults to "center".
         #
-        #   @return [Symbol, Courier::Models::ElementalNode::UnionMember4::Align, nil]
-        optional :align, enum: -> { Courier::ElementalNode::UnionMember4::Align }, nil?: true
+        #   @return [Symbol, Courier::Models::Alignment, nil]
+        optional :align, enum: -> { Courier::Alignment }, nil?: true
 
         # @!attribute background_color
         #   The background color of the action button.
@@ -257,7 +182,7 @@ module Courier
         #
         #   @param action_id [String, nil] A unique id used to identify the action when it is executed.
         #
-        #   @param align [Symbol, Courier::Models::ElementalNode::UnionMember4::Align, nil] The alignment of the action button. Defaults to "center".
+        #   @param align [Symbol, Courier::Models::Alignment, nil] The alignment of the action button. Defaults to "center".
         #
         #   @param background_color [String, nil] The background color of the action button.
         #
@@ -270,21 +195,6 @@ module Courier
         #   @param style [Symbol, Courier::Models::ElementalNode::UnionMember4::Style, nil] Defaults to `button`.
         #
         #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember4::Type]
-
-        # The alignment of the action button. Defaults to "center".
-        #
-        # @see Courier::Models::ElementalNode::UnionMember4#align
-        module Align
-          extend Courier::Internal::Type::Enum
-
-          CENTER = :center
-          LEFT = :left
-          RIGHT = :right
-          FULL = :full
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
 
         class Locale < Courier::Internal::Type::BaseModel
           # @!attribute content
@@ -320,40 +230,15 @@ module Courier
         end
       end
 
-      class UnionMember5 < Courier::Internal::Type::BaseModel
-        # @!attribute channels
-        #
-        #   @return [Array<String>, nil]
-        optional :channels, Courier::Internal::Type::ArrayOf[String], nil?: true
-
-        # @!attribute if_
-        #
-        #   @return [String, nil]
-        optional :if_, String, api_name: :if, nil?: true
-
-        # @!attribute loop_
-        #
-        #   @return [String, nil]
-        optional :loop_, String, api_name: :loop, nil?: true
-
-        # @!attribute ref
-        #
-        #   @return [String, nil]
-        optional :ref, String, nil?: true
-
+      class UnionMember5 < Courier::Models::ElementalBaseNode
         # @!attribute type
         #
         #   @return [Symbol, Courier::Models::ElementalNode::UnionMember5::Type, nil]
         optional :type, enum: -> { Courier::ElementalNode::UnionMember5::Type }
 
-        # @!method initialize(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
-        #   @param channels [Array<String>, nil]
-        #   @param if_ [String, nil]
-        #   @param loop_ [String, nil]
-        #   @param ref [String, nil]
+        # @!method initialize(type: nil)
         #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember5::Type]
 
-        # @see Courier::Models::ElementalNode::UnionMember5#type
         module Type
           extend Courier::Internal::Type::Enum
 
@@ -364,40 +249,15 @@ module Courier
         end
       end
 
-      class UnionMember6 < Courier::Internal::Type::BaseModel
-        # @!attribute channels
-        #
-        #   @return [Array<String>, nil]
-        optional :channels, Courier::Internal::Type::ArrayOf[String], nil?: true
-
-        # @!attribute if_
-        #
-        #   @return [String, nil]
-        optional :if_, String, api_name: :if, nil?: true
-
-        # @!attribute loop_
-        #
-        #   @return [String, nil]
-        optional :loop_, String, api_name: :loop, nil?: true
-
-        # @!attribute ref
-        #
-        #   @return [String, nil]
-        optional :ref, String, nil?: true
-
+      class UnionMember6 < Courier::Models::ElementalBaseNode
         # @!attribute type
         #
         #   @return [Symbol, Courier::Models::ElementalNode::UnionMember6::Type, nil]
         optional :type, enum: -> { Courier::ElementalNode::UnionMember6::Type }
 
-        # @!method initialize(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
-        #   @param channels [Array<String>, nil]
-        #   @param if_ [String, nil]
-        #   @param loop_ [String, nil]
-        #   @param ref [String, nil]
+        # @!method initialize(type: nil)
         #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember6::Type]
 
-        # @see Courier::Models::ElementalNode::UnionMember6#type
         module Type
           extend Courier::Internal::Type::Enum
 
