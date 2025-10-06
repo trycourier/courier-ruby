@@ -188,7 +188,7 @@ You can provide typesafe request parameters like so:
 ```ruby
 courier.send_.message(
   message: Courier::SendMessageParams::Message.new(
-    to: Courier::SendMessageParams::Message::To::UnionMember0.new(user_id: "your_user_id"),
+    to: Courier::UserRecipient.new(user_id: "your_user_id"),
     data: {foo: "bar"}
   )
 )
@@ -205,7 +205,7 @@ courier.send_.message(
 # You can also splat a full Params class:
 params = Courier::SendMessageParams.new(
   message: Courier::SendMessageParams::Message.new(
-    to: Courier::SendMessageParams::Message::To::UnionMember0.new(user_id: "your_user_id"),
+    to: Courier::UserRecipient.new(user_id: "your_user_id"),
     data: {foo: "bar"}
   )
 )
@@ -217,23 +217,25 @@ courier.send_.message(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :all
-puts(Courier::MessageRouting::Method::ALL)
+# :OPTED_OUT
+puts(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT)
 
-# Revealed type: `T.all(Courier::MessageRouting::Method, Symbol)`
-T.reveal_type(Courier::MessageRouting::Method::ALL)
+# Revealed type: `T.all(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status, Symbol)`
+T.reveal_type(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
-Courier::MessageRouting.new(
-  method_: Courier::MessageRouting::Method::ALL,
+# Using the enum constants preserves the tagged type information:
+courier.tenants.default_preferences.items.update(
+  status: Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT,
   # …
 )
 
-Courier::MessageRouting.new(
-  method_: :all,
+# Literal values are also permissible:
+courier.tenants.default_preferences.items.update(
+  status: :OPTED_OUT,
   # …
 )
 ```

@@ -1,0 +1,66 @@
+module Courier
+  module Models
+    type bulk_retrieve_job_response =
+      { job: Courier::Models::BulkRetrieveJobResponse::Job }
+
+    class BulkRetrieveJobResponse < Courier::Internal::Type::BaseModel
+      attr_accessor job: Courier::Models::BulkRetrieveJobResponse::Job
+
+      def initialize: (
+        job: Courier::Models::BulkRetrieveJobResponse::Job
+      ) -> void
+
+      def to_hash: -> { job: Courier::Models::BulkRetrieveJobResponse::Job }
+
+      type job =
+        {
+          definition: Courier::Models::inbound_bulk_message,
+          enqueued: Integer,
+          failures: Integer,
+          received: Integer,
+          status: Courier::Models::BulkRetrieveJobResponse::Job::status
+        }
+
+      class Job < Courier::Internal::Type::BaseModel
+        attr_accessor definition: Courier::Models::inbound_bulk_message
+
+        attr_accessor enqueued: Integer
+
+        attr_accessor failures: Integer
+
+        attr_accessor received: Integer
+
+        attr_accessor status: Courier::Models::BulkRetrieveJobResponse::Job::status
+
+        def initialize: (
+          definition: Courier::Models::inbound_bulk_message,
+          enqueued: Integer,
+          failures: Integer,
+          received: Integer,
+          status: Courier::Models::BulkRetrieveJobResponse::Job::status
+        ) -> void
+
+        def to_hash: -> {
+          definition: Courier::Models::inbound_bulk_message,
+          enqueued: Integer,
+          failures: Integer,
+          received: Integer,
+          status: Courier::Models::BulkRetrieveJobResponse::Job::status
+        }
+
+        type status = :CREATED | :PROCESSING | :COMPLETED | :ERROR
+
+        module Status
+          extend Courier::Internal::Type::Enum
+
+          CREATED: :CREATED
+          PROCESSING: :PROCESSING
+          COMPLETED: :COMPLETED
+          ERROR: :ERROR
+
+          def self?.values: -> ::Array[Courier::Models::BulkRetrieveJobResponse::Job::status]
+        end
+      end
+    end
+  end
+end

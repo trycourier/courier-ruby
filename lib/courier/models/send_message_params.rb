@@ -41,8 +41,8 @@ module Courier
         #   Describes content that will work for email, inbox, push, chat, or any channel
         #   id.
         #
-        #   @return [Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::SendMessageParams::Message::Content::ElementalContent, nil]
-        optional :content, union: -> { Courier::SendMessageParams::Message::Content }
+        #   @return [Courier::Models::Content::ElementalContentSugar, Courier::Models::Tenants::ElementalContent, nil]
+        optional :content, union: -> { Courier::Content }
 
         # @!attribute context
         #
@@ -95,7 +95,7 @@ module Courier
         # @!attribute to
         #   The recipient or a list of recipients of the message
         #
-        #   @return [Courier::Models::SendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>, nil]
+        #   @return [Courier::Models::UserRecipient, Array<Courier::Models::Recipient>, nil]
         optional :to, union: -> { Courier::SendMessageParams::Message::To }, nil?: true
 
         # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, timeout: nil, to: nil)
@@ -109,7 +109,7 @@ module Courier
         #
         #   @param channels [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Channel}, nil] Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
         #
-        #   @param content [Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::SendMessageParams::Message::Content::ElementalContent] Describes content that will work for email, inbox, push, chat, or any channel id
+        #   @param content [Courier::Models::Content::ElementalContentSugar, Courier::Models::Tenants::ElementalContent] Describes content that will work for email, inbox, push, chat, or any channel id
         #
         #   @param context [Courier::Models::MessageContext, nil]
         #
@@ -129,7 +129,7 @@ module Courier
         #
         #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #
-        #   @param to [Courier::Models::SendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>, nil] The recipient or a list of recipients of the message
+        #   @param to [Courier::Models::UserRecipient, Array<Courier::Models::Recipient>, nil] The recipient or a list of recipients of the message
 
         class Channel < Courier::Internal::Type::BaseModel
           # @!attribute brand_id
@@ -229,68 +229,6 @@ module Courier
             #   @param channel [Integer, nil]
             #   @param provider [Integer, nil]
           end
-        end
-
-        # Describes content that will work for email, inbox, push, chat, or any channel
-        # id.
-        #
-        # @see Courier::Models::SendMessageParams::Message#content
-        module Content
-          extend Courier::Internal::Type::Union
-
-          # Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
-          variant -> { Courier::SendMessageParams::Message::Content::ElementalContentSugar }
-
-          variant -> { Courier::SendMessageParams::Message::Content::ElementalContent }
-
-          class ElementalContentSugar < Courier::Internal::Type::BaseModel
-            # @!attribute body
-            #   The text content displayed in the notification.
-            #
-            #   @return [String]
-            required :body, String
-
-            # @!attribute title
-            #   Title/subject displayed by supported channels.
-            #
-            #   @return [String]
-            required :title, String
-
-            # @!method initialize(body:, title:)
-            #   Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
-            #
-            #   @param body [String] The text content displayed in the notification.
-            #
-            #   @param title [String] Title/subject displayed by supported channels.
-          end
-
-          class ElementalContent < Courier::Internal::Type::BaseModel
-            # @!attribute elements
-            #
-            #   @return [Array<Courier::Models::ElementalNode::UnionMember0, Courier::Models::ElementalNode::UnionMember1, Courier::Models::ElementalNode::UnionMember2, Courier::Models::ElementalNode::UnionMember3, Courier::Models::ElementalNode::UnionMember4, Courier::Models::ElementalNode::UnionMember5, Courier::Models::ElementalNode::UnionMember6>]
-            required :elements, -> { Courier::Internal::Type::ArrayOf[union: Courier::ElementalNode] }
-
-            # @!attribute version
-            #   For example, "2022-01-01"
-            #
-            #   @return [String]
-            required :version, String
-
-            # @!attribute brand
-            #
-            #   @return [String, nil]
-            optional :brand, String, nil?: true
-
-            # @!method initialize(elements:, version:, brand: nil)
-            #   @param elements [Array<Courier::Models::ElementalNode::UnionMember0, Courier::Models::ElementalNode::UnionMember1, Courier::Models::ElementalNode::UnionMember2, Courier::Models::ElementalNode::UnionMember3, Courier::Models::ElementalNode::UnionMember4, Courier::Models::ElementalNode::UnionMember5, Courier::Models::ElementalNode::UnionMember6>]
-            #
-            #   @param version [String] For example, "2022-01-01"
-            #
-            #   @param brand [String, nil]
-          end
-
-          # @!method self.variants
-          #   @return [Array(Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::SendMessageParams::Message::Content::ElementalContent)]
         end
 
         # @see Courier::Models::SendMessageParams::Message#delay
@@ -522,107 +460,12 @@ module Courier
         module To
           extend Courier::Internal::Type::Union
 
-          variant -> { Courier::SendMessageParams::Message::To::UnionMember0 }
+          variant -> { Courier::UserRecipient }
 
           variant -> { Courier::Models::SendMessageParams::Message::To::RecipientArray }
 
-          class UnionMember0 < Courier::Internal::Type::BaseModel
-            # @!attribute account_id
-            #   Use `tenant_id` instead.
-            #
-            #   @return [String, nil]
-            optional :account_id, String, nil?: true
-
-            # @!attribute context
-            #   Context such as tenant_id to send the notification with.
-            #
-            #   @return [Courier::Models::MessageContext, nil]
-            optional :context, -> { Courier::MessageContext }, nil?: true
-
-            # @!attribute data
-            #
-            #   @return [Hash{Symbol=>Object}, nil]
-            optional :data, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
-
-            # @!attribute email
-            #
-            #   @return [String, nil]
-            optional :email, String, nil?: true
-
-            # @!attribute locale
-            #   The user's preferred ISO 639-1 language code.
-            #
-            #   @return [String, nil]
-            optional :locale, String, nil?: true
-
-            # @!attribute phone_number
-            #
-            #   @return [String, nil]
-            optional :phone_number, String, nil?: true
-
-            # @!attribute preferences
-            #
-            #   @return [Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences, nil]
-            optional :preferences,
-                     -> { Courier::SendMessageParams::Message::To::UnionMember0::Preferences },
-                     nil?: true
-
-            # @!attribute tenant_id
-            #   Tenant id. Will load brand, default preferences and base context data.
-            #
-            #   @return [String, nil]
-            optional :tenant_id, String, nil?: true
-
-            # @!attribute user_id
-            #
-            #   @return [String, nil]
-            optional :user_id, String, nil?: true
-
-            # @!method initialize(account_id: nil, context: nil, data: nil, email: nil, locale: nil, phone_number: nil, preferences: nil, tenant_id: nil, user_id: nil)
-            #   @param account_id [String, nil] Use `tenant_id` instead.
-            #
-            #   @param context [Courier::Models::MessageContext, nil] Context such as tenant_id to send the notification with.
-            #
-            #   @param data [Hash{Symbol=>Object}, nil]
-            #
-            #   @param email [String, nil]
-            #
-            #   @param locale [String, nil] The user's preferred ISO 639-1 language code.
-            #
-            #   @param phone_number [String, nil]
-            #
-            #   @param preferences [Courier::Models::SendMessageParams::Message::To::UnionMember0::Preferences, nil]
-            #
-            #   @param tenant_id [String, nil] Tenant id. Will load brand, default preferences and base context data.
-            #
-            #   @param user_id [String, nil]
-
-            # @see Courier::Models::SendMessageParams::Message::To::UnionMember0#preferences
-            class Preferences < Courier::Internal::Type::BaseModel
-              # @!attribute notifications
-              #
-              #   @return [Hash{Symbol=>Courier::Models::Preference}]
-              required :notifications, -> { Courier::Internal::Type::HashOf[Courier::Preference] }
-
-              # @!attribute categories
-              #
-              #   @return [Hash{Symbol=>Courier::Models::Preference}, nil]
-              optional :categories, -> { Courier::Internal::Type::HashOf[Courier::Preference] }, nil?: true
-
-              # @!attribute template_id
-              #
-              #   @return [String, nil]
-              optional :template_id, String, api_name: :templateId, nil?: true
-
-              # @!method initialize(notifications:, categories: nil, template_id: nil)
-              #   @param notifications [Hash{Symbol=>Courier::Models::Preference}]
-              #   @param categories [Hash{Symbol=>Courier::Models::Preference}, nil]
-              #   @param template_id [String, nil]
-            end
-          end
-
           # @!method self.variants
-          #   @return [Array(Courier::Models::SendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>)]
+          #   @return [Array(Courier::Models::UserRecipient, Array<Courier::Models::Recipient>)]
 
           # @type [Courier::Internal::Type::Converter]
           RecipientArray = Courier::Internal::Type::ArrayOf[-> { Courier::Recipient }]

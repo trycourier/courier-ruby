@@ -1,0 +1,17 @@
+module Courier
+  module Models
+    module Notifications
+      type check = { updated: Integer }
+
+      class Check < Courier::Models::Notifications::BaseCheck
+        def updated: -> Integer
+
+        def updated=: (Integer _) -> Integer
+
+        def initialize: (updated: Integer) -> void
+
+        def to_hash: -> { updated: Integer }
+      end
+    end
+  end
+end

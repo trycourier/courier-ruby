@@ -1,0 +1,97 @@
+module Courier
+  module Models
+    type inbound_bulk_message =
+      Courier::InboundBulkMessage::InboundBulkTemplateMessage
+      | Courier::InboundBulkMessage::InboundBulkContentMessage
+
+    module InboundBulkMessage
+      extend Courier::Internal::Type::Union
+
+      type inbound_bulk_template_message =
+        {
+          template: String,
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          event: String?,
+          locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+          override: ::Hash[Symbol, top]?
+        }
+
+      class InboundBulkTemplateMessage < Courier::Internal::Type::BaseModel
+        attr_accessor template: String
+
+        attr_accessor brand: String?
+
+        attr_accessor data: ::Hash[Symbol, top]?
+
+        attr_accessor event: String?
+
+        attr_accessor locale: ::Hash[Symbol, ::Hash[Symbol, top]]?
+
+        attr_accessor override: ::Hash[Symbol, top]?
+
+        def initialize: (
+          template: String,
+          ?brand: String?,
+          ?data: ::Hash[Symbol, top]?,
+          ?event: String?,
+          ?locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+          ?override: ::Hash[Symbol, top]?
+        ) -> void
+
+        def to_hash: -> {
+          template: String,
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          event: String?,
+          locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+          override: ::Hash[Symbol, top]?
+        }
+      end
+
+      type inbound_bulk_content_message =
+        {
+          content: Courier::Models::content,
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          event: String?,
+          locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+          override: ::Hash[Symbol, top]?
+        }
+
+      class InboundBulkContentMessage < Courier::Internal::Type::BaseModel
+        attr_accessor content: Courier::Models::content
+
+        attr_accessor brand: String?
+
+        attr_accessor data: ::Hash[Symbol, top]?
+
+        attr_accessor event: String?
+
+        attr_accessor locale: ::Hash[Symbol, ::Hash[Symbol, top]]?
+
+        attr_accessor override: ::Hash[Symbol, top]?
+
+        def initialize: (
+          content: Courier::Models::content,
+          ?brand: String?,
+          ?data: ::Hash[Symbol, top]?,
+          ?event: String?,
+          ?locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+          ?override: ::Hash[Symbol, top]?
+        ) -> void
+
+        def to_hash: -> {
+          content: Courier::Models::content,
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          event: String?,
+          locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+          override: ::Hash[Symbol, top]?
+        }
+      end
+
+      def self?.variants: -> ::Array[Courier::Models::inbound_bulk_message]
+    end
+  end
+end

@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    module Users
+      type tenant_list_params =
+        { cursor: String?, limit: Integer? }
+        & Courier::Internal::Type::request_parameters
+
+      class TenantListParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_accessor cursor: String?
+
+        attr_accessor limit: Integer?
+
+        def initialize: (
+          ?cursor: String?,
+          ?limit: Integer?,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          cursor: String?,
+          limit: Integer?,
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

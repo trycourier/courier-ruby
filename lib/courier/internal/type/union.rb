@@ -6,16 +6,14 @@ module Courier
       # @api private
       #
       # @example
-      #   # `elemental_node` is a `Courier::ElementalNode`
-      #   case elemental_node
-      #   when Courier::ElementalNode::UnionMember0
-      #     # ...
-      #   when Courier::ElementalNode::UnionMember1
-      #     # ...
-      #   when Courier::ElementalNode::UnionMember2
-      #     # ...
+      #   # `content` is a `Courier::Content`
+      #   case content
+      #   when Courier::Content::ElementalContentSugar
+      #     puts(content.body)
+      #   when Courier::Tenants::ElementalContent
+      #     puts(content.elements)
       #   else
-      #     puts(elemental_node)
+      #     puts(content)
       #   end
       module Union
         include Courier::Internal::Type::Converter

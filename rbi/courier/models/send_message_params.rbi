@@ -73,8 +73,8 @@ module Courier
           returns(
             T.nilable(
               T.any(
-                Courier::SendMessageParams::Message::Content::ElementalContentSugar,
-                Courier::SendMessageParams::Message::Content::ElementalContent
+                Courier::Content::ElementalContentSugar,
+                Courier::Tenants::ElementalContent
               )
             )
           )
@@ -85,8 +85,8 @@ module Courier
           params(
             content:
               T.any(
-                Courier::SendMessageParams::Message::Content::ElementalContentSugar::OrHash,
-                Courier::SendMessageParams::Message::Content::ElementalContent::OrHash
+                Courier::Content::ElementalContentSugar::OrHash,
+                Courier::Tenants::ElementalContent::OrHash
               )
           ).void
         end
@@ -186,10 +186,7 @@ module Courier
         sig do
           returns(
             T.nilable(
-              T.any(
-                Courier::SendMessageParams::Message::To::UnionMember0,
-                T::Array[Courier::Recipient]
-              )
+              T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
             )
           )
         end
@@ -209,8 +206,8 @@ module Courier
               ),
             content:
               T.any(
-                Courier::SendMessageParams::Message::Content::ElementalContentSugar::OrHash,
-                Courier::SendMessageParams::Message::Content::ElementalContent::OrHash
+                Courier::Content::ElementalContentSugar::OrHash,
+                Courier::Tenants::ElementalContent::OrHash
               ),
             context: T.nilable(Courier::MessageContext::OrHash),
             data: T.nilable(T::Hash[Symbol, T.anything]),
@@ -238,7 +235,7 @@ module Courier
             to:
               T.nilable(
                 T.any(
-                  Courier::SendMessageParams::Message::To::UnionMember0::OrHash,
+                  Courier::UserRecipient::OrHash,
                   T::Array[Courier::Recipient::OrHash]
                 )
               )
@@ -277,8 +274,8 @@ module Courier
                 ),
               content:
                 T.any(
-                  Courier::SendMessageParams::Message::Content::ElementalContentSugar,
-                  Courier::SendMessageParams::Message::Content::ElementalContent
+                  Courier::Content::ElementalContentSugar,
+                  Courier::Tenants::ElementalContent
                 ),
               context: T.nilable(Courier::MessageContext),
               data: T.nilable(T::Hash[Symbol, T.anything]),
@@ -296,10 +293,7 @@ module Courier
               timeout: T.nilable(Courier::SendMessageParams::Message::Timeout),
               to:
                 T.nilable(
-                  T.any(
-                    Courier::SendMessageParams::Message::To::UnionMember0,
-                    T::Array[Courier::Recipient]
-                  )
+                  T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
                 )
             }
           )
@@ -531,145 +525,6 @@ module Courier
             end
             def to_hash
             end
-          end
-        end
-
-        # Describes content that will work for email, inbox, push, chat, or any channel
-        # id.
-        module Content
-          extend Courier::Internal::Type::Union
-
-          Variants =
-            T.type_alias do
-              T.any(
-                Courier::SendMessageParams::Message::Content::ElementalContentSugar,
-                Courier::SendMessageParams::Message::Content::ElementalContent
-              )
-            end
-
-          class ElementalContentSugar < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendMessageParams::Message::Content::ElementalContentSugar,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            # The text content displayed in the notification.
-            sig { returns(String) }
-            attr_accessor :body
-
-            # Title/subject displayed by supported channels.
-            sig { returns(String) }
-            attr_accessor :title
-
-            # Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
-            sig do
-              params(body: String, title: String).returns(T.attached_class)
-            end
-            def self.new(
-              # The text content displayed in the notification.
-              body:,
-              # Title/subject displayed by supported channels.
-              title:
-            )
-            end
-
-            sig { override.returns({ body: String, title: String }) }
-            def to_hash
-            end
-          end
-
-          class ElementalContent < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendMessageParams::Message::Content::ElementalContent,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig do
-              returns(
-                T::Array[
-                  T.any(
-                    Courier::ElementalNode::UnionMember0,
-                    Courier::ElementalNode::UnionMember1,
-                    Courier::ElementalNode::UnionMember2,
-                    Courier::ElementalNode::UnionMember3,
-                    Courier::ElementalNode::UnionMember4,
-                    Courier::ElementalNode::UnionMember5,
-                    Courier::ElementalNode::UnionMember6
-                  )
-                ]
-              )
-            end
-            attr_accessor :elements
-
-            # For example, "2022-01-01"
-            sig { returns(String) }
-            attr_accessor :version
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :brand
-
-            sig do
-              params(
-                elements:
-                  T::Array[
-                    T.any(
-                      Courier::ElementalNode::UnionMember0::OrHash,
-                      Courier::ElementalNode::UnionMember1::OrHash,
-                      Courier::ElementalNode::UnionMember2::OrHash,
-                      Courier::ElementalNode::UnionMember3::OrHash,
-                      Courier::ElementalNode::UnionMember4::OrHash,
-                      Courier::ElementalNode::UnionMember5::OrHash,
-                      Courier::ElementalNode::UnionMember6::OrHash
-                    )
-                  ],
-                version: String,
-                brand: T.nilable(String)
-              ).returns(T.attached_class)
-            end
-            def self.new(
-              elements:,
-              # For example, "2022-01-01"
-              version:,
-              brand: nil
-            )
-            end
-
-            sig do
-              override.returns(
-                {
-                  elements:
-                    T::Array[
-                      T.any(
-                        Courier::ElementalNode::UnionMember0,
-                        Courier::ElementalNode::UnionMember1,
-                        Courier::ElementalNode::UnionMember2,
-                        Courier::ElementalNode::UnionMember3,
-                        Courier::ElementalNode::UnionMember4,
-                        Courier::ElementalNode::UnionMember5,
-                        Courier::ElementalNode::UnionMember6
-                      )
-                    ],
-                  version: String,
-                  brand: T.nilable(String)
-                }
-              )
-            end
-            def to_hash
-            end
-          end
-
-          sig do
-            override.returns(
-              T::Array[Courier::SendMessageParams::Message::Content::Variants]
-            )
-          end
-          def self.variants
           end
         end
 
@@ -1159,169 +1014,8 @@ module Courier
 
           Variants =
             T.type_alias do
-              T.any(
-                Courier::SendMessageParams::Message::To::UnionMember0,
-                T::Array[Courier::Recipient]
-              )
+              T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
             end
-
-          class UnionMember0 < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendMessageParams::Message::To::UnionMember0,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            # Use `tenant_id` instead.
-            sig { returns(T.nilable(String)) }
-            attr_accessor :account_id
-
-            # Context such as tenant_id to send the notification with.
-            sig { returns(T.nilable(Courier::MessageContext)) }
-            attr_reader :context
-
-            sig do
-              params(context: T.nilable(Courier::MessageContext::OrHash)).void
-            end
-            attr_writer :context
-
-            sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-            attr_accessor :data
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :email
-
-            # The user's preferred ISO 639-1 language code.
-            sig { returns(T.nilable(String)) }
-            attr_accessor :locale
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :phone_number
-
-            sig do
-              returns(
-                T.nilable(
-                  Courier::SendMessageParams::Message::To::UnionMember0::Preferences
-                )
-              )
-            end
-            attr_reader :preferences
-
-            sig do
-              params(
-                preferences:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::To::UnionMember0::Preferences::OrHash
-                  )
-              ).void
-            end
-            attr_writer :preferences
-
-            # Tenant id. Will load brand, default preferences and base context data.
-            sig { returns(T.nilable(String)) }
-            attr_accessor :tenant_id
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :user_id
-
-            sig do
-              params(
-                account_id: T.nilable(String),
-                context: T.nilable(Courier::MessageContext::OrHash),
-                data: T.nilable(T::Hash[Symbol, T.anything]),
-                email: T.nilable(String),
-                locale: T.nilable(String),
-                phone_number: T.nilable(String),
-                preferences:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::To::UnionMember0::Preferences::OrHash
-                  ),
-                tenant_id: T.nilable(String),
-                user_id: T.nilable(String)
-              ).returns(T.attached_class)
-            end
-            def self.new(
-              # Use `tenant_id` instead.
-              account_id: nil,
-              # Context such as tenant_id to send the notification with.
-              context: nil,
-              data: nil,
-              email: nil,
-              # The user's preferred ISO 639-1 language code.
-              locale: nil,
-              phone_number: nil,
-              preferences: nil,
-              # Tenant id. Will load brand, default preferences and base context data.
-              tenant_id: nil,
-              user_id: nil
-            )
-            end
-
-            sig do
-              override.returns(
-                {
-                  account_id: T.nilable(String),
-                  context: T.nilable(Courier::MessageContext),
-                  data: T.nilable(T::Hash[Symbol, T.anything]),
-                  email: T.nilable(String),
-                  locale: T.nilable(String),
-                  phone_number: T.nilable(String),
-                  preferences:
-                    T.nilable(
-                      Courier::SendMessageParams::Message::To::UnionMember0::Preferences
-                    ),
-                  tenant_id: T.nilable(String),
-                  user_id: T.nilable(String)
-                }
-              )
-            end
-            def to_hash
-            end
-
-            class Preferences < Courier::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Courier::SendMessageParams::Message::To::UnionMember0::Preferences,
-                    Courier::Internal::AnyHash
-                  )
-                end
-
-              sig { returns(T::Hash[Symbol, Courier::Preference]) }
-              attr_accessor :notifications
-
-              sig { returns(T.nilable(T::Hash[Symbol, Courier::Preference])) }
-              attr_accessor :categories
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :template_id
-
-              sig do
-                params(
-                  notifications: T::Hash[Symbol, Courier::Preference::OrHash],
-                  categories:
-                    T.nilable(T::Hash[Symbol, Courier::Preference::OrHash]),
-                  template_id: T.nilable(String)
-                ).returns(T.attached_class)
-              end
-              def self.new(notifications:, categories: nil, template_id: nil)
-              end
-
-              sig do
-                override.returns(
-                  {
-                    notifications: T::Hash[Symbol, Courier::Preference],
-                    categories: T.nilable(T::Hash[Symbol, Courier::Preference]),
-                    template_id: T.nilable(String)
-                  }
-                )
-              end
-              def to_hash
-              end
-            end
-          end
 
           sig do
             override.returns(

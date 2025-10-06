@@ -1,25 +1,187 @@
 module Courier
   module Alignment = Courier::Models::Alignment
 
+  class Audience = Courier::Models::Audience
+
+  class AudienceDeleteParams = Courier::Models::AudienceDeleteParams
+
+  class AudienceListMembersParams = Courier::Models::AudienceListMembersParams
+
+  class AudienceListParams = Courier::Models::AudienceListParams
+
+  class AudienceRetrieveParams = Courier::Models::AudienceRetrieveParams
+
+  class AudienceUpdateParams = Courier::Models::AudienceUpdateParams
+
+  class AuditEvent = Courier::Models::AuditEvent
+
+  class AuditEventListParams = Courier::Models::AuditEventListParams
+
+  class AuditEventRetrieveParams = Courier::Models::AuditEventRetrieveParams
+
+  class AuthIssueTokenParams = Courier::Models::AuthIssueTokenParams
+
+  module Automations = Courier::Models::Automations
+
+  class Brand = Courier::Models::Brand
+
+  class BrandColors = Courier::Models::BrandColors
+
+  class BrandCreateParams = Courier::Models::BrandCreateParams
+
+  class BrandDeleteParams = Courier::Models::BrandDeleteParams
+
+  class BrandListParams = Courier::Models::BrandListParams
+
+  class BrandRetrieveParams = Courier::Models::BrandRetrieveParams
+
+  class BrandSettings = Courier::Models::BrandSettings
+
+  class BrandSettingsEmail = Courier::Models::BrandSettingsEmail
+
+  class BrandSettingsInApp = Courier::Models::BrandSettingsInApp
+
+  class BrandSnippet = Courier::Models::BrandSnippet
+
+  class BrandSnippets = Courier::Models::BrandSnippets
+
+  class BrandTemplate = Courier::Models::BrandTemplate
+
+  class BrandUpdateParams = Courier::Models::BrandUpdateParams
+
+  class BulkAddUsersParams = Courier::Models::BulkAddUsersParams
+
+  class BulkCreateJobParams = Courier::Models::BulkCreateJobParams
+
+  class BulkListUsersParams = Courier::Models::BulkListUsersParams
+
+  class BulkRetrieveJobParams = Courier::Models::BulkRetrieveJobParams
+
+  class BulkRunJobParams = Courier::Models::BulkRunJobParams
+
+  class ChannelPreference = Courier::Models::ChannelPreference
+
+  module Content = Courier::Models::Content
+
+  class DefaultPreferences = Courier::Models::DefaultPreferences
+
   class ElementalBaseNode = Courier::Models::ElementalBaseNode
 
   class ElementalChannelNode = Courier::Models::ElementalChannelNode
 
   module ElementalNode = Courier::Models::ElementalNode
 
+  class EmailFooter = Courier::Models::EmailFooter
+
+  class EmailHead = Courier::Models::EmailHead
+
+  class EmailHeader = Courier::Models::EmailHeader
+
+  module Filter = Courier::Models::Filter
+
+  module FilterConfig = Courier::Models::FilterConfig
+
+  class Icons = Courier::Models::Icons
+
+  module InboundBulkMessage = Courier::Models::InboundBulkMessage
+
+  class InboundBulkMessageUser = Courier::Models::InboundBulkMessageUser
+
+  class InboundTrackEventParams = Courier::Models::InboundTrackEventParams
+
+  class List = Courier::Models::List
+
+  class ListDeleteParams = Courier::Models::ListDeleteParams
+
+  class ListListParams = Courier::Models::ListListParams
+
+  class ListRestoreParams = Courier::Models::ListRestoreParams
+
+  class ListRetrieveParams = Courier::Models::ListRetrieveParams
+
+  module Lists = Courier::Models::Lists
+
+  class ListUpdateParams = Courier::Models::ListUpdateParams
+
+  class Logo = Courier::Models::Logo
+
+  class MessageCancelParams = Courier::Models::MessageCancelParams
+
+  class MessageContentParams = Courier::Models::MessageContentParams
+
   class MessageContext = Courier::Models::MessageContext
+
+  class MessageDetails = Courier::Models::MessageDetails
+
+  class MessageHistoryParams = Courier::Models::MessageHistoryParams
+
+  class MessageListParams = Courier::Models::MessageListParams
+
+  class MessageRetrieveParams = Courier::Models::MessageRetrieveParams
 
   class MessageRouting = Courier::Models::MessageRouting
 
   module MessageRoutingChannel = Courier::Models::MessageRoutingChannel
 
+  class NestedFilterConfig = Courier::Models::NestedFilterConfig
+
+  class NotificationContent = Courier::Models::NotificationContent
+
+  class NotificationListParams = Courier::Models::NotificationListParams
+
+  class NotificationRetrieveContentParams = Courier::Models::NotificationRetrieveContentParams
+
+  module Notifications = Courier::Models::Notifications
+
+  class Paging = Courier::Models::Paging
+
   class Preference = Courier::Models::Preference
+
+  class ProfileCreateParams = Courier::Models::ProfileCreateParams
+
+  class ProfileDeleteParams = Courier::Models::ProfileDeleteParams
+
+  class ProfileReplaceParams = Courier::Models::ProfileReplaceParams
+
+  class ProfileRetrieveParams = Courier::Models::ProfileRetrieveParams
+
+  module Profiles = Courier::Models::Profiles
+
+  class ProfileUpdateParams = Courier::Models::ProfileUpdateParams
 
   class Recipient = Courier::Models::Recipient
 
+  class RequestArchiveParams = Courier::Models::RequestArchiveParams
+
+  class Rule = Courier::Models::Rule
+
   class SendMessageParams = Courier::Models::SendMessageParams
+
+  class Tenant = Courier::Models::Tenant
+
+  class TenantDeleteParams = Courier::Models::TenantDeleteParams
+
+  class TenantListParams = Courier::Models::TenantListParams
+
+  class TenantListUsersParams = Courier::Models::TenantListUsersParams
+
+  class TenantRetrieveParams = Courier::Models::TenantRetrieveParams
+
+  module Tenants = Courier::Models::Tenants
+
+  class TenantUpdateParams = Courier::Models::TenantUpdateParams
 
   module TextStyle = Courier::Models::TextStyle
 
+  class TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
+
+  class TranslationUpdateParams = Courier::Models::TranslationUpdateParams
+
+  class UserRecipient = Courier::Models::UserRecipient
+
+  module Users = Courier::Models::Users
+
   class Utm = Courier::Models::Utm
+
+  class WidgetBackground = Courier::Models::WidgetBackground
 end

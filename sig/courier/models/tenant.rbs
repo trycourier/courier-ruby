@@ -1,0 +1,50 @@
+module Courier
+  module Models
+    type tenant =
+      {
+        id: String,
+        name: String,
+        brand_id: String?,
+        default_preferences: Courier::DefaultPreferences?,
+        parent_tenant_id: String?,
+        properties: ::Hash[Symbol, top]?,
+        user_profile: ::Hash[Symbol, top]?
+      }
+
+    class Tenant < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor name: String
+
+      attr_accessor brand_id: String?
+
+      attr_accessor default_preferences: Courier::DefaultPreferences?
+
+      attr_accessor parent_tenant_id: String?
+
+      attr_accessor properties: ::Hash[Symbol, top]?
+
+      attr_accessor user_profile: ::Hash[Symbol, top]?
+
+      def initialize: (
+        id: String,
+        name: String,
+        ?brand_id: String?,
+        ?default_preferences: Courier::DefaultPreferences?,
+        ?parent_tenant_id: String?,
+        ?properties: ::Hash[Symbol, top]?,
+        ?user_profile: ::Hash[Symbol, top]?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        name: String,
+        brand_id: String?,
+        default_preferences: Courier::DefaultPreferences?,
+        parent_tenant_id: String?,
+        properties: ::Hash[Symbol, top]?,
+        user_profile: ::Hash[Symbol, top]?
+      }
+    end
+  end
+end

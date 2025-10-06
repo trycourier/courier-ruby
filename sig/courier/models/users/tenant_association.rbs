@@ -1,0 +1,47 @@
+module Courier
+  module Models
+    module Users
+      type tenant_association =
+        {
+          tenant_id: String,
+          profile: ::Hash[Symbol, top]?,
+          type: Courier::Models::Users::TenantAssociation::type_?,
+          user_id: String?
+        }
+
+      class TenantAssociation < Courier::Internal::Type::BaseModel
+        attr_accessor tenant_id: String
+
+        attr_accessor profile: ::Hash[Symbol, top]?
+
+        attr_accessor type: Courier::Models::Users::TenantAssociation::type_?
+
+        attr_accessor user_id: String?
+
+        def initialize: (
+          tenant_id: String,
+          ?profile: ::Hash[Symbol, top]?,
+          ?type: Courier::Models::Users::TenantAssociation::type_?,
+          ?user_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          tenant_id: String,
+          profile: ::Hash[Symbol, top]?,
+          type: Courier::Models::Users::TenantAssociation::type_?,
+          user_id: String?
+        }
+
+        type type_ = :user
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          USER: :user
+
+          def self?.values: -> ::Array[Courier::Models::Users::TenantAssociation::type_]
+        end
+      end
+    end
+  end
+end

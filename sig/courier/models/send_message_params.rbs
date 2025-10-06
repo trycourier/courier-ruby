@@ -24,7 +24,7 @@ module Courier
         {
           brand_id: String?,
           channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
-          content: Courier::Models::SendMessageParams::Message::content,
+          content: Courier::Models::content,
           context: Courier::MessageContext?,
           data: ::Hash[Symbol, top]?,
           delay: Courier::SendMessageParams::Message::Delay?,
@@ -42,11 +42,9 @@ module Courier
 
         attr_accessor channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?
 
-        attr_reader content: Courier::Models::SendMessageParams::Message::content?
+        attr_reader content: Courier::Models::content?
 
-        def content=: (
-          Courier::Models::SendMessageParams::Message::content
-        ) -> Courier::Models::SendMessageParams::Message::content
+        def content=: (Courier::Models::content) -> Courier::Models::content
 
         attr_accessor context: Courier::MessageContext?
 
@@ -71,7 +69,7 @@ module Courier
         def initialize: (
           ?brand_id: String?,
           ?channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
-          ?content: Courier::Models::SendMessageParams::Message::content,
+          ?content: Courier::Models::content,
           ?context: Courier::MessageContext?,
           ?data: ::Hash[Symbol, top]?,
           ?delay: Courier::SendMessageParams::Message::Delay?,
@@ -87,7 +85,7 @@ module Courier
         def to_hash: -> {
           brand_id: String?,
           channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
-          content: Courier::Models::SendMessageParams::Message::content,
+          content: Courier::Models::content,
           context: Courier::MessageContext?,
           data: ::Hash[Symbol, top]?,
           delay: Courier::SendMessageParams::Message::Delay?,
@@ -178,55 +176,6 @@ module Courier
 
             def to_hash: -> { channel: Integer?, provider: Integer? }
           end
-        end
-
-        type content =
-          Courier::SendMessageParams::Message::Content::ElementalContentSugar
-          | Courier::SendMessageParams::Message::Content::ElementalContent
-
-        module Content
-          extend Courier::Internal::Type::Union
-
-          type elemental_content_sugar = { body: String, title: String }
-
-          class ElementalContentSugar < Courier::Internal::Type::BaseModel
-            attr_accessor body: String
-
-            attr_accessor title: String
-
-            def initialize: (body: String, title: String) -> void
-
-            def to_hash: -> { body: String, title: String }
-          end
-
-          type elemental_content =
-            {
-              elements: ::Array[Courier::Models::elemental_node],
-              version: String,
-              brand: String?
-            }
-
-          class ElementalContent < Courier::Internal::Type::BaseModel
-            attr_accessor elements: ::Array[Courier::Models::elemental_node]
-
-            attr_accessor version: String
-
-            attr_accessor brand: String?
-
-            def initialize: (
-              elements: ::Array[Courier::Models::elemental_node],
-              version: String,
-              ?brand: String?
-            ) -> void
-
-            def to_hash: -> {
-              elements: ::Array[Courier::Models::elemental_node],
-              version: String,
-              brand: String?
-            }
-          end
-
-          def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::content]
         end
 
         type delay = { duration: Integer?, until_: String? }
@@ -438,96 +387,10 @@ module Courier
           end
         end
 
-        type to =
-          Courier::SendMessageParams::Message::To::UnionMember0
-          | ::Array[Courier::Recipient]
+        type to = Courier::UserRecipient | ::Array[Courier::Recipient]
 
         module To
           extend Courier::Internal::Type::Union
-
-          type union_member0 =
-            {
-              account_id: String?,
-              context: Courier::MessageContext?,
-              data: ::Hash[Symbol, top]?,
-              email: String?,
-              locale: String?,
-              phone_number: String?,
-              preferences: Courier::SendMessageParams::Message::To::UnionMember0::Preferences?,
-              tenant_id: String?,
-              user_id: String?
-            }
-
-          class UnionMember0 < Courier::Internal::Type::BaseModel
-            attr_accessor account_id: String?
-
-            attr_accessor context: Courier::MessageContext?
-
-            attr_accessor data: ::Hash[Symbol, top]?
-
-            attr_accessor email: String?
-
-            attr_accessor locale: String?
-
-            attr_accessor phone_number: String?
-
-            attr_accessor preferences: Courier::SendMessageParams::Message::To::UnionMember0::Preferences?
-
-            attr_accessor tenant_id: String?
-
-            attr_accessor user_id: String?
-
-            def initialize: (
-              ?account_id: String?,
-              ?context: Courier::MessageContext?,
-              ?data: ::Hash[Symbol, top]?,
-              ?email: String?,
-              ?locale: String?,
-              ?phone_number: String?,
-              ?preferences: Courier::SendMessageParams::Message::To::UnionMember0::Preferences?,
-              ?tenant_id: String?,
-              ?user_id: String?
-            ) -> void
-
-            def to_hash: -> {
-              account_id: String?,
-              context: Courier::MessageContext?,
-              data: ::Hash[Symbol, top]?,
-              email: String?,
-              locale: String?,
-              phone_number: String?,
-              preferences: Courier::SendMessageParams::Message::To::UnionMember0::Preferences?,
-              tenant_id: String?,
-              user_id: String?
-            }
-
-            type preferences =
-              {
-                notifications: ::Hash[Symbol, Courier::Preference],
-                categories: ::Hash[Symbol, Courier::Preference]?,
-                template_id: String?
-              }
-
-            class Preferences < Courier::Internal::Type::BaseModel
-              attr_accessor notifications: ::Hash[Symbol, Courier::Preference]
-
-              attr_accessor categories: ::Hash[Symbol, Courier::Preference]?
-
-              attr_accessor template_id: String?
-
-              def initialize: (
-                notifications: ::Hash[Symbol, Courier::Preference],
-                ?categories: ::Hash[Symbol, Courier::Preference]?,
-                ?template_id: String?
-              ) -> void
-
-              def to_hash: -> {
-                notifications: ::Hash[Symbol, Courier::Preference],
-                categories: ::Hash[Symbol, Courier::Preference]?,
-                template_id: String?
-              }
-            end
-          end
 
           def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::to]
 

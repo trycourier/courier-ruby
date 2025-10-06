@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    module Lists
+      type subscription_subscribe_user_params =
+        { list_id: String, preferences: Courier::Lists::RecipientPreferences? }
+        & Courier::Internal::Type::request_parameters
+
+      class SubscriptionSubscribeUserParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_accessor list_id: String
+
+        attr_accessor preferences: Courier::Lists::RecipientPreferences?
+
+        def initialize: (
+          list_id: String,
+          ?preferences: Courier::Lists::RecipientPreferences?,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          list_id: String,
+          preferences: Courier::Lists::RecipientPreferences?,
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

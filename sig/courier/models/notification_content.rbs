@@ -1,0 +1,211 @@
+module Courier
+  module Models
+    type notification_content =
+      {
+        blocks: ::Array[Courier::NotificationContent::Block]?,
+        channels: ::Array[Courier::NotificationContent::Channel]?,
+        checksum: String?
+      }
+
+    class NotificationContent < Courier::Internal::Type::BaseModel
+      attr_accessor blocks: ::Array[Courier::NotificationContent::Block]?
+
+      attr_accessor channels: ::Array[Courier::NotificationContent::Channel]?
+
+      attr_accessor checksum: String?
+
+      def initialize: (
+        ?blocks: ::Array[Courier::NotificationContent::Block]?,
+        ?channels: ::Array[Courier::NotificationContent::Channel]?,
+        ?checksum: String?
+      ) -> void
+
+      def to_hash: -> {
+        blocks: ::Array[Courier::NotificationContent::Block]?,
+        channels: ::Array[Courier::NotificationContent::Channel]?,
+        checksum: String?
+      }
+
+      type block =
+        {
+          id: String,
+          type: Courier::Models::NotificationContent::Block::type_,
+          alias_: String?,
+          checksum: String?,
+          content: Courier::Models::NotificationContent::Block::content?,
+          context: String?,
+          locales: ::Hash[Symbol, Courier::Models::NotificationContent::Block::locale]?
+        }
+
+      class Block < Courier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor type: Courier::Models::NotificationContent::Block::type_
+
+        attr_accessor alias_: String?
+
+        attr_accessor checksum: String?
+
+        attr_accessor content: Courier::Models::NotificationContent::Block::content?
+
+        attr_accessor context: String?
+
+        attr_accessor locales: ::Hash[Symbol, Courier::Models::NotificationContent::Block::locale]?
+
+        def initialize: (
+          id: String,
+          type: Courier::Models::NotificationContent::Block::type_,
+          ?alias_: String?,
+          ?checksum: String?,
+          ?content: Courier::Models::NotificationContent::Block::content?,
+          ?context: String?,
+          ?locales: ::Hash[Symbol, Courier::Models::NotificationContent::Block::locale]?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          type: Courier::Models::NotificationContent::Block::type_,
+          alias_: String?,
+          checksum: String?,
+          content: Courier::Models::NotificationContent::Block::content?,
+          context: String?,
+          locales: ::Hash[Symbol, Courier::Models::NotificationContent::Block::locale]?
+        }
+
+        type type_ =
+          :action
+          | :divider
+          | :image
+          | :jsonnet
+          | :list
+          | :markdown
+          | :quote
+          | :template
+          | :text
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          ACTION: :action
+          DIVIDER: :divider
+          IMAGE: :image
+          JSONNET: :jsonnet
+          LIST: :list
+          MARKDOWN: :markdown
+          QUOTE: :quote
+          TEMPLATE: :template
+          TEXT: :text
+
+          def self?.values: -> ::Array[Courier::Models::NotificationContent::Block::type_]
+        end
+
+        type content =
+          String
+          | Courier::NotificationContent::Block::Content::NotificationContentHierarchy
+
+        module Content
+          extend Courier::Internal::Type::Union
+
+          type notification_content_hierarchy =
+            { children: String?, parent: String? }
+
+          class NotificationContentHierarchy < Courier::Internal::Type::BaseModel
+            attr_accessor children: String?
+
+            attr_accessor parent: String?
+
+            def initialize: (?children: String?, ?parent: String?) -> void
+
+            def to_hash: -> { children: String?, parent: String? }
+          end
+
+          def self?.variants: -> ::Array[Courier::Models::NotificationContent::Block::content]
+        end
+
+        type locale =
+          String
+          | Courier::NotificationContent::Block::Locale::NotificationContentHierarchy
+
+        module Locale
+          extend Courier::Internal::Type::Union
+
+          type notification_content_hierarchy =
+            { children: String?, parent: String? }
+
+          class NotificationContentHierarchy < Courier::Internal::Type::BaseModel
+            attr_accessor children: String?
+
+            attr_accessor parent: String?
+
+            def initialize: (?children: String?, ?parent: String?) -> void
+
+            def to_hash: -> { children: String?, parent: String? }
+          end
+
+          def self?.variants: -> ::Array[Courier::Models::NotificationContent::Block::locale]
+        end
+      end
+
+      type channel =
+        {
+          id: String,
+          checksum: String?,
+          content: Courier::NotificationContent::Channel::Content?,
+          locales: ::Hash[Symbol, Courier::NotificationContent::Channel::Locale]?,
+          type: String?
+        }
+
+      class Channel < Courier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor checksum: String?
+
+        attr_accessor content: Courier::NotificationContent::Channel::Content?
+
+        attr_accessor locales: ::Hash[Symbol, Courier::NotificationContent::Channel::Locale]?
+
+        attr_accessor type: String?
+
+        def initialize: (
+          id: String,
+          ?checksum: String?,
+          ?content: Courier::NotificationContent::Channel::Content?,
+          ?locales: ::Hash[Symbol, Courier::NotificationContent::Channel::Locale]?,
+          ?type: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          checksum: String?,
+          content: Courier::NotificationContent::Channel::Content?,
+          locales: ::Hash[Symbol, Courier::NotificationContent::Channel::Locale]?,
+          type: String?
+        }
+
+        type content = { subject: String?, title: String? }
+
+        class Content < Courier::Internal::Type::BaseModel
+          attr_accessor subject: String?
+
+          attr_accessor title: String?
+
+          def initialize: (?subject: String?, ?title: String?) -> void
+
+          def to_hash: -> { subject: String?, title: String? }
+        end
+
+        type locale = { subject: String?, title: String? }
+
+        class Locale < Courier::Internal::Type::BaseModel
+          attr_accessor subject: String?
+
+          attr_accessor title: String?
+
+          def initialize: (?subject: String?, ?title: String?) -> void
+
+          def to_hash: -> { subject: String?, title: String? }
+        end
+      end
+    end
+  end
+end

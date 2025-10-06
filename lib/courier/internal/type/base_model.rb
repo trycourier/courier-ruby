@@ -438,11 +438,9 @@ module Courier
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `elemental_base_node` is a `Courier::ElementalBaseNode`
-        #   elemental_base_node => {
-        #     channels: channels,
-        #     if_: if_,
-        #     loop_: loop_
+        #   # `channel_preference` is a `Courier::ChannelPreference`
+        #   channel_preference => {
+        #     channel: channel
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)
