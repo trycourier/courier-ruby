@@ -12,6 +12,36 @@ module Courier
 
     attr_reader send_: Courier::Resources::Send
 
+    attr_reader tenants: Courier::Resources::Tenants
+
+    attr_reader audiences: Courier::Resources::Audiences
+
+    attr_reader bulk: Courier::Resources::Bulk
+
+    attr_reader users: Courier::Resources::Users
+
+    attr_reader audit_events: Courier::Resources::AuditEvents
+
+    attr_reader automations: Courier::Resources::Automations
+
+    attr_reader brands: Courier::Resources::Brands
+
+    attr_reader lists: Courier::Resources::Lists
+
+    attr_reader messages: Courier::Resources::Messages
+
+    attr_reader notifications: Courier::Resources::Notifications
+
+    attr_reader auth: Courier::Resources::Auth
+
+    attr_reader inbound: Courier::Resources::Inbound
+
+    attr_reader requests: Courier::Resources::Requests
+
+    attr_reader profiles: Courier::Resources::Profiles
+
+    attr_reader translations: Courier::Resources::Translations
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

@@ -1,0 +1,24 @@
+module Courier
+  module Models
+    type bulk_create_job_params =
+      { message: Courier::Models::inbound_bulk_message }
+      & Courier::Internal::Type::request_parameters
+
+    class BulkCreateJobParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor message: Courier::Models::inbound_bulk_message
+
+      def initialize: (
+        message: Courier::Models::inbound_bulk_message,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        message: Courier::Models::inbound_bulk_message,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

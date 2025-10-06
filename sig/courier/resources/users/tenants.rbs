@@ -1,0 +1,40 @@
+module Courier
+  module Resources
+    class Users
+      class Tenants
+        def list: (
+          String user_id,
+          ?cursor: String?,
+          ?limit: Integer?,
+          ?request_options: Courier::request_opts
+        ) -> Courier::Models::Users::TenantListResponse
+
+        def add_multiple: (
+          String user_id,
+          tenants: ::Array[Courier::Users::TenantAssociation],
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def add_single: (
+          String tenant_id,
+          user_id: String,
+          ?profile: ::Hash[Symbol, top]?,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def remove_all: (
+          String user_id,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def remove_single: (
+          String tenant_id,
+          user_id: String,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end

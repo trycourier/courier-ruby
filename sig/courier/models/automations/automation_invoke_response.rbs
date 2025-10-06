@@ -1,0 +1,17 @@
+module Courier
+  module Models
+    class AutomationInvokeResponse = Automations::AutomationInvokeResponse
+
+    module Automations
+      type automation_invoke_response = { run_id: String }
+
+      class AutomationInvokeResponse < Courier::Internal::Type::BaseModel
+        attr_accessor run_id: String
+
+        def initialize: (run_id: String) -> void
+
+        def to_hash: -> { run_id: String }
+      end
+    end
+  end
+end

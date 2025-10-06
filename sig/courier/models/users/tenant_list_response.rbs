@@ -1,0 +1,57 @@
+module Courier
+  module Models
+    module Users
+      type tenant_list_response =
+        {
+          has_more: bool,
+          type: Courier::Models::Users::TenantListResponse::type_,
+          url: String,
+          cursor: String?,
+          items: ::Array[Courier::Users::TenantAssociation]?,
+          next_url: String?
+        }
+
+      class TenantListResponse < Courier::Internal::Type::BaseModel
+        attr_accessor has_more: bool
+
+        attr_accessor type: Courier::Models::Users::TenantListResponse::type_
+
+        attr_accessor url: String
+
+        attr_accessor cursor: String?
+
+        attr_accessor items: ::Array[Courier::Users::TenantAssociation]?
+
+        attr_accessor next_url: String?
+
+        def initialize: (
+          has_more: bool,
+          type: Courier::Models::Users::TenantListResponse::type_,
+          url: String,
+          ?cursor: String?,
+          ?items: ::Array[Courier::Users::TenantAssociation]?,
+          ?next_url: String?
+        ) -> void
+
+        def to_hash: -> {
+          has_more: bool,
+          type: Courier::Models::Users::TenantListResponse::type_,
+          url: String,
+          cursor: String?,
+          items: ::Array[Courier::Users::TenantAssociation]?,
+          next_url: String?
+        }
+
+        type type_ = :list
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          LIST: :list
+
+          def self?.values: -> ::Array[Courier::Models::Users::TenantListResponse::type_]
+        end
+      end
+    end
+  end
+end

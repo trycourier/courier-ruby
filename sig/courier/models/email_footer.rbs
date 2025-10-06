@@ -1,0 +1,17 @@
+module Courier
+  module Models
+    type email_footer = { content: top, inherit_default: bool? }
+
+    class EmailFooter < Courier::Internal::Type::BaseModel
+      attr_reader content: top?
+
+      def content=: (top) -> top
+
+      attr_accessor inherit_default: bool?
+
+      def initialize: (?content: top, ?inherit_default: bool?) -> void
+
+      def to_hash: -> { content: top, inherit_default: bool? }
+    end
+  end
+end

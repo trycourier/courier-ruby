@@ -1,0 +1,14 @@
+module Courier
+  module Resources
+    class Notifications
+      class Draft
+        def retrieve_content: (
+          String id,
+          ?request_options: Courier::request_opts
+        ) -> Courier::NotificationContent
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end

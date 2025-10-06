@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type auth_issue_token_response = { token: String }
+
+    class AuthIssueTokenResponse < Courier::Internal::Type::BaseModel
+      attr_accessor token: String
+
+      def initialize: (token: String) -> void
+
+      def to_hash: -> { token: String }
+    end
+  end
+end

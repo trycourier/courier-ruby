@@ -1,0 +1,5 @@
+module Courier
+  module Models
+    class TranslationRetrieveResponse = String
+  end
+end

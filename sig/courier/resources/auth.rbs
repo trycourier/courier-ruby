@@ -1,0 +1,13 @@
+module Courier
+  module Resources
+    class Auth
+      def issue_token: (
+        expires_in: String,
+        scope: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::AuthIssueTokenResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end
