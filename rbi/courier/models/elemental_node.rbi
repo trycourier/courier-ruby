@@ -2,6 +2,16 @@
 
 module Courier
   module Models
+    # The channel element allows a notification to be customized based on which
+    # channel it is sent through. For example, you may want to display a detailed
+    # message when the notification is sent through email, and a more concise message
+    # in a push notification. Channel elements are only valid as top-level elements;
+    # you cannot nest channel elements. If there is a channel element specified at the
+    # top-level of the document, all sibling elements must be channel elements. Note:
+    # As an alternative, most elements support a `channel` property. Which allows you
+    # to selectively display an individual element on a per channel basis. See the
+    # [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
+    # for more details.
     module ElementalNode
       extend Courier::Internal::Type::Union
 
@@ -191,7 +201,7 @@ module Courier
         end
       end
 
-      class UnionMember2 < Courier::Internal::Type::BaseModel
+      class UnionMember2 < Courier::Models::ElementalChannelNode
         OrHash =
           T.type_alias do
             T.any(
@@ -199,18 +209,6 @@ module Courier
               Courier::Internal::AnyHash
             )
           end
-
-        sig { returns(T.nilable(T::Array[String])) }
-        attr_accessor :channels
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :if_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :loop_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :ref
 
         sig do
           returns(
@@ -226,27 +224,27 @@ module Courier
         end
         attr_writer :type
 
+        # The channel element allows a notification to be customized based on which
+        # channel it is sent through. For example, you may want to display a detailed
+        # message when the notification is sent through email, and a more concise message
+        # in a push notification. Channel elements are only valid as top-level elements;
+        # you cannot nest channel elements. If there is a channel element specified at the
+        # top-level of the document, all sibling elements must be channel elements. Note:
+        # As an alternative, most elements support a `channel` property. Which allows you
+        # to selectively display an individual element on a per channel basis. See the
+        # [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
+        # for more details.
         sig do
           params(
-            channels: T.nilable(T::Array[String]),
-            if_: T.nilable(String),
-            loop_: T.nilable(String),
-            ref: T.nilable(String),
             type: Courier::ElementalNode::UnionMember2::Type::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
+        def self.new(type: nil)
         end
 
         sig do
           override.returns(
-            {
-              channels: T.nilable(T::Array[String]),
-              if_: T.nilable(String),
-              loop_: T.nilable(String),
-              ref: T.nilable(String),
-              type: Courier::ElementalNode::UnionMember2::Type::OrSymbol
-            }
+            { type: Courier::ElementalNode::UnionMember2::Type::OrSymbol }
           )
         end
         def to_hash
@@ -709,7 +707,7 @@ module Courier
         end
       end
 
-      class UnionMember6 < Courier::Internal::Type::BaseModel
+      class UnionMember6 < Courier::Models::ElementalGroupNode
         OrHash =
           T.type_alias do
             T.any(
@@ -717,18 +715,6 @@ module Courier
               Courier::Internal::AnyHash
             )
           end
-
-        sig { returns(T.nilable(T::Array[String])) }
-        attr_accessor :channels
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :if_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :loop_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :ref
 
         sig do
           returns(
@@ -744,27 +730,21 @@ module Courier
         end
         attr_writer :type
 
+        # Allows you to group elements together. This can be useful when used in
+        # combination with "if" or "loop". See
+        # [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
+        # for more details.
         sig do
           params(
-            channels: T.nilable(T::Array[String]),
-            if_: T.nilable(String),
-            loop_: T.nilable(String),
-            ref: T.nilable(String),
             type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
+        def self.new(type: nil)
         end
 
         sig do
           override.returns(
-            {
-              channels: T.nilable(T::Array[String]),
-              if_: T.nilable(String),
-              loop_: T.nilable(String),
-              ref: T.nilable(String),
-              type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
-            }
+            { type: Courier::ElementalNode::UnionMember6::Type::OrSymbol }
           )
         end
         def to_hash

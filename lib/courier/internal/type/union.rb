@@ -13,7 +13,7 @@ module Courier
       #   when Courier::ElementalNode::UnionMember1
       #     puts(elemental_node.if_)
       #   when Courier::ElementalNode::UnionMember2
-      #     puts(elemental_node.loop_)
+      #     # ...
       #   else
       #     puts(elemental_node)
       #   end

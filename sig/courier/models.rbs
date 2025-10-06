@@ -1,4 +1,8 @@
 module Courier
+  class ElementalChannelNode = Courier::Models::ElementalChannelNode
+
+  class ElementalGroupNode = Courier::Models::ElementalGroupNode
+
   module ElementalNode = Courier::Models::ElementalNode
 
   class MessageContext = Courier::Models::MessageContext
