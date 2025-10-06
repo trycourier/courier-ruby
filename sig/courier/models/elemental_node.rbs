@@ -13,42 +13,20 @@ module Courier
       extend Courier::Internal::Type::Union
 
       type union_member0 =
-        {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
-          type: Courier::Models::ElementalNode::UnionMember0::type_
-        }
+        { type: Courier::Models::ElementalNode::UnionMember0::type_ }
 
-      class UnionMember0 < Courier::Internal::Type::BaseModel
-        attr_accessor channels: ::Array[String]?
-
-        attr_accessor if_: String?
-
-        attr_accessor loop_: String?
-
-        attr_accessor ref: String?
-
-        attr_reader type: Courier::Models::ElementalNode::UnionMember0::type_?
+      class UnionMember0 < Courier::Models::ElementalBaseNode
+        def `type`: -> Courier::Models::ElementalNode::UnionMember0::type_?
 
         def type=: (
-          Courier::Models::ElementalNode::UnionMember0::type_
+          Courier::Models::ElementalNode::UnionMember0::type_ _
         ) -> Courier::Models::ElementalNode::UnionMember0::type_
 
         def initialize: (
-          ?channels: ::Array[String]?,
-          ?if_: String?,
-          ?loop_: String?,
-          ?ref: String?,
           ?type: Courier::Models::ElementalNode::UnionMember0::type_
         ) -> void
 
         def to_hash: -> {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
           type: Courier::Models::ElementalNode::UnionMember0::type_
         }
 
@@ -64,42 +42,20 @@ module Courier
       end
 
       type union_member1 =
-        {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
-          type: Courier::Models::ElementalNode::UnionMember1::type_
-        }
+        { type: Courier::Models::ElementalNode::UnionMember1::type_ }
 
-      class UnionMember1 < Courier::Internal::Type::BaseModel
-        attr_accessor channels: ::Array[String]?
-
-        attr_accessor if_: String?
-
-        attr_accessor loop_: String?
-
-        attr_accessor ref: String?
-
-        attr_reader type: Courier::Models::ElementalNode::UnionMember1::type_?
+      class UnionMember1 < Courier::Models::ElementalBaseNode
+        def `type`: -> Courier::Models::ElementalNode::UnionMember1::type_?
 
         def type=: (
-          Courier::Models::ElementalNode::UnionMember1::type_
+          Courier::Models::ElementalNode::UnionMember1::type_ _
         ) -> Courier::Models::ElementalNode::UnionMember1::type_
 
         def initialize: (
-          ?channels: ::Array[String]?,
-          ?if_: String?,
-          ?loop_: String?,
-          ?ref: String?,
           ?type: Courier::Models::ElementalNode::UnionMember1::type_
         ) -> void
 
         def to_hash: -> {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
           type: Courier::Models::ElementalNode::UnionMember1::type_
         }
 
@@ -144,42 +100,20 @@ module Courier
       end
 
       type union_member3 =
-        {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
-          type: Courier::Models::ElementalNode::UnionMember3::type_
-        }
+        { type: Courier::Models::ElementalNode::UnionMember3::type_ }
 
-      class UnionMember3 < Courier::Internal::Type::BaseModel
-        attr_accessor channels: ::Array[String]?
-
-        attr_accessor if_: String?
-
-        attr_accessor loop_: String?
-
-        attr_accessor ref: String?
-
-        attr_reader type: Courier::Models::ElementalNode::UnionMember3::type_?
+      class UnionMember3 < Courier::Models::ElementalBaseNode
+        def `type`: -> Courier::Models::ElementalNode::UnionMember3::type_?
 
         def type=: (
-          Courier::Models::ElementalNode::UnionMember3::type_
+          Courier::Models::ElementalNode::UnionMember3::type_ _
         ) -> Courier::Models::ElementalNode::UnionMember3::type_
 
         def initialize: (
-          ?channels: ::Array[String]?,
-          ?if_: String?,
-          ?loop_: String?,
-          ?ref: String?,
           ?type: Courier::Models::ElementalNode::UnionMember3::type_
         ) -> void
 
         def to_hash: -> {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
           type: Courier::Models::ElementalNode::UnionMember3::type_
         }
 
@@ -197,7 +131,7 @@ module Courier
       type union_member4 =
         {
           action_id: String?,
-          align: Courier::Models::ElementalNode::UnionMember4::align?,
+          align: Courier::Models::alignment?,
           background_color: String?,
           content: String,
           href: String,
@@ -209,7 +143,7 @@ module Courier
       class UnionMember4 < Courier::Internal::Type::BaseModel
         attr_accessor action_id: String?
 
-        attr_accessor align: Courier::Models::ElementalNode::UnionMember4::align?
+        attr_accessor align: Courier::Models::alignment?
 
         attr_accessor background_color: String?
 
@@ -233,7 +167,7 @@ module Courier
 
         def initialize: (
           ?action_id: String?,
-          ?align: Courier::Models::ElementalNode::UnionMember4::align?,
+          ?align: Courier::Models::alignment?,
           ?background_color: String?,
           ?content: String,
           ?href: String,
@@ -244,7 +178,7 @@ module Courier
 
         def to_hash: -> {
           action_id: String?,
-          align: Courier::Models::ElementalNode::UnionMember4::align?,
+          align: Courier::Models::alignment?,
           background_color: String?,
           content: String,
           href: String,
@@ -252,19 +186,6 @@ module Courier
           style: Courier::Models::ElementalNode::UnionMember4::style?,
           type: Courier::Models::ElementalNode::UnionMember4::type_
         }
-
-        type align = :center | :left | :right | :full
-
-        module Align
-          extend Courier::Internal::Type::Enum
-
-          CENTER: :center
-          LEFT: :left
-          RIGHT: :right
-          FULL: :full
-
-          def self?.values: -> ::Array[Courier::Models::ElementalNode::UnionMember4::align]
-        end
 
         type locale = { content: String }
 
@@ -299,42 +220,20 @@ module Courier
       end
 
       type union_member5 =
-        {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
-          type: Courier::Models::ElementalNode::UnionMember5::type_
-        }
+        { type: Courier::Models::ElementalNode::UnionMember5::type_ }
 
-      class UnionMember5 < Courier::Internal::Type::BaseModel
-        attr_accessor channels: ::Array[String]?
-
-        attr_accessor if_: String?
-
-        attr_accessor loop_: String?
-
-        attr_accessor ref: String?
-
-        attr_reader type: Courier::Models::ElementalNode::UnionMember5::type_?
+      class UnionMember5 < Courier::Models::ElementalBaseNode
+        def `type`: -> Courier::Models::ElementalNode::UnionMember5::type_?
 
         def type=: (
-          Courier::Models::ElementalNode::UnionMember5::type_
+          Courier::Models::ElementalNode::UnionMember5::type_ _
         ) -> Courier::Models::ElementalNode::UnionMember5::type_
 
         def initialize: (
-          ?channels: ::Array[String]?,
-          ?if_: String?,
-          ?loop_: String?,
-          ?ref: String?,
           ?type: Courier::Models::ElementalNode::UnionMember5::type_
         ) -> void
 
         def to_hash: -> {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
           type: Courier::Models::ElementalNode::UnionMember5::type_
         }
 
@@ -350,42 +249,20 @@ module Courier
       end
 
       type union_member6 =
-        {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
-          type: Courier::Models::ElementalNode::UnionMember6::type_
-        }
+        { type: Courier::Models::ElementalNode::UnionMember6::type_ }
 
-      class UnionMember6 < Courier::Internal::Type::BaseModel
-        attr_accessor channels: ::Array[String]?
-
-        attr_accessor if_: String?
-
-        attr_accessor loop_: String?
-
-        attr_accessor ref: String?
-
-        attr_reader type: Courier::Models::ElementalNode::UnionMember6::type_?
+      class UnionMember6 < Courier::Models::ElementalBaseNode
+        def `type`: -> Courier::Models::ElementalNode::UnionMember6::type_?
 
         def type=: (
-          Courier::Models::ElementalNode::UnionMember6::type_
+          Courier::Models::ElementalNode::UnionMember6::type_ _
         ) -> Courier::Models::ElementalNode::UnionMember6::type_
 
         def initialize: (
-          ?channels: ::Array[String]?,
-          ?if_: String?,
-          ?loop_: String?,
-          ?ref: String?,
           ?type: Courier::Models::ElementalNode::UnionMember6::type_
         ) -> void
 
         def to_hash: -> {
-          channels: ::Array[String]?,
-          if_: String?,
-          loop_: String?,
-          ref: String?,
           type: Courier::Models::ElementalNode::UnionMember6::type_
         }
 

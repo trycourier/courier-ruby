@@ -28,7 +28,7 @@ module Courier
           )
         end
 
-      class UnionMember0 < Courier::Internal::Type::BaseModel
+      class UnionMember0 < Courier::Models::ElementalBaseNode
         OrHash =
           T.type_alias do
             T.any(
@@ -36,18 +36,6 @@ module Courier
               Courier::Internal::AnyHash
             )
           end
-
-        sig { returns(T.nilable(T::Array[String])) }
-        attr_accessor :channels
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :if_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :loop_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :ref
 
         sig do
           returns(
@@ -65,25 +53,15 @@ module Courier
 
         sig do
           params(
-            channels: T.nilable(T::Array[String]),
-            if_: T.nilable(String),
-            loop_: T.nilable(String),
-            ref: T.nilable(String),
             type: Courier::ElementalNode::UnionMember0::Type::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
+        def self.new(type: nil)
         end
 
         sig do
           override.returns(
-            {
-              channels: T.nilable(T::Array[String]),
-              if_: T.nilable(String),
-              loop_: T.nilable(String),
-              ref: T.nilable(String),
-              type: Courier::ElementalNode::UnionMember0::Type::OrSymbol
-            }
+            { type: Courier::ElementalNode::UnionMember0::Type::OrSymbol }
           )
         end
         def to_hash
@@ -114,7 +92,7 @@ module Courier
         end
       end
 
-      class UnionMember1 < Courier::Internal::Type::BaseModel
+      class UnionMember1 < Courier::Models::ElementalBaseNode
         OrHash =
           T.type_alias do
             T.any(
@@ -122,18 +100,6 @@ module Courier
               Courier::Internal::AnyHash
             )
           end
-
-        sig { returns(T.nilable(T::Array[String])) }
-        attr_accessor :channels
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :if_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :loop_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :ref
 
         sig do
           returns(
@@ -151,25 +117,15 @@ module Courier
 
         sig do
           params(
-            channels: T.nilable(T::Array[String]),
-            if_: T.nilable(String),
-            loop_: T.nilable(String),
-            ref: T.nilable(String),
             type: Courier::ElementalNode::UnionMember1::Type::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
+        def self.new(type: nil)
         end
 
         sig do
           override.returns(
-            {
-              channels: T.nilable(T::Array[String]),
-              if_: T.nilable(String),
-              loop_: T.nilable(String),
-              ref: T.nilable(String),
-              type: Courier::ElementalNode::UnionMember1::Type::OrSymbol
-            }
+            { type: Courier::ElementalNode::UnionMember1::Type::OrSymbol }
           )
         end
         def to_hash
@@ -274,7 +230,7 @@ module Courier
         end
       end
 
-      class UnionMember3 < Courier::Internal::Type::BaseModel
+      class UnionMember3 < Courier::Models::ElementalBaseNode
         OrHash =
           T.type_alias do
             T.any(
@@ -282,18 +238,6 @@ module Courier
               Courier::Internal::AnyHash
             )
           end
-
-        sig { returns(T.nilable(T::Array[String])) }
-        attr_accessor :channels
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :if_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :loop_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :ref
 
         sig do
           returns(
@@ -311,25 +255,15 @@ module Courier
 
         sig do
           params(
-            channels: T.nilable(T::Array[String]),
-            if_: T.nilable(String),
-            loop_: T.nilable(String),
-            ref: T.nilable(String),
             type: Courier::ElementalNode::UnionMember3::Type::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
+        def self.new(type: nil)
         end
 
         sig do
           override.returns(
-            {
-              channels: T.nilable(T::Array[String]),
-              if_: T.nilable(String),
-              loop_: T.nilable(String),
-              ref: T.nilable(String),
-              type: Courier::ElementalNode::UnionMember3::Type::OrSymbol
-            }
+            { type: Courier::ElementalNode::UnionMember3::Type::OrSymbol }
           )
         end
         def to_hash
@@ -374,11 +308,7 @@ module Courier
         attr_accessor :action_id
 
         # The alignment of the action button. Defaults to "center".
-        sig do
-          returns(
-            T.nilable(Courier::ElementalNode::UnionMember4::Align::OrSymbol)
-          )
-        end
+        sig { returns(T.nilable(Courier::Alignment::OrSymbol)) }
         attr_accessor :align
 
         # The background color of the action button.
@@ -436,8 +366,7 @@ module Courier
         sig do
           params(
             action_id: T.nilable(String),
-            align:
-              T.nilable(Courier::ElementalNode::UnionMember4::Align::OrSymbol),
+            align: T.nilable(Courier::Alignment::OrSymbol),
             background_color: T.nilable(String),
             content: String,
             href: String,
@@ -478,10 +407,7 @@ module Courier
           override.returns(
             {
               action_id: T.nilable(String),
-              align:
-                T.nilable(
-                  Courier::ElementalNode::UnionMember4::Align::OrSymbol
-                ),
+              align: T.nilable(Courier::Alignment::OrSymbol),
               background_color: T.nilable(String),
               content: String,
               href: String,
@@ -498,48 +424,6 @@ module Courier
           )
         end
         def to_hash
-        end
-
-        # The alignment of the action button. Defaults to "center".
-        module Align
-          extend Courier::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Courier::ElementalNode::UnionMember4::Align)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          CENTER =
-            T.let(
-              :center,
-              Courier::ElementalNode::UnionMember4::Align::TaggedSymbol
-            )
-          LEFT =
-            T.let(
-              :left,
-              Courier::ElementalNode::UnionMember4::Align::TaggedSymbol
-            )
-          RIGHT =
-            T.let(
-              :right,
-              Courier::ElementalNode::UnionMember4::Align::TaggedSymbol
-            )
-          FULL =
-            T.let(
-              :full,
-              Courier::ElementalNode::UnionMember4::Align::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Courier::ElementalNode::UnionMember4::Align::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         class Locale < Courier::Internal::Type::BaseModel
@@ -620,7 +504,7 @@ module Courier
         end
       end
 
-      class UnionMember5 < Courier::Internal::Type::BaseModel
+      class UnionMember5 < Courier::Models::ElementalBaseNode
         OrHash =
           T.type_alias do
             T.any(
@@ -628,18 +512,6 @@ module Courier
               Courier::Internal::AnyHash
             )
           end
-
-        sig { returns(T.nilable(T::Array[String])) }
-        attr_accessor :channels
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :if_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :loop_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :ref
 
         sig do
           returns(
@@ -657,25 +529,15 @@ module Courier
 
         sig do
           params(
-            channels: T.nilable(T::Array[String]),
-            if_: T.nilable(String),
-            loop_: T.nilable(String),
-            ref: T.nilable(String),
             type: Courier::ElementalNode::UnionMember5::Type::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
+        def self.new(type: nil)
         end
 
         sig do
           override.returns(
-            {
-              channels: T.nilable(T::Array[String]),
-              if_: T.nilable(String),
-              loop_: T.nilable(String),
-              ref: T.nilable(String),
-              type: Courier::ElementalNode::UnionMember5::Type::OrSymbol
-            }
+            { type: Courier::ElementalNode::UnionMember5::Type::OrSymbol }
           )
         end
         def to_hash
@@ -706,7 +568,7 @@ module Courier
         end
       end
 
-      class UnionMember6 < Courier::Internal::Type::BaseModel
+      class UnionMember6 < Courier::Models::ElementalBaseNode
         OrHash =
           T.type_alias do
             T.any(
@@ -714,18 +576,6 @@ module Courier
               Courier::Internal::AnyHash
             )
           end
-
-        sig { returns(T.nilable(T::Array[String])) }
-        attr_accessor :channels
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :if_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :loop_
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :ref
 
         sig do
           returns(
@@ -743,25 +593,15 @@ module Courier
 
         sig do
           params(
-            channels: T.nilable(T::Array[String]),
-            if_: T.nilable(String),
-            loop_: T.nilable(String),
-            ref: T.nilable(String),
             type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
+        def self.new(type: nil)
         end
 
         sig do
           override.returns(
-            {
-              channels: T.nilable(T::Array[String]),
-              if_: T.nilable(String),
-              loop_: T.nilable(String),
-              ref: T.nilable(String),
-              type: Courier::ElementalNode::UnionMember6::Type::OrSymbol
-            }
+            { type: Courier::ElementalNode::UnionMember6::Type::OrSymbol }
           )
         end
         def to_hash

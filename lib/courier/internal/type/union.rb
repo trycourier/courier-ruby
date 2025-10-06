@@ -9,9 +9,9 @@ module Courier
       #   # `elemental_node` is a `Courier::ElementalNode`
       #   case elemental_node
       #   when Courier::ElementalNode::UnionMember0
-      #     puts(elemental_node.channels)
+      #     # ...
       #   when Courier::ElementalNode::UnionMember1
-      #     puts(elemental_node.if_)
+      #     # ...
       #   when Courier::ElementalNode::UnionMember2
       #     # ...
       #   else

@@ -1,6 +1,10 @@
 # typed: strong
 
 module Courier
+  Alignment = Courier::Models::Alignment
+
+  ElementalBaseNode = Courier::Models::ElementalBaseNode
+
   ElementalChannelNode = Courier::Models::ElementalChannelNode
 
   ElementalNode = Courier::Models::ElementalNode
@@ -16,6 +20,8 @@ module Courier
   Recipient = Courier::Models::Recipient
 
   SendMessageParams = Courier::Models::SendMessageParams
+
+  TextStyle = Courier::Models::TextStyle
 
   Utm = Courier::Models::Utm
 end

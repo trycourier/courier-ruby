@@ -15,6 +15,31 @@ module Courier
       #
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
+      #
+      # @example
+      #   # `alignment` is a `Courier::Alignment`
+      #   case alignment
+      #   when Courier::Alignment::CENTER
+      #     # ...
+      #   when Courier::Alignment::LEFT
+      #     # ...
+      #   when Courier::Alignment::RIGHT
+      #     # ...
+      #   else
+      #     puts(alignment)
+      #   end
+      #
+      # @example
+      #   case alignment
+      #   in :center
+      #     # ...
+      #   in :left
+      #     # ...
+      #   in :right
+      #     # ...
+      #   else
+      #     puts(alignment)
+      #   end
       module Enum
         include Courier::Internal::Type::Converter
         include Courier::Internal::Util::SorbetRuntimeSupport
