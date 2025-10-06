@@ -22,9 +22,9 @@ module Courier
 
       type message =
         {
-          content: Courier::Models::SendMessageParams::Message::content,
           brand_id: String?,
           channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
+          content: Courier::Models::SendMessageParams::Message::content,
           context: Courier::MessageContext?,
           data: ::Hash[Symbol, top]?,
           delay: Courier::SendMessageParams::Message::Delay?,
@@ -38,11 +38,15 @@ module Courier
         }
 
       class Message < Courier::Internal::Type::BaseModel
-        attr_accessor content: Courier::Models::SendMessageParams::Message::content
-
         attr_accessor brand_id: String?
 
         attr_accessor channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?
+
+        attr_reader content: Courier::Models::SendMessageParams::Message::content?
+
+        def content=: (
+          Courier::Models::SendMessageParams::Message::content
+        ) -> Courier::Models::SendMessageParams::Message::content
 
         attr_accessor context: Courier::MessageContext?
 
@@ -65,9 +69,9 @@ module Courier
         attr_accessor to: Courier::Models::SendMessageParams::Message::to?
 
         def initialize: (
-          content: Courier::Models::SendMessageParams::Message::content,
           ?brand_id: String?,
           ?channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
+          ?content: Courier::Models::SendMessageParams::Message::content,
           ?context: Courier::MessageContext?,
           ?data: ::Hash[Symbol, top]?,
           ?delay: Courier::SendMessageParams::Message::Delay?,
@@ -81,9 +85,9 @@ module Courier
         ) -> void
 
         def to_hash: -> {
-          content: Courier::Models::SendMessageParams::Message::content,
           brand_id: String?,
           channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
+          content: Courier::Models::SendMessageParams::Message::content,
           context: Courier::MessageContext?,
           data: ::Hash[Symbol, top]?,
           delay: Courier::SendMessageParams::Message::Delay?,
@@ -95,55 +99,6 @@ module Courier
           timeout: Courier::SendMessageParams::Message::Timeout?,
           to: Courier::Models::SendMessageParams::Message::to?
         }
-
-        type content =
-          Courier::SendMessageParams::Message::Content::ElementalContentSugar
-          | Courier::SendMessageParams::Message::Content::ElementalContent
-
-        module Content
-          extend Courier::Internal::Type::Union
-
-          type elemental_content_sugar = { body: String, title: String }
-
-          class ElementalContentSugar < Courier::Internal::Type::BaseModel
-            attr_accessor body: String
-
-            attr_accessor title: String
-
-            def initialize: (body: String, title: String) -> void
-
-            def to_hash: -> { body: String, title: String }
-          end
-
-          type elemental_content =
-            {
-              elements: ::Array[Courier::Models::elemental_node],
-              version: String,
-              brand: String?
-            }
-
-          class ElementalContent < Courier::Internal::Type::BaseModel
-            attr_accessor elements: ::Array[Courier::Models::elemental_node]
-
-            attr_accessor version: String
-
-            attr_accessor brand: String?
-
-            def initialize: (
-              elements: ::Array[Courier::Models::elemental_node],
-              version: String,
-              ?brand: String?
-            ) -> void
-
-            def to_hash: -> {
-              elements: ::Array[Courier::Models::elemental_node],
-              version: String,
-              brand: String?
-            }
-          end
-
-          def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::content]
-        end
 
         type channel =
           {
@@ -223,6 +178,55 @@ module Courier
 
             def to_hash: -> { channel: Integer?, provider: Integer? }
           end
+        end
+
+        type content =
+          Courier::SendMessageParams::Message::Content::ElementalContentSugar
+          | Courier::SendMessageParams::Message::Content::ElementalContent
+
+        module Content
+          extend Courier::Internal::Type::Union
+
+          type elemental_content_sugar = { body: String, title: String }
+
+          class ElementalContentSugar < Courier::Internal::Type::BaseModel
+            attr_accessor body: String
+
+            attr_accessor title: String
+
+            def initialize: (body: String, title: String) -> void
+
+            def to_hash: -> { body: String, title: String }
+          end
+
+          type elemental_content =
+            {
+              elements: ::Array[Courier::Models::elemental_node],
+              version: String,
+              brand: String?
+            }
+
+          class ElementalContent < Courier::Internal::Type::BaseModel
+            attr_accessor elements: ::Array[Courier::Models::elemental_node]
+
+            attr_accessor version: String
+
+            attr_accessor brand: String?
+
+            def initialize: (
+              elements: ::Array[Courier::Models::elemental_node],
+              version: String,
+              ?brand: String?
+            ) -> void
+
+            def to_hash: -> {
+              elements: ::Array[Courier::Models::elemental_node],
+              version: String,
+              brand: String?
+            }
+          end
+
+          def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::content]
         end
 
         type delay = { duration: Integer?, until_: String? }
