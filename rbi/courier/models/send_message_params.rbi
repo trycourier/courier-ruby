@@ -371,11 +371,8 @@ module Courier
             sig { returns(String) }
             attr_accessor :version
 
-            sig { returns(T.nilable(T.anything)) }
-            attr_reader :brand
-
-            sig { params(brand: T.anything).void }
-            attr_writer :brand
+            sig { returns(T.nilable(String)) }
+            attr_accessor :brand
 
             sig do
               params(
@@ -392,7 +389,7 @@ module Courier
                     )
                   ],
                 version: String,
-                brand: T.anything
+                brand: T.nilable(String)
               ).returns(T.attached_class)
             end
             def self.new(
@@ -419,7 +416,7 @@ module Courier
                       )
                     ],
                   version: String,
-                  brand: T.anything
+                  brand: T.nilable(String)
                 }
               )
             end

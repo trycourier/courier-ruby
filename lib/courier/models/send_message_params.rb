@@ -178,15 +178,15 @@ module Courier
 
             # @!attribute brand
             #
-            #   @return [Object, nil]
-            optional :brand, Courier::Internal::Type::Unknown
+            #   @return [String, nil]
+            optional :brand, String, nil?: true
 
             # @!method initialize(elements:, version:, brand: nil)
             #   @param elements [Array<Courier::Models::ElementalNode::UnionMember0, Courier::Models::ElementalNode::UnionMember1, Courier::Models::ElementalNode::UnionMember2, Courier::Models::ElementalNode::UnionMember3, Courier::Models::ElementalNode::UnionMember4, Courier::Models::ElementalNode::UnionMember5, Courier::Models::ElementalNode::UnionMember6>]
             #
             #   @param version [String] For example, "2022-01-01"
             #
-            #   @param brand [Object]
+            #   @param brand [String, nil]
           end
 
           # @!method self.variants

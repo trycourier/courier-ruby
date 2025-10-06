@@ -119,7 +119,7 @@ module Courier
             {
               elements: ::Array[Courier::Models::elemental_node],
               version: String,
-              brand: top
+              brand: String?
             }
 
           class ElementalContent < Courier::Internal::Type::BaseModel
@@ -127,20 +127,18 @@ module Courier
 
             attr_accessor version: String
 
-            attr_reader brand: top?
-
-            def brand=: (top) -> top
+            attr_accessor brand: String?
 
             def initialize: (
               elements: ::Array[Courier::Models::elemental_node],
               version: String,
-              ?brand: top
+              ?brand: String?
             ) -> void
 
             def to_hash: -> {
               elements: ::Array[Courier::Models::elemental_node],
               version: String,
-              brand: top
+              brand: String?
             }
           end
 
