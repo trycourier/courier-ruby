@@ -24,10 +24,11 @@ module Courier
 
       class Message < Courier::Internal::Type::BaseModel
         # @!attribute content
-        #   Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
+        #   Describes content that will work for email, inbox, push, chat, or any channel
+        #   id.
         #
-        #   @return [Courier::Models::SendMessageParams::Message::Content]
-        required :content, -> { Courier::SendMessageParams::Message::Content }
+        #   @return [Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::SendMessageParams::Message::Content::ElementalContent]
+        required :content, union: -> { Courier::SendMessageParams::Message::Content }
 
         # @!attribute brand_id
         #
@@ -104,7 +105,7 @@ module Courier
         #   The message property has the following primary top-level properties. They define
         #   the destination and content of the message.
         #
-        #   @param content [Courier::Models::SendMessageParams::Message::Content] Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
+        #   @param content [Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::SendMessageParams::Message::Content::ElementalContent] Describes content that will work for email, inbox, push, chat, or any channel id
         #
         #   @param brand_id [String, nil]
         #
@@ -130,26 +131,66 @@ module Courier
         #
         #   @param to [Courier::Models::SendMessageParams::Message::To::UnionMember0, Array<Courier::Models::Recipient>, nil] The recipient or a list of recipients of the message
 
+        # Describes content that will work for email, inbox, push, chat, or any channel
+        # id.
+        #
         # @see Courier::Models::SendMessageParams::Message#content
-        class Content < Courier::Internal::Type::BaseModel
-          # @!attribute body
-          #   The text content displayed in the notification.
-          #
-          #   @return [String]
-          required :body, String
+        module Content
+          extend Courier::Internal::Type::Union
 
-          # @!attribute title
-          #   Title/subject displayed by supported channels.
-          #
-          #   @return [String]
-          required :title, String
+          # Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
+          variant -> { Courier::SendMessageParams::Message::Content::ElementalContentSugar }
 
-          # @!method initialize(body:, title:)
-          #   Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
-          #
-          #   @param body [String] The text content displayed in the notification.
-          #
-          #   @param title [String] Title/subject displayed by supported channels.
+          variant -> { Courier::SendMessageParams::Message::Content::ElementalContent }
+
+          class ElementalContentSugar < Courier::Internal::Type::BaseModel
+            # @!attribute body
+            #   The text content displayed in the notification.
+            #
+            #   @return [String]
+            required :body, String
+
+            # @!attribute title
+            #   Title/subject displayed by supported channels.
+            #
+            #   @return [String]
+            required :title, String
+
+            # @!method initialize(body:, title:)
+            #   Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
+            #
+            #   @param body [String] The text content displayed in the notification.
+            #
+            #   @param title [String] Title/subject displayed by supported channels.
+          end
+
+          class ElementalContent < Courier::Internal::Type::BaseModel
+            # @!attribute elements
+            #
+            #   @return [Array<Courier::Models::ElementalNode::UnionMember0, Courier::Models::ElementalNode::UnionMember1, Courier::Models::ElementalNode::UnionMember2, Courier::Models::ElementalNode::UnionMember3, Courier::Models::ElementalNode::UnionMember4, Courier::Models::ElementalNode::UnionMember5, Courier::Models::ElementalNode::UnionMember6, Courier::Models::ElementalNode::UnionMember7>]
+            required :elements, -> { Courier::Internal::Type::ArrayOf[union: Courier::ElementalNode] }
+
+            # @!attribute version
+            #   For example, "2022-01-01"
+            #
+            #   @return [String]
+            required :version, String
+
+            # @!attribute brand
+            #
+            #   @return [Object, nil]
+            optional :brand, Courier::Internal::Type::Unknown
+
+            # @!method initialize(elements:, version:, brand: nil)
+            #   @param elements [Array<Courier::Models::ElementalNode::UnionMember0, Courier::Models::ElementalNode::UnionMember1, Courier::Models::ElementalNode::UnionMember2, Courier::Models::ElementalNode::UnionMember3, Courier::Models::ElementalNode::UnionMember4, Courier::Models::ElementalNode::UnionMember5, Courier::Models::ElementalNode::UnionMember6, Courier::Models::ElementalNode::UnionMember7>]
+            #
+            #   @param version [String] For example, "2022-01-01"
+            #
+            #   @param brand [Object]
+          end
+
+          # @!method self.variants
+          #   @return [Array(Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::SendMessageParams::Message::Content::ElementalContent)]
         end
 
         class Channel < Courier::Internal::Type::BaseModel

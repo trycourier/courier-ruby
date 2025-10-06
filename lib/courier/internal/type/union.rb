@@ -6,14 +6,16 @@ module Courier
       # @api private
       #
       # @example
-      #   # `message_routing_channel` is a `Courier::MessageRoutingChannel`
-      #   case message_routing_channel
-      #   when String
-      #     # ...
-      #   when Courier::MessageRouting
-      #     puts(message_routing_channel.channels)
+      #   # `elemental_node` is a `Courier::ElementalNode`
+      #   case elemental_node
+      #   when Courier::ElementalNode::UnionMember0
+      #     puts(elemental_node.channels)
+      #   when Courier::ElementalNode::UnionMember1
+      #     puts(elemental_node.if_)
+      #   when Courier::ElementalNode::UnionMember2
+      #     puts(elemental_node.loop_)
       #   else
-      #     puts(message_routing_channel)
+      #     puts(elemental_node)
       #   end
       module Union
         include Courier::Internal::Type::Converter
