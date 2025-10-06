@@ -360,8 +360,7 @@ module Courier
                     Courier::ElementalNode::UnionMember3,
                     Courier::ElementalNode::UnionMember4,
                     Courier::ElementalNode::UnionMember5,
-                    Courier::ElementalNode::UnionMember6,
-                    Courier::ElementalNode::UnionMember7
+                    Courier::ElementalNode::UnionMember6
                   )
                 ]
               )
@@ -389,8 +388,7 @@ module Courier
                       Courier::ElementalNode::UnionMember3::OrHash,
                       Courier::ElementalNode::UnionMember4::OrHash,
                       Courier::ElementalNode::UnionMember5::OrHash,
-                      Courier::ElementalNode::UnionMember6::OrHash,
-                      Courier::ElementalNode::UnionMember7::OrHash
+                      Courier::ElementalNode::UnionMember6::OrHash
                     )
                   ],
                 version: String,
@@ -417,8 +415,7 @@ module Courier
                         Courier::ElementalNode::UnionMember3,
                         Courier::ElementalNode::UnionMember4,
                         Courier::ElementalNode::UnionMember5,
-                        Courier::ElementalNode::UnionMember6,
-                        Courier::ElementalNode::UnionMember7
+                        Courier::ElementalNode::UnionMember6
                       )
                     ],
                   version: String,

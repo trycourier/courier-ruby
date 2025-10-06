@@ -35,10 +35,7 @@ module Courier
 
       variant -> { Courier::ElementalNode::UnionMember5 }
 
-      # Allows you to group elements together. This can be useful when used in combination with "if" or "loop". See [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/) for more details.
       variant -> { Courier::ElementalNode::UnionMember6 }
-
-      variant -> { Courier::ElementalNode::UnionMember7 }
 
       class UnionMember0 < Courier::Internal::Type::BaseModel
         # @!attribute channels
@@ -367,31 +364,7 @@ module Courier
         end
       end
 
-      class UnionMember6 < Courier::Models::ElementalGroupNode
-        # @!attribute type
-        #
-        #   @return [Symbol, Courier::Models::ElementalNode::UnionMember6::Type, nil]
-        optional :type, enum: -> { Courier::ElementalNode::UnionMember6::Type }
-
-        # @!method initialize(type: nil)
-        #   Allows you to group elements together. This can be useful when used in
-        #   combination with "if" or "loop". See
-        #   [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
-        #   for more details.
-        #
-        #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember6::Type]
-
-        module Type
-          extend Courier::Internal::Type::Enum
-
-          GROUP = :group
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-      end
-
-      class UnionMember7 < Courier::Internal::Type::BaseModel
+      class UnionMember6 < Courier::Internal::Type::BaseModel
         # @!attribute channels
         #
         #   @return [Array<String>, nil]
@@ -414,17 +387,17 @@ module Courier
 
         # @!attribute type
         #
-        #   @return [Symbol, Courier::Models::ElementalNode::UnionMember7::Type, nil]
-        optional :type, enum: -> { Courier::ElementalNode::UnionMember7::Type }
+        #   @return [Symbol, Courier::Models::ElementalNode::UnionMember6::Type, nil]
+        optional :type, enum: -> { Courier::ElementalNode::UnionMember6::Type }
 
         # @!method initialize(channels: nil, if_: nil, loop_: nil, ref: nil, type: nil)
         #   @param channels [Array<String>, nil]
         #   @param if_ [String, nil]
         #   @param loop_ [String, nil]
         #   @param ref [String, nil]
-        #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember7::Type]
+        #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember6::Type]
 
-        # @see Courier::Models::ElementalNode::UnionMember7#type
+        # @see Courier::Models::ElementalNode::UnionMember6#type
         module Type
           extend Courier::Internal::Type::Enum
 
@@ -436,7 +409,7 @@ module Courier
       end
 
       # @!method self.variants
-      #   @return [Array(Courier::Models::ElementalNode::UnionMember0, Courier::Models::ElementalNode::UnionMember1, Courier::Models::ElementalNode::UnionMember2, Courier::Models::ElementalNode::UnionMember3, Courier::Models::ElementalNode::UnionMember4, Courier::Models::ElementalNode::UnionMember5, Courier::Models::ElementalNode::UnionMember6, Courier::Models::ElementalNode::UnionMember7)]
+      #   @return [Array(Courier::Models::ElementalNode::UnionMember0, Courier::Models::ElementalNode::UnionMember1, Courier::Models::ElementalNode::UnionMember2, Courier::Models::ElementalNode::UnionMember3, Courier::Models::ElementalNode::UnionMember4, Courier::Models::ElementalNode::UnionMember5, Courier::Models::ElementalNode::UnionMember6)]
     end
   end
 end
