@@ -17,28 +17,28 @@ module Courier
       # values safely.
       #
       # @example
-      #   # `channel_classification` is a `Courier::Tenants::DefaultPreferences::ChannelClassification`
-      #   case channel_classification
-      #   when Courier::Tenants::DefaultPreferences::ChannelClassification::DIRECT_MESSAGE
+      #   # `alignment` is a `Courier::Alignment`
+      #   case alignment
+      #   when Courier::Alignment::CENTER
       #     # ...
-      #   when Courier::Tenants::DefaultPreferences::ChannelClassification::EMAIL
+      #   when Courier::Alignment::LEFT
       #     # ...
-      #   when Courier::Tenants::DefaultPreferences::ChannelClassification::PUSH
+      #   when Courier::Alignment::RIGHT
       #     # ...
       #   else
-      #     puts(channel_classification)
+      #     puts(alignment)
       #   end
       #
       # @example
-      #   case channel_classification
-      #   in :direct_message
+      #   case alignment
+      #   in :center
       #     # ...
-      #   in :email
+      #   in :left
       #     # ...
-      #   in :push
+      #   in :right
       #     # ...
       #   else
-      #     puts(channel_classification)
+      #     puts(alignment)
       #   end
       module Enum
         include Courier::Internal::Type::Converter

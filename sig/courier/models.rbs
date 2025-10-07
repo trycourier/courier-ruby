@@ -1,4 +1,6 @@
 module Courier
+  module Alignment = Courier::Models::Alignment
+
   class Audience = Courier::Models::Audience
 
   class AudienceDeleteParams = Courier::Models::AudienceDeleteParams
@@ -59,9 +61,13 @@ module Courier
 
   class ChannelPreference = Courier::Models::ChannelPreference
 
-  module Content = Courier::Models::Content
-
   class DefaultPreferences = Courier::Models::DefaultPreferences
+
+  class ElementalBaseNode = Courier::Models::ElementalBaseNode
+
+  class ElementalChannelNode = Courier::Models::ElementalChannelNode
+
+  module ElementalNode = Courier::Models::ElementalNode
 
   class EmailFooter = Courier::Models::EmailFooter
 
@@ -145,7 +151,7 @@ module Courier
 
   class Rule = Courier::Models::Rule
 
-  class SendSendMessageParams = Courier::Models::SendSendMessageParams
+  class SendMessageParams = Courier::Models::SendMessageParams
 
   class Tenant = Courier::Models::Tenant
 
@@ -160,6 +166,8 @@ module Courier
   module Tenants = Courier::Models::Tenants
 
   class TenantUpdateParams = Courier::Models::TenantUpdateParams
+
+  module TextStyle = Courier::Models::TextStyle
 
   class TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
 
