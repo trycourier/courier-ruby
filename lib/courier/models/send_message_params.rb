@@ -88,6 +88,7 @@ module Courier
         optional :routing, -> { Courier::SendMessageParams::Message::Routing }, nil?: true
 
         # @!attribute template
+        #   The id of the template you want to send
         #
         #   @return [String, nil]
         optional :template, String, nil?: true
@@ -132,7 +133,7 @@ module Courier
         #
         #   @param routing [Courier::Models::SendMessageParams::Message::Routing, nil] Customize which channels/providers Courier may deliver the message through.
         #
-        #   @param template [String, nil]
+        #   @param template [String, nil] The id of the template you want to send
         #
         #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #
