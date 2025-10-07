@@ -5,7 +5,7 @@ module Courier
         def retrieve_content: (
           String id,
           ?request_options: Courier::request_opts
-        ) -> Courier::NotificationContent
+        ) -> Courier::NotificationGetContent
 
         def initialize: (client: Courier::Client) -> void
       end

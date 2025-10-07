@@ -1,9 +1,9 @@
 module Courier
   module Resources
     class Notifications
-      attr_reader checks: Courier::Resources::Notifications::Checks
-
       attr_reader draft: Courier::Resources::Notifications::Draft
+
+      attr_reader checks: Courier::Resources::Notifications::Checks
 
       def list: (
         ?cursor: String?,
@@ -14,7 +14,7 @@ module Courier
       def retrieve_content: (
         String id,
         ?request_options: Courier::request_opts
-      ) -> Courier::NotificationContent
+      ) -> Courier::NotificationGetContent
 
       def initialize: (client: Courier::Client) -> void
     end

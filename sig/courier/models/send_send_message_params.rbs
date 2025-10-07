@@ -1,0 +1,527 @@
+module Courier
+  module Models
+    type send_send_message_params =
+      { message: Courier::SendSendMessageParams::Message }
+      & Courier::Internal::Type::request_parameters
+
+    class SendSendMessageParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor message: Courier::SendSendMessageParams::Message
+
+      def initialize: (
+        message: Courier::SendSendMessageParams::Message,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        message: Courier::SendSendMessageParams::Message,
+        request_options: Courier::RequestOptions
+      }
+
+      type message =
+        {
+          brand_id: String?,
+          channels: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]?,
+          content: Courier::Models::content,
+          context: Courier::MessageContext?,
+          data: ::Hash[Symbol, top]?,
+          delay: Courier::SendSendMessageParams::Message::Delay?,
+          expiry: Courier::SendSendMessageParams::Message::Expiry?,
+          metadata: Courier::SendSendMessageParams::Message::Metadata?,
+          preferences: Courier::SendSendMessageParams::Message::Preferences?,
+          providers: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]?,
+          routing: Courier::SendSendMessageParams::Message::Routing?,
+          timeout: Courier::SendSendMessageParams::Message::Timeout?,
+          to: Courier::Models::SendSendMessageParams::Message::to?
+        }
+
+      class Message < Courier::Internal::Type::BaseModel
+        attr_accessor brand_id: String?
+
+        attr_accessor channels: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]?
+
+        attr_reader content: Courier::Models::content?
+
+        def content=: (Courier::Models::content) -> Courier::Models::content
+
+        attr_accessor context: Courier::MessageContext?
+
+        attr_accessor data: ::Hash[Symbol, top]?
+
+        attr_accessor delay: Courier::SendSendMessageParams::Message::Delay?
+
+        attr_accessor expiry: Courier::SendSendMessageParams::Message::Expiry?
+
+        attr_accessor metadata: Courier::SendSendMessageParams::Message::Metadata?
+
+        attr_accessor preferences: Courier::SendSendMessageParams::Message::Preferences?
+
+        attr_accessor providers: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]?
+
+        attr_accessor routing: Courier::SendSendMessageParams::Message::Routing?
+
+        attr_accessor timeout: Courier::SendSendMessageParams::Message::Timeout?
+
+        attr_accessor to: Courier::Models::SendSendMessageParams::Message::to?
+
+        def initialize: (
+          ?brand_id: String?,
+          ?channels: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]?,
+          ?content: Courier::Models::content,
+          ?context: Courier::MessageContext?,
+          ?data: ::Hash[Symbol, top]?,
+          ?delay: Courier::SendSendMessageParams::Message::Delay?,
+          ?expiry: Courier::SendSendMessageParams::Message::Expiry?,
+          ?metadata: Courier::SendSendMessageParams::Message::Metadata?,
+          ?preferences: Courier::SendSendMessageParams::Message::Preferences?,
+          ?providers: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]?,
+          ?routing: Courier::SendSendMessageParams::Message::Routing?,
+          ?timeout: Courier::SendSendMessageParams::Message::Timeout?,
+          ?to: Courier::Models::SendSendMessageParams::Message::to?
+        ) -> void
+
+        def to_hash: -> {
+          brand_id: String?,
+          channels: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]?,
+          content: Courier::Models::content,
+          context: Courier::MessageContext?,
+          data: ::Hash[Symbol, top]?,
+          delay: Courier::SendSendMessageParams::Message::Delay?,
+          expiry: Courier::SendSendMessageParams::Message::Expiry?,
+          metadata: Courier::SendSendMessageParams::Message::Metadata?,
+          preferences: Courier::SendSendMessageParams::Message::Preferences?,
+          providers: ::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]?,
+          routing: Courier::SendSendMessageParams::Message::Routing?,
+          timeout: Courier::SendSendMessageParams::Message::Timeout?,
+          to: Courier::Models::SendSendMessageParams::Message::to?
+        }
+
+        type channel =
+          {
+            brand_id: String?,
+            if_: String?,
+            metadata: Courier::SendSendMessageParams::Message::Channel::Metadata?,
+            override: ::Hash[Symbol, top]?,
+            providers: ::Array[String]?,
+            routing_method: Courier::Models::SendSendMessageParams::Message::Channel::routing_method?,
+            timeouts: Courier::SendSendMessageParams::Message::Channel::Timeouts?
+          }
+
+        class Channel < Courier::Internal::Type::BaseModel
+          attr_accessor brand_id: String?
+
+          attr_accessor if_: String?
+
+          attr_accessor metadata: Courier::SendSendMessageParams::Message::Channel::Metadata?
+
+          attr_accessor override: ::Hash[Symbol, top]?
+
+          attr_accessor providers: ::Array[String]?
+
+          attr_accessor routing_method: Courier::Models::SendSendMessageParams::Message::Channel::routing_method?
+
+          attr_accessor timeouts: Courier::SendSendMessageParams::Message::Channel::Timeouts?
+
+          def initialize: (
+            ?brand_id: String?,
+            ?if_: String?,
+            ?metadata: Courier::SendSendMessageParams::Message::Channel::Metadata?,
+            ?override: ::Hash[Symbol, top]?,
+            ?providers: ::Array[String]?,
+            ?routing_method: Courier::Models::SendSendMessageParams::Message::Channel::routing_method?,
+            ?timeouts: Courier::SendSendMessageParams::Message::Channel::Timeouts?
+          ) -> void
+
+          def to_hash: -> {
+            brand_id: String?,
+            if_: String?,
+            metadata: Courier::SendSendMessageParams::Message::Channel::Metadata?,
+            override: ::Hash[Symbol, top]?,
+            providers: ::Array[String]?,
+            routing_method: Courier::Models::SendSendMessageParams::Message::Channel::routing_method?,
+            timeouts: Courier::SendSendMessageParams::Message::Channel::Timeouts?
+          }
+
+          type metadata =
+            {
+              utm: Courier::SendSendMessageParams::Message::Channel::Metadata::Utm?
+            }
+
+          class Metadata < Courier::Internal::Type::BaseModel
+            attr_accessor utm: Courier::SendSendMessageParams::Message::Channel::Metadata::Utm?
+
+            def initialize: (
+              ?utm: Courier::SendSendMessageParams::Message::Channel::Metadata::Utm?
+            ) -> void
+
+            def to_hash: -> {
+              utm: Courier::SendSendMessageParams::Message::Channel::Metadata::Utm?
+            }
+
+            type utm =
+              {
+                campaign: String?,
+                content: String?,
+                medium: String?,
+                source: String?,
+                term: String?
+              }
+
+            class Utm < Courier::Internal::Type::BaseModel
+              attr_accessor campaign: String?
+
+              attr_accessor content: String?
+
+              attr_accessor medium: String?
+
+              attr_accessor source: String?
+
+              attr_accessor term: String?
+
+              def initialize: (
+                ?campaign: String?,
+                ?content: String?,
+                ?medium: String?,
+                ?source: String?,
+                ?term: String?
+              ) -> void
+
+              def to_hash: -> {
+                campaign: String?,
+                content: String?,
+                medium: String?,
+                source: String?,
+                term: String?
+              }
+            end
+          end
+
+          type routing_method = :all | :single
+
+          module RoutingMethod
+            extend Courier::Internal::Type::Enum
+
+            ALL: :all
+            SINGLE: :single
+
+            def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::Channel::routing_method]
+          end
+
+          type timeouts = { channel: Integer?, provider: Integer? }
+
+          class Timeouts < Courier::Internal::Type::BaseModel
+            attr_accessor channel: Integer?
+
+            attr_accessor provider: Integer?
+
+            def initialize: (?channel: Integer?, ?provider: Integer?) -> void
+
+            def to_hash: -> { channel: Integer?, provider: Integer? }
+          end
+        end
+
+        type delay = { duration: Integer?, until_: String? }
+
+        class Delay < Courier::Internal::Type::BaseModel
+          attr_accessor duration: Integer?
+
+          attr_accessor until_: String?
+
+          def initialize: (?duration: Integer?, ?until_: String?) -> void
+
+          def to_hash: -> { duration: Integer?, until_: String? }
+        end
+
+        type expiry =
+          {
+            expires_in: Courier::Models::SendSendMessageParams::Message::Expiry::expires_in,
+            expires_at: String?
+          }
+
+        class Expiry < Courier::Internal::Type::BaseModel
+          attr_accessor expires_in: Courier::Models::SendSendMessageParams::Message::Expiry::expires_in
+
+          attr_accessor expires_at: String?
+
+          def initialize: (
+            expires_in: Courier::Models::SendSendMessageParams::Message::Expiry::expires_in,
+            ?expires_at: String?
+          ) -> void
+
+          def to_hash: -> {
+            expires_in: Courier::Models::SendSendMessageParams::Message::Expiry::expires_in,
+            expires_at: String?
+          }
+
+          type expires_in = String | Integer
+
+          module ExpiresIn
+            extend Courier::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Courier::Models::SendSendMessageParams::Message::Expiry::expires_in]
+          end
+        end
+
+        type metadata =
+          {
+            event: String?,
+            tags: ::Array[String]?,
+            trace_id: String?,
+            utm: Courier::SendSendMessageParams::Message::Metadata::Utm?
+          }
+
+        class Metadata < Courier::Internal::Type::BaseModel
+          attr_accessor event: String?
+
+          attr_accessor tags: ::Array[String]?
+
+          attr_accessor trace_id: String?
+
+          attr_accessor utm: Courier::SendSendMessageParams::Message::Metadata::Utm?
+
+          def initialize: (
+            ?event: String?,
+            ?tags: ::Array[String]?,
+            ?trace_id: String?,
+            ?utm: Courier::SendSendMessageParams::Message::Metadata::Utm?
+          ) -> void
+
+          def to_hash: -> {
+            event: String?,
+            tags: ::Array[String]?,
+            trace_id: String?,
+            utm: Courier::SendSendMessageParams::Message::Metadata::Utm?
+          }
+
+          type utm =
+            {
+              campaign: String?,
+              content: String?,
+              medium: String?,
+              source: String?,
+              term: String?
+            }
+
+          class Utm < Courier::Internal::Type::BaseModel
+            attr_accessor campaign: String?
+
+            attr_accessor content: String?
+
+            attr_accessor medium: String?
+
+            attr_accessor source: String?
+
+            attr_accessor term: String?
+
+            def initialize: (
+              ?campaign: String?,
+              ?content: String?,
+              ?medium: String?,
+              ?source: String?,
+              ?term: String?
+            ) -> void
+
+            def to_hash: -> {
+              campaign: String?,
+              content: String?,
+              medium: String?,
+              source: String?,
+              term: String?
+            }
+          end
+        end
+
+        type preferences = { subscription_topic_id: String }
+
+        class Preferences < Courier::Internal::Type::BaseModel
+          attr_accessor subscription_topic_id: String
+
+          def initialize: (subscription_topic_id: String) -> void
+
+          def to_hash: -> { subscription_topic_id: String }
+        end
+
+        type provider =
+          {
+            if_: String?,
+            metadata: Courier::SendSendMessageParams::Message::Provider::Metadata?,
+            override: ::Hash[Symbol, top]?,
+            timeouts: Integer?
+          }
+
+        class Provider < Courier::Internal::Type::BaseModel
+          attr_accessor if_: String?
+
+          attr_accessor metadata: Courier::SendSendMessageParams::Message::Provider::Metadata?
+
+          attr_accessor override: ::Hash[Symbol, top]?
+
+          attr_accessor timeouts: Integer?
+
+          def initialize: (
+            ?if_: String?,
+            ?metadata: Courier::SendSendMessageParams::Message::Provider::Metadata?,
+            ?override: ::Hash[Symbol, top]?,
+            ?timeouts: Integer?
+          ) -> void
+
+          def to_hash: -> {
+            if_: String?,
+            metadata: Courier::SendSendMessageParams::Message::Provider::Metadata?,
+            override: ::Hash[Symbol, top]?,
+            timeouts: Integer?
+          }
+
+          type metadata =
+            {
+              utm: Courier::SendSendMessageParams::Message::Provider::Metadata::Utm?
+            }
+
+          class Metadata < Courier::Internal::Type::BaseModel
+            attr_accessor utm: Courier::SendSendMessageParams::Message::Provider::Metadata::Utm?
+
+            def initialize: (
+              ?utm: Courier::SendSendMessageParams::Message::Provider::Metadata::Utm?
+            ) -> void
+
+            def to_hash: -> {
+              utm: Courier::SendSendMessageParams::Message::Provider::Metadata::Utm?
+            }
+
+            type utm =
+              {
+                campaign: String?,
+                content: String?,
+                medium: String?,
+                source: String?,
+                term: String?
+              }
+
+            class Utm < Courier::Internal::Type::BaseModel
+              attr_accessor campaign: String?
+
+              attr_accessor content: String?
+
+              attr_accessor medium: String?
+
+              attr_accessor source: String?
+
+              attr_accessor term: String?
+
+              def initialize: (
+                ?campaign: String?,
+                ?content: String?,
+                ?medium: String?,
+                ?source: String?,
+                ?term: String?
+              ) -> void
+
+              def to_hash: -> {
+                campaign: String?,
+                content: String?,
+                medium: String?,
+                source: String?,
+                term: String?
+              }
+            end
+          end
+        end
+
+        type routing =
+          {
+            channels: ::Array[Courier::Models::message_routing_channel],
+            method_: Courier::Models::SendSendMessageParams::Message::Routing::method_
+          }
+
+        class Routing < Courier::Internal::Type::BaseModel
+          attr_accessor channels: ::Array[Courier::Models::message_routing_channel]
+
+          attr_accessor method_: Courier::Models::SendSendMessageParams::Message::Routing::method_
+
+          def initialize: (
+            channels: ::Array[Courier::Models::message_routing_channel],
+            method_: Courier::Models::SendSendMessageParams::Message::Routing::method_
+          ) -> void
+
+          def to_hash: -> {
+            channels: ::Array[Courier::Models::message_routing_channel],
+            method_: Courier::Models::SendSendMessageParams::Message::Routing::method_
+          }
+
+          type method_ = :all | :single
+
+          module Method
+            extend Courier::Internal::Type::Enum
+
+            ALL: :all
+            SINGLE: :single
+
+            def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::Routing::method_]
+          end
+        end
+
+        type timeout =
+          {
+            channel: ::Hash[Symbol, Integer]?,
+            criteria: Courier::Models::SendSendMessageParams::Message::Timeout::criteria?,
+            escalation: Integer?,
+            message: Integer?,
+            provider: ::Hash[Symbol, Integer]?
+          }
+
+        class Timeout < Courier::Internal::Type::BaseModel
+          attr_accessor channel: ::Hash[Symbol, Integer]?
+
+          attr_accessor criteria: Courier::Models::SendSendMessageParams::Message::Timeout::criteria?
+
+          attr_accessor escalation: Integer?
+
+          attr_accessor message: Integer?
+
+          attr_accessor provider: ::Hash[Symbol, Integer]?
+
+          def initialize: (
+            ?channel: ::Hash[Symbol, Integer]?,
+            ?criteria: Courier::Models::SendSendMessageParams::Message::Timeout::criteria?,
+            ?escalation: Integer?,
+            ?message: Integer?,
+            ?provider: ::Hash[Symbol, Integer]?
+          ) -> void
+
+          def to_hash: -> {
+            channel: ::Hash[Symbol, Integer]?,
+            criteria: Courier::Models::SendSendMessageParams::Message::Timeout::criteria?,
+            escalation: Integer?,
+            message: Integer?,
+            provider: ::Hash[Symbol, Integer]?
+          }
+
+          type criteria = :"no-escalation" | :delivered | :viewed | :engaged
+
+          module Criteria
+            extend Courier::Internal::Type::Enum
+
+            NO_ESCALATION: :"no-escalation"
+            DELIVERED: :delivered
+            VIEWED: :viewed
+            ENGAGED: :engaged
+
+            def self?.values: -> ::Array[Courier::Models::SendSendMessageParams::Message::Timeout::criteria]
+          end
+        end
+
+        type to = Courier::UserRecipient | ::Array[Courier::Recipient]
+
+        module To
+          extend Courier::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Courier::Models::SendSendMessageParams::Message::to]
+
+          RecipientArray: Courier::Internal::Type::Converter
+        end
+      end
+    end
+  end
+end

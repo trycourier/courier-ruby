@@ -3,11 +3,11 @@
 module Courier
   module Resources
     class Notifications
-      sig { returns(Courier::Resources::Notifications::Checks) }
-      attr_reader :checks
-
       sig { returns(Courier::Resources::Notifications::Draft) }
       attr_reader :draft
+
+      sig { returns(Courier::Resources::Notifications::Checks) }
+      attr_reader :checks
 
       sig do
         params(
@@ -28,7 +28,7 @@ module Courier
         params(
           id: String,
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::NotificationContent)
+        ).returns(Courier::NotificationGetContent)
       end
       def retrieve_content(id, request_options: {})
       end

@@ -3,11 +3,11 @@
 module Courier
   module Resources
     class Tenants
-      sig { returns(Courier::Resources::Tenants::Templates) }
-      attr_reader :templates
-
       sig { returns(Courier::Resources::Tenants::DefaultPreferences) }
       attr_reader :default_preferences
+
+      sig { returns(Courier::Resources::Tenants::Templates) }
+      attr_reader :templates
 
       # Get a Tenant
       sig do

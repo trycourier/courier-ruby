@@ -9,14 +9,14 @@ module Courier
         # @param id [String]
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Courier::Models::NotificationContent]
+        # @return [Courier::Models::NotificationGetContent]
         #
         # @see Courier::Models::Notifications::DraftRetrieveContentParams
         def retrieve_content(id, params = {})
           @client.request(
             method: :get,
             path: ["notifications/%1$s/draft/content", id],
-            model: Courier::NotificationContent,
+            model: Courier::NotificationGetContent,
             options: params[:request_options]
           )
         end

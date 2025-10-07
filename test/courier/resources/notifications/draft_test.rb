@@ -9,13 +9,13 @@ class Courier::Test::Resources::Notifications::DraftTest < Courier::Test::Resour
     response = @courier.notifications.draft.retrieve_content("id")
 
     assert_pattern do
-      response => Courier::NotificationContent
+      response => Courier::NotificationGetContent
     end
 
     assert_pattern do
       response => {
-        blocks: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationContent::Block]) | nil,
-        channels: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationContent::Channel]) | nil,
+        blocks: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationGetContent::Block]) | nil,
+        channels: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationGetContent::Channel]) | nil,
         checksum: String | nil
       }
     end

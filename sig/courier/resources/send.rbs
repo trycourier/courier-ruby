@@ -1,10 +1,10 @@
 module Courier
   module Resources
     class Send
-      def message: (
-        message: Courier::SendMessageParams::Message,
+      def send_message: (
+        message: Courier::SendSendMessageParams::Message,
         ?request_options: Courier::request_opts
-      ) -> Courier::Models::SendMessageResponse
+      ) -> Courier::Models::SendSendMessageResponse
 
       def initialize: (client: Courier::Client) -> void
     end

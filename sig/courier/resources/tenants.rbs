@@ -1,9 +1,9 @@
 module Courier
   module Resources
     class Tenants
-      attr_reader templates: Courier::Resources::Tenants::Templates
-
       attr_reader default_preferences: Courier::Resources::Tenants::DefaultPreferences
+
+      attr_reader templates: Courier::Resources::Tenants::Templates
 
       def retrieve: (
         String tenant_id,

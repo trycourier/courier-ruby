@@ -8,7 +8,7 @@ module Courier
           params(
             id: String,
             request_options: Courier::RequestOptions::OrHash
-          ).returns(Courier::NotificationContent)
+          ).returns(Courier::NotificationGetContent)
         end
         def retrieve_content(id, request_options: {})
         end
