@@ -117,8 +117,6 @@ module Courier
 
   MessageRoutingChannel = Courier::Models::MessageRoutingChannel
 
-  NestedFilterConfig = Courier::Models::NestedFilterConfig
-
   NotificationGetContent = Courier::Models::NotificationGetContent
 
   NotificationListParams = Courier::Models::NotificationListParams

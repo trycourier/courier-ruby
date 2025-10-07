@@ -31,7 +31,7 @@ module Courier
       #
       # @param description [String, nil] A description of the audience
       #
-      # @param filter [Courier::Models::Filter::UnionMember0, Courier::Models::NestedFilterConfig, nil] The operator to use for filtering
+      # @param filter [Courier::Models::Filter, nil] A single filter to use for filtering
       #
       # @param name [String, nil] The name of the audience
       #

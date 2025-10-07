@@ -14,10 +14,10 @@ module Courier
       optional :description, String, nil?: true
 
       # @!attribute filter
-      #   The operator to use for filtering
+      #   A single filter to use for filtering
       #
-      #   @return [Courier::Models::Filter::UnionMember0, Courier::Models::NestedFilterConfig, nil]
-      optional :filter, union: -> { Courier::Filter }, nil?: true
+      #   @return [Courier::Models::Filter, nil]
+      optional :filter, -> { Courier::Filter }, nil?: true
 
       # @!attribute name
       #   The name of the audience
@@ -28,7 +28,7 @@ module Courier
       # @!method initialize(description: nil, filter: nil, name: nil, request_options: {})
       #   @param description [String, nil] A description of the audience
       #
-      #   @param filter [Courier::Models::Filter::UnionMember0, Courier::Models::NestedFilterConfig, nil] The operator to use for filtering
+      #   @param filter [Courier::Models::Filter, nil] A single filter to use for filtering
       #
       #   @param name [String, nil] The name of the audience
       #

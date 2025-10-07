@@ -22,13 +22,7 @@ module Courier
         params(
           audience_id: String,
           description: T.nilable(String),
-          filter:
-            T.nilable(
-              T.any(
-                Courier::Filter::UnionMember0::OrHash,
-                Courier::NestedFilterConfig::OrHash
-              )
-            ),
+          filter: T.nilable(Courier::Filter::OrHash),
           name: T.nilable(String),
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Models::AudienceUpdateResponse)
@@ -38,7 +32,7 @@ module Courier
         audience_id,
         # A description of the audience
         description: nil,
-        # The operator to use for filtering
+        # A single filter to use for filtering
         filter: nil,
         # The name of the audience
         name: nil,

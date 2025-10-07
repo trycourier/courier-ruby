@@ -22,10 +22,10 @@ module Courier
       required :description, String
 
       # @!attribute filter
-      #   The operator to use for filtering
+      #   A single filter to use for filtering
       #
-      #   @return [Courier::Models::Filter::UnionMember0, Courier::Models::NestedFilterConfig]
-      required :filter, union: -> { Courier::Filter }
+      #   @return [Courier::Models::Filter]
+      required :filter, -> { Courier::Filter }
 
       # @!attribute name
       #   The name of the audience
@@ -45,7 +45,7 @@ module Courier
       #
       #   @param description [String] A description of the audience
       #
-      #   @param filter [Courier::Models::Filter::UnionMember0, Courier::Models::NestedFilterConfig] The operator to use for filtering
+      #   @param filter [Courier::Models::Filter] A single filter to use for filtering
       #
       #   @param name [String] The name of the audience
       #
