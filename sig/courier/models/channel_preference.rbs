@@ -1,0 +1,20 @@
+module Courier
+  module Models
+    type channel_preference =
+      {
+        channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
+      }
+
+    class ChannelPreference < Courier::Internal::Type::BaseModel
+      attr_accessor channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
+
+      def initialize: (
+        channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
+      ) -> void
+
+      def to_hash: -> {
+        channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
+      }
+    end
+  end
+end

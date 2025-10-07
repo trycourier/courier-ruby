@@ -23,6 +23,8 @@ module Courier
 
   class Brand = Courier::Models::Brand
 
+  class BrandColors = Courier::Models::BrandColors
+
   class BrandCreateParams = Courier::Models::BrandCreateParams
 
   class BrandDeleteParams = Courier::Models::BrandDeleteParams
@@ -32,6 +34,12 @@ module Courier
   class BrandRetrieveParams = Courier::Models::BrandRetrieveParams
 
   class BrandSettings = Courier::Models::BrandSettings
+
+  class BrandSettingsEmail = Courier::Models::BrandSettingsEmail
+
+  class BrandSettingsInApp = Courier::Models::BrandSettingsInApp
+
+  class BrandSnippet = Courier::Models::BrandSnippet
 
   class BrandSnippets = Courier::Models::BrandSnippets
 
@@ -49,13 +57,23 @@ module Courier
 
   class BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  class ChannelPreference = Courier::Models::ChannelPreference
+
   module Content = Courier::Models::Content
 
   class DefaultPreferences = Courier::Models::DefaultPreferences
 
+  class EmailFooter = Courier::Models::EmailFooter
+
+  class EmailHead = Courier::Models::EmailHead
+
+  class EmailHeader = Courier::Models::EmailHeader
+
   module Filter = Courier::Models::Filter
 
   module FilterConfig = Courier::Models::FilterConfig
+
+  class Icons = Courier::Models::Icons
 
   module InboundBulkMessage = Courier::Models::InboundBulkMessage
 
@@ -76,6 +94,8 @@ module Courier
   module Lists = Courier::Models::Lists
 
   class ListUpdateParams = Courier::Models::ListUpdateParams
+
+  class Logo = Courier::Models::Logo
 
   class MessageCancelParams = Courier::Models::MessageCancelParams
 
@@ -107,6 +127,8 @@ module Courier
 
   class Paging = Courier::Models::Paging
 
+  class Preference = Courier::Models::Preference
+
   class ProfileCreateParams = Courier::Models::ProfileCreateParams
 
   class ProfileDeleteParams = Courier::Models::ProfileDeleteParams
@@ -122,6 +144,8 @@ module Courier
   class Recipient = Courier::Models::Recipient
 
   class RequestArchiveParams = Courier::Models::RequestArchiveParams
+
+  class Rule = Courier::Models::Rule
 
   class SendSendMessageParams = Courier::Models::SendSendMessageParams
 
@@ -146,4 +170,8 @@ module Courier
   class UserRecipient = Courier::Models::UserRecipient
 
   module Users = Courier::Models::Users
+
+  class Utm = Courier::Models::Utm
+
+  class WidgetBackground = Courier::Models::WidgetBackground
 end

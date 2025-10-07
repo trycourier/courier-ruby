@@ -58,175 +58,29 @@ module Courier
 
       type preferences =
         {
-          notifications: ::Hash[Symbol, Courier::UserRecipient::Preferences::Notification],
-          categories: ::Hash[Symbol, Courier::UserRecipient::Preferences::Category]?,
+          notifications: ::Hash[Symbol, Courier::Preference],
+          categories: ::Hash[Symbol, Courier::Preference]?,
           template_id: String?
         }
 
       class Preferences < Courier::Internal::Type::BaseModel
-        attr_accessor notifications: ::Hash[Symbol, Courier::UserRecipient::Preferences::Notification]
+        attr_accessor notifications: ::Hash[Symbol, Courier::Preference]
 
-        attr_accessor categories: ::Hash[Symbol, Courier::UserRecipient::Preferences::Category]?
+        attr_accessor categories: ::Hash[Symbol, Courier::Preference]?
 
         attr_accessor template_id: String?
 
         def initialize: (
-          notifications: ::Hash[Symbol, Courier::UserRecipient::Preferences::Notification],
-          ?categories: ::Hash[Symbol, Courier::UserRecipient::Preferences::Category]?,
+          notifications: ::Hash[Symbol, Courier::Preference],
+          ?categories: ::Hash[Symbol, Courier::Preference]?,
           ?template_id: String?
         ) -> void
 
         def to_hash: -> {
-          notifications: ::Hash[Symbol, Courier::UserRecipient::Preferences::Notification],
-          categories: ::Hash[Symbol, Courier::UserRecipient::Preferences::Category]?,
+          notifications: ::Hash[Symbol, Courier::Preference],
+          categories: ::Hash[Symbol, Courier::Preference]?,
           template_id: String?
         }
-
-        type notification =
-          {
-            status: Courier::Models::Users::preference_status,
-            channel_preferences: ::Array[Courier::UserRecipient::Preferences::Notification::ChannelPreference]?,
-            rules: ::Array[Courier::UserRecipient::Preferences::Notification::Rule]?,
-            source: Courier::Models::UserRecipient::Preferences::Notification::source?
-          }
-
-        class Notification < Courier::Internal::Type::BaseModel
-          attr_accessor status: Courier::Models::Users::preference_status
-
-          attr_accessor channel_preferences: ::Array[Courier::UserRecipient::Preferences::Notification::ChannelPreference]?
-
-          attr_accessor rules: ::Array[Courier::UserRecipient::Preferences::Notification::Rule]?
-
-          attr_accessor source: Courier::Models::UserRecipient::Preferences::Notification::source?
-
-          def initialize: (
-            status: Courier::Models::Users::preference_status,
-            ?channel_preferences: ::Array[Courier::UserRecipient::Preferences::Notification::ChannelPreference]?,
-            ?rules: ::Array[Courier::UserRecipient::Preferences::Notification::Rule]?,
-            ?source: Courier::Models::UserRecipient::Preferences::Notification::source?
-          ) -> void
-
-          def to_hash: -> {
-            status: Courier::Models::Users::preference_status,
-            channel_preferences: ::Array[Courier::UserRecipient::Preferences::Notification::ChannelPreference]?,
-            rules: ::Array[Courier::UserRecipient::Preferences::Notification::Rule]?,
-            source: Courier::Models::UserRecipient::Preferences::Notification::source?
-          }
-
-          type channel_preference =
-            {
-              channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
-            }
-
-          class ChannelPreference < Courier::Internal::Type::BaseModel
-            attr_accessor channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
-
-            def initialize: (
-              channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
-            ) -> void
-
-            def to_hash: -> {
-              channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
-            }
-          end
-
-          type rule = { until_: String, start: String? }
-
-          class Rule < Courier::Internal::Type::BaseModel
-            attr_accessor until_: String
-
-            attr_accessor start: String?
-
-            def initialize: (until_: String, ?start: String?) -> void
-
-            def to_hash: -> { until_: String, start: String? }
-          end
-
-          type source = :subscription | :list | :recipient
-
-          module Source
-            extend Courier::Internal::Type::Enum
-
-            SUBSCRIPTION: :subscription
-            LIST: :list
-            RECIPIENT: :recipient
-
-            def self?.values: -> ::Array[Courier::Models::UserRecipient::Preferences::Notification::source]
-          end
-        end
-
-        type category =
-          {
-            status: Courier::Models::Users::preference_status,
-            channel_preferences: ::Array[Courier::UserRecipient::Preferences::Category::ChannelPreference]?,
-            rules: ::Array[Courier::UserRecipient::Preferences::Category::Rule]?,
-            source: Courier::Models::UserRecipient::Preferences::Category::source?
-          }
-
-        class Category < Courier::Internal::Type::BaseModel
-          attr_accessor status: Courier::Models::Users::preference_status
-
-          attr_accessor channel_preferences: ::Array[Courier::UserRecipient::Preferences::Category::ChannelPreference]?
-
-          attr_accessor rules: ::Array[Courier::UserRecipient::Preferences::Category::Rule]?
-
-          attr_accessor source: Courier::Models::UserRecipient::Preferences::Category::source?
-
-          def initialize: (
-            status: Courier::Models::Users::preference_status,
-            ?channel_preferences: ::Array[Courier::UserRecipient::Preferences::Category::ChannelPreference]?,
-            ?rules: ::Array[Courier::UserRecipient::Preferences::Category::Rule]?,
-            ?source: Courier::Models::UserRecipient::Preferences::Category::source?
-          ) -> void
-
-          def to_hash: -> {
-            status: Courier::Models::Users::preference_status,
-            channel_preferences: ::Array[Courier::UserRecipient::Preferences::Category::ChannelPreference]?,
-            rules: ::Array[Courier::UserRecipient::Preferences::Category::Rule]?,
-            source: Courier::Models::UserRecipient::Preferences::Category::source?
-          }
-
-          type channel_preference =
-            {
-              channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
-            }
-
-          class ChannelPreference < Courier::Internal::Type::BaseModel
-            attr_accessor channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
-
-            def initialize: (
-              channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
-            ) -> void
-
-            def to_hash: -> {
-              channel: Courier::Models::Tenants::DefaultPreferences::channel_classification
-            }
-          end
-
-          type rule = { until_: String, start: String? }
-
-          class Rule < Courier::Internal::Type::BaseModel
-            attr_accessor until_: String
-
-            attr_accessor start: String?
-
-            def initialize: (until_: String, ?start: String?) -> void
-
-            def to_hash: -> { until_: String, start: String? }
-          end
-
-          type source = :subscription | :list | :recipient
-
-          module Source
-            extend Courier::Internal::Type::Enum
-
-            SUBSCRIPTION: :subscription
-            LIST: :list
-            RECIPIENT: :recipient
-
-            def self?.values: -> ::Array[Courier::Models::UserRecipient::Preferences::Category::source]
-          end
-        end
       end
     end
   end

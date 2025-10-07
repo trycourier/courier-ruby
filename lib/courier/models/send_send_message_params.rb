@@ -193,46 +193,11 @@ module Courier
           class Metadata < Courier::Internal::Type::BaseModel
             # @!attribute utm
             #
-            #   @return [Courier::Models::SendSendMessageParams::Message::Channel::Metadata::Utm, nil]
-            optional :utm, -> { Courier::SendSendMessageParams::Message::Channel::Metadata::Utm }, nil?: true
+            #   @return [Courier::Models::Utm, nil]
+            optional :utm, -> { Courier::Utm }, nil?: true
 
             # @!method initialize(utm: nil)
-            #   @param utm [Courier::Models::SendSendMessageParams::Message::Channel::Metadata::Utm, nil]
-
-            # @see Courier::Models::SendSendMessageParams::Message::Channel::Metadata#utm
-            class Utm < Courier::Internal::Type::BaseModel
-              # @!attribute campaign
-              #
-              #   @return [String, nil]
-              optional :campaign, String, nil?: true
-
-              # @!attribute content
-              #
-              #   @return [String, nil]
-              optional :content, String, nil?: true
-
-              # @!attribute medium
-              #
-              #   @return [String, nil]
-              optional :medium, String, nil?: true
-
-              # @!attribute source
-              #
-              #   @return [String, nil]
-              optional :source, String, nil?: true
-
-              # @!attribute term
-              #
-              #   @return [String, nil]
-              optional :term, String, nil?: true
-
-              # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
-              #   @param campaign [String, nil]
-              #   @param content [String, nil]
-              #   @param medium [String, nil]
-              #   @param source [String, nil]
-              #   @param term [String, nil]
-            end
+            #   @param utm [Courier::Models::Utm, nil]
           end
 
           # Defaults to `single`.
@@ -339,49 +304,14 @@ module Courier
 
           # @!attribute utm
           #
-          #   @return [Courier::Models::SendSendMessageParams::Message::Metadata::Utm, nil]
-          optional :utm, -> { Courier::SendSendMessageParams::Message::Metadata::Utm }, nil?: true
+          #   @return [Courier::Models::Utm, nil]
+          optional :utm, -> { Courier::Utm }, nil?: true
 
           # @!method initialize(event: nil, tags: nil, trace_id: nil, utm: nil)
           #   @param event [String, nil]
           #   @param tags [Array<String>, nil]
           #   @param trace_id [String, nil]
-          #   @param utm [Courier::Models::SendSendMessageParams::Message::Metadata::Utm, nil]
-
-          # @see Courier::Models::SendSendMessageParams::Message::Metadata#utm
-          class Utm < Courier::Internal::Type::BaseModel
-            # @!attribute campaign
-            #
-            #   @return [String, nil]
-            optional :campaign, String, nil?: true
-
-            # @!attribute content
-            #
-            #   @return [String, nil]
-            optional :content, String, nil?: true
-
-            # @!attribute medium
-            #
-            #   @return [String, nil]
-            optional :medium, String, nil?: true
-
-            # @!attribute source
-            #
-            #   @return [String, nil]
-            optional :source, String, nil?: true
-
-            # @!attribute term
-            #
-            #   @return [String, nil]
-            optional :term, String, nil?: true
-
-            # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
-            #   @param campaign [String, nil]
-            #   @param content [String, nil]
-            #   @param medium [String, nil]
-            #   @param source [String, nil]
-            #   @param term [String, nil]
-          end
+          #   @param utm [Courier::Models::Utm, nil]
         end
 
         # @see Courier::Models::SendSendMessageParams::Message#preferences
@@ -432,46 +362,11 @@ module Courier
           class Metadata < Courier::Internal::Type::BaseModel
             # @!attribute utm
             #
-            #   @return [Courier::Models::SendSendMessageParams::Message::Provider::Metadata::Utm, nil]
-            optional :utm, -> { Courier::SendSendMessageParams::Message::Provider::Metadata::Utm }, nil?: true
+            #   @return [Courier::Models::Utm, nil]
+            optional :utm, -> { Courier::Utm }, nil?: true
 
             # @!method initialize(utm: nil)
-            #   @param utm [Courier::Models::SendSendMessageParams::Message::Provider::Metadata::Utm, nil]
-
-            # @see Courier::Models::SendSendMessageParams::Message::Provider::Metadata#utm
-            class Utm < Courier::Internal::Type::BaseModel
-              # @!attribute campaign
-              #
-              #   @return [String, nil]
-              optional :campaign, String, nil?: true
-
-              # @!attribute content
-              #
-              #   @return [String, nil]
-              optional :content, String, nil?: true
-
-              # @!attribute medium
-              #
-              #   @return [String, nil]
-              optional :medium, String, nil?: true
-
-              # @!attribute source
-              #
-              #   @return [String, nil]
-              optional :source, String, nil?: true
-
-              # @!attribute term
-              #
-              #   @return [String, nil]
-              optional :term, String, nil?: true
-
-              # @!method initialize(campaign: nil, content: nil, medium: nil, source: nil, term: nil)
-              #   @param campaign [String, nil]
-              #   @param content [String, nil]
-              #   @param medium [String, nil]
-              #   @param source [String, nil]
-              #   @param term [String, nil]
-            end
+            #   @param utm [Courier::Models::Utm, nil]
           end
         end
 
