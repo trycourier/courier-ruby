@@ -135,6 +135,8 @@ module Courier
 
   ListListParams = Courier::Models::ListListParams
 
+  ListRecipient = Courier::Models::ListRecipient
+
   ListRestoreParams = Courier::Models::ListRestoreParams
 
   ListRetrieveParams = Courier::Models::ListRetrieveParams
