@@ -41,7 +41,7 @@ module Courier
         #   Describes content that will work for email, inbox, push, chat, or any channel
         #   id.
         #
-        #   @return [Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::Tenants::ElementalContent, nil]
+        #   @return [Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent, nil]
         optional :content, union: -> { Courier::SendMessageParams::Message::Content }
 
         # @!attribute context
@@ -109,7 +109,7 @@ module Courier
         #
         #   @param channels [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Channel}, nil] Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
         #
-        #   @param content [Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::Tenants::ElementalContent] Describes content that will work for email, inbox, push, chat, or any channel id
+        #   @param content [Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent] Describes content that will work for email, inbox, push, chat, or any channel id
         #
         #   @param context [Courier::Models::MessageContext, nil]
         #
@@ -239,33 +239,12 @@ module Courier
           extend Courier::Internal::Type::Union
 
           # Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
-          variant -> { Courier::SendMessageParams::Message::Content::ElementalContentSugar }
+          variant -> { Courier::ElementalContentSugar }
 
           variant -> { Courier::Tenants::ElementalContent }
 
-          class ElementalContentSugar < Courier::Internal::Type::BaseModel
-            # @!attribute body
-            #   The text content displayed in the notification.
-            #
-            #   @return [String]
-            required :body, String
-
-            # @!attribute title
-            #   Title/subject displayed by supported channels.
-            #
-            #   @return [String]
-            required :title, String
-
-            # @!method initialize(body:, title:)
-            #   Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
-            #
-            #   @param body [String] The text content displayed in the notification.
-            #
-            #   @param title [String] Title/subject displayed by supported channels.
-          end
-
           # @!method self.variants
-          #   @return [Array(Courier::Models::SendMessageParams::Message::Content::ElementalContentSugar, Courier::Models::Tenants::ElementalContent)]
+          #   @return [Array(Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent)]
         end
 
         # @see Courier::Models::SendMessageParams::Message#delay
