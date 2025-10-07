@@ -87,6 +87,11 @@ module Courier
         #   @return [Courier::Models::SendMessageParams::Message::Routing, nil]
         optional :routing, -> { Courier::SendMessageParams::Message::Routing }, nil?: true
 
+        # @!attribute template
+        #
+        #   @return [String, nil]
+        optional :template, String, nil?: true
+
         # @!attribute timeout
         #
         #   @return [Courier::Models::SendMessageParams::Message::Timeout, nil]
@@ -98,7 +103,7 @@ module Courier
         #   @return [Courier::Models::UserRecipient, Array<Courier::Models::Recipient>, nil]
         optional :to, union: -> { Courier::SendMessageParams::Message::To }, nil?: true
 
-        # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, timeout: nil, to: nil)
+        # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, template: nil, timeout: nil, to: nil)
         #   Some parameter documentations has been truncated, see
         #   {Courier::Models::SendMessageParams::Message} for more details.
         #
@@ -126,6 +131,8 @@ module Courier
         #   @param providers [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Provider}, nil]
         #
         #   @param routing [Courier::Models::SendMessageParams::Message::Routing, nil] Customize which channels/providers Courier may deliver the message through.
+        #
+        #   @param template [String, nil]
         #
         #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #

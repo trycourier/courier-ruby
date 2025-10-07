@@ -171,6 +171,9 @@ module Courier
         end
         attr_writer :routing
 
+        sig { returns(T.nilable(String)) }
+        attr_accessor :template
+
         sig { returns(T.nilable(Courier::SendMessageParams::Message::Timeout)) }
         attr_reader :timeout
 
@@ -230,6 +233,7 @@ module Courier
               ),
             routing:
               T.nilable(Courier::SendMessageParams::Message::Routing::OrHash),
+            template: T.nilable(String),
             timeout:
               T.nilable(Courier::SendMessageParams::Message::Timeout::OrHash),
             to:
@@ -258,6 +262,7 @@ module Courier
           providers: nil,
           # Customize which channels/providers Courier may deliver the message through.
           routing: nil,
+          template: nil,
           timeout: nil,
           # The recipient or a list of recipients of the message
           to: nil
@@ -290,6 +295,7 @@ module Courier
                   T::Hash[Symbol, Courier::SendMessageParams::Message::Provider]
                 ),
               routing: T.nilable(Courier::SendMessageParams::Message::Routing),
+              template: T.nilable(String),
               timeout: T.nilable(Courier::SendMessageParams::Message::Timeout),
               to:
                 T.nilable(

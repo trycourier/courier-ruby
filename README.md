@@ -189,6 +189,7 @@ You can provide typesafe request parameters like so:
 courier.send_.message(
   message: Courier::SendMessageParams::Message.new(
     to: Courier::UserRecipient.new(user_id: "your_user_id"),
+    template: "your_template",
     data: {foo: "bar"}
   )
 )
@@ -206,6 +207,7 @@ courier.send_.message(
 params = Courier::SendMessageParams.new(
   message: Courier::SendMessageParams::Message.new(
     to: Courier::UserRecipient.new(user_id: "your_user_id"),
+    template: "your_template",
     data: {foo: "bar"}
   )
 )
