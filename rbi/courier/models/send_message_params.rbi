@@ -2,28 +2,26 @@
 
 module Courier
   module Models
-    class SendSendMessageParams < Courier::Internal::Type::BaseModel
+    class SendMessageParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Courier::SendSendMessageParams, Courier::Internal::AnyHash)
+          T.any(Courier::SendMessageParams, Courier::Internal::AnyHash)
         end
 
       # The message property has the following primary top-level properties. They define
       # the destination and content of the message.
-      sig { returns(Courier::SendSendMessageParams::Message) }
+      sig { returns(Courier::SendMessageParams::Message) }
       attr_reader :message
 
-      sig do
-        params(message: Courier::SendSendMessageParams::Message::OrHash).void
-      end
+      sig { params(message: Courier::SendMessageParams::Message::OrHash).void }
       attr_writer :message
 
       sig do
         params(
-          message: Courier::SendSendMessageParams::Message::OrHash,
+          message: Courier::SendMessageParams::Message::OrHash,
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -38,7 +36,7 @@ module Courier
       sig do
         override.returns(
           {
-            message: Courier::SendSendMessageParams::Message,
+            message: Courier::SendMessageParams::Message,
             request_options: Courier::RequestOptions
           }
         )
@@ -50,7 +48,7 @@ module Courier
         OrHash =
           T.type_alias do
             T.any(
-              Courier::SendSendMessageParams::Message,
+              Courier::SendMessageParams::Message,
               Courier::Internal::AnyHash
             )
           end
@@ -63,7 +61,7 @@ module Courier
         sig do
           returns(
             T.nilable(
-              T::Hash[Symbol, Courier::SendSendMessageParams::Message::Channel]
+              T::Hash[Symbol, Courier::SendMessageParams::Message::Channel]
             )
           )
         end
@@ -75,7 +73,7 @@ module Courier
           returns(
             T.nilable(
               T.any(
-                Courier::Content::ElementalContentSugar,
+                Courier::SendMessageParams::Message::Content::ElementalContentSugar,
                 Courier::Tenants::ElementalContent
               )
             )
@@ -87,7 +85,7 @@ module Courier
           params(
             content:
               T.any(
-                Courier::Content::ElementalContentSugar::OrHash,
+                Courier::SendMessageParams::Message::Content::ElementalContentSugar::OrHash,
                 Courier::Tenants::ElementalContent::OrHash
               )
           ).void
@@ -103,51 +101,42 @@ module Courier
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :data
 
-        sig do
-          returns(T.nilable(Courier::SendSendMessageParams::Message::Delay))
-        end
+        sig { returns(T.nilable(Courier::SendMessageParams::Message::Delay)) }
         attr_reader :delay
 
         sig do
           params(
-            delay:
-              T.nilable(Courier::SendSendMessageParams::Message::Delay::OrHash)
+            delay: T.nilable(Courier::SendMessageParams::Message::Delay::OrHash)
           ).void
         end
         attr_writer :delay
 
-        sig do
-          returns(T.nilable(Courier::SendSendMessageParams::Message::Expiry))
-        end
+        sig { returns(T.nilable(Courier::SendMessageParams::Message::Expiry)) }
         attr_reader :expiry
 
         sig do
           params(
             expiry:
-              T.nilable(Courier::SendSendMessageParams::Message::Expiry::OrHash)
+              T.nilable(Courier::SendMessageParams::Message::Expiry::OrHash)
           ).void
         end
         attr_writer :expiry
 
         sig do
-          returns(T.nilable(Courier::SendSendMessageParams::Message::Metadata))
+          returns(T.nilable(Courier::SendMessageParams::Message::Metadata))
         end
         attr_reader :metadata
 
         sig do
           params(
             metadata:
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Metadata::OrHash
-              )
+              T.nilable(Courier::SendMessageParams::Message::Metadata::OrHash)
           ).void
         end
         attr_writer :metadata
 
         sig do
-          returns(
-            T.nilable(Courier::SendSendMessageParams::Message::Preferences)
-          )
+          returns(T.nilable(Courier::SendMessageParams::Message::Preferences))
         end
         attr_reader :preferences
 
@@ -155,7 +144,7 @@ module Courier
           params(
             preferences:
               T.nilable(
-                Courier::SendSendMessageParams::Message::Preferences::OrHash
+                Courier::SendMessageParams::Message::Preferences::OrHash
               )
           ).void
         end
@@ -164,39 +153,31 @@ module Courier
         sig do
           returns(
             T.nilable(
-              T::Hash[Symbol, Courier::SendSendMessageParams::Message::Provider]
+              T::Hash[Symbol, Courier::SendMessageParams::Message::Provider]
             )
           )
         end
         attr_accessor :providers
 
         # Customize which channels/providers Courier may deliver the message through.
-        sig do
-          returns(T.nilable(Courier::SendSendMessageParams::Message::Routing))
-        end
+        sig { returns(T.nilable(Courier::SendMessageParams::Message::Routing)) }
         attr_reader :routing
 
         sig do
           params(
             routing:
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Routing::OrHash
-              )
+              T.nilable(Courier::SendMessageParams::Message::Routing::OrHash)
           ).void
         end
         attr_writer :routing
 
-        sig do
-          returns(T.nilable(Courier::SendSendMessageParams::Message::Timeout))
-        end
+        sig { returns(T.nilable(Courier::SendMessageParams::Message::Timeout)) }
         attr_reader :timeout
 
         sig do
           params(
             timeout:
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Timeout::OrHash
-              )
+              T.nilable(Courier::SendMessageParams::Message::Timeout::OrHash)
           ).void
         end
         attr_writer :timeout
@@ -220,45 +201,37 @@ module Courier
               T.nilable(
                 T::Hash[
                   Symbol,
-                  Courier::SendSendMessageParams::Message::Channel::OrHash
+                  Courier::SendMessageParams::Message::Channel::OrHash
                 ]
               ),
             content:
               T.any(
-                Courier::Content::ElementalContentSugar::OrHash,
+                Courier::SendMessageParams::Message::Content::ElementalContentSugar::OrHash,
                 Courier::Tenants::ElementalContent::OrHash
               ),
             context: T.nilable(Courier::MessageContext::OrHash),
             data: T.nilable(T::Hash[Symbol, T.anything]),
             delay:
-              T.nilable(Courier::SendSendMessageParams::Message::Delay::OrHash),
+              T.nilable(Courier::SendMessageParams::Message::Delay::OrHash),
             expiry:
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Expiry::OrHash
-              ),
+              T.nilable(Courier::SendMessageParams::Message::Expiry::OrHash),
             metadata:
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Metadata::OrHash
-              ),
+              T.nilable(Courier::SendMessageParams::Message::Metadata::OrHash),
             preferences:
               T.nilable(
-                Courier::SendSendMessageParams::Message::Preferences::OrHash
+                Courier::SendMessageParams::Message::Preferences::OrHash
               ),
             providers:
               T.nilable(
                 T::Hash[
                   Symbol,
-                  Courier::SendSendMessageParams::Message::Provider::OrHash
+                  Courier::SendMessageParams::Message::Provider::OrHash
                 ]
               ),
             routing:
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Routing::OrHash
-              ),
+              T.nilable(Courier::SendMessageParams::Message::Routing::OrHash),
             timeout:
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Timeout::OrHash
-              ),
+              T.nilable(Courier::SendMessageParams::Message::Timeout::OrHash),
             to:
               T.nilable(
                 T.any(
@@ -297,36 +270,27 @@ module Courier
               brand_id: T.nilable(String),
               channels:
                 T.nilable(
-                  T::Hash[
-                    Symbol,
-                    Courier::SendSendMessageParams::Message::Channel
-                  ]
+                  T::Hash[Symbol, Courier::SendMessageParams::Message::Channel]
                 ),
               content:
                 T.any(
-                  Courier::Content::ElementalContentSugar,
+                  Courier::SendMessageParams::Message::Content::ElementalContentSugar,
                   Courier::Tenants::ElementalContent
                 ),
               context: T.nilable(Courier::MessageContext),
               data: T.nilable(T::Hash[Symbol, T.anything]),
-              delay: T.nilable(Courier::SendSendMessageParams::Message::Delay),
-              expiry:
-                T.nilable(Courier::SendSendMessageParams::Message::Expiry),
+              delay: T.nilable(Courier::SendMessageParams::Message::Delay),
+              expiry: T.nilable(Courier::SendMessageParams::Message::Expiry),
               metadata:
-                T.nilable(Courier::SendSendMessageParams::Message::Metadata),
+                T.nilable(Courier::SendMessageParams::Message::Metadata),
               preferences:
-                T.nilable(Courier::SendSendMessageParams::Message::Preferences),
+                T.nilable(Courier::SendMessageParams::Message::Preferences),
               providers:
                 T.nilable(
-                  T::Hash[
-                    Symbol,
-                    Courier::SendSendMessageParams::Message::Provider
-                  ]
+                  T::Hash[Symbol, Courier::SendMessageParams::Message::Provider]
                 ),
-              routing:
-                T.nilable(Courier::SendSendMessageParams::Message::Routing),
-              timeout:
-                T.nilable(Courier::SendSendMessageParams::Message::Timeout),
+              routing: T.nilable(Courier::SendMessageParams::Message::Routing),
+              timeout: T.nilable(Courier::SendMessageParams::Message::Timeout),
               to:
                 T.nilable(
                   T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
@@ -341,7 +305,7 @@ module Courier
           OrHash =
             T.type_alias do
               T.any(
-                Courier::SendSendMessageParams::Message::Channel,
+                Courier::SendMessageParams::Message::Channel,
                 Courier::Internal::AnyHash
               )
             end
@@ -356,9 +320,7 @@ module Courier
 
           sig do
             returns(
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Channel::Metadata
-              )
+              T.nilable(Courier::SendMessageParams::Message::Channel::Metadata)
             )
           end
           attr_reader :metadata
@@ -367,7 +329,7 @@ module Courier
             params(
               metadata:
                 T.nilable(
-                  Courier::SendSendMessageParams::Message::Channel::Metadata::OrHash
+                  Courier::SendMessageParams::Message::Channel::Metadata::OrHash
                 )
             ).void
           end
@@ -385,7 +347,7 @@ module Courier
           sig do
             returns(
               T.nilable(
-                Courier::SendSendMessageParams::Message::Channel::RoutingMethod::OrSymbol
+                Courier::SendMessageParams::Message::Channel::RoutingMethod::OrSymbol
               )
             )
           end
@@ -393,9 +355,7 @@ module Courier
 
           sig do
             returns(
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Channel::Timeouts
-              )
+              T.nilable(Courier::SendMessageParams::Message::Channel::Timeouts)
             )
           end
           attr_reader :timeouts
@@ -404,7 +364,7 @@ module Courier
             params(
               timeouts:
                 T.nilable(
-                  Courier::SendSendMessageParams::Message::Channel::Timeouts::OrHash
+                  Courier::SendMessageParams::Message::Channel::Timeouts::OrHash
                 )
             ).void
           end
@@ -416,17 +376,17 @@ module Courier
               if_: T.nilable(String),
               metadata:
                 T.nilable(
-                  Courier::SendSendMessageParams::Message::Channel::Metadata::OrHash
+                  Courier::SendMessageParams::Message::Channel::Metadata::OrHash
                 ),
               override: T.nilable(T::Hash[Symbol, T.anything]),
               providers: T.nilable(T::Array[String]),
               routing_method:
                 T.nilable(
-                  Courier::SendSendMessageParams::Message::Channel::RoutingMethod::OrSymbol
+                  Courier::SendMessageParams::Message::Channel::RoutingMethod::OrSymbol
                 ),
               timeouts:
                 T.nilable(
-                  Courier::SendSendMessageParams::Message::Channel::Timeouts::OrHash
+                  Courier::SendMessageParams::Message::Channel::Timeouts::OrHash
                 )
             ).returns(T.attached_class)
           end
@@ -453,17 +413,17 @@ module Courier
                 if_: T.nilable(String),
                 metadata:
                   T.nilable(
-                    Courier::SendSendMessageParams::Message::Channel::Metadata
+                    Courier::SendMessageParams::Message::Channel::Metadata
                   ),
                 override: T.nilable(T::Hash[Symbol, T.anything]),
                 providers: T.nilable(T::Array[String]),
                 routing_method:
                   T.nilable(
-                    Courier::SendSendMessageParams::Message::Channel::RoutingMethod::OrSymbol
+                    Courier::SendMessageParams::Message::Channel::RoutingMethod::OrSymbol
                   ),
                 timeouts:
                   T.nilable(
-                    Courier::SendSendMessageParams::Message::Channel::Timeouts
+                    Courier::SendMessageParams::Message::Channel::Timeouts
                   )
               }
             )
@@ -475,7 +435,7 @@ module Courier
             OrHash =
               T.type_alias do
                 T.any(
-                  Courier::SendSendMessageParams::Message::Channel::Metadata,
+                  Courier::SendMessageParams::Message::Channel::Metadata,
                   Courier::Internal::AnyHash
                 )
               end
@@ -507,7 +467,7 @@ module Courier
               T.type_alias do
                 T.all(
                   Symbol,
-                  Courier::SendSendMessageParams::Message::Channel::RoutingMethod
+                  Courier::SendMessageParams::Message::Channel::RoutingMethod
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -515,18 +475,18 @@ module Courier
             ALL =
               T.let(
                 :all,
-                Courier::SendSendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
+                Courier::SendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
               )
             SINGLE =
               T.let(
                 :single,
-                Courier::SendSendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
+                Courier::SendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Courier::SendSendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
+                  Courier::SendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
                 ]
               )
             end
@@ -538,7 +498,7 @@ module Courier
             OrHash =
               T.type_alias do
                 T.any(
-                  Courier::SendSendMessageParams::Message::Channel::Timeouts,
+                  Courier::SendMessageParams::Message::Channel::Timeouts,
                   Courier::Internal::AnyHash
                 )
               end
@@ -568,11 +528,67 @@ module Courier
           end
         end
 
+        # Describes content that will work for email, inbox, push, chat, or any channel
+        # id.
+        module Content
+          extend Courier::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Courier::SendMessageParams::Message::Content::ElementalContentSugar,
+                Courier::Tenants::ElementalContent
+              )
+            end
+
+          class ElementalContentSugar < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::SendMessageParams::Message::Content::ElementalContentSugar,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            # The text content displayed in the notification.
+            sig { returns(String) }
+            attr_accessor :body
+
+            # Title/subject displayed by supported channels.
+            sig { returns(String) }
+            attr_accessor :title
+
+            # Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
+            sig do
+              params(body: String, title: String).returns(T.attached_class)
+            end
+            def self.new(
+              # The text content displayed in the notification.
+              body:,
+              # Title/subject displayed by supported channels.
+              title:
+            )
+            end
+
+            sig { override.returns({ body: String, title: String }) }
+            def to_hash
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[Courier::SendMessageParams::Message::Content::Variants]
+            )
+          end
+          def self.variants
+          end
+        end
+
         class Delay < Courier::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Courier::SendSendMessageParams::Message::Delay,
+                Courier::SendMessageParams::Message::Delay,
                 Courier::Internal::AnyHash
               )
             end
@@ -612,7 +628,7 @@ module Courier
           OrHash =
             T.type_alias do
               T.any(
-                Courier::SendSendMessageParams::Message::Expiry,
+                Courier::SendMessageParams::Message::Expiry,
                 Courier::Internal::AnyHash
               )
             end
@@ -620,7 +636,7 @@ module Courier
           # Duration in ms or ISO8601 duration (e.g. P1DT4H).
           sig do
             returns(
-              Courier::SendSendMessageParams::Message::Expiry::ExpiresIn::Variants
+              Courier::SendMessageParams::Message::Expiry::ExpiresIn::Variants
             )
           end
           attr_accessor :expires_in
@@ -632,7 +648,7 @@ module Courier
           sig do
             params(
               expires_in:
-                Courier::SendSendMessageParams::Message::Expiry::ExpiresIn::Variants,
+                Courier::SendMessageParams::Message::Expiry::ExpiresIn::Variants,
               expires_at: T.nilable(String)
             ).returns(T.attached_class)
           end
@@ -648,7 +664,7 @@ module Courier
             override.returns(
               {
                 expires_in:
-                  Courier::SendSendMessageParams::Message::Expiry::ExpiresIn::Variants,
+                  Courier::SendMessageParams::Message::Expiry::ExpiresIn::Variants,
                 expires_at: T.nilable(String)
               }
             )
@@ -665,7 +681,7 @@ module Courier
             sig do
               override.returns(
                 T::Array[
-                  Courier::SendSendMessageParams::Message::Expiry::ExpiresIn::Variants
+                  Courier::SendMessageParams::Message::Expiry::ExpiresIn::Variants
                 ]
               )
             end
@@ -678,7 +694,7 @@ module Courier
           OrHash =
             T.type_alias do
               T.any(
-                Courier::SendSendMessageParams::Message::Metadata,
+                Courier::SendMessageParams::Message::Metadata,
                 Courier::Internal::AnyHash
               )
             end
@@ -727,7 +743,7 @@ module Courier
           OrHash =
             T.type_alias do
               T.any(
-                Courier::SendSendMessageParams::Message::Preferences,
+                Courier::SendMessageParams::Message::Preferences,
                 Courier::Internal::AnyHash
               )
             end
@@ -754,7 +770,7 @@ module Courier
           OrHash =
             T.type_alias do
               T.any(
-                Courier::SendSendMessageParams::Message::Provider,
+                Courier::SendMessageParams::Message::Provider,
                 Courier::Internal::AnyHash
               )
             end
@@ -765,9 +781,7 @@ module Courier
 
           sig do
             returns(
-              T.nilable(
-                Courier::SendSendMessageParams::Message::Provider::Metadata
-              )
+              T.nilable(Courier::SendMessageParams::Message::Provider::Metadata)
             )
           end
           attr_reader :metadata
@@ -776,7 +790,7 @@ module Courier
             params(
               metadata:
                 T.nilable(
-                  Courier::SendSendMessageParams::Message::Provider::Metadata::OrHash
+                  Courier::SendMessageParams::Message::Provider::Metadata::OrHash
                 )
             ).void
           end
@@ -794,7 +808,7 @@ module Courier
               if_: T.nilable(String),
               metadata:
                 T.nilable(
-                  Courier::SendSendMessageParams::Message::Provider::Metadata::OrHash
+                  Courier::SendMessageParams::Message::Provider::Metadata::OrHash
                 ),
               override: T.nilable(T::Hash[Symbol, T.anything]),
               timeouts: T.nilable(Integer)
@@ -816,7 +830,7 @@ module Courier
                 if_: T.nilable(String),
                 metadata:
                   T.nilable(
-                    Courier::SendSendMessageParams::Message::Provider::Metadata
+                    Courier::SendMessageParams::Message::Provider::Metadata
                   ),
                 override: T.nilable(T::Hash[Symbol, T.anything]),
                 timeouts: T.nilable(Integer)
@@ -830,7 +844,7 @@ module Courier
             OrHash =
               T.type_alias do
                 T.any(
-                  Courier::SendSendMessageParams::Message::Provider::Metadata,
+                  Courier::SendMessageParams::Message::Provider::Metadata,
                   Courier::Internal::AnyHash
                 )
               end
@@ -859,7 +873,7 @@ module Courier
           OrHash =
             T.type_alias do
               T.any(
-                Courier::SendSendMessageParams::Message::Routing,
+                Courier::SendMessageParams::Message::Routing,
                 Courier::Internal::AnyHash
               )
             end
@@ -870,7 +884,7 @@ module Courier
 
           sig do
             returns(
-              Courier::SendSendMessageParams::Message::Routing::Method::OrSymbol
+              Courier::SendMessageParams::Message::Routing::Method::OrSymbol
             )
           end
           attr_accessor :method_
@@ -880,7 +894,7 @@ module Courier
             params(
               channels: T::Array[T.any(String, Courier::MessageRouting)],
               method_:
-                Courier::SendSendMessageParams::Message::Routing::Method::OrSymbol
+                Courier::SendMessageParams::Message::Routing::Method::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -895,7 +909,7 @@ module Courier
               {
                 channels: T::Array[T.any(String, Courier::MessageRouting)],
                 method_:
-                  Courier::SendSendMessageParams::Message::Routing::Method::OrSymbol
+                  Courier::SendMessageParams::Message::Routing::Method::OrSymbol
               }
             )
           end
@@ -909,7 +923,7 @@ module Courier
               T.type_alias do
                 T.all(
                   Symbol,
-                  Courier::SendSendMessageParams::Message::Routing::Method
+                  Courier::SendMessageParams::Message::Routing::Method
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -917,18 +931,18 @@ module Courier
             ALL =
               T.let(
                 :all,
-                Courier::SendSendMessageParams::Message::Routing::Method::TaggedSymbol
+                Courier::SendMessageParams::Message::Routing::Method::TaggedSymbol
               )
             SINGLE =
               T.let(
                 :single,
-                Courier::SendSendMessageParams::Message::Routing::Method::TaggedSymbol
+                Courier::SendMessageParams::Message::Routing::Method::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Courier::SendSendMessageParams::Message::Routing::Method::TaggedSymbol
+                  Courier::SendMessageParams::Message::Routing::Method::TaggedSymbol
                 ]
               )
             end
@@ -941,7 +955,7 @@ module Courier
           OrHash =
             T.type_alias do
               T.any(
-                Courier::SendSendMessageParams::Message::Timeout,
+                Courier::SendMessageParams::Message::Timeout,
                 Courier::Internal::AnyHash
               )
             end
@@ -952,7 +966,7 @@ module Courier
           sig do
             returns(
               T.nilable(
-                Courier::SendSendMessageParams::Message::Timeout::Criteria::OrSymbol
+                Courier::SendMessageParams::Message::Timeout::Criteria::OrSymbol
               )
             )
           end
@@ -972,7 +986,7 @@ module Courier
               channel: T.nilable(T::Hash[Symbol, Integer]),
               criteria:
                 T.nilable(
-                  Courier::SendSendMessageParams::Message::Timeout::Criteria::OrSymbol
+                  Courier::SendMessageParams::Message::Timeout::Criteria::OrSymbol
                 ),
               escalation: T.nilable(Integer),
               message: T.nilable(Integer),
@@ -994,7 +1008,7 @@ module Courier
                 channel: T.nilable(T::Hash[Symbol, Integer]),
                 criteria:
                   T.nilable(
-                    Courier::SendSendMessageParams::Message::Timeout::Criteria::OrSymbol
+                    Courier::SendMessageParams::Message::Timeout::Criteria::OrSymbol
                   ),
                 escalation: T.nilable(Integer),
                 message: T.nilable(Integer),
@@ -1012,7 +1026,7 @@ module Courier
               T.type_alias do
                 T.all(
                   Symbol,
-                  Courier::SendSendMessageParams::Message::Timeout::Criteria
+                  Courier::SendMessageParams::Message::Timeout::Criteria
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1020,28 +1034,28 @@ module Courier
             NO_ESCALATION =
               T.let(
                 :"no-escalation",
-                Courier::SendSendMessageParams::Message::Timeout::Criteria::TaggedSymbol
+                Courier::SendMessageParams::Message::Timeout::Criteria::TaggedSymbol
               )
             DELIVERED =
               T.let(
                 :delivered,
-                Courier::SendSendMessageParams::Message::Timeout::Criteria::TaggedSymbol
+                Courier::SendMessageParams::Message::Timeout::Criteria::TaggedSymbol
               )
             VIEWED =
               T.let(
                 :viewed,
-                Courier::SendSendMessageParams::Message::Timeout::Criteria::TaggedSymbol
+                Courier::SendMessageParams::Message::Timeout::Criteria::TaggedSymbol
               )
             ENGAGED =
               T.let(
                 :engaged,
-                Courier::SendSendMessageParams::Message::Timeout::Criteria::TaggedSymbol
+                Courier::SendMessageParams::Message::Timeout::Criteria::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Courier::SendSendMessageParams::Message::Timeout::Criteria::TaggedSymbol
+                  Courier::SendMessageParams::Message::Timeout::Criteria::TaggedSymbol
                 ]
               )
             end
@@ -1061,7 +1075,7 @@ module Courier
 
           sig do
             override.returns(
-              T::Array[Courier::SendSendMessageParams::Message::To::Variants]
+              T::Array[Courier::SendMessageParams::Message::To::Variants]
             )
           end
           def self.variants

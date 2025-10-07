@@ -6,14 +6,14 @@ module Courier
       # @api private
       #
       # @example
-      #   # `content` is a `Courier::Content`
-      #   case content
-      #   when Courier::Content::ElementalContentSugar
-      #     puts(content.body)
-      #   when Courier::Tenants::ElementalContent
-      #     puts(content.elements)
+      #   # `message_routing_channel` is a `Courier::MessageRoutingChannel`
+      #   case message_routing_channel
+      #   when String
+      #     # ...
+      #   when Courier::MessageRouting
+      #     puts(message_routing_channel.channels)
       #   else
-      #     puts(content)
+      #     puts(message_routing_channel)
       #   end
       module Union
         include Courier::Internal::Type::Converter

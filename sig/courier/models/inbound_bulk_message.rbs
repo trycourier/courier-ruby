@@ -51,7 +51,7 @@ module Courier
 
       type inbound_bulk_content_message =
         {
-          content: Courier::Models::content,
+          content: Courier::Models::InboundBulkMessage::InboundBulkContentMessage::content,
           brand: String?,
           data: ::Hash[Symbol, top]?,
           event: String?,
@@ -60,7 +60,7 @@ module Courier
         }
 
       class InboundBulkContentMessage < Courier::Internal::Type::BaseModel
-        attr_accessor content: Courier::Models::content
+        attr_accessor content: Courier::Models::InboundBulkMessage::InboundBulkContentMessage::content
 
         attr_accessor brand: String?
 
@@ -73,7 +73,7 @@ module Courier
         attr_accessor override: ::Hash[Symbol, top]?
 
         def initialize: (
-          content: Courier::Models::content,
+          content: Courier::Models::InboundBulkMessage::InboundBulkContentMessage::content,
           ?brand: String?,
           ?data: ::Hash[Symbol, top]?,
           ?event: String?,
@@ -82,13 +82,35 @@ module Courier
         ) -> void
 
         def to_hash: -> {
-          content: Courier::Models::content,
+          content: Courier::Models::InboundBulkMessage::InboundBulkContentMessage::content,
           brand: String?,
           data: ::Hash[Symbol, top]?,
           event: String?,
           locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
           override: ::Hash[Symbol, top]?
         }
+
+        type content =
+          Courier::InboundBulkMessage::InboundBulkContentMessage::Content::ElementalContentSugar
+          | Courier::Tenants::ElementalContent
+
+        module Content
+          extend Courier::Internal::Type::Union
+
+          type elemental_content_sugar = { body: String, title: String }
+
+          class ElementalContentSugar < Courier::Internal::Type::BaseModel
+            attr_accessor body: String
+
+            attr_accessor title: String
+
+            def initialize: (body: String, title: String) -> void
+
+            def to_hash: -> { body: String, title: String }
+          end
+
+          def self?.variants: -> ::Array[Courier::Models::InboundBulkMessage::InboundBulkContentMessage::content]
+        end
       end
 
       def self?.variants: -> ::Array[Courier::Models::inbound_bulk_message]
