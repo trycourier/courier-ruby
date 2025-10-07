@@ -33,6 +33,7 @@ module Courier
           preferences: Courier::SendMessageParams::Message::Preferences?,
           providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
           routing: Courier::SendMessageParams::Message::Routing?,
+          template: String?,
           timeout: Courier::SendMessageParams::Message::Timeout?,
           to: Courier::Models::SendMessageParams::Message::to?
         }
@@ -64,6 +65,8 @@ module Courier
 
         attr_accessor routing: Courier::SendMessageParams::Message::Routing?
 
+        attr_accessor template: String?
+
         attr_accessor timeout: Courier::SendMessageParams::Message::Timeout?
 
         attr_accessor to: Courier::Models::SendMessageParams::Message::to?
@@ -80,6 +83,7 @@ module Courier
           ?preferences: Courier::SendMessageParams::Message::Preferences?,
           ?providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
           ?routing: Courier::SendMessageParams::Message::Routing?,
+          ?template: String?,
           ?timeout: Courier::SendMessageParams::Message::Timeout?,
           ?to: Courier::Models::SendMessageParams::Message::to?
         ) -> void
@@ -96,6 +100,7 @@ module Courier
           preferences: Courier::SendMessageParams::Message::Preferences?,
           providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
           routing: Courier::SendMessageParams::Message::Routing?,
+          template: String?,
           timeout: Courier::SendMessageParams::Message::Timeout?,
           to: Courier::Models::SendMessageParams::Message::to?
         }
