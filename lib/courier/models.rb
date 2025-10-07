@@ -63,6 +63,8 @@ module Courier
 
   Brand = Courier::Models::Brand
 
+  BrandColors = Courier::Models::BrandColors
+
   BrandCreateParams = Courier::Models::BrandCreateParams
 
   BrandDeleteParams = Courier::Models::BrandDeleteParams
@@ -72,6 +74,12 @@ module Courier
   BrandRetrieveParams = Courier::Models::BrandRetrieveParams
 
   BrandSettings = Courier::Models::BrandSettings
+
+  BrandSettingsEmail = Courier::Models::BrandSettingsEmail
+
+  BrandSettingsInApp = Courier::Models::BrandSettingsInApp
+
+  BrandSnippet = Courier::Models::BrandSnippet
 
   BrandSnippets = Courier::Models::BrandSnippets
 
@@ -89,13 +97,23 @@ module Courier
 
   BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  ChannelPreference = Courier::Models::ChannelPreference
+
   Content = Courier::Models::Content
 
   DefaultPreferences = Courier::Models::DefaultPreferences
 
+  EmailFooter = Courier::Models::EmailFooter
+
+  EmailHead = Courier::Models::EmailHead
+
+  EmailHeader = Courier::Models::EmailHeader
+
   Filter = Courier::Models::Filter
 
   FilterConfig = Courier::Models::FilterConfig
+
+  Icons = Courier::Models::Icons
 
   InboundBulkMessage = Courier::Models::InboundBulkMessage
 
@@ -116,6 +134,8 @@ module Courier
   Lists = Courier::Models::Lists
 
   ListUpdateParams = Courier::Models::ListUpdateParams
+
+  Logo = Courier::Models::Logo
 
   MessageCancelParams = Courier::Models::MessageCancelParams
 
@@ -147,6 +167,8 @@ module Courier
 
   Paging = Courier::Models::Paging
 
+  Preference = Courier::Models::Preference
+
   ProfileCreateParams = Courier::Models::ProfileCreateParams
 
   ProfileDeleteParams = Courier::Models::ProfileDeleteParams
@@ -162,6 +184,8 @@ module Courier
   Recipient = Courier::Models::Recipient
 
   RequestArchiveParams = Courier::Models::RequestArchiveParams
+
+  Rule = Courier::Models::Rule
 
   SendSendMessageParams = Courier::Models::SendSendMessageParams
 
@@ -186,4 +210,8 @@ module Courier
   UserRecipient = Courier::Models::UserRecipient
 
   Users = Courier::Models::Users
+
+  Utm = Courier::Models::Utm
+
+  WidgetBackground = Courier::Models::WidgetBackground
 end

@@ -480,104 +480,22 @@ module Courier
                 )
               end
 
-            sig do
-              returns(
-                T.nilable(
-                  Courier::SendSendMessageParams::Message::Channel::Metadata::Utm
-                )
-              )
-            end
+            sig { returns(T.nilable(Courier::Utm)) }
             attr_reader :utm
 
-            sig do
-              params(
-                utm:
-                  T.nilable(
-                    Courier::SendSendMessageParams::Message::Channel::Metadata::Utm::OrHash
-                  )
-              ).void
-            end
+            sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
             attr_writer :utm
 
             sig do
-              params(
-                utm:
-                  T.nilable(
-                    Courier::SendSendMessageParams::Message::Channel::Metadata::Utm::OrHash
-                  )
-              ).returns(T.attached_class)
+              params(utm: T.nilable(Courier::Utm::OrHash)).returns(
+                T.attached_class
+              )
             end
             def self.new(utm: nil)
             end
 
-            sig do
-              override.returns(
-                {
-                  utm:
-                    T.nilable(
-                      Courier::SendSendMessageParams::Message::Channel::Metadata::Utm
-                    )
-                }
-              )
-            end
+            sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
             def to_hash
-            end
-
-            class Utm < Courier::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Courier::SendSendMessageParams::Message::Channel::Metadata::Utm,
-                    Courier::Internal::AnyHash
-                  )
-                end
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :campaign
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :content
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :medium
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :source
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :term
-
-              sig do
-                params(
-                  campaign: T.nilable(String),
-                  content: T.nilable(String),
-                  medium: T.nilable(String),
-                  source: T.nilable(String),
-                  term: T.nilable(String)
-                ).returns(T.attached_class)
-              end
-              def self.new(
-                campaign: nil,
-                content: nil,
-                medium: nil,
-                source: nil,
-                term: nil
-              )
-              end
-
-              sig do
-                override.returns(
-                  {
-                    campaign: T.nilable(String),
-                    content: T.nilable(String),
-                    medium: T.nilable(String),
-                    source: T.nilable(String),
-                    term: T.nilable(String)
-                  }
-                )
-              end
-              def to_hash
-              end
             end
           end
 
@@ -774,21 +692,10 @@ module Courier
           sig { returns(T.nilable(String)) }
           attr_accessor :trace_id
 
-          sig do
-            returns(
-              T.nilable(Courier::SendSendMessageParams::Message::Metadata::Utm)
-            )
-          end
+          sig { returns(T.nilable(Courier::Utm)) }
           attr_reader :utm
 
-          sig do
-            params(
-              utm:
-                T.nilable(
-                  Courier::SendSendMessageParams::Message::Metadata::Utm::OrHash
-                )
-            ).void
-          end
+          sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
           attr_writer :utm
 
           sig do
@@ -796,10 +703,7 @@ module Courier
               event: T.nilable(String),
               tags: T.nilable(T::Array[String]),
               trace_id: T.nilable(String),
-              utm:
-                T.nilable(
-                  Courier::SendSendMessageParams::Message::Metadata::Utm::OrHash
-                )
+              utm: T.nilable(Courier::Utm::OrHash)
             ).returns(T.attached_class)
           end
           def self.new(event: nil, tags: nil, trace_id: nil, utm: nil)
@@ -811,71 +715,11 @@ module Courier
                 event: T.nilable(String),
                 tags: T.nilable(T::Array[String]),
                 trace_id: T.nilable(String),
-                utm:
-                  T.nilable(
-                    Courier::SendSendMessageParams::Message::Metadata::Utm
-                  )
+                utm: T.nilable(Courier::Utm)
               }
             )
           end
           def to_hash
-          end
-
-          class Utm < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendSendMessageParams::Message::Metadata::Utm,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :campaign
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :content
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :medium
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :source
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :term
-
-            sig do
-              params(
-                campaign: T.nilable(String),
-                content: T.nilable(String),
-                medium: T.nilable(String),
-                source: T.nilable(String),
-                term: T.nilable(String)
-              ).returns(T.attached_class)
-            end
-            def self.new(
-              campaign: nil,
-              content: nil,
-              medium: nil,
-              source: nil,
-              term: nil
-            )
-            end
-
-            sig do
-              override.returns(
-                {
-                  campaign: T.nilable(String),
-                  content: T.nilable(String),
-                  medium: T.nilable(String),
-                  source: T.nilable(String),
-                  term: T.nilable(String)
-                }
-              )
-            end
-            def to_hash
-            end
           end
         end
 
@@ -991,104 +835,22 @@ module Courier
                 )
               end
 
-            sig do
-              returns(
-                T.nilable(
-                  Courier::SendSendMessageParams::Message::Provider::Metadata::Utm
-                )
-              )
-            end
+            sig { returns(T.nilable(Courier::Utm)) }
             attr_reader :utm
 
-            sig do
-              params(
-                utm:
-                  T.nilable(
-                    Courier::SendSendMessageParams::Message::Provider::Metadata::Utm::OrHash
-                  )
-              ).void
-            end
+            sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
             attr_writer :utm
 
             sig do
-              params(
-                utm:
-                  T.nilable(
-                    Courier::SendSendMessageParams::Message::Provider::Metadata::Utm::OrHash
-                  )
-              ).returns(T.attached_class)
+              params(utm: T.nilable(Courier::Utm::OrHash)).returns(
+                T.attached_class
+              )
             end
             def self.new(utm: nil)
             end
 
-            sig do
-              override.returns(
-                {
-                  utm:
-                    T.nilable(
-                      Courier::SendSendMessageParams::Message::Provider::Metadata::Utm
-                    )
-                }
-              )
-            end
+            sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
             def to_hash
-            end
-
-            class Utm < Courier::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Courier::SendSendMessageParams::Message::Provider::Metadata::Utm,
-                    Courier::Internal::AnyHash
-                  )
-                end
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :campaign
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :content
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :medium
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :source
-
-              sig { returns(T.nilable(String)) }
-              attr_accessor :term
-
-              sig do
-                params(
-                  campaign: T.nilable(String),
-                  content: T.nilable(String),
-                  medium: T.nilable(String),
-                  source: T.nilable(String),
-                  term: T.nilable(String)
-                ).returns(T.attached_class)
-              end
-              def self.new(
-                campaign: nil,
-                content: nil,
-                medium: nil,
-                source: nil,
-                term: nil
-              )
-              end
-
-              sig do
-                override.returns(
-                  {
-                    campaign: T.nilable(String),
-                    content: T.nilable(String),
-                    medium: T.nilable(String),
-                    source: T.nilable(String),
-                    term: T.nilable(String)
-                  }
-                )
-              end
-              def to_hash
-              end
             end
           end
         end

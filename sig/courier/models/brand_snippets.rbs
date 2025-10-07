@@ -1,25 +1,13 @@
 module Courier
   module Models
-    type brand_snippets = { items: ::Array[Courier::BrandSnippets::Item]? }
+    type brand_snippets = { items: ::Array[Courier::BrandSnippet]? }
 
     class BrandSnippets < Courier::Internal::Type::BaseModel
-      attr_accessor items: ::Array[Courier::BrandSnippets::Item]?
+      attr_accessor items: ::Array[Courier::BrandSnippet]?
 
-      def initialize: (?items: ::Array[Courier::BrandSnippets::Item]?) -> void
+      def initialize: (?items: ::Array[Courier::BrandSnippet]?) -> void
 
-      def to_hash: -> { items: ::Array[Courier::BrandSnippets::Item]? }
-
-      type item = { name: String, value: String }
-
-      class Item < Courier::Internal::Type::BaseModel
-        attr_accessor name: String
-
-        attr_accessor value: String
-
-        def initialize: (name: String, value: String) -> void
-
-        def to_hash: -> { name: String, value: String }
-      end
+      def to_hash: -> { items: ::Array[Courier::BrandSnippet]? }
     end
   end
 end
