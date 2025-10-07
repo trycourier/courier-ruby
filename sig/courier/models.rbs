@@ -67,6 +67,8 @@ module Courier
 
   class ElementalChannelNode = Courier::Models::ElementalChannelNode
 
+  class ElementalContentSugar = Courier::Models::ElementalContentSugar
+
   module ElementalNode = Courier::Models::ElementalNode
 
   class EmailFooter = Courier::Models::EmailFooter

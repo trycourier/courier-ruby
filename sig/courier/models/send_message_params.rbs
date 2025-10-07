@@ -181,23 +181,10 @@ module Courier
         end
 
         type content =
-          Courier::SendMessageParams::Message::Content::ElementalContentSugar
-          | Courier::Tenants::ElementalContent
+          Courier::ElementalContentSugar | Courier::Tenants::ElementalContent
 
         module Content
           extend Courier::Internal::Type::Union
-
-          type elemental_content_sugar = { body: String, title: String }
-
-          class ElementalContentSugar < Courier::Internal::Type::BaseModel
-            attr_accessor body: String
-
-            attr_accessor title: String
-
-            def initialize: (body: String, title: String) -> void
-
-            def to_hash: -> { body: String, title: String }
-          end
 
           def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::content]
         end
