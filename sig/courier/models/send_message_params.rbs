@@ -403,7 +403,10 @@ module Courier
           end
         end
 
-        type to = Courier::UserRecipient | ::Array[Courier::Recipient]
+        type to =
+          Courier::UserRecipient
+          | Courier::ListRecipient
+          | ::Array[Courier::Models::recipient]
 
         module To
           extend Courier::Internal::Type::Union

@@ -190,7 +190,11 @@ module Courier
         sig do
           returns(
             T.nilable(
-              T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
+              T.any(
+                Courier::UserRecipient,
+                Courier::ListRecipient,
+                T::Array[T.any(Courier::UserRecipient, Courier::ListRecipient)]
+              )
             )
           )
         end
@@ -241,7 +245,13 @@ module Courier
               T.nilable(
                 T.any(
                   Courier::UserRecipient::OrHash,
-                  T::Array[Courier::Recipient::OrHash]
+                  Courier::ListRecipient::OrHash,
+                  T::Array[
+                    T.any(
+                      Courier::UserRecipient::OrHash,
+                      Courier::ListRecipient::OrHash
+                    )
+                  ]
                 )
               )
           ).returns(T.attached_class)
@@ -301,7 +311,13 @@ module Courier
               timeout: T.nilable(Courier::SendMessageParams::Message::Timeout),
               to:
                 T.nilable(
-                  T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
+                  T.any(
+                    Courier::UserRecipient,
+                    Courier::ListRecipient,
+                    T::Array[
+                      T.any(Courier::UserRecipient, Courier::ListRecipient)
+                    ]
+                  )
                 )
             }
           )
@@ -1044,7 +1060,11 @@ module Courier
 
           Variants =
             T.type_alias do
-              T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
+              T.any(
+                Courier::UserRecipient,
+                Courier::ListRecipient,
+                T::Array[Courier::Recipient::Variants]
+              )
             end
 
           sig do
@@ -1057,7 +1077,7 @@ module Courier
 
           RecipientArray =
             T.let(
-              Courier::Internal::Type::ArrayOf[Courier::Recipient],
+              Courier::Internal::Type::ArrayOf[union: Courier::Recipient],
               Courier::Internal::Type::Converter
             )
         end

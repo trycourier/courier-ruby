@@ -101,7 +101,7 @@ module Courier
         # @!attribute to
         #   The recipient or a list of recipients of the message
         #
-        #   @return [Courier::Models::UserRecipient, Array<Courier::Models::Recipient>, nil]
+        #   @return [Courier::Models::UserRecipient, Courier::Models::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::ListRecipient>, nil]
         optional :to, union: -> { Courier::SendMessageParams::Message::To }, nil?: true
 
         # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, template: nil, timeout: nil, to: nil)
@@ -137,7 +137,7 @@ module Courier
         #
         #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #
-        #   @param to [Courier::Models::UserRecipient, Array<Courier::Models::Recipient>, nil] The recipient or a list of recipients of the message
+        #   @param to [Courier::Models::UserRecipient, Courier::Models::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::ListRecipient>, nil] The recipient or a list of recipients of the message
 
         class Channel < Courier::Internal::Type::BaseModel
           # @!attribute brand_id
@@ -486,13 +486,15 @@ module Courier
 
           variant -> { Courier::UserRecipient }
 
+          variant -> { Courier::ListRecipient }
+
           variant -> { Courier::Models::SendMessageParams::Message::To::RecipientArray }
 
           # @!method self.variants
-          #   @return [Array(Courier::Models::UserRecipient, Array<Courier::Models::Recipient>)]
+          #   @return [Array(Courier::Models::UserRecipient, Courier::Models::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::ListRecipient>)]
 
           # @type [Courier::Internal::Type::Converter]
-          RecipientArray = Courier::Internal::Type::ArrayOf[-> { Courier::Recipient }]
+          RecipientArray = Courier::Internal::Type::ArrayOf[union: -> { Courier::Recipient }]
         end
       end
     end
