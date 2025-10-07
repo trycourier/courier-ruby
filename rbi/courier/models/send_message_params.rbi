@@ -171,6 +171,7 @@ module Courier
         end
         attr_writer :routing
 
+        # The id of the template you want to send
         sig { returns(T.nilable(String)) }
         attr_accessor :template
 
@@ -262,6 +263,7 @@ module Courier
           providers: nil,
           # Customize which channels/providers Courier may deliver the message through.
           routing: nil,
+          # The id of the template you want to send
           template: nil,
           timeout: nil,
           # The recipient or a list of recipients of the message
