@@ -1,8 +1,6 @@
 # typed: strong
 
 module Courier
-  Alignment = Courier::Models::Alignment
-
   Audience = Courier::Models::Audience
 
   AudienceDeleteParams = Courier::Models::AudienceDeleteParams
@@ -27,8 +25,6 @@ module Courier
 
   Brand = Courier::Models::Brand
 
-  BrandColors = Courier::Models::BrandColors
-
   BrandCreateParams = Courier::Models::BrandCreateParams
 
   BrandDeleteParams = Courier::Models::BrandDeleteParams
@@ -38,12 +34,6 @@ module Courier
   BrandRetrieveParams = Courier::Models::BrandRetrieveParams
 
   BrandSettings = Courier::Models::BrandSettings
-
-  BrandSettingsEmail = Courier::Models::BrandSettingsEmail
-
-  BrandSettingsInApp = Courier::Models::BrandSettingsInApp
-
-  BrandSnippet = Courier::Models::BrandSnippet
 
   BrandSnippets = Courier::Models::BrandSnippets
 
@@ -61,29 +51,13 @@ module Courier
 
   BulkRunJobParams = Courier::Models::BulkRunJobParams
 
-  ChannelPreference = Courier::Models::ChannelPreference
-
   Content = Courier::Models::Content
 
   DefaultPreferences = Courier::Models::DefaultPreferences
 
-  ElementalBaseNode = Courier::Models::ElementalBaseNode
-
-  ElementalChannelNode = Courier::Models::ElementalChannelNode
-
-  ElementalNode = Courier::Models::ElementalNode
-
-  EmailFooter = Courier::Models::EmailFooter
-
-  EmailHead = Courier::Models::EmailHead
-
-  EmailHeader = Courier::Models::EmailHeader
-
   Filter = Courier::Models::Filter
 
   FilterConfig = Courier::Models::FilterConfig
-
-  Icons = Courier::Models::Icons
 
   InboundBulkMessage = Courier::Models::InboundBulkMessage
 
@@ -105,8 +79,6 @@ module Courier
 
   ListUpdateParams = Courier::Models::ListUpdateParams
 
-  Logo = Courier::Models::Logo
-
   MessageCancelParams = Courier::Models::MessageCancelParams
 
   MessageContentParams = Courier::Models::MessageContentParams
@@ -127,7 +99,7 @@ module Courier
 
   NestedFilterConfig = Courier::Models::NestedFilterConfig
 
-  NotificationContent = Courier::Models::NotificationContent
+  NotificationGetContent = Courier::Models::NotificationGetContent
 
   NotificationListParams = Courier::Models::NotificationListParams
 
@@ -137,8 +109,6 @@ module Courier
   Notifications = Courier::Models::Notifications
 
   Paging = Courier::Models::Paging
-
-  Preference = Courier::Models::Preference
 
   ProfileCreateParams = Courier::Models::ProfileCreateParams
 
@@ -156,9 +126,7 @@ module Courier
 
   RequestArchiveParams = Courier::Models::RequestArchiveParams
 
-  Rule = Courier::Models::Rule
-
-  SendMessageParams = Courier::Models::SendMessageParams
+  SendSendMessageParams = Courier::Models::SendSendMessageParams
 
   Tenant = Courier::Models::Tenant
 
@@ -174,8 +142,6 @@ module Courier
 
   TenantUpdateParams = Courier::Models::TenantUpdateParams
 
-  TextStyle = Courier::Models::TextStyle
-
   TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
 
   TranslationUpdateParams = Courier::Models::TranslationUpdateParams
@@ -183,8 +149,4 @@ module Courier
   UserRecipient = Courier::Models::UserRecipient
 
   Users = Courier::Models::Users
-
-  Utm = Courier::Models::Utm
-
-  WidgetBackground = Courier::Models::WidgetBackground
 end

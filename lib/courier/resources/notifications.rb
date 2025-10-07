@@ -3,11 +3,11 @@
 module Courier
   module Resources
     class Notifications
-      # @return [Courier::Resources::Notifications::Checks]
-      attr_reader :checks
-
       # @return [Courier::Resources::Notifications::Draft]
       attr_reader :draft
+
+      # @return [Courier::Resources::Notifications::Checks]
+      attr_reader :checks
 
       # @overload list(cursor: nil, notes: nil, request_options: {})
       #
@@ -36,14 +36,14 @@ module Courier
       # @param id [String]
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::NotificationContent]
+      # @return [Courier::Models::NotificationGetContent]
       #
       # @see Courier::Models::NotificationRetrieveContentParams
       def retrieve_content(id, params = {})
         @client.request(
           method: :get,
           path: ["notifications/%1$s/content", id],
-          model: Courier::NotificationContent,
+          model: Courier::NotificationGetContent,
           options: params[:request_options]
         )
       end
@@ -53,8 +53,8 @@ module Courier
       # @param client [Courier::Client]
       def initialize(client:)
         @client = client
-        @checks = Courier::Resources::Notifications::Checks.new(client: client)
         @draft = Courier::Resources::Notifications::Draft.new(client: client)
+        @checks = Courier::Resources::Notifications::Checks.new(client: client)
       end
     end
   end

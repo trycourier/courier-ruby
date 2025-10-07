@@ -1,6 +1,6 @@
 # Courier Ruby API library
 
-The Courier Ruby library provides convenient access to the Courier REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/trycourier/courier-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Courier Ruby library provides convenient access to the Courier REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/courier-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -12,13 +12,9 @@ Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
-<!-- x-release-please-start-version -->
-
 ```ruby
 gem "courier", "~> 0.0.1"
 ```
-
-<!-- x-release-please-end -->
 
 ## Usage
 
@@ -30,7 +26,7 @@ courier = Courier::Client.new(
   api_key: ENV["COURIER_API_KEY"] # This is the default and can be omitted
 )
 
-response = courier.send_.message(
+response = courier.send_.send_message(
   message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
 )
 
@@ -43,7 +39,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  send_ = courier.send_.message(
+  send_ = courier.send_.send_message(
     message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
   )
 rescue Courier::Errors::APIConnectionError => e
@@ -88,7 +84,7 @@ courier = Courier::Client.new(
 )
 
 # Or, configure per-request:
-courier.send_.message(
+courier.send_.send_message(
   message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
   request_options: {max_retries: 5}
 )
@@ -105,7 +101,7 @@ courier = Courier::Client.new(
 )
 
 # Or, configure per-request:
-courier.send_.message(
+courier.send_.send_message(
   message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
   request_options: {timeout: 5}
 )
@@ -139,7 +135,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 
 ```ruby
 response =
-  courier.send_.message(
+  courier.send_.send_message(
     message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
     request_options: {
       extra_query: {my_query_parameter: value},
@@ -186,8 +182,8 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-courier.send_.message(
-  message: Courier::SendMessageParams::Message.new(
+courier.send_.send_message(
+  message: Courier::SendSendMessageParams::Message.new(
     to: Courier::UserRecipient.new(user_id: "your_user_id"),
     data: {foo: "bar"}
   )
@@ -198,18 +194,18 @@ Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-courier.send_.message(
+courier.send_.send_message(
   message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
 )
 
 # You can also splat a full Params class:
-params = Courier::SendMessageParams.new(
-  message: Courier::SendMessageParams::Message.new(
+params = Courier::SendSendMessageParams.new(
+  message: Courier::SendSendMessageParams::Message.new(
     to: Courier::UserRecipient.new(user_id: "your_user_id"),
     data: {foo: "bar"}
   )
 )
-courier.send_.message(**params)
+courier.send_.send_message(**params)
 ```
 
 ### Enums
@@ -252,4 +248,4 @@ Ruby 3.2.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/trycourier/courier-ruby/tree/main/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/stainless-sdks/courier-ruby/tree/main/CONTRIBUTING.md).

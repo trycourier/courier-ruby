@@ -101,10 +101,20 @@ module Courier
             T.any(Courier::Recipient::Preferences, Courier::Internal::AnyHash)
           end
 
-        sig { returns(T::Hash[Symbol, Courier::Preference]) }
+        sig do
+          returns(
+            T::Hash[Symbol, Courier::Recipient::Preferences::Notification]
+          )
+        end
         attr_accessor :notifications
 
-        sig { returns(T.nilable(T::Hash[Symbol, Courier::Preference])) }
+        sig do
+          returns(
+            T.nilable(
+              T::Hash[Symbol, Courier::Recipient::Preferences::Category]
+            )
+          )
+        end
         attr_accessor :categories
 
         sig { returns(T.nilable(String)) }
@@ -112,8 +122,18 @@ module Courier
 
         sig do
           params(
-            notifications: T::Hash[Symbol, Courier::Preference::OrHash],
-            categories: T.nilable(T::Hash[Symbol, Courier::Preference::OrHash]),
+            notifications:
+              T::Hash[
+                Symbol,
+                Courier::Recipient::Preferences::Notification::OrHash
+              ],
+            categories:
+              T.nilable(
+                T::Hash[
+                  Symbol,
+                  Courier::Recipient::Preferences::Category::OrHash
+                ]
+              ),
             template_id: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -123,13 +143,418 @@ module Courier
         sig do
           override.returns(
             {
-              notifications: T::Hash[Symbol, Courier::Preference],
-              categories: T.nilable(T::Hash[Symbol, Courier::Preference]),
+              notifications:
+                T::Hash[Symbol, Courier::Recipient::Preferences::Notification],
+              categories:
+                T.nilable(
+                  T::Hash[Symbol, Courier::Recipient::Preferences::Category]
+                ),
               template_id: T.nilable(String)
             }
           )
         end
         def to_hash
+        end
+
+        class Notification < Courier::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Courier::Recipient::Preferences::Notification,
+                Courier::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Courier::Users::PreferenceStatus::OrSymbol) }
+          attr_accessor :status
+
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  Courier::Recipient::Preferences::Notification::ChannelPreference
+                ]
+              )
+            )
+          end
+          attr_accessor :channel_preferences
+
+          sig do
+            returns(
+              T.nilable(
+                T::Array[Courier::Recipient::Preferences::Notification::Rule]
+              )
+            )
+          end
+          attr_accessor :rules
+
+          sig do
+            returns(
+              T.nilable(
+                Courier::Recipient::Preferences::Notification::Source::OrSymbol
+              )
+            )
+          end
+          attr_accessor :source
+
+          sig do
+            params(
+              status: Courier::Users::PreferenceStatus::OrSymbol,
+              channel_preferences:
+                T.nilable(
+                  T::Array[
+                    Courier::Recipient::Preferences::Notification::ChannelPreference::OrHash
+                  ]
+                ),
+              rules:
+                T.nilable(
+                  T::Array[
+                    Courier::Recipient::Preferences::Notification::Rule::OrHash
+                  ]
+                ),
+              source:
+                T.nilable(
+                  Courier::Recipient::Preferences::Notification::Source::OrSymbol
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            status:,
+            channel_preferences: nil,
+            rules: nil,
+            source: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                status: Courier::Users::PreferenceStatus::OrSymbol,
+                channel_preferences:
+                  T.nilable(
+                    T::Array[
+                      Courier::Recipient::Preferences::Notification::ChannelPreference
+                    ]
+                  ),
+                rules:
+                  T.nilable(
+                    T::Array[
+                      Courier::Recipient::Preferences::Notification::Rule
+                    ]
+                  ),
+                source:
+                  T.nilable(
+                    Courier::Recipient::Preferences::Notification::Source::OrSymbol
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class ChannelPreference < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Recipient::Preferences::Notification::ChannelPreference,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
+              )
+            end
+            attr_accessor :channel
+
+            sig do
+              params(
+                channel:
+                  Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(channel:)
+            end
+
+            sig do
+              override.returns(
+                {
+                  channel:
+                    Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Rule < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Recipient::Preferences::Notification::Rule,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(String) }
+            attr_accessor :until_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :start
+
+            sig do
+              params(until_: String, start: T.nilable(String)).returns(
+                T.attached_class
+              )
+            end
+            def self.new(until_:, start: nil)
+            end
+
+            sig do
+              override.returns({ until_: String, start: T.nilable(String) })
+            end
+            def to_hash
+            end
+          end
+
+          module Source
+            extend Courier::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Courier::Recipient::Preferences::Notification::Source
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            SUBSCRIPTION =
+              T.let(
+                :subscription,
+                Courier::Recipient::Preferences::Notification::Source::TaggedSymbol
+              )
+            LIST =
+              T.let(
+                :list,
+                Courier::Recipient::Preferences::Notification::Source::TaggedSymbol
+              )
+            RECIPIENT =
+              T.let(
+                :recipient,
+                Courier::Recipient::Preferences::Notification::Source::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Courier::Recipient::Preferences::Notification::Source::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
+        class Category < Courier::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Courier::Recipient::Preferences::Category,
+                Courier::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Courier::Users::PreferenceStatus::OrSymbol) }
+          attr_accessor :status
+
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  Courier::Recipient::Preferences::Category::ChannelPreference
+                ]
+              )
+            )
+          end
+          attr_accessor :channel_preferences
+
+          sig do
+            returns(
+              T.nilable(
+                T::Array[Courier::Recipient::Preferences::Category::Rule]
+              )
+            )
+          end
+          attr_accessor :rules
+
+          sig do
+            returns(
+              T.nilable(
+                Courier::Recipient::Preferences::Category::Source::OrSymbol
+              )
+            )
+          end
+          attr_accessor :source
+
+          sig do
+            params(
+              status: Courier::Users::PreferenceStatus::OrSymbol,
+              channel_preferences:
+                T.nilable(
+                  T::Array[
+                    Courier::Recipient::Preferences::Category::ChannelPreference::OrHash
+                  ]
+                ),
+              rules:
+                T.nilable(
+                  T::Array[
+                    Courier::Recipient::Preferences::Category::Rule::OrHash
+                  ]
+                ),
+              source:
+                T.nilable(
+                  Courier::Recipient::Preferences::Category::Source::OrSymbol
+                )
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            status:,
+            channel_preferences: nil,
+            rules: nil,
+            source: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                status: Courier::Users::PreferenceStatus::OrSymbol,
+                channel_preferences:
+                  T.nilable(
+                    T::Array[
+                      Courier::Recipient::Preferences::Category::ChannelPreference
+                    ]
+                  ),
+                rules:
+                  T.nilable(
+                    T::Array[Courier::Recipient::Preferences::Category::Rule]
+                  ),
+                source:
+                  T.nilable(
+                    Courier::Recipient::Preferences::Category::Source::OrSymbol
+                  )
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class ChannelPreference < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Recipient::Preferences::Category::ChannelPreference,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
+              )
+            end
+            attr_accessor :channel
+
+            sig do
+              params(
+                channel:
+                  Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(channel:)
+            end
+
+            sig do
+              override.returns(
+                {
+                  channel:
+                    Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Rule < Courier::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Courier::Recipient::Preferences::Category::Rule,
+                  Courier::Internal::AnyHash
+                )
+              end
+
+            sig { returns(String) }
+            attr_accessor :until_
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :start
+
+            sig do
+              params(until_: String, start: T.nilable(String)).returns(
+                T.attached_class
+              )
+            end
+            def self.new(until_:, start: nil)
+            end
+
+            sig do
+              override.returns({ until_: String, start: T.nilable(String) })
+            end
+            def to_hash
+            end
+          end
+
+          module Source
+            extend Courier::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(Symbol, Courier::Recipient::Preferences::Category::Source)
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            SUBSCRIPTION =
+              T.let(
+                :subscription,
+                Courier::Recipient::Preferences::Category::Source::TaggedSymbol
+              )
+            LIST =
+              T.let(
+                :list,
+                Courier::Recipient::Preferences::Category::Source::TaggedSymbol
+              )
+            RECIPIENT =
+              T.let(
+                :recipient,
+                Courier::Recipient::Preferences::Category::Source::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Courier::Recipient::Preferences::Category::Source::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
         end
       end
     end

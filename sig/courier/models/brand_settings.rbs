@@ -2,29 +2,265 @@ module Courier
   module Models
     type brand_settings =
       {
-        colors: Courier::BrandColors?,
-        email: Courier::BrandSettingsEmail?,
-        inapp: Courier::BrandSettingsInApp?
+        colors: Courier::BrandSettings::Colors?,
+        email: Courier::BrandSettings::Email?,
+        inapp: Courier::BrandSettings::Inapp?
       }
 
     class BrandSettings < Courier::Internal::Type::BaseModel
-      attr_accessor colors: Courier::BrandColors?
+      attr_accessor colors: Courier::BrandSettings::Colors?
 
-      attr_accessor email: Courier::BrandSettingsEmail?
+      attr_accessor email: Courier::BrandSettings::Email?
 
-      attr_accessor inapp: Courier::BrandSettingsInApp?
+      attr_accessor inapp: Courier::BrandSettings::Inapp?
 
       def initialize: (
-        ?colors: Courier::BrandColors?,
-        ?email: Courier::BrandSettingsEmail?,
-        ?inapp: Courier::BrandSettingsInApp?
+        ?colors: Courier::BrandSettings::Colors?,
+        ?email: Courier::BrandSettings::Email?,
+        ?inapp: Courier::BrandSettings::Inapp?
       ) -> void
 
       def to_hash: -> {
-        colors: Courier::BrandColors?,
-        email: Courier::BrandSettingsEmail?,
-        inapp: Courier::BrandSettingsInApp?
+        colors: Courier::BrandSettings::Colors?,
+        email: Courier::BrandSettings::Email?,
+        inapp: Courier::BrandSettings::Inapp?
       }
+
+      type colors = { primary: String?, secondary: String? }
+
+      class Colors < Courier::Internal::Type::BaseModel
+        attr_accessor primary: String?
+
+        attr_accessor secondary: String?
+
+        def initialize: (?primary: String?, ?secondary: String?) -> void
+
+        def to_hash: -> { primary: String?, secondary: String? }
+      end
+
+      type email =
+        {
+          footer: Courier::BrandSettings::Email::Footer?,
+          head: Courier::BrandSettings::Email::Head?,
+          header: Courier::BrandSettings::Email::Header?,
+          template_override: Courier::BrandSettings::Email::TemplateOverride?
+        }
+
+      class Email < Courier::Internal::Type::BaseModel
+        attr_accessor footer: Courier::BrandSettings::Email::Footer?
+
+        attr_accessor head: Courier::BrandSettings::Email::Head?
+
+        attr_accessor header: Courier::BrandSettings::Email::Header?
+
+        attr_accessor template_override: Courier::BrandSettings::Email::TemplateOverride?
+
+        def initialize: (
+          ?footer: Courier::BrandSettings::Email::Footer?,
+          ?head: Courier::BrandSettings::Email::Head?,
+          ?header: Courier::BrandSettings::Email::Header?,
+          ?template_override: Courier::BrandSettings::Email::TemplateOverride?
+        ) -> void
+
+        def to_hash: -> {
+          footer: Courier::BrandSettings::Email::Footer?,
+          head: Courier::BrandSettings::Email::Head?,
+          header: Courier::BrandSettings::Email::Header?,
+          template_override: Courier::BrandSettings::Email::TemplateOverride?
+        }
+
+        type footer = { content: String?, inherit_default: bool? }
+
+        class Footer < Courier::Internal::Type::BaseModel
+          attr_accessor content: String?
+
+          attr_accessor inherit_default: bool?
+
+          def initialize: (?content: String?, ?inherit_default: bool?) -> void
+
+          def to_hash: -> { content: String?, inherit_default: bool? }
+        end
+
+        type head = { inherit_default: bool, content: String? }
+
+        class Head < Courier::Internal::Type::BaseModel
+          attr_accessor inherit_default: bool
+
+          attr_accessor content: String?
+
+          def initialize: (inherit_default: bool, ?content: String?) -> void
+
+          def to_hash: -> { inherit_default: bool, content: String? }
+        end
+
+        type header =
+          {
+            logo: Courier::BrandSettings::Email::Header::Logo,
+            bar_color: String?,
+            inherit_default: bool?
+          }
+
+        class Header < Courier::Internal::Type::BaseModel
+          attr_accessor logo: Courier::BrandSettings::Email::Header::Logo
+
+          attr_accessor bar_color: String?
+
+          attr_accessor inherit_default: bool?
+
+          def initialize: (
+            logo: Courier::BrandSettings::Email::Header::Logo,
+            ?bar_color: String?,
+            ?inherit_default: bool?
+          ) -> void
+
+          def to_hash: -> {
+            logo: Courier::BrandSettings::Email::Header::Logo,
+            bar_color: String?,
+            inherit_default: bool?
+          }
+
+          type logo = { href: String?, image: String? }
+
+          class Logo < Courier::Internal::Type::BaseModel
+            attr_accessor href: String?
+
+            attr_accessor image: String?
+
+            def initialize: (?href: String?, ?image: String?) -> void
+
+            def to_hash: -> { href: String?, image: String? }
+          end
+        end
+
+        type template_override =
+          {
+            mjml: Courier::BrandTemplate,
+            footer_background_color: String?,
+            footer_full_width: bool?
+          }
+
+        class TemplateOverride < Courier::Models::BrandTemplate
+          def mjml: -> Courier::BrandTemplate
+
+          def mjml=: (Courier::BrandTemplate _) -> Courier::BrandTemplate
+
+          def footer_background_color: -> String?
+
+          def footer_background_color=: (String? _) -> String?
+
+          def footer_full_width: -> bool?
+
+          def footer_full_width=: (bool? _) -> bool?
+
+          def initialize: (
+            mjml: Courier::BrandTemplate,
+            ?footer_background_color: String?,
+            ?footer_full_width: bool?
+          ) -> void
+
+          def to_hash: -> {
+            mjml: Courier::BrandTemplate,
+            footer_background_color: String?,
+            footer_full_width: bool?
+          }
+        end
+      end
+
+      type inapp =
+        {
+          colors: Courier::BrandSettings::Inapp::Colors,
+          icons: Courier::BrandSettings::Inapp::Icons,
+          widget_background: Courier::BrandSettings::Inapp::WidgetBackground,
+          border_radius: String?,
+          disable_message_icon: bool?,
+          font_family: String?,
+          placement: Courier::Models::BrandSettings::Inapp::placement?
+        }
+
+      class Inapp < Courier::Internal::Type::BaseModel
+        attr_accessor colors: Courier::BrandSettings::Inapp::Colors
+
+        attr_accessor icons: Courier::BrandSettings::Inapp::Icons
+
+        attr_accessor widget_background: Courier::BrandSettings::Inapp::WidgetBackground
+
+        attr_accessor border_radius: String?
+
+        attr_accessor disable_message_icon: bool?
+
+        attr_accessor font_family: String?
+
+        attr_accessor placement: Courier::Models::BrandSettings::Inapp::placement?
+
+        def initialize: (
+          colors: Courier::BrandSettings::Inapp::Colors,
+          icons: Courier::BrandSettings::Inapp::Icons,
+          widget_background: Courier::BrandSettings::Inapp::WidgetBackground,
+          ?border_radius: String?,
+          ?disable_message_icon: bool?,
+          ?font_family: String?,
+          ?placement: Courier::Models::BrandSettings::Inapp::placement?
+        ) -> void
+
+        def to_hash: -> {
+          colors: Courier::BrandSettings::Inapp::Colors,
+          icons: Courier::BrandSettings::Inapp::Icons,
+          widget_background: Courier::BrandSettings::Inapp::WidgetBackground,
+          border_radius: String?,
+          disable_message_icon: bool?,
+          font_family: String?,
+          placement: Courier::Models::BrandSettings::Inapp::placement?
+        }
+
+        type colors = { primary: String?, secondary: String? }
+
+        class Colors < Courier::Internal::Type::BaseModel
+          attr_accessor primary: String?
+
+          attr_accessor secondary: String?
+
+          def initialize: (?primary: String?, ?secondary: String?) -> void
+
+          def to_hash: -> { primary: String?, secondary: String? }
+        end
+
+        type icons = { bell: String?, message: String? }
+
+        class Icons < Courier::Internal::Type::BaseModel
+          attr_accessor bell: String?
+
+          attr_accessor message: String?
+
+          def initialize: (?bell: String?, ?message: String?) -> void
+
+          def to_hash: -> { bell: String?, message: String? }
+        end
+
+        type widget_background = { bottom_color: String?, top_color: String? }
+
+        class WidgetBackground < Courier::Internal::Type::BaseModel
+          attr_accessor bottom_color: String?
+
+          attr_accessor top_color: String?
+
+          def initialize: (?bottom_color: String?, ?top_color: String?) -> void
+
+          def to_hash: -> { bottom_color: String?, top_color: String? }
+        end
+
+        type placement = :top | :bottom | :left | :right
+
+        module Placement
+          extend Courier::Internal::Type::Enum
+
+          TOP: :top
+          BOTTOM: :bottom
+          LEFT: :left
+          RIGHT: :right
+
+          def self?.values: -> ::Array[Courier::Models::BrandSettings::Inapp::placement]
+        end
+      end
     end
   end
 end

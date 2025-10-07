@@ -3,11 +3,11 @@
 module Courier
   module Resources
     class Tenants
-      # @return [Courier::Resources::Tenants::Templates]
-      attr_reader :templates
-
       # @return [Courier::Resources::Tenants::DefaultPreferences]
       attr_reader :default_preferences
+
+      # @return [Courier::Resources::Tenants::Templates]
+      attr_reader :templates
 
       # Get a Tenant
       #
@@ -149,8 +149,8 @@ module Courier
       # @param client [Courier::Client]
       def initialize(client:)
         @client = client
-        @templates = Courier::Resources::Tenants::Templates.new(client: client)
         @default_preferences = Courier::Resources::Tenants::DefaultPreferences.new(client: client)
+        @templates = Courier::Resources::Tenants::Templates.new(client: client)
       end
     end
   end
