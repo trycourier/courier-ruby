@@ -15,15 +15,12 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The operator to use for filtering
-      sig do
-        returns(
-          T.nilable(
-            T.any(Courier::Filter::UnionMember0, Courier::NestedFilterConfig)
-          )
-        )
-      end
-      attr_accessor :filter
+      # A single filter to use for filtering
+      sig { returns(T.nilable(Courier::Filter)) }
+      attr_reader :filter
+
+      sig { params(filter: T.nilable(Courier::Filter::OrHash)).void }
+      attr_writer :filter
 
       # The name of the audience
       sig { returns(T.nilable(String)) }
@@ -32,13 +29,7 @@ module Courier
       sig do
         params(
           description: T.nilable(String),
-          filter:
-            T.nilable(
-              T.any(
-                Courier::Filter::UnionMember0::OrHash,
-                Courier::NestedFilterConfig::OrHash
-              )
-            ),
+          filter: T.nilable(Courier::Filter::OrHash),
           name: T.nilable(String),
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -46,7 +37,7 @@ module Courier
       def self.new(
         # A description of the audience
         description: nil,
-        # The operator to use for filtering
+        # A single filter to use for filtering
         filter: nil,
         # The name of the audience
         name: nil,
@@ -58,13 +49,7 @@ module Courier
         override.returns(
           {
             description: T.nilable(String),
-            filter:
-              T.nilable(
-                T.any(
-                  Courier::Filter::UnionMember0,
-                  Courier::NestedFilterConfig
-                )
-              ),
+            filter: T.nilable(Courier::Filter),
             name: T.nilable(String),
             request_options: Courier::RequestOptions
           }

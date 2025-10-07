@@ -1,77 +1,69 @@
 module Courier
   module Models
-    type filter = Courier::Filter::UnionMember0 | Courier::NestedFilterConfig
+    type filter =
+      {
+        operator: Courier::Models::Filter::operator,
+        path: String,
+        value: String
+      }
 
-    module Filter
-      extend Courier::Internal::Type::Union
+    class Filter < Courier::Internal::Type::BaseModel
+      attr_accessor operator: Courier::Models::Filter::operator
 
-      type union_member0 =
-        {
-          operator: Courier::Models::Filter::UnionMember0::operator,
-          path: String,
-          value: String
-        }
+      attr_accessor path: String
 
-      class UnionMember0 < Courier::Internal::Type::BaseModel
-        attr_accessor operator: Courier::Models::Filter::UnionMember0::operator
+      attr_accessor value: String
 
-        attr_accessor path: String
+      def initialize: (
+        operator: Courier::Models::Filter::operator,
+        path: String,
+        value: String
+      ) -> void
 
-        attr_accessor value: String
+      def to_hash: -> {
+        operator: Courier::Models::Filter::operator,
+        path: String,
+        value: String
+      }
 
-        def initialize: (
-          operator: Courier::Models::Filter::UnionMember0::operator,
-          path: String,
-          value: String
-        ) -> void
+      type operator =
+        :ENDS_WITH
+        | :EQ
+        | :EXISTS
+        | :GT
+        | :GTE
+        | :INCLUDES
+        | :IS_AFTER
+        | :IS_BEFORE
+        | :LT
+        | :LTE
+        | :NEQ
+        | :OMIT
+        | :STARTS_WITH
+        | :AND
+        | :OR
 
-        def to_hash: -> {
-          operator: Courier::Models::Filter::UnionMember0::operator,
-          path: String,
-          value: String
-        }
+      module Operator
+        extend Courier::Internal::Type::Enum
 
-        type operator =
-          :ENDS_WITH
-          | :EQ
-          | :EXISTS
-          | :GT
-          | :GTE
-          | :INCLUDES
-          | :IS_AFTER
-          | :IS_BEFORE
-          | :LT
-          | :LTE
-          | :NEQ
-          | :OMIT
-          | :STARTS_WITH
-          | :AND
-          | :OR
+        ENDS_WITH: :ENDS_WITH
+        EQ: :EQ
+        EXISTS: :EXISTS
+        GT: :GT
+        GTE: :GTE
+        INCLUDES: :INCLUDES
+        IS_AFTER: :IS_AFTER
+        IS_BEFORE: :IS_BEFORE
+        LT: :LT
+        LTE: :LTE
+        NEQ: :NEQ
+        OMIT: :OMIT
+        STARTS_WITH: :STARTS_WITH
+        AND: :AND
+        OR: :OR
 
-        module Operator
-          extend Courier::Internal::Type::Enum
-
-          ENDS_WITH: :ENDS_WITH
-          EQ: :EQ
-          EXISTS: :EXISTS
-          GT: :GT
-          GTE: :GTE
-          INCLUDES: :INCLUDES
-          IS_AFTER: :IS_AFTER
-          IS_BEFORE: :IS_BEFORE
-          LT: :LT
-          LTE: :LTE
-          NEQ: :NEQ
-          OMIT: :OMIT
-          STARTS_WITH: :STARTS_WITH
-          AND: :AND
-          OR: :OR
-
-          def self?.values: -> ::Array[Courier::Models::Filter::UnionMember0::operator]
-        end
+        def self?.values: -> ::Array[Courier::Models::Filter::operator]
       end
-
-      def self?.variants: -> ::Array[Courier::Models::filter]
     end
   end
 end

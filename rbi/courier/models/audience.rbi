@@ -17,9 +17,12 @@ module Courier
       sig { returns(String) }
       attr_accessor :description
 
-      # The operator to use for filtering
-      sig { returns(Courier::Filter::Variants) }
-      attr_accessor :filter
+      # A single filter to use for filtering
+      sig { returns(Courier::Filter) }
+      attr_reader :filter
+
+      sig { params(filter: Courier::Filter::OrHash).void }
+      attr_writer :filter
 
       # The name of the audience
       sig { returns(String) }
@@ -33,11 +36,7 @@ module Courier
           id: String,
           created_at: String,
           description: String,
-          filter:
-            T.any(
-              Courier::Filter::UnionMember0::OrHash,
-              Courier::NestedFilterConfig::OrHash
-            ),
+          filter: Courier::Filter::OrHash,
           name: String,
           updated_at: String
         ).returns(T.attached_class)
@@ -48,7 +47,7 @@ module Courier
         created_at:,
         # A description of the audience
         description:,
-        # The operator to use for filtering
+        # A single filter to use for filtering
         filter:,
         # The name of the audience
         name:,
@@ -62,7 +61,7 @@ module Courier
             id: String,
             created_at: String,
             description: String,
-            filter: Courier::Filter::Variants,
+            filter: Courier::Filter,
             name: String,
             updated_at: String
           }
