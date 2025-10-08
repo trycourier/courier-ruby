@@ -294,7 +294,7 @@ module Courier
         end
       end
 
-      class UnionMember4 < Courier::Internal::Type::BaseModel
+      class UnionMember4 < Courier::Models::ElementalBaseNode
         OrHash =
           T.type_alias do
             T.any(
@@ -302,52 +302,6 @@ module Courier
               Courier::Internal::AnyHash
             )
           end
-
-        # A unique id used to identify the action when it is executed.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :action_id
-
-        # The alignment of the action button. Defaults to "center".
-        sig { returns(T.nilable(Courier::Alignment::OrSymbol)) }
-        attr_accessor :align
-
-        # The background color of the action button.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :background_color
-
-        # The text content of the action shown to the user.
-        sig { returns(T.nilable(String)) }
-        attr_reader :content
-
-        sig { params(content: String).void }
-        attr_writer :content
-
-        # The target URL of the action.
-        sig { returns(T.nilable(String)) }
-        attr_reader :href
-
-        sig { params(href: String).void }
-        attr_writer :href
-
-        # Region specific content. See
-        # [locales docs](https://www.courier.com/docs/platform/content/elemental/locales/)
-        # for more details.
-        sig do
-          returns(
-            T.nilable(
-              T::Hash[Symbol, Courier::ElementalNode::UnionMember4::Locale]
-            )
-          )
-        end
-        attr_accessor :locales
-
-        # Defaults to `button`.
-        sig do
-          returns(
-            T.nilable(Courier::ElementalNode::UnionMember4::Style::OrSymbol)
-          )
-        end
-        attr_accessor :style
 
         sig do
           returns(
@@ -365,118 +319,18 @@ module Courier
 
         sig do
           params(
-            action_id: T.nilable(String),
-            align: T.nilable(Courier::Alignment::OrSymbol),
-            background_color: T.nilable(String),
-            content: String,
-            href: String,
-            locales:
-              T.nilable(
-                T::Hash[
-                  Symbol,
-                  Courier::ElementalNode::UnionMember4::Locale::OrHash
-                ]
-              ),
-            style:
-              T.nilable(Courier::ElementalNode::UnionMember4::Style::OrSymbol),
             type: Courier::ElementalNode::UnionMember4::Type::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(
-          # A unique id used to identify the action when it is executed.
-          action_id: nil,
-          # The alignment of the action button. Defaults to "center".
-          align: nil,
-          # The background color of the action button.
-          background_color: nil,
-          # The text content of the action shown to the user.
-          content: nil,
-          # The target URL of the action.
-          href: nil,
-          # Region specific content. See
-          # [locales docs](https://www.courier.com/docs/platform/content/elemental/locales/)
-          # for more details.
-          locales: nil,
-          # Defaults to `button`.
-          style: nil,
-          type: nil
-        )
+        def self.new(type: nil)
         end
 
         sig do
           override.returns(
-            {
-              action_id: T.nilable(String),
-              align: T.nilable(Courier::Alignment::OrSymbol),
-              background_color: T.nilable(String),
-              content: String,
-              href: String,
-              locales:
-                T.nilable(
-                  T::Hash[Symbol, Courier::ElementalNode::UnionMember4::Locale]
-                ),
-              style:
-                T.nilable(
-                  Courier::ElementalNode::UnionMember4::Style::OrSymbol
-                ),
-              type: Courier::ElementalNode::UnionMember4::Type::OrSymbol
-            }
+            { type: Courier::ElementalNode::UnionMember4::Type::OrSymbol }
           )
         end
         def to_hash
-        end
-
-        class Locale < Courier::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Courier::ElementalNode::UnionMember4::Locale,
-                Courier::Internal::AnyHash
-              )
-            end
-
-          sig { returns(String) }
-          attr_accessor :content
-
-          sig { params(content: String).returns(T.attached_class) }
-          def self.new(content:)
-          end
-
-          sig { override.returns({ content: String }) }
-          def to_hash
-          end
-        end
-
-        # Defaults to `button`.
-        module Style
-          extend Courier::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Courier::ElementalNode::UnionMember4::Style)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          BUTTON =
-            T.let(
-              :button,
-              Courier::ElementalNode::UnionMember4::Style::TaggedSymbol
-            )
-          LINK =
-            T.let(
-              :link,
-              Courier::ElementalNode::UnionMember4::Style::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Courier::ElementalNode::UnionMember4::Style::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         module Type
