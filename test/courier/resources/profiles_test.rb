@@ -31,7 +31,7 @@ class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
     assert_pattern do
       response => {
         profile: ^(Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown]),
-        preferences: Courier::Lists::RecipientPreferences | nil
+        preferences: Courier::RecipientPreferences | nil
       }
     end
   end

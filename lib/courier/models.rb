@@ -61,7 +61,13 @@ module Courier
 
   AuthIssueTokenParams = Courier::Models::AuthIssueTokenParams
 
+  AutomationInvokeResponse = Courier::Models::AutomationInvokeResponse
+
   Automations = Courier::Models::Automations
+
+  BaseCheck = Courier::Models::BaseCheck
+
+  BaseTemplateTenantAssociation = Courier::Models::BaseTemplateTenantAssociation
 
   Brand = Courier::Models::Brand
 
@@ -99,13 +105,19 @@ module Courier
 
   BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  ChannelClassification = Courier::Models::ChannelClassification
+
   ChannelPreference = Courier::Models::ChannelPreference
+
+  Check = Courier::Models::Check
 
   DefaultPreferences = Courier::Models::DefaultPreferences
 
   ElementalBaseNode = Courier::Models::ElementalBaseNode
 
   ElementalChannelNode = Courier::Models::ElementalChannelNode
+
+  ElementalContent = Courier::Models::ElementalContent
 
   ElementalContentSugar = Courier::Models::ElementalContentSugar
 
@@ -167,6 +179,8 @@ module Courier
 
   NotificationListParams = Courier::Models::NotificationListParams
 
+  NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
+
   NotificationRetrieveContentParams = Courier::Models::NotificationRetrieveContentParams
 
   Notifications = Courier::Models::Notifications
@@ -174,6 +188,8 @@ module Courier
   Paging = Courier::Models::Paging
 
   Preference = Courier::Models::Preference
+
+  PreferenceStatus = Courier::Models::PreferenceStatus
 
   ProfileCreateParams = Courier::Models::ProfileCreateParams
 
@@ -187,7 +203,11 @@ module Courier
 
   ProfileUpdateParams = Courier::Models::ProfileUpdateParams
 
+  PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient
+
   Recipient = Courier::Models::Recipient
+
+  RecipientPreferences = Courier::Models::RecipientPreferences
 
   RequestArchiveParams = Courier::Models::RequestArchiveParams
 
@@ -195,7 +215,11 @@ module Courier
 
   SendMessageParams = Courier::Models::SendMessageParams
 
+  SubscriptionTopicNew = Courier::Models::SubscriptionTopicNew
+
   Tenant = Courier::Models::Tenant
+
+  TenantAssociation = Courier::Models::TenantAssociation
 
   TenantDeleteParams = Courier::Models::TenantDeleteParams
 
@@ -211,6 +235,8 @@ module Courier
 
   TextStyle = Courier::Models::TextStyle
 
+  TopicPreference = Courier::Models::TopicPreference
+
   TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
 
   TranslationUpdateParams = Courier::Models::TranslationUpdateParams
@@ -218,6 +244,8 @@ module Courier
   UserRecipient = Courier::Models::UserRecipient
 
   Users = Courier::Models::Users
+
+  UserToken = Courier::Models::UserToken
 
   Utm = Courier::Models::Utm
 

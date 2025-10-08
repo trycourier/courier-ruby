@@ -1,19 +1,15 @@
 module Courier
   module Models
-    type brand_colors = { primary: String, secondary: String }
+    type brand_colors = { primary: String?, secondary: String? }
 
     class BrandColors < Courier::Internal::Type::BaseModel
-      attr_reader primary: String?
+      attr_accessor primary: String?
 
-      def primary=: (String) -> String
+      attr_accessor secondary: String?
 
-      attr_reader secondary: String?
+      def initialize: (?primary: String?, ?secondary: String?) -> void
 
-      def secondary=: (String) -> String
-
-      def initialize: (?primary: String, ?secondary: String) -> void
-
-      def to_hash: -> { primary: String, secondary: String }
+      def to_hash: -> { primary: String?, secondary: String? }
     end
   end
 end

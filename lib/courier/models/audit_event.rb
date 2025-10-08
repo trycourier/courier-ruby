@@ -2,7 +2,6 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::AuditEvents#retrieve
     class AuditEvent < Courier::Internal::Type::BaseModel
       # @!attribute actor
       #

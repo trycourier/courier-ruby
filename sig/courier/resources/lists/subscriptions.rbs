@@ -10,20 +10,20 @@ module Courier
 
         def add: (
           String list_id,
-          recipients: ::Array[Courier::Lists::PutSubscriptionsRecipient],
+          recipients: ::Array[Courier::PutSubscriptionsRecipient],
           ?request_options: Courier::request_opts
         ) -> nil
 
         def subscribe: (
           String list_id,
-          recipients: ::Array[Courier::Lists::PutSubscriptionsRecipient],
+          recipients: ::Array[Courier::PutSubscriptionsRecipient],
           ?request_options: Courier::request_opts
         ) -> nil
 
         def subscribe_user: (
           String user_id,
           list_id: String,
-          ?preferences: Courier::Lists::RecipientPreferences?,
+          ?preferences: Courier::RecipientPreferences?,
           ?request_options: Courier::request_opts
         ) -> nil
 

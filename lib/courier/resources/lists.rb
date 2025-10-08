@@ -34,7 +34,7 @@ module Courier
       #
       # @param name [String]
       #
-      # @param preferences [Courier::Models::Lists::RecipientPreferences, nil]
+      # @param preferences [Courier::Models::RecipientPreferences, nil]
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #

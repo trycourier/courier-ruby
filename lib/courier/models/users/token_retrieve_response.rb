@@ -4,7 +4,7 @@ module Courier
   module Models
     module Users
       # @see Courier::Resources::Users::Tokens#retrieve
-      class TokenRetrieveResponse < Courier::Models::Users::UserToken
+      class TokenRetrieveResponse < Courier::Models::UserToken
         # @!attribute status
         #
         #   @return [Symbol, Courier::Models::Users::TokenRetrieveResponse::Status, nil]

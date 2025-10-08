@@ -2,23 +2,20 @@ module Courier
   module Models
     module Users
       type preference_retrieve_response =
-        {
-          items: ::Array[Courier::Users::TopicPreference],
-          paging: Courier::Paging
-        }
+        { items: ::Array[Courier::TopicPreference], paging: Courier::Paging }
 
       class PreferenceRetrieveResponse < Courier::Internal::Type::BaseModel
-        attr_accessor items: ::Array[Courier::Users::TopicPreference]
+        attr_accessor items: ::Array[Courier::TopicPreference]
 
         attr_accessor paging: Courier::Paging
 
         def initialize: (
-          items: ::Array[Courier::Users::TopicPreference],
+          items: ::Array[Courier::TopicPreference],
           paging: Courier::Paging
         ) -> void
 
         def to_hash: -> {
-          items: ::Array[Courier::Users::TopicPreference],
+          items: ::Array[Courier::TopicPreference],
           paging: Courier::Paging
         }
       end

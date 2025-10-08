@@ -8,7 +8,7 @@ module Courier
           params(
             submission_id: String,
             id: String,
-            checks: T::Array[Courier::Notifications::BaseCheck::OrHash],
+            checks: T::Array[Courier::BaseCheck::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).returns(Courier::Models::Notifications::CheckUpdateResponse)
         end

@@ -5,7 +5,7 @@ module Courier
         def update: (
           String submission_id,
           id: String,
-          checks: ::Array[Courier::Notifications::BaseCheck],
+          checks: ::Array[Courier::BaseCheck],
           ?request_options: Courier::request_opts
         ) -> Courier::Models::Notifications::CheckUpdateResponse
 

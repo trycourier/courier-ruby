@@ -41,7 +41,7 @@ module Courier
         #
         # @param user_id [String] The user's ID. This can be any uniquely identifiable string.
         #
-        # @param tenants [Array<Courier::Models::Users::TenantAssociation>]
+        # @param tenants [Array<Courier::Models::TenantAssociation>]
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

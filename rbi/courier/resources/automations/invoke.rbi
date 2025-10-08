@@ -18,7 +18,7 @@ module Courier
             recipient: T.nilable(String),
             template: T.nilable(String),
             request_options: Courier::RequestOptions::OrHash
-          ).returns(Courier::Automations::AutomationInvokeResponse)
+          ).returns(Courier::AutomationInvokeResponse)
         end
         def invoke_ad_hoc(
           automation:,
@@ -41,7 +41,7 @@ module Courier
             profile: T.nilable(T::Hash[Symbol, T.anything]),
             template: T.nilable(String),
             request_options: Courier::RequestOptions::OrHash
-          ).returns(Courier::Automations::AutomationInvokeResponse)
+          ).returns(Courier::AutomationInvokeResponse)
         end
         def invoke_by_template(
           # A unique identifier representing the automation template to be invoked. This

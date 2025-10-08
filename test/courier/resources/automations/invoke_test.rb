@@ -10,7 +10,7 @@ class Courier::Test::Resources::Automations::InvokeTest < Courier::Test::Resourc
       @courier.automations.invoke.invoke_ad_hoc(automation: {steps: [{action: :delay}, {action: :send}]})
 
     assert_pattern do
-      response => Courier::Automations::AutomationInvokeResponse
+      response => Courier::AutomationInvokeResponse
     end
 
     assert_pattern do
@@ -26,7 +26,7 @@ class Courier::Test::Resources::Automations::InvokeTest < Courier::Test::Resourc
     response = @courier.automations.invoke.invoke_by_template("templateId", recipient: "recipient")
 
     assert_pattern do
-      response => Courier::Automations::AutomationInvokeResponse
+      response => Courier::AutomationInvokeResponse
     end
 
     assert_pattern do

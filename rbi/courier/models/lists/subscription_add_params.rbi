@@ -15,13 +15,12 @@ module Courier
             )
           end
 
-        sig { returns(T::Array[Courier::Lists::PutSubscriptionsRecipient]) }
+        sig { returns(T::Array[Courier::PutSubscriptionsRecipient]) }
         attr_accessor :recipients
 
         sig do
           params(
-            recipients:
-              T::Array[Courier::Lists::PutSubscriptionsRecipient::OrHash],
+            recipients: T::Array[Courier::PutSubscriptionsRecipient::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -31,7 +30,7 @@ module Courier
         sig do
           override.returns(
             {
-              recipients: T::Array[Courier::Lists::PutSubscriptionsRecipient],
+              recipients: T::Array[Courier::PutSubscriptionsRecipient],
               request_options: Courier::RequestOptions
             }
           )

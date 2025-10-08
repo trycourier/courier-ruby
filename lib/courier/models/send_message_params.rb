@@ -41,7 +41,7 @@ module Courier
         #   Describes content that will work for email, inbox, push, chat, or any channel
         #   id.
         #
-        #   @return [Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent, nil]
+        #   @return [Courier::Models::ElementalContentSugar, Courier::Models::ElementalContent, nil]
         optional :content, union: -> { Courier::SendMessageParams::Message::Content }
 
         # @!attribute context
@@ -87,12 +87,6 @@ module Courier
         #   @return [Courier::Models::SendMessageParams::Message::Routing, nil]
         optional :routing, -> { Courier::SendMessageParams::Message::Routing }, nil?: true
 
-        # @!attribute template
-        #   The id of the template you want to send
-        #
-        #   @return [String, nil]
-        optional :template, String, nil?: true
-
         # @!attribute timeout
         #
         #   @return [Courier::Models::SendMessageParams::Message::Timeout, nil]
@@ -101,10 +95,10 @@ module Courier
         # @!attribute to
         #   The recipient or a list of recipients of the message
         #
-        #   @return [Courier::Models::UserRecipient, Courier::Models::SendMessageParams::Message::To::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::Recipient::ListRecipient>, nil]
+        #   @return [Courier::Models::UserRecipient, Array<Courier::Models::Recipient>, nil]
         optional :to, union: -> { Courier::SendMessageParams::Message::To }, nil?: true
 
-        # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, template: nil, timeout: nil, to: nil)
+        # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, timeout: nil, to: nil)
         #   Some parameter documentations has been truncated, see
         #   {Courier::Models::SendMessageParams::Message} for more details.
         #
@@ -115,7 +109,7 @@ module Courier
         #
         #   @param channels [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Channel}, nil] Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
         #
-        #   @param content [Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent] Describes content that will work for email, inbox, push, chat, or any channel id
+        #   @param content [Courier::Models::ElementalContentSugar, Courier::Models::ElementalContent] Describes content that will work for email, inbox, push, chat, or any channel id
         #
         #   @param context [Courier::Models::MessageContext, nil]
         #
@@ -133,11 +127,9 @@ module Courier
         #
         #   @param routing [Courier::Models::SendMessageParams::Message::Routing, nil] Customize which channels/providers Courier may deliver the message through.
         #
-        #   @param template [String, nil] The id of the template you want to send
-        #
         #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #
-        #   @param to [Courier::Models::UserRecipient, Courier::Models::SendMessageParams::Message::To::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::Recipient::ListRecipient>, nil] The recipient or a list of recipients of the message
+        #   @param to [Courier::Models::UserRecipient, Array<Courier::Models::Recipient>, nil] The recipient or a list of recipients of the message
 
         class Channel < Courier::Internal::Type::BaseModel
           # @!attribute brand_id
@@ -249,10 +241,10 @@ module Courier
           # Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
           variant -> { Courier::ElementalContentSugar }
 
-          variant -> { Courier::Tenants::ElementalContent }
+          variant -> { Courier::ElementalContent }
 
           # @!method self.variants
-          #   @return [Array(Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent)]
+          #   @return [Array(Courier::Models::ElementalContentSugar, Courier::Models::ElementalContent)]
         end
 
         # @see Courier::Models::SendMessageParams::Message#delay
@@ -486,31 +478,13 @@ module Courier
 
           variant -> { Courier::UserRecipient }
 
-          variant -> { Courier::SendMessageParams::Message::To::ListRecipient }
-
           variant -> { Courier::Models::SendMessageParams::Message::To::RecipientArray }
 
-          class ListRecipient < Courier::Internal::Type::BaseModel
-            # @!attribute data
-            #
-            #   @return [Hash{Symbol=>Object}, nil]
-            optional :data, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
-
-            # @!attribute list_id
-            #
-            #   @return [String, nil]
-            optional :list_id, String, nil?: true
-
-            # @!method initialize(data: nil, list_id: nil)
-            #   @param data [Hash{Symbol=>Object}, nil]
-            #   @param list_id [String, nil]
-          end
-
           # @!method self.variants
-          #   @return [Array(Courier::Models::UserRecipient, Courier::Models::SendMessageParams::Message::To::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::Recipient::ListRecipient>)]
+          #   @return [Array(Courier::Models::UserRecipient, Array<Courier::Models::Recipient>)]
 
           # @type [Courier::Internal::Type::Converter]
-          RecipientArray = Courier::Internal::Type::ArrayOf[union: -> { Courier::Recipient }]
+          RecipientArray = Courier::Internal::Type::ArrayOf[-> { Courier::Recipient }]
         end
       end
     end

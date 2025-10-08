@@ -10,8 +10,8 @@ module Courier
 
       # @!attribute preferences
       #
-      #   @return [Courier::Models::Lists::RecipientPreferences, nil]
-      optional :preferences, -> { Courier::Lists::RecipientPreferences }, nil?: true
+      #   @return [Courier::Models::RecipientPreferences, nil]
+      optional :preferences, -> { Courier::RecipientPreferences }, nil?: true
 
       # @!attribute profile
       #
@@ -30,7 +30,7 @@ module Courier
 
       # @!method initialize(data: nil, preferences: nil, profile: nil, recipient: nil, to: nil)
       #   @param data [Object]
-      #   @param preferences [Courier::Models::Lists::RecipientPreferences, nil]
+      #   @param preferences [Courier::Models::RecipientPreferences, nil]
       #   @param profile [Object]
       #   @param recipient [String, nil]
       #   @param to [Courier::Models::UserRecipient, nil]

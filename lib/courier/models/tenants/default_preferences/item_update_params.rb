@@ -5,7 +5,7 @@ module Courier
     module Tenants
       module DefaultPreferences
         # @see Courier::Resources::Tenants::DefaultPreferences::Items#update
-        class ItemUpdateParams < Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew
+        class ItemUpdateParams < Courier::Models::SubscriptionTopicNew
           extend Courier::Internal::Type::RequestParameters::Converter
           include Courier::Internal::Type::RequestParameters
 

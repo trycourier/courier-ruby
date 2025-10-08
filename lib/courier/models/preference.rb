@@ -5,8 +5,8 @@ module Courier
     class Preference < Courier::Internal::Type::BaseModel
       # @!attribute status
       #
-      #   @return [Symbol, Courier::Models::Users::PreferenceStatus]
-      required :status, enum: -> { Courier::Users::PreferenceStatus }
+      #   @return [Symbol, Courier::Models::PreferenceStatus]
+      required :status, enum: -> { Courier::PreferenceStatus }
 
       # @!attribute channel_preferences
       #
@@ -26,7 +26,7 @@ module Courier
       optional :source, enum: -> { Courier::Preference::Source }, nil?: true
 
       # @!method initialize(status:, channel_preferences: nil, rules: nil, source: nil)
-      #   @param status [Symbol, Courier::Models::Users::PreferenceStatus]
+      #   @param status [Symbol, Courier::Models::PreferenceStatus]
       #   @param channel_preferences [Array<Courier::Models::ChannelPreference>, nil]
       #   @param rules [Array<Courier::Models::Rule>, nil]
       #   @param source [Symbol, Courier::Models::Preference::Source, nil]

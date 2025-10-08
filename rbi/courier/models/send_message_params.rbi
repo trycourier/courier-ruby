@@ -72,10 +72,7 @@ module Courier
         sig do
           returns(
             T.nilable(
-              T.any(
-                Courier::ElementalContentSugar,
-                Courier::Tenants::ElementalContent
-              )
+              T.any(Courier::ElementalContentSugar, Courier::ElementalContent)
             )
           )
         end
@@ -86,7 +83,7 @@ module Courier
             content:
               T.any(
                 Courier::ElementalContentSugar::OrHash,
-                Courier::Tenants::ElementalContent::OrHash
+                Courier::ElementalContent::OrHash
               )
           ).void
         end
@@ -171,10 +168,6 @@ module Courier
         end
         attr_writer :routing
 
-        # The id of the template you want to send
-        sig { returns(T.nilable(String)) }
-        attr_accessor :template
-
         sig { returns(T.nilable(Courier::SendMessageParams::Message::Timeout)) }
         attr_reader :timeout
 
@@ -190,16 +183,7 @@ module Courier
         sig do
           returns(
             T.nilable(
-              T.any(
-                Courier::UserRecipient,
-                Courier::SendMessageParams::Message::To::ListRecipient,
-                T::Array[
-                  T.any(
-                    Courier::UserRecipient,
-                    Courier::Recipient::ListRecipient
-                  )
-                ]
-              )
+              T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
             )
           )
         end
@@ -220,7 +204,7 @@ module Courier
             content:
               T.any(
                 Courier::ElementalContentSugar::OrHash,
-                Courier::Tenants::ElementalContent::OrHash
+                Courier::ElementalContent::OrHash
               ),
             context: T.nilable(Courier::MessageContext::OrHash),
             data: T.nilable(T::Hash[Symbol, T.anything]),
@@ -243,20 +227,13 @@ module Courier
               ),
             routing:
               T.nilable(Courier::SendMessageParams::Message::Routing::OrHash),
-            template: T.nilable(String),
             timeout:
               T.nilable(Courier::SendMessageParams::Message::Timeout::OrHash),
             to:
               T.nilable(
                 T.any(
                   Courier::UserRecipient::OrHash,
-                  Courier::SendMessageParams::Message::To::ListRecipient::OrHash,
-                  T::Array[
-                    T.any(
-                      Courier::UserRecipient::OrHash,
-                      Courier::Recipient::ListRecipient::OrHash
-                    )
-                  ]
+                  T::Array[Courier::Recipient::OrHash]
                 )
               )
           ).returns(T.attached_class)
@@ -278,8 +255,6 @@ module Courier
           providers: nil,
           # Customize which channels/providers Courier may deliver the message through.
           routing: nil,
-          # The id of the template you want to send
-          template: nil,
           timeout: nil,
           # The recipient or a list of recipients of the message
           to: nil
@@ -297,7 +272,7 @@ module Courier
               content:
                 T.any(
                   Courier::ElementalContentSugar,
-                  Courier::Tenants::ElementalContent
+                  Courier::ElementalContent
                 ),
               context: T.nilable(Courier::MessageContext),
               data: T.nilable(T::Hash[Symbol, T.anything]),
@@ -312,20 +287,10 @@ module Courier
                   T::Hash[Symbol, Courier::SendMessageParams::Message::Provider]
                 ),
               routing: T.nilable(Courier::SendMessageParams::Message::Routing),
-              template: T.nilable(String),
               timeout: T.nilable(Courier::SendMessageParams::Message::Timeout),
               to:
                 T.nilable(
-                  T.any(
-                    Courier::UserRecipient,
-                    Courier::SendMessageParams::Message::To::ListRecipient,
-                    T::Array[
-                      T.any(
-                        Courier::UserRecipient,
-                        Courier::Recipient::ListRecipient
-                      )
-                    ]
-                  )
+                  T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
                 )
             }
           )
@@ -567,10 +532,7 @@ module Courier
 
           Variants =
             T.type_alias do
-              T.any(
-                Courier::ElementalContentSugar,
-                Courier::Tenants::ElementalContent
-              )
+              T.any(Courier::ElementalContentSugar, Courier::ElementalContent)
             end
 
           sig do
@@ -1068,48 +1030,8 @@ module Courier
 
           Variants =
             T.type_alias do
-              T.any(
-                Courier::UserRecipient,
-                Courier::SendMessageParams::Message::To::ListRecipient,
-                T::Array[Courier::Recipient::Variants]
-              )
+              T.any(Courier::UserRecipient, T::Array[Courier::Recipient])
             end
-
-          class ListRecipient < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendMessageParams::Message::To::ListRecipient,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-            attr_accessor :data
-
-            sig { returns(T.nilable(String)) }
-            attr_accessor :list_id
-
-            sig do
-              params(
-                data: T.nilable(T::Hash[Symbol, T.anything]),
-                list_id: T.nilable(String)
-              ).returns(T.attached_class)
-            end
-            def self.new(data: nil, list_id: nil)
-            end
-
-            sig do
-              override.returns(
-                {
-                  data: T.nilable(T::Hash[Symbol, T.anything]),
-                  list_id: T.nilable(String)
-                }
-              )
-            end
-            def to_hash
-            end
-          end
 
           sig do
             override.returns(
@@ -1121,7 +1043,7 @@ module Courier
 
           RecipientArray =
             T.let(
-              Courier::Internal::Type::ArrayOf[union: Courier::Recipient],
+              Courier::Internal::Type::ArrayOf[Courier::Recipient],
               Courier::Internal::Type::Converter
             )
         end

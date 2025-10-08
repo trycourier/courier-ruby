@@ -21,7 +21,13 @@ module Courier
 
   class AuthIssueTokenParams = Courier::Models::AuthIssueTokenParams
 
+  class AutomationInvokeResponse = Courier::Models::AutomationInvokeResponse
+
   module Automations = Courier::Models::Automations
+
+  class BaseCheck = Courier::Models::BaseCheck
+
+  class BaseTemplateTenantAssociation = Courier::Models::BaseTemplateTenantAssociation
 
   class Brand = Courier::Models::Brand
 
@@ -59,13 +65,19 @@ module Courier
 
   class BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  module ChannelClassification = Courier::Models::ChannelClassification
+
   class ChannelPreference = Courier::Models::ChannelPreference
+
+  class Check = Courier::Models::Check
 
   class DefaultPreferences = Courier::Models::DefaultPreferences
 
   class ElementalBaseNode = Courier::Models::ElementalBaseNode
 
   class ElementalChannelNode = Courier::Models::ElementalChannelNode
+
+  class ElementalContent = Courier::Models::ElementalContent
 
   class ElementalContentSugar = Courier::Models::ElementalContentSugar
 
@@ -127,6 +139,8 @@ module Courier
 
   class NotificationListParams = Courier::Models::NotificationListParams
 
+  class NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
+
   class NotificationRetrieveContentParams = Courier::Models::NotificationRetrieveContentParams
 
   module Notifications = Courier::Models::Notifications
@@ -134,6 +148,8 @@ module Courier
   class Paging = Courier::Models::Paging
 
   class Preference = Courier::Models::Preference
+
+  module PreferenceStatus = Courier::Models::PreferenceStatus
 
   class ProfileCreateParams = Courier::Models::ProfileCreateParams
 
@@ -147,7 +163,11 @@ module Courier
 
   class ProfileUpdateParams = Courier::Models::ProfileUpdateParams
 
-  module Recipient = Courier::Models::Recipient
+  class PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient
+
+  class Recipient = Courier::Models::Recipient
+
+  class RecipientPreferences = Courier::Models::RecipientPreferences
 
   class RequestArchiveParams = Courier::Models::RequestArchiveParams
 
@@ -155,7 +175,11 @@ module Courier
 
   class SendMessageParams = Courier::Models::SendMessageParams
 
+  class SubscriptionTopicNew = Courier::Models::SubscriptionTopicNew
+
   class Tenant = Courier::Models::Tenant
+
+  class TenantAssociation = Courier::Models::TenantAssociation
 
   class TenantDeleteParams = Courier::Models::TenantDeleteParams
 
@@ -171,6 +195,8 @@ module Courier
 
   module TextStyle = Courier::Models::TextStyle
 
+  class TopicPreference = Courier::Models::TopicPreference
+
   class TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
 
   class TranslationUpdateParams = Courier::Models::TranslationUpdateParams
@@ -178,6 +204,8 @@ module Courier
   class UserRecipient = Courier::Models::UserRecipient
 
   module Users = Courier::Models::Users
+
+  class UserToken = Courier::Models::UserToken
 
   class Utm = Courier::Models::Utm
 

@@ -10,11 +10,11 @@ module Courier
 
         # @!attribute tenants
         #
-        #   @return [Array<Courier::Models::Users::TenantAssociation>]
-        required :tenants, -> { Courier::Internal::Type::ArrayOf[Courier::Users::TenantAssociation] }
+        #   @return [Array<Courier::Models::TenantAssociation>]
+        required :tenants, -> { Courier::Internal::Type::ArrayOf[Courier::TenantAssociation] }
 
         # @!method initialize(tenants:, request_options: {})
-        #   @param tenants [Array<Courier::Models::Users::TenantAssociation>]
+        #   @param tenants [Array<Courier::Models::TenantAssociation>]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
       end
     end

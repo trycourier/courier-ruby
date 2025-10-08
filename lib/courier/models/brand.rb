@@ -2,7 +2,6 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Brands#create
     class Brand < Courier::Internal::Type::BaseModel
       # @!attribute id
       #

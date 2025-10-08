@@ -66,13 +66,12 @@ module Courier
           sig { returns(T.nilable(String)) }
           attr_accessor :created
 
-          sig { returns(T.nilable(Courier::Lists::RecipientPreferences)) }
+          sig { returns(T.nilable(Courier::RecipientPreferences)) }
           attr_reader :preferences
 
           sig do
             params(
-              preferences:
-                T.nilable(Courier::Lists::RecipientPreferences::OrHash)
+              preferences: T.nilable(Courier::RecipientPreferences::OrHash)
             ).void
           end
           attr_writer :preferences
@@ -81,8 +80,7 @@ module Courier
             params(
               recipient_id: String,
               created: T.nilable(String),
-              preferences:
-                T.nilable(Courier::Lists::RecipientPreferences::OrHash)
+              preferences: T.nilable(Courier::RecipientPreferences::OrHash)
             ).returns(T.attached_class)
           end
           def self.new(recipient_id:, created: nil, preferences: nil)
@@ -93,7 +91,7 @@ module Courier
               {
                 recipient_id: String,
                 created: T.nilable(String),
-                preferences: T.nilable(Courier::Lists::RecipientPreferences)
+                preferences: T.nilable(Courier::RecipientPreferences)
               }
             )
           end

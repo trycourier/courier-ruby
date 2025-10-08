@@ -55,7 +55,7 @@ module Courier
         # @!attribute content
         #   Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
         #
-        #   @return [Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent]
+        #   @return [Courier::Models::ElementalContentSugar, Courier::Models::ElementalContent]
         required :content, union: -> { Courier::InboundBulkMessage::InboundBulkContentMessage::Content }
 
         # @!attribute brand
@@ -86,7 +86,7 @@ module Courier
         optional :override, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
 
         # @!method initialize(content:, brand: nil, data: nil, event: nil, locale: nil, override: nil)
-        #   @param content [Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent] Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
+        #   @param content [Courier::Models::ElementalContentSugar, Courier::Models::ElementalContent] Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
         #
         #   @param brand [String, nil]
         #
@@ -107,10 +107,10 @@ module Courier
           # Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
           variant -> { Courier::ElementalContentSugar }
 
-          variant -> { Courier::Tenants::ElementalContent }
+          variant -> { Courier::ElementalContent }
 
           # @!method self.variants
-          #   @return [Array(Courier::Models::ElementalContentSugar, Courier::Models::Tenants::ElementalContent)]
+          #   @return [Array(Courier::Models::ElementalContentSugar, Courier::Models::ElementalContent)]
         end
       end
 

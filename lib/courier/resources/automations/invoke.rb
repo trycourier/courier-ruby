@@ -19,7 +19,7 @@ module Courier
         # @param template [String, nil]
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Courier::Models::Automations::AutomationInvokeResponse]
+        # @return [Courier::Models::AutomationInvokeResponse]
         #
         # @see Courier::Models::Automations::InvokeInvokeAdHocParams
         def invoke_ad_hoc(params)
@@ -28,7 +28,7 @@ module Courier
             method: :post,
             path: "automations/invoke",
             body: parsed,
-            model: Courier::Automations::AutomationInvokeResponse,
+            model: Courier::AutomationInvokeResponse,
             options: options
           )
         end
@@ -54,7 +54,7 @@ module Courier
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Courier::Models::Automations::AutomationInvokeResponse]
+        # @return [Courier::Models::AutomationInvokeResponse]
         #
         # @see Courier::Models::Automations::InvokeInvokeByTemplateParams
         def invoke_by_template(template_id, params)
@@ -63,7 +63,7 @@ module Courier
             method: :post,
             path: ["automations/%1$s/invoke", template_id],
             body: parsed,
-            model: Courier::Automations::AutomationInvokeResponse,
+            model: Courier::AutomationInvokeResponse,
             options: options
           )
         end

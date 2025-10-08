@@ -2,14 +2,14 @@ module Courier
   module Models
     module Users
       type preference_retrieve_topic_response =
-        { topic: Courier::Users::TopicPreference }
+        { topic: Courier::TopicPreference }
 
       class PreferenceRetrieveTopicResponse < Courier::Internal::Type::BaseModel
-        attr_accessor topic: Courier::Users::TopicPreference
+        attr_accessor topic: Courier::TopicPreference
 
-        def initialize: (topic: Courier::Users::TopicPreference) -> void
+        def initialize: (topic: Courier::TopicPreference) -> void
 
-        def to_hash: -> { topic: Courier::Users::TopicPreference }
+        def to_hash: -> { topic: Courier::TopicPreference }
       end
     end
   end

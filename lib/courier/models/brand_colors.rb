@@ -6,16 +6,16 @@ module Courier
       # @!attribute primary
       #
       #   @return [String, nil]
-      optional :primary, String
+      optional :primary, String, nil?: true
 
       # @!attribute secondary
       #
       #   @return [String, nil]
-      optional :secondary, String
+      optional :secondary, String, nil?: true
 
       # @!method initialize(primary: nil, secondary: nil)
-      #   @param primary [String]
-      #   @param secondary [String]
+      #   @param primary [String, nil]
+      #   @param secondary [String, nil]
     end
   end
 end

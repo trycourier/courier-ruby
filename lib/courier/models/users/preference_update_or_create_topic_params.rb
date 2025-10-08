@@ -36,17 +36,15 @@ module Courier
         class Topic < Courier::Internal::Type::BaseModel
           # @!attribute status
           #
-          #   @return [Symbol, Courier::Models::Users::PreferenceStatus]
-          required :status, enum: -> { Courier::Users::PreferenceStatus }
+          #   @return [Symbol, Courier::Models::PreferenceStatus]
+          required :status, enum: -> { Courier::PreferenceStatus }
 
           # @!attribute custom_routing
           #   The Channels a user has chosen to receive notifications through for this topic
           #
-          #   @return [Array<Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification>, nil]
+          #   @return [Array<Symbol, Courier::Models::ChannelClassification>, nil]
           optional :custom_routing,
-                   -> {
-                     Courier::Internal::Type::ArrayOf[enum: Courier::Tenants::DefaultPreferences::ChannelClassification]
-                   },
+                   -> { Courier::Internal::Type::ArrayOf[enum: Courier::ChannelClassification] },
                    nil?: true
 
           # @!attribute has_custom_routing
@@ -55,9 +53,9 @@ module Courier
           optional :has_custom_routing, Courier::Internal::Type::Boolean, nil?: true
 
           # @!method initialize(status:, custom_routing: nil, has_custom_routing: nil)
-          #   @param status [Symbol, Courier::Models::Users::PreferenceStatus]
+          #   @param status [Symbol, Courier::Models::PreferenceStatus]
           #
-          #   @param custom_routing [Array<Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification>, nil] The Channels a user has chosen to receive notifications through for this topic
+          #   @param custom_routing [Array<Symbol, Courier::Models::ChannelClassification>, nil] The Channels a user has chosen to receive notifications through for this topic
           #
           #   @param has_custom_routing [Boolean, nil]
         end

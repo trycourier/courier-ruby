@@ -31,8 +31,8 @@ module Courier
 
       # @!attribute items
       #
-      #   @return [Array<Courier::Models::Users::TenantAssociation>, nil]
-      optional :items, -> { Courier::Internal::Type::ArrayOf[Courier::Users::TenantAssociation] }, nil?: true
+      #   @return [Array<Courier::Models::TenantAssociation>, nil]
+      optional :items, -> { Courier::Internal::Type::ArrayOf[Courier::TenantAssociation] }, nil?: true
 
       # @!attribute next_url
       #   A url that may be used to generate fetch the next set of results. Defined only
@@ -53,7 +53,7 @@ module Courier
       #
       #   @param cursor [String, nil] A pointer to the next page of results. Defined
       #
-      #   @param items [Array<Courier::Models::Users::TenantAssociation>, nil]
+      #   @param items [Array<Courier::Models::TenantAssociation>, nil]
       #
       #   @param next_url [String, nil] A url that may be used to generate fetch the next set of results.
 

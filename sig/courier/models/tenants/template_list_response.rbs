@@ -55,7 +55,7 @@ module Courier
         type item =
           { data: Courier::Models::Tenants::TemplateListResponse::Item::Data }
 
-        class Item < Courier::Models::Tenants::BaseTemplateTenantAssociation
+        class Item < Courier::Models::BaseTemplateTenantAssociation
           def data: -> Courier::Models::Tenants::TemplateListResponse::Item::Data
 
           def data=: (

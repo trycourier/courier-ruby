@@ -1,15 +1,14 @@
 module Courier
   module Models
     module Notifications
-      type check_update_response =
-        { checks: ::Array[Courier::Notifications::Check] }
+      type check_update_response = { checks: ::Array[Courier::Check] }
 
       class CheckUpdateResponse < Courier::Internal::Type::BaseModel
-        attr_accessor checks: ::Array[Courier::Notifications::Check]
+        attr_accessor checks: ::Array[Courier::Check]
 
-        def initialize: (checks: ::Array[Courier::Notifications::Check]) -> void
+        def initialize: (checks: ::Array[Courier::Check]) -> void
 
-        def to_hash: -> { checks: ::Array[Courier::Notifications::Check] }
+        def to_hash: -> { checks: ::Array[Courier::Check] }
       end
     end
   end

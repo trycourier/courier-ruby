@@ -8,8 +8,8 @@ module Courier
         # @!attribute items
         #   The Preferences associated with the user_id.
         #
-        #   @return [Array<Courier::Models::Users::TopicPreference>]
-        required :items, -> { Courier::Internal::Type::ArrayOf[Courier::Users::TopicPreference] }
+        #   @return [Array<Courier::Models::TopicPreference>]
+        required :items, -> { Courier::Internal::Type::ArrayOf[Courier::TopicPreference] }
 
         # @!attribute paging
         #   Deprecated - Paging not implemented on this endpoint
@@ -18,7 +18,7 @@ module Courier
         required :paging, -> { Courier::Paging }
 
         # @!method initialize(items:, paging:)
-        #   @param items [Array<Courier::Models::Users::TopicPreference>] The Preferences associated with the user_id.
+        #   @param items [Array<Courier::Models::TopicPreference>] The Preferences associated with the user_id.
         #
         #   @param paging [Courier::Models::Paging] Deprecated - Paging not implemented on this endpoint
       end

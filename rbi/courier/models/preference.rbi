@@ -6,7 +6,7 @@ module Courier
       OrHash =
         T.type_alias { T.any(Courier::Preference, Courier::Internal::AnyHash) }
 
-      sig { returns(Courier::Users::PreferenceStatus::OrSymbol) }
+      sig { returns(Courier::PreferenceStatus::OrSymbol) }
       attr_accessor :status
 
       sig { returns(T.nilable(T::Array[Courier::ChannelPreference])) }
@@ -20,7 +20,7 @@ module Courier
 
       sig do
         params(
-          status: Courier::Users::PreferenceStatus::OrSymbol,
+          status: Courier::PreferenceStatus::OrSymbol,
           channel_preferences:
             T.nilable(T::Array[Courier::ChannelPreference::OrHash]),
           rules: T.nilable(T::Array[Courier::Rule::OrHash]),
@@ -33,7 +33,7 @@ module Courier
       sig do
         override.returns(
           {
-            status: Courier::Users::PreferenceStatus::OrSymbol,
+            status: Courier::PreferenceStatus::OrSymbol,
             channel_preferences:
               T.nilable(T::Array[Courier::ChannelPreference]),
             rules: T.nilable(T::Array[Courier::Rule]),

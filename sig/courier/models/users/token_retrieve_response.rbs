@@ -7,7 +7,7 @@ module Courier
           status_reason: String?
         }
 
-      class TokenRetrieveResponse < Courier::Models::Users::UserToken
+      class TokenRetrieveResponse < Courier::Models::UserToken
         def status: -> Courier::Models::Users::TokenRetrieveResponse::status?
 
         def status=: (

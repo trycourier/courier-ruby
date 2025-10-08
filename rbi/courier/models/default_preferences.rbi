@@ -27,7 +27,7 @@ module Courier
       def to_hash
       end
 
-      class Item < Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew
+      class Item < Courier::Models::SubscriptionTopicNew
         OrHash =
           T.type_alias do
             T.any(Courier::DefaultPreferences::Item, Courier::Internal::AnyHash)

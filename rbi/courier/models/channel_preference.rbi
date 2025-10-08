@@ -8,29 +8,19 @@ module Courier
           T.any(Courier::ChannelPreference, Courier::Internal::AnyHash)
         end
 
-      sig do
-        returns(
-          Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
-        )
-      end
+      sig { returns(Courier::ChannelClassification::OrSymbol) }
       attr_accessor :channel
 
       sig do
-        params(
-          channel:
-            Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
-        ).returns(T.attached_class)
+        params(channel: Courier::ChannelClassification::OrSymbol).returns(
+          T.attached_class
+        )
       end
       def self.new(channel:)
       end
 
       sig do
-        override.returns(
-          {
-            channel:
-              Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
-          }
-        )
+        override.returns({ channel: Courier::ChannelClassification::OrSymbol })
       end
       def to_hash
       end

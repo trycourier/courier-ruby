@@ -2,7 +2,6 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Tenants#retrieve
     class Tenant < Courier::Internal::Type::BaseModel
       # @!attribute id
       #   Id of the tenant.

@@ -14,12 +14,12 @@ module Courier
       sig { returns(String) }
       attr_accessor :name
 
-      sig { returns(T.nilable(Courier::Lists::RecipientPreferences)) }
+      sig { returns(T.nilable(Courier::RecipientPreferences)) }
       attr_reader :preferences
 
       sig do
         params(
-          preferences: T.nilable(Courier::Lists::RecipientPreferences::OrHash)
+          preferences: T.nilable(Courier::RecipientPreferences::OrHash)
         ).void
       end
       attr_writer :preferences
@@ -27,7 +27,7 @@ module Courier
       sig do
         params(
           name: String,
-          preferences: T.nilable(Courier::Lists::RecipientPreferences::OrHash),
+          preferences: T.nilable(Courier::RecipientPreferences::OrHash),
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -38,7 +38,7 @@ module Courier
         override.returns(
           {
             name: String,
-            preferences: T.nilable(Courier::Lists::RecipientPreferences),
+            preferences: T.nilable(Courier::RecipientPreferences),
             request_options: Courier::RequestOptions
           }
         )

@@ -25,7 +25,7 @@ module Courier
         params(
           list_id: String,
           name: String,
-          preferences: T.nilable(Courier::Lists::RecipientPreferences::OrHash),
+          preferences: T.nilable(Courier::RecipientPreferences::OrHash),
           request_options: Courier::RequestOptions::OrHash
         ).void
       end

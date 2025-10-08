@@ -1,0 +1,52 @@
+module Courier
+  module Models
+    type base_check =
+      {
+        id: String,
+        status: Courier::Models::BaseCheck::status,
+        type: Courier::Models::BaseCheck::type_
+      }
+
+    class BaseCheck < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor status: Courier::Models::BaseCheck::status
+
+      attr_accessor type: Courier::Models::BaseCheck::type_
+
+      def initialize: (
+        id: String,
+        status: Courier::Models::BaseCheck::status,
+        type: Courier::Models::BaseCheck::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        status: Courier::Models::BaseCheck::status,
+        type: Courier::Models::BaseCheck::type_
+      }
+
+      type status = :RESOLVED | :FAILED | :PENDING
+
+      module Status
+        extend Courier::Internal::Type::Enum
+
+        RESOLVED: :RESOLVED
+        FAILED: :FAILED
+        PENDING: :PENDING
+
+        def self?.values: -> ::Array[Courier::Models::BaseCheck::status]
+      end
+
+      type type_ = :custom
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        CUSTOM: :custom
+
+        def self?.values: -> ::Array[Courier::Models::BaseCheck::type_]
+      end
+    end
+  end
+end

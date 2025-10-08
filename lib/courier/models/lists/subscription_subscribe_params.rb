@@ -10,11 +10,11 @@ module Courier
 
         # @!attribute recipients
         #
-        #   @return [Array<Courier::Models::Lists::PutSubscriptionsRecipient>]
-        required :recipients, -> { Courier::Internal::Type::ArrayOf[Courier::Lists::PutSubscriptionsRecipient] }
+        #   @return [Array<Courier::Models::PutSubscriptionsRecipient>]
+        required :recipients, -> { Courier::Internal::Type::ArrayOf[Courier::PutSubscriptionsRecipient] }
 
         # @!method initialize(recipients:, request_options: {})
-        #   @param recipients [Array<Courier::Models::Lists::PutSubscriptionsRecipient>]
+        #   @param recipients [Array<Courier::Models::PutSubscriptionsRecipient>]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
       end
     end

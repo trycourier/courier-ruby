@@ -30,7 +30,7 @@ module Courier
         sig do
           params(
             user_id: String,
-            tenants: T::Array[Courier::Users::TenantAssociation::OrHash],
+            tenants: T::Array[Courier::TenantAssociation::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).void
         end
