@@ -129,84 +129,22 @@ module Courier
       end
 
       type union_member4 =
-        {
-          action_id: String?,
-          align: Courier::Models::alignment?,
-          background_color: String?,
-          content: String,
-          href: String,
-          locales: ::Hash[Symbol, Courier::ElementalNode::UnionMember4::Locale]?,
-          style: Courier::Models::ElementalNode::UnionMember4::style?,
-          type: Courier::Models::ElementalNode::UnionMember4::type_
-        }
+        { type: Courier::Models::ElementalNode::UnionMember4::type_ }
 
-      class UnionMember4 < Courier::Internal::Type::BaseModel
-        attr_accessor action_id: String?
-
-        attr_accessor align: Courier::Models::alignment?
-
-        attr_accessor background_color: String?
-
-        attr_reader content: String?
-
-        def content=: (String) -> String
-
-        attr_reader href: String?
-
-        def href=: (String) -> String
-
-        attr_accessor locales: ::Hash[Symbol, Courier::ElementalNode::UnionMember4::Locale]?
-
-        attr_accessor style: Courier::Models::ElementalNode::UnionMember4::style?
-
-        attr_reader type: Courier::Models::ElementalNode::UnionMember4::type_?
+      class UnionMember4 < Courier::Models::ElementalBaseNode
+        def `type`: -> Courier::Models::ElementalNode::UnionMember4::type_?
 
         def type=: (
-          Courier::Models::ElementalNode::UnionMember4::type_
+          Courier::Models::ElementalNode::UnionMember4::type_ _
         ) -> Courier::Models::ElementalNode::UnionMember4::type_
 
         def initialize: (
-          ?action_id: String?,
-          ?align: Courier::Models::alignment?,
-          ?background_color: String?,
-          ?content: String,
-          ?href: String,
-          ?locales: ::Hash[Symbol, Courier::ElementalNode::UnionMember4::Locale]?,
-          ?style: Courier::Models::ElementalNode::UnionMember4::style?,
           ?type: Courier::Models::ElementalNode::UnionMember4::type_
         ) -> void
 
         def to_hash: -> {
-          action_id: String?,
-          align: Courier::Models::alignment?,
-          background_color: String?,
-          content: String,
-          href: String,
-          locales: ::Hash[Symbol, Courier::ElementalNode::UnionMember4::Locale]?,
-          style: Courier::Models::ElementalNode::UnionMember4::style?,
           type: Courier::Models::ElementalNode::UnionMember4::type_
         }
-
-        type locale = { content: String }
-
-        class Locale < Courier::Internal::Type::BaseModel
-          attr_accessor content: String
-
-          def initialize: (content: String) -> void
-
-          def to_hash: -> { content: String }
-        end
-
-        type style = :button | :link
-
-        module Style
-          extend Courier::Internal::Type::Enum
-
-          BUTTON: :button
-          LINK: :link
-
-          def self?.values: -> ::Array[Courier::Models::ElementalNode::UnionMember4::style]
-        end
 
         type type_ = :action
 
