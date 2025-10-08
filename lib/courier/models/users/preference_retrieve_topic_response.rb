@@ -7,11 +7,11 @@ module Courier
       class PreferenceRetrieveTopicResponse < Courier::Internal::Type::BaseModel
         # @!attribute topic
         #
-        #   @return [Courier::Models::Users::TopicPreference]
-        required :topic, -> { Courier::Users::TopicPreference }
+        #   @return [Courier::Models::TopicPreference]
+        required :topic, -> { Courier::TopicPreference }
 
         # @!method initialize(topic:)
-        #   @param topic [Courier::Models::Users::TopicPreference]
+        #   @param topic [Courier::Models::TopicPreference]
       end
     end
   end

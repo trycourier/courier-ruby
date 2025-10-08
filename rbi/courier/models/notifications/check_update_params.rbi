@@ -18,13 +18,13 @@ module Courier
         sig { returns(String) }
         attr_accessor :id
 
-        sig { returns(T::Array[Courier::Notifications::BaseCheck]) }
+        sig { returns(T::Array[Courier::BaseCheck]) }
         attr_accessor :checks
 
         sig do
           params(
             id: String,
-            checks: T::Array[Courier::Notifications::BaseCheck::OrHash],
+            checks: T::Array[Courier::BaseCheck::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -35,7 +35,7 @@ module Courier
           override.returns(
             {
               id: String,
-              checks: T::Array[Courier::Notifications::BaseCheck],
+              checks: T::Array[Courier::BaseCheck],
               request_options: Courier::RequestOptions
             }
           )

@@ -4,7 +4,7 @@ module Courier
       type token_add_single_params =
         { user_id: String } & Courier::Internal::Type::request_parameters
 
-      class TokenAddSingleParams < Courier::Models::Users::UserToken
+      class TokenAddSingleParams < Courier::Models::UserToken
         extend Courier::Internal::Type::RequestParameters::Converter
         include Courier::Internal::Type::RequestParameters
 

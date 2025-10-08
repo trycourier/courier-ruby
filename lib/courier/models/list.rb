@@ -2,7 +2,6 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Lists#retrieve
     class List < Courier::Internal::Type::BaseModel
       # @!attribute id
       #

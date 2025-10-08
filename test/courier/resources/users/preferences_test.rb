@@ -14,7 +14,7 @@ class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::Resource
 
     assert_pattern do
       response => {
-        items: ^(Courier::Internal::Type::ArrayOf[Courier::Users::TopicPreference]),
+        items: ^(Courier::Internal::Type::ArrayOf[Courier::TopicPreference]),
         paging: Courier::Paging
       }
     end
@@ -31,7 +31,7 @@ class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::Resource
 
     assert_pattern do
       response => {
-        topic: Courier::Users::TopicPreference
+        topic: Courier::TopicPreference
       }
     end
   end

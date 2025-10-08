@@ -2,7 +2,6 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Notifications#retrieve_content
     class NotificationGetContent < Courier::Internal::Type::BaseModel
       # @!attribute blocks
       #

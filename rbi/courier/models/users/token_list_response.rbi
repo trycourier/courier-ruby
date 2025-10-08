@@ -5,7 +5,7 @@ module Courier
     module Users
       TokenListResponse =
         T.let(
-          Courier::Internal::Type::ArrayOf[Courier::Users::UserToken],
+          Courier::Internal::Type::ArrayOf[Courier::UserToken],
           Courier::Internal::Type::Converter
         )
     end

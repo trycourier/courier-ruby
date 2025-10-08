@@ -2,7 +2,6 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Audiences#retrieve
     class Audience < Courier::Internal::Type::BaseModel
       # @!attribute id
       #   A unique identifier representing the audience_id

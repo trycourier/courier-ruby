@@ -10,14 +10,9 @@ module Courier
             params(
               topic_id: String,
               tenant_id: String,
-              status:
-                Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OrSymbol,
+              status: Courier::SubscriptionTopicNew::Status::OrSymbol,
               custom_routing:
-                T.nilable(
-                  T::Array[
-                    Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
-                  ]
-                ),
+                T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
               has_custom_routing: T.nilable(T::Boolean),
               request_options: Courier::RequestOptions::OrHash
             ).void

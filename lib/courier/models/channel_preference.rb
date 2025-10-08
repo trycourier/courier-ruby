@@ -5,11 +5,11 @@ module Courier
     class ChannelPreference < Courier::Internal::Type::BaseModel
       # @!attribute channel
       #
-      #   @return [Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification]
-      required :channel, enum: -> { Courier::Tenants::DefaultPreferences::ChannelClassification }
+      #   @return [Symbol, Courier::Models::ChannelClassification]
+      required :channel, enum: -> { Courier::ChannelClassification }
 
       # @!method initialize(channel:)
-      #   @param channel [Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification]
+      #   @param channel [Symbol, Courier::Models::ChannelClassification]
     end
   end
 end

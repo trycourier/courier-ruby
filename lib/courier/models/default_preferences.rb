@@ -11,7 +11,7 @@ module Courier
       # @!method initialize(items: nil)
       #   @param items [Array<Courier::Models::DefaultPreferences::Item>, nil]
 
-      class Item < Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew
+      class Item < Courier::Models::SubscriptionTopicNew
         # @!attribute id
         #   Topic ID
         #

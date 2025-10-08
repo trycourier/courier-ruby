@@ -1,0 +1,19 @@
+module Courier
+  module Models
+    type channel_classification =
+      :direct_message | :email | :push | :sms | :webhook | :inbox
+
+    module ChannelClassification
+      extend Courier::Internal::Type::Enum
+
+      DIRECT_MESSAGE: :direct_message
+      EMAIL: :email
+      PUSH: :push
+      SMS: :sms
+      WEBHOOK: :webhook
+      INBOX: :inbox
+
+      def self?.values: -> ::Array[Courier::Models::channel_classification]
+    end
+  end
+end

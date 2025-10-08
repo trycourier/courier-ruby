@@ -12,20 +12,18 @@ module Courier
             )
           end
 
-        sig { returns(T::Array[Courier::Notifications::Check]) }
+        sig { returns(T::Array[Courier::Check]) }
         attr_accessor :checks
 
         sig do
-          params(
-            checks: T::Array[Courier::Notifications::Check::OrHash]
-          ).returns(T.attached_class)
+          params(checks: T::Array[Courier::Check::OrHash]).returns(
+            T.attached_class
+          )
         end
         def self.new(checks:)
         end
 
-        sig do
-          override.returns({ checks: T::Array[Courier::Notifications::Check] })
-        end
+        sig { override.returns({ checks: T::Array[Courier::Check] }) }
         def to_hash
         end
       end

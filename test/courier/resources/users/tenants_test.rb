@@ -18,7 +18,7 @@ class Courier::Test::Resources::Users::TenantsTest < Courier::Test::ResourceTest
         type: Courier::Models::Users::TenantListResponse::Type,
         url: String,
         cursor: String | nil,
-        items: ^(Courier::Internal::Type::ArrayOf[Courier::Users::TenantAssociation]) | nil,
+        items: ^(Courier::Internal::Type::ArrayOf[Courier::TenantAssociation]) | nil,
         next_url: String | nil
       }
     end

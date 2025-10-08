@@ -1,7 +1,7 @@
 module Courier
   module Models
     type list_update_params =
-      { name: String, preferences: Courier::Lists::RecipientPreferences? }
+      { name: String, preferences: Courier::RecipientPreferences? }
       & Courier::Internal::Type::request_parameters
 
     class ListUpdateParams < Courier::Internal::Type::BaseModel
@@ -10,17 +10,17 @@ module Courier
 
       attr_accessor name: String
 
-      attr_accessor preferences: Courier::Lists::RecipientPreferences?
+      attr_accessor preferences: Courier::RecipientPreferences?
 
       def initialize: (
         name: String,
-        ?preferences: Courier::Lists::RecipientPreferences?,
+        ?preferences: Courier::RecipientPreferences?,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         name: String,
-        preferences: Courier::Lists::RecipientPreferences?,
+        preferences: Courier::RecipientPreferences?,
         request_options: Courier::RequestOptions
       }
     end

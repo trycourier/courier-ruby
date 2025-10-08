@@ -11,7 +11,7 @@ module Courier
       def update: (
         String list_id,
         name: String,
-        ?preferences: Courier::Lists::RecipientPreferences?,
+        ?preferences: Courier::RecipientPreferences?,
         ?request_options: Courier::request_opts
       ) -> nil
 

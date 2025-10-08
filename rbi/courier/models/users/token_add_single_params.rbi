@@ -3,7 +3,7 @@
 module Courier
   module Models
     module Users
-      class TokenAddSingleParams < Courier::Models::Users::UserToken
+      class TokenAddSingleParams < Courier::Models::UserToken
         extend Courier::Internal::Type::RequestParameters::Converter
         include Courier::Internal::Type::RequestParameters
 

@@ -46,7 +46,7 @@ module Courier
           params(
             user_id: String,
             request_options: Courier::RequestOptions::OrHash
-          ).returns(T::Array[Courier::Users::UserToken])
+          ).returns(T::Array[Courier::UserToken])
         end
         def list(
           # The user's ID. This can be any uniquely identifiable string.
@@ -91,13 +91,12 @@ module Courier
           params(
             path_token: String,
             user_id: String,
-            provider_key: Courier::Users::UserToken::ProviderKey::OrSymbol,
+            provider_key: Courier::UserToken::ProviderKey::OrSymbol,
             body_token: T.nilable(String),
-            device: T.nilable(Courier::Users::UserToken::Device::OrHash),
-            expiry_date:
-              T.nilable(Courier::Users::UserToken::ExpiryDate::Variants),
+            device: T.nilable(Courier::UserToken::Device::OrHash),
+            expiry_date: T.nilable(Courier::UserToken::ExpiryDate::Variants),
             properties: T.anything,
-            tracking: T.nilable(Courier::Users::UserToken::Tracking::OrHash),
+            tracking: T.nilable(Courier::UserToken::Tracking::OrHash),
             request_options: Courier::RequestOptions::OrHash
           ).void
         end

@@ -35,7 +35,7 @@ module Courier
         #
         # @param list_id [String] A unique identifier representing the list you wish to retrieve.
         #
-        # @param recipients [Array<Courier::Models::Lists::PutSubscriptionsRecipient>]
+        # @param recipients [Array<Courier::Models::PutSubscriptionsRecipient>]
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -60,7 +60,7 @@ module Courier
         #
         # @param list_id [String] A unique identifier representing the list you wish to retrieve.
         #
-        # @param recipients [Array<Courier::Models::Lists::PutSubscriptionsRecipient>]
+        # @param recipients [Array<Courier::Models::PutSubscriptionsRecipient>]
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -90,7 +90,7 @@ module Courier
         #
         # @param list_id [String] Path param: A unique identifier representing the list you wish to retrieve.
         #
-        # @param preferences [Courier::Models::Lists::RecipientPreferences, nil] Body param:
+        # @param preferences [Courier::Models::RecipientPreferences, nil] Body param:
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

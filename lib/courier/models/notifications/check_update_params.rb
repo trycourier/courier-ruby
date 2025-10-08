@@ -15,12 +15,12 @@ module Courier
 
         # @!attribute checks
         #
-        #   @return [Array<Courier::Models::Notifications::BaseCheck>]
-        required :checks, -> { Courier::Internal::Type::ArrayOf[Courier::Notifications::BaseCheck] }
+        #   @return [Array<Courier::Models::BaseCheck>]
+        required :checks, -> { Courier::Internal::Type::ArrayOf[Courier::BaseCheck] }
 
         # @!method initialize(id:, checks:, request_options: {})
         #   @param id [String]
-        #   @param checks [Array<Courier::Models::Notifications::BaseCheck>]
+        #   @param checks [Array<Courier::Models::BaseCheck>]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
       end
     end

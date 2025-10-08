@@ -26,8 +26,7 @@ module Courier
         sig do
           params(
             list_id: String,
-            recipients:
-              T::Array[Courier::Lists::PutSubscriptionsRecipient::OrHash],
+            recipients: T::Array[Courier::PutSubscriptionsRecipient::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).void
         end
@@ -44,8 +43,7 @@ module Courier
         sig do
           params(
             list_id: String,
-            recipients:
-              T::Array[Courier::Lists::PutSubscriptionsRecipient::OrHash],
+            recipients: T::Array[Courier::PutSubscriptionsRecipient::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).void
         end
@@ -63,8 +61,7 @@ module Courier
           params(
             user_id: String,
             list_id: String,
-            preferences:
-              T.nilable(Courier::Lists::RecipientPreferences::OrHash),
+            preferences: T.nilable(Courier::RecipientPreferences::OrHash),
             request_options: Courier::RequestOptions::OrHash
           ).void
         end

@@ -6,7 +6,7 @@ module Courier
         type: Courier::Models::TenantListUsersResponse::type_,
         url: String,
         cursor: String?,
-        items: ::Array[Courier::Users::TenantAssociation]?,
+        items: ::Array[Courier::TenantAssociation]?,
         next_url: String?
       }
 
@@ -19,7 +19,7 @@ module Courier
 
       attr_accessor cursor: String?
 
-      attr_accessor items: ::Array[Courier::Users::TenantAssociation]?
+      attr_accessor items: ::Array[Courier::TenantAssociation]?
 
       attr_accessor next_url: String?
 
@@ -28,7 +28,7 @@ module Courier
         type: Courier::Models::TenantListUsersResponse::type_,
         url: String,
         ?cursor: String?,
-        ?items: ::Array[Courier::Users::TenantAssociation]?,
+        ?items: ::Array[Courier::TenantAssociation]?,
         ?next_url: String?
       ) -> void
 
@@ -37,7 +37,7 @@ module Courier
         type: Courier::Models::TenantListUsersResponse::type_,
         url: String,
         cursor: String?,
-        items: ::Array[Courier::Users::TenantAssociation]?,
+        items: ::Array[Courier::TenantAssociation]?,
         next_url: String?
       }
 

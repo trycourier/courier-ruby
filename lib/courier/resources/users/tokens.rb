@@ -69,14 +69,14 @@ module Courier
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<Courier::Models::Users::UserToken>]
+        # @return [Array<Courier::Models::UserToken>]
         #
         # @see Courier::Models::Users::TokenListParams
         def list(user_id, params = {})
           @client.request(
             method: :get,
             path: ["users/%1$s/tokens", user_id],
-            model: Courier::Internal::Type::ArrayOf[Courier::Users::UserToken],
+            model: Courier::Internal::Type::ArrayOf[Courier::UserToken],
             options: params[:request_options]
           )
         end
@@ -139,17 +139,17 @@ module Courier
         #
         # @param user_id [String] Path param: The user's ID. This can be any uniquely identifiable string.
         #
-        # @param provider_key [Symbol, Courier::Models::Users::UserToken::ProviderKey] Body param:
+        # @param provider_key [Symbol, Courier::Models::UserToken::ProviderKey] Body param:
         #
         # @param body_token [String, nil] Body param: Full body of the token. Must match token in URL.
         #
-        # @param device [Courier::Models::Users::UserToken::Device, nil] Body param: Information about the device the token is associated with.
+        # @param device [Courier::Models::UserToken::Device, nil] Body param: Information about the device the token is associated with.
         #
         # @param expiry_date [String, Boolean, nil] Body param: ISO 8601 formatted date the token expires. Defaults to 2 months. Set
         #
         # @param properties [Object] Body param: Properties sent to the provider along with the token
         #
-        # @param tracking [Courier::Models::Users::UserToken::Tracking, nil] Body param: Information about the device the token is associated with.
+        # @param tracking [Courier::Models::UserToken::Tracking, nil] Body param: Information about the device the token is associated with.
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

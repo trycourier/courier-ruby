@@ -29,7 +29,7 @@ class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
     response = @courier.users.tokens.list("user_id")
 
     assert_pattern do
-      response => ^(Courier::Internal::Type::ArrayOf[Courier::Users::UserToken])
+      response => ^(Courier::Internal::Type::ArrayOf[Courier::UserToken])
     end
   end
 

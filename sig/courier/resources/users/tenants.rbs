@@ -11,7 +11,7 @@ module Courier
 
         def add_multiple: (
           String user_id,
-          tenants: ::Array[Courier::Users::TenantAssociation],
+          tenants: ::Array[Courier::TenantAssociation],
           ?request_options: Courier::request_opts
         ) -> nil
 

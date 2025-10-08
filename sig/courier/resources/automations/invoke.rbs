@@ -10,7 +10,7 @@ module Courier
           ?recipient: String?,
           ?template: String?,
           ?request_options: Courier::request_opts
-        ) -> Courier::Automations::AutomationInvokeResponse
+        ) -> Courier::AutomationInvokeResponse
 
         def invoke_by_template: (
           String template_id,
@@ -20,7 +20,7 @@ module Courier
           ?profile: ::Hash[Symbol, top]?,
           ?template: String?,
           ?request_options: Courier::request_opts
-        ) -> Courier::Automations::AutomationInvokeResponse
+        ) -> Courier::AutomationInvokeResponse
 
         def initialize: (client: Courier::Client) -> void
       end

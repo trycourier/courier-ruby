@@ -19,7 +19,7 @@ class Courier::Test::Resources::Notifications::ChecksTest < Courier::Test::Resou
 
     assert_pattern do
       response => {
-        checks: ^(Courier::Internal::Type::ArrayOf[Courier::Notifications::Check])
+        checks: ^(Courier::Internal::Type::ArrayOf[Courier::Check])
       }
     end
   end
@@ -35,7 +35,7 @@ class Courier::Test::Resources::Notifications::ChecksTest < Courier::Test::Resou
 
     assert_pattern do
       response => {
-        checks: ^(Courier::Internal::Type::ArrayOf[Courier::Notifications::Check])
+        checks: ^(Courier::Internal::Type::ArrayOf[Courier::Check])
       }
     end
   end

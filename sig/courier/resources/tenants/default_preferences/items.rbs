@@ -6,8 +6,8 @@ module Courier
           def update: (
             String topic_id,
             tenant_id: String,
-            status: Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew::status,
-            ?custom_routing: ::Array[Courier::Models::Tenants::DefaultPreferences::channel_classification]?,
+            status: Courier::Models::SubscriptionTopicNew::status,
+            ?custom_routing: ::Array[Courier::Models::channel_classification]?,
             ?has_custom_routing: bool?,
             ?request_options: Courier::request_opts
           ) -> nil

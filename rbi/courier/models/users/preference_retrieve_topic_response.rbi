@@ -12,21 +12,21 @@ module Courier
             )
           end
 
-        sig { returns(Courier::Users::TopicPreference) }
+        sig { returns(Courier::TopicPreference) }
         attr_reader :topic
 
-        sig { params(topic: Courier::Users::TopicPreference::OrHash).void }
+        sig { params(topic: Courier::TopicPreference::OrHash).void }
         attr_writer :topic
 
         sig do
-          params(topic: Courier::Users::TopicPreference::OrHash).returns(
+          params(topic: Courier::TopicPreference::OrHash).returns(
             T.attached_class
           )
         end
         def self.new(topic:)
         end
 
-        sig { override.returns({ topic: Courier::Users::TopicPreference }) }
+        sig { override.returns({ topic: Courier::TopicPreference }) }
         def to_hash
         end
       end

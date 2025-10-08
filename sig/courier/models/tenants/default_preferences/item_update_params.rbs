@@ -5,7 +5,7 @@ module Courier
         type item_update_params =
           { tenant_id: String } & Courier::Internal::Type::request_parameters
 
-        class ItemUpdateParams < Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew
+        class ItemUpdateParams < Courier::Models::SubscriptionTopicNew
           extend Courier::Internal::Type::RequestParameters::Converter
           include Courier::Internal::Type::RequestParameters
 

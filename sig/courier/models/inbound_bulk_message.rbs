@@ -91,7 +91,7 @@ module Courier
         }
 
         type content =
-          Courier::ElementalContentSugar | Courier::Tenants::ElementalContent
+          Courier::ElementalContentSugar | Courier::ElementalContent
 
         module Content
           extend Courier::Internal::Type::Union

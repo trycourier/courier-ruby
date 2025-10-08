@@ -33,7 +33,6 @@ module Courier
           preferences: Courier::SendMessageParams::Message::Preferences?,
           providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
           routing: Courier::SendMessageParams::Message::Routing?,
-          template: String?,
           timeout: Courier::SendMessageParams::Message::Timeout?,
           to: Courier::Models::SendMessageParams::Message::to?
         }
@@ -65,8 +64,6 @@ module Courier
 
         attr_accessor routing: Courier::SendMessageParams::Message::Routing?
 
-        attr_accessor template: String?
-
         attr_accessor timeout: Courier::SendMessageParams::Message::Timeout?
 
         attr_accessor to: Courier::Models::SendMessageParams::Message::to?
@@ -83,7 +80,6 @@ module Courier
           ?preferences: Courier::SendMessageParams::Message::Preferences?,
           ?providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
           ?routing: Courier::SendMessageParams::Message::Routing?,
-          ?template: String?,
           ?timeout: Courier::SendMessageParams::Message::Timeout?,
           ?to: Courier::Models::SendMessageParams::Message::to?
         ) -> void
@@ -100,7 +96,6 @@ module Courier
           preferences: Courier::SendMessageParams::Message::Preferences?,
           providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
           routing: Courier::SendMessageParams::Message::Routing?,
-          template: String?,
           timeout: Courier::SendMessageParams::Message::Timeout?,
           to: Courier::Models::SendMessageParams::Message::to?
         }
@@ -186,7 +181,7 @@ module Courier
         end
 
         type content =
-          Courier::ElementalContentSugar | Courier::Tenants::ElementalContent
+          Courier::ElementalContentSugar | Courier::ElementalContent
 
         module Content
           extend Courier::Internal::Type::Union
@@ -403,28 +398,10 @@ module Courier
           end
         end
 
-        type to =
-          Courier::UserRecipient
-          | Courier::SendMessageParams::Message::To::ListRecipient
-          | ::Array[Courier::Models::recipient]
+        type to = Courier::UserRecipient | ::Array[Courier::Recipient]
 
         module To
           extend Courier::Internal::Type::Union
-
-          type list_recipient = { data: ::Hash[Symbol, top]?, list_id: String? }
-
-          class ListRecipient < Courier::Internal::Type::BaseModel
-            attr_accessor data: ::Hash[Symbol, top]?
-
-            attr_accessor list_id: String?
-
-            def initialize: (
-              ?data: ::Hash[Symbol, top]?,
-              ?list_id: String?
-            ) -> void
-
-            def to_hash: -> { data: ::Hash[Symbol, top]?, list_id: String? }
-          end
 
           def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::to]
 

@@ -17,9 +17,9 @@ module Courier
           #
           # @param tenant_id [String] Path param: Id of the tenant to update the default preferences for.
           #
-          # @param status [Symbol, Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew::Status] Body param:
+          # @param status [Symbol, Courier::Models::SubscriptionTopicNew::Status] Body param:
           #
-          # @param custom_routing [Array<Symbol, Courier::Models::Tenants::DefaultPreferences::ChannelClassification>, nil] Body param: The default channels to send to this tenant when has_custom_routing
+          # @param custom_routing [Array<Symbol, Courier::Models::ChannelClassification>, nil] Body param: The default channels to send to this tenant when has_custom_routing
           #
           # @param has_custom_routing [Boolean, nil] Body param: Override channel routing with custom preferences. This will override
           #

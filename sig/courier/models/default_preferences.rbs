@@ -14,7 +14,7 @@ module Courier
 
       type item = { id: String }
 
-      class Item < Courier::Models::Tenants::DefaultPreferences::SubscriptionTopicNew
+      class Item < Courier::Models::SubscriptionTopicNew
         def id: -> String
 
         def id=: (String _) -> String

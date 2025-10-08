@@ -72,7 +72,7 @@ module Courier
           #   @return [Array<Symbol>]
         end
 
-        class Item < Courier::Models::Tenants::BaseTemplateTenantAssociation
+        class Item < Courier::Models::BaseTemplateTenantAssociation
           # @!attribute data
           #   The template's data containing it's routing configs
           #

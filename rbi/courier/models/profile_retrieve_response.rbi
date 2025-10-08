@@ -14,12 +14,12 @@ module Courier
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :profile
 
-      sig { returns(T.nilable(Courier::Lists::RecipientPreferences)) }
+      sig { returns(T.nilable(Courier::RecipientPreferences)) }
       attr_reader :preferences
 
       sig do
         params(
-          preferences: T.nilable(Courier::Lists::RecipientPreferences::OrHash)
+          preferences: T.nilable(Courier::RecipientPreferences::OrHash)
         ).void
       end
       attr_writer :preferences
@@ -27,7 +27,7 @@ module Courier
       sig do
         params(
           profile: T::Hash[Symbol, T.anything],
-          preferences: T.nilable(Courier::Lists::RecipientPreferences::OrHash)
+          preferences: T.nilable(Courier::RecipientPreferences::OrHash)
         ).returns(T.attached_class)
       end
       def self.new(profile:, preferences: nil)
@@ -37,7 +37,7 @@ module Courier
         override.returns(
           {
             profile: T::Hash[Symbol, T.anything],
-            preferences: T.nilable(Courier::Lists::RecipientPreferences)
+            preferences: T.nilable(Courier::RecipientPreferences)
           }
         )
       end

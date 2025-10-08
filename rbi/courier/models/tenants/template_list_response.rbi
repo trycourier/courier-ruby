@@ -129,7 +129,7 @@ module Courier
           end
         end
 
-        class Item < Courier::Models::Tenants::BaseTemplateTenantAssociation
+        class Item < Courier::Models::BaseTemplateTenantAssociation
           OrHash =
             T.type_alias do
               T.any(

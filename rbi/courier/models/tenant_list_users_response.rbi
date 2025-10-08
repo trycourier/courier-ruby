@@ -30,7 +30,7 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :cursor
 
-      sig { returns(T.nilable(T::Array[Courier::Users::TenantAssociation])) }
+      sig { returns(T.nilable(T::Array[Courier::TenantAssociation])) }
       attr_accessor :items
 
       # A url that may be used to generate fetch the next set of results. Defined only
@@ -44,7 +44,7 @@ module Courier
           type: Courier::Models::TenantListUsersResponse::Type::OrSymbol,
           url: String,
           cursor: T.nilable(String),
-          items: T.nilable(T::Array[Courier::Users::TenantAssociation::OrHash]),
+          items: T.nilable(T::Array[Courier::TenantAssociation::OrHash]),
           next_url: T.nilable(String)
         ).returns(T.attached_class)
       end
@@ -72,7 +72,7 @@ module Courier
             type: Courier::Models::TenantListUsersResponse::Type::TaggedSymbol,
             url: String,
             cursor: T.nilable(String),
-            items: T.nilable(T::Array[Courier::Users::TenantAssociation]),
+            items: T.nilable(T::Array[Courier::TenantAssociation]),
             next_url: T.nilable(String)
           }
         )

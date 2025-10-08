@@ -2,7 +2,6 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Messages#cancel
     class MessageDetails < Courier::Internal::Type::BaseModel
       # @!attribute id
       #   A unique identifier associated with the message you wish to retrieve (results

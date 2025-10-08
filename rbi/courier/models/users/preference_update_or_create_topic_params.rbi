@@ -75,17 +75,13 @@ module Courier
               )
             end
 
-          sig { returns(Courier::Users::PreferenceStatus::OrSymbol) }
+          sig { returns(Courier::PreferenceStatus::OrSymbol) }
           attr_accessor :status
 
           # The Channels a user has chosen to receive notifications through for this topic
           sig do
             returns(
-              T.nilable(
-                T::Array[
-                  Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
-                ]
-              )
+              T.nilable(T::Array[Courier::ChannelClassification::OrSymbol])
             )
           end
           attr_accessor :custom_routing
@@ -95,13 +91,9 @@ module Courier
 
           sig do
             params(
-              status: Courier::Users::PreferenceStatus::OrSymbol,
+              status: Courier::PreferenceStatus::OrSymbol,
               custom_routing:
-                T.nilable(
-                  T::Array[
-                    Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
-                  ]
-                ),
+                T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
               has_custom_routing: T.nilable(T::Boolean)
             ).returns(T.attached_class)
           end
@@ -116,13 +108,9 @@ module Courier
           sig do
             override.returns(
               {
-                status: Courier::Users::PreferenceStatus::OrSymbol,
+                status: Courier::PreferenceStatus::OrSymbol,
                 custom_routing:
-                  T.nilable(
-                    T::Array[
-                      Courier::Tenants::DefaultPreferences::ChannelClassification::OrSymbol
-                    ]
-                  ),
+                  T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
                 has_custom_routing: T.nilable(T::Boolean)
               }
             )

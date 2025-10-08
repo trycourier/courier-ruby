@@ -15,12 +15,12 @@ module Courier
             )
           end
 
-        sig { returns(T::Array[Courier::Users::TenantAssociation]) }
+        sig { returns(T::Array[Courier::TenantAssociation]) }
         attr_accessor :tenants
 
         sig do
           params(
-            tenants: T::Array[Courier::Users::TenantAssociation::OrHash],
+            tenants: T::Array[Courier::TenantAssociation::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -30,7 +30,7 @@ module Courier
         sig do
           override.returns(
             {
-              tenants: T::Array[Courier::Users::TenantAssociation],
+              tenants: T::Array[Courier::TenantAssociation],
               request_options: Courier::RequestOptions
             }
           )

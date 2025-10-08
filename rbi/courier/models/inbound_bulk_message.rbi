@@ -88,10 +88,7 @@ module Courier
         # Syntactic sugar to provide a fast shorthand for Courier Elemental Blocks.
         sig do
           returns(
-            T.any(
-              Courier::ElementalContentSugar,
-              Courier::Tenants::ElementalContent
-            )
+            T.any(Courier::ElementalContentSugar, Courier::ElementalContent)
           )
         end
         attr_accessor :content
@@ -116,7 +113,7 @@ module Courier
             content:
               T.any(
                 Courier::ElementalContentSugar::OrHash,
-                Courier::Tenants::ElementalContent::OrHash
+                Courier::ElementalContent::OrHash
               ),
             brand: T.nilable(String),
             data: T.nilable(T::Hash[Symbol, T.anything]),
@@ -142,7 +139,7 @@ module Courier
               content:
                 T.any(
                   Courier::ElementalContentSugar,
-                  Courier::Tenants::ElementalContent
+                  Courier::ElementalContent
                 ),
               brand: T.nilable(String),
               data: T.nilable(T::Hash[Symbol, T.anything]),
@@ -161,10 +158,7 @@ module Courier
 
           Variants =
             T.type_alias do
-              T.any(
-                Courier::ElementalContentSugar,
-                Courier::Tenants::ElementalContent
-              )
+              T.any(Courier::ElementalContentSugar, Courier::ElementalContent)
             end
 
           sig do

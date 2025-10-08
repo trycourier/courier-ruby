@@ -3,7 +3,7 @@
 module Courier
   module Models
     module Users
-      class TokenRetrieveResponse < Courier::Models::Users::UserToken
+      class TokenRetrieveResponse < Courier::Models::UserToken
         OrHash =
           T.type_alias do
             T.any(

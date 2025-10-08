@@ -6,7 +6,7 @@ module Courier
           String template_id,
           tenant_id: String,
           ?request_options: Courier::request_opts
-        ) -> Courier::Tenants::BaseTemplateTenantAssociation
+        ) -> Courier::BaseTemplateTenantAssociation
 
         def list: (
           String tenant_id,

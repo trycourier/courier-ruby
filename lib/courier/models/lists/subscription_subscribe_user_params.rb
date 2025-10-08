@@ -15,12 +15,12 @@ module Courier
 
         # @!attribute preferences
         #
-        #   @return [Courier::Models::Lists::RecipientPreferences, nil]
-        optional :preferences, -> { Courier::Lists::RecipientPreferences }, nil?: true
+        #   @return [Courier::Models::RecipientPreferences, nil]
+        optional :preferences, -> { Courier::RecipientPreferences }, nil?: true
 
         # @!method initialize(list_id:, preferences: nil, request_options: {})
         #   @param list_id [String]
-        #   @param preferences [Courier::Models::Lists::RecipientPreferences, nil]
+        #   @param preferences [Courier::Models::RecipientPreferences, nil]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
       end
     end

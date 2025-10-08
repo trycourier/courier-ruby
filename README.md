@@ -189,7 +189,6 @@ You can provide typesafe request parameters like so:
 courier.send_.message(
   message: Courier::SendMessageParams::Message.new(
     to: Courier::UserRecipient.new(user_id: "your_user_id"),
-    template: "your_template",
     data: {foo: "bar"}
   )
 )
@@ -207,7 +206,6 @@ courier.send_.message(
 params = Courier::SendMessageParams.new(
   message: Courier::SendMessageParams::Message.new(
     to: Courier::UserRecipient.new(user_id: "your_user_id"),
-    template: "your_template",
     data: {foo: "bar"}
   )
 )
@@ -220,10 +218,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :OPTED_OUT
-puts(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT)
+puts(Courier::SubscriptionTopicNew::Status::OPTED_OUT)
 
-# Revealed type: `T.all(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status, Symbol)`
-T.reveal_type(Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT)
+# Revealed type: `T.all(Courier::SubscriptionTopicNew::Status, Symbol)`
+T.reveal_type(Courier::SubscriptionTopicNew::Status::OPTED_OUT)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -231,7 +229,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 courier.tenants.default_preferences.items.update(
-  status: Courier::Tenants::DefaultPreferences::SubscriptionTopicNew::Status::OPTED_OUT,
+  status: Courier::SubscriptionTopicNew::Status::OPTED_OUT,
   # …
 )
 

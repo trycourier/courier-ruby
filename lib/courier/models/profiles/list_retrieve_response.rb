@@ -50,8 +50,8 @@ module Courier
 
           # @!attribute preferences
           #
-          #   @return [Courier::Models::Lists::RecipientPreferences, nil]
-          optional :preferences, -> { Courier::Lists::RecipientPreferences }, nil?: true
+          #   @return [Courier::Models::RecipientPreferences, nil]
+          optional :preferences, -> { Courier::RecipientPreferences }, nil?: true
 
           # @!method initialize(id:, created:, name:, updated:, preferences: nil)
           #   Some parameter documentations has been truncated, see
@@ -65,7 +65,7 @@ module Courier
           #
           #   @param updated [String] The date/time of when the list was updated. Represented as a string in ISO forma
           #
-          #   @param preferences [Courier::Models::Lists::RecipientPreferences, nil]
+          #   @param preferences [Courier::Models::RecipientPreferences, nil]
         end
       end
     end

@@ -10,7 +10,7 @@ module Courier
         #
         # @param id [String] Path param:
         #
-        # @param checks [Array<Courier::Models::Notifications::BaseCheck>] Body param:
+        # @param checks [Array<Courier::Models::BaseCheck>] Body param:
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

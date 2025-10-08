@@ -3,7 +3,7 @@ module Courier
     type inbound_bulk_message_user =
       {
         data: top,
-        preferences: Courier::Lists::RecipientPreferences?,
+        preferences: Courier::RecipientPreferences?,
         profile: top,
         recipient: String?,
         to: Courier::UserRecipient?
@@ -14,7 +14,7 @@ module Courier
 
       def data=: (top) -> top
 
-      attr_accessor preferences: Courier::Lists::RecipientPreferences?
+      attr_accessor preferences: Courier::RecipientPreferences?
 
       attr_reader profile: top?
 
@@ -26,7 +26,7 @@ module Courier
 
       def initialize: (
         ?data: top,
-        ?preferences: Courier::Lists::RecipientPreferences?,
+        ?preferences: Courier::RecipientPreferences?,
         ?profile: top,
         ?recipient: String?,
         ?to: Courier::UserRecipient?
@@ -34,7 +34,7 @@ module Courier
 
       def to_hash: -> {
         data: top,
-        preferences: Courier::Lists::RecipientPreferences?,
+        preferences: Courier::RecipientPreferences?,
         profile: top,
         recipient: String?,
         to: Courier::UserRecipient?
