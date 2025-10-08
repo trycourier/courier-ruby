@@ -101,7 +101,7 @@ module Courier
         # @!attribute to
         #   The recipient or a list of recipients of the message
         #
-        #   @return [Courier::Models::UserRecipient, Courier::Models::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::ListRecipient>, nil]
+        #   @return [Courier::Models::UserRecipient, Courier::Models::SendMessageParams::Message::To::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::Recipient::ListRecipient>, nil]
         optional :to, union: -> { Courier::SendMessageParams::Message::To }, nil?: true
 
         # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, template: nil, timeout: nil, to: nil)
@@ -137,7 +137,7 @@ module Courier
         #
         #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #
-        #   @param to [Courier::Models::UserRecipient, Courier::Models::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::ListRecipient>, nil] The recipient or a list of recipients of the message
+        #   @param to [Courier::Models::UserRecipient, Courier::Models::SendMessageParams::Message::To::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::Recipient::ListRecipient>, nil] The recipient or a list of recipients of the message
 
         class Channel < Courier::Internal::Type::BaseModel
           # @!attribute brand_id
@@ -486,12 +486,28 @@ module Courier
 
           variant -> { Courier::UserRecipient }
 
-          variant -> { Courier::ListRecipient }
+          variant -> { Courier::SendMessageParams::Message::To::ListRecipient }
 
           variant -> { Courier::Models::SendMessageParams::Message::To::RecipientArray }
 
+          class ListRecipient < Courier::Internal::Type::BaseModel
+            # @!attribute data
+            #
+            #   @return [Hash{Symbol=>Object}, nil]
+            optional :data, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
+
+            # @!attribute list_id
+            #
+            #   @return [String, nil]
+            optional :list_id, String, nil?: true
+
+            # @!method initialize(data: nil, list_id: nil)
+            #   @param data [Hash{Symbol=>Object}, nil]
+            #   @param list_id [String, nil]
+          end
+
           # @!method self.variants
-          #   @return [Array(Courier::Models::UserRecipient, Courier::Models::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::ListRecipient>)]
+          #   @return [Array(Courier::Models::UserRecipient, Courier::Models::SendMessageParams::Message::To::ListRecipient, Array<Courier::Models::UserRecipient, Courier::Models::Recipient::ListRecipient>)]
 
           # @type [Courier::Internal::Type::Converter]
           RecipientArray = Courier::Internal::Type::ArrayOf[union: -> { Courier::Recipient }]

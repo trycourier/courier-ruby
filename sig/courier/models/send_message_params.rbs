@@ -405,11 +405,26 @@ module Courier
 
         type to =
           Courier::UserRecipient
-          | Courier::ListRecipient
+          | Courier::SendMessageParams::Message::To::ListRecipient
           | ::Array[Courier::Models::recipient]
 
         module To
           extend Courier::Internal::Type::Union
+
+          type list_recipient = { data: ::Hash[Symbol, top]?, list_id: String? }
+
+          class ListRecipient < Courier::Internal::Type::BaseModel
+            attr_accessor data: ::Hash[Symbol, top]?
+
+            attr_accessor list_id: String?
+
+            def initialize: (
+              ?data: ::Hash[Symbol, top]?,
+              ?list_id: String?
+            ) -> void
+
+            def to_hash: -> { data: ::Hash[Symbol, top]?, list_id: String? }
+          end
 
           def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::to]
 
