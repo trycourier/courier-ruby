@@ -1,0 +1,16 @@
+module Trycourier
+  module Models
+    type alignment = :center | :left | :right | :full
+
+    module Alignment
+      extend Trycourier::Internal::Type::Enum
+
+      CENTER: :center
+      LEFT: :left
+      RIGHT: :right
+      FULL: :full
+
+      def self?.values: -> ::Array[Trycourier::Models::alignment]
+    end
+  end
+end

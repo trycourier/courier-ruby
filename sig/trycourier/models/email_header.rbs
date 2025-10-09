@@ -1,0 +1,26 @@
+module Trycourier
+  module Models
+    type email_header =
+      { logo: Trycourier::Logo, bar_color: String?, inherit_default: bool? }
+
+    class EmailHeader < Trycourier::Internal::Type::BaseModel
+      attr_accessor logo: Trycourier::Logo
+
+      attr_accessor bar_color: String?
+
+      attr_accessor inherit_default: bool?
+
+      def initialize: (
+        logo: Trycourier::Logo,
+        ?bar_color: String?,
+        ?inherit_default: bool?
+      ) -> void
+
+      def to_hash: -> {
+        logo: Trycourier::Logo,
+        bar_color: String?,
+        inherit_default: bool?
+      }
+    end
+  end
+end

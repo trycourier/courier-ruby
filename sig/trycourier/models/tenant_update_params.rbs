@@ -1,0 +1,51 @@
+module Trycourier
+  module Models
+    type tenant_update_params =
+      {
+        name: String,
+        brand_id: String?,
+        default_preferences: Trycourier::DefaultPreferences?,
+        parent_tenant_id: String?,
+        properties: ::Hash[Symbol, top]?,
+        user_profile: ::Hash[Symbol, top]?
+      }
+      & Trycourier::Internal::Type::request_parameters
+
+    class TenantUpdateParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_accessor brand_id: String?
+
+      attr_accessor default_preferences: Trycourier::DefaultPreferences?
+
+      attr_accessor parent_tenant_id: String?
+
+      attr_accessor properties: ::Hash[Symbol, top]?
+
+      attr_accessor user_profile: ::Hash[Symbol, top]?
+
+      def initialize: (
+        name: String,
+        ?brand_id: String?,
+        ?default_preferences: Trycourier::DefaultPreferences?,
+        ?parent_tenant_id: String?,
+        ?properties: ::Hash[Symbol, top]?,
+        ?user_profile: ::Hash[Symbol, top]?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        brand_id: String?,
+        default_preferences: Trycourier::DefaultPreferences?,
+        parent_tenant_id: String?,
+        properties: ::Hash[Symbol, top]?,
+        user_profile: ::Hash[Symbol, top]?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

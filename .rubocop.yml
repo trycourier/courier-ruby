@@ -40,9 +40,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "Courier::Internal::Type::BaseModel$"
+    - "Trycourier::Internal::Type::BaseModel$"
     - "^\\s*[A-Z0-9_]+ = :"
-    - "Courier::(Models|Resources|Test)::"
+    - "Trycourier::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:

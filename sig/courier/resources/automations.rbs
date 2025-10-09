@@ -1,9 +1,0 @@
-module Courier
-  module Resources
-    class Automations
-      attr_reader invoke: Courier::Resources::Automations::Invoke
-
-      def initialize: (client: Courier::Client) -> void
-    end
-  end
-end

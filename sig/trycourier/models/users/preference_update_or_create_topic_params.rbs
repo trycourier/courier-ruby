@@ -1,0 +1,65 @@
+module Trycourier
+  module Models
+    module Users
+      type preference_update_or_create_topic_params =
+        {
+          user_id: String,
+          topic: Trycourier::Users::PreferenceUpdateOrCreateTopicParams::Topic,
+          tenant_id: String?
+        }
+        & Trycourier::Internal::Type::request_parameters
+
+      class PreferenceUpdateOrCreateTopicParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        attr_accessor user_id: String
+
+        attr_accessor topic: Trycourier::Users::PreferenceUpdateOrCreateTopicParams::Topic
+
+        attr_accessor tenant_id: String?
+
+        def initialize: (
+          user_id: String,
+          topic: Trycourier::Users::PreferenceUpdateOrCreateTopicParams::Topic,
+          ?tenant_id: String?,
+          ?request_options: Trycourier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          user_id: String,
+          topic: Trycourier::Users::PreferenceUpdateOrCreateTopicParams::Topic,
+          tenant_id: String?,
+          request_options: Trycourier::RequestOptions
+        }
+
+        type topic =
+          {
+            status: Trycourier::Models::preference_status,
+            custom_routing: ::Array[Trycourier::Models::channel_classification]?,
+            has_custom_routing: bool?
+          }
+
+        class Topic < Trycourier::Internal::Type::BaseModel
+          attr_accessor status: Trycourier::Models::preference_status
+
+          attr_accessor custom_routing: ::Array[Trycourier::Models::channel_classification]?
+
+          attr_accessor has_custom_routing: bool?
+
+          def initialize: (
+            status: Trycourier::Models::preference_status,
+            ?custom_routing: ::Array[Trycourier::Models::channel_classification]?,
+            ?has_custom_routing: bool?
+          ) -> void
+
+          def to_hash: -> {
+            status: Trycourier::Models::preference_status,
+            custom_routing: ::Array[Trycourier::Models::channel_classification]?,
+            has_custom_routing: bool?
+          }
+        end
+      end
+    end
+  end
+end

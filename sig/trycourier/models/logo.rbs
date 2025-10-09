@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type logo = { href: String?, image: String? }
+
+    class Logo < Trycourier::Internal::Type::BaseModel
+      attr_accessor href: String?
+
+      attr_accessor image: String?
+
+      def initialize: (?href: String?, ?image: String?) -> void
+
+      def to_hash: -> { href: String?, image: String? }
+    end
+  end
+end

@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    module Tenants
+      type template_list_params =
+        { cursor: String?, limit: Integer? }
+        & Trycourier::Internal::Type::request_parameters
+
+      class TemplateListParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        attr_accessor cursor: String?
+
+        attr_accessor limit: Integer?
+
+        def initialize: (
+          ?cursor: String?,
+          ?limit: Integer?,
+          ?request_options: Trycourier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          cursor: String?,
+          limit: Integer?,
+          request_options: Trycourier::RequestOptions
+        }
+      end
+    end
+  end
+end

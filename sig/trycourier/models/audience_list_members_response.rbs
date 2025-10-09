@@ -1,0 +1,62 @@
+module Trycourier
+  module Models
+    type audience_list_members_response =
+      {
+        items: ::Array[Trycourier::Models::AudienceListMembersResponse::Item],
+        paging: Trycourier::Paging
+      }
+
+    class AudienceListMembersResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Trycourier::Models::AudienceListMembersResponse::Item]
+
+      attr_accessor paging: Trycourier::Paging
+
+      def initialize: (
+        items: ::Array[Trycourier::Models::AudienceListMembersResponse::Item],
+        paging: Trycourier::Paging
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Trycourier::Models::AudienceListMembersResponse::Item],
+        paging: Trycourier::Paging
+      }
+
+      type item =
+        {
+          added_at: String,
+          audience_id: String,
+          audience_version: Integer,
+          member_id: String,
+          reason: String
+        }
+
+      class Item < Trycourier::Internal::Type::BaseModel
+        attr_accessor added_at: String
+
+        attr_accessor audience_id: String
+
+        attr_accessor audience_version: Integer
+
+        attr_accessor member_id: String
+
+        attr_accessor reason: String
+
+        def initialize: (
+          added_at: String,
+          audience_id: String,
+          audience_version: Integer,
+          member_id: String,
+          reason: String
+        ) -> void
+
+        def to_hash: -> {
+          added_at: String,
+          audience_id: String,
+          audience_version: Integer,
+          member_id: String,
+          reason: String
+        }
+      end
+    end
+  end
+end

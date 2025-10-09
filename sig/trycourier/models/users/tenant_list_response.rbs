@@ -1,0 +1,57 @@
+module Trycourier
+  module Models
+    module Users
+      type tenant_list_response =
+        {
+          has_more: bool,
+          type: Trycourier::Models::Users::TenantListResponse::type_,
+          url: String,
+          cursor: String?,
+          items: ::Array[Trycourier::TenantAssociation]?,
+          next_url: String?
+        }
+
+      class TenantListResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor has_more: bool
+
+        attr_accessor type: Trycourier::Models::Users::TenantListResponse::type_
+
+        attr_accessor url: String
+
+        attr_accessor cursor: String?
+
+        attr_accessor items: ::Array[Trycourier::TenantAssociation]?
+
+        attr_accessor next_url: String?
+
+        def initialize: (
+          has_more: bool,
+          type: Trycourier::Models::Users::TenantListResponse::type_,
+          url: String,
+          ?cursor: String?,
+          ?items: ::Array[Trycourier::TenantAssociation]?,
+          ?next_url: String?
+        ) -> void
+
+        def to_hash: -> {
+          has_more: bool,
+          type: Trycourier::Models::Users::TenantListResponse::type_,
+          url: String,
+          cursor: String?,
+          items: ::Array[Trycourier::TenantAssociation]?,
+          next_url: String?
+        }
+
+        type type_ = :list
+
+        module Type
+          extend Trycourier::Internal::Type::Enum
+
+          LIST: :list
+
+          def self?.values: -> ::Array[Trycourier::Models::Users::TenantListResponse::type_]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,12 @@
+module Trycourier
+  module Resources
+    class Requests
+      def archive: (
+        String request_id,
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

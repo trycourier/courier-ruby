@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type message_context = { tenant_id: String? }
+
+    class MessageContext < Trycourier::Internal::Type::BaseModel
+      attr_accessor tenant_id: String?
+
+      def initialize: (?tenant_id: String?) -> void
+
+      def to_hash: -> { tenant_id: String? }
+    end
+  end
+end

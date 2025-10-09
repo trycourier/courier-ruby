@@ -1,0 +1,18 @@
+module Trycourier
+  module Models
+    type elemental_node =
+      Trycourier::ElementalTextNodeWithType
+      | Trycourier::ElementalMetaNodeWithType
+      | Trycourier::ElementalChannelNodeWithType
+      | Trycourier::ElementalImageNodeWithType
+      | Trycourier::ElementalActionNodeWithType
+      | Trycourier::ElementalDividerNodeWithType
+      | Trycourier::ElementalQuoteNodeWithType
+
+    module ElementalNode
+      extend Trycourier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Trycourier::Models::elemental_node]
+    end
+  end
+end

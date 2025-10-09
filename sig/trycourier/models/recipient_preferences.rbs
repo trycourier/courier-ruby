@@ -1,0 +1,25 @@
+module Trycourier
+  module Models
+    type recipient_preferences =
+      {
+        categories: ::Hash[Symbol, Trycourier::NotificationPreferenceDetails]?,
+        notifications: ::Hash[Symbol, Trycourier::NotificationPreferenceDetails]?
+      }
+
+    class RecipientPreferences < Trycourier::Internal::Type::BaseModel
+      attr_accessor categories: ::Hash[Symbol, Trycourier::NotificationPreferenceDetails]?
+
+      attr_accessor notifications: ::Hash[Symbol, Trycourier::NotificationPreferenceDetails]?
+
+      def initialize: (
+        ?categories: ::Hash[Symbol, Trycourier::NotificationPreferenceDetails]?,
+        ?notifications: ::Hash[Symbol, Trycourier::NotificationPreferenceDetails]?
+      ) -> void
+
+      def to_hash: -> {
+        categories: ::Hash[Symbol, Trycourier::NotificationPreferenceDetails]?,
+        notifications: ::Hash[Symbol, Trycourier::NotificationPreferenceDetails]?
+      }
+    end
+  end
+end

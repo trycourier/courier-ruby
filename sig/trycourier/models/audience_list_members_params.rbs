@@ -1,0 +1,23 @@
+module Trycourier
+  module Models
+    type audience_list_members_params =
+      { cursor: String? } & Trycourier::Internal::Type::request_parameters
+
+    class AudienceListMembersParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor cursor: String?
+
+      def initialize: (
+        ?cursor: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

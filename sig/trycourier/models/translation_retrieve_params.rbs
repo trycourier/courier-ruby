@@ -1,0 +1,23 @@
+module Trycourier
+  module Models
+    type translation_retrieve_params =
+      { domain: String } & Trycourier::Internal::Type::request_parameters
+
+    class TranslationRetrieveParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor domain: String
+
+      def initialize: (
+        domain: String,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        domain: String,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

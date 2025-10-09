@@ -1,0 +1,38 @@
+module Trycourier
+  module Resources
+    class Brands
+      def create: (
+        name: String,
+        ?id: String?,
+        ?settings: Trycourier::BrandSettings?,
+        ?snippets: Trycourier::BrandSnippets?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Brand
+
+      def retrieve: (
+        String brand_id,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Brand
+
+      def update: (
+        String brand_id,
+        name: String,
+        ?settings: Trycourier::BrandSettings?,
+        ?snippets: Trycourier::BrandSnippets?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Brand
+
+      def list: (
+        ?cursor: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::BrandListResponse
+
+      def delete: (
+        String brand_id,
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type icons = { bell: String?, message: String? }
+
+    class Icons < Trycourier::Internal::Type::BaseModel
+      attr_accessor bell: String?
+
+      attr_accessor message: String?
+
+      def initialize: (?bell: String?, ?message: String?) -> void
+
+      def to_hash: -> { bell: String?, message: String? }
+    end
+  end
+end

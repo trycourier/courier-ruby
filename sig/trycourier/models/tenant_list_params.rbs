@@ -1,0 +1,32 @@
+module Trycourier
+  module Models
+    type tenant_list_params =
+      { cursor: String?, limit: Integer?, parent_tenant_id: String? }
+      & Trycourier::Internal::Type::request_parameters
+
+    class TenantListParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor cursor: String?
+
+      attr_accessor limit: Integer?
+
+      attr_accessor parent_tenant_id: String?
+
+      def initialize: (
+        ?cursor: String?,
+        ?limit: Integer?,
+        ?parent_tenant_id: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String?,
+        limit: Integer?,
+        parent_tenant_id: String?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

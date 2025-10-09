@@ -1,0 +1,17 @@
+module Trycourier
+  module Resources
+    class AuditEvents
+      def retrieve: (
+        String audit_event_id,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::AuditEvent
+
+      def list: (
+        ?cursor: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::AuditEventListResponse
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,211 @@
+module Trycourier
+  module Models
+    type notification_get_content =
+      {
+        blocks: ::Array[Trycourier::NotificationGetContent::Block]?,
+        channels: ::Array[Trycourier::NotificationGetContent::Channel]?,
+        checksum: String?
+      }
+
+    class NotificationGetContent < Trycourier::Internal::Type::BaseModel
+      attr_accessor blocks: ::Array[Trycourier::NotificationGetContent::Block]?
+
+      attr_accessor channels: ::Array[Trycourier::NotificationGetContent::Channel]?
+
+      attr_accessor checksum: String?
+
+      def initialize: (
+        ?blocks: ::Array[Trycourier::NotificationGetContent::Block]?,
+        ?channels: ::Array[Trycourier::NotificationGetContent::Channel]?,
+        ?checksum: String?
+      ) -> void
+
+      def to_hash: -> {
+        blocks: ::Array[Trycourier::NotificationGetContent::Block]?,
+        channels: ::Array[Trycourier::NotificationGetContent::Channel]?,
+        checksum: String?
+      }
+
+      type block =
+        {
+          id: String,
+          type: Trycourier::Models::NotificationGetContent::Block::type_,
+          alias_: String?,
+          checksum: String?,
+          content: Trycourier::Models::NotificationGetContent::Block::content?,
+          context: String?,
+          locales: ::Hash[Symbol, Trycourier::Models::NotificationGetContent::Block::locale]?
+        }
+
+      class Block < Trycourier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor type: Trycourier::Models::NotificationGetContent::Block::type_
+
+        attr_accessor alias_: String?
+
+        attr_accessor checksum: String?
+
+        attr_accessor content: Trycourier::Models::NotificationGetContent::Block::content?
+
+        attr_accessor context: String?
+
+        attr_accessor locales: ::Hash[Symbol, Trycourier::Models::NotificationGetContent::Block::locale]?
+
+        def initialize: (
+          id: String,
+          type: Trycourier::Models::NotificationGetContent::Block::type_,
+          ?alias_: String?,
+          ?checksum: String?,
+          ?content: Trycourier::Models::NotificationGetContent::Block::content?,
+          ?context: String?,
+          ?locales: ::Hash[Symbol, Trycourier::Models::NotificationGetContent::Block::locale]?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          type: Trycourier::Models::NotificationGetContent::Block::type_,
+          alias_: String?,
+          checksum: String?,
+          content: Trycourier::Models::NotificationGetContent::Block::content?,
+          context: String?,
+          locales: ::Hash[Symbol, Trycourier::Models::NotificationGetContent::Block::locale]?
+        }
+
+        type type_ =
+          :action
+          | :divider
+          | :image
+          | :jsonnet
+          | :list
+          | :markdown
+          | :quote
+          | :template
+          | :text
+
+        module Type
+          extend Trycourier::Internal::Type::Enum
+
+          ACTION: :action
+          DIVIDER: :divider
+          IMAGE: :image
+          JSONNET: :jsonnet
+          LIST: :list
+          MARKDOWN: :markdown
+          QUOTE: :quote
+          TEMPLATE: :template
+          TEXT: :text
+
+          def self?.values: -> ::Array[Trycourier::Models::NotificationGetContent::Block::type_]
+        end
+
+        type content =
+          String
+          | Trycourier::NotificationGetContent::Block::Content::NotificationContentHierarchy
+
+        module Content
+          extend Trycourier::Internal::Type::Union
+
+          type notification_content_hierarchy =
+            { children: String?, parent: String? }
+
+          class NotificationContentHierarchy < Trycourier::Internal::Type::BaseModel
+            attr_accessor children: String?
+
+            attr_accessor parent: String?
+
+            def initialize: (?children: String?, ?parent: String?) -> void
+
+            def to_hash: -> { children: String?, parent: String? }
+          end
+
+          def self?.variants: -> ::Array[Trycourier::Models::NotificationGetContent::Block::content]
+        end
+
+        type locale =
+          String
+          | Trycourier::NotificationGetContent::Block::Locale::NotificationContentHierarchy
+
+        module Locale
+          extend Trycourier::Internal::Type::Union
+
+          type notification_content_hierarchy =
+            { children: String?, parent: String? }
+
+          class NotificationContentHierarchy < Trycourier::Internal::Type::BaseModel
+            attr_accessor children: String?
+
+            attr_accessor parent: String?
+
+            def initialize: (?children: String?, ?parent: String?) -> void
+
+            def to_hash: -> { children: String?, parent: String? }
+          end
+
+          def self?.variants: -> ::Array[Trycourier::Models::NotificationGetContent::Block::locale]
+        end
+      end
+
+      type channel =
+        {
+          id: String,
+          checksum: String?,
+          content: Trycourier::NotificationGetContent::Channel::Content?,
+          locales: ::Hash[Symbol, Trycourier::NotificationGetContent::Channel::Locale]?,
+          type: String?
+        }
+
+      class Channel < Trycourier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor checksum: String?
+
+        attr_accessor content: Trycourier::NotificationGetContent::Channel::Content?
+
+        attr_accessor locales: ::Hash[Symbol, Trycourier::NotificationGetContent::Channel::Locale]?
+
+        attr_accessor type: String?
+
+        def initialize: (
+          id: String,
+          ?checksum: String?,
+          ?content: Trycourier::NotificationGetContent::Channel::Content?,
+          ?locales: ::Hash[Symbol, Trycourier::NotificationGetContent::Channel::Locale]?,
+          ?type: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          checksum: String?,
+          content: Trycourier::NotificationGetContent::Channel::Content?,
+          locales: ::Hash[Symbol, Trycourier::NotificationGetContent::Channel::Locale]?,
+          type: String?
+        }
+
+        type content = { subject: String?, title: String? }
+
+        class Content < Trycourier::Internal::Type::BaseModel
+          attr_accessor subject: String?
+
+          attr_accessor title: String?
+
+          def initialize: (?subject: String?, ?title: String?) -> void
+
+          def to_hash: -> { subject: String?, title: String? }
+        end
+
+        type locale = { subject: String?, title: String? }
+
+        class Locale < Trycourier::Internal::Type::BaseModel
+          attr_accessor subject: String?
+
+          attr_accessor title: String?
+
+          def initialize: (?subject: String?, ?title: String?) -> void
+
+          def to_hash: -> { subject: String?, title: String? }
+        end
+      end
+    end
+  end
+end

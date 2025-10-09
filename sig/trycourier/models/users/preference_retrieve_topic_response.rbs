@@ -1,0 +1,16 @@
+module Trycourier
+  module Models
+    module Users
+      type preference_retrieve_topic_response =
+        { topic: Trycourier::TopicPreference }
+
+      class PreferenceRetrieveTopicResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor topic: Trycourier::TopicPreference
+
+        def initialize: (topic: Trycourier::TopicPreference) -> void
+
+        def to_hash: -> { topic: Trycourier::TopicPreference }
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type widget_background = { bottom_color: String?, top_color: String? }
+
+    class WidgetBackground < Trycourier::Internal::Type::BaseModel
+      attr_accessor bottom_color: String?
+
+      attr_accessor top_color: String?
+
+      def initialize: (?bottom_color: String?, ?top_color: String?) -> void
+
+      def to_hash: -> { bottom_color: String?, top_color: String? }
+    end
+  end
+end

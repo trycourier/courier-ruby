@@ -1,0 +1,40 @@
+module Trycourier
+  module Models
+    type utm =
+      {
+        campaign: String?,
+        content: String?,
+        medium: String?,
+        source: String?,
+        term: String?
+      }
+
+    class Utm < Trycourier::Internal::Type::BaseModel
+      attr_accessor campaign: String?
+
+      attr_accessor content: String?
+
+      attr_accessor medium: String?
+
+      attr_accessor source: String?
+
+      attr_accessor term: String?
+
+      def initialize: (
+        ?campaign: String?,
+        ?content: String?,
+        ?medium: String?,
+        ?source: String?,
+        ?term: String?
+      ) -> void
+
+      def to_hash: -> {
+        campaign: String?,
+        content: String?,
+        medium: String?,
+        source: String?,
+        term: String?
+      }
+    end
+  end
+end

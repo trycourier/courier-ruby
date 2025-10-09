@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    type notification_preference_details =
+      {
+        status: Trycourier::Models::preference_status,
+        channel_preferences: ::Array[Trycourier::ChannelPreference]?,
+        rules: ::Array[Trycourier::Rule]?
+      }
+
+    class NotificationPreferenceDetails < Trycourier::Internal::Type::BaseModel
+      attr_accessor status: Trycourier::Models::preference_status
+
+      attr_accessor channel_preferences: ::Array[Trycourier::ChannelPreference]?
+
+      attr_accessor rules: ::Array[Trycourier::Rule]?
+
+      def initialize: (
+        status: Trycourier::Models::preference_status,
+        ?channel_preferences: ::Array[Trycourier::ChannelPreference]?,
+        ?rules: ::Array[Trycourier::Rule]?
+      ) -> void
+
+      def to_hash: -> {
+        status: Trycourier::Models::preference_status,
+        channel_preferences: ::Array[Trycourier::ChannelPreference]?,
+        rules: ::Array[Trycourier::Rule]?
+      }
+    end
+  end
+end

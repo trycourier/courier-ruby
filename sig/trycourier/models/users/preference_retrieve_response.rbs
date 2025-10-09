@@ -1,0 +1,27 @@
+module Trycourier
+  module Models
+    module Users
+      type preference_retrieve_response =
+        {
+          items: ::Array[Trycourier::TopicPreference],
+          paging: Trycourier::Paging
+        }
+
+      class PreferenceRetrieveResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor items: ::Array[Trycourier::TopicPreference]
+
+        attr_accessor paging: Trycourier::Paging
+
+        def initialize: (
+          items: ::Array[Trycourier::TopicPreference],
+          paging: Trycourier::Paging
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[Trycourier::TopicPreference],
+          paging: Trycourier::Paging
+        }
+      end
+    end
+  end
+end

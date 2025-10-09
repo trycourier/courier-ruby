@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type check = { updated: Integer }
+
+    class Check < Trycourier::Models::BaseCheck
+      def updated: -> Integer
+
+      def updated=: (Integer _) -> Integer
+
+      def initialize: (updated: Integer) -> void
+
+      def to_hash: -> { updated: Integer }
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type send_message_response = { request_id: String }
+
+    class SendMessageResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor request_id: String
+
+      def initialize: (request_id: String) -> void
+
+      def to_hash: -> { request_id: String }
+    end
+  end
+end

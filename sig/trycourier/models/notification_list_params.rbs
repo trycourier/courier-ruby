@@ -1,0 +1,28 @@
+module Trycourier
+  module Models
+    type notification_list_params =
+      { cursor: String?, notes: bool? }
+      & Trycourier::Internal::Type::request_parameters
+
+    class NotificationListParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor cursor: String?
+
+      attr_accessor notes: bool?
+
+      def initialize: (
+        ?cursor: String?,
+        ?notes: bool?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String?,
+        notes: bool?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

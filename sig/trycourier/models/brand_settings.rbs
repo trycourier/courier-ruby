@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    type brand_settings =
+      {
+        colors: Trycourier::BrandColors?,
+        email: Trycourier::BrandSettingsEmail?,
+        inapp: Trycourier::BrandSettingsInApp?
+      }
+
+    class BrandSettings < Trycourier::Internal::Type::BaseModel
+      attr_accessor colors: Trycourier::BrandColors?
+
+      attr_accessor email: Trycourier::BrandSettingsEmail?
+
+      attr_accessor inapp: Trycourier::BrandSettingsInApp?
+
+      def initialize: (
+        ?colors: Trycourier::BrandColors?,
+        ?email: Trycourier::BrandSettingsEmail?,
+        ?inapp: Trycourier::BrandSettingsInApp?
+      ) -> void
+
+      def to_hash: -> {
+        colors: Trycourier::BrandColors?,
+        email: Trycourier::BrandSettingsEmail?,
+        inapp: Trycourier::BrandSettingsInApp?
+      }
+    end
+  end
+end

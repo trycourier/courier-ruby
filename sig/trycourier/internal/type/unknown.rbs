@@ -1,0 +1,26 @@
+module Trycourier
+  module Internal
+    module Type
+      class Unknown
+        extend Trycourier::Internal::Type::Converter
+        extend Trycourier::Internal::Util::SorbetRuntimeSupport
+
+        def self.===: (top other) -> bool
+
+        def self.==: (top other) -> bool
+
+        def self.coerce: (
+          top value,
+          state: Trycourier::Internal::Type::Converter::coerce_state
+        ) -> top
+
+        def self.dump: (
+          top value,
+          state: Trycourier::Internal::Type::Converter::dump_state
+        ) -> top
+
+        def self.to_sorbet_type: -> top
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module Trycourier
+  module Models
+    type list_update_params =
+      { name: String, preferences: Trycourier::RecipientPreferences? }
+      & Trycourier::Internal::Type::request_parameters
+
+    class ListUpdateParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_accessor preferences: Trycourier::RecipientPreferences?
+
+      def initialize: (
+        name: String,
+        ?preferences: Trycourier::RecipientPreferences?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        preferences: Trycourier::RecipientPreferences?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

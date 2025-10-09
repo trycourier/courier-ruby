@@ -1,0 +1,18 @@
+module Trycourier
+  module Models
+    type message_retrieve_response =
+      { providers: ::Array[::Hash[Symbol, top]]? }
+
+    class MessageRetrieveResponse < Trycourier::Models::MessageDetails
+      def providers: -> ::Array[::Hash[Symbol, top]]?
+
+      def providers=: (
+        ::Array[::Hash[Symbol, top]]? _
+      ) -> ::Array[::Hash[Symbol, top]]?
+
+      def initialize: (?providers: ::Array[::Hash[Symbol, top]]?) -> void
+
+      def to_hash: -> { providers: ::Array[::Hash[Symbol, top]]? }
+    end
+  end
+end

@@ -1,0 +1,55 @@
+module Trycourier
+  module Models
+    type brand =
+      {
+        id: String,
+        created: Integer,
+        name: String,
+        updated: Integer,
+        published: Integer?,
+        settings: Trycourier::BrandSettings?,
+        snippets: Trycourier::BrandSnippets?,
+        version: String?
+      }
+
+    class Brand < Trycourier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created: Integer
+
+      attr_accessor name: String
+
+      attr_accessor updated: Integer
+
+      attr_accessor published: Integer?
+
+      attr_accessor settings: Trycourier::BrandSettings?
+
+      attr_accessor snippets: Trycourier::BrandSnippets?
+
+      attr_accessor version: String?
+
+      def initialize: (
+        id: String,
+        created: Integer,
+        name: String,
+        updated: Integer,
+        ?published: Integer?,
+        ?settings: Trycourier::BrandSettings?,
+        ?snippets: Trycourier::BrandSnippets?,
+        ?version: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created: Integer,
+        name: String,
+        updated: Integer,
+        published: Integer?,
+        settings: Trycourier::BrandSettings?,
+        snippets: Trycourier::BrandSnippets?,
+        version: String?
+      }
+    end
+  end
+end

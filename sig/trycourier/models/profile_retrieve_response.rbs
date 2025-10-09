@@ -1,0 +1,25 @@
+module Trycourier
+  module Models
+    type profile_retrieve_response =
+      {
+        profile: ::Hash[Symbol, top],
+        preferences: Trycourier::RecipientPreferences?
+      }
+
+    class ProfileRetrieveResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor profile: ::Hash[Symbol, top]
+
+      attr_accessor preferences: Trycourier::RecipientPreferences?
+
+      def initialize: (
+        profile: ::Hash[Symbol, top],
+        ?preferences: Trycourier::RecipientPreferences?
+      ) -> void
+
+      def to_hash: -> {
+        profile: ::Hash[Symbol, top],
+        preferences: Trycourier::RecipientPreferences?
+      }
+    end
+  end
+end

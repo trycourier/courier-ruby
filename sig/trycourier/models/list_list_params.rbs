@@ -1,0 +1,28 @@
+module Trycourier
+  module Models
+    type list_list_params =
+      { cursor: String?, pattern: String? }
+      & Trycourier::Internal::Type::request_parameters
+
+    class ListListParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor cursor: String?
+
+      attr_accessor pattern: String?
+
+      def initialize: (
+        ?cursor: String?,
+        ?pattern: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String?,
+        pattern: String?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end
