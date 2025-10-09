@@ -1,0 +1,32 @@
+module Trycourier
+  module Models
+    type audience_update_params =
+      { description: String?, filter: Trycourier::Filter?, name: String? }
+      & Trycourier::Internal::Type::request_parameters
+
+    class AudienceUpdateParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor description: String?
+
+      attr_accessor filter: Trycourier::Filter?
+
+      attr_accessor name: String?
+
+      def initialize: (
+        ?description: String?,
+        ?filter: Trycourier::Filter?,
+        ?name: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        description: String?,
+        filter: Trycourier::Filter?,
+        name: String?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

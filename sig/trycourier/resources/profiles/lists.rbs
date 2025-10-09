@@ -1,0 +1,26 @@
+module Trycourier
+  module Resources
+    class Profiles
+      class Lists
+        def retrieve: (
+          String user_id,
+          ?cursor: String?,
+          ?request_options: Trycourier::request_opts
+        ) -> Trycourier::Models::Profiles::ListRetrieveResponse
+
+        def delete: (
+          String user_id,
+          ?request_options: Trycourier::request_opts
+        ) -> Trycourier::Models::Profiles::ListDeleteResponse
+
+        def subscribe: (
+          String user_id,
+          lists: ::Array[Trycourier::Profiles::ListSubscribeParams::List],
+          ?request_options: Trycourier::request_opts
+        ) -> Trycourier::Models::Profiles::ListSubscribeResponse
+
+        def initialize: (client: Trycourier::Client) -> void
+      end
+    end
+  end
+end

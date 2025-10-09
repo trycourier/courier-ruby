@@ -1,0 +1,41 @@
+module Trycourier
+  module Models
+    type brand_create_params =
+      {
+        name: String,
+        id: String?,
+        settings: Trycourier::BrandSettings?,
+        snippets: Trycourier::BrandSnippets?
+      }
+      & Trycourier::Internal::Type::request_parameters
+
+    class BrandCreateParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_accessor id: String?
+
+      attr_accessor settings: Trycourier::BrandSettings?
+
+      attr_accessor snippets: Trycourier::BrandSnippets?
+
+      def initialize: (
+        name: String,
+        ?id: String?,
+        ?settings: Trycourier::BrandSettings?,
+        ?snippets: Trycourier::BrandSnippets?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        id: String?,
+        settings: Trycourier::BrandSettings?,
+        snippets: Trycourier::BrandSnippets?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

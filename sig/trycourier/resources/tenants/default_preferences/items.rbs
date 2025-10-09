@@ -1,0 +1,26 @@
+module Trycourier
+  module Resources
+    class Tenants
+      class DefaultPreferences
+        class Items
+          def update: (
+            String topic_id,
+            tenant_id: String,
+            status: Trycourier::Models::SubscriptionTopicNew::status,
+            ?custom_routing: ::Array[Trycourier::Models::channel_classification]?,
+            ?has_custom_routing: bool?,
+            ?request_options: Trycourier::request_opts
+          ) -> nil
+
+          def delete: (
+            String topic_id,
+            tenant_id: String,
+            ?request_options: Trycourier::request_opts
+          ) -> nil
+
+          def initialize: (client: Trycourier::Client) -> void
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,46 @@
+module Trycourier
+  module Models
+    module Users
+      type token_retrieve_response =
+        {
+          status: Trycourier::Models::Users::TokenRetrieveResponse::status?,
+          status_reason: String?
+        }
+
+      class TokenRetrieveResponse < Trycourier::Models::UserToken
+        def status: -> Trycourier::Models::Users::TokenRetrieveResponse::status?
+
+        def status=: (
+          Trycourier::Models::Users::TokenRetrieveResponse::status? _
+        ) -> Trycourier::Models::Users::TokenRetrieveResponse::status?
+
+        def status_reason: -> String?
+
+        def status_reason=: (String? _) -> String?
+
+        def initialize: (
+          ?status: Trycourier::Models::Users::TokenRetrieveResponse::status?,
+          ?status_reason: String?
+        ) -> void
+
+        def to_hash: -> {
+          status: Trycourier::Models::Users::TokenRetrieveResponse::status?,
+          status_reason: String?
+        }
+
+        type status = :active | :unknown | :failed | :revoked
+
+        module Status
+          extend Trycourier::Internal::Type::Enum
+
+          ACTIVE: :active
+          UNKNOWN: :unknown
+          FAILED: :failed
+          REVOKED: :revoked
+
+          def self?.values: -> ::Array[Trycourier::Models::Users::TokenRetrieveResponse::status]
+        end
+      end
+    end
+  end
+end

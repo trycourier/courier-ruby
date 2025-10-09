@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type inbound_track_event_response = { message_id: String }
+
+    class InboundTrackEventResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor message_id: String
+
+      def initialize: (message_id: String) -> void
+
+      def to_hash: -> { message_id: String }
+    end
+  end
+end

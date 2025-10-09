@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    module Users
+      type preference_retrieve_topic_params =
+        { user_id: String, tenant_id: String? }
+        & Trycourier::Internal::Type::request_parameters
+
+      class PreferenceRetrieveTopicParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        attr_accessor user_id: String
+
+        attr_accessor tenant_id: String?
+
+        def initialize: (
+          user_id: String,
+          ?tenant_id: String?,
+          ?request_options: Trycourier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          user_id: String,
+          tenant_id: String?,
+          request_options: Trycourier::RequestOptions
+        }
+      end
+    end
+  end
+end

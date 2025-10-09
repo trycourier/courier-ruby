@@ -1,0 +1,56 @@
+module Trycourier
+  module Models
+    type inbound_track_event_params =
+      {
+        event: String,
+        message_id: String,
+        properties: ::Hash[Symbol, top],
+        type: Trycourier::Models::InboundTrackEventParams::type_,
+        user_id: String?
+      }
+      & Trycourier::Internal::Type::request_parameters
+
+    class InboundTrackEventParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor event: String
+
+      attr_accessor message_id: String
+
+      attr_accessor properties: ::Hash[Symbol, top]
+
+      attr_accessor type: Trycourier::Models::InboundTrackEventParams::type_
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        event: String,
+        message_id: String,
+        properties: ::Hash[Symbol, top],
+        type: Trycourier::Models::InboundTrackEventParams::type_,
+        ?user_id: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        event: String,
+        message_id: String,
+        properties: ::Hash[Symbol, top],
+        type: Trycourier::Models::InboundTrackEventParams::type_,
+        user_id: String?,
+        request_options: Trycourier::RequestOptions
+      }
+
+      type type_ = :track
+
+      module Type
+        extend Trycourier::Internal::Type::Enum
+
+        TRACK: :track
+
+        def self?.values: -> ::Array[Trycourier::Models::InboundTrackEventParams::type_]
+      end
+    end
+  end
+end

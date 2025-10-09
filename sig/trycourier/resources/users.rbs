@@ -1,0 +1,13 @@
+module Trycourier
+  module Resources
+    class Users
+      attr_reader preferences: Trycourier::Resources::Users::Preferences
+
+      attr_reader tenants: Trycourier::Resources::Users::Tenants
+
+      attr_reader tokens: Trycourier::Resources::Users::Tokens
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

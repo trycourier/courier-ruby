@@ -1,0 +1,17 @@
+module Trycourier
+  module Models
+    module Notifications
+      type draft_retrieve_content_params =
+        {  } & Trycourier::Internal::Type::request_parameters
+
+      class DraftRetrieveContentParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        def initialize: (?request_options: Trycourier::request_opts) -> void
+
+        def to_hash: -> { request_options: Trycourier::RequestOptions }
+      end
+    end
+  end
+end

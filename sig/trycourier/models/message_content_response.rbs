@@ -1,0 +1,99 @@
+module Trycourier
+  module Models
+    type message_content_response =
+      { results: ::Array[Trycourier::Models::MessageContentResponse::Result] }
+
+    class MessageContentResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor results: ::Array[Trycourier::Models::MessageContentResponse::Result]
+
+      def initialize: (
+        results: ::Array[Trycourier::Models::MessageContentResponse::Result]
+      ) -> void
+
+      def to_hash: -> {
+        results: ::Array[Trycourier::Models::MessageContentResponse::Result]
+      }
+
+      type result =
+        {
+          channel: String,
+          channel_id: String,
+          content: Trycourier::Models::MessageContentResponse::Result::Content
+        }
+
+      class Result < Trycourier::Internal::Type::BaseModel
+        attr_accessor channel: String
+
+        attr_accessor channel_id: String
+
+        attr_accessor content: Trycourier::Models::MessageContentResponse::Result::Content
+
+        def initialize: (
+          channel: String,
+          channel_id: String,
+          content: Trycourier::Models::MessageContentResponse::Result::Content
+        ) -> void
+
+        def to_hash: -> {
+          channel: String,
+          channel_id: String,
+          content: Trycourier::Models::MessageContentResponse::Result::Content
+        }
+
+        type content =
+          {
+            blocks: ::Array[Trycourier::Models::MessageContentResponse::Result::Content::Block],
+            body: String,
+            html: String,
+            subject: String,
+            text: String,
+            title: String
+          }
+
+        class Content < Trycourier::Internal::Type::BaseModel
+          attr_accessor blocks: ::Array[Trycourier::Models::MessageContentResponse::Result::Content::Block]
+
+          attr_accessor body: String
+
+          attr_accessor html: String
+
+          attr_accessor subject: String
+
+          attr_accessor text: String
+
+          attr_accessor title: String
+
+          def initialize: (
+            blocks: ::Array[Trycourier::Models::MessageContentResponse::Result::Content::Block],
+            body: String,
+            html: String,
+            subject: String,
+            text: String,
+            title: String
+          ) -> void
+
+          def to_hash: -> {
+            blocks: ::Array[Trycourier::Models::MessageContentResponse::Result::Content::Block],
+            body: String,
+            html: String,
+            subject: String,
+            text: String,
+            title: String
+          }
+
+          type block = { text: String, type: String }
+
+          class Block < Trycourier::Internal::Type::BaseModel
+            attr_accessor text: String
+
+            attr_accessor type: String
+
+            def initialize: (text: String, type: String) -> void
+
+            def to_hash: -> { text: String, type: String }
+          end
+        end
+      end
+    end
+  end
+end

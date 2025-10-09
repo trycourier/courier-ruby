@@ -1,0 +1,106 @@
+module Trycourier
+  module Models
+    type notification_list_response =
+      {
+        paging: Trycourier::Paging,
+        results: ::Array[Trycourier::Models::NotificationListResponse::Result]
+      }
+
+    class NotificationListResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor paging: Trycourier::Paging
+
+      attr_accessor results: ::Array[Trycourier::Models::NotificationListResponse::Result]
+
+      def initialize: (
+        paging: Trycourier::Paging,
+        results: ::Array[Trycourier::Models::NotificationListResponse::Result]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Trycourier::Paging,
+        results: ::Array[Trycourier::Models::NotificationListResponse::Result]
+      }
+
+      type result =
+        {
+          id: String,
+          created_at: Integer,
+          note: String,
+          routing: Trycourier::MessageRouting,
+          topic_id: String,
+          updated_at: Integer,
+          tags: Trycourier::Models::NotificationListResponse::Result::Tags?,
+          title: String?
+        }
+
+      class Result < Trycourier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Integer
+
+        attr_accessor note: String
+
+        attr_accessor routing: Trycourier::MessageRouting
+
+        attr_accessor topic_id: String
+
+        attr_accessor updated_at: Integer
+
+        attr_accessor tags: Trycourier::Models::NotificationListResponse::Result::Tags?
+
+        attr_accessor title: String?
+
+        def initialize: (
+          id: String,
+          created_at: Integer,
+          note: String,
+          routing: Trycourier::MessageRouting,
+          topic_id: String,
+          updated_at: Integer,
+          ?tags: Trycourier::Models::NotificationListResponse::Result::Tags?,
+          ?title: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Integer,
+          note: String,
+          routing: Trycourier::MessageRouting,
+          topic_id: String,
+          updated_at: Integer,
+          tags: Trycourier::Models::NotificationListResponse::Result::Tags?,
+          title: String?
+        }
+
+        type tags =
+          {
+            data: ::Array[Trycourier::Models::NotificationListResponse::Result::Tags::Data]
+          }
+
+        class Tags < Trycourier::Internal::Type::BaseModel
+          attr_accessor data: ::Array[Trycourier::Models::NotificationListResponse::Result::Tags::Data]
+
+          def initialize: (
+            data: ::Array[Trycourier::Models::NotificationListResponse::Result::Tags::Data]
+          ) -> void
+
+          def to_hash: -> {
+            data: ::Array[Trycourier::Models::NotificationListResponse::Result::Tags::Data]
+          }
+
+          type data = { id: String, name: String }
+
+          class Data < Trycourier::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String
+
+            def initialize: (id: String, name: String) -> void
+
+            def to_hash: -> { id: String, name: String }
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,22 @@
+module Trycourier
+  module Models
+    type brand_list_response =
+      { paging: Trycourier::Paging, results: ::Array[Trycourier::Brand] }
+
+    class BrandListResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor paging: Trycourier::Paging
+
+      attr_accessor results: ::Array[Trycourier::Brand]
+
+      def initialize: (
+        paging: Trycourier::Paging,
+        results: ::Array[Trycourier::Brand]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Trycourier::Paging,
+        results: ::Array[Trycourier::Brand]
+      }
+    end
+  end
+end

@@ -1,0 +1,42 @@
+module Trycourier
+  module Models
+    type subscription_topic_new =
+      {
+        status: Trycourier::Models::SubscriptionTopicNew::status,
+        custom_routing: ::Array[Trycourier::Models::channel_classification]?,
+        has_custom_routing: bool?
+      }
+
+    class SubscriptionTopicNew < Trycourier::Internal::Type::BaseModel
+      attr_accessor status: Trycourier::Models::SubscriptionTopicNew::status
+
+      attr_accessor custom_routing: ::Array[Trycourier::Models::channel_classification]?
+
+      attr_accessor has_custom_routing: bool?
+
+      def initialize: (
+        status: Trycourier::Models::SubscriptionTopicNew::status,
+        ?custom_routing: ::Array[Trycourier::Models::channel_classification]?,
+        ?has_custom_routing: bool?
+      ) -> void
+
+      def to_hash: -> {
+        status: Trycourier::Models::SubscriptionTopicNew::status,
+        custom_routing: ::Array[Trycourier::Models::channel_classification]?,
+        has_custom_routing: bool?
+      }
+
+      type status = :OPTED_OUT | :OPTED_IN | :REQUIRED
+
+      module Status
+        extend Trycourier::Internal::Type::Enum
+
+        OPTED_OUT: :OPTED_OUT
+        OPTED_IN: :OPTED_IN
+        REQUIRED: :REQUIRED
+
+        def self?.values: -> ::Array[Trycourier::Models::SubscriptionTopicNew::status]
+      end
+    end
+  end
+end

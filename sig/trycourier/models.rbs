@@ -1,0 +1,227 @@
+module Trycourier
+  module Alignment = Trycourier::Models::Alignment
+
+  class Audience = Trycourier::Models::Audience
+
+  class AudienceDeleteParams = Trycourier::Models::AudienceDeleteParams
+
+  class AudienceListMembersParams = Trycourier::Models::AudienceListMembersParams
+
+  class AudienceListParams = Trycourier::Models::AudienceListParams
+
+  class AudienceRetrieveParams = Trycourier::Models::AudienceRetrieveParams
+
+  class AudienceUpdateParams = Trycourier::Models::AudienceUpdateParams
+
+  class AuditEvent = Trycourier::Models::AuditEvent
+
+  class AuditEventListParams = Trycourier::Models::AuditEventListParams
+
+  class AuditEventRetrieveParams = Trycourier::Models::AuditEventRetrieveParams
+
+  class AuthIssueTokenParams = Trycourier::Models::AuthIssueTokenParams
+
+  class AutomationInvokeResponse = Trycourier::Models::AutomationInvokeResponse
+
+  module Automations = Trycourier::Models::Automations
+
+  class BaseCheck = Trycourier::Models::BaseCheck
+
+  class BaseTemplateTenantAssociation = Trycourier::Models::BaseTemplateTenantAssociation
+
+  class Brand = Trycourier::Models::Brand
+
+  class BrandColors = Trycourier::Models::BrandColors
+
+  class BrandCreateParams = Trycourier::Models::BrandCreateParams
+
+  class BrandDeleteParams = Trycourier::Models::BrandDeleteParams
+
+  class BrandListParams = Trycourier::Models::BrandListParams
+
+  class BrandRetrieveParams = Trycourier::Models::BrandRetrieveParams
+
+  class BrandSettings = Trycourier::Models::BrandSettings
+
+  class BrandSettingsEmail = Trycourier::Models::BrandSettingsEmail
+
+  class BrandSettingsInApp = Trycourier::Models::BrandSettingsInApp
+
+  class BrandSnippet = Trycourier::Models::BrandSnippet
+
+  class BrandSnippets = Trycourier::Models::BrandSnippets
+
+  class BrandTemplate = Trycourier::Models::BrandTemplate
+
+  class BrandUpdateParams = Trycourier::Models::BrandUpdateParams
+
+  class BulkAddUsersParams = Trycourier::Models::BulkAddUsersParams
+
+  class BulkCreateJobParams = Trycourier::Models::BulkCreateJobParams
+
+  class BulkListUsersParams = Trycourier::Models::BulkListUsersParams
+
+  class BulkRetrieveJobParams = Trycourier::Models::BulkRetrieveJobParams
+
+  class BulkRunJobParams = Trycourier::Models::BulkRunJobParams
+
+  module ChannelClassification = Trycourier::Models::ChannelClassification
+
+  class ChannelPreference = Trycourier::Models::ChannelPreference
+
+  class Check = Trycourier::Models::Check
+
+  class DefaultPreferences = Trycourier::Models::DefaultPreferences
+
+  class ElementalActionNodeWithType = Trycourier::Models::ElementalActionNodeWithType
+
+  class ElementalBaseNode = Trycourier::Models::ElementalBaseNode
+
+  class ElementalChannelNode = Trycourier::Models::ElementalChannelNode
+
+  class ElementalChannelNodeWithType = Trycourier::Models::ElementalChannelNodeWithType
+
+  class ElementalContent = Trycourier::Models::ElementalContent
+
+  class ElementalContentSugar = Trycourier::Models::ElementalContentSugar
+
+  class ElementalDividerNodeWithType = Trycourier::Models::ElementalDividerNodeWithType
+
+  class ElementalImageNodeWithType = Trycourier::Models::ElementalImageNodeWithType
+
+  class ElementalMetaNodeWithType = Trycourier::Models::ElementalMetaNodeWithType
+
+  module ElementalNode = Trycourier::Models::ElementalNode
+
+  class ElementalQuoteNodeWithType = Trycourier::Models::ElementalQuoteNodeWithType
+
+  class ElementalTextNodeWithType = Trycourier::Models::ElementalTextNodeWithType
+
+  class EmailFooter = Trycourier::Models::EmailFooter
+
+  class EmailHead = Trycourier::Models::EmailHead
+
+  class EmailHeader = Trycourier::Models::EmailHeader
+
+  class Filter = Trycourier::Models::Filter
+
+  class FilterConfig = Trycourier::Models::FilterConfig
+
+  class Icons = Trycourier::Models::Icons
+
+  module InboundBulkMessage = Trycourier::Models::InboundBulkMessage
+
+  class InboundBulkMessageUser = Trycourier::Models::InboundBulkMessageUser
+
+  class InboundTrackEventParams = Trycourier::Models::InboundTrackEventParams
+
+  class ListDeleteParams = Trycourier::Models::ListDeleteParams
+
+  class ListListParams = Trycourier::Models::ListListParams
+
+  class ListRestoreParams = Trycourier::Models::ListRestoreParams
+
+  class ListRetrieveParams = Trycourier::Models::ListRetrieveParams
+
+  module Lists = Trycourier::Models::Lists
+
+  class ListUpdateParams = Trycourier::Models::ListUpdateParams
+
+  class Logo = Trycourier::Models::Logo
+
+  class MessageCancelParams = Trycourier::Models::MessageCancelParams
+
+  class MessageContentParams = Trycourier::Models::MessageContentParams
+
+  class MessageContext = Trycourier::Models::MessageContext
+
+  class MessageDetails = Trycourier::Models::MessageDetails
+
+  class MessageHistoryParams = Trycourier::Models::MessageHistoryParams
+
+  class MessageListParams = Trycourier::Models::MessageListParams
+
+  class MessageRetrieveParams = Trycourier::Models::MessageRetrieveParams
+
+  class MessageRouting = Trycourier::Models::MessageRouting
+
+  module MessageRoutingChannel = Trycourier::Models::MessageRoutingChannel
+
+  class NotificationGetContent = Trycourier::Models::NotificationGetContent
+
+  class NotificationListParams = Trycourier::Models::NotificationListParams
+
+  class NotificationPreferenceDetails = Trycourier::Models::NotificationPreferenceDetails
+
+  class NotificationRetrieveContentParams = Trycourier::Models::NotificationRetrieveContentParams
+
+  module Notifications = Trycourier::Models::Notifications
+
+  class Paging = Trycourier::Models::Paging
+
+  class Preference = Trycourier::Models::Preference
+
+  module PreferenceStatus = Trycourier::Models::PreferenceStatus
+
+  class ProfileCreateParams = Trycourier::Models::ProfileCreateParams
+
+  class ProfileDeleteParams = Trycourier::Models::ProfileDeleteParams
+
+  class ProfileReplaceParams = Trycourier::Models::ProfileReplaceParams
+
+  class ProfileRetrieveParams = Trycourier::Models::ProfileRetrieveParams
+
+  module Profiles = Trycourier::Models::Profiles
+
+  class ProfileUpdateParams = Trycourier::Models::ProfileUpdateParams
+
+  class PutSubscriptionsRecipient = Trycourier::Models::PutSubscriptionsRecipient
+
+  class Recipient = Trycourier::Models::Recipient
+
+  class RecipientPreferences = Trycourier::Models::RecipientPreferences
+
+  class RequestArchiveParams = Trycourier::Models::RequestArchiveParams
+
+  class Rule = Trycourier::Models::Rule
+
+  class SendMessageParams = Trycourier::Models::SendMessageParams
+
+  class SubscriptionTopicNew = Trycourier::Models::SubscriptionTopicNew
+
+  class Tenant = Trycourier::Models::Tenant
+
+  class TenantAssociation = Trycourier::Models::TenantAssociation
+
+  class TenantDeleteParams = Trycourier::Models::TenantDeleteParams
+
+  class TenantListParams = Trycourier::Models::TenantListParams
+
+  class TenantListUsersParams = Trycourier::Models::TenantListUsersParams
+
+  class TenantRetrieveParams = Trycourier::Models::TenantRetrieveParams
+
+  module Tenants = Trycourier::Models::Tenants
+
+  class TenantUpdateParams = Trycourier::Models::TenantUpdateParams
+
+  module TextStyle = Trycourier::Models::TextStyle
+
+  class TopicPreference = Trycourier::Models::TopicPreference
+
+  class TranslationRetrieveParams = Trycourier::Models::TranslationRetrieveParams
+
+  class TranslationUpdateParams = Trycourier::Models::TranslationUpdateParams
+
+  class UserList = Trycourier::Models::UserList
+
+  class UserRecipient = Trycourier::Models::UserRecipient
+
+  module Users = Trycourier::Models::Users
+
+  class UserToken = Trycourier::Models::UserToken
+
+  class Utm = Trycourier::Models::Utm
+
+  class WidgetBackground = Trycourier::Models::WidgetBackground
+end

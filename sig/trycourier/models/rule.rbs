@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type rule = { until_: String, start: String? }
+
+    class Rule < Trycourier::Internal::Type::BaseModel
+      attr_accessor until_: String
+
+      attr_accessor start: String?
+
+      def initialize: (until_: String, ?start: String?) -> void
+
+      def to_hash: -> { until_: String, start: String? }
+    end
+  end
+end

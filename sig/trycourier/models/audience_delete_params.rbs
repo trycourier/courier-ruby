@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type audience_delete_params =
+      {  } & Trycourier::Internal::Type::request_parameters
+
+    class AudienceDeleteParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Trycourier::request_opts) -> void
+
+      def to_hash: -> { request_options: Trycourier::RequestOptions }
+    end
+  end
+end

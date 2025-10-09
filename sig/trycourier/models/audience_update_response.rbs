@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type audience_update_response = { audience: Trycourier::Audience }
+
+    class AudienceUpdateResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor audience: Trycourier::Audience
+
+      def initialize: (audience: Trycourier::Audience) -> void
+
+      def to_hash: -> { audience: Trycourier::Audience }
+    end
+  end
+end

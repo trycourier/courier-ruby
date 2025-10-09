@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    type elemental_content =
+      {
+        elements: ::Array[Trycourier::Models::elemental_node],
+        version: String,
+        brand: String?
+      }
+
+    class ElementalContent < Trycourier::Internal::Type::BaseModel
+      attr_accessor elements: ::Array[Trycourier::Models::elemental_node]
+
+      attr_accessor version: String
+
+      attr_accessor brand: String?
+
+      def initialize: (
+        elements: ::Array[Trycourier::Models::elemental_node],
+        version: String,
+        ?brand: String?
+      ) -> void
+
+      def to_hash: -> {
+        elements: ::Array[Trycourier::Models::elemental_node],
+        version: String,
+        brand: String?
+      }
+    end
+  end
+end

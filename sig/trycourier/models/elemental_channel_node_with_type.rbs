@@ -1,0 +1,32 @@
+module Trycourier
+  module Models
+    type elemental_channel_node_with_type =
+      { type: Trycourier::Models::ElementalChannelNodeWithType::type_ }
+
+    class ElementalChannelNodeWithType < Trycourier::Models::ElementalChannelNode
+      def `type`: -> Trycourier::Models::ElementalChannelNodeWithType::type_?
+
+      def type=: (
+        Trycourier::Models::ElementalChannelNodeWithType::type_ _
+      ) -> Trycourier::Models::ElementalChannelNodeWithType::type_
+
+      def initialize: (
+        ?type: Trycourier::Models::ElementalChannelNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Trycourier::Models::ElementalChannelNodeWithType::type_
+      }
+
+      type type_ = :channel
+
+      module Type
+        extend Trycourier::Internal::Type::Enum
+
+        CHANNEL: :channel
+
+        def self?.values: -> ::Array[Trycourier::Models::ElementalChannelNodeWithType::type_]
+      end
+    end
+  end
+end

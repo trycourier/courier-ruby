@@ -1,0 +1,38 @@
+module Trycourier
+  module Models
+    type profile_update_params =
+      { patch: ::Array[Trycourier::ProfileUpdateParams::Patch] }
+      & Trycourier::Internal::Type::request_parameters
+
+    class ProfileUpdateParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor patch: ::Array[Trycourier::ProfileUpdateParams::Patch]
+
+      def initialize: (
+        patch: ::Array[Trycourier::ProfileUpdateParams::Patch],
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        patch: ::Array[Trycourier::ProfileUpdateParams::Patch],
+        request_options: Trycourier::RequestOptions
+      }
+
+      type patch = { op: String, path: String, value: String }
+
+      class Patch < Trycourier::Internal::Type::BaseModel
+        attr_accessor op: String
+
+        attr_accessor path: String
+
+        attr_accessor value: String
+
+        def initialize: (op: String, path: String, value: String) -> void
+
+        def to_hash: -> { op: String, path: String, value: String }
+      end
+    end
+  end
+end

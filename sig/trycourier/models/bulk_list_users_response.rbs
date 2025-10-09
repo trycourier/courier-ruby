@@ -1,0 +1,65 @@
+module Trycourier
+  module Models
+    type bulk_list_users_response =
+      {
+        items: ::Array[Trycourier::Models::BulkListUsersResponse::Item],
+        paging: Trycourier::Paging
+      }
+
+    class BulkListUsersResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Trycourier::Models::BulkListUsersResponse::Item]
+
+      attr_accessor paging: Trycourier::Paging
+
+      def initialize: (
+        items: ::Array[Trycourier::Models::BulkListUsersResponse::Item],
+        paging: Trycourier::Paging
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Trycourier::Models::BulkListUsersResponse::Item],
+        paging: Trycourier::Paging
+      }
+
+      type item =
+        {
+          status: Trycourier::Models::BulkListUsersResponse::Item::status,
+          message_id: String?
+        }
+
+      class Item < Trycourier::Models::InboundBulkMessageUser
+        def status: -> Trycourier::Models::BulkListUsersResponse::Item::status
+
+        def status=: (
+          Trycourier::Models::BulkListUsersResponse::Item::status _
+        ) -> Trycourier::Models::BulkListUsersResponse::Item::status
+
+        def message_id: -> String?
+
+        def message_id=: (String? _) -> String?
+
+        def initialize: (
+          status: Trycourier::Models::BulkListUsersResponse::Item::status,
+          ?message_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          status: Trycourier::Models::BulkListUsersResponse::Item::status,
+          message_id: String?
+        }
+
+        type status = :PENDING | :ENQUEUED | :ERROR
+
+        module Status
+          extend Trycourier::Internal::Type::Enum
+
+          PENDING: :PENDING
+          ENQUEUED: :ENQUEUED
+          ERROR: :ERROR
+
+          def self?.values: -> ::Array[Trycourier::Models::BulkListUsersResponse::Item::status]
+        end
+      end
+    end
+  end
+end

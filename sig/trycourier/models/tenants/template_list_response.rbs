@@ -1,0 +1,88 @@
+module Trycourier
+  module Models
+    module Tenants
+      type template_list_response =
+        {
+          has_more: bool,
+          type: Trycourier::Models::Tenants::TemplateListResponse::type_,
+          url: String,
+          cursor: String?,
+          items: ::Array[Trycourier::Models::Tenants::TemplateListResponse::Item]?,
+          next_url: String?
+        }
+
+      class TemplateListResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor has_more: bool
+
+        attr_accessor type: Trycourier::Models::Tenants::TemplateListResponse::type_
+
+        attr_accessor url: String
+
+        attr_accessor cursor: String?
+
+        attr_accessor items: ::Array[Trycourier::Models::Tenants::TemplateListResponse::Item]?
+
+        attr_accessor next_url: String?
+
+        def initialize: (
+          has_more: bool,
+          type: Trycourier::Models::Tenants::TemplateListResponse::type_,
+          url: String,
+          ?cursor: String?,
+          ?items: ::Array[Trycourier::Models::Tenants::TemplateListResponse::Item]?,
+          ?next_url: String?
+        ) -> void
+
+        def to_hash: -> {
+          has_more: bool,
+          type: Trycourier::Models::Tenants::TemplateListResponse::type_,
+          url: String,
+          cursor: String?,
+          items: ::Array[Trycourier::Models::Tenants::TemplateListResponse::Item]?,
+          next_url: String?
+        }
+
+        type type_ = :list
+
+        module Type
+          extend Trycourier::Internal::Type::Enum
+
+          LIST: :list
+
+          def self?.values: -> ::Array[Trycourier::Models::Tenants::TemplateListResponse::type_]
+        end
+
+        type item =
+          {
+            data: Trycourier::Models::Tenants::TemplateListResponse::Item::Data
+          }
+
+        class Item < Trycourier::Models::BaseTemplateTenantAssociation
+          def data: -> Trycourier::Models::Tenants::TemplateListResponse::Item::Data
+
+          def data=: (
+            Trycourier::Models::Tenants::TemplateListResponse::Item::Data _
+          ) -> Trycourier::Models::Tenants::TemplateListResponse::Item::Data
+
+          def initialize: (
+            data: Trycourier::Models::Tenants::TemplateListResponse::Item::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: Trycourier::Models::Tenants::TemplateListResponse::Item::Data
+          }
+
+          type data = { routing: Trycourier::MessageRouting }
+
+          class Data < Trycourier::Internal::Type::BaseModel
+            attr_accessor routing: Trycourier::MessageRouting
+
+            def initialize: (routing: Trycourier::MessageRouting) -> void
+
+            def to_hash: -> { routing: Trycourier::MessageRouting }
+          end
+        end
+      end
+    end
+  end
+end

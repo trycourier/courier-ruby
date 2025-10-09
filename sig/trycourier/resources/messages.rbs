@@ -1,0 +1,46 @@
+module Trycourier
+  module Resources
+    class Messages
+      def retrieve: (
+        String message_id,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::MessageRetrieveResponse
+
+      def list: (
+        ?archived: bool?,
+        ?cursor: String?,
+        ?enqueued_after: String?,
+        ?event: String?,
+        ?list: String?,
+        ?message_id: String?,
+        ?notification: String?,
+        ?provider: ::Array[String?],
+        ?recipient: String?,
+        ?status: ::Array[String?],
+        ?tag: ::Array[String?],
+        ?tags: String?,
+        ?tenant_id: String?,
+        ?trace_id: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::MessageListResponse
+
+      def cancel: (
+        String message_id,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::MessageDetails
+
+      def content: (
+        String message_id,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::MessageContentResponse
+
+      def history: (
+        String message_id,
+        ?type: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::MessageHistoryResponse
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

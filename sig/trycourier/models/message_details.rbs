@@ -1,0 +1,141 @@
+module Trycourier
+  module Models
+    type message_details =
+      {
+        id: String,
+        clicked: Integer,
+        delivered: Integer,
+        enqueued: Integer,
+        event: String,
+        notification: String,
+        opened: Integer,
+        recipient: String,
+        sent: Integer,
+        status: Trycourier::Models::MessageDetails::status,
+        error: String?,
+        reason: Trycourier::Models::MessageDetails::reason?
+      }
+
+    class MessageDetails < Trycourier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor clicked: Integer
+
+      attr_accessor delivered: Integer
+
+      attr_accessor enqueued: Integer
+
+      attr_accessor event: String
+
+      attr_accessor notification: String
+
+      attr_accessor opened: Integer
+
+      attr_accessor recipient: String
+
+      attr_accessor sent: Integer
+
+      attr_accessor status: Trycourier::Models::MessageDetails::status
+
+      attr_accessor error: String?
+
+      attr_accessor reason: Trycourier::Models::MessageDetails::reason?
+
+      def initialize: (
+        id: String,
+        clicked: Integer,
+        delivered: Integer,
+        enqueued: Integer,
+        event: String,
+        notification: String,
+        opened: Integer,
+        recipient: String,
+        sent: Integer,
+        status: Trycourier::Models::MessageDetails::status,
+        ?error: String?,
+        ?reason: Trycourier::Models::MessageDetails::reason?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        clicked: Integer,
+        delivered: Integer,
+        enqueued: Integer,
+        event: String,
+        notification: String,
+        opened: Integer,
+        recipient: String,
+        sent: Integer,
+        status: Trycourier::Models::MessageDetails::status,
+        error: String?,
+        reason: Trycourier::Models::MessageDetails::reason?
+      }
+
+      type status =
+        :CANCELED
+        | :CLICKED
+        | :DELAYED
+        | :DELIVERED
+        | :DIGESTED
+        | :ENQUEUED
+        | :FILTERED
+        | :OPENED
+        | :ROUTED
+        | :SENT
+        | :SIMULATED
+        | :THROTTLED
+        | :UNDELIVERABLE
+        | :UNMAPPED
+        | :UNROUTABLE
+
+      module Status
+        extend Trycourier::Internal::Type::Enum
+
+        CANCELED: :CANCELED
+        CLICKED: :CLICKED
+        DELAYED: :DELAYED
+        DELIVERED: :DELIVERED
+        DIGESTED: :DIGESTED
+        ENQUEUED: :ENQUEUED
+        FILTERED: :FILTERED
+        OPENED: :OPENED
+        ROUTED: :ROUTED
+        SENT: :SENT
+        SIMULATED: :SIMULATED
+        THROTTLED: :THROTTLED
+        UNDELIVERABLE: :UNDELIVERABLE
+        UNMAPPED: :UNMAPPED
+        UNROUTABLE: :UNROUTABLE
+
+        def self?.values: -> ::Array[Trycourier::Models::MessageDetails::status]
+      end
+
+      type reason =
+        :BOUNCED
+        | :FAILED
+        | :FILTERED
+        | :NO_CHANNELS
+        | :NO_PROVIDERS
+        | :OPT_IN_REQUIRED
+        | :PROVIDER_ERROR
+        | :UNPUBLISHED
+        | :UNSUBSCRIBED
+
+      module Reason
+        extend Trycourier::Internal::Type::Enum
+
+        BOUNCED: :BOUNCED
+        FAILED: :FAILED
+        FILTERED: :FILTERED
+        NO_CHANNELS: :NO_CHANNELS
+        NO_PROVIDERS: :NO_PROVIDERS
+        OPT_IN_REQUIRED: :OPT_IN_REQUIRED
+        PROVIDER_ERROR: :PROVIDER_ERROR
+        UNPUBLISHED: :UNPUBLISHED
+        UNSUBSCRIBED: :UNSUBSCRIBED
+
+        def self?.values: -> ::Array[Trycourier::Models::MessageDetails::reason]
+      end
+    end
+  end
+end

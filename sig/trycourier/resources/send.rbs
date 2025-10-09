@@ -1,0 +1,12 @@
+module Trycourier
+  module Resources
+    class Send
+      def message: (
+        message: Trycourier::SendMessageParams::Message,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::SendMessageResponse
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

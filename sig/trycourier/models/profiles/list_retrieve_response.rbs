@@ -1,0 +1,64 @@
+module Trycourier
+  module Models
+    module Profiles
+      type list_retrieve_response =
+        {
+          paging: Trycourier::Paging,
+          results: ::Array[Trycourier::Models::Profiles::ListRetrieveResponse::Result]
+        }
+
+      class ListRetrieveResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor paging: Trycourier::Paging
+
+        attr_accessor results: ::Array[Trycourier::Models::Profiles::ListRetrieveResponse::Result]
+
+        def initialize: (
+          paging: Trycourier::Paging,
+          results: ::Array[Trycourier::Models::Profiles::ListRetrieveResponse::Result]
+        ) -> void
+
+        def to_hash: -> {
+          paging: Trycourier::Paging,
+          results: ::Array[Trycourier::Models::Profiles::ListRetrieveResponse::Result]
+        }
+
+        type result =
+          {
+            id: String,
+            created: String,
+            name: String,
+            updated: String,
+            preferences: Trycourier::RecipientPreferences?
+          }
+
+        class Result < Trycourier::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created: String
+
+          attr_accessor name: String
+
+          attr_accessor updated: String
+
+          attr_accessor preferences: Trycourier::RecipientPreferences?
+
+          def initialize: (
+            id: String,
+            created: String,
+            name: String,
+            updated: String,
+            ?preferences: Trycourier::RecipientPreferences?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created: String,
+            name: String,
+            updated: String,
+            preferences: Trycourier::RecipientPreferences?
+          }
+        end
+      end
+    end
+  end
+end

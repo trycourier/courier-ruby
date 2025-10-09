@@ -1,0 +1,3 @@
+module Trycourier
+  VERSION: String
+end

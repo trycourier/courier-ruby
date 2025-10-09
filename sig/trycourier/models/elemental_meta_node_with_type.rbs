@@ -1,0 +1,32 @@
+module Trycourier
+  module Models
+    type elemental_meta_node_with_type =
+      { type: Trycourier::Models::ElementalMetaNodeWithType::type_ }
+
+    class ElementalMetaNodeWithType < Trycourier::Models::ElementalBaseNode
+      def `type`: -> Trycourier::Models::ElementalMetaNodeWithType::type_?
+
+      def type=: (
+        Trycourier::Models::ElementalMetaNodeWithType::type_ _
+      ) -> Trycourier::Models::ElementalMetaNodeWithType::type_
+
+      def initialize: (
+        ?type: Trycourier::Models::ElementalMetaNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Trycourier::Models::ElementalMetaNodeWithType::type_
+      }
+
+      type type_ = :meta
+
+      module Type
+        extend Trycourier::Internal::Type::Enum
+
+        META: :meta
+
+        def self?.values: -> ::Array[Trycourier::Models::ElementalMetaNodeWithType::type_]
+      end
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module Trycourier
+  module Resources
+    class Notifications
+      class Draft
+        def retrieve_content: (
+          String id,
+          ?request_options: Trycourier::request_opts
+        ) -> Trycourier::NotificationGetContent
+
+        def initialize: (client: Trycourier::Client) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,435 @@
+module Trycourier
+  module Models
+    module Automations
+      type invoke_invoke_ad_hoc_params =
+        {
+          automation: Trycourier::Automations::InvokeInvokeAdHocParams::Automation,
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          profile: ::Hash[Symbol, top]?,
+          recipient: String?,
+          template: String?
+        }
+        & Trycourier::Internal::Type::request_parameters
+
+      class InvokeInvokeAdHocParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        attr_accessor automation: Trycourier::Automations::InvokeInvokeAdHocParams::Automation
+
+        attr_accessor brand: String?
+
+        attr_accessor data: ::Hash[Symbol, top]?
+
+        attr_accessor profile: ::Hash[Symbol, top]?
+
+        attr_accessor recipient: String?
+
+        attr_accessor template: String?
+
+        def initialize: (
+          automation: Trycourier::Automations::InvokeInvokeAdHocParams::Automation,
+          ?brand: String?,
+          ?data: ::Hash[Symbol, top]?,
+          ?profile: ::Hash[Symbol, top]?,
+          ?recipient: String?,
+          ?template: String?,
+          ?request_options: Trycourier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          automation: Trycourier::Automations::InvokeInvokeAdHocParams::Automation,
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          profile: ::Hash[Symbol, top]?,
+          recipient: String?,
+          template: String?,
+          request_options: Trycourier::RequestOptions
+        }
+
+        type automation =
+          {
+            steps: ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::step],
+            cancelation_token: String?
+          }
+
+        class Automation < Trycourier::Internal::Type::BaseModel
+          attr_accessor steps: ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::step]
+
+          attr_accessor cancelation_token: String?
+
+          def initialize: (
+            steps: ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::step],
+            ?cancelation_token: String?
+          ) -> void
+
+          def to_hash: -> {
+            steps: ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::step],
+            cancelation_token: String?
+          }
+
+          type step =
+            Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationDelayStep
+            | Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendStep
+            | Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendListStep
+            | Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep
+            | Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationCancelStep
+            | Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep
+            | Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationInvokeStep
+
+          module Step
+            extend Trycourier::Internal::Type::Union
+
+            type automation_delay_step =
+              {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationDelayStep::action,
+                duration: String?,
+                until_: String?
+              }
+
+            class AutomationDelayStep < Trycourier::Internal::Type::BaseModel
+              attr_accessor action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationDelayStep::action
+
+              attr_accessor duration: String?
+
+              attr_accessor until_: String?
+
+              def initialize: (
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationDelayStep::action,
+                ?duration: String?,
+                ?until_: String?
+              ) -> void
+
+              def to_hash: -> {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationDelayStep::action,
+                duration: String?,
+                until_: String?
+              }
+
+              type action = :delay
+
+              module Action
+                extend Trycourier::Internal::Type::Enum
+
+                DELAY: :delay
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationDelayStep::action]
+              end
+            end
+
+            type automation_send_step =
+              {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendStep::action,
+                brand: String?,
+                data: ::Hash[Symbol, top]?,
+                profile: ::Hash[Symbol, top]?,
+                recipient: String?,
+                template: String?
+              }
+
+            class AutomationSendStep < Trycourier::Internal::Type::BaseModel
+              attr_accessor action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendStep::action
+
+              attr_accessor brand: String?
+
+              attr_accessor data: ::Hash[Symbol, top]?
+
+              attr_accessor profile: ::Hash[Symbol, top]?
+
+              attr_accessor recipient: String?
+
+              attr_accessor template: String?
+
+              def initialize: (
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendStep::action,
+                ?brand: String?,
+                ?data: ::Hash[Symbol, top]?,
+                ?profile: ::Hash[Symbol, top]?,
+                ?recipient: String?,
+                ?template: String?
+              ) -> void
+
+              def to_hash: -> {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendStep::action,
+                brand: String?,
+                data: ::Hash[Symbol, top]?,
+                profile: ::Hash[Symbol, top]?,
+                recipient: String?,
+                template: String?
+              }
+
+              type action = :send
+
+              module Action
+                extend Trycourier::Internal::Type::Enum
+
+                SEND: :send
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendStep::action]
+              end
+            end
+
+            type automation_send_list_step =
+              {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendListStep::action,
+                list: String,
+                brand: String?,
+                data: ::Hash[Symbol, top]?
+              }
+
+            class AutomationSendListStep < Trycourier::Internal::Type::BaseModel
+              attr_accessor action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendListStep::action
+
+              attr_accessor list: String
+
+              attr_accessor brand: String?
+
+              attr_accessor data: ::Hash[Symbol, top]?
+
+              def initialize: (
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendListStep::action,
+                list: String,
+                ?brand: String?,
+                ?data: ::Hash[Symbol, top]?
+              ) -> void
+
+              def to_hash: -> {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendListStep::action,
+                list: String,
+                brand: String?,
+                data: ::Hash[Symbol, top]?
+              }
+
+              type action = :"send-list"
+
+              module Action
+                extend Trycourier::Internal::Type::Enum
+
+                SEND_LIST: :"send-list"
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationSendListStep::action]
+              end
+            end
+
+            type automation_update_profile_step =
+              {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action,
+                profile: ::Hash[Symbol, top],
+                merge: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::merge?,
+                recipient_id: String?
+              }
+
+            class AutomationUpdateProfileStep < Trycourier::Internal::Type::BaseModel
+              attr_accessor action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action
+
+              attr_accessor profile: ::Hash[Symbol, top]
+
+              attr_accessor merge: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::merge?
+
+              attr_accessor recipient_id: String?
+
+              def initialize: (
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action,
+                profile: ::Hash[Symbol, top],
+                ?merge: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::merge?,
+                ?recipient_id: String?
+              ) -> void
+
+              def to_hash: -> {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action,
+                profile: ::Hash[Symbol, top],
+                merge: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::merge?,
+                recipient_id: String?
+              }
+
+              type action = :"update-profile"
+
+              module Action
+                extend Trycourier::Internal::Type::Enum
+
+                UPDATE_PROFILE: :"update-profile"
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::action]
+              end
+
+              type merge = :none | :overwrite | :"soft-merge" | :replace
+
+              module Merge
+                extend Trycourier::Internal::Type::Enum
+
+                NONE: :none
+                OVERWRITE: :overwrite
+                SOFT_MERGE: :"soft-merge"
+                REPLACE: :replace
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationUpdateProfileStep::merge]
+              end
+            end
+
+            type automation_cancel_step =
+              {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationCancelStep::action,
+                cancelation_token: String
+              }
+
+            class AutomationCancelStep < Trycourier::Internal::Type::BaseModel
+              attr_accessor action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationCancelStep::action
+
+              attr_accessor cancelation_token: String
+
+              def initialize: (
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationCancelStep::action,
+                cancelation_token: String
+              ) -> void
+
+              def to_hash: -> {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationCancelStep::action,
+                cancelation_token: String
+              }
+
+              type action = :cancel
+
+              module Action
+                extend Trycourier::Internal::Type::Enum
+
+                CANCEL: :cancel
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationCancelStep::action]
+              end
+            end
+
+            type automation_fetch_data_step =
+              {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action,
+                webhook: Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook,
+                merge_strategy: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::merge_strategy?
+              }
+
+            class AutomationFetchDataStep < Trycourier::Internal::Type::BaseModel
+              attr_accessor action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action
+
+              attr_accessor webhook: Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook
+
+              attr_accessor merge_strategy: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::merge_strategy?
+
+              def initialize: (
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action,
+                webhook: Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook,
+                ?merge_strategy: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::merge_strategy?
+              ) -> void
+
+              def to_hash: -> {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action,
+                webhook: Trycourier::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook,
+                merge_strategy: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::merge_strategy?
+              }
+
+              type action = :"fetch-data"
+
+              module Action
+                extend Trycourier::Internal::Type::Enum
+
+                FETCH_DATA: :"fetch-data"
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::action]
+              end
+
+              type webhook =
+                {
+                  method_: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_,
+                  url: String,
+                  body: String?,
+                  headers: ::Hash[Symbol, String]?
+                }
+
+              class Webhook < Trycourier::Internal::Type::BaseModel
+                attr_accessor method_: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_
+
+                attr_accessor url: String
+
+                attr_accessor body: String?
+
+                attr_accessor headers: ::Hash[Symbol, String]?
+
+                def initialize: (
+                  method_: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_,
+                  url: String,
+                  ?body: String?,
+                  ?headers: ::Hash[Symbol, String]?
+                ) -> void
+
+                def to_hash: -> {
+                  method_: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_,
+                  url: String,
+                  body: String?,
+                  headers: ::Hash[Symbol, String]?
+                }
+
+                type method_ = :GET | :POST | :PUT | :PATCH | :DELETE
+
+                module Method
+                  extend Trycourier::Internal::Type::Enum
+
+                  GET: :GET
+                  POST: :POST
+                  PUT: :PUT
+                  PATCH: :PATCH
+                  DELETE: :DELETE
+
+                  def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::Webhook::method_]
+                end
+              end
+
+              type merge_strategy = :replace | :overwrite | :"soft-merge"
+
+              module MergeStrategy
+                extend Trycourier::Internal::Type::Enum
+
+                REPLACE: :replace
+                OVERWRITE: :overwrite
+                SOFT_MERGE: :"soft-merge"
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationFetchDataStep::merge_strategy]
+              end
+            end
+
+            type automation_invoke_step =
+              {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action,
+                template: String
+              }
+
+            class AutomationInvokeStep < Trycourier::Internal::Type::BaseModel
+              attr_accessor action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action
+
+              attr_accessor template: String
+
+              def initialize: (
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action,
+                template: String
+              ) -> void
+
+              def to_hash: -> {
+                action: Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action,
+                template: String
+              }
+
+              type action = :invoke
+
+              module Action
+                extend Trycourier::Internal::Type::Enum
+
+                INVOKE: :invoke
+
+                def self?.values: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::Step::AutomationInvokeStep::action]
+              end
+            end
+
+            def self?.variants: -> ::Array[Trycourier::Models::Automations::InvokeInvokeAdHocParams::Automation::step]
+          end
+        end
+      end
+    end
+  end
+end

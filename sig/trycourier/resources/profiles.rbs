@@ -1,0 +1,37 @@
+module Trycourier
+  module Resources
+    class Profiles
+      attr_reader lists: Trycourier::Resources::Profiles::Lists
+
+      def create: (
+        String user_id,
+        profile: ::Hash[Symbol, top],
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::ProfileCreateResponse
+
+      def retrieve: (
+        String user_id,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::ProfileRetrieveResponse
+
+      def update: (
+        String user_id,
+        patch: ::Array[Trycourier::ProfileUpdateParams::Patch],
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def delete: (
+        String user_id,
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def replace: (
+        String user_id,
+        profile: ::Hash[Symbol, top],
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::ProfileReplaceResponse
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end
