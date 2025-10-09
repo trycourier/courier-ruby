@@ -33,6 +33,7 @@ module Trycourier
           preferences: Trycourier::SendMessageParams::Message::Preferences?,
           providers: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Provider]?,
           routing: Trycourier::SendMessageParams::Message::Routing?,
+          template: String?,
           timeout: Trycourier::SendMessageParams::Message::Timeout?,
           to: Trycourier::Models::SendMessageParams::Message::to?
         }
@@ -64,6 +65,8 @@ module Trycourier
 
         attr_accessor routing: Trycourier::SendMessageParams::Message::Routing?
 
+        attr_accessor template: String?
+
         attr_accessor timeout: Trycourier::SendMessageParams::Message::Timeout?
 
         attr_accessor to: Trycourier::Models::SendMessageParams::Message::to?
@@ -80,6 +83,7 @@ module Trycourier
           ?preferences: Trycourier::SendMessageParams::Message::Preferences?,
           ?providers: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Provider]?,
           ?routing: Trycourier::SendMessageParams::Message::Routing?,
+          ?template: String?,
           ?timeout: Trycourier::SendMessageParams::Message::Timeout?,
           ?to: Trycourier::Models::SendMessageParams::Message::to?
         ) -> void
@@ -96,6 +100,7 @@ module Trycourier
           preferences: Trycourier::SendMessageParams::Message::Preferences?,
           providers: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Provider]?,
           routing: Trycourier::SendMessageParams::Message::Routing?,
+          template: String?,
           timeout: Trycourier::SendMessageParams::Message::Timeout?,
           to: Trycourier::Models::SendMessageParams::Message::to?
         }

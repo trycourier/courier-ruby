@@ -87,6 +87,11 @@ module Trycourier
         #   @return [Trycourier::Models::SendMessageParams::Message::Routing, nil]
         optional :routing, -> { Trycourier::SendMessageParams::Message::Routing }, nil?: true
 
+        # @!attribute template
+        #
+        #   @return [String, nil]
+        optional :template, String, nil?: true
+
         # @!attribute timeout
         #
         #   @return [Trycourier::Models::SendMessageParams::Message::Timeout, nil]
@@ -98,7 +103,7 @@ module Trycourier
         #   @return [Trycourier::Models::UserRecipient, Array<Trycourier::Models::Recipient>, nil]
         optional :to, union: -> { Trycourier::SendMessageParams::Message::To }, nil?: true
 
-        # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, timeout: nil, to: nil)
+        # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, template: nil, timeout: nil, to: nil)
         #   Some parameter documentations has been truncated, see
         #   {Trycourier::Models::SendMessageParams::Message} for more details.
         #
@@ -126,6 +131,8 @@ module Trycourier
         #   @param providers [Hash{Symbol=>Trycourier::Models::SendMessageParams::Message::Provider}, nil]
         #
         #   @param routing [Trycourier::Models::SendMessageParams::Message::Routing, nil] Customize which channels/providers Courier may deliver the message through.
+        #
+        #   @param template [String, nil]
         #
         #   @param timeout [Trycourier::Models::SendMessageParams::Message::Timeout, nil]
         #
