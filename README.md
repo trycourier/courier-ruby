@@ -31,7 +31,7 @@ courier = Courier::Client.new(
 )
 
 response = courier.send_.message(
-  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+  message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}}
 )
 
 puts(response.requestId)
@@ -44,7 +44,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 ```ruby
 begin
   send_ = courier.send_.message(
-    message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+    message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}}
   )
 rescue Courier::Errors::APIConnectionError => e
   puts("The server could not be reached")
@@ -89,7 +89,7 @@ courier = Courier::Client.new(
 
 # Or, configure per-request:
 courier.send_.message(
-  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
+  message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}},
   request_options: {max_retries: 5}
 )
 ```
@@ -106,7 +106,7 @@ courier = Courier::Client.new(
 
 # Or, configure per-request:
 courier.send_.message(
-  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
+  message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}},
   request_options: {timeout: 5}
 )
 ```
@@ -140,7 +140,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 response =
   courier.send_.message(
-    message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
+    message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}},
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -199,7 +199,7 @@ Or, equivalently:
 ```ruby
 # Hashes work, but are not typesafe:
 courier.send_.message(
-  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+  message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}}
 )
 
 # You can also splat a full Params class:
