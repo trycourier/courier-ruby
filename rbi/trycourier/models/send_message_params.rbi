@@ -186,6 +186,9 @@ module Trycourier
         end
         attr_writer :routing
 
+        sig { returns(T.nilable(String)) }
+        attr_accessor :template
+
         sig do
           returns(T.nilable(Trycourier::SendMessageParams::Message::Timeout))
         end
@@ -251,6 +254,7 @@ module Trycourier
               T.nilable(
                 Trycourier::SendMessageParams::Message::Routing::OrHash
               ),
+            template: T.nilable(String),
             timeout:
               T.nilable(
                 Trycourier::SendMessageParams::Message::Timeout::OrHash
@@ -281,6 +285,7 @@ module Trycourier
           providers: nil,
           # Customize which channels/providers Courier may deliver the message through.
           routing: nil,
+          template: nil,
           timeout: nil,
           # The recipient or a list of recipients of the message
           to: nil
@@ -320,6 +325,7 @@ module Trycourier
                 ),
               routing:
                 T.nilable(Trycourier::SendMessageParams::Message::Routing),
+              template: T.nilable(String),
               timeout:
                 T.nilable(Trycourier::SendMessageParams::Message::Timeout),
               to:
