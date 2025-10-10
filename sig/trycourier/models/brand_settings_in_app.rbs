@@ -1,0 +1,63 @@
+module Trycourier
+  module Models
+    type brand_settings_in_app =
+      {
+        colors: Trycourier::BrandColors,
+        icons: Trycourier::Icons,
+        widget_background: Trycourier::WidgetBackground,
+        border_radius: String?,
+        disable_message_icon: bool?,
+        font_family: String?,
+        placement: Trycourier::Models::BrandSettingsInApp::placement?
+      }
+
+    class BrandSettingsInApp < Trycourier::Internal::Type::BaseModel
+      attr_accessor colors: Trycourier::BrandColors
+
+      attr_accessor icons: Trycourier::Icons
+
+      attr_accessor widget_background: Trycourier::WidgetBackground
+
+      attr_accessor border_radius: String?
+
+      attr_accessor disable_message_icon: bool?
+
+      attr_accessor font_family: String?
+
+      attr_accessor placement: Trycourier::Models::BrandSettingsInApp::placement?
+
+      def initialize: (
+        colors: Trycourier::BrandColors,
+        icons: Trycourier::Icons,
+        widget_background: Trycourier::WidgetBackground,
+        ?border_radius: String?,
+        ?disable_message_icon: bool?,
+        ?font_family: String?,
+        ?placement: Trycourier::Models::BrandSettingsInApp::placement?
+      ) -> void
+
+      def to_hash: -> {
+        colors: Trycourier::BrandColors,
+        icons: Trycourier::Icons,
+        widget_background: Trycourier::WidgetBackground,
+        border_radius: String?,
+        disable_message_icon: bool?,
+        font_family: String?,
+        placement: Trycourier::Models::BrandSettingsInApp::placement?
+      }
+
+      type placement = :top | :bottom | :left | :right
+
+      module Placement
+        extend Trycourier::Internal::Type::Enum
+
+        TOP: :top
+        BOTTOM: :bottom
+        LEFT: :left
+        RIGHT: :right
+
+        def self?.values: -> ::Array[Trycourier::Models::BrandSettingsInApp::placement]
+      end
+    end
+  end
+end

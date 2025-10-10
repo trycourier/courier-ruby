@@ -1,0 +1,27 @@
+module Trycourier
+  module Models
+    module Users
+      type token_add_single_params =
+        { user_id: String } & Trycourier::Internal::Type::request_parameters
+
+      class TokenAddSingleParams < Trycourier::Models::UserToken
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        def user_id: -> String
+
+        def user_id=: (String _) -> String
+
+        def initialize: (
+          user_id: String,
+          ?request_options: Trycourier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          user_id: String,
+          request_options: Trycourier::RequestOptions
+        }
+      end
+    end
+  end
+end

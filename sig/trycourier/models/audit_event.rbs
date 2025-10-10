@@ -1,0 +1,57 @@
+module Trycourier
+  module Models
+    type audit_event =
+      {
+        actor: Trycourier::AuditEvent::Actor,
+        audit_event_id: String,
+        source: String,
+        target: String,
+        timestamp: String,
+        type: String
+      }
+
+    class AuditEvent < Trycourier::Internal::Type::BaseModel
+      attr_accessor actor: Trycourier::AuditEvent::Actor
+
+      attr_accessor audit_event_id: String
+
+      attr_accessor source: String
+
+      attr_accessor target: String
+
+      attr_accessor timestamp: String
+
+      attr_accessor type: String
+
+      def initialize: (
+        actor: Trycourier::AuditEvent::Actor,
+        audit_event_id: String,
+        source: String,
+        target: String,
+        timestamp: String,
+        type: String
+      ) -> void
+
+      def to_hash: -> {
+        actor: Trycourier::AuditEvent::Actor,
+        audit_event_id: String,
+        source: String,
+        target: String,
+        timestamp: String,
+        type: String
+      }
+
+      type actor = { id: String, email: String? }
+
+      class Actor < Trycourier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor email: String?
+
+        def initialize: (id: String, ?email: String?) -> void
+
+        def to_hash: -> { id: String, email: String? }
+      end
+    end
+  end
+end

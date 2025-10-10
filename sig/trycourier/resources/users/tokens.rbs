@@ -1,0 +1,50 @@
+module Trycourier
+  module Resources
+    class Users
+      class Tokens
+        def retrieve: (
+          String token,
+          user_id: String,
+          ?request_options: Trycourier::request_opts
+        ) -> Trycourier::Models::Users::TokenRetrieveResponse
+
+        def update: (
+          String token,
+          user_id: String,
+          patch: ::Array[Trycourier::Users::TokenUpdateParams::Patch],
+          ?request_options: Trycourier::request_opts
+        ) -> nil
+
+        def list: (
+          String user_id,
+          ?request_options: Trycourier::request_opts
+        ) -> Trycourier::Models::Users::token_list_response
+
+        def delete: (
+          String token,
+          user_id: String,
+          ?request_options: Trycourier::request_opts
+        ) -> nil
+
+        def add_multiple: (
+          String user_id,
+          ?request_options: Trycourier::request_opts
+        ) -> nil
+
+        def add_single: (
+          String path_token,
+          user_id: String,
+          provider_key: Trycourier::Models::UserToken::provider_key,
+          ?body_token: String?,
+          ?device: Trycourier::UserToken::Device?,
+          ?expiry_date: Trycourier::Models::UserToken::expiry_date?,
+          ?properties: top,
+          ?tracking: Trycourier::UserToken::Tracking?,
+          ?request_options: Trycourier::request_opts
+        ) -> nil
+
+        def initialize: (client: Trycourier::Client) -> void
+      end
+    end
+  end
+end

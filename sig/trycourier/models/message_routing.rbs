@@ -1,0 +1,36 @@
+module Trycourier
+  module Models
+    type message_routing =
+      {
+        channels: ::Array[Trycourier::Models::message_routing_channel],
+        method_: Trycourier::Models::MessageRouting::method_
+      }
+
+    class MessageRouting < Trycourier::Internal::Type::BaseModel
+      attr_accessor channels: ::Array[Trycourier::Models::message_routing_channel]
+
+      attr_accessor method_: Trycourier::Models::MessageRouting::method_
+
+      def initialize: (
+        channels: ::Array[Trycourier::Models::message_routing_channel],
+        method_: Trycourier::Models::MessageRouting::method_
+      ) -> void
+
+      def to_hash: -> {
+        channels: ::Array[Trycourier::Models::message_routing_channel],
+        method_: Trycourier::Models::MessageRouting::method_
+      }
+
+      type method_ = :all | :single
+
+      module Method
+        extend Trycourier::Internal::Type::Enum
+
+        ALL: :all
+        SINGLE: :single
+
+        def self?.values: -> ::Array[Trycourier::Models::MessageRouting::method_]
+      end
+    end
+  end
+end

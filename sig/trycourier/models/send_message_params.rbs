@@ -1,0 +1,418 @@
+module Trycourier
+  module Models
+    type send_message_params =
+      { message: Trycourier::SendMessageParams::Message }
+      & Trycourier::Internal::Type::request_parameters
+
+    class SendMessageParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor message: Trycourier::SendMessageParams::Message
+
+      def initialize: (
+        message: Trycourier::SendMessageParams::Message,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        message: Trycourier::SendMessageParams::Message,
+        request_options: Trycourier::RequestOptions
+      }
+
+      type message =
+        {
+          brand_id: String?,
+          channels: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Channel]?,
+          content: Trycourier::Models::SendMessageParams::Message::content,
+          context: Trycourier::MessageContext?,
+          data: ::Hash[Symbol, top]?,
+          delay: Trycourier::SendMessageParams::Message::Delay?,
+          expiry: Trycourier::SendMessageParams::Message::Expiry?,
+          metadata: Trycourier::SendMessageParams::Message::Metadata?,
+          preferences: Trycourier::SendMessageParams::Message::Preferences?,
+          providers: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Provider]?,
+          routing: Trycourier::SendMessageParams::Message::Routing?,
+          template: String?,
+          timeout: Trycourier::SendMessageParams::Message::Timeout?,
+          to: Trycourier::Models::SendMessageParams::Message::to?
+        }
+
+      class Message < Trycourier::Internal::Type::BaseModel
+        attr_accessor brand_id: String?
+
+        attr_accessor channels: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Channel]?
+
+        attr_reader content: Trycourier::Models::SendMessageParams::Message::content?
+
+        def content=: (
+          Trycourier::Models::SendMessageParams::Message::content
+        ) -> Trycourier::Models::SendMessageParams::Message::content
+
+        attr_accessor context: Trycourier::MessageContext?
+
+        attr_accessor data: ::Hash[Symbol, top]?
+
+        attr_accessor delay: Trycourier::SendMessageParams::Message::Delay?
+
+        attr_accessor expiry: Trycourier::SendMessageParams::Message::Expiry?
+
+        attr_accessor metadata: Trycourier::SendMessageParams::Message::Metadata?
+
+        attr_accessor preferences: Trycourier::SendMessageParams::Message::Preferences?
+
+        attr_accessor providers: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Provider]?
+
+        attr_accessor routing: Trycourier::SendMessageParams::Message::Routing?
+
+        attr_accessor template: String?
+
+        attr_accessor timeout: Trycourier::SendMessageParams::Message::Timeout?
+
+        attr_accessor to: Trycourier::Models::SendMessageParams::Message::to?
+
+        def initialize: (
+          ?brand_id: String?,
+          ?channels: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Channel]?,
+          ?content: Trycourier::Models::SendMessageParams::Message::content,
+          ?context: Trycourier::MessageContext?,
+          ?data: ::Hash[Symbol, top]?,
+          ?delay: Trycourier::SendMessageParams::Message::Delay?,
+          ?expiry: Trycourier::SendMessageParams::Message::Expiry?,
+          ?metadata: Trycourier::SendMessageParams::Message::Metadata?,
+          ?preferences: Trycourier::SendMessageParams::Message::Preferences?,
+          ?providers: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Provider]?,
+          ?routing: Trycourier::SendMessageParams::Message::Routing?,
+          ?template: String?,
+          ?timeout: Trycourier::SendMessageParams::Message::Timeout?,
+          ?to: Trycourier::Models::SendMessageParams::Message::to?
+        ) -> void
+
+        def to_hash: -> {
+          brand_id: String?,
+          channels: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Channel]?,
+          content: Trycourier::Models::SendMessageParams::Message::content,
+          context: Trycourier::MessageContext?,
+          data: ::Hash[Symbol, top]?,
+          delay: Trycourier::SendMessageParams::Message::Delay?,
+          expiry: Trycourier::SendMessageParams::Message::Expiry?,
+          metadata: Trycourier::SendMessageParams::Message::Metadata?,
+          preferences: Trycourier::SendMessageParams::Message::Preferences?,
+          providers: ::Hash[Symbol, Trycourier::SendMessageParams::Message::Provider]?,
+          routing: Trycourier::SendMessageParams::Message::Routing?,
+          template: String?,
+          timeout: Trycourier::SendMessageParams::Message::Timeout?,
+          to: Trycourier::Models::SendMessageParams::Message::to?
+        }
+
+        type channel =
+          {
+            brand_id: String?,
+            if_: String?,
+            metadata: Trycourier::SendMessageParams::Message::Channel::Metadata?,
+            override: ::Hash[Symbol, top]?,
+            providers: ::Array[String]?,
+            routing_method: Trycourier::Models::SendMessageParams::Message::Channel::routing_method?,
+            timeouts: Trycourier::SendMessageParams::Message::Channel::Timeouts?
+          }
+
+        class Channel < Trycourier::Internal::Type::BaseModel
+          attr_accessor brand_id: String?
+
+          attr_accessor if_: String?
+
+          attr_accessor metadata: Trycourier::SendMessageParams::Message::Channel::Metadata?
+
+          attr_accessor override: ::Hash[Symbol, top]?
+
+          attr_accessor providers: ::Array[String]?
+
+          attr_accessor routing_method: Trycourier::Models::SendMessageParams::Message::Channel::routing_method?
+
+          attr_accessor timeouts: Trycourier::SendMessageParams::Message::Channel::Timeouts?
+
+          def initialize: (
+            ?brand_id: String?,
+            ?if_: String?,
+            ?metadata: Trycourier::SendMessageParams::Message::Channel::Metadata?,
+            ?override: ::Hash[Symbol, top]?,
+            ?providers: ::Array[String]?,
+            ?routing_method: Trycourier::Models::SendMessageParams::Message::Channel::routing_method?,
+            ?timeouts: Trycourier::SendMessageParams::Message::Channel::Timeouts?
+          ) -> void
+
+          def to_hash: -> {
+            brand_id: String?,
+            if_: String?,
+            metadata: Trycourier::SendMessageParams::Message::Channel::Metadata?,
+            override: ::Hash[Symbol, top]?,
+            providers: ::Array[String]?,
+            routing_method: Trycourier::Models::SendMessageParams::Message::Channel::routing_method?,
+            timeouts: Trycourier::SendMessageParams::Message::Channel::Timeouts?
+          }
+
+          type metadata = { utm: Trycourier::Utm? }
+
+          class Metadata < Trycourier::Internal::Type::BaseModel
+            attr_accessor utm: Trycourier::Utm?
+
+            def initialize: (?utm: Trycourier::Utm?) -> void
+
+            def to_hash: -> { utm: Trycourier::Utm? }
+          end
+
+          type routing_method = :all | :single
+
+          module RoutingMethod
+            extend Trycourier::Internal::Type::Enum
+
+            ALL: :all
+            SINGLE: :single
+
+            def self?.values: -> ::Array[Trycourier::Models::SendMessageParams::Message::Channel::routing_method]
+          end
+
+          type timeouts = { channel: Integer?, provider: Integer? }
+
+          class Timeouts < Trycourier::Internal::Type::BaseModel
+            attr_accessor channel: Integer?
+
+            attr_accessor provider: Integer?
+
+            def initialize: (?channel: Integer?, ?provider: Integer?) -> void
+
+            def to_hash: -> { channel: Integer?, provider: Integer? }
+          end
+        end
+
+        type content =
+          Trycourier::ElementalContentSugar | Trycourier::ElementalContent
+
+        module Content
+          extend Trycourier::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Trycourier::Models::SendMessageParams::Message::content]
+        end
+
+        type delay = { duration: Integer?, until_: String? }
+
+        class Delay < Trycourier::Internal::Type::BaseModel
+          attr_accessor duration: Integer?
+
+          attr_accessor until_: String?
+
+          def initialize: (?duration: Integer?, ?until_: String?) -> void
+
+          def to_hash: -> { duration: Integer?, until_: String? }
+        end
+
+        type expiry =
+          {
+            expires_in: Trycourier::Models::SendMessageParams::Message::Expiry::expires_in,
+            expires_at: String?
+          }
+
+        class Expiry < Trycourier::Internal::Type::BaseModel
+          attr_accessor expires_in: Trycourier::Models::SendMessageParams::Message::Expiry::expires_in
+
+          attr_accessor expires_at: String?
+
+          def initialize: (
+            expires_in: Trycourier::Models::SendMessageParams::Message::Expiry::expires_in,
+            ?expires_at: String?
+          ) -> void
+
+          def to_hash: -> {
+            expires_in: Trycourier::Models::SendMessageParams::Message::Expiry::expires_in,
+            expires_at: String?
+          }
+
+          type expires_in = String | Integer
+
+          module ExpiresIn
+            extend Trycourier::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Trycourier::Models::SendMessageParams::Message::Expiry::expires_in]
+          end
+        end
+
+        type metadata =
+          {
+            event: String?,
+            tags: ::Array[String]?,
+            trace_id: String?,
+            utm: Trycourier::Utm?
+          }
+
+        class Metadata < Trycourier::Internal::Type::BaseModel
+          attr_accessor event: String?
+
+          attr_accessor tags: ::Array[String]?
+
+          attr_accessor trace_id: String?
+
+          attr_accessor utm: Trycourier::Utm?
+
+          def initialize: (
+            ?event: String?,
+            ?tags: ::Array[String]?,
+            ?trace_id: String?,
+            ?utm: Trycourier::Utm?
+          ) -> void
+
+          def to_hash: -> {
+            event: String?,
+            tags: ::Array[String]?,
+            trace_id: String?,
+            utm: Trycourier::Utm?
+          }
+        end
+
+        type preferences = { subscription_topic_id: String }
+
+        class Preferences < Trycourier::Internal::Type::BaseModel
+          attr_accessor subscription_topic_id: String
+
+          def initialize: (subscription_topic_id: String) -> void
+
+          def to_hash: -> { subscription_topic_id: String }
+        end
+
+        type provider =
+          {
+            if_: String?,
+            metadata: Trycourier::SendMessageParams::Message::Provider::Metadata?,
+            override: ::Hash[Symbol, top]?,
+            timeouts: Integer?
+          }
+
+        class Provider < Trycourier::Internal::Type::BaseModel
+          attr_accessor if_: String?
+
+          attr_accessor metadata: Trycourier::SendMessageParams::Message::Provider::Metadata?
+
+          attr_accessor override: ::Hash[Symbol, top]?
+
+          attr_accessor timeouts: Integer?
+
+          def initialize: (
+            ?if_: String?,
+            ?metadata: Trycourier::SendMessageParams::Message::Provider::Metadata?,
+            ?override: ::Hash[Symbol, top]?,
+            ?timeouts: Integer?
+          ) -> void
+
+          def to_hash: -> {
+            if_: String?,
+            metadata: Trycourier::SendMessageParams::Message::Provider::Metadata?,
+            override: ::Hash[Symbol, top]?,
+            timeouts: Integer?
+          }
+
+          type metadata = { utm: Trycourier::Utm? }
+
+          class Metadata < Trycourier::Internal::Type::BaseModel
+            attr_accessor utm: Trycourier::Utm?
+
+            def initialize: (?utm: Trycourier::Utm?) -> void
+
+            def to_hash: -> { utm: Trycourier::Utm? }
+          end
+        end
+
+        type routing =
+          {
+            channels: ::Array[Trycourier::Models::message_routing_channel],
+            method_: Trycourier::Models::SendMessageParams::Message::Routing::method_
+          }
+
+        class Routing < Trycourier::Internal::Type::BaseModel
+          attr_accessor channels: ::Array[Trycourier::Models::message_routing_channel]
+
+          attr_accessor method_: Trycourier::Models::SendMessageParams::Message::Routing::method_
+
+          def initialize: (
+            channels: ::Array[Trycourier::Models::message_routing_channel],
+            method_: Trycourier::Models::SendMessageParams::Message::Routing::method_
+          ) -> void
+
+          def to_hash: -> {
+            channels: ::Array[Trycourier::Models::message_routing_channel],
+            method_: Trycourier::Models::SendMessageParams::Message::Routing::method_
+          }
+
+          type method_ = :all | :single
+
+          module Method
+            extend Trycourier::Internal::Type::Enum
+
+            ALL: :all
+            SINGLE: :single
+
+            def self?.values: -> ::Array[Trycourier::Models::SendMessageParams::Message::Routing::method_]
+          end
+        end
+
+        type timeout =
+          {
+            channel: ::Hash[Symbol, Integer]?,
+            criteria: Trycourier::Models::SendMessageParams::Message::Timeout::criteria?,
+            escalation: Integer?,
+            message: Integer?,
+            provider: ::Hash[Symbol, Integer]?
+          }
+
+        class Timeout < Trycourier::Internal::Type::BaseModel
+          attr_accessor channel: ::Hash[Symbol, Integer]?
+
+          attr_accessor criteria: Trycourier::Models::SendMessageParams::Message::Timeout::criteria?
+
+          attr_accessor escalation: Integer?
+
+          attr_accessor message: Integer?
+
+          attr_accessor provider: ::Hash[Symbol, Integer]?
+
+          def initialize: (
+            ?channel: ::Hash[Symbol, Integer]?,
+            ?criteria: Trycourier::Models::SendMessageParams::Message::Timeout::criteria?,
+            ?escalation: Integer?,
+            ?message: Integer?,
+            ?provider: ::Hash[Symbol, Integer]?
+          ) -> void
+
+          def to_hash: -> {
+            channel: ::Hash[Symbol, Integer]?,
+            criteria: Trycourier::Models::SendMessageParams::Message::Timeout::criteria?,
+            escalation: Integer?,
+            message: Integer?,
+            provider: ::Hash[Symbol, Integer]?
+          }
+
+          type criteria = :"no-escalation" | :delivered | :viewed | :engaged
+
+          module Criteria
+            extend Trycourier::Internal::Type::Enum
+
+            NO_ESCALATION: :"no-escalation"
+            DELIVERED: :delivered
+            VIEWED: :viewed
+            ENGAGED: :engaged
+
+            def self?.values: -> ::Array[Trycourier::Models::SendMessageParams::Message::Timeout::criteria]
+          end
+        end
+
+        type to = Trycourier::UserRecipient | ::Array[Trycourier::Recipient]
+
+        module To
+          extend Trycourier::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Trycourier::Models::SendMessageParams::Message::to]
+
+          RecipientArray: Trycourier::Internal::Type::Converter
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    type subscription_list =
+      { id: String, name: String, created: String?, updated: String? }
+
+    class SubscriptionList < Trycourier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor name: String
+
+      attr_accessor created: String?
+
+      attr_accessor updated: String?
+
+      def initialize: (
+        id: String,
+        name: String,
+        ?created: String?,
+        ?updated: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        name: String,
+        created: String?,
+        updated: String?
+      }
+    end
+  end
+end

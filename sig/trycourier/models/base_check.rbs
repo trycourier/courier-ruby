@@ -1,0 +1,52 @@
+module Trycourier
+  module Models
+    type base_check =
+      {
+        id: String,
+        status: Trycourier::Models::BaseCheck::status,
+        type: Trycourier::Models::BaseCheck::type_
+      }
+
+    class BaseCheck < Trycourier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor status: Trycourier::Models::BaseCheck::status
+
+      attr_accessor type: Trycourier::Models::BaseCheck::type_
+
+      def initialize: (
+        id: String,
+        status: Trycourier::Models::BaseCheck::status,
+        type: Trycourier::Models::BaseCheck::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        status: Trycourier::Models::BaseCheck::status,
+        type: Trycourier::Models::BaseCheck::type_
+      }
+
+      type status = :RESOLVED | :FAILED | :PENDING
+
+      module Status
+        extend Trycourier::Internal::Type::Enum
+
+        RESOLVED: :RESOLVED
+        FAILED: :FAILED
+        PENDING: :PENDING
+
+        def self?.values: -> ::Array[Trycourier::Models::BaseCheck::status]
+      end
+
+      type type_ = :custom
+
+      module Type
+        extend Trycourier::Internal::Type::Enum
+
+        CUSTOM: :custom
+
+        def self?.values: -> ::Array[Trycourier::Models::BaseCheck::type_]
+      end
+    end
+  end
+end

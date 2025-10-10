@@ -1,0 +1,54 @@
+module Trycourier
+  module Models
+    module Lists
+      type subscription_list_response =
+        {
+          items: ::Array[Trycourier::Models::Lists::SubscriptionListResponse::Item],
+          paging: Trycourier::Paging
+        }
+
+      class SubscriptionListResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor items: ::Array[Trycourier::Models::Lists::SubscriptionListResponse::Item]
+
+        attr_accessor paging: Trycourier::Paging
+
+        def initialize: (
+          items: ::Array[Trycourier::Models::Lists::SubscriptionListResponse::Item],
+          paging: Trycourier::Paging
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[Trycourier::Models::Lists::SubscriptionListResponse::Item],
+          paging: Trycourier::Paging
+        }
+
+        type item =
+          {
+            recipient_id: String,
+            created: String?,
+            preferences: Trycourier::RecipientPreferences?
+          }
+
+        class Item < Trycourier::Internal::Type::BaseModel
+          attr_accessor recipient_id: String
+
+          attr_accessor created: String?
+
+          attr_accessor preferences: Trycourier::RecipientPreferences?
+
+          def initialize: (
+            recipient_id: String,
+            ?created: String?,
+            ?preferences: Trycourier::RecipientPreferences?
+          ) -> void
+
+          def to_hash: -> {
+            recipient_id: String,
+            created: String?,
+            preferences: Trycourier::RecipientPreferences?
+          }
+        end
+      end
+    end
+  end
+end

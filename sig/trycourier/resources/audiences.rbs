@@ -1,0 +1,36 @@
+module Trycourier
+  module Resources
+    class Audiences
+      def retrieve: (
+        String audience_id,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Audience
+
+      def update: (
+        String audience_id,
+        ?description: String?,
+        ?filter: Trycourier::Filter?,
+        ?name: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::AudienceUpdateResponse
+
+      def list: (
+        ?cursor: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::AudienceListResponse
+
+      def delete: (
+        String audience_id,
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def list_members: (
+        String audience_id,
+        ?cursor: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::AudienceListMembersResponse
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

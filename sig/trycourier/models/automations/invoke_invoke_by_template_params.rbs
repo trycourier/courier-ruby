@@ -1,0 +1,48 @@
+module Trycourier
+  module Models
+    module Automations
+      type invoke_invoke_by_template_params =
+        {
+          recipient: String?,
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          profile: ::Hash[Symbol, top]?,
+          template: String?
+        }
+        & Trycourier::Internal::Type::request_parameters
+
+      class InvokeInvokeByTemplateParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        attr_accessor recipient: String?
+
+        attr_accessor brand: String?
+
+        attr_accessor data: ::Hash[Symbol, top]?
+
+        attr_accessor profile: ::Hash[Symbol, top]?
+
+        attr_accessor template: String?
+
+        def initialize: (
+          recipient: String?,
+          ?brand: String?,
+          ?data: ::Hash[Symbol, top]?,
+          ?profile: ::Hash[Symbol, top]?,
+          ?template: String?,
+          ?request_options: Trycourier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          recipient: String?,
+          brand: String?,
+          data: ::Hash[Symbol, top]?,
+          profile: ::Hash[Symbol, top]?,
+          template: String?,
+          request_options: Trycourier::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Trycourier
+  module Models
+    type elemental_quote_node_with_type =
+      { type: Trycourier::Models::ElementalQuoteNodeWithType::type_ }
+
+    class ElementalQuoteNodeWithType < Trycourier::Models::ElementalBaseNode
+      def `type`: -> Trycourier::Models::ElementalQuoteNodeWithType::type_?
+
+      def type=: (
+        Trycourier::Models::ElementalQuoteNodeWithType::type_ _
+      ) -> Trycourier::Models::ElementalQuoteNodeWithType::type_
+
+      def initialize: (
+        ?type: Trycourier::Models::ElementalQuoteNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Trycourier::Models::ElementalQuoteNodeWithType::type_
+      }
+
+      type type_ = :quote
+
+      module Type
+        extend Trycourier::Internal::Type::Enum
+
+        QUOTE: :quote
+
+        def self?.values: -> ::Array[Trycourier::Models::ElementalQuoteNodeWithType::type_]
+      end
+    end
+  end
+end

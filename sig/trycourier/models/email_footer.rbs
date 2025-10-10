@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type email_footer = { content: String?, inherit_default: bool? }
+
+    class EmailFooter < Trycourier::Internal::Type::BaseModel
+      attr_accessor content: String?
+
+      attr_accessor inherit_default: bool?
+
+      def initialize: (?content: String?, ?inherit_default: bool?) -> void
+
+      def to_hash: -> { content: String?, inherit_default: bool? }
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    module Notifications
+      type check_list_response = { checks: ::Array[Trycourier::Check] }
+
+      class CheckListResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor checks: ::Array[Trycourier::Check]
+
+        def initialize: (checks: ::Array[Trycourier::Check]) -> void
+
+        def to_hash: -> { checks: ::Array[Trycourier::Check] }
+      end
+    end
+  end
+end

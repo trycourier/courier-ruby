@@ -1,0 +1,22 @@
+module Trycourier
+  module Models
+    type put_subscriptions_recipient =
+      { recipient_id: String, preferences: Trycourier::RecipientPreferences? }
+
+    class PutSubscriptionsRecipient < Trycourier::Internal::Type::BaseModel
+      attr_accessor recipient_id: String
+
+      attr_accessor preferences: Trycourier::RecipientPreferences?
+
+      def initialize: (
+        recipient_id: String,
+        ?preferences: Trycourier::RecipientPreferences?
+      ) -> void
+
+      def to_hash: -> {
+        recipient_id: String,
+        preferences: Trycourier::RecipientPreferences?
+      }
+    end
+  end
+end

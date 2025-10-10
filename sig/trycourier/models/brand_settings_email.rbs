@@ -1,0 +1,68 @@
+module Trycourier
+  module Models
+    type brand_settings_email =
+      {
+        footer: Trycourier::EmailFooter?,
+        head: Trycourier::EmailHead?,
+        header: Trycourier::EmailHeader?,
+        template_override: Trycourier::BrandSettingsEmail::TemplateOverride?
+      }
+
+    class BrandSettingsEmail < Trycourier::Internal::Type::BaseModel
+      attr_accessor footer: Trycourier::EmailFooter?
+
+      attr_accessor head: Trycourier::EmailHead?
+
+      attr_accessor header: Trycourier::EmailHeader?
+
+      attr_accessor template_override: Trycourier::BrandSettingsEmail::TemplateOverride?
+
+      def initialize: (
+        ?footer: Trycourier::EmailFooter?,
+        ?head: Trycourier::EmailHead?,
+        ?header: Trycourier::EmailHeader?,
+        ?template_override: Trycourier::BrandSettingsEmail::TemplateOverride?
+      ) -> void
+
+      def to_hash: -> {
+        footer: Trycourier::EmailFooter?,
+        head: Trycourier::EmailHead?,
+        header: Trycourier::EmailHeader?,
+        template_override: Trycourier::BrandSettingsEmail::TemplateOverride?
+      }
+
+      type template_override =
+        {
+          mjml: Trycourier::BrandTemplate,
+          footer_background_color: String?,
+          footer_full_width: bool?
+        }
+
+      class TemplateOverride < Trycourier::Models::BrandTemplate
+        def mjml: -> Trycourier::BrandTemplate
+
+        def mjml=: (Trycourier::BrandTemplate _) -> Trycourier::BrandTemplate
+
+        def footer_background_color: -> String?
+
+        def footer_background_color=: (String? _) -> String?
+
+        def footer_full_width: -> bool?
+
+        def footer_full_width=: (bool? _) -> bool?
+
+        def initialize: (
+          mjml: Trycourier::BrandTemplate,
+          ?footer_background_color: String?,
+          ?footer_full_width: bool?
+        ) -> void
+
+        def to_hash: -> {
+          mjml: Trycourier::BrandTemplate,
+          footer_background_color: String?,
+          footer_full_width: bool?
+        }
+      end
+    end
+  end
+end

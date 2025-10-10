@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    module Lists
+      type subscription_subscribe_user_params =
+        { list_id: String, preferences: Trycourier::RecipientPreferences? }
+        & Trycourier::Internal::Type::request_parameters
+
+      class SubscriptionSubscribeUserParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        attr_accessor list_id: String
+
+        attr_accessor preferences: Trycourier::RecipientPreferences?
+
+        def initialize: (
+          list_id: String,
+          ?preferences: Trycourier::RecipientPreferences?,
+          ?request_options: Trycourier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          list_id: String,
+          preferences: Trycourier::RecipientPreferences?,
+          request_options: Trycourier::RequestOptions
+        }
+      end
+    end
+  end
+end

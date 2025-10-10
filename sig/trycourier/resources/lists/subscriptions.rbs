@@ -1,0 +1,40 @@
+module Trycourier
+  module Resources
+    class Lists
+      class Subscriptions
+        def list: (
+          String list_id,
+          ?cursor: String?,
+          ?request_options: Trycourier::request_opts
+        ) -> Trycourier::Models::Lists::SubscriptionListResponse
+
+        def add: (
+          String list_id,
+          recipients: ::Array[Trycourier::PutSubscriptionsRecipient],
+          ?request_options: Trycourier::request_opts
+        ) -> nil
+
+        def subscribe: (
+          String list_id,
+          recipients: ::Array[Trycourier::PutSubscriptionsRecipient],
+          ?request_options: Trycourier::request_opts
+        ) -> nil
+
+        def subscribe_user: (
+          String user_id,
+          list_id: String,
+          ?preferences: Trycourier::RecipientPreferences?,
+          ?request_options: Trycourier::request_opts
+        ) -> nil
+
+        def unsubscribe_user: (
+          String user_id,
+          list_id: String,
+          ?request_options: Trycourier::request_opts
+        ) -> nil
+
+        def initialize: (client: Trycourier::Client) -> void
+      end
+    end
+  end
+end

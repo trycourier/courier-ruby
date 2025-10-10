@@ -1,0 +1,28 @@
+module Trycourier
+  module Models
+    type translation_update_params =
+      { domain: String, body: String }
+      & Trycourier::Internal::Type::request_parameters
+
+    class TranslationUpdateParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor domain: String
+
+      attr_accessor body: String
+
+      def initialize: (
+        domain: String,
+        body: String,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        domain: String,
+        body: String,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

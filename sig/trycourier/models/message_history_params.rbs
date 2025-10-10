@@ -1,0 +1,23 @@
+module Trycourier
+  module Models
+    type message_history_params =
+      { type: String? } & Trycourier::Internal::Type::request_parameters
+
+    class MessageHistoryParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor type: String?
+
+      def initialize: (
+        ?type: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        type: String?,
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

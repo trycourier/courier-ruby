@@ -1,0 +1,44 @@
+module Trycourier
+  module Models
+    type inbound_bulk_message_user =
+      {
+        data: top,
+        preferences: Trycourier::RecipientPreferences?,
+        profile: top,
+        recipient: String?,
+        to: Trycourier::UserRecipient?
+      }
+
+    class InboundBulkMessageUser < Trycourier::Internal::Type::BaseModel
+      attr_reader data: top?
+
+      def data=: (top) -> top
+
+      attr_accessor preferences: Trycourier::RecipientPreferences?
+
+      attr_reader profile: top?
+
+      def profile=: (top) -> top
+
+      attr_accessor recipient: String?
+
+      attr_accessor to: Trycourier::UserRecipient?
+
+      def initialize: (
+        ?data: top,
+        ?preferences: Trycourier::RecipientPreferences?,
+        ?profile: top,
+        ?recipient: String?,
+        ?to: Trycourier::UserRecipient?
+      ) -> void
+
+      def to_hash: -> {
+        data: top,
+        preferences: Trycourier::RecipientPreferences?,
+        profile: top,
+        recipient: String?,
+        to: Trycourier::UserRecipient?
+      }
+    end
+  end
+end

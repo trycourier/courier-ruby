@@ -1,0 +1,56 @@
+module Trycourier
+  class Client < Trycourier::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader api_key: String
+
+    attr_reader send_: Trycourier::Resources::Send
+
+    attr_reader audiences: Trycourier::Resources::Audiences
+
+    attr_reader audit_events: Trycourier::Resources::AuditEvents
+
+    attr_reader auth: Trycourier::Resources::Auth
+
+    attr_reader automations: Trycourier::Resources::Automations
+
+    attr_reader brands: Trycourier::Resources::Brands
+
+    attr_reader bulk: Trycourier::Resources::Bulk
+
+    attr_reader inbound: Trycourier::Resources::Inbound
+
+    attr_reader lists: Trycourier::Resources::Lists
+
+    attr_reader messages: Trycourier::Resources::Messages
+
+    attr_reader requests: Trycourier::Resources::Requests
+
+    attr_reader notifications: Trycourier::Resources::Notifications
+
+    attr_reader profiles: Trycourier::Resources::Profiles
+
+    attr_reader tenants: Trycourier::Resources::Tenants
+
+    attr_reader translations: Trycourier::Resources::Translations
+
+    attr_reader users: Trycourier::Resources::Users
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?api_key: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

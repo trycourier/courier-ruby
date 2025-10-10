@@ -1,0 +1,29 @@
+module Trycourier
+  module Models
+    module Tenants
+      module DefaultPreferences
+        type item_update_params =
+          { tenant_id: String } & Trycourier::Internal::Type::request_parameters
+
+        class ItemUpdateParams < Trycourier::Models::SubscriptionTopicNew
+          extend Trycourier::Internal::Type::RequestParameters::Converter
+          include Trycourier::Internal::Type::RequestParameters
+
+          def tenant_id: -> String
+
+          def tenant_id=: (String _) -> String
+
+          def initialize: (
+            tenant_id: String,
+            ?request_options: Trycourier::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            tenant_id: String,
+            request_options: Trycourier::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

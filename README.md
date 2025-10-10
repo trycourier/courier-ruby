@@ -1,49 +1,57 @@
 # Courier Ruby API library
 
-The Courier Ruby library provides convenient access to the Courier REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/courier-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Courier Ruby library provides convenient access to the Courier REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/trycourier/courier-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/courier).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/trycourier).
 
 ## Installation
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
+<!-- x-release-please-start-version -->
+
 ```ruby
-gem "courier", "~> 0.0.1"
+gem "trycourier", "~> 3.4.0.pre.alpha0"
 ```
+
+<!-- x-release-please-end -->
 
 ## Usage
 
 ```ruby
 require "bundler/setup"
-require "courier"
+require "trycourier"
 
-courier = Courier::Client.new(
+courier = Trycourier::Client.new(
   api_key: ENV["COURIER_API_KEY"] # This is the default and can be omitted
 )
 
-response = courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+response = courier.send_.message(
+  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+)
 
 puts(response.requestId)
 ```
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Courier::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Trycourier::Errors::APIError` will be thrown:
 
 ```ruby
 begin
-  send_ = courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
-rescue Courier::Errors::APIConnectionError => e
+  send_ = courier.send_.message(
+    message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+  )
+rescue Trycourier::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue Courier::Errors::RateLimitError => e
+rescue Trycourier::Errors::RateLimitError => e
   puts("A 429 status code was received; we should back off a bit.")
-rescue Courier::Errors::APIStatusError => e
+rescue Trycourier::Errors::APIStatusError => e
   puts("Another non-200-range status code was received")
   puts(e.status)
 end
@@ -75,13 +83,13 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-courier = Courier::Client.new(
+courier = Trycourier::Client.new(
   max_retries: 0 # default is 2
 )
 
 # Or, configure per-request:
-courier.send_.send_message(
-  message: {content: {elements: [{}], version: "version"}},
+courier.send_.message(
+  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
   request_options: {max_retries: 5}
 )
 ```
@@ -92,18 +100,18 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-courier = Courier::Client.new(
+courier = Trycourier::Client.new(
   timeout: nil # default is 60
 )
 
 # Or, configure per-request:
-courier.send_.send_message(
-  message: {content: {elements: [{}], version: "version"}},
+courier.send_.message(
+  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
   request_options: {timeout: 5}
 )
 ```
 
-On timeout, `Courier::Errors::APITimeoutError` is raised.
+On timeout, `Trycourier::Errors::APITimeoutError` is raised.
 
 Note that requests that time out are retried by default.
 
@@ -111,7 +119,7 @@ Note that requests that time out are retried by default.
 
 ### BaseModel
 
-All parameter and response objects inherit from `Courier::Internal::Type::BaseModel`, which provides several conveniences, including:
+All parameter and response objects inherit from `Trycourier::Internal::Type::BaseModel`, which provides several conveniences, including:
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
@@ -131,8 +139,8 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 
 ```ruby
 response =
-  courier.send_.send_message(
-    message: {content: {elements: [{}], version: "version"}},
+  courier.send_.message(
+    message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -163,9 +171,9 @@ response = client.request(
 
 ### Concurrency & connection pooling
 
-The `Courier::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+The `Trycourier::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `Courier::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+Each instance of `Trycourier::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
@@ -178,12 +186,11 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-courier.send_.send_message(
-  message: Courier::Message::ContentMessage.new(
-    content: Courier::Content::ElementalContent.new(
-      elements: [Courier::ElementalNode::UnionMember0.new],
-      version: "version"
-    )
+courier.send_.message(
+  message: Trycourier::SendMessageParams::Message.new(
+    to: Trycourier::UserRecipient.new(user_id: "your_user_id"),
+    template: "your_template",
+    data: {foo: "bar"}
   )
 )
 ```
@@ -192,18 +199,19 @@ Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-courier.send_.send_message(message: {content: {elements: [{}], version: "version"}})
+courier.send_.message(
+  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+)
 
 # You can also splat a full Params class:
-params = Courier::SendSendMessageParams.new(
-  message: Courier::Message::ContentMessage.new(
-    content: Courier::Content::ElementalContent.new(
-      elements: [Courier::ElementalNode::UnionMember0.new],
-      version: "version"
-    )
+params = Trycourier::SendMessageParams.new(
+  message: Trycourier::SendMessageParams::Message.new(
+    to: Trycourier::UserRecipient.new(user_id: "your_user_id"),
+    template: "your_template",
+    data: {foo: "bar"}
   )
 )
-courier.send_.send_message(**params)
+courier.send_.message(**params)
 ```
 
 ### Enums
@@ -211,25 +219,25 @@ courier.send_.send_message(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :"read:preferences"
-puts(Courier::AuthIssueTokenParams::Scope::READ_PREFERENCES)
+# :OPTED_OUT
+puts(Trycourier::SubscriptionTopicNew::Status::OPTED_OUT)
 
-# Revealed type: `T.all(Courier::AuthIssueTokenParams::Scope, Symbol)`
-T.reveal_type(Courier::AuthIssueTokenParams::Scope::READ_PREFERENCES)
+# Revealed type: `T.all(Trycourier::SubscriptionTopicNew::Status, Symbol)`
+T.reveal_type(Trycourier::SubscriptionTopicNew::Status::OPTED_OUT)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-courier.auth.issue_token(
-  scope: Courier::AuthIssueTokenParams::Scope::READ_PREFERENCES,
+courier.tenants.default_preferences.items.update(
+  status: Trycourier::SubscriptionTopicNew::Status::OPTED_OUT,
   # …
 )
 
 # Literal values are also permissible:
-courier.auth.issue_token(
-  scope: :"read:preferences",
+courier.tenants.default_preferences.items.update(
+  status: :OPTED_OUT,
   # …
 )
 ```
@@ -246,4 +254,4 @@ Ruby 3.2.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/stainless-sdks/courier-ruby/tree/main/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/trycourier/courier-ruby/tree/main/CONTRIBUTING.md).

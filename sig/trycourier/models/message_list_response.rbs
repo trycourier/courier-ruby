@@ -1,0 +1,25 @@
+module Trycourier
+  module Models
+    type message_list_response =
+      {
+        paging: Trycourier::Paging,
+        results: ::Array[Trycourier::MessageDetails]
+      }
+
+    class MessageListResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor paging: Trycourier::Paging
+
+      attr_accessor results: ::Array[Trycourier::MessageDetails]
+
+      def initialize: (
+        paging: Trycourier::Paging,
+        results: ::Array[Trycourier::MessageDetails]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Trycourier::Paging,
+        results: ::Array[Trycourier::MessageDetails]
+      }
+    end
+  end
+end

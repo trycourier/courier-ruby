@@ -1,0 +1,53 @@
+# Changelog
+
+## 3.4.0-alpha0 (2025-10-10)
+
+Full Changelog: [v0.0.1...v3.4.0-alpha0](https://github.com/trycourier/courier-ruby/compare/v0.0.1...v3.4.0-alpha0)
+
+### Features
+
+* **api:** manual updates ([051c3c4](https://github.com/trycourier/courier-ruby/commit/051c3c4722fa39896d01d0841f4989c91aa75c45))
+* **api:** manual updates ([ea5dfb3](https://github.com/trycourier/courier-ruby/commit/ea5dfb319688c23cc97da6a6ad80d4837bae04dd))
+* **api:** manual updates ([589a36f](https://github.com/trycourier/courier-ruby/commit/589a36f974d97fa73ecdf9a2a9b335492b15b203))
+* **api:** manual updates ([373bfde](https://github.com/trycourier/courier-ruby/commit/373bfde900f61ab7d70dcf775bd6aba16559d4df))
+* **api:** manual updates ([7c80f38](https://github.com/trycourier/courier-ruby/commit/7c80f3886fee9dc87253362a3eb51fe73cb44827))
+* **api:** manual updates ([f6681a9](https://github.com/trycourier/courier-ruby/commit/f6681a932e946bce954e2636f711694339d80471))
+* **api:** manual updates ([6a77929](https://github.com/trycourier/courier-ruby/commit/6a779292f8e2479621698d89a344466d95c97eab))
+* **api:** manual updates ([ab9922d](https://github.com/trycourier/courier-ruby/commit/ab9922d111846aebe424749ae0cb9668332e3e62))
+* **api:** manual updates ([4de89e5](https://github.com/trycourier/courier-ruby/commit/4de89e5fdad38358f42a1fec4835eda07247b57e))
+* **api:** manual updates ([babe4b8](https://github.com/trycourier/courier-ruby/commit/babe4b874fe7a4b5f8b306a5ebce7be0baf877e3))
+* **api:** manual updates ([91ad238](https://github.com/trycourier/courier-ruby/commit/91ad2389821d60def82ce67ee5f42f3a7f803f1c))
+* **api:** manual updates ([f80182f](https://github.com/trycourier/courier-ruby/commit/f80182f49b5abc44e758579d1ab9b475e1f41c95))
+* **api:** manual updates ([0d85b82](https://github.com/trycourier/courier-ruby/commit/0d85b8277f8b92d4f387298a7783cbcbf3c585a2))
+* **api:** manual updates ([8d639b8](https://github.com/trycourier/courier-ruby/commit/8d639b8acc654df6242511b035f04d1995298c0b))
+* **api:** manual updates ([2af24a7](https://github.com/trycourier/courier-ruby/commit/2af24a7f27da9496ebfb49a35549483bf8560e43))
+* **api:** manual updates ([221c2cd](https://github.com/trycourier/courier-ruby/commit/221c2cdeba247e19415c225a58869b0a742e82a1))
+* **api:** manual updates ([26c6626](https://github.com/trycourier/courier-ruby/commit/26c66263d5fcd8b10199bffcd4eda41a2b7595ed))
+* **api:** manual updates ([97e07ab](https://github.com/trycourier/courier-ruby/commit/97e07ab0a708eaaaf8e413128c09cb634082c141))
+* **api:** manual updates ([e8ed384](https://github.com/trycourier/courier-ruby/commit/e8ed384bcf0bc996e047b9489a13e0f3c5d12fb7))
+* **api:** manual updates ([e08aa78](https://github.com/trycourier/courier-ruby/commit/e08aa7845992968fcadf24969611c421dd03d81a))
+* **api:** manual updates ([06e1d8b](https://github.com/trycourier/courier-ruby/commit/06e1d8b7a7cf573fd5819c17b5d6201a1e408360))
+* **api:** manual updates ([8601f07](https://github.com/trycourier/courier-ruby/commit/8601f075e4e693560ab29f4690fea6128425652e))
+* **api:** manual updates ([d4899ce](https://github.com/trycourier/courier-ruby/commit/d4899cecd40d44295accc88b24b10ae9fac9d14d))
+* **api:** manual updates ([00a8012](https://github.com/trycourier/courier-ruby/commit/00a8012e858163fb45d62e44f657af3bda6550ed))
+* **api:** manual updates ([2977a88](https://github.com/trycourier/courier-ruby/commit/2977a881d647d04429db5135adc020cf50e13c27))
+* **api:** manual updates ([8a878a0](https://github.com/trycourier/courier-ruby/commit/8a878a0e7ea0b8cce0cd54e37f221ddb5ec204d4))
+* **api:** manual updates ([d5cc23f](https://github.com/trycourier/courier-ruby/commit/d5cc23f99b5306e48ef130e144bceb1aa57a7490))
+* **api:** manual updates ([1dd87c0](https://github.com/trycourier/courier-ruby/commit/1dd87c099c7df921bc93c36005d8cde767a8687e))
+* **api:** manual updates ([9b2b74a](https://github.com/trycourier/courier-ruby/commit/9b2b74a6c40c82333762e187f002bc021942f064))
+* **api:** manual updates ([d81fc71](https://github.com/trycourier/courier-ruby/commit/d81fc71f013ad0fb7701b73ca7ed4a9843c812f4))
+* **api:** manual updates ([f358b3d](https://github.com/trycourier/courier-ruby/commit/f358b3db2d81dcfd0906f0f66511588766292c12))
+* Examples and ref polish ([3987809](https://github.com/trycourier/courier-ruby/commit/3987809dc0da164ca687fc8d6b2870842c0836f4))
+* Model sync ([7d005d6](https://github.com/trycourier/courier-ruby/commit/7d005d69c8082e43e28bf04c43455d193c110543))
+* Polish and Kick of Java Kit Gen ([2e136c1](https://github.com/trycourier/courier-ruby/commit/2e136c1bd2e9d407d8289a39f5246f7d4c1c9174))
+* Template Id ([24598ca](https://github.com/trycourier/courier-ruby/commit/24598cabff382ebc414e8e2f1c815709ebdd7caf))
+* Test Github Action ([5b988c5](https://github.com/trycourier/courier-ruby/commit/5b988c5fb80b9684ae6989361952077e90df366b))
+* Test stainless open action ([7d264c0](https://github.com/trycourier/courier-ruby/commit/7d264c0652b42286d5b3e9666c00f716e030c451))
+
+
+### Chores
+
+* configure new SDK language ([29f56f6](https://github.com/trycourier/courier-ruby/commit/29f56f69dd0a1ce4e4e894ae1432bda1da07fea1))
+* ignore linter error for tests having large collections ([59d9b7f](https://github.com/trycourier/courier-ruby/commit/59d9b7f9987c061850254e99c3713b2abb39662f))
+* update SDK settings ([0f6c8ef](https://github.com/trycourier/courier-ruby/commit/0f6c8ef4fb11a6127a57e16bbd07a547ec458cef))
+* update SDK settings ([021c76b](https://github.com/trycourier/courier-ruby/commit/021c76ba9fdedfe90ce34c90889008dff19f9df0))

@@ -1,0 +1,9 @@
+module Trycourier
+  module Internal
+    extend Trycourier::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Trycourier::FilePart
+
+    OMIT: Object
+  end
+end

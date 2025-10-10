@@ -1,0 +1,47 @@
+module Trycourier
+  module Models
+    type preference =
+      {
+        status: Trycourier::Models::preference_status,
+        channel_preferences: ::Array[Trycourier::ChannelPreference]?,
+        rules: ::Array[Trycourier::Rule]?,
+        source: Trycourier::Models::Preference::source?
+      }
+
+    class Preference < Trycourier::Internal::Type::BaseModel
+      attr_accessor status: Trycourier::Models::preference_status
+
+      attr_accessor channel_preferences: ::Array[Trycourier::ChannelPreference]?
+
+      attr_accessor rules: ::Array[Trycourier::Rule]?
+
+      attr_accessor source: Trycourier::Models::Preference::source?
+
+      def initialize: (
+        status: Trycourier::Models::preference_status,
+        ?channel_preferences: ::Array[Trycourier::ChannelPreference]?,
+        ?rules: ::Array[Trycourier::Rule]?,
+        ?source: Trycourier::Models::Preference::source?
+      ) -> void
+
+      def to_hash: -> {
+        status: Trycourier::Models::preference_status,
+        channel_preferences: ::Array[Trycourier::ChannelPreference]?,
+        rules: ::Array[Trycourier::Rule]?,
+        source: Trycourier::Models::Preference::source?
+      }
+
+      type source = :subscription | :list | :recipient
+
+      module Source
+        extend Trycourier::Internal::Type::Enum
+
+        SUBSCRIPTION: :subscription
+        LIST: :list
+        RECIPIENT: :recipient
+
+        def self?.values: -> ::Array[Trycourier::Models::Preference::source]
+      end
+    end
+  end
+end

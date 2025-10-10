@@ -1,0 +1,20 @@
+module Trycourier
+  module Resources
+    class Translations
+      def retrieve: (
+        String locale,
+        domain: String,
+        ?request_options: Trycourier::request_opts
+      ) -> String
+
+      def update: (
+        String locale,
+        domain: String,
+        body: String,
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module Trycourier
+  module Models
+    type default_preferences =
+      { items: ::Array[Trycourier::DefaultPreferences::Item]? }
+
+    class DefaultPreferences < Trycourier::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Trycourier::DefaultPreferences::Item]?
+
+      def initialize: (
+        ?items: ::Array[Trycourier::DefaultPreferences::Item]?
+      ) -> void
+
+      def to_hash: -> { items: ::Array[Trycourier::DefaultPreferences::Item]? }
+
+      type item = { id: String }
+
+      class Item < Trycourier::Models::SubscriptionTopicNew
+        def id: -> String
+
+        def id=: (String _) -> String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

@@ -1,0 +1,55 @@
+# typed: strong
+
+module Trycourier
+  module Models
+    module Lists
+      class SubscriptionSubscribeUserParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        OrHash =
+          T.type_alias do
+            T.any(
+              Trycourier::Lists::SubscriptionSubscribeUserParams,
+              Trycourier::Internal::AnyHash
+            )
+          end
+
+        sig { returns(String) }
+        attr_accessor :list_id
+
+        sig { returns(T.nilable(Trycourier::RecipientPreferences)) }
+        attr_reader :preferences
+
+        sig do
+          params(
+            preferences: T.nilable(Trycourier::RecipientPreferences::OrHash)
+          ).void
+        end
+        attr_writer :preferences
+
+        sig do
+          params(
+            list_id: String,
+            preferences: T.nilable(Trycourier::RecipientPreferences::OrHash),
+            request_options: Trycourier::RequestOptions::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(list_id:, preferences: nil, request_options: {})
+        end
+
+        sig do
+          override.returns(
+            {
+              list_id: String,
+              preferences: T.nilable(Trycourier::RecipientPreferences),
+              request_options: Trycourier::RequestOptions
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+    end
+  end
+end

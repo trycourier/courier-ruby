@@ -1,0 +1,28 @@
+module Trycourier
+  module Models
+    type profile_create_response =
+      { status: Trycourier::Models::ProfileCreateResponse::status }
+
+    class ProfileCreateResponse < Trycourier::Internal::Type::BaseModel
+      attr_accessor status: Trycourier::Models::ProfileCreateResponse::status
+
+      def initialize: (
+        status: Trycourier::Models::ProfileCreateResponse::status
+      ) -> void
+
+      def to_hash: -> {
+        status: Trycourier::Models::ProfileCreateResponse::status
+      }
+
+      type status = :SUCCESS
+
+      module Status
+        extend Trycourier::Internal::Type::Enum
+
+        SUCCESS: :SUCCESS
+
+        def self?.values: -> ::Array[Trycourier::Models::ProfileCreateResponse::status]
+      end
+    end
+  end
+end

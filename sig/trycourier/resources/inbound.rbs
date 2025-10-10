@@ -1,0 +1,16 @@
+module Trycourier
+  module Resources
+    class Inbound
+      def track_event: (
+        event: String,
+        message_id: String,
+        properties: ::Hash[Symbol, top],
+        type: Trycourier::Models::InboundTrackEventParams::type_,
+        ?user_id: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::InboundTrackEventResponse
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

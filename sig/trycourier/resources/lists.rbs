@@ -1,0 +1,37 @@
+module Trycourier
+  module Resources
+    class Lists
+      attr_reader subscriptions: Trycourier::Resources::Lists::Subscriptions
+
+      def retrieve: (
+        String list_id,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::SubscriptionList
+
+      def update: (
+        String list_id,
+        name: String,
+        ?preferences: Trycourier::RecipientPreferences?,
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def list: (
+        ?cursor: String?,
+        ?pattern: String?,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::ListListResponse
+
+      def delete: (
+        String list_id,
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def restore: (
+        String list_id,
+        ?request_options: Trycourier::request_opts
+      ) -> nil
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

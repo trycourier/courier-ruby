@@ -1,0 +1,24 @@
+module Trycourier
+  module Models
+    type profile_replace_params =
+      { profile: ::Hash[Symbol, top] }
+      & Trycourier::Internal::Type::request_parameters
+
+    class ProfileReplaceParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_accessor profile: ::Hash[Symbol, top]
+
+      def initialize: (
+        profile: ::Hash[Symbol, top],
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        profile: ::Hash[Symbol, top],
+        request_options: Trycourier::RequestOptions
+      }
+    end
+  end
+end

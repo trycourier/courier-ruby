@@ -1,0 +1,9 @@
+module Trycourier
+  module Models
+    module Users
+      type token_list_response = ::Array[Trycourier::UserToken]
+
+      TokenListResponse: Trycourier::Internal::Type::Converter
+    end
+  end
+end

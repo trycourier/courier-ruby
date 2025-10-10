@@ -1,0 +1,13 @@
+module Trycourier
+  module Resources
+    class Auth
+      def issue_token: (
+        expires_in: String,
+        scope: String,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::Models::AuthIssueTokenResponse
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

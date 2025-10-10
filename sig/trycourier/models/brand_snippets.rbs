@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type brand_snippets = { items: ::Array[Trycourier::BrandSnippet]? }
+
+    class BrandSnippets < Trycourier::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Trycourier::BrandSnippet]?
+
+      def initialize: (?items: ::Array[Trycourier::BrandSnippet]?) -> void
+
+      def to_hash: -> { items: ::Array[Trycourier::BrandSnippet]? }
+    end
+  end
+end

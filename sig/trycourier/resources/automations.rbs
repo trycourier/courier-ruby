@@ -1,0 +1,9 @@
+module Trycourier
+  module Resources
+    class Automations
+      attr_reader invoke: Trycourier::Resources::Automations::Invoke
+
+      def initialize: (client: Trycourier::Client) -> void
+    end
+  end
+end

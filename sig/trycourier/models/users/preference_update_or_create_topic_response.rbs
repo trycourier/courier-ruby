@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    module Users
+      type preference_update_or_create_topic_response = { message: String }
+
+      class PreferenceUpdateOrCreateTopicResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor message: String
+
+        def initialize: (message: String) -> void
+
+        def to_hash: -> { message: String }
+      end
+    end
+  end
+end

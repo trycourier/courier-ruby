@@ -1,0 +1,32 @@
+module Trycourier
+  module Models
+    type elemental_action_node_with_type =
+      { type: Trycourier::Models::ElementalActionNodeWithType::type_ }
+
+    class ElementalActionNodeWithType < Trycourier::Models::ElementalBaseNode
+      def `type`: -> Trycourier::Models::ElementalActionNodeWithType::type_?
+
+      def type=: (
+        Trycourier::Models::ElementalActionNodeWithType::type_ _
+      ) -> Trycourier::Models::ElementalActionNodeWithType::type_
+
+      def initialize: (
+        ?type: Trycourier::Models::ElementalActionNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Trycourier::Models::ElementalActionNodeWithType::type_
+      }
+
+      type type_ = :action
+
+      module Type
+        extend Trycourier::Internal::Type::Enum
+
+        ACTION: :action
+
+        def self?.values: -> ::Array[Trycourier::Models::ElementalActionNodeWithType::type_]
+      end
+    end
+  end
+end

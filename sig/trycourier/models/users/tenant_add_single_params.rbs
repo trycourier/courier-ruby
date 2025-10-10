@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    module Users
+      type tenant_add_single_params =
+        { user_id: String, profile: ::Hash[Symbol, top]? }
+        & Trycourier::Internal::Type::request_parameters
+
+      class TenantAddSingleParams < Trycourier::Internal::Type::BaseModel
+        extend Trycourier::Internal::Type::RequestParameters::Converter
+        include Trycourier::Internal::Type::RequestParameters
+
+        attr_accessor user_id: String
+
+        attr_accessor profile: ::Hash[Symbol, top]?
+
+        def initialize: (
+          user_id: String,
+          ?profile: ::Hash[Symbol, top]?,
+          ?request_options: Trycourier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          user_id: String,
+          profile: ::Hash[Symbol, top]?,
+          request_options: Trycourier::RequestOptions
+        }
+      end
+    end
+  end
+end

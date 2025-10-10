@@ -1,0 +1,16 @@
+module Trycourier
+  module Models
+    type channel_preference =
+      { channel: Trycourier::Models::channel_classification }
+
+    class ChannelPreference < Trycourier::Internal::Type::BaseModel
+      attr_accessor channel: Trycourier::Models::channel_classification
+
+      def initialize: (
+        channel: Trycourier::Models::channel_classification
+      ) -> void
+
+      def to_hash: -> { channel: Trycourier::Models::channel_classification }
+    end
+  end
+end
