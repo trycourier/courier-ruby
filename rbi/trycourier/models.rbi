@@ -194,6 +194,8 @@ module Trycourier
 
   SendMessageParams = Trycourier::Models::SendMessageParams
 
+  SubscriptionList = Trycourier::Models::SubscriptionList
+
   SubscriptionTopicNew = Trycourier::Models::SubscriptionTopicNew
 
   Tenant = Trycourier::Models::Tenant
@@ -219,8 +221,6 @@ module Trycourier
   TranslationRetrieveParams = Trycourier::Models::TranslationRetrieveParams
 
   TranslationUpdateParams = Trycourier::Models::TranslationUpdateParams
-
-  UserList = Trycourier::Models::UserList
 
   UserRecipient = Trycourier::Models::UserRecipient
 

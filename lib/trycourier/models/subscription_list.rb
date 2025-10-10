@@ -2,7 +2,7 @@
 
 module Trycourier
   module Models
-    class UserList < Trycourier::Internal::Type::BaseModel
+    class SubscriptionList < Trycourier::Internal::Type::BaseModel
       # @!attribute id
       #
       #   @return [String]

@@ -14,14 +14,14 @@ module Trycourier
       #
       # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Trycourier::Models::UserList]
+      # @return [Trycourier::Models::SubscriptionList]
       #
       # @see Trycourier::Models::ListRetrieveParams
       def retrieve(list_id, params = {})
         @client.request(
           method: :get,
           path: ["lists/%1$s", list_id],
-          model: Trycourier::UserList,
+          model: Trycourier::SubscriptionList,
           options: params[:request_options]
         )
       end

@@ -1,9 +1,9 @@
 module Trycourier
   module Models
-    type user_list =
+    type subscription_list =
       { id: String, name: String, created: String?, updated: String? }
 
-    class UserList < Trycourier::Internal::Type::BaseModel
+    class SubscriptionList < Trycourier::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor name: String

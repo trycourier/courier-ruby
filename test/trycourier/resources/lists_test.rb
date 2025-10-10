@@ -9,7 +9,7 @@ class Trycourier::Test::Resources::ListsTest < Trycourier::Test::ResourceTest
     response = @courier.lists.retrieve("list_id")
 
     assert_pattern do
-      response => Trycourier::UserList
+      response => Trycourier::SubscriptionList
     end
 
     assert_pattern do
@@ -43,7 +43,7 @@ class Trycourier::Test::Resources::ListsTest < Trycourier::Test::ResourceTest
 
     assert_pattern do
       response => {
-        items: ^(Trycourier::Internal::Type::ArrayOf[Trycourier::UserList]),
+        items: ^(Trycourier::Internal::Type::ArrayOf[Trycourier::SubscriptionList]),
         paging: Trycourier::Paging
       }
     end

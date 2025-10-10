@@ -24,6 +24,7 @@ module Trycourier
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :data
 
+      # The user's email address.
       sig { returns(T.nilable(String)) }
       attr_accessor :email
 
@@ -31,6 +32,7 @@ module Trycourier
       sig { returns(T.nilable(String)) }
       attr_accessor :locale
 
+      # The user's phone number.
       sig { returns(T.nilable(String)) }
       attr_accessor :phone_number
 
@@ -44,10 +46,12 @@ module Trycourier
       end
       attr_writer :preferences
 
-      # Tenant id. Will load brand, default preferences and base context data.
+      # The id of the tenant the user is associated with.
       sig { returns(T.nilable(String)) }
       attr_accessor :tenant_id
 
+      # The user's unique identifier. Typically, this will match the user id of a user
+      # in your system.
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -70,13 +74,17 @@ module Trycourier
         # Context such as tenant_id to send the notification with.
         context: nil,
         data: nil,
+        # The user's email address.
         email: nil,
         # The user's preferred ISO 639-1 language code.
         locale: nil,
+        # The user's phone number.
         phone_number: nil,
         preferences: nil,
-        # Tenant id. Will load brand, default preferences and base context data.
+        # The id of the tenant the user is associated with.
         tenant_id: nil,
+        # The user's unique identifier. Typically, this will match the user id of a user
+        # in your system.
         user_id: nil
       )
       end

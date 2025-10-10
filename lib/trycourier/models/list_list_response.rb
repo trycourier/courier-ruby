@@ -6,8 +6,8 @@ module Trycourier
     class ListListResponse < Trycourier::Internal::Type::BaseModel
       # @!attribute items
       #
-      #   @return [Array<Trycourier::Models::UserList>]
-      required :items, -> { Trycourier::Internal::Type::ArrayOf[Trycourier::UserList] }
+      #   @return [Array<Trycourier::Models::SubscriptionList>]
+      required :items, -> { Trycourier::Internal::Type::ArrayOf[Trycourier::SubscriptionList] }
 
       # @!attribute paging
       #
@@ -15,7 +15,7 @@ module Trycourier
       required :paging, -> { Trycourier::Paging }
 
       # @!method initialize(items:, paging:)
-      #   @param items [Array<Trycourier::Models::UserList>]
+      #   @param items [Array<Trycourier::Models::SubscriptionList>]
       #   @param paging [Trycourier::Models::Paging]
     end
   end

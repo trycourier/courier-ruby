@@ -2,10 +2,10 @@
 
 module Trycourier
   module Models
-    class UserList < Trycourier::Internal::Type::BaseModel
+    class SubscriptionList < Trycourier::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Trycourier::UserList, Trycourier::Internal::AnyHash)
+          T.any(Trycourier::SubscriptionList, Trycourier::Internal::AnyHash)
         end
 
       sig { returns(String) }
