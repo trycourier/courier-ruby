@@ -11,7 +11,7 @@ module Trycourier
         params(
           list_id: String,
           request_options: Trycourier::RequestOptions::OrHash
-        ).returns(Trycourier::UserList)
+        ).returns(Trycourier::SubscriptionList)
       end
       def retrieve(
         # A unique identifier representing the list you wish to retrieve.

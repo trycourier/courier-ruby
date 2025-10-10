@@ -21,6 +21,7 @@ module Trycourier
       optional :data, Trycourier::Internal::Type::HashOf[Trycourier::Internal::Type::Unknown], nil?: true
 
       # @!attribute email
+      #   The user's email address.
       #
       #   @return [String, nil]
       optional :email, String, nil?: true
@@ -32,6 +33,7 @@ module Trycourier
       optional :locale, String, nil?: true
 
       # @!attribute phone_number
+      #   The user's phone number.
       #
       #   @return [String, nil]
       optional :phone_number, String, nil?: true
@@ -42,34 +44,39 @@ module Trycourier
       optional :preferences, -> { Trycourier::Recipient::Preferences }, nil?: true
 
       # @!attribute tenant_id
-      #   Tenant id. Will load brand, default preferences and base context data.
+      #   The id of the tenant the user is associated with.
       #
       #   @return [String, nil]
       optional :tenant_id, String, nil?: true
 
       # @!attribute user_id
+      #   The user's unique identifier. Typically, this will match the user id of a user
+      #   in your system.
       #
       #   @return [String, nil]
       optional :user_id, String, nil?: true
 
       # @!method initialize(account_id: nil, context: nil, data: nil, email: nil, locale: nil, phone_number: nil, preferences: nil, tenant_id: nil, user_id: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Trycourier::Models::Recipient} for more details.
+      #
       #   @param account_id [String, nil] Use `tenant_id` instead.
       #
       #   @param context [Trycourier::Models::MessageContext, nil] Context such as tenant_id to send the notification with.
       #
       #   @param data [Hash{Symbol=>Object}, nil]
       #
-      #   @param email [String, nil]
+      #   @param email [String, nil] The user's email address.
       #
       #   @param locale [String, nil] The user's preferred ISO 639-1 language code.
       #
-      #   @param phone_number [String, nil]
+      #   @param phone_number [String, nil] The user's phone number.
       #
       #   @param preferences [Trycourier::Models::Recipient::Preferences, nil]
       #
-      #   @param tenant_id [String, nil] Tenant id. Will load brand, default preferences and base context data.
+      #   @param tenant_id [String, nil] The id of the tenant the user is associated with.
       #
-      #   @param user_id [String, nil]
+      #   @param user_id [String, nil] The user's unique identifier. Typically, this will match the user id of a user i
 
       # @see Trycourier::Models::Recipient#preferences
       class Preferences < Trycourier::Internal::Type::BaseModel
