@@ -6,16 +6,16 @@ module Trycourier
       # @!attribute primary
       #
       #   @return [String, nil]
-      optional :primary, String, nil?: true
+      optional :primary, String
 
       # @!attribute secondary
       #
       #   @return [String, nil]
-      optional :secondary, String, nil?: true
+      optional :secondary, String
 
       # @!method initialize(primary: nil, secondary: nil)
-      #   @param primary [String, nil]
-      #   @param secondary [String, nil]
+      #   @param primary [String]
+      #   @param secondary [String]
     end
   end
 end
