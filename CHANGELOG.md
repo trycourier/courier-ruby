@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.0-alpha2 (2025-10-14)
+
+Full Changelog: [v3.4.0-alpha1...v3.4.0-alpha2](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha1...v3.4.0-alpha2)
+
+### Features
+
+* Kick of merge attempt ([9768acd](https://github.com/trycourier/courier-ruby/commit/9768acdb3174098916886962bdc15775092794cb))
+
 ## 3.4.0-alpha1 (2025-10-10)
 
 Full Changelog: [v3.4.0-alpha0...v3.4.0-alpha1](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha0...v3.4.0-alpha1)
