@@ -3,8 +3,8 @@
 module Trycourier
   module Models
     module Tenants
-      module DefaultPreferences
-        # @see Trycourier::Resources::Tenants::DefaultPreferences::Items#delete
+      module TenantDefaultPreferences
+        # @see Trycourier::Resources::Tenants::TenantDefaultPreferences::Items#delete
         class ItemDeleteParams < Trycourier::Internal::Type::BaseModel
           extend Trycourier::Internal::Type::RequestParameters::Converter
           include Trycourier::Internal::Type::RequestParameters

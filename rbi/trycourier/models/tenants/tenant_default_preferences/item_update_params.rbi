@@ -3,15 +3,15 @@
 module Trycourier
   module Models
     module Tenants
-      module DefaultPreferences
-        class ItemDeleteParams < Trycourier::Internal::Type::BaseModel
+      module TenantDefaultPreferences
+        class ItemUpdateParams < Trycourier::Models::SubscriptionTopicNew
           extend Trycourier::Internal::Type::RequestParameters::Converter
           include Trycourier::Internal::Type::RequestParameters
 
           OrHash =
             T.type_alias do
               T.any(
-                Trycourier::Tenants::DefaultPreferences::ItemDeleteParams,
+                Trycourier::Tenants::TenantDefaultPreferences::ItemUpdateParams,
                 Trycourier::Internal::AnyHash
               )
             end

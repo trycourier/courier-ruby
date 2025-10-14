@@ -6,9 +6,6 @@ module Trycourier
       module Automations
       end
 
-      module DefaultPreferences
-      end
-
       module Lists
       end
 
@@ -18,8 +15,11 @@ module Trycourier
       module Profiles
       end
 
+      module TenantDefaultPreferences
+      end
+
       module Tenants
-        module DefaultPreferences
+        module TenantDefaultPreferences
         end
       end
 
