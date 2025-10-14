@@ -1,7 +1,7 @@
 module Trycourier
   module Resources
     class Tenants
-      attr_reader default_preferences: Trycourier::Resources::Tenants::DefaultPreferences
+      attr_reader tenant_default_preferences: Trycourier::Resources::Tenants::TenantDefaultPreferences
 
       attr_reader templates: Trycourier::Resources::Tenants::Templates
 

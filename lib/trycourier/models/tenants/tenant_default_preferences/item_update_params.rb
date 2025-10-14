@@ -3,8 +3,8 @@
 module Trycourier
   module Models
     module Tenants
-      module DefaultPreferences
-        # @see Trycourier::Resources::Tenants::DefaultPreferences::Items#update
+      module TenantDefaultPreferences
+        # @see Trycourier::Resources::Tenants::TenantDefaultPreferences::Items#update
         class ItemUpdateParams < Trycourier::Models::SubscriptionTopicNew
           extend Trycourier::Internal::Type::RequestParameters::Converter
           include Trycourier::Internal::Type::RequestParameters

@@ -3,11 +3,11 @@
 module Trycourier
   module Resources
     class Tenants
-      class DefaultPreferences
+      class TenantDefaultPreferences
         class Items
           # Some parameter documentations has been truncated, see
-          # {Trycourier::Models::Tenants::DefaultPreferences::ItemUpdateParams} for more
-          # details.
+          # {Trycourier::Models::Tenants::TenantDefaultPreferences::ItemUpdateParams} for
+          # more details.
           #
           # Create or Replace Default Preferences For Topic
           #
@@ -27,9 +27,9 @@ module Trycourier
           #
           # @return [nil]
           #
-          # @see Trycourier::Models::Tenants::DefaultPreferences::ItemUpdateParams
+          # @see Trycourier::Models::Tenants::TenantDefaultPreferences::ItemUpdateParams
           def update(topic_id, params)
-            parsed, options = Trycourier::Tenants::DefaultPreferences::ItemUpdateParams.dump_request(params)
+            parsed, options = Trycourier::Tenants::TenantDefaultPreferences::ItemUpdateParams.dump_request(params)
             tenant_id =
               parsed.delete(:tenant_id) do
                 raise ArgumentError.new("missing required path argument #{_1}")
@@ -55,9 +55,9 @@ module Trycourier
           #
           # @return [nil]
           #
-          # @see Trycourier::Models::Tenants::DefaultPreferences::ItemDeleteParams
+          # @see Trycourier::Models::Tenants::TenantDefaultPreferences::ItemDeleteParams
           def delete(topic_id, params)
-            parsed, options = Trycourier::Tenants::DefaultPreferences::ItemDeleteParams.dump_request(params)
+            parsed, options = Trycourier::Tenants::TenantDefaultPreferences::ItemDeleteParams.dump_request(params)
             tenant_id =
               parsed.delete(:tenant_id) do
                 raise ArgumentError.new("missing required path argument #{_1}")

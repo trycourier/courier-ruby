@@ -1,7 +1,7 @@
 module Trycourier
   module Resources
     class Tenants
-      class DefaultPreferences
+      class TenantDefaultPreferences
         class Items
           def update: (
             String topic_id,
