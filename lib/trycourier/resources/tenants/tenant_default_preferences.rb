@@ -3,8 +3,8 @@
 module Trycourier
   module Resources
     class Tenants
-      class DefaultPreferences
-        # @return [Trycourier::Resources::Tenants::DefaultPreferences::Items]
+      class TenantDefaultPreferences
+        # @return [Trycourier::Resources::Tenants::TenantDefaultPreferences::Items]
         attr_reader :items
 
         # @api private
@@ -12,7 +12,7 @@ module Trycourier
         # @param client [Trycourier::Client]
         def initialize(client:)
           @client = client
-          @items = Trycourier::Resources::Tenants::DefaultPreferences::Items.new(client: client)
+          @items = Trycourier::Resources::Tenants::TenantDefaultPreferences::Items.new(client: client)
         end
       end
     end

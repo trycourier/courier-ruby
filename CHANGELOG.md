@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.4.0-alpha3 (2025-10-15)
+
+Full Changelog: [v3.4.0-alpha2...v3.4.0-alpha3](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha2...v3.4.0-alpha3)
+
+### Features
+
+* Changes to spec, examples and scripts ([09593fd](https://github.com/trycourier/courier-ruby/commit/09593fd20a94ccdf207b2132466f36347e26a7b1))
+* More PHP and attempted node automerge ([b09fcca](https://github.com/trycourier/courier-ruby/commit/b09fcca1f67209aaaf4bc7295a7adf1f1b828388))
+
+
+### Bug Fixes
+
+* should not reuse buffers for `IO.copy_stream` interop ([eb3c0f3](https://github.com/trycourier/courier-ruby/commit/eb3c0f32d5999be7343beb7cdb67d10b1d1b86ad))
+
 ## 3.4.0-alpha2 (2025-10-14)
 
 Full Changelog: [v3.4.0-alpha1...v3.4.0-alpha2](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha1...v3.4.0-alpha2)

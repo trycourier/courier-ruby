@@ -15,7 +15,7 @@ module Trycourier
 
         def subscribe: (
           String user_id,
-          lists: ::Array[Trycourier::Profiles::ListSubscribeParams::List],
+          lists: ::Array[Trycourier::SubscribeToListsRequestItem],
           ?request_options: Trycourier::request_opts
         ) -> Trycourier::Models::Profiles::ListSubscribeResponse
 
