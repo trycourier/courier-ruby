@@ -227,6 +227,8 @@ module Trycourier
 
   SendMessageParams = Trycourier::Models::SendMessageParams
 
+  SubscribeToListsRequestItem = Trycourier::Models::SubscribeToListsRequestItem
+
   SubscriptionList = Trycourier::Models::SubscriptionList
 
   SubscriptionTopicNew = Trycourier::Models::SubscriptionTopicNew
