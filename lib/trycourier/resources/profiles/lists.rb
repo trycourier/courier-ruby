@@ -64,7 +64,7 @@ module Trycourier
         #
         # @param user_id [String] A unique identifier representing the user associated with the requested profile.
         #
-        # @param lists [Array<Trycourier::Models::Profiles::ListSubscribeParams::List>]
+        # @param lists [Array<Trycourier::Models::SubscribeToListsRequestItem>]
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

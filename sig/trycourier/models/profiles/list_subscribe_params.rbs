@@ -2,43 +2,24 @@ module Trycourier
   module Models
     module Profiles
       type list_subscribe_params =
-        { lists: ::Array[Trycourier::Profiles::ListSubscribeParams::List] }
+        { lists: ::Array[Trycourier::SubscribeToListsRequestItem] }
         & Trycourier::Internal::Type::request_parameters
 
       class ListSubscribeParams < Trycourier::Internal::Type::BaseModel
         extend Trycourier::Internal::Type::RequestParameters::Converter
         include Trycourier::Internal::Type::RequestParameters
 
-        attr_accessor lists: ::Array[Trycourier::Profiles::ListSubscribeParams::List]
+        attr_accessor lists: ::Array[Trycourier::SubscribeToListsRequestItem]
 
         def initialize: (
-          lists: ::Array[Trycourier::Profiles::ListSubscribeParams::List],
+          lists: ::Array[Trycourier::SubscribeToListsRequestItem],
           ?request_options: Trycourier::request_opts
         ) -> void
 
         def to_hash: -> {
-          lists: ::Array[Trycourier::Profiles::ListSubscribeParams::List],
+          lists: ::Array[Trycourier::SubscribeToListsRequestItem],
           request_options: Trycourier::RequestOptions
         }
-
-        type list =
-          { list_id: String, preferences: Trycourier::RecipientPreferences? }
-
-        class List < Trycourier::Internal::Type::BaseModel
-          attr_accessor list_id: String
-
-          attr_accessor preferences: Trycourier::RecipientPreferences?
-
-          def initialize: (
-            list_id: String,
-            ?preferences: Trycourier::RecipientPreferences?
-          ) -> void
-
-          def to_hash: -> {
-            list_id: String,
-            preferences: Trycourier::RecipientPreferences?
-          }
-        end
       end
     end
   end

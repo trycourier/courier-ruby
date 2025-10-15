@@ -40,8 +40,7 @@ module Trycourier
         sig do
           params(
             user_id: String,
-            lists:
-              T::Array[Trycourier::Profiles::ListSubscribeParams::List::OrHash],
+            lists: T::Array[Trycourier::SubscribeToListsRequestItem::OrHash],
             request_options: Trycourier::RequestOptions::OrHash
           ).returns(Trycourier::Models::Profiles::ListSubscribeResponse)
         end
