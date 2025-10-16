@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.0-alpha4 (2025-10-16)
+
+Full Changelog: [v3.4.0-alpha3...v3.4.0-alpha4](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha3...v3.4.0-alpha4)
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([bfd4568](https://github.com/trycourier/courier-ruby/commit/bfd45688b3098e802b5dc1b0cced22900a0be21d))
+
 ## 3.4.0-alpha3 (2025-10-15)
 
 Full Changelog: [v3.4.0-alpha2...v3.4.0-alpha3](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha2...v3.4.0-alpha3)
