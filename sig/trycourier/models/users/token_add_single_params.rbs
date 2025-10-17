@@ -4,7 +4,7 @@ module Trycourier
       type token_add_single_params =
         { user_id: String } & Trycourier::Internal::Type::request_parameters
 
-      class TokenAddSingleParams < Trycourier::Models::UserToken
+      class TokenAddSingleParams < Trycourier::Models::Users::UserToken
         extend Trycourier::Internal::Type::RequestParameters::Converter
         include Trycourier::Internal::Type::RequestParameters
 

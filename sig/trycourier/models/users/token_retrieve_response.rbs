@@ -7,7 +7,7 @@ module Trycourier
           status_reason: String?
         }
 
-      class TokenRetrieveResponse < Trycourier::Models::UserToken
+      class TokenRetrieveResponse < Trycourier::Models::Users::UserToken
         def status: -> Trycourier::Models::Users::TokenRetrieveResponse::status?
 
         def status=: (

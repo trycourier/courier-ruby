@@ -2,6 +2,7 @@
 
 module Trycourier
   module Models
+    # @see Trycourier::Resources::Messages#cancel
     class MessageDetails < Trycourier::Internal::Type::BaseModel
       # @!attribute id
       #   A unique identifier associated with the message you wish to retrieve (results

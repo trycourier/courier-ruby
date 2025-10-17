@@ -5,7 +5,7 @@ module Trycourier
     module Users
       TokenListResponse =
         T.let(
-          Trycourier::Internal::Type::ArrayOf[Trycourier::UserToken],
+          Trycourier::Internal::Type::ArrayOf[Trycourier::Users::UserToken],
           Trycourier::Internal::Type::Converter
         )
     end

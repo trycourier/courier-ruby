@@ -13,7 +13,7 @@ module Trycourier
           end
 
         # The Preferences associated with the user_id.
-        sig { returns(T::Array[Trycourier::TopicPreference]) }
+        sig { returns(T::Array[Trycourier::Users::TopicPreference]) }
         attr_accessor :items
 
         # Deprecated - Paging not implemented on this endpoint
@@ -25,7 +25,7 @@ module Trycourier
 
         sig do
           params(
-            items: T::Array[Trycourier::TopicPreference::OrHash],
+            items: T::Array[Trycourier::Users::TopicPreference::OrHash],
             paging: Trycourier::Paging::OrHash
           ).returns(T.attached_class)
         end
@@ -40,7 +40,7 @@ module Trycourier
         sig do
           override.returns(
             {
-              items: T::Array[Trycourier::TopicPreference],
+              items: T::Array[Trycourier::Users::TopicPreference],
               paging: Trycourier::Paging
             }
           )

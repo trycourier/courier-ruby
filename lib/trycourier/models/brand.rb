@@ -2,6 +2,7 @@
 
 module Trycourier
   module Models
+    # @see Trycourier::Resources::Brands#create
     class Brand < Trycourier::Internal::Type::BaseModel
       # @!attribute id
       #
