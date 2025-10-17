@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.0-alpha6 (2025-10-17)
+
+Full Changelog: [v3.4.0-alpha5...v3.4.0-alpha6](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha5...v3.4.0-alpha6)
+
+### Bug Fixes
+
+* Dep Warning ([3439cba](https://github.com/trycourier/courier-ruby/commit/3439cbae785d9e2198cc6af4a19e4e54e9e74c0c))
+
 ## 3.4.0-alpha5 (2025-10-17)
 
 Full Changelog: [v3.4.0-alpha4...v3.4.0-alpha5](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha4...v3.4.0-alpha5)

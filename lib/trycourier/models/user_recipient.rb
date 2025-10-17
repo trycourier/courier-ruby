@@ -4,7 +4,7 @@ module Trycourier
   module Models
     class UserRecipient < Trycourier::Internal::Type::BaseModel
       # @!attribute account_id
-      #   Use `tenant_id` instead.
+      #   Deprecated - Use `tenant_id` instead.
       #
       #   @return [String, nil]
       optional :account_id, String, nil?: true
@@ -60,7 +60,7 @@ module Trycourier
       #   Some parameter documentations has been truncated, see
       #   {Trycourier::Models::UserRecipient} for more details.
       #
-      #   @param account_id [String, nil] Use `tenant_id` instead.
+      #   @param account_id [String, nil] Deprecated - Use `tenant_id` instead.
       #
       #   @param context [Trycourier::Models::MessageContext, nil] Context such as tenant_id to send the notification with.
       #
