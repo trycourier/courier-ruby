@@ -8,8 +8,8 @@ module Trycourier
         # @!attribute items
         #   The Preferences associated with the user_id.
         #
-        #   @return [Array<Trycourier::Models::TopicPreference>]
-        required :items, -> { Trycourier::Internal::Type::ArrayOf[Trycourier::TopicPreference] }
+        #   @return [Array<Trycourier::Models::Users::TopicPreference>]
+        required :items, -> { Trycourier::Internal::Type::ArrayOf[Trycourier::Users::TopicPreference] }
 
         # @!attribute paging
         #   Deprecated - Paging not implemented on this endpoint
@@ -18,7 +18,7 @@ module Trycourier
         required :paging, -> { Trycourier::Paging }
 
         # @!method initialize(items:, paging:)
-        #   @param items [Array<Trycourier::Models::TopicPreference>] The Preferences associated with the user_id.
+        #   @param items [Array<Trycourier::Models::Users::TopicPreference>] The Preferences associated with the user_id.
         #
         #   @param paging [Trycourier::Models::Paging] Deprecated - Paging not implemented on this endpoint
       end

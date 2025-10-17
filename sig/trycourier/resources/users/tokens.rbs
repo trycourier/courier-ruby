@@ -34,12 +34,12 @@ module Trycourier
         def add_single: (
           String path_token,
           user_id: String,
-          provider_key: Trycourier::Models::UserToken::provider_key,
+          provider_key: Trycourier::Models::Users::UserToken::provider_key,
           ?body_token: String?,
-          ?device: Trycourier::UserToken::Device?,
-          ?expiry_date: Trycourier::Models::UserToken::expiry_date?,
+          ?device: Trycourier::Users::UserToken::Device?,
+          ?expiry_date: Trycourier::Models::Users::UserToken::expiry_date?,
           ?properties: top,
-          ?tracking: Trycourier::UserToken::Tracking?,
+          ?tracking: Trycourier::Users::UserToken::Tracking?,
           ?request_options: Trycourier::request_opts
         ) -> nil
 

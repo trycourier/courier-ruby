@@ -438,11 +438,9 @@ module Trycourier
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `audience` is a `Trycourier::Audience`
-        #   audience => {
-        #     id: id,
-        #     created_at: created_at,
-        #     description: description
+        #   # `channel_preference` is a `Trycourier::ChannelPreference`
+        #   channel_preference => {
+        #     channel: channel
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

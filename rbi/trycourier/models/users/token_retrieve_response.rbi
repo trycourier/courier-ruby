@@ -3,7 +3,7 @@
 module Trycourier
   module Models
     module Users
-      class TokenRetrieveResponse < Trycourier::Models::UserToken
+      class TokenRetrieveResponse < Trycourier::Models::Users::UserToken
         OrHash =
           T.type_alias do
             T.any(

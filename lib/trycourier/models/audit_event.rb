@@ -2,6 +2,7 @@
 
 module Trycourier
   module Models
+    # @see Trycourier::Resources::AuditEvents#retrieve
     class AuditEvent < Trycourier::Internal::Type::BaseModel
       # @!attribute actor
       #

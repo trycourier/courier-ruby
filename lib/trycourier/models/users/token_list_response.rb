@@ -4,7 +4,7 @@ module Trycourier
   module Models
     module Users
       # @type [Trycourier::Internal::Type::Converter]
-      TokenListResponse = Trycourier::Internal::Type::ArrayOf[-> { Trycourier::UserToken }]
+      TokenListResponse = Trycourier::Internal::Type::ArrayOf[-> { Trycourier::Users::UserToken }]
     end
   end
 end

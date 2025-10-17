@@ -2,6 +2,7 @@
 
 module Trycourier
   module Models
+    # @see Trycourier::Resources::Notifications#retrieve_content
     class NotificationGetContent < Trycourier::Internal::Type::BaseModel
       # @!attribute blocks
       #

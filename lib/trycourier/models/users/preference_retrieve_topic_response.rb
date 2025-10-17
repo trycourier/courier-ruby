@@ -7,11 +7,11 @@ module Trycourier
       class PreferenceRetrieveTopicResponse < Trycourier::Internal::Type::BaseModel
         # @!attribute topic
         #
-        #   @return [Trycourier::Models::TopicPreference]
-        required :topic, -> { Trycourier::TopicPreference }
+        #   @return [Trycourier::Models::Users::TopicPreference]
+        required :topic, -> { Trycourier::Users::TopicPreference }
 
         # @!method initialize(topic:)
-        #   @param topic [Trycourier::Models::TopicPreference]
+        #   @param topic [Trycourier::Models::Users::TopicPreference]
       end
     end
   end

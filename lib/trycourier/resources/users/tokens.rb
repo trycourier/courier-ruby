@@ -69,14 +69,14 @@ module Trycourier
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<Trycourier::Models::UserToken>]
+        # @return [Array<Trycourier::Models::Users::UserToken>]
         #
         # @see Trycourier::Models::Users::TokenListParams
         def list(user_id, params = {})
           @client.request(
             method: :get,
             path: ["users/%1$s/tokens", user_id],
-            model: Trycourier::Internal::Type::ArrayOf[Trycourier::UserToken],
+            model: Trycourier::Internal::Type::ArrayOf[Trycourier::Users::UserToken],
             options: params[:request_options]
           )
         end
@@ -139,17 +139,17 @@ module Trycourier
         #
         # @param user_id [String] Path param: The user's ID. This can be any uniquely identifiable string.
         #
-        # @param provider_key [Symbol, Trycourier::Models::UserToken::ProviderKey] Body param:
+        # @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey] Body param:
         #
         # @param body_token [String, nil] Body param: Full body of the token. Must match token in URL.
         #
-        # @param device [Trycourier::Models::UserToken::Device, nil] Body param: Information about the device the token is associated with.
+        # @param device [Trycourier::Models::Users::UserToken::Device, nil] Body param: Information about the device the token is associated with.
         #
         # @param expiry_date [String, Boolean, nil] Body param: ISO 8601 formatted date the token expires. Defaults to 2 months. Set
         #
         # @param properties [Object] Body param: Properties sent to the provider along with the token
         #
-        # @param tracking [Trycourier::Models::UserToken::Tracking, nil] Body param: Information about the device the token is associated with.
+        # @param tracking [Trycourier::Models::Users::UserToken::Tracking, nil] Body param: Information about the device the token is associated with.
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

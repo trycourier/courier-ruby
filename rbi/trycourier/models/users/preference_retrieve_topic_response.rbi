@@ -12,21 +12,21 @@ module Trycourier
             )
           end
 
-        sig { returns(Trycourier::TopicPreference) }
+        sig { returns(Trycourier::Users::TopicPreference) }
         attr_reader :topic
 
-        sig { params(topic: Trycourier::TopicPreference::OrHash).void }
+        sig { params(topic: Trycourier::Users::TopicPreference::OrHash).void }
         attr_writer :topic
 
         sig do
-          params(topic: Trycourier::TopicPreference::OrHash).returns(
+          params(topic: Trycourier::Users::TopicPreference::OrHash).returns(
             T.attached_class
           )
         end
         def self.new(topic:)
         end
 
-        sig { override.returns({ topic: Trycourier::TopicPreference }) }
+        sig { override.returns({ topic: Trycourier::Users::TopicPreference }) }
         def to_hash
         end
       end

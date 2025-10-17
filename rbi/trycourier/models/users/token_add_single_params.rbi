@@ -3,7 +3,7 @@
 module Trycourier
   module Models
     module Users
-      class TokenAddSingleParams < Trycourier::Models::UserToken
+      class TokenAddSingleParams < Trycourier::Models::Users::UserToken
         extend Trycourier::Internal::Type::RequestParameters::Converter
         include Trycourier::Internal::Type::RequestParameters
 

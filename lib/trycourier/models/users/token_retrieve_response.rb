@@ -4,7 +4,7 @@ module Trycourier
   module Models
     module Users
       # @see Trycourier::Resources::Users::Tokens#retrieve
-      class TokenRetrieveResponse < Trycourier::Models::UserToken
+      class TokenRetrieveResponse < Trycourier::Models::Users::UserToken
         # @!attribute status
         #
         #   @return [Symbol, Trycourier::Models::Users::TokenRetrieveResponse::Status, nil]

@@ -2,6 +2,7 @@
 
 module Trycourier
   module Models
+    # @see Trycourier::Resources::Tenants#retrieve
     class Tenant < Trycourier::Internal::Type::BaseModel
       # @!attribute id
       #   Id of the tenant.
