@@ -47,7 +47,7 @@ module Trycourier
           params(
             user_id: String,
             request_options: Trycourier::RequestOptions::OrHash
-          ).returns(T::Array[Trycourier::UserToken])
+          ).returns(T::Array[Trycourier::Users::UserToken])
         end
         def list(
           # The user's ID. This can be any uniquely identifiable string.
@@ -92,12 +92,13 @@ module Trycourier
           params(
             path_token: String,
             user_id: String,
-            provider_key: Trycourier::UserToken::ProviderKey::OrSymbol,
+            provider_key: Trycourier::Users::UserToken::ProviderKey::OrSymbol,
             body_token: T.nilable(String),
-            device: T.nilable(Trycourier::UserToken::Device::OrHash),
-            expiry_date: T.nilable(Trycourier::UserToken::ExpiryDate::Variants),
+            device: T.nilable(Trycourier::Users::UserToken::Device::OrHash),
+            expiry_date:
+              T.nilable(Trycourier::Users::UserToken::ExpiryDate::Variants),
             properties: T.anything,
-            tracking: T.nilable(Trycourier::UserToken::Tracking::OrHash),
+            tracking: T.nilable(Trycourier::Users::UserToken::Tracking::OrHash),
             request_options: Trycourier::RequestOptions::OrHash
           ).void
         end

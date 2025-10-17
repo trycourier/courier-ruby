@@ -2,6 +2,7 @@
 
 module Trycourier
   module Models
+    # @see Trycourier::Resources::Lists#retrieve
     class SubscriptionList < Trycourier::Internal::Type::BaseModel
       # @!attribute id
       #

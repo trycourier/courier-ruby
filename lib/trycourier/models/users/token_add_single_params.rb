@@ -4,7 +4,7 @@ module Trycourier
   module Models
     module Users
       # @see Trycourier::Resources::Users::Tokens#add_single
-      class TokenAddSingleParams < Trycourier::Models::UserToken
+      class TokenAddSingleParams < Trycourier::Models::Users::UserToken
         extend Trycourier::Internal::Type::RequestParameters::Converter
         include Trycourier::Internal::Type::RequestParameters
 

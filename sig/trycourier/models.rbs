@@ -211,8 +211,6 @@ module Trycourier
 
   module TextStyle = Trycourier::Models::TextStyle
 
-  class TopicPreference = Trycourier::Models::TopicPreference
-
   class TranslationRetrieveParams = Trycourier::Models::TranslationRetrieveParams
 
   class TranslationUpdateParams = Trycourier::Models::TranslationUpdateParams
@@ -220,8 +218,6 @@ module Trycourier
   class UserRecipient = Trycourier::Models::UserRecipient
 
   module Users = Trycourier::Models::Users
-
-  class UserToken = Trycourier::Models::UserToken
 
   class Utm = Trycourier::Models::Utm
 

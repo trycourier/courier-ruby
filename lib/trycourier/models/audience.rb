@@ -2,6 +2,7 @@
 
 module Trycourier
   module Models
+    # @see Trycourier::Resources::Audiences#retrieve
     class Audience < Trycourier::Internal::Type::BaseModel
       # @!attribute id
       #   A unique identifier representing the audience_id

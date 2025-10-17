@@ -14,7 +14,7 @@ class Trycourier::Test::Resources::Users::PreferencesTest < Trycourier::Test::Re
 
     assert_pattern do
       response => {
-        items: ^(Trycourier::Internal::Type::ArrayOf[Trycourier::TopicPreference]),
+        items: ^(Trycourier::Internal::Type::ArrayOf[Trycourier::Users::TopicPreference]),
         paging: Trycourier::Paging
       }
     end
@@ -31,7 +31,7 @@ class Trycourier::Test::Resources::Users::PreferencesTest < Trycourier::Test::Re
 
     assert_pattern do
       response => {
-        topic: Trycourier::TopicPreference
+        topic: Trycourier::Users::TopicPreference
       }
     end
   end
