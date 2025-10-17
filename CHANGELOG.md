@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.0-alpha5 (2025-10-17)
+
+Full Changelog: [v3.4.0-alpha4...v3.4.0-alpha5](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha4...v3.4.0-alpha5)
+
+### Bug Fixes
+
+* Updated paths for each model and go example updates ([3589716](https://github.com/trycourier/courier-ruby/commit/358971631427bdec2f3c609aa0b96139ee285503))
+
 ## 3.4.0-alpha4 (2025-10-16)
 
 Full Changelog: [v3.4.0-alpha3...v3.4.0-alpha4](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha3...v3.4.0-alpha4)
