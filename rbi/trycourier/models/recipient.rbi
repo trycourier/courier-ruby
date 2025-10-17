@@ -8,7 +8,7 @@ module Trycourier
           T.any(Trycourier::Recipient, Trycourier::Internal::AnyHash)
         end
 
-      # Use `tenant_id` instead.
+      # Deprecated - Use `tenant_id` instead.
       sig { returns(T.nilable(String)) }
       attr_accessor :account_id
 
@@ -69,7 +69,7 @@ module Trycourier
         ).returns(T.attached_class)
       end
       def self.new(
-        # Use `tenant_id` instead.
+        # Deprecated - Use `tenant_id` instead.
         account_id: nil,
         # Context such as tenant_id to send the notification with.
         context: nil,
