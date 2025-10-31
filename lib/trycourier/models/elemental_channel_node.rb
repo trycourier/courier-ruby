@@ -12,7 +12,7 @@ module Trycourier
 
       # @!attribute raw
       #   Raw data to apply to the channel. If `elements` has not been specified, `raw` is
-      #   `required`.
+      #   required.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :raw, Trycourier::Internal::Type::HashOf[Trycourier::Internal::Type::Unknown], nil?: true
@@ -34,7 +34,7 @@ module Trycourier
       #
       #   @param channel [String] The channel the contents of this element should be applied to. Can be `email`,
       #
-      #   @param raw [Hash{Symbol=>Object}, nil] Raw data to apply to the channel. If `elements` has not been
+      #   @param raw [Hash{Symbol=>Object}, nil] Raw data to apply to the channel. If `elements` has not been specified, `raw` is
     end
   end
 end
