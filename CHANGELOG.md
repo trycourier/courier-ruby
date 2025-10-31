@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.4.0-alpha7 (2025-10-31)
+
+Full Changelog: [v3.4.0-alpha6...v3.4.0-alpha7](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha6...v3.4.0-alpha7)
+
+### Features
+
+* Comment adjustment to kick of build ([3f53532](https://github.com/trycourier/courier-ruby/commit/3f535324c5b114494cfd28e2570d9fb3c192b6b1))
+* handle thread interrupts in the core HTTP client ([27380fe](https://github.com/trycourier/courier-ruby/commit/27380fe7d02178679a46b849acbc5807e3dc4136))
+
+
+### Bug Fixes
+
+* Comment to kick off build ([bbdb8ce](https://github.com/trycourier/courier-ruby/commit/bbdb8cec3dec051e17a89091f2ea881897e3b532))
+
 ## 3.4.0-alpha6 (2025-10-17)
 
 Full Changelog: [v3.4.0-alpha5...v3.4.0-alpha6](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha5...v3.4.0-alpha6)
