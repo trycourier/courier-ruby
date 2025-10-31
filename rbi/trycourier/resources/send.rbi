@@ -3,7 +3,7 @@
 module Trycourier
   module Resources
     class Send
-      # Use the send API to send a message to one or more recipients.
+      # API to send a message to one or more recipients.
       sig do
         params(
           message: Trycourier::SendMessageParams::Message::OrHash,

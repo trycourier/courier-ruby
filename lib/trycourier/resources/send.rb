@@ -6,7 +6,7 @@ module Trycourier
       # Some parameter documentations has been truncated, see
       # {Trycourier::Models::SendMessageParams} for more details.
       #
-      # Use the send API to send a message to one or more recipients.
+      # API to send a message to one or more recipients.
       #
       # @overload message(message:, request_options: {})
       #
