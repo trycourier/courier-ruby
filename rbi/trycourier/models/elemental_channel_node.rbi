@@ -14,7 +14,7 @@ module Trycourier
       attr_accessor :channel
 
       # Raw data to apply to the channel. If `elements` has not been specified, `raw` is
-      # `required`.
+      # required.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :raw
 
@@ -39,7 +39,7 @@ module Trycourier
         # `push`, `direct_message`, `sms` or a provider such as slack
         channel:,
         # Raw data to apply to the channel. If `elements` has not been specified, `raw` is
-        # `required`.
+        # required.
         raw: nil
       )
       end
