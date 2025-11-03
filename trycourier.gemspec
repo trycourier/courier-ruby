@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version = Trycourier::VERSION
   s.summary = "Ruby library to access the Courier API"
   s.authors = ["Courier"]
-  s.email = ""
+  s.email = "support@courier.com"
   s.homepage = "https://gemdocs.org/gems/trycourier"
   s.metadata["homepage_uri"] = s.homepage
   s.metadata["source_code_uri"] = "https://github.com/trycourier/courier-ruby"
