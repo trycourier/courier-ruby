@@ -8,6 +8,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/trycourier).
 
+The REST API documentation can be found on [www.courier.com](https://www.courier.com/docs).
+
 ## Installation
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
