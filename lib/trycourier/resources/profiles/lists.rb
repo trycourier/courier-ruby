@@ -11,7 +11,7 @@ module Trycourier
         #
         # @overload retrieve(user_id, cursor: nil, request_options: {})
         #
-        # @param user_id [String] A unique identifier representing the user associated with the requested profile.
+        # @param user_id [String] A unique identifier representing the user associated with the requested user pro
         #
         # @param cursor [String, nil] A unique identifier that allows for fetching the next set of message statuses.
         #
@@ -62,7 +62,7 @@ module Trycourier
         #
         # @overload subscribe(user_id, lists:, request_options: {})
         #
-        # @param user_id [String] A unique identifier representing the user associated with the requested profile.
+        # @param user_id [String] A unique identifier representing the user associated with the requested user pro
         #
         # @param lists [Array<Trycourier::Models::SubscribeToListsRequestItem>]
         #

@@ -46,7 +46,8 @@ module Trycourier
         ).void
       end
       def update(
-        # A unique identifier representing the user associated with the requested profile.
+        # A unique identifier representing the user associated with the requested user
+        # profile.
         user_id,
         # List of patch operations to apply to the profile.
         patch:,
@@ -62,7 +63,8 @@ module Trycourier
         ).void
       end
       def delete(
-        # A unique identifier representing the user associated with the requested profile.
+        # A unique identifier representing the user associated with the requested user
+        # profile.
         user_id,
         request_options: {}
       )
@@ -81,7 +83,8 @@ module Trycourier
         ).returns(Trycourier::Models::ProfileReplaceResponse)
       end
       def replace(
-        # A unique identifier representing the user associated with the requested profile.
+        # A unique identifier representing the user associated with the requested user
+        # profile.
         user_id,
         profile:,
         request_options: {}
