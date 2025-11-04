@@ -13,7 +13,8 @@ module Trycourier
           ).returns(Trycourier::Models::Profiles::ListRetrieveResponse)
         end
         def retrieve(
-          # A unique identifier representing the user associated with the requested profile.
+          # A unique identifier representing the user associated with the requested user
+          # profile.
           user_id,
           # A unique identifier that allows for fetching the next set of message statuses.
           cursor: nil,
@@ -45,7 +46,8 @@ module Trycourier
           ).returns(Trycourier::Models::Profiles::ListSubscribeResponse)
         end
         def subscribe(
-          # A unique identifier representing the user associated with the requested profile.
+          # A unique identifier representing the user associated with the requested user
+          # profile.
           user_id,
           lists:,
           request_options: {}

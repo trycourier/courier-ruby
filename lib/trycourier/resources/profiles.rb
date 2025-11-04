@@ -64,7 +64,7 @@ module Trycourier
       #
       # @overload update(user_id, patch:, request_options: {})
       #
-      # @param user_id [String] A unique identifier representing the user associated with the requested profile.
+      # @param user_id [String] A unique identifier representing the user associated with the requested user pro
       #
       # @param patch [Array<Trycourier::Models::ProfileUpdateParams::Patch>] List of patch operations to apply to the profile.
       #
@@ -91,7 +91,7 @@ module Trycourier
       #
       # @overload delete(user_id, request_options: {})
       #
-      # @param user_id [String] A unique identifier representing the user associated with the requested profile.
+      # @param user_id [String] A unique identifier representing the user associated with the requested user pro
       #
       # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -118,7 +118,7 @@ module Trycourier
       #
       # @overload replace(user_id, profile:, request_options: {})
       #
-      # @param user_id [String] A unique identifier representing the user associated with the requested profile.
+      # @param user_id [String] A unique identifier representing the user associated with the requested user pro
       #
       # @param profile [Hash{Symbol=>Object}]
       #
