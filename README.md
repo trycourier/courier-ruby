@@ -8,6 +8,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/trycourier).
 
+The REST API documentation can be found on [www.courier.com](https://www.courier.com/docs).
+
 ## Installation
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
@@ -15,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "trycourier", "~> 3.4.0.pre.alpha7"
+gem "trycourier", "~> 3.4.0.pre.alpha8"
 ```
 
 <!-- x-release-please-end -->
@@ -31,7 +33,7 @@ courier = Trycourier::Client.new(
 )
 
 response = courier.send_.message(
-  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+  message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}}
 )
 
 puts(response.requestId)
@@ -44,7 +46,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 ```ruby
 begin
   send_ = courier.send_.message(
-    message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+    message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}}
   )
 rescue Trycourier::Errors::APIConnectionError => e
   puts("The server could not be reached")
@@ -89,7 +91,7 @@ courier = Trycourier::Client.new(
 
 # Or, configure per-request:
 courier.send_.message(
-  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
+  message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}},
   request_options: {max_retries: 5}
 )
 ```
@@ -106,7 +108,7 @@ courier = Trycourier::Client.new(
 
 # Or, configure per-request:
 courier.send_.message(
-  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
+  message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}},
   request_options: {timeout: 5}
 )
 ```
@@ -140,7 +142,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 response =
   courier.send_.message(
-    message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}},
+    message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}},
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -189,7 +191,7 @@ You can provide typesafe request parameters like so:
 courier.send_.message(
   message: Trycourier::SendMessageParams::Message.new(
     to: Trycourier::UserRecipient.new(user_id: "your_user_id"),
-    template: "your_template",
+    template: "your_template_id",
     data: {foo: "bar"}
   )
 )
@@ -200,14 +202,14 @@ Or, equivalently:
 ```ruby
 # Hashes work, but are not typesafe:
 courier.send_.message(
-  message: {to: {user_id: "your_user_id"}, template: "your_template", data: {foo: "bar"}}
+  message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}}
 )
 
 # You can also splat a full Params class:
 params = Trycourier::SendMessageParams.new(
   message: Trycourier::SendMessageParams::Message.new(
     to: Trycourier::UserRecipient.new(user_id: "your_user_id"),
-    template: "your_template",
+    template: "your_template_id",
     data: {foo: "bar"}
   )
 )

@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.4.0-alpha8 (2025-11-05)
+
+Full Changelog: [v3.4.0-alpha7...v3.4.0-alpha8](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha7...v3.4.0-alpha8)
+
+### Features
+
+* Attempt kick off again ([a5ffc84](https://github.com/trycourier/courier-ruby/commit/a5ffc84f9ed318eb757d6736eca3562d1d71b2e8))
+* Kick off the change (Change to user profile in descriptions) ([f4dc8ff](https://github.com/trycourier/courier-ruby/commit/f4dc8ffe56eb34a7ae471473ead69550db011aaa))
+* Organization update ([c6f7b97](https://github.com/trycourier/courier-ruby/commit/c6f7b970508aca2bd1fca5d69e83c76def40058d))
+
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([f3dfeec](https://github.com/trycourier/courier-ruby/commit/f3dfeec90dc59b454f787ef88e0b1a7b2af02ef7))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([4d9baaa](https://github.com/trycourier/courier-ruby/commit/4d9baaac7f0ac9365f648ba0a3f10edb646e70a8))
+
 ## 3.4.0-alpha7 (2025-10-31)
 
 Full Changelog: [v3.4.0-alpha6...v3.4.0-alpha7](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha6...v3.4.0-alpha7)
