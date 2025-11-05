@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    trycourier (3.4.0.pre.alpha7)
+    trycourier (3.4.0.pre.alpha8)
       connection_pool
 
 GEM
