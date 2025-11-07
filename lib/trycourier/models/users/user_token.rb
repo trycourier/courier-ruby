@@ -16,7 +16,7 @@ module Trycourier
         required :provider_key, enum: -> { Trycourier::Users::UserToken::ProviderKey }
 
         # @!attribute device
-        #   Information about the device the token is associated with.
+        #   Information about the device the token came from.
         #
         #   @return [Trycourier::Models::Users::UserToken::Device, nil]
         optional :device, -> { Trycourier::Users::UserToken::Device }, nil?: true
@@ -35,7 +35,7 @@ module Trycourier
         optional :properties, Trycourier::Internal::Type::Unknown
 
         # @!attribute tracking
-        #   Information about the device the token is associated with.
+        #   Tracking information about the device the token came from.
         #
         #   @return [Trycourier::Models::Users::UserToken::Tracking, nil]
         optional :tracking, -> { Trycourier::Users::UserToken::Tracking }, nil?: true
@@ -48,13 +48,13 @@ module Trycourier
         #
         #   @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey]
         #
-        #   @param device [Trycourier::Models::Users::UserToken::Device, nil] Information about the device the token is associated with.
+        #   @param device [Trycourier::Models::Users::UserToken::Device, nil] Information about the device the token came from.
         #
         #   @param expiry_date [String, Boolean, nil] ISO 8601 formatted date the token expires. Defaults to 2 months. Set to false to
         #
         #   @param properties [Object] Properties sent to the provider along with the token
         #
-        #   @param tracking [Trycourier::Models::Users::UserToken::Tracking, nil] Information about the device the token is associated with.
+        #   @param tracking [Trycourier::Models::Users::UserToken::Tracking, nil] Tracking information about the device the token came from.
 
         # @see Trycourier::Models::Users::UserToken#provider_key
         module ProviderKey
@@ -108,7 +108,7 @@ module Trycourier
           optional :platform, String, nil?: true
 
           # @!method initialize(ad_id: nil, app_id: nil, device_id: nil, manufacturer: nil, model: nil, platform: nil)
-          #   Information about the device the token is associated with.
+          #   Information about the device the token came from.
           #
           #   @param ad_id [String, nil] Id of the advertising identifier
           #
@@ -165,7 +165,7 @@ module Trycourier
           optional :os_version, String, nil?: true
 
           # @!method initialize(ip: nil, lat: nil, long: nil, os_version: nil)
-          #   Information about the device the token is associated with.
+          #   Tracking information about the device the token came from.
           #
           #   @param ip [String, nil] The IP address of the device
           #
