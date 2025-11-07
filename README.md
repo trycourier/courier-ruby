@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "trycourier", "~> 3.4.0.pre.alpha8"
+gem "trycourier", "~> 3.4.0.pre.alpha9"
 ```
 
 <!-- x-release-please-end -->
@@ -232,13 +232,13 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-courier.tenants.tenant_default_preferences.items.update(
+courier.tenants.preferences.items.update(
   status: Trycourier::SubscriptionTopicNew::Status::OPTED_OUT,
   # …
 )
 
 # Literal values are also permissible:
-courier.tenants.tenant_default_preferences.items.update(
+courier.tenants.preferences.items.update(
   status: :OPTED_OUT,
   # …
 )

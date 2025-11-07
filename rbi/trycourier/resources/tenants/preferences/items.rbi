@@ -3,7 +3,7 @@
 module Trycourier
   module Resources
     class Tenants
-      class TenantDefaultPreferences
+      class Preferences
         class Items
           # Create or Replace Default Preferences For Topic
           sig do

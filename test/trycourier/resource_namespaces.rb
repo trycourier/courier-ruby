@@ -12,14 +12,14 @@ module Trycourier
       module Notifications
       end
 
+      module Preferences
+      end
+
       module Profiles
       end
 
-      module TenantDefaultPreferences
-      end
-
       module Tenants
-        module TenantDefaultPreferences
+        module Preferences
         end
       end
 

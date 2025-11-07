@@ -3,8 +3,8 @@
 module Trycourier
   module Resources
     class Tenants
-      # @return [Trycourier::Resources::Tenants::TenantDefaultPreferences]
-      attr_reader :tenant_default_preferences
+      # @return [Trycourier::Resources::Tenants::Preferences]
+      attr_reader :preferences
 
       # @return [Trycourier::Resources::Tenants::Templates]
       attr_reader :templates
@@ -149,8 +149,7 @@ module Trycourier
       # @param client [Trycourier::Client]
       def initialize(client:)
         @client = client
-        @tenant_default_preferences =
-          Trycourier::Resources::Tenants::TenantDefaultPreferences.new(client: client)
+        @preferences = Trycourier::Resources::Tenants::Preferences.new(client: client)
         @templates = Trycourier::Resources::Tenants::Templates.new(client: client)
       end
     end

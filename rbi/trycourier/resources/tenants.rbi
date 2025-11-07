@@ -3,8 +3,8 @@
 module Trycourier
   module Resources
     class Tenants
-      sig { returns(Trycourier::Resources::Tenants::TenantDefaultPreferences) }
-      attr_reader :tenant_default_preferences
+      sig { returns(Trycourier::Resources::Tenants::Preferences) }
+      attr_reader :preferences
 
       sig { returns(Trycourier::Resources::Tenants::Templates) }
       attr_reader :templates

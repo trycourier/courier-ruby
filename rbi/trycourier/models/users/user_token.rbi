@@ -11,12 +11,12 @@ module Trycourier
             T.any(Trycourier::Users::UserToken, Trycourier::Internal::AnyHash)
           end
 
+        # Full body of the token. Must match token in URL path parameter.
+        sig { returns(String) }
+        attr_accessor :token
+
         sig { returns(Trycourier::Users::UserToken::ProviderKey::TaggedSymbol) }
         attr_accessor :provider_key
-
-        # Full body of the token. Must match token in URL.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :token
 
         # Information about the device the token is associated with.
         sig { returns(T.nilable(Trycourier::Users::UserToken::Device)) }
@@ -56,8 +56,8 @@ module Trycourier
 
         sig do
           params(
+            token: String,
             provider_key: Trycourier::Users::UserToken::ProviderKey::OrSymbol,
-            token: T.nilable(String),
             device: T.nilable(Trycourier::Users::UserToken::Device::OrHash),
             expiry_date:
               T.nilable(Trycourier::Users::UserToken::ExpiryDate::Variants),
@@ -66,9 +66,9 @@ module Trycourier
           ).returns(T.attached_class)
         end
         def self.new(
+          # Full body of the token. Must match token in URL path parameter.
+          token:,
           provider_key:,
-          # Full body of the token. Must match token in URL.
-          token: nil,
           # Information about the device the token is associated with.
           device: nil,
           # ISO 8601 formatted date the token expires. Defaults to 2 months. Set to false to
@@ -84,9 +84,9 @@ module Trycourier
         sig do
           override.returns(
             {
+              token: String,
               provider_key:
                 Trycourier::Users::UserToken::ProviderKey::TaggedSymbol,
-              token: T.nilable(String),
               device: T.nilable(Trycourier::Users::UserToken::Device),
               expiry_date:
                 T.nilable(Trycourier::Users::UserToken::ExpiryDate::Variants),
