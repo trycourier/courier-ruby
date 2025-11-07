@@ -133,15 +133,15 @@ module Trycourier
         #
         # Adds a single token to a user and overwrites a matching existing token.
         #
-        # @overload add_single(path_token, user_id:, provider_key:, body_token: nil, device: nil, expiry_date: nil, properties: nil, tracking: nil, request_options: {})
+        # @overload add_single(path_token, user_id:, body_token:, provider_key:, device: nil, expiry_date: nil, properties: nil, tracking: nil, request_options: {})
         #
         # @param path_token [String] Path param: The full token string.
         #
         # @param user_id [String] Path param: The user's ID. This can be any uniquely identifiable string.
         #
-        # @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey] Body param:
+        # @param body_token [String] Body param: Full body of the token. Must match token in URL path parameter.
         #
-        # @param body_token [String, nil] Body param: Full body of the token. Must match token in URL.
+        # @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey] Body param:
         #
         # @param device [Trycourier::Models::Users::UserToken::Device, nil] Body param: Information about the device the token is associated with.
         #

@@ -1,15 +1,17 @@
 module Trycourier
   module Models
     module Tenants
-      module TenantDefaultPreferences
-        type item_delete_params =
+      module Preferences
+        type item_update_params =
           { tenant_id: String } & Trycourier::Internal::Type::request_parameters
 
-        class ItemDeleteParams < Trycourier::Internal::Type::BaseModel
+        class ItemUpdateParams < Trycourier::Models::SubscriptionTopicNew
           extend Trycourier::Internal::Type::RequestParameters::Converter
           include Trycourier::Internal::Type::RequestParameters
 
-          attr_accessor tenant_id: String
+          def tenant_id: -> String
+
+          def tenant_id=: (String _) -> String
 
           def initialize: (
             tenant_id: String,

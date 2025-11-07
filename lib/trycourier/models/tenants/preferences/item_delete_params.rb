@@ -3,9 +3,9 @@
 module Trycourier
   module Models
     module Tenants
-      module TenantDefaultPreferences
-        # @see Trycourier::Resources::Tenants::TenantDefaultPreferences::Items#update
-        class ItemUpdateParams < Trycourier::Models::SubscriptionTopicNew
+      module Preferences
+        # @see Trycourier::Resources::Tenants::Preferences::Items#delete
+        class ItemDeleteParams < Trycourier::Internal::Type::BaseModel
           extend Trycourier::Internal::Type::RequestParameters::Converter
           include Trycourier::Internal::Type::RequestParameters
 

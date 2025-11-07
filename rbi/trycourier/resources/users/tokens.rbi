@@ -92,8 +92,8 @@ module Trycourier
           params(
             path_token: String,
             user_id: String,
+            body_token: String,
             provider_key: Trycourier::Users::UserToken::ProviderKey::OrSymbol,
-            body_token: T.nilable(String),
             device: T.nilable(Trycourier::Users::UserToken::Device::OrHash),
             expiry_date:
               T.nilable(Trycourier::Users::UserToken::ExpiryDate::Variants),
@@ -107,10 +107,10 @@ module Trycourier
           path_token,
           # Path param: The user's ID. This can be any uniquely identifiable string.
           user_id:,
+          # Body param: Full body of the token. Must match token in URL path parameter.
+          body_token:,
           # Body param:
           provider_key:,
-          # Body param: Full body of the token. Must match token in URL.
-          body_token: nil,
           # Body param: Information about the device the token is associated with.
           device: nil,
           # Body param: ISO 8601 formatted date the token expires. Defaults to 2 months. Set

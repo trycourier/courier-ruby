@@ -34,8 +34,8 @@ module Trycourier
         def add_single: (
           String path_token,
           user_id: String,
+          body_token: String,
           provider_key: Trycourier::Models::Users::UserToken::provider_key,
-          ?body_token: String?,
           ?device: Trycourier::Users::UserToken::Device?,
           ?expiry_date: Trycourier::Models::Users::UserToken::expiry_date?,
           ?properties: top,
