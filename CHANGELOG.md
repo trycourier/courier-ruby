@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.0-alpha9 (2025-11-07)
+
+Full Changelog: [v3.4.0-alpha8...v3.4.0-alpha9](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha8...v3.4.0-alpha9)
+
+### Bug Fixes
+
+* Better Python Samples + Updates to naming ([1d8cd06](https://github.com/trycourier/courier-ruby/commit/1d8cd06d373fa53e940cd05d26ce24005ef93955))
+
 ## 3.4.0-alpha8 (2025-11-05)
 
 Full Changelog: [v3.4.0-alpha7...v3.4.0-alpha8](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha7...v3.4.0-alpha8)
