@@ -1,8 +1,8 @@
 module Trycourier
   module Resources
     class Tenants
-      class TenantDefaultPreferences
-        attr_reader items: Trycourier::Resources::Tenants::TenantDefaultPreferences::Items
+      class Preferences
+        attr_reader items: Trycourier::Resources::Tenants::Preferences::Items
 
         def initialize: (client: Trycourier::Client) -> void
       end

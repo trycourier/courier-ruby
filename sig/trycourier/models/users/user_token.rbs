@@ -5,8 +5,8 @@ module Trycourier
     module Users
       type user_token =
         {
+          token: String,
           provider_key: Trycourier::Models::Users::UserToken::provider_key,
-          token: String?,
           device: Trycourier::Users::UserToken::Device?,
           expiry_date: Trycourier::Models::Users::UserToken::expiry_date?,
           properties: top,
@@ -14,9 +14,9 @@ module Trycourier
         }
 
       class UserToken < Trycourier::Internal::Type::BaseModel
-        attr_accessor provider_key: Trycourier::Models::Users::UserToken::provider_key
+        attr_accessor token: String
 
-        attr_accessor token: String?
+        attr_accessor provider_key: Trycourier::Models::Users::UserToken::provider_key
 
         attr_accessor device: Trycourier::Users::UserToken::Device?
 
@@ -29,8 +29,8 @@ module Trycourier
         attr_accessor tracking: Trycourier::Users::UserToken::Tracking?
 
         def initialize: (
+          token: String,
           provider_key: Trycourier::Models::Users::UserToken::provider_key,
-          ?token: String?,
           ?device: Trycourier::Users::UserToken::Device?,
           ?expiry_date: Trycourier::Models::Users::UserToken::expiry_date?,
           ?properties: top,
@@ -38,8 +38,8 @@ module Trycourier
         ) -> void
 
         def to_hash: -> {
+          token: String,
           provider_key: Trycourier::Models::Users::UserToken::provider_key,
-          token: String?,
           device: Trycourier::Users::UserToken::Device?,
           expiry_date: Trycourier::Models::Users::UserToken::expiry_date?,
           properties: top,

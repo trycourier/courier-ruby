@@ -4,16 +4,16 @@ module Trycourier
   module Models
     module Users
       class UserToken < Trycourier::Internal::Type::BaseModel
+        # @!attribute token
+        #   Full body of the token. Must match token in URL path parameter.
+        #
+        #   @return [String]
+        required :token, String
+
         # @!attribute provider_key
         #
         #   @return [Symbol, Trycourier::Models::Users::UserToken::ProviderKey]
         required :provider_key, enum: -> { Trycourier::Users::UserToken::ProviderKey }
-
-        # @!attribute token
-        #   Full body of the token. Must match token in URL.
-        #
-        #   @return [String, nil]
-        optional :token, String, nil?: true
 
         # @!attribute device
         #   Information about the device the token is associated with.
@@ -40,13 +40,13 @@ module Trycourier
         #   @return [Trycourier::Models::Users::UserToken::Tracking, nil]
         optional :tracking, -> { Trycourier::Users::UserToken::Tracking }, nil?: true
 
-        # @!method initialize(provider_key:, token: nil, device: nil, expiry_date: nil, properties: nil, tracking: nil)
+        # @!method initialize(token:, provider_key:, device: nil, expiry_date: nil, properties: nil, tracking: nil)
         #   Some parameter documentations has been truncated, see
         #   {Trycourier::Models::Users::UserToken} for more details.
         #
-        #   @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey]
+        #   @param token [String] Full body of the token. Must match token in URL path parameter.
         #
-        #   @param token [String, nil] Full body of the token. Must match token in URL.
+        #   @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey]
         #
         #   @param device [Trycourier::Models::Users::UserToken::Device, nil] Information about the device the token is associated with.
         #
