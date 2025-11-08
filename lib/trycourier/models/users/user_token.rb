@@ -29,7 +29,7 @@ module Trycourier
         optional :expiry_date, union: -> { Trycourier::Users::UserToken::ExpiryDate }, nil?: true
 
         # @!attribute properties
-        #   Properties sent to the provider along with the token
+        #   Properties about the token.
         #
         #   @return [Object, nil]
         optional :properties, Trycourier::Internal::Type::Unknown
@@ -52,7 +52,7 @@ module Trycourier
         #
         #   @param expiry_date [String, Boolean, nil] ISO 8601 formatted date the token expires. Defaults to 2 months. Set to false to
         #
-        #   @param properties [Object] Properties sent to the provider along with the token
+        #   @param properties [Object] Properties about the token.
         #
         #   @param tracking [Trycourier::Models::Users::UserToken::Tracking, nil] Tracking information about the device the token came from.
 

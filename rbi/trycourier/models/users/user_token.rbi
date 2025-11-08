@@ -36,7 +36,7 @@ module Trycourier
         end
         attr_accessor :expiry_date
 
-        # Properties sent to the provider along with the token
+        # Properties about the token.
         sig { returns(T.nilable(T.anything)) }
         attr_reader :properties
 
@@ -74,7 +74,7 @@ module Trycourier
           # ISO 8601 formatted date the token expires. Defaults to 2 months. Set to false to
           # disable expiration.
           expiry_date: nil,
-          # Properties sent to the provider along with the token
+          # Properties about the token.
           properties: nil,
           # Tracking information about the device the token came from.
           tracking: nil
