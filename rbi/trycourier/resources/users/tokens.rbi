@@ -116,7 +116,7 @@ module Trycourier
           # Body param: ISO 8601 formatted date the token expires. Defaults to 2 months. Set
           # to false to disable expiration.
           expiry_date: nil,
-          # Body param: Properties sent to the provider along with the token
+          # Body param: Properties about the token.
           properties: nil,
           # Body param: Tracking information about the device the token came from.
           tracking: nil,
