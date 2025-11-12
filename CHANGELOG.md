@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.0 (2025-11-12)
+
+Full Changelog: [v4.0.0...v4.1.0](https://github.com/trycourier/courier-ruby/compare/v4.0.0...v4.1.0)
+
+### Features
+
+* NPM enabled ([4f2235d](https://github.com/trycourier/courier-ruby/commit/4f2235d54287d1792ecc6ffae986510e1deb47a4))
+
 ## 4.0.0 (2025-11-12)
 
 Full Changelog: [v3.4.0-alpha9...v4.0.0](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha9...v4.0.0)
