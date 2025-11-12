@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.0.0 (2025-11-12)
+
+Full Changelog: [v3.4.0-alpha9...v4.0.0](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha9...v4.0.0)
+
+### Features
+
+* Spec Comment Change ([b567eac](https://github.com/trycourier/courier-ruby/commit/b567eac8556068aa9fea18a1882330e741dda479))
+* Token Prop Description Change ([cb884a1](https://github.com/trycourier/courier-ruby/commit/cb884a1830d2abaf81db27b14c60725c5792f0fa))
+
+
+### Chores
+
+* update SDK settings ([3ad8ff3](https://github.com/trycourier/courier-ruby/commit/3ad8ff378645ccd3ecdf5a3b64ccfd8694901c67))
+
 ## 3.4.0-alpha9 (2025-11-07)
 
 Full Changelog: [v3.4.0-alpha8...v3.4.0-alpha9](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha8...v3.4.0-alpha9)
