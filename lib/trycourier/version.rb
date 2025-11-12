@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Trycourier
-  VERSION = "3.4.0.pre.alpha9"
+  VERSION = "4.0.0"
 end
