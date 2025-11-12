@@ -26,6 +26,12 @@ module Trycourier
       #   @return [String, nil]
       optional :email, String, nil?: true
 
+      # @!attribute list_id
+      #   The id of the list to send the message to.
+      #
+      #   @return [String, nil]
+      optional :list_id, String, nil?: true
+
       # @!attribute locale
       #   The user's preferred ISO 639-1 language code.
       #
@@ -56,7 +62,7 @@ module Trycourier
       #   @return [String, nil]
       optional :user_id, String, nil?: true
 
-      # @!method initialize(account_id: nil, context: nil, data: nil, email: nil, locale: nil, phone_number: nil, preferences: nil, tenant_id: nil, user_id: nil)
+      # @!method initialize(account_id: nil, context: nil, data: nil, email: nil, list_id: nil, locale: nil, phone_number: nil, preferences: nil, tenant_id: nil, user_id: nil)
       #   Some parameter documentations has been truncated, see
       #   {Trycourier::Models::UserRecipient} for more details.
       #
@@ -67,6 +73,8 @@ module Trycourier
       #   @param data [Hash{Symbol=>Object}, nil]
       #
       #   @param email [String, nil] The user's email address.
+      #
+      #   @param list_id [String, nil] The id of the list to send the message to.
       #
       #   @param locale [String, nil] The user's preferred ISO 639-1 language code.
       #
