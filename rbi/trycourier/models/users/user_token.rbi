@@ -18,7 +18,7 @@ module Trycourier
         sig { returns(Trycourier::Users::UserToken::ProviderKey::TaggedSymbol) }
         attr_accessor :provider_key
 
-        # Information about the device the token is associated with.
+        # Information about the device the token came from.
         sig { returns(T.nilable(Trycourier::Users::UserToken::Device)) }
         attr_reader :device
 
@@ -36,14 +36,14 @@ module Trycourier
         end
         attr_accessor :expiry_date
 
-        # Properties sent to the provider along with the token
+        # Properties about the token.
         sig { returns(T.nilable(T.anything)) }
         attr_reader :properties
 
         sig { params(properties: T.anything).void }
         attr_writer :properties
 
-        # Information about the device the token is associated with.
+        # Tracking information about the device the token came from.
         sig { returns(T.nilable(Trycourier::Users::UserToken::Tracking)) }
         attr_reader :tracking
 
@@ -69,14 +69,14 @@ module Trycourier
           # Full body of the token. Must match token in URL path parameter.
           token:,
           provider_key:,
-          # Information about the device the token is associated with.
+          # Information about the device the token came from.
           device: nil,
           # ISO 8601 formatted date the token expires. Defaults to 2 months. Set to false to
           # disable expiration.
           expiry_date: nil,
-          # Properties sent to the provider along with the token
+          # Properties about the token.
           properties: nil,
-          # Information about the device the token is associated with.
+          # Tracking information about the device the token came from.
           tracking: nil
         )
         end
@@ -167,7 +167,7 @@ module Trycourier
           sig { returns(T.nilable(String)) }
           attr_accessor :platform
 
-          # Information about the device the token is associated with.
+          # Information about the device the token came from.
           sig do
             params(
               ad_id: T.nilable(String),
@@ -251,7 +251,7 @@ module Trycourier
           sig { returns(T.nilable(String)) }
           attr_accessor :os_version
 
-          # Information about the device the token is associated with.
+          # Tracking information about the device the token came from.
           sig do
             params(
               ip: T.nilable(String),

@@ -143,13 +143,13 @@ module Trycourier
         #
         # @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey] Body param:
         #
-        # @param device [Trycourier::Models::Users::UserToken::Device, nil] Body param: Information about the device the token is associated with.
+        # @param device [Trycourier::Models::Users::UserToken::Device, nil] Body param: Information about the device the token came from.
         #
         # @param expiry_date [String, Boolean, nil] Body param: ISO 8601 formatted date the token expires. Defaults to 2 months. Set
         #
-        # @param properties [Object] Body param: Properties sent to the provider along with the token
+        # @param properties [Object] Body param: Properties about the token.
         #
-        # @param tracking [Trycourier::Models::Users::UserToken::Tracking, nil] Body param: Information about the device the token is associated with.
+        # @param tracking [Trycourier::Models::Users::UserToken::Tracking, nil] Body param: Tracking information about the device the token came from.
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

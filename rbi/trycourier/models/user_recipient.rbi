@@ -28,6 +28,10 @@ module Trycourier
       sig { returns(T.nilable(String)) }
       attr_accessor :email
 
+      # The id of the list to send the message to.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :list_id
+
       # The user's preferred ISO 639-1 language code.
       sig { returns(T.nilable(String)) }
       attr_accessor :locale
@@ -61,6 +65,7 @@ module Trycourier
           context: T.nilable(Trycourier::MessageContext::OrHash),
           data: T.nilable(T::Hash[Symbol, T.anything]),
           email: T.nilable(String),
+          list_id: T.nilable(String),
           locale: T.nilable(String),
           phone_number: T.nilable(String),
           preferences:
@@ -77,6 +82,8 @@ module Trycourier
         data: nil,
         # The user's email address.
         email: nil,
+        # The id of the list to send the message to.
+        list_id: nil,
         # The user's preferred ISO 639-1 language code.
         locale: nil,
         # The user's phone number.
@@ -97,6 +104,7 @@ module Trycourier
             context: T.nilable(Trycourier::MessageContext),
             data: T.nilable(T::Hash[Symbol, T.anything]),
             email: T.nilable(String),
+            list_id: T.nilable(String),
             locale: T.nilable(String),
             phone_number: T.nilable(String),
             preferences: T.nilable(Trycourier::UserRecipient::Preferences),
