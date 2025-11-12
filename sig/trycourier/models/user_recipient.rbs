@@ -6,6 +6,7 @@ module Trycourier
         context: Trycourier::MessageContext?,
         data: ::Hash[Symbol, top]?,
         email: String?,
+        list_id: String?,
         locale: String?,
         phone_number: String?,
         preferences: Trycourier::UserRecipient::Preferences?,
@@ -22,6 +23,8 @@ module Trycourier
 
       attr_accessor email: String?
 
+      attr_accessor list_id: String?
+
       attr_accessor locale: String?
 
       attr_accessor phone_number: String?
@@ -37,6 +40,7 @@ module Trycourier
         ?context: Trycourier::MessageContext?,
         ?data: ::Hash[Symbol, top]?,
         ?email: String?,
+        ?list_id: String?,
         ?locale: String?,
         ?phone_number: String?,
         ?preferences: Trycourier::UserRecipient::Preferences?,
@@ -49,6 +53,7 @@ module Trycourier
         context: Trycourier::MessageContext?,
         data: ::Hash[Symbol, top]?,
         email: String?,
+        list_id: String?,
         locale: String?,
         phone_number: String?,
         preferences: Trycourier::UserRecipient::Preferences?,
