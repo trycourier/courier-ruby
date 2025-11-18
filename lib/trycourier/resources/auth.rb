@@ -3,12 +3,17 @@
 module Trycourier
   module Resources
     class Auth
+      # Some parameter documentations has been truncated, see
+      # {Trycourier::Models::AuthIssueTokenParams} for more details.
+      #
       # Returns a new access token.
       #
       # @overload issue_token(expires_in:, scope:, request_options: {})
       #
-      # @param expires_in [String]
-      # @param scope [String]
+      # @param expires_in [String] Duration for token expiration. Accepts various time formats:
+      #
+      # @param scope [String] Available scopes:
+      #
       # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Trycourier::Models::AuthIssueTokenResponse]

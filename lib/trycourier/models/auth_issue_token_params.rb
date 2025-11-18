@@ -8,18 +8,49 @@ module Trycourier
       include Trycourier::Internal::Type::RequestParameters
 
       # @!attribute expires_in
+      #   Duration for token expiration. Accepts various time formats:
+      #
+      #   - "2 hours" - 2 hours from now
+      #   - "1d" - 1 day
+      #   - "3 days" - 3 days
+      #   - "10h" - 10 hours
+      #   - "2.5 hrs" - 2.5 hours
+      #   - "1m" - 1 minute
+      #   - "5s" - 5 seconds
+      #   - "1y" - 1 year
       #
       #   @return [String]
       required :expires_in, String
 
       # @!attribute scope
+      #   Available scopes:
+      #
+      #   - `user_id:<user-id>` - Defines which user the token will be scoped to. Multiple
+      #     can be listed if needed. Ex `user_id:pigeon user_id:bluebird`.
+      #   - `read:messages` - Read messages.
+      #   - `read:user-tokens` - Read user push tokens.
+      #   - `write:user-tokens` - Write user push tokens.
+      #   - `read:brands[:<brand_id>]` - Read brands, optionally restricted to a specific
+      #     brand_id. Examples `read:brands`, `read:brands:my_brand`.
+      #   - `write:brands[:<brand_id>]` - Write brands, optionally restricted to a
+      #     specific brand_id. Examples `write:brands`, `write:brands:my_brand`.
+      #   - `inbox:read:messages` - Read inbox messages.
+      #   - `inbox:write:events` - Write inbox events, such as mark message as read.
+      #   - `read:preferences` - Read user preferences.
+      #   - `write:preferences` - Write user preferences. Example:
+      #     `user_id:user123 write:user-tokens inbox:read:messages inbox:write:events read:preferences write:preferences read:brands`
       #
       #   @return [String]
       required :scope, String
 
       # @!method initialize(expires_in:, scope:, request_options: {})
-      #   @param expires_in [String]
-      #   @param scope [String]
+      #   Some parameter documentations has been truncated, see
+      #   {Trycourier::Models::AuthIssueTokenParams} for more details.
+      #
+      #   @param expires_in [String] Duration for token expiration. Accepts various time formats:
+      #
+      #   @param scope [String] Available scopes:
+      #
       #   @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}]
     end
   end
