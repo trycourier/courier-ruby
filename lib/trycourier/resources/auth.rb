@@ -10,9 +10,9 @@ module Trycourier
       #
       # @overload issue_token(expires_in:, scope:, request_options: {})
       #
-      # @param expires_in [String] Duration for token expiration. Accepts various time formats: - "2 hours" - 2 hou
+      # @param expires_in [String] Duration for token expiration. Accepts various time formats:
       #
-      # @param scope [String] Space-separated list of scopes that define what the token can access. Common sco
+      # @param scope [String] Available scopes:
       #
       # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
