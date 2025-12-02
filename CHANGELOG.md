@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.1 (2025-12-02)
+
+Full Changelog: [v4.1.0...v4.1.1](https://github.com/trycourier/courier-ruby/compare/v4.1.0...v4.1.1)
+
+### Chores
+
+* explicitly require "base64" gem ([0dccbc1](https://github.com/trycourier/courier-ruby/commit/0dccbc120b6772d2343f3990bd11f0ed03b736bf))
+
 ## 4.1.0 (2025-11-18)
 
 Full Changelog: [v4.0.0...v4.1.0](https://github.com/trycourier/courier-ruby/compare/v4.0.0...v4.1.0)
