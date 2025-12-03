@@ -9,7 +9,7 @@ module Trycourier
         list_id: String?,
         locale: String?,
         phone_number: String?,
-        preferences: Trycourier::Recipient::Preferences?,
+        preferences: Trycourier::ProfilePreferences?,
         tenant_id: String?,
         user_id: String?
       }
@@ -29,7 +29,7 @@ module Trycourier
 
       attr_accessor phone_number: String?
 
-      attr_accessor preferences: Trycourier::Recipient::Preferences?
+      attr_accessor preferences: Trycourier::ProfilePreferences?
 
       attr_accessor tenant_id: String?
 
@@ -43,7 +43,7 @@ module Trycourier
         ?list_id: String?,
         ?locale: String?,
         ?phone_number: String?,
-        ?preferences: Trycourier::Recipient::Preferences?,
+        ?preferences: Trycourier::ProfilePreferences?,
         ?tenant_id: String?,
         ?user_id: String?
       ) -> void
@@ -56,37 +56,10 @@ module Trycourier
         list_id: String?,
         locale: String?,
         phone_number: String?,
-        preferences: Trycourier::Recipient::Preferences?,
+        preferences: Trycourier::ProfilePreferences?,
         tenant_id: String?,
         user_id: String?
       }
-
-      type preferences =
-        {
-          notifications: ::Hash[Symbol, Trycourier::Preference],
-          categories: ::Hash[Symbol, Trycourier::Preference]?,
-          template_id: String?
-        }
-
-      class Preferences < Trycourier::Internal::Type::BaseModel
-        attr_accessor notifications: ::Hash[Symbol, Trycourier::Preference]
-
-        attr_accessor categories: ::Hash[Symbol, Trycourier::Preference]?
-
-        attr_accessor template_id: String?
-
-        def initialize: (
-          notifications: ::Hash[Symbol, Trycourier::Preference],
-          ?categories: ::Hash[Symbol, Trycourier::Preference]?,
-          ?template_id: String?
-        ) -> void
-
-        def to_hash: -> {
-          notifications: ::Hash[Symbol, Trycourier::Preference],
-          categories: ::Hash[Symbol, Trycourier::Preference]?,
-          template_id: String?
-        }
-      end
     end
   end
 end
