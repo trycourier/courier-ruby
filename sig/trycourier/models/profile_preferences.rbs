@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    type profile_preferences =
+      {
+        notifications: ::Hash[Symbol, Trycourier::Preference],
+        categories: ::Hash[Symbol, Trycourier::Preference]?,
+        template_id: String?
+      }
+
+    class ProfilePreferences < Trycourier::Internal::Type::BaseModel
+      attr_accessor notifications: ::Hash[Symbol, Trycourier::Preference]
+
+      attr_accessor categories: ::Hash[Symbol, Trycourier::Preference]?
+
+      attr_accessor template_id: String?
+
+      def initialize: (
+        notifications: ::Hash[Symbol, Trycourier::Preference],
+        ?categories: ::Hash[Symbol, Trycourier::Preference]?,
+        ?template_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        notifications: ::Hash[Symbol, Trycourier::Preference],
+        categories: ::Hash[Symbol, Trycourier::Preference]?,
+        template_id: String?
+      }
+    end
+  end
+end

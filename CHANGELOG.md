@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.2 (2025-12-04)
+
+Full Changelog: [v4.1.1...v4.1.2](https://github.com/trycourier/courier-ruby/compare/v4.1.1...v4.1.2)
+
+### Bug Fixes
+
+* **client:** fix duplicate Go struct resulting from name derivations schema ([9e12a1e](https://github.com/trycourier/courier-ruby/commit/9e12a1ec6f4f230533c524e0c597159072664350))
+
 ## 4.1.1 (2025-12-02)
 
 Full Changelog: [v4.1.0...v4.1.1](https://github.com/trycourier/courier-ruby/compare/v4.1.0...v4.1.1)
