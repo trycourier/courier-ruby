@@ -69,14 +69,14 @@ module Trycourier
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<Trycourier::Models::Users::UserToken>]
+        # @return [Trycourier::Models::Users::TokenListResponse]
         #
         # @see Trycourier::Models::Users::TokenListParams
         def list(user_id, params = {})
           @client.request(
             method: :get,
             path: ["users/%1$s/tokens", user_id],
-            model: Trycourier::Internal::Type::ArrayOf[Trycourier::Users::UserToken],
+            model: Trycourier::Models::Users::TokenListResponse,
             options: params[:request_options]
           )
         end
