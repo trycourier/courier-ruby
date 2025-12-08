@@ -174,8 +174,6 @@ module Trycourier
 
   ProfileDeleteParams = Trycourier::Models::ProfileDeleteParams
 
-  ProfilePreferences = Trycourier::Models::ProfilePreferences
-
   ProfileReplaceParams = Trycourier::Models::ProfileReplaceParams
 
   ProfileRetrieveParams = Trycourier::Models::ProfileRetrieveParams

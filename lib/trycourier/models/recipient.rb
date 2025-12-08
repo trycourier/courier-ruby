@@ -46,8 +46,8 @@ module Trycourier
 
       # @!attribute preferences
       #
-      #   @return [Trycourier::Models::ProfilePreferences, nil]
-      optional :preferences, -> { Trycourier::ProfilePreferences }, nil?: true
+      #   @return [Trycourier::Models::Recipient::Preferences, nil]
+      optional :preferences, -> { Trycourier::Recipient::Preferences }, nil?: true
 
       # @!attribute tenant_id
       #   The id of the tenant the user is associated with.
@@ -80,11 +80,34 @@ module Trycourier
       #
       #   @param phone_number [String, nil] The user's phone number.
       #
-      #   @param preferences [Trycourier::Models::ProfilePreferences, nil]
+      #   @param preferences [Trycourier::Models::Recipient::Preferences, nil]
       #
       #   @param tenant_id [String, nil] The id of the tenant the user is associated with.
       #
       #   @param user_id [String, nil] The user's unique identifier. Typically, this will match the user id of a user i
+
+      # @see Trycourier::Models::Recipient#preferences
+      class Preferences < Trycourier::Internal::Type::BaseModel
+        # @!attribute notifications
+        #
+        #   @return [Hash{Symbol=>Trycourier::Models::Preference}]
+        required :notifications, -> { Trycourier::Internal::Type::HashOf[Trycourier::Preference] }
+
+        # @!attribute categories
+        #
+        #   @return [Hash{Symbol=>Trycourier::Models::Preference}, nil]
+        optional :categories, -> { Trycourier::Internal::Type::HashOf[Trycourier::Preference] }, nil?: true
+
+        # @!attribute template_id
+        #
+        #   @return [String, nil]
+        optional :template_id, String, api_name: :templateId, nil?: true
+
+        # @!method initialize(notifications:, categories: nil, template_id: nil)
+        #   @param notifications [Hash{Symbol=>Trycourier::Models::Preference}]
+        #   @param categories [Hash{Symbol=>Trycourier::Models::Preference}, nil]
+        #   @param template_id [String, nil]
+      end
     end
   end
 end
