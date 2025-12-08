@@ -30,6 +30,12 @@ module Trycourier
         #   @return [Integer]
         required :created_at, Integer
 
+        # @!attribute event_ids
+        #   Array of event IDs associated with this notification
+        #
+        #   @return [Array<String>]
+        required :event_ids, Trycourier::Internal::Type::ArrayOf[String]
+
         # @!attribute note
         #
         #   @return [String]
@@ -60,14 +66,23 @@ module Trycourier
         #   @return [String, nil]
         optional :title, String, nil?: true
 
-        # @!method initialize(id:, created_at:, note:, routing:, topic_id:, updated_at:, tags: nil, title: nil)
+        # @!method initialize(id:, created_at:, event_ids:, note:, routing:, topic_id:, updated_at:, tags: nil, title: nil)
         #   @param id [String]
+        #
         #   @param created_at [Integer]
+        #
+        #   @param event_ids [Array<String>] Array of event IDs associated with this notification
+        #
         #   @param note [String]
+        #
         #   @param routing [Trycourier::Models::MessageRouting]
+        #
         #   @param topic_id [String]
+        #
         #   @param updated_at [Integer]
+        #
         #   @param tags [Trycourier::Models::NotificationListResponse::Result::Tags, nil]
+        #
         #   @param title [String, nil]
 
         # @see Trycourier::Models::NotificationListResponse::Result#tags

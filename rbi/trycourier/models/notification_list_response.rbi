@@ -61,6 +61,10 @@ module Trycourier
         sig { returns(Integer) }
         attr_accessor :created_at
 
+        # Array of event IDs associated with this notification
+        sig { returns(T::Array[String]) }
+        attr_accessor :event_ids
+
         sig { returns(String) }
         attr_accessor :note
 
@@ -102,6 +106,7 @@ module Trycourier
           params(
             id: String,
             created_at: Integer,
+            event_ids: T::Array[String],
             note: String,
             routing: Trycourier::MessageRouting::OrHash,
             topic_id: String,
@@ -116,6 +121,8 @@ module Trycourier
         def self.new(
           id:,
           created_at:,
+          # Array of event IDs associated with this notification
+          event_ids:,
           note:,
           routing:,
           topic_id:,
@@ -130,6 +137,7 @@ module Trycourier
             {
               id: String,
               created_at: Integer,
+              event_ids: T::Array[String],
               note: String,
               routing: Trycourier::MessageRouting,
               topic_id: String,
