@@ -25,6 +25,7 @@ module Trycourier
         {
           id: String,
           created_at: Integer,
+          event_ids: ::Array[String],
           note: String,
           routing: Trycourier::MessageRouting,
           topic_id: String,
@@ -37,6 +38,8 @@ module Trycourier
         attr_accessor id: String
 
         attr_accessor created_at: Integer
+
+        attr_accessor event_ids: ::Array[String]
 
         attr_accessor note: String
 
@@ -53,6 +56,7 @@ module Trycourier
         def initialize: (
           id: String,
           created_at: Integer,
+          event_ids: ::Array[String],
           note: String,
           routing: Trycourier::MessageRouting,
           topic_id: String,
@@ -64,6 +68,7 @@ module Trycourier
         def to_hash: -> {
           id: String,
           created_at: Integer,
+          event_ids: ::Array[String],
           note: String,
           routing: Trycourier::MessageRouting,
           topic_id: String,
