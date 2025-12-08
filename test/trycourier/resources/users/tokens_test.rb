@@ -29,7 +29,13 @@ class Trycourier::Test::Resources::Users::TokensTest < Trycourier::Test::Resourc
     response = @courier.users.tokens.list("user_id")
 
     assert_pattern do
-      response => ^(Trycourier::Internal::Type::ArrayOf[Trycourier::Users::UserToken])
+      response => Trycourier::Models::Users::TokenListResponse
+    end
+
+    assert_pattern do
+      response => {
+        tokens: ^(Trycourier::Internal::Type::ArrayOf[Trycourier::Users::UserToken])
+      }
     end
   end
 

@@ -1,9 +1,16 @@
 module Trycourier
   module Models
     module Users
-      type token_list_response = ::Array[Trycourier::Users::UserToken]
+      type token_list_response =
+        { tokens: ::Array[Trycourier::Users::UserToken] }
 
-      TokenListResponse: Trycourier::Internal::Type::Converter
+      class TokenListResponse < Trycourier::Internal::Type::BaseModel
+        attr_accessor tokens: ::Array[Trycourier::Users::UserToken]
+
+        def initialize: (tokens: ::Array[Trycourier::Users::UserToken]) -> void
+
+        def to_hash: -> { tokens: ::Array[Trycourier::Users::UserToken] }
+      end
     end
   end
 end

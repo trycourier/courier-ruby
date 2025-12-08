@@ -47,7 +47,7 @@ module Trycourier
           params(
             user_id: String,
             request_options: Trycourier::RequestOptions::OrHash
-          ).returns(T::Array[Trycourier::Users::UserToken])
+          ).returns(Trycourier::Models::Users::TokenListResponse)
         end
         def list(
           # The user's ID. This can be any uniquely identifiable string.
