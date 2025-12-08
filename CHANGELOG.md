@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.3.0 (2025-12-08)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/trycourier/courier-ruby/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* Fix UsersGetAllTokensResponse to return object with tokens property i… ([dad98a1](https://github.com/trycourier/courier-ruby/commit/dad98a163d391bf45510d10c10d2d7597e1af74e))
+
 ## 4.2.0 (2025-12-08)
 
 Full Changelog: [v4.1.1...v4.2.0](https://github.com/trycourier/courier-ruby/compare/v4.1.1...v4.2.0)
