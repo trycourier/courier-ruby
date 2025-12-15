@@ -609,6 +609,12 @@ module Trycourier
           sig { returns(T.nilable(Integer)) }
           attr_accessor :duration
 
+          # IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). Used when
+          # resolving opening hours expressions. Takes precedence over user profile timezone
+          # settings.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :timezone
+
           # ISO 8601 timestamp or opening_hours-like format.
           sig { returns(T.nilable(String)) }
           attr_accessor :until_
@@ -616,12 +622,17 @@ module Trycourier
           sig do
             params(
               duration: T.nilable(Integer),
+              timezone: T.nilable(String),
               until_: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
             # The duration of the delay in milliseconds.
             duration: nil,
+            # IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). Used when
+            # resolving opening hours expressions. Takes precedence over user profile timezone
+            # settings.
+            timezone: nil,
             # ISO 8601 timestamp or opening_hours-like format.
             until_: nil
           )
@@ -629,7 +640,11 @@ module Trycourier
 
           sig do
             override.returns(
-              { duration: T.nilable(Integer), until_: T.nilable(String) }
+              {
+                duration: T.nilable(Integer),
+                timezone: T.nilable(String),
+                until_: T.nilable(String)
+              }
             )
           end
           def to_hash
