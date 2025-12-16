@@ -264,14 +264,27 @@ module Trycourier
           #   @return [Integer, nil]
           optional :duration, Integer, nil?: true
 
+          # @!attribute timezone
+          #   IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). Used when
+          #   resolving opening hours expressions. Takes precedence over user profile timezone
+          #   settings.
+          #
+          #   @return [String, nil]
+          optional :timezone, String, nil?: true
+
           # @!attribute until_
           #   ISO 8601 timestamp or opening_hours-like format.
           #
           #   @return [String, nil]
           optional :until_, String, api_name: :until, nil?: true
 
-          # @!method initialize(duration: nil, until_: nil)
+          # @!method initialize(duration: nil, timezone: nil, until_: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Trycourier::Models::SendMessageParams::Message::Delay} for more details.
+          #
           #   @param duration [Integer, nil] The duration of the delay in milliseconds.
+          #
+          #   @param timezone [String, nil] IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). Used when resolvi
           #
           #   @param until_ [String, nil] ISO 8601 timestamp or opening_hours-like format.
         end

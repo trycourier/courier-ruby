@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.4.0 (2025-12-16)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/trycourier/courier-ruby/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* Add timezone field to Delay schema ([980df61](https://github.com/trycourier/courier-ruby/commit/980df617cffc47a231bac77a4250ef4e409cb57c))
+* Update bulk API spec: make event required, document profile.email req… ([73718b3](https://github.com/trycourier/courier-ruby/commit/73718b3e6c13e0a3ac1bc5487eb07953f435a956))
+
 ## 4.3.0 (2025-12-08)
 
 Full Changelog: [v4.2.0...v4.3.0](https://github.com/trycourier/courier-ruby/compare/v4.2.0...v4.3.0)

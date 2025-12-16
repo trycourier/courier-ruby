@@ -4,7 +4,7 @@ module Trycourier
       {
         data: top,
         preferences: Trycourier::RecipientPreferences?,
-        profile: top,
+        profile: ::Hash[Symbol, top]?,
         recipient: String?,
         to: Trycourier::UserRecipient?
       }
@@ -16,9 +16,7 @@ module Trycourier
 
       attr_accessor preferences: Trycourier::RecipientPreferences?
 
-      attr_reader profile: top?
-
-      def profile=: (top) -> top
+      attr_accessor profile: ::Hash[Symbol, top]?
 
       attr_accessor recipient: String?
 
@@ -27,7 +25,7 @@ module Trycourier
       def initialize: (
         ?data: top,
         ?preferences: Trycourier::RecipientPreferences?,
-        ?profile: top,
+        ?profile: ::Hash[Symbol, top]?,
         ?recipient: String?,
         ?to: Trycourier::UserRecipient?
       ) -> void
@@ -35,7 +33,7 @@ module Trycourier
       def to_hash: -> {
         data: top,
         preferences: Trycourier::RecipientPreferences?,
-        profile: top,
+        profile: ::Hash[Symbol, top]?,
         recipient: String?,
         to: Trycourier::UserRecipient?
       }

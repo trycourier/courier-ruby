@@ -109,7 +109,7 @@ module Trycourier
 
   class Icons = Trycourier::Models::Icons
 
-  module InboundBulkMessage = Trycourier::Models::InboundBulkMessage
+  class InboundBulkMessage = Trycourier::Models::InboundBulkMessage
 
   class InboundBulkMessageUser = Trycourier::Models::InboundBulkMessageUser
 

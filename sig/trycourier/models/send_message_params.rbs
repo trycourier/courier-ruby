@@ -194,16 +194,26 @@ module Trycourier
           def self?.variants: -> ::Array[Trycourier::Models::SendMessageParams::Message::content]
         end
 
-        type delay = { duration: Integer?, until_: String? }
+        type delay = { duration: Integer?, timezone: String?, until_: String? }
 
         class Delay < Trycourier::Internal::Type::BaseModel
           attr_accessor duration: Integer?
 
+          attr_accessor timezone: String?
+
           attr_accessor until_: String?
 
-          def initialize: (?duration: Integer?, ?until_: String?) -> void
+          def initialize: (
+            ?duration: Integer?,
+            ?timezone: String?,
+            ?until_: String?
+          ) -> void
 
-          def to_hash: -> { duration: Integer?, until_: String? }
+          def to_hash: -> {
+            duration: Integer?,
+            timezone: String?,
+            until_: String?
+          }
         end
 
         type expiry =
