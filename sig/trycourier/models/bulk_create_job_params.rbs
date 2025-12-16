@@ -1,22 +1,22 @@
 module Trycourier
   module Models
     type bulk_create_job_params =
-      { message: Trycourier::Models::inbound_bulk_message }
+      { message: Trycourier::InboundBulkMessage }
       & Trycourier::Internal::Type::request_parameters
 
     class BulkCreateJobParams < Trycourier::Internal::Type::BaseModel
       extend Trycourier::Internal::Type::RequestParameters::Converter
       include Trycourier::Internal::Type::RequestParameters
 
-      attr_accessor message: Trycourier::Models::inbound_bulk_message
+      attr_accessor message: Trycourier::InboundBulkMessage
 
       def initialize: (
-        message: Trycourier::Models::inbound_bulk_message,
+        message: Trycourier::InboundBulkMessage,
         ?request_options: Trycourier::request_opts
       ) -> void
 
       def to_hash: -> {
-        message: Trycourier::Models::inbound_bulk_message,
+        message: Trycourier::InboundBulkMessage,
         request_options: Trycourier::RequestOptions
       }
     end

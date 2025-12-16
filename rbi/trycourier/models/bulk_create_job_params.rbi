@@ -11,37 +11,38 @@ module Trycourier
           T.any(Trycourier::BulkCreateJobParams, Trycourier::Internal::AnyHash)
         end
 
-      sig do
-        returns(
-          T.any(
-            Trycourier::InboundBulkMessage::InboundBulkTemplateMessage,
-            Trycourier::InboundBulkMessage::InboundBulkContentMessage
-          )
-        )
-      end
-      attr_accessor :message
+      # Bulk message definition. Supports two formats:
+      #
+      # - V1 format: Requires `event` field (event ID or notification ID)
+      # - V2 format: Optionally use `template` (notification ID) or `content` (Elemental
+      #   content) in addition to `event`
+      sig { returns(Trycourier::InboundBulkMessage) }
+      attr_reader :message
+
+      sig { params(message: Trycourier::InboundBulkMessage::OrHash).void }
+      attr_writer :message
 
       sig do
         params(
-          message:
-            T.any(
-              Trycourier::InboundBulkMessage::InboundBulkTemplateMessage::OrHash,
-              Trycourier::InboundBulkMessage::InboundBulkContentMessage::OrHash
-            ),
+          message: Trycourier::InboundBulkMessage::OrHash,
           request_options: Trycourier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(message:, request_options: {})
+      def self.new(
+        # Bulk message definition. Supports two formats:
+        #
+        # - V1 format: Requires `event` field (event ID or notification ID)
+        # - V2 format: Optionally use `template` (notification ID) or `content` (Elemental
+        #   content) in addition to `event`
+        message:,
+        request_options: {}
+      )
       end
 
       sig do
         override.returns(
           {
-            message:
-              T.any(
-                Trycourier::InboundBulkMessage::InboundBulkTemplateMessage,
-                Trycourier::InboundBulkMessage::InboundBulkContentMessage
-              ),
+            message: Trycourier::InboundBulkMessage,
             request_options: Trycourier::RequestOptions
           }
         )
