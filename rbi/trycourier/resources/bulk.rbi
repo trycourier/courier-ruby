@@ -3,7 +3,11 @@
 module Trycourier
   module Resources
     class Bulk
-      # Ingest user data into a Bulk Job
+      # Ingest user data into a Bulk Job.
+      #
+      # **Important**: For email-based bulk jobs, each user must include `profile.email`
+      # for provider routing to work correctly. The `to.email` field is not sufficient
+      # for email provider routing.
       sig do
         params(
           job_id: String,
@@ -19,18 +23,28 @@ module Trycourier
       )
       end
 
-      # Create a bulk job
+      # Creates a new bulk job for sending messages to multiple recipients.
+      #
+      # **Required**: `message.event` (event ID or notification ID)
+      #
+      # **Optional (V2 format)**: `message.template` (notification ID) or
+      # `message.content` (Elemental content) can be provided to override the
+      # notification associated with the event.
       sig do
         params(
-          message:
-            T.any(
-              Trycourier::InboundBulkMessage::InboundBulkTemplateMessage::OrHash,
-              Trycourier::InboundBulkMessage::InboundBulkContentMessage::OrHash
-            ),
+          message: Trycourier::InboundBulkMessage::OrHash,
           request_options: Trycourier::RequestOptions::OrHash
         ).returns(Trycourier::Models::BulkCreateJobResponse)
       end
-      def create_job(message:, request_options: {})
+      def create_job(
+        # Bulk message definition. Supports two formats:
+        #
+        # - V1 format: Requires `event` field (event ID or notification ID)
+        # - V2 format: Optionally use `template` (notification ID) or `content` (Elemental
+        #   content) in addition to `event`
+        message:,
+        request_options: {}
+      )
       end
 
       # Get Bulk Job Users

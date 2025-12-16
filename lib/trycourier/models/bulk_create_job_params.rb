@@ -8,12 +8,21 @@ module Trycourier
       include Trycourier::Internal::Type::RequestParameters
 
       # @!attribute message
+      #   Bulk message definition. Supports two formats:
       #
-      #   @return [Trycourier::Models::InboundBulkMessage::InboundBulkTemplateMessage, Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage]
-      required :message, union: -> { Trycourier::InboundBulkMessage }
+      #   - V1 format: Requires `event` field (event ID or notification ID)
+      #   - V2 format: Optionally use `template` (notification ID) or `content` (Elemental
+      #     content) in addition to `event`
+      #
+      #   @return [Trycourier::Models::InboundBulkMessage]
+      required :message, -> { Trycourier::InboundBulkMessage }
 
       # @!method initialize(message:, request_options: {})
-      #   @param message [Trycourier::Models::InboundBulkMessage::InboundBulkTemplateMessage, Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage]
+      #   Some parameter documentations has been truncated, see
+      #   {Trycourier::Models::BulkCreateJobParams} for more details.
+      #
+      #   @param message [Trycourier::Models::InboundBulkMessage] Bulk message definition. Supports two formats:
+      #
       #   @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}]
     end
   end

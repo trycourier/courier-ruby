@@ -16,7 +16,7 @@ class Trycourier::Test::Resources::BulkTest < Trycourier::Test::ResourceTest
   def test_create_job_required_params
     skip("Prism tests are disabled")
 
-    response = @courier.bulk.create_job(message: {template: "template"})
+    response = @courier.bulk.create_job(message: {event: "event"})
 
     assert_pattern do
       response => Trycourier::Models::BulkCreateJobResponse

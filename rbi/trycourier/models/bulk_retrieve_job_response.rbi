@@ -46,8 +46,16 @@ module Trycourier
             )
           end
 
-        sig { returns(Trycourier::InboundBulkMessage::Variants) }
-        attr_accessor :definition
+        # Bulk message definition. Supports two formats:
+        #
+        # - V1 format: Requires `event` field (event ID or notification ID)
+        # - V2 format: Optionally use `template` (notification ID) or `content` (Elemental
+        #   content) in addition to `event`
+        sig { returns(Trycourier::InboundBulkMessage) }
+        attr_reader :definition
+
+        sig { params(definition: Trycourier::InboundBulkMessage::OrHash).void }
+        attr_writer :definition
 
         sig { returns(Integer) }
         attr_accessor :enqueued
@@ -67,11 +75,7 @@ module Trycourier
 
         sig do
           params(
-            definition:
-              T.any(
-                Trycourier::InboundBulkMessage::InboundBulkTemplateMessage::OrHash,
-                Trycourier::InboundBulkMessage::InboundBulkContentMessage::OrHash
-              ),
+            definition: Trycourier::InboundBulkMessage::OrHash,
             enqueued: Integer,
             failures: Integer,
             received: Integer,
@@ -79,13 +83,24 @@ module Trycourier
               Trycourier::Models::BulkRetrieveJobResponse::Job::Status::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(definition:, enqueued:, failures:, received:, status:)
+        def self.new(
+          # Bulk message definition. Supports two formats:
+          #
+          # - V1 format: Requires `event` field (event ID or notification ID)
+          # - V2 format: Optionally use `template` (notification ID) or `content` (Elemental
+          #   content) in addition to `event`
+          definition:,
+          enqueued:,
+          failures:,
+          received:,
+          status:
+        )
         end
 
         sig do
           override.returns(
             {
-              definition: Trycourier::InboundBulkMessage::Variants,
+              definition: Trycourier::InboundBulkMessage,
               enqueued: Integer,
               failures: Integer,
               received: Integer,

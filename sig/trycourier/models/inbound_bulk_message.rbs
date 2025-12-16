@@ -1,106 +1,59 @@
 module Trycourier
   module Models
     type inbound_bulk_message =
-      Trycourier::InboundBulkMessage::InboundBulkTemplateMessage
-      | Trycourier::InboundBulkMessage::InboundBulkContentMessage
+      {
+        event: String,
+        brand: String?,
+        content: Trycourier::Models::InboundBulkMessage::content?,
+        data: ::Hash[Symbol, top]?,
+        locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+        override: ::Hash[Symbol, top]?,
+        template: String?
+      }
 
-    module InboundBulkMessage
-      extend Trycourier::Internal::Type::Union
+    class InboundBulkMessage < Trycourier::Internal::Type::BaseModel
+      attr_accessor event: String
 
-      type inbound_bulk_template_message =
-        {
-          template: String,
-          brand: String?,
-          data: ::Hash[Symbol, top]?,
-          event: String?,
-          locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
-          override: ::Hash[Symbol, top]?
-        }
+      attr_accessor brand: String?
 
-      class InboundBulkTemplateMessage < Trycourier::Internal::Type::BaseModel
-        attr_accessor template: String
+      attr_accessor content: Trycourier::Models::InboundBulkMessage::content?
 
-        attr_accessor brand: String?
+      attr_accessor data: ::Hash[Symbol, top]?
 
-        attr_accessor data: ::Hash[Symbol, top]?
+      attr_accessor locale: ::Hash[Symbol, ::Hash[Symbol, top]]?
 
-        attr_accessor event: String?
+      attr_accessor override: ::Hash[Symbol, top]?
 
-        attr_accessor locale: ::Hash[Symbol, ::Hash[Symbol, top]]?
+      attr_accessor template: String?
 
-        attr_accessor override: ::Hash[Symbol, top]?
+      def initialize: (
+        event: String,
+        ?brand: String?,
+        ?content: Trycourier::Models::InboundBulkMessage::content?,
+        ?data: ::Hash[Symbol, top]?,
+        ?locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+        ?override: ::Hash[Symbol, top]?,
+        ?template: String?
+      ) -> void
 
-        def initialize: (
-          template: String,
-          ?brand: String?,
-          ?data: ::Hash[Symbol, top]?,
-          ?event: String?,
-          ?locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
-          ?override: ::Hash[Symbol, top]?
-        ) -> void
+      def to_hash: -> {
+        event: String,
+        brand: String?,
+        content: Trycourier::Models::InboundBulkMessage::content?,
+        data: ::Hash[Symbol, top]?,
+        locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+        override: ::Hash[Symbol, top]?,
+        template: String?
+      }
 
-        def to_hash: -> {
-          template: String,
-          brand: String?,
-          data: ::Hash[Symbol, top]?,
-          event: String?,
-          locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
-          override: ::Hash[Symbol, top]?
-        }
+      type content =
+        Trycourier::ElementalContentSugar | Trycourier::ElementalContent
+
+      module Content
+        extend Trycourier::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Trycourier::Models::InboundBulkMessage::content]
       end
-
-      type inbound_bulk_content_message =
-        {
-          content: Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage::content,
-          brand: String?,
-          data: ::Hash[Symbol, top]?,
-          event: String?,
-          locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
-          override: ::Hash[Symbol, top]?
-        }
-
-      class InboundBulkContentMessage < Trycourier::Internal::Type::BaseModel
-        attr_accessor content: Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage::content
-
-        attr_accessor brand: String?
-
-        attr_accessor data: ::Hash[Symbol, top]?
-
-        attr_accessor event: String?
-
-        attr_accessor locale: ::Hash[Symbol, ::Hash[Symbol, top]]?
-
-        attr_accessor override: ::Hash[Symbol, top]?
-
-        def initialize: (
-          content: Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage::content,
-          ?brand: String?,
-          ?data: ::Hash[Symbol, top]?,
-          ?event: String?,
-          ?locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
-          ?override: ::Hash[Symbol, top]?
-        ) -> void
-
-        def to_hash: -> {
-          content: Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage::content,
-          brand: String?,
-          data: ::Hash[Symbol, top]?,
-          event: String?,
-          locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
-          override: ::Hash[Symbol, top]?
-        }
-
-        type content =
-          Trycourier::ElementalContentSugar | Trycourier::ElementalContent
-
-        module Content
-          extend Trycourier::Internal::Type::Union
-
-          def self?.variants: -> ::Array[Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage::content]
-        end
-      end
-
-      def self?.variants: -> ::Array[Trycourier::Models::inbound_bulk_message]
     end
   end
 end

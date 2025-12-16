@@ -8,7 +8,7 @@ module Trycourier
       ) -> nil
 
       def create_job: (
-        message: Trycourier::Models::inbound_bulk_message,
+        message: Trycourier::InboundBulkMessage,
         ?request_options: Trycourier::request_opts
       ) -> Trycourier::Models::BulkCreateJobResponse
 

@@ -14,7 +14,7 @@ module Trycourier
 
       type job =
         {
-          definition: Trycourier::Models::inbound_bulk_message,
+          definition: Trycourier::InboundBulkMessage,
           enqueued: Integer,
           failures: Integer,
           received: Integer,
@@ -22,7 +22,7 @@ module Trycourier
         }
 
       class Job < Trycourier::Internal::Type::BaseModel
-        attr_accessor definition: Trycourier::Models::inbound_bulk_message
+        attr_accessor definition: Trycourier::InboundBulkMessage
 
         attr_accessor enqueued: Integer
 
@@ -33,7 +33,7 @@ module Trycourier
         attr_accessor status: Trycourier::Models::BulkRetrieveJobResponse::Job::status
 
         def initialize: (
-          definition: Trycourier::Models::inbound_bulk_message,
+          definition: Trycourier::InboundBulkMessage,
           enqueued: Integer,
           failures: Integer,
           received: Integer,
@@ -41,7 +41,7 @@ module Trycourier
         ) -> void
 
         def to_hash: -> {
-          definition: Trycourier::Models::inbound_bulk_message,
+          definition: Trycourier::InboundBulkMessage,
           enqueued: Integer,
           failures: Integer,
           received: Integer,

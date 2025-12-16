@@ -15,9 +15,14 @@ module Trycourier
       # @see Trycourier::Models::BulkRetrieveJobResponse#job
       class Job < Trycourier::Internal::Type::BaseModel
         # @!attribute definition
+        #   Bulk message definition. Supports two formats:
         #
-        #   @return [Trycourier::Models::InboundBulkMessage::InboundBulkTemplateMessage, Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage]
-        required :definition, union: -> { Trycourier::InboundBulkMessage }
+        #   - V1 format: Requires `event` field (event ID or notification ID)
+        #   - V2 format: Optionally use `template` (notification ID) or `content` (Elemental
+        #     content) in addition to `event`
+        #
+        #   @return [Trycourier::Models::InboundBulkMessage]
+        required :definition, -> { Trycourier::InboundBulkMessage }
 
         # @!attribute enqueued
         #
@@ -40,10 +45,17 @@ module Trycourier
         required :status, enum: -> { Trycourier::Models::BulkRetrieveJobResponse::Job::Status }
 
         # @!method initialize(definition:, enqueued:, failures:, received:, status:)
-        #   @param definition [Trycourier::Models::InboundBulkMessage::InboundBulkTemplateMessage, Trycourier::Models::InboundBulkMessage::InboundBulkContentMessage]
+        #   Some parameter documentations has been truncated, see
+        #   {Trycourier::Models::BulkRetrieveJobResponse::Job} for more details.
+        #
+        #   @param definition [Trycourier::Models::InboundBulkMessage] Bulk message definition. Supports two formats:
+        #
         #   @param enqueued [Integer]
+        #
         #   @param failures [Integer]
+        #
         #   @param received [Integer]
+        #
         #   @param status [Symbol, Trycourier::Models::BulkRetrieveJobResponse::Job::Status]
 
         # @see Trycourier::Models::BulkRetrieveJobResponse::Job#status
