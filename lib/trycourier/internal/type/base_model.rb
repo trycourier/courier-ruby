@@ -438,9 +438,10 @@ module Trycourier
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `channel_preference` is a `Trycourier::ChannelPreference`
-        #   channel_preference => {
-        #     channel: channel
+        #   # `airship_profile` is a `Trycourier::AirshipProfile`
+        #   airship_profile => {
+        #     audience: audience,
+        #     device_types: device_types
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

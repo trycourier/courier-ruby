@@ -1,0 +1,14 @@
+module Trycourier
+  module Models
+    type webhook_method = :POST | :PUT
+
+    module WebhookMethod
+      extend Trycourier::Internal::Type::Enum
+
+      POST: :POST
+      PUT: :PUT
+
+      def self?.values: -> ::Array[Trycourier::Models::webhook_method]
+    end
+  end
+end

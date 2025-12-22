@@ -1,0 +1,14 @@
+module Trycourier
+  module Models
+    type slack =
+      Trycourier::SendToSlackChannel
+      | Trycourier::SendToSlackEmail
+      | Trycourier::SendToSlackUserID
+
+    module Slack
+      extend Trycourier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Trycourier::Models::slack]
+    end
+  end
+end

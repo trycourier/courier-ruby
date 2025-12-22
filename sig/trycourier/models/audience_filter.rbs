@@ -1,0 +1,50 @@
+module Trycourier
+  module Models
+    type audience_filter =
+      {
+        operator: Trycourier::Models::AudienceFilter::operator,
+        path: Trycourier::Models::AudienceFilter::path,
+        value: String
+      }
+
+    class AudienceFilter < Trycourier::Internal::Type::BaseModel
+      attr_accessor operator: Trycourier::Models::AudienceFilter::operator
+
+      attr_accessor path: Trycourier::Models::AudienceFilter::path
+
+      attr_accessor value: String
+
+      def initialize: (
+        operator: Trycourier::Models::AudienceFilter::operator,
+        path: Trycourier::Models::AudienceFilter::path,
+        value: String
+      ) -> void
+
+      def to_hash: -> {
+        operator: Trycourier::Models::AudienceFilter::operator,
+        path: Trycourier::Models::AudienceFilter::path,
+        value: String
+      }
+
+      type operator = :MEMBER_OF
+
+      module Operator
+        extend Trycourier::Internal::Type::Enum
+
+        MEMBER_OF: :MEMBER_OF
+
+        def self?.values: -> ::Array[Trycourier::Models::AudienceFilter::operator]
+      end
+
+      type path = :account_id
+
+      module Path
+        extend Trycourier::Internal::Type::Enum
+
+        ACCOUNT_ID: :account_id
+
+        def self?.values: -> ::Array[Trycourier::Models::AudienceFilter::path]
+      end
+    end
+  end
+end

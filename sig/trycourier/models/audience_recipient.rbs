@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    type audience_recipient =
+      {
+        audience_id: String,
+        data: ::Hash[Symbol, top]?,
+        filters: ::Array[Trycourier::AudienceFilter]?
+      }
+
+    class AudienceRecipient < Trycourier::Internal::Type::BaseModel
+      attr_accessor audience_id: String
+
+      attr_accessor data: ::Hash[Symbol, top]?
+
+      attr_accessor filters: ::Array[Trycourier::AudienceFilter]?
+
+      def initialize: (
+        audience_id: String,
+        ?data: ::Hash[Symbol, top]?,
+        ?filters: ::Array[Trycourier::AudienceFilter]?
+      ) -> void
+
+      def to_hash: -> {
+        audience_id: String,
+        data: ::Hash[Symbol, top]?,
+        filters: ::Array[Trycourier::AudienceFilter]?
+      }
+    end
+  end
+end

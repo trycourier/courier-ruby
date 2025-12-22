@@ -1,0 +1,11 @@
+module Trycourier
+  module Models
+    type discord = Trycourier::SendToChannel | Trycourier::SendDirectMessage
+
+    module Discord
+      extend Trycourier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Trycourier::Models::discord]
+    end
+  end
+end

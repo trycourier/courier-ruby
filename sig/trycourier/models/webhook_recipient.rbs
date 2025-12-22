@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type webhook_recipient = { webhook: Trycourier::WebhookProfile }
+
+    class WebhookRecipient < Trycourier::Internal::Type::BaseModel
+      attr_accessor webhook: Trycourier::WebhookProfile
+
+      def initialize: (webhook: Trycourier::WebhookProfile) -> void
+
+      def to_hash: -> { webhook: Trycourier::WebhookProfile }
+    end
+  end
+end
