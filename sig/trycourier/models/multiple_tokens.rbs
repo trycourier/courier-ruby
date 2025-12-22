@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type multiple_tokens = { tokens: ::Array[Trycourier::Token] }
+
+    class MultipleTokens < Trycourier::Internal::Type::BaseModel
+      attr_accessor tokens: ::Array[Trycourier::Token]
+
+      def initialize: (tokens: ::Array[Trycourier::Token]) -> void
+
+      def to_hash: -> { tokens: ::Array[Trycourier::Token] }
+    end
+  end
+end

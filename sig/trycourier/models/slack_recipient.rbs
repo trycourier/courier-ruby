@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type slack_recipient = { slack: Trycourier::Models::slack }
+
+    class SlackRecipient < Trycourier::Internal::Type::BaseModel
+      attr_accessor slack: Trycourier::Models::slack
+
+      def initialize: (slack: Trycourier::Models::slack) -> void
+
+      def to_hash: -> { slack: Trycourier::Models::slack }
+    end
+  end
+end

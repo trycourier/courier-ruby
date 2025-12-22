@@ -1,0 +1,26 @@
+module Trycourier
+  module Models
+    type send_to_ms_teams_conversation_id =
+      { conversation_id: String, service_url: String, tenant_id: String }
+
+    class SendToMsTeamsConversationID < Trycourier::Internal::Type::BaseModel
+      attr_accessor conversation_id: String
+
+      attr_accessor service_url: String
+
+      attr_accessor tenant_id: String
+
+      def initialize: (
+        conversation_id: String,
+        service_url: String,
+        tenant_id: String
+      ) -> void
+
+      def to_hash: -> {
+        conversation_id: String,
+        service_url: String,
+        tenant_id: String
+      }
+    end
+  end
+end

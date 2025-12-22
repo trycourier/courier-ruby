@@ -1,0 +1,64 @@
+module Trycourier
+  module Models
+    type nested_filter_config =
+      {
+        operator: Trycourier::Models::NestedFilterConfig::operator,
+        rules: ::Array[Trycourier::Models::filter_config]
+      }
+
+    class NestedFilterConfig < Trycourier::Internal::Type::BaseModel
+      attr_accessor operator: Trycourier::Models::NestedFilterConfig::operator
+
+      attr_accessor rules: ::Array[Trycourier::Models::filter_config]
+
+      def initialize: (
+        operator: Trycourier::Models::NestedFilterConfig::operator,
+        rules: ::Array[Trycourier::Models::filter_config]
+      ) -> void
+
+      def to_hash: -> {
+        operator: Trycourier::Models::NestedFilterConfig::operator,
+        rules: ::Array[Trycourier::Models::filter_config]
+      }
+
+      type operator =
+        :ENDS_WITH
+        | :EQ
+        | :EXISTS
+        | :GT
+        | :GTE
+        | :INCLUDES
+        | :IS_AFTER
+        | :IS_BEFORE
+        | :LT
+        | :LTE
+        | :NEQ
+        | :OMIT
+        | :STARTS_WITH
+        | :AND
+        | :OR
+
+      module Operator
+        extend Trycourier::Internal::Type::Enum
+
+        ENDS_WITH: :ENDS_WITH
+        EQ: :EQ
+        EXISTS: :EXISTS
+        GT: :GT
+        GTE: :GTE
+        INCLUDES: :INCLUDES
+        IS_AFTER: :IS_AFTER
+        IS_BEFORE: :IS_BEFORE
+        LT: :LT
+        LTE: :LTE
+        NEQ: :NEQ
+        OMIT: :OMIT
+        STARTS_WITH: :STARTS_WITH
+        AND: :AND
+        OR: :OR
+
+        def self?.values: -> ::Array[Trycourier::Models::NestedFilterConfig::operator]
+      end
+    end
+  end
+end

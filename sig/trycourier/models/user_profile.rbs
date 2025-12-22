@@ -1,0 +1,212 @@
+module Trycourier
+  module Models
+    type user_profile =
+      {
+        address: Trycourier::UserProfile::Address?,
+        airship: Trycourier::AirshipProfile?,
+        apn: String?,
+        birthdate: String?,
+        custom: ::Hash[Symbol, top]?,
+        discord: Trycourier::Models::discord?,
+        email: String?,
+        email_verified: bool?,
+        expo: Trycourier::Models::expo?,
+        facebook_psid: String?,
+        family_name: String?,
+        firebase_token: Trycourier::Models::user_profile_firebase_token?,
+        gender: String?,
+        given_name: String?,
+        intercom: Trycourier::Intercom?,
+        locale: String?,
+        middle_name: String?,
+        ms_teams: Trycourier::Models::ms_teams?,
+        name: String?,
+        nickname: String?,
+        phone_number: String?,
+        phone_number_verified: bool?,
+        picture: String?,
+        preferred_name: String?,
+        profile: String?,
+        slack: Trycourier::Models::slack?,
+        sub: String?,
+        target_arn: String?,
+        updated_at: String?,
+        website: String?,
+        zoneinfo: String?
+      }
+
+    class UserProfile < Trycourier::Internal::Type::BaseModel
+      attr_accessor address: Trycourier::UserProfile::Address?
+
+      attr_accessor airship: Trycourier::AirshipProfile?
+
+      attr_accessor apn: String?
+
+      attr_accessor birthdate: String?
+
+      attr_accessor custom: ::Hash[Symbol, top]?
+
+      attr_accessor discord: Trycourier::Models::discord?
+
+      attr_accessor email: String?
+
+      attr_accessor email_verified: bool?
+
+      attr_accessor expo: Trycourier::Models::expo?
+
+      attr_accessor facebook_psid: String?
+
+      attr_accessor family_name: String?
+
+      attr_accessor firebase_token: Trycourier::Models::user_profile_firebase_token?
+
+      attr_accessor gender: String?
+
+      attr_accessor given_name: String?
+
+      attr_accessor intercom: Trycourier::Intercom?
+
+      attr_accessor locale: String?
+
+      attr_accessor middle_name: String?
+
+      attr_accessor ms_teams: Trycourier::Models::ms_teams?
+
+      attr_accessor name: String?
+
+      attr_accessor nickname: String?
+
+      attr_accessor phone_number: String?
+
+      attr_accessor phone_number_verified: bool?
+
+      attr_accessor picture: String?
+
+      attr_accessor preferred_name: String?
+
+      attr_accessor profile: String?
+
+      attr_accessor slack: Trycourier::Models::slack?
+
+      attr_accessor sub: String?
+
+      attr_accessor target_arn: String?
+
+      attr_accessor updated_at: String?
+
+      attr_accessor website: String?
+
+      attr_accessor zoneinfo: String?
+
+      def initialize: (
+        ?address: Trycourier::UserProfile::Address?,
+        ?airship: Trycourier::AirshipProfile?,
+        ?apn: String?,
+        ?birthdate: String?,
+        ?custom: ::Hash[Symbol, top]?,
+        ?discord: Trycourier::Models::discord?,
+        ?email: String?,
+        ?email_verified: bool?,
+        ?expo: Trycourier::Models::expo?,
+        ?facebook_psid: String?,
+        ?family_name: String?,
+        ?firebase_token: Trycourier::Models::user_profile_firebase_token?,
+        ?gender: String?,
+        ?given_name: String?,
+        ?intercom: Trycourier::Intercom?,
+        ?locale: String?,
+        ?middle_name: String?,
+        ?ms_teams: Trycourier::Models::ms_teams?,
+        ?name: String?,
+        ?nickname: String?,
+        ?phone_number: String?,
+        ?phone_number_verified: bool?,
+        ?picture: String?,
+        ?preferred_name: String?,
+        ?profile: String?,
+        ?slack: Trycourier::Models::slack?,
+        ?sub: String?,
+        ?target_arn: String?,
+        ?updated_at: String?,
+        ?website: String?,
+        ?zoneinfo: String?
+      ) -> void
+
+      def to_hash: -> {
+        address: Trycourier::UserProfile::Address?,
+        airship: Trycourier::AirshipProfile?,
+        apn: String?,
+        birthdate: String?,
+        custom: ::Hash[Symbol, top]?,
+        discord: Trycourier::Models::discord?,
+        email: String?,
+        email_verified: bool?,
+        expo: Trycourier::Models::expo?,
+        facebook_psid: String?,
+        family_name: String?,
+        firebase_token: Trycourier::Models::user_profile_firebase_token?,
+        gender: String?,
+        given_name: String?,
+        intercom: Trycourier::Intercom?,
+        locale: String?,
+        middle_name: String?,
+        ms_teams: Trycourier::Models::ms_teams?,
+        name: String?,
+        nickname: String?,
+        phone_number: String?,
+        phone_number_verified: bool?,
+        picture: String?,
+        preferred_name: String?,
+        profile: String?,
+        slack: Trycourier::Models::slack?,
+        sub: String?,
+        target_arn: String?,
+        updated_at: String?,
+        website: String?,
+        zoneinfo: String?
+      }
+
+      type address =
+        {
+          country: String,
+          formatted: String,
+          locality: String,
+          postal_code: String,
+          region: String,
+          street_address: String
+        }
+
+      class Address < Trycourier::Internal::Type::BaseModel
+        attr_accessor country: String
+
+        attr_accessor formatted: String
+
+        attr_accessor locality: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor region: String
+
+        attr_accessor street_address: String
+
+        def initialize: (
+          country: String,
+          formatted: String,
+          locality: String,
+          postal_code: String,
+          region: String,
+          street_address: String
+        ) -> void
+
+        def to_hash: -> {
+          country: String,
+          formatted: String,
+          locality: String,
+          postal_code: String,
+          region: String,
+          street_address: String
+        }
+      end
+    end
+  end
+end

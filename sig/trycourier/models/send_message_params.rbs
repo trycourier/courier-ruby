@@ -413,14 +413,20 @@ module Trycourier
           end
         end
 
-        type to = Trycourier::UserRecipient | ::Array[Trycourier::Recipient]
+        type to =
+          Trycourier::UserRecipient
+          | Trycourier::AudienceRecipient
+          | Trycourier::ListRecipient
+          | Trycourier::ListPatternRecipient
+          | Trycourier::SlackRecipient
+          | Trycourier::MsTeamsRecipient
+          | Trycourier::PagerdutyRecipient
+          | Trycourier::WebhookRecipient
 
         module To
           extend Trycourier::Internal::Type::Union
 
           def self?.variants: -> ::Array[Trycourier::Models::SendMessageParams::Message::to]
-
-          RecipientArray: Trycourier::Internal::Type::Converter
         end
       end
     end

@@ -6,16 +6,14 @@ module Trycourier
       # @api private
       #
       # @example
-      #   # `elemental_node` is a `Trycourier::ElementalNode`
-      #   case elemental_node
-      #   when Trycourier::ElementalTextNodeWithType
-      #     # ...
-      #   when Trycourier::ElementalMetaNodeWithType
-      #     # ...
-      #   when Trycourier::ElementalChannelNodeWithType
-      #     # ...
+      #   # `discord` is a `Trycourier::Discord`
+      #   case discord
+      #   when Trycourier::SendToChannel
+      #     puts(discord.channel_id)
+      #   when Trycourier::SendDirectMessage
+      #     puts(discord.user_id)
       #   else
-      #     puts(elemental_node)
+      #     puts(discord)
       #   end
       module Union
         include Trycourier::Internal::Type::Converter

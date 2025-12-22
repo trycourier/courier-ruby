@@ -1,0 +1,14 @@
+module Trycourier
+  module Models
+    type webhook_profile_type = :limited | :expanded
+
+    module WebhookProfileType
+      extend Trycourier::Internal::Type::Enum
+
+      LIMITED: :limited
+      EXPANDED: :expanded
+
+      def self?.values: -> ::Array[Trycourier::Models::webhook_profile_type]
+    end
+  end
+end

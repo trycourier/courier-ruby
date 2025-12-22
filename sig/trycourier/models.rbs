@@ -1,13 +1,21 @@
 module Trycourier
+  class AirshipProfile = Trycourier::Models::AirshipProfile
+
+  class AirshipProfileAudience = Trycourier::Models::AirshipProfileAudience
+
   module Alignment = Trycourier::Models::Alignment
 
   class Audience = Trycourier::Models::Audience
 
   class AudienceDeleteParams = Trycourier::Models::AudienceDeleteParams
 
+  class AudienceFilter = Trycourier::Models::AudienceFilter
+
   class AudienceListMembersParams = Trycourier::Models::AudienceListMembersParams
 
   class AudienceListParams = Trycourier::Models::AudienceListParams
+
+  class AudienceRecipient = Trycourier::Models::AudienceRecipient
 
   class AudienceRetrieveParams = Trycourier::Models::AudienceRetrieveParams
 
@@ -73,6 +81,10 @@ module Trycourier
 
   class DefaultPreferences = Trycourier::Models::DefaultPreferences
 
+  class DeviceType = Trycourier::Models::DeviceType
+
+  module Discord = Trycourier::Models::Discord
+
   class ElementalActionNodeWithType = Trycourier::Models::ElementalActionNodeWithType
 
   class ElementalBaseNode = Trycourier::Models::ElementalBaseNode
@@ -103,9 +115,11 @@ module Trycourier
 
   class EmailHeader = Trycourier::Models::EmailHeader
 
-  class Filter = Trycourier::Models::Filter
+  module Expo = Trycourier::Models::Expo
 
-  class FilterConfig = Trycourier::Models::FilterConfig
+  module Filter = Trycourier::Models::Filter
+
+  module FilterConfig = Trycourier::Models::FilterConfig
 
   class Icons = Trycourier::Models::Icons
 
@@ -115,9 +129,19 @@ module Trycourier
 
   class InboundTrackEventParams = Trycourier::Models::InboundTrackEventParams
 
+  class Intercom = Trycourier::Models::Intercom
+
+  class IntercomRecipient = Trycourier::Models::IntercomRecipient
+
   class ListDeleteParams = Trycourier::Models::ListDeleteParams
 
+  class ListFilter = Trycourier::Models::ListFilter
+
   class ListListParams = Trycourier::Models::ListListParams
+
+  class ListPatternRecipient = Trycourier::Models::ListPatternRecipient
+
+  class ListRecipient = Trycourier::Models::ListRecipient
 
   class ListRestoreParams = Trycourier::Models::ListRestoreParams
 
@@ -147,6 +171,16 @@ module Trycourier
 
   module MessageRoutingChannel = Trycourier::Models::MessageRoutingChannel
 
+  module MsTeams = Trycourier::Models::MsTeams
+
+  class MsTeamsBaseProperties = Trycourier::Models::MsTeamsBaseProperties
+
+  class MsTeamsRecipient = Trycourier::Models::MsTeamsRecipient
+
+  class MultipleTokens = Trycourier::Models::MultipleTokens
+
+  class NestedFilterConfig = Trycourier::Models::NestedFilterConfig
+
   class NotificationGetContent = Trycourier::Models::NotificationGetContent
 
   class NotificationListParams = Trycourier::Models::NotificationListParams
@@ -156,6 +190,10 @@ module Trycourier
   class NotificationRetrieveContentParams = Trycourier::Models::NotificationRetrieveContentParams
 
   module Notifications = Trycourier::Models::Notifications
+
+  class Pagerduty = Trycourier::Models::Pagerduty
+
+  class PagerdutyRecipient = Trycourier::Models::PagerdutyRecipient
 
   class Paging = Trycourier::Models::Paging
 
@@ -177,15 +215,41 @@ module Trycourier
 
   class PutSubscriptionsRecipient = Trycourier::Models::PutSubscriptionsRecipient
 
-  class Recipient = Trycourier::Models::Recipient
-
   class RecipientPreferences = Trycourier::Models::RecipientPreferences
 
   class RequestArchiveParams = Trycourier::Models::RequestArchiveParams
 
   class Rule = Trycourier::Models::Rule
 
+  class SendDirectMessage = Trycourier::Models::SendDirectMessage
+
   class SendMessageParams = Trycourier::Models::SendMessageParams
+
+  class SendToChannel = Trycourier::Models::SendToChannel
+
+  class SendToMsTeamsChannelID = Trycourier::Models::SendToMsTeamsChannelID
+
+  class SendToMsTeamsChannelName = Trycourier::Models::SendToMsTeamsChannelName
+
+  class SendToMsTeamsConversationID = Trycourier::Models::SendToMsTeamsConversationID
+
+  class SendToMsTeamsEmail = Trycourier::Models::SendToMsTeamsEmail
+
+  class SendToMsTeamsUserID = Trycourier::Models::SendToMsTeamsUserID
+
+  class SendToSlackChannel = Trycourier::Models::SendToSlackChannel
+
+  class SendToSlackEmail = Trycourier::Models::SendToSlackEmail
+
+  class SendToSlackUserID = Trycourier::Models::SendToSlackUserID
+
+  class SingleFilterConfig = Trycourier::Models::SingleFilterConfig
+
+  module Slack = Trycourier::Models::Slack
+
+  class SlackBaseProperties = Trycourier::Models::SlackBaseProperties
+
+  class SlackRecipient = Trycourier::Models::SlackRecipient
 
   class SubscribeToListsRequestItem = Trycourier::Models::SubscribeToListsRequestItem
 
@@ -211,15 +275,33 @@ module Trycourier
 
   module TextStyle = Trycourier::Models::TextStyle
 
+  class Token = Trycourier::Models::Token
+
   class TranslationRetrieveParams = Trycourier::Models::TranslationRetrieveParams
 
   class TranslationUpdateParams = Trycourier::Models::TranslationUpdateParams
+
+  class UserProfile = Trycourier::Models::UserProfile
+
+  module UserProfileFirebaseToken = Trycourier::Models::UserProfileFirebaseToken
 
   class UserRecipient = Trycourier::Models::UserRecipient
 
   module Users = Trycourier::Models::Users
 
   class Utm = Trycourier::Models::Utm
+
+  class WebhookAuthentication = Trycourier::Models::WebhookAuthentication
+
+  module WebhookAuthMode = Trycourier::Models::WebhookAuthMode
+
+  module WebhookMethod = Trycourier::Models::WebhookMethod
+
+  class WebhookProfile = Trycourier::Models::WebhookProfile
+
+  module WebhookProfileType = Trycourier::Models::WebhookProfileType
+
+  class WebhookRecipient = Trycourier::Models::WebhookRecipient
 
   class WidgetBackground = Trycourier::Models::WidgetBackground
 end

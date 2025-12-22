@@ -206,7 +206,16 @@ module Trycourier
         sig do
           returns(
             T.nilable(
-              T.any(Trycourier::UserRecipient, T::Array[Trycourier::Recipient])
+              T.any(
+                Trycourier::UserRecipient,
+                Trycourier::AudienceRecipient,
+                Trycourier::ListRecipient,
+                Trycourier::ListPatternRecipient,
+                Trycourier::SlackRecipient,
+                Trycourier::MsTeamsRecipient,
+                Trycourier::PagerdutyRecipient,
+                Trycourier::WebhookRecipient
+              )
             )
           )
         end
@@ -263,7 +272,13 @@ module Trycourier
               T.nilable(
                 T.any(
                   Trycourier::UserRecipient::OrHash,
-                  T::Array[Trycourier::Recipient::OrHash]
+                  Trycourier::AudienceRecipient::OrHash,
+                  Trycourier::ListRecipient::OrHash,
+                  Trycourier::ListPatternRecipient::OrHash,
+                  Trycourier::SlackRecipient::OrHash,
+                  Trycourier::MsTeamsRecipient::OrHash,
+                  Trycourier::PagerdutyRecipient::OrHash,
+                  Trycourier::WebhookRecipient::OrHash
                 )
               )
           ).returns(T.attached_class)
@@ -332,7 +347,13 @@ module Trycourier
                 T.nilable(
                   T.any(
                     Trycourier::UserRecipient,
-                    T::Array[Trycourier::Recipient]
+                    Trycourier::AudienceRecipient,
+                    Trycourier::ListRecipient,
+                    Trycourier::ListPatternRecipient,
+                    Trycourier::SlackRecipient,
+                    Trycourier::MsTeamsRecipient,
+                    Trycourier::PagerdutyRecipient,
+                    Trycourier::WebhookRecipient
                   )
                 )
             }
@@ -1099,7 +1120,16 @@ module Trycourier
 
           Variants =
             T.type_alias do
-              T.any(Trycourier::UserRecipient, T::Array[Trycourier::Recipient])
+              T.any(
+                Trycourier::UserRecipient,
+                Trycourier::AudienceRecipient,
+                Trycourier::ListRecipient,
+                Trycourier::ListPatternRecipient,
+                Trycourier::SlackRecipient,
+                Trycourier::MsTeamsRecipient,
+                Trycourier::PagerdutyRecipient,
+                Trycourier::WebhookRecipient
+              )
             end
 
           sig do
@@ -1109,12 +1139,6 @@ module Trycourier
           end
           def self.variants
           end
-
-          RecipientArray =
-            T.let(
-              Trycourier::Internal::Type::ArrayOf[Trycourier::Recipient],
-              Trycourier::Internal::Type::Converter
-            )
         end
       end
     end

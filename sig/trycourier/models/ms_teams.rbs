@@ -1,0 +1,16 @@
+module Trycourier
+  module Models
+    type ms_teams =
+      Trycourier::SendToMsTeamsUserID
+      | Trycourier::SendToMsTeamsEmail
+      | Trycourier::SendToMsTeamsChannelID
+      | Trycourier::SendToMsTeamsConversationID
+      | Trycourier::SendToMsTeamsChannelName
+
+    module MsTeams
+      extend Trycourier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Trycourier::Models::ms_teams]
+    end
+  end
+end

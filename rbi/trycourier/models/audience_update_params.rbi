@@ -16,11 +16,17 @@ module Trycourier
       attr_accessor :description
 
       # A single filter to use for filtering
-      sig { returns(T.nilable(Trycourier::Filter)) }
-      attr_reader :filter
-
-      sig { params(filter: T.nilable(Trycourier::Filter::OrHash)).void }
-      attr_writer :filter
+      sig do
+        returns(
+          T.nilable(
+            T.any(
+              Trycourier::SingleFilterConfig,
+              Trycourier::NestedFilterConfig
+            )
+          )
+        )
+      end
+      attr_accessor :filter
 
       # The name of the audience
       sig { returns(T.nilable(String)) }
@@ -29,7 +35,13 @@ module Trycourier
       sig do
         params(
           description: T.nilable(String),
-          filter: T.nilable(Trycourier::Filter::OrHash),
+          filter:
+            T.nilable(
+              T.any(
+                Trycourier::SingleFilterConfig::OrHash,
+                Trycourier::NestedFilterConfig::OrHash
+              )
+            ),
           name: T.nilable(String),
           request_options: Trycourier::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -49,7 +61,13 @@ module Trycourier
         override.returns(
           {
             description: T.nilable(String),
-            filter: T.nilable(Trycourier::Filter),
+            filter:
+              T.nilable(
+                T.any(
+                  Trycourier::SingleFilterConfig,
+                  Trycourier::NestedFilterConfig
+                )
+              ),
             name: T.nilable(String),
             request_options: Trycourier::RequestOptions
           }

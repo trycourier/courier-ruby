@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type send_to_slack_email = { access_token: String, email: String }
+
+    class SendToSlackEmail < Trycourier::Internal::Type::BaseModel
+      attr_accessor access_token: String
+
+      attr_accessor email: String
+
+      def initialize: (access_token: String, email: String) -> void
+
+      def to_hash: -> { access_token: String, email: String }
+    end
+  end
+end

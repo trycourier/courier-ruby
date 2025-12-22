@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type intercom = { from: String, to: Trycourier::IntercomRecipient }
+
+    class Intercom < Trycourier::Internal::Type::BaseModel
+      attr_accessor from: String
+
+      attr_accessor to: Trycourier::IntercomRecipient
+
+      def initialize: (from: String, to: Trycourier::IntercomRecipient) -> void
+
+      def to_hash: -> { from: String, to: Trycourier::IntercomRecipient }
+    end
+  end
+end

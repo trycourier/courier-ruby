@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type ms_teams_recipient = { ms_teams: Trycourier::Models::ms_teams }
+
+    class MsTeamsRecipient < Trycourier::Internal::Type::BaseModel
+      attr_accessor ms_teams: Trycourier::Models::ms_teams
+
+      def initialize: (ms_teams: Trycourier::Models::ms_teams) -> void
+
+      def to_hash: -> { ms_teams: Trycourier::Models::ms_teams }
+    end
+  end
+end

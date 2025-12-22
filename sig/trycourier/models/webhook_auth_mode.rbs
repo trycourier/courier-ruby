@@ -1,0 +1,15 @@
+module Trycourier
+  module Models
+    type webhook_auth_mode = :none | :basic | :bearer
+
+    module WebhookAuthMode
+      extend Trycourier::Internal::Type::Enum
+
+      NONE: :none
+      BASIC: :basic
+      BEARER: :bearer
+
+      def self?.values: -> ::Array[Trycourier::Models::webhook_auth_mode]
+    end
+  end
+end

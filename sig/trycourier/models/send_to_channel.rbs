@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type send_to_channel = { channel_id: String }
+
+    class SendToChannel < Trycourier::Internal::Type::BaseModel
+      attr_accessor channel_id: String
+
+      def initialize: (channel_id: String) -> void
+
+      def to_hash: -> { channel_id: String }
+    end
+  end
+end

@@ -1,0 +1,30 @@
+module Trycourier
+  module Models
+    type list_recipient =
+      {
+        data: ::Hash[Symbol, top]?,
+        filters: ::Array[Trycourier::ListFilter]?,
+        list_id: String?
+      }
+
+    class ListRecipient < Trycourier::Internal::Type::BaseModel
+      attr_accessor data: ::Hash[Symbol, top]?
+
+      attr_accessor filters: ::Array[Trycourier::ListFilter]?
+
+      attr_accessor list_id: String?
+
+      def initialize: (
+        ?data: ::Hash[Symbol, top]?,
+        ?filters: ::Array[Trycourier::ListFilter]?,
+        ?list_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Hash[Symbol, top]?,
+        filters: ::Array[Trycourier::ListFilter]?,
+        list_id: String?
+      }
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Trycourier
+  module Models
+    type list_pattern_recipient =
+      { data: ::Hash[Symbol, top]?, list_pattern: String? }
+
+    class ListPatternRecipient < Trycourier::Internal::Type::BaseModel
+      attr_accessor data: ::Hash[Symbol, top]?
+
+      attr_accessor list_pattern: String?
+
+      def initialize: (
+        ?data: ::Hash[Symbol, top]?,
+        ?list_pattern: String?
+      ) -> void
+
+      def to_hash: -> { data: ::Hash[Symbol, top]?, list_pattern: String? }
+    end
+  end
+end
