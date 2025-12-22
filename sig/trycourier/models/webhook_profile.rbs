@@ -1,0 +1,40 @@
+module Trycourier
+  module Models
+    type webhook_profile =
+      {
+        url: String,
+        authentication: Trycourier::WebhookAuthentication?,
+        headers: ::Hash[Symbol, String]?,
+        method_: Trycourier::Models::webhook_method?,
+        profile: Trycourier::Models::webhook_profile_type?
+      }
+
+    class WebhookProfile < Trycourier::Internal::Type::BaseModel
+      attr_accessor url: String
+
+      attr_accessor authentication: Trycourier::WebhookAuthentication?
+
+      attr_accessor headers: ::Hash[Symbol, String]?
+
+      attr_accessor method_: Trycourier::Models::webhook_method?
+
+      attr_accessor profile: Trycourier::Models::webhook_profile_type?
+
+      def initialize: (
+        url: String,
+        ?authentication: Trycourier::WebhookAuthentication?,
+        ?headers: ::Hash[Symbol, String]?,
+        ?method_: Trycourier::Models::webhook_method?,
+        ?profile: Trycourier::Models::webhook_profile_type?
+      ) -> void
+
+      def to_hash: -> {
+        url: String,
+        authentication: Trycourier::WebhookAuthentication?,
+        headers: ::Hash[Symbol, String]?,
+        method_: Trycourier::Models::webhook_method?,
+        profile: Trycourier::Models::webhook_profile_type?
+      }
+    end
+  end
+end

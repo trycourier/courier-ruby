@@ -20,11 +20,8 @@ module Trycourier
       attr_accessor :description
 
       # A single filter to use for filtering
-      sig { returns(Trycourier::Filter) }
-      attr_reader :filter
-
-      sig { params(filter: Trycourier::Filter::OrHash).void }
-      attr_writer :filter
+      sig { returns(Trycourier::Filter::Variants) }
+      attr_accessor :filter
 
       # The name of the audience
       sig { returns(String) }
@@ -38,7 +35,11 @@ module Trycourier
           id: String,
           created_at: String,
           description: String,
-          filter: Trycourier::Filter::OrHash,
+          filter:
+            T.any(
+              Trycourier::SingleFilterConfig::OrHash,
+              Trycourier::NestedFilterConfig::OrHash
+            ),
           name: String,
           updated_at: String
         ).returns(T.attached_class)
@@ -63,7 +64,7 @@ module Trycourier
             id: String,
             created_at: String,
             description: String,
-            filter: Trycourier::Filter,
+            filter: Trycourier::Filter::Variants,
             name: String,
             updated_at: String
           }

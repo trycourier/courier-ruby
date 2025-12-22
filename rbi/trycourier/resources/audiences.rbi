@@ -22,7 +22,13 @@ module Trycourier
         params(
           audience_id: String,
           description: T.nilable(String),
-          filter: T.nilable(Trycourier::Filter::OrHash),
+          filter:
+            T.nilable(
+              T.any(
+                Trycourier::SingleFilterConfig::OrHash,
+                Trycourier::NestedFilterConfig::OrHash
+              )
+            ),
           name: T.nilable(String),
           request_options: Trycourier::RequestOptions::OrHash
         ).returns(Trycourier::Models::AudienceUpdateResponse)

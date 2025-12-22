@@ -1,0 +1,35 @@
+module Trycourier
+  module Models
+    type webhook_authentication =
+      {
+        mode: Trycourier::Models::webhook_auth_mode,
+        token: String?,
+        password: String?,
+        username: String?
+      }
+
+    class WebhookAuthentication < Trycourier::Internal::Type::BaseModel
+      attr_accessor mode: Trycourier::Models::webhook_auth_mode
+
+      attr_accessor token: String?
+
+      attr_accessor password: String?
+
+      attr_accessor username: String?
+
+      def initialize: (
+        mode: Trycourier::Models::webhook_auth_mode,
+        ?token: String?,
+        ?password: String?,
+        ?username: String?
+      ) -> void
+
+      def to_hash: -> {
+        mode: Trycourier::Models::webhook_auth_mode,
+        token: String?,
+        password: String?,
+        username: String?
+      }
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type airship_profile_audience = { named_user: String }
+
+    class AirshipProfileAudience < Trycourier::Internal::Type::BaseModel
+      attr_accessor named_user: String
+
+      def initialize: (named_user: String) -> void
+
+      def to_hash: -> { named_user: String }
+    end
+  end
+end

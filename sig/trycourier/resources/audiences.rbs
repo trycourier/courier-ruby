@@ -9,7 +9,7 @@ module Trycourier
       def update: (
         String audience_id,
         ?description: String?,
-        ?filter: Trycourier::Filter?,
+        ?filter: Trycourier::Models::filter?,
         ?name: String?,
         ?request_options: Trycourier::request_opts
       ) -> Trycourier::Models::AudienceUpdateResponse
