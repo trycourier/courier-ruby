@@ -24,8 +24,8 @@ module Trycourier
       # @!attribute filter
       #   A single filter to use for filtering
       #
-      #   @return [Trycourier::Models::Filter]
-      required :filter, -> { Trycourier::Filter }
+      #   @return [Trycourier::Models::SingleFilterConfig, Trycourier::Models::NestedFilterConfig]
+      required :filter, union: -> { Trycourier::Filter }
 
       # @!attribute name
       #   The name of the audience
@@ -45,7 +45,7 @@ module Trycourier
       #
       #   @param description [String] A description of the audience
       #
-      #   @param filter [Trycourier::Models::Filter] A single filter to use for filtering
+      #   @param filter [Trycourier::Models::SingleFilterConfig, Trycourier::Models::NestedFilterConfig] A single filter to use for filtering
       #
       #   @param name [String] The name of the audience
       #

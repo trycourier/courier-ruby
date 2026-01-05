@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type pagerduty_recipient = { pagerduty: Trycourier::Pagerduty }
+
+    class PagerdutyRecipient < Trycourier::Internal::Type::BaseModel
+      attr_accessor pagerduty: Trycourier::Pagerduty
+
+      def initialize: (pagerduty: Trycourier::Pagerduty) -> void
+
+      def to_hash: -> { pagerduty: Trycourier::Pagerduty }
+    end
+  end
+end

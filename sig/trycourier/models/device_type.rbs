@@ -1,0 +1,5 @@
+module Trycourier
+  module Models
+    class DeviceType = String
+  end
+end

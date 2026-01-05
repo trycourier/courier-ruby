@@ -1,0 +1,25 @@
+module Trycourier
+  module Models
+    type airship_profile =
+      {
+        audience: Trycourier::AirshipProfileAudience,
+        device_types: ::Array[String]
+      }
+
+    class AirshipProfile < Trycourier::Internal::Type::BaseModel
+      attr_accessor audience: Trycourier::AirshipProfileAudience
+
+      attr_accessor device_types: ::Array[String]
+
+      def initialize: (
+        audience: Trycourier::AirshipProfileAudience,
+        device_types: ::Array[String]
+      ) -> void
+
+      def to_hash: -> {
+        audience: Trycourier::AirshipProfileAudience,
+        device_types: ::Array[String]
+      }
+    end
+  end
+end

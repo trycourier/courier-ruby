@@ -100,7 +100,7 @@ module Trycourier
         # @!attribute to
         #   The recipient or a list of recipients of the message
         #
-        #   @return [Trycourier::Models::UserRecipient, Array<Trycourier::Models::Recipient>, nil]
+        #   @return [Trycourier::Models::UserRecipient, Trycourier::Models::AudienceRecipient, Trycourier::Models::ListRecipient, Trycourier::Models::ListPatternRecipient, Trycourier::Models::SlackRecipient, Trycourier::Models::MsTeamsRecipient, Trycourier::Models::PagerdutyRecipient, Trycourier::Models::WebhookRecipient, nil]
         optional :to, union: -> { Trycourier::SendMessageParams::Message::To }, nil?: true
 
         # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, template: nil, timeout: nil, to: nil)
@@ -136,7 +136,7 @@ module Trycourier
         #
         #   @param timeout [Trycourier::Models::SendMessageParams::Message::Timeout, nil]
         #
-        #   @param to [Trycourier::Models::UserRecipient, Array<Trycourier::Models::Recipient>, nil] The recipient or a list of recipients of the message
+        #   @param to [Trycourier::Models::UserRecipient, Trycourier::Models::AudienceRecipient, Trycourier::Models::ListRecipient, Trycourier::Models::ListPatternRecipient, Trycourier::Models::SlackRecipient, Trycourier::Models::MsTeamsRecipient, Trycourier::Models::PagerdutyRecipient, Trycourier::Models::WebhookRecipient, nil] The recipient or a list of recipients of the message
 
         class Channel < Trycourier::Internal::Type::BaseModel
           # @!attribute brand_id
@@ -504,15 +504,32 @@ module Trycourier
         module To
           extend Trycourier::Internal::Type::Union
 
+          # Send to a specific user by user_id, email, phone_number, or list_id
           variant -> { Trycourier::UserRecipient }
 
-          variant -> { Trycourier::Models::SendMessageParams::Message::To::RecipientArray }
+          # Send to all users in an audience
+          variant -> { Trycourier::AudienceRecipient }
+
+          # Send to all users in a specific list
+          variant -> { Trycourier::ListRecipient }
+
+          # Send to users in lists matching a pattern
+          variant -> { Trycourier::ListPatternRecipient }
+
+          # Send via Slack (channel, email, or user_id)
+          variant -> { Trycourier::SlackRecipient }
+
+          # Send via Microsoft Teams
+          variant -> { Trycourier::MsTeamsRecipient }
+
+          # Send via PagerDuty
+          variant -> { Trycourier::PagerdutyRecipient }
+
+          # Send via webhook
+          variant -> { Trycourier::WebhookRecipient }
 
           # @!method self.variants
-          #   @return [Array(Trycourier::Models::UserRecipient, Array<Trycourier::Models::Recipient>)]
-
-          # @type [Trycourier::Internal::Type::Converter]
-          RecipientArray = Trycourier::Internal::Type::ArrayOf[-> { Trycourier::Recipient }]
+          #   @return [Array(Trycourier::Models::UserRecipient, Trycourier::Models::AudienceRecipient, Trycourier::Models::ListRecipient, Trycourier::Models::ListPatternRecipient, Trycourier::Models::SlackRecipient, Trycourier::Models::MsTeamsRecipient, Trycourier::Models::PagerdutyRecipient, Trycourier::Models::WebhookRecipient)]
         end
       end
     end

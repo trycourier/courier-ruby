@@ -1,0 +1,35 @@
+module Trycourier
+  module Models
+    type pagerduty =
+      {
+        event_action: String?,
+        routing_key: String?,
+        severity: String?,
+        source: String?
+      }
+
+    class Pagerduty < Trycourier::Internal::Type::BaseModel
+      attr_accessor event_action: String?
+
+      attr_accessor routing_key: String?
+
+      attr_accessor severity: String?
+
+      attr_accessor source: String?
+
+      def initialize: (
+        ?event_action: String?,
+        ?routing_key: String?,
+        ?severity: String?,
+        ?source: String?
+      ) -> void
+
+      def to_hash: -> {
+        event_action: String?,
+        routing_key: String?,
+        severity: String?,
+        source: String?
+      }
+    end
+  end
+end

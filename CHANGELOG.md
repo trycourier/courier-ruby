@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.5.0 (2025-12-29)
+
+Full Changelog: [v4.4.0...v4.5.0](https://github.com/trycourier/courier-ruby/compare/v4.4.0...v4.5.0)
+
+### Features
+
+* **api:** add slack/msteams/pagerduty/webhook/audience/list recipient types ([56278ef](https://github.com/trycourier/courier-ruby/commit/56278ef7d0582bfba2e2122f9682c1282f25109d))
+
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([7af6435](https://github.com/trycourier/courier-ruby/commit/7af6435d8426c69cb9c07d263d3363526508be7d))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([6288d57](https://github.com/trycourier/courier-ruby/commit/6288d578db512479a70098e529a26a0e29139918))
+
 ## 4.4.0 (2025-12-16)
 
 Full Changelog: [v4.3.0...v4.4.0](https://github.com/trycourier/courier-ruby/compare/v4.3.0...v4.4.0)
