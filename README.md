@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "trycourier", "~> 4.5.0"
+gem "trycourier", "~> 4.6.0"
 ```
 
 <!-- x-release-please-end -->
@@ -221,25 +221,25 @@ courier.send_.message(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :OPTED_OUT
-puts(Trycourier::SubscriptionTopicNew::Status::OPTED_OUT)
+# :published
+puts(Trycourier::AutomationListParams::Version::PUBLISHED)
 
-# Revealed type: `T.all(Trycourier::SubscriptionTopicNew::Status, Symbol)`
-T.reveal_type(Trycourier::SubscriptionTopicNew::Status::OPTED_OUT)
+# Revealed type: `T.all(Trycourier::AutomationListParams::Version, Symbol)`
+T.reveal_type(Trycourier::AutomationListParams::Version::PUBLISHED)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-courier.tenants.preferences.items.update(
-  status: Trycourier::SubscriptionTopicNew::Status::OPTED_OUT,
+courier.automations.list(
+  version: Trycourier::AutomationListParams::Version::PUBLISHED,
   # …
 )
 
 # Literal values are also permissible:
-courier.tenants.preferences.items.update(
-  status: :OPTED_OUT,
+courier.automations.list(
+  version: :published,
   # …
 )
 ```

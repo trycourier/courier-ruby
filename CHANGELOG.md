@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.6.0 (2026-01-08)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/trycourier/courier-ruby/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* **api:** remove audit_events, automations, brands, bulk, inbound, translations endpoints ([f9f04c1](https://github.com/trycourier/courier-ruby/commit/f9f04c1760b4dceb5ed966449ddb19cd4bc72182))
+
 ## 4.5.0 (2025-12-29)
 
 Full Changelog: [v4.4.0...v4.5.0](https://github.com/trycourier/courier-ruby/compare/v4.4.0...v4.5.0)

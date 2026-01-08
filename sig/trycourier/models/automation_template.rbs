@@ -1,0 +1,55 @@
+module Trycourier
+  module Models
+    type automation_template =
+      {
+        id: String,
+        name: String,
+        version: Trycourier::Models::AutomationTemplate::version,
+        created_at: Time,
+        updated_at: Time
+      }
+
+    class AutomationTemplate < Trycourier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor name: String
+
+      attr_accessor version: Trycourier::Models::AutomationTemplate::version
+
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        name: String,
+        version: Trycourier::Models::AutomationTemplate::version,
+        ?created_at: Time,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        name: String,
+        version: Trycourier::Models::AutomationTemplate::version,
+        created_at: Time,
+        updated_at: Time
+      }
+
+      type version = :published | :draft
+
+      module Version
+        extend Trycourier::Internal::Type::Enum
+
+        PUBLISHED: :published
+        DRAFT: :draft
+
+        def self?.values: -> ::Array[Trycourier::Models::AutomationTemplate::version]
+      end
+    end
+  end
+end
