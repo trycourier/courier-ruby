@@ -1,0 +1,28 @@
+module Trycourier
+  module Models
+    type automation_template_list_response =
+      { cursor: String, templates: ::Array[Trycourier::AutomationTemplate] }
+
+    class AutomationTemplateListResponse < Trycourier::Internal::Type::BaseModel
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader templates: ::Array[Trycourier::AutomationTemplate]?
+
+      def templates=: (
+        ::Array[Trycourier::AutomationTemplate]
+      ) -> ::Array[Trycourier::AutomationTemplate]
+
+      def initialize: (
+        ?cursor: String,
+        ?templates: ::Array[Trycourier::AutomationTemplate]
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        templates: ::Array[Trycourier::AutomationTemplate]
+      }
+    end
+  end
+end

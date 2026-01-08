@@ -33,7 +33,14 @@ module Trycourier
 
   AutomationInvokeResponse = Trycourier::Models::AutomationInvokeResponse
 
+  AutomationListParams = Trycourier::Models::AutomationListParams
+
   Automations = Trycourier::Models::Automations
+
+  AutomationTemplate = Trycourier::Models::AutomationTemplate
+
+  AutomationTemplateListResponse =
+    Trycourier::Models::AutomationTemplateListResponse
 
   BaseCheck = Trycourier::Models::BaseCheck
 

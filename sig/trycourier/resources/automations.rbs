@@ -3,6 +3,12 @@ module Trycourier
     class Automations
       attr_reader invoke: Trycourier::Resources::Automations::Invoke
 
+      def list: (
+        ?cursor: String,
+        ?version: Trycourier::Models::AutomationListParams::version,
+        ?request_options: Trycourier::request_opts
+      ) -> Trycourier::AutomationTemplateListResponse
+
       def initialize: (client: Trycourier::Client) -> void
     end
   end
