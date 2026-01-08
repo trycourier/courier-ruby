@@ -1,0 +1,48 @@
+module Trycourier
+  module Models
+    type automation_list_params =
+      {
+        cursor: String,
+        version: Trycourier::Models::AutomationListParams::version
+      }
+      & Trycourier::Internal::Type::request_parameters
+
+    class AutomationListParams < Trycourier::Internal::Type::BaseModel
+      extend Trycourier::Internal::Type::RequestParameters::Converter
+      include Trycourier::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader version: Trycourier::Models::AutomationListParams::version?
+
+      def version=: (
+        Trycourier::Models::AutomationListParams::version
+      ) -> Trycourier::Models::AutomationListParams::version
+
+      def initialize: (
+        ?cursor: String,
+        ?version: Trycourier::Models::AutomationListParams::version,
+        ?request_options: Trycourier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        version: Trycourier::Models::AutomationListParams::version,
+        request_options: Trycourier::RequestOptions
+      }
+
+      type version = :published | :draft
+
+      module Version
+        extend Trycourier::Internal::Type::Enum
+
+        PUBLISHED: :published
+        DRAFT: :draft
+
+        def self?.values: -> ::Array[Trycourier::Models::AutomationListParams::version]
+      end
+    end
+  end
+end
