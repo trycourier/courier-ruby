@@ -38,7 +38,7 @@ module Trycourier
           filter:
             T.any(
               Trycourier::SingleFilterConfig::OrHash,
-              Trycourier::NestedFilterConfig::OrHash
+              Trycourier::NestedFilterConfig
             ),
           name: String,
           updated_at: String

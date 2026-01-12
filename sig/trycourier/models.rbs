@@ -125,8 +125,6 @@ module Trycourier
 
   module Filter = Trycourier::Models::Filter
 
-  module FilterConfig = Trycourier::Models::FilterConfig
-
   class Icons = Trycourier::Models::Icons
 
   class InboundBulkMessage = Trycourier::Models::InboundBulkMessage

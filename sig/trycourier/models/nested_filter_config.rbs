@@ -3,22 +3,22 @@ module Trycourier
     type nested_filter_config =
       {
         operator: Trycourier::Models::NestedFilterConfig::operator,
-        rules: ::Array[Trycourier::Models::filter_config]
+        rules: ::Array[Trycourier::Models::filter]
       }
 
     class NestedFilterConfig < Trycourier::Internal::Type::BaseModel
       attr_accessor operator: Trycourier::Models::NestedFilterConfig::operator
 
-      attr_accessor rules: ::Array[Trycourier::Models::filter_config]
+      attr_accessor rules: ::Array[Trycourier::Models::filter]
 
       def initialize: (
         operator: Trycourier::Models::NestedFilterConfig::operator,
-        rules: ::Array[Trycourier::Models::filter_config]
+        rules: ::Array[Trycourier::Models::filter]
       ) -> void
 
       def to_hash: -> {
         operator: Trycourier::Models::NestedFilterConfig::operator,
-        rules: ::Array[Trycourier::Models::filter_config]
+        rules: ::Array[Trycourier::Models::filter]
       }
 
       type operator =
