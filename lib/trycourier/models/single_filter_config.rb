@@ -10,7 +10,7 @@ module Trycourier
       required :operator, enum: -> { Trycourier::SingleFilterConfig::Operator }
 
       # @!attribute path
-      #   The attribe name from profile whose value will be operated against the filter
+      #   The attribute name from profile whose value will be operated against the filter
       #   value
       #
       #   @return [String]
@@ -28,7 +28,7 @@ module Trycourier
       #
       #   @param operator [Symbol, Trycourier::Models::SingleFilterConfig::Operator] The operator to use for filtering
       #
-      #   @param path [String] The attribe name from profile whose value will be operated against the filter va
+      #   @param path [String] The attribute name from profile whose value will be operated against the filter
       #
       #   @param value [String] The value to use for filtering
 

@@ -20,7 +20,7 @@ module Trycourier
             ).void
           end
           def update(
-            # Path param: Id fo the susbcription topic you want to have a default preference
+            # Path param: Id of the subscription topic you want to have a default preference
             # for.
             topic_id,
             # Path param: Id of the tenant to update the default preferences for.
@@ -31,7 +31,7 @@ module Trycourier
             # is enabled
             custom_routing: nil,
             # Body param: Override channel routing with custom preferences. This will override
-            # any template prefernces that are set, but a user can still customize their
+            # any template preferences that are set, but a user can still customize their
             # preferences
             has_custom_routing: nil,
             request_options: {}
@@ -47,7 +47,7 @@ module Trycourier
             ).void
           end
           def delete(
-            # Id fo the susbcription topic you want to have a default preference for.
+            # Id of the subscription topic you want to have a default preference for.
             topic_id,
             # Id of the tenant to update the default preferences for.
             tenant_id:,

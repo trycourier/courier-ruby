@@ -30,7 +30,7 @@ module Trycourier
       sig { returns(Trycourier::InboundTrackEventParams::Type::OrSymbol) }
       attr_accessor :type
 
-      # The user id associatiated with the track
+      # The user id associated with the track
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -53,7 +53,7 @@ module Trycourier
         message_id:,
         properties:,
         type:,
-        # The user id associatiated with the track
+        # The user id associated with the track
         user_id: nil,
         request_options: {}
       )
