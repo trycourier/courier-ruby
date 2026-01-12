@@ -32,7 +32,7 @@ module Trycourier
       required :type, enum: -> { Trycourier::InboundTrackEventParams::Type }
 
       # @!attribute user_id
-      #   The user id associatiated with the track
+      #   The user id associated with the track
       #
       #   @return [String, nil]
       optional :user_id, String, api_name: :userId, nil?: true
@@ -49,7 +49,7 @@ module Trycourier
       #
       #   @param type [Symbol, Trycourier::Models::InboundTrackEventParams::Type]
       #
-      #   @param user_id [String, nil] The user id associatiated with the track
+      #   @param user_id [String, nil] The user id associated with the track
       #
       #   @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}]
 

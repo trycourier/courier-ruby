@@ -12,13 +12,13 @@ module Trycourier
       sig { returns(Trycourier::NestedFilterConfig::Operator::OrSymbol) }
       attr_accessor :operator
 
-      sig { returns(T::Array[Trycourier::FilterConfig]) }
+      sig { returns(T::Array[Trycourier::Filter]) }
       attr_accessor :rules
 
       sig do
         params(
           operator: Trycourier::NestedFilterConfig::Operator::OrSymbol,
-          rules: T::Array[Trycourier::FilterConfig]
+          rules: T::Array[Trycourier::Filter]
         ).returns(T.attached_class)
       end
       def self.new(
@@ -32,7 +32,7 @@ module Trycourier
         override.returns(
           {
             operator: Trycourier::NestedFilterConfig::Operator::OrSymbol,
-            rules: T::Array[Trycourier::FilterConfig]
+            rules: T::Array[Trycourier::Filter]
           }
         )
       end

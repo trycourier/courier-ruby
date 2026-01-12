@@ -11,13 +11,13 @@ module Trycourier
 
       # @!attribute rules
       #
-      #   @return [Array<Trycourier::Models::FilterConfig>]
-      required :rules, -> { Trycourier::Internal::Type::ArrayOf[union: Trycourier::FilterConfig] }
+      #   @return [Array<Trycourier::Models::Filter>]
+      required :rules, -> { Trycourier::Internal::Type::ArrayOf[union: Trycourier::Filter] }
 
       # @!method initialize(operator:, rules:)
       #   @param operator [Symbol, Trycourier::Models::NestedFilterConfig::Operator] The operator to use for filtering
       #
-      #   @param rules [Array<Trycourier::Models::FilterConfig>]
+      #   @param rules [Array<Trycourier::Models::Filter>]
 
       # The operator to use for filtering
       #
