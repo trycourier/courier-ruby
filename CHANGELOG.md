@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.6.1 (2026-01-12)
+
+Full Changelog: [v4.6.0...v4.6.1](https://github.com/trycourier/courier-ruby/compare/v4.6.0...v4.6.1)
+
+### Bug Fixes
+
+* **types:** correct rules field type to Filter in NestedFilterConfig ([3c9897c](https://github.com/trycourier/courier-ruby/commit/3c9897c45406cf07f9981a953030c43c10f224c1))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([a8e483c](https://github.com/trycourier/courier-ruby/commit/a8e483c224a1ae70128b7eb379e9356d68175d95))
+* move `cgi` into dependencies for ruby 4 ([854537a](https://github.com/trycourier/courier-ruby/commit/854537a6a4127b10ac19f8cd43f412e54c776385))
+
 ## 4.6.0 (2026-01-08)
 
 Full Changelog: [v4.5.0...v4.6.0](https://github.com/trycourier/courier-ruby/compare/v4.5.0...v4.6.0)
