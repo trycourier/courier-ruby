@@ -12,7 +12,7 @@ module Trycourier
       sig { returns(Trycourier::SingleFilterConfig::Operator::OrSymbol) }
       attr_accessor :operator
 
-      # The attribe name from profile whose value will be operated against the filter
+      # The attribute name from profile whose value will be operated against the filter
       # value
       sig { returns(String) }
       attr_accessor :path
@@ -31,7 +31,7 @@ module Trycourier
       def self.new(
         # The operator to use for filtering
         operator:,
-        # The attribe name from profile whose value will be operated against the filter
+        # The attribute name from profile whose value will be operated against the filter
         # value
         path:,
         # The value to use for filtering

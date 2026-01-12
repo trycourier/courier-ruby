@@ -12,7 +12,7 @@ module Trycourier
           #
           # @overload update(topic_id, tenant_id:, status:, custom_routing: nil, has_custom_routing: nil, request_options: {})
           #
-          # @param topic_id [String] Path param: Id fo the susbcription topic you want to have a default preference f
+          # @param topic_id [String] Path param: Id of the subscription topic you want to have a default preference f
           #
           # @param tenant_id [String] Path param: Id of the tenant to update the default preferences for.
           #
@@ -46,7 +46,7 @@ module Trycourier
           #
           # @overload delete(topic_id, tenant_id:, request_options: {})
           #
-          # @param topic_id [String] Id fo the susbcription topic you want to have a default preference for.
+          # @param topic_id [String] Id of the subscription topic you want to have a default preference for.
           #
           # @param tenant_id [String] Id of the tenant to update the default preferences for.
           #
