@@ -39,7 +39,7 @@ module Trycourier
             T.nilable(
               T.any(
                 Trycourier::SingleFilterConfig::OrHash,
-                Trycourier::NestedFilterConfig::OrHash
+                Trycourier::NestedFilterConfig
               )
             ),
           name: T.nilable(String),
