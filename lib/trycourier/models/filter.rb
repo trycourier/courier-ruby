@@ -2,18 +2,16 @@
 
 module Trycourier
   module Models
-    # A single filter to use for filtering
-    module Filter
-      extend Trycourier::Internal::Type::Union
+    class Filter < Trycourier::Internal::Type::BaseModel
+      # @!attribute filters
+      #
+      #   @return [Array<Trycourier::Models::SingleFilterConfig, Trycourier::Models::NestedFilterConfig>]
+      required :filters, -> { Trycourier::Internal::Type::ArrayOf[union: Trycourier::FilterConfig] }
 
-      # A single filter to use for filtering
-      variant -> { Trycourier::SingleFilterConfig }
-
-      # The operator to use for filtering
-      variant -> { Trycourier::NestedFilterConfig }
-
-      # @!method self.variants
-      #   @return [Array(Trycourier::Models::SingleFilterConfig, Trycourier::Models::NestedFilterConfig)]
+      # @!method initialize(filters:)
+      #   Filter that contains an array of FilterConfig items
+      #
+      #   @param filters [Array<Trycourier::Models::SingleFilterConfig, Trycourier::Models::NestedFilterConfig>]
     end
   end
 end

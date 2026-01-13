@@ -19,10 +19,6 @@ module Trycourier
       sig { returns(String) }
       attr_accessor :description
 
-      # A single filter to use for filtering
-      sig { returns(Trycourier::Filter::Variants) }
-      attr_accessor :filter
-
       # The name of the audience
       sig { returns(String) }
       attr_accessor :name
@@ -30,18 +26,29 @@ module Trycourier
       sig { returns(String) }
       attr_accessor :updated_at
 
+      # Filter that contains an array of FilterConfig items
+      sig { returns(T.nilable(Trycourier::Filter)) }
+      attr_reader :filter
+
+      sig { params(filter: T.nilable(Trycourier::Filter::OrHash)).void }
+      attr_writer :filter
+
+      # The logical operator (AND/OR) for the top-level filter
+      sig { returns(T.nilable(Trycourier::Audience::Operator::TaggedSymbol)) }
+      attr_reader :operator
+
+      sig { params(operator: Trycourier::Audience::Operator::OrSymbol).void }
+      attr_writer :operator
+
       sig do
         params(
           id: String,
           created_at: String,
           description: String,
-          filter:
-            T.any(
-              Trycourier::SingleFilterConfig::OrHash,
-              Trycourier::NestedFilterConfig
-            ),
           name: String,
-          updated_at: String
+          updated_at: String,
+          filter: T.nilable(Trycourier::Filter::OrHash),
+          operator: Trycourier::Audience::Operator::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -50,11 +57,13 @@ module Trycourier
         created_at:,
         # A description of the audience
         description:,
-        # A single filter to use for filtering
-        filter:,
         # The name of the audience
         name:,
-        updated_at:
+        updated_at:,
+        # Filter that contains an array of FilterConfig items
+        filter: nil,
+        # The logical operator (AND/OR) for the top-level filter
+        operator: nil
       )
       end
 
@@ -64,13 +73,34 @@ module Trycourier
             id: String,
             created_at: String,
             description: String,
-            filter: Trycourier::Filter::Variants,
             name: String,
-            updated_at: String
+            updated_at: String,
+            filter: T.nilable(Trycourier::Filter),
+            operator: Trycourier::Audience::Operator::TaggedSymbol
           }
         )
       end
       def to_hash
+      end
+
+      # The logical operator (AND/OR) for the top-level filter
+      module Operator
+        extend Trycourier::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Trycourier::Audience::Operator) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        AND = T.let(:AND, Trycourier::Audience::Operator::TaggedSymbol)
+        OR = T.let(:OR, Trycourier::Audience::Operator::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[Trycourier::Audience::Operator::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end
