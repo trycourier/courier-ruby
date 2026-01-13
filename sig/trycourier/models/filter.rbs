@@ -1,12 +1,15 @@
 module Trycourier
   module Models
-    type filter =
-      Trycourier::SingleFilterConfig | Trycourier::NestedFilterConfig
+    type filter = { filters: ::Array[Trycourier::Models::filter_config] }
 
-    module Filter
-      extend Trycourier::Internal::Type::Union
+    class Filter < Trycourier::Internal::Type::BaseModel
+      attr_accessor filters: ::Array[Trycourier::Models::filter_config]
 
-      def self?.variants: -> ::Array[Trycourier::Models::filter]
+      def initialize: (
+        filters: ::Array[Trycourier::Models::filter_config]
+      ) -> void
+
+      def to_hash: -> { filters: ::Array[Trycourier::Models::filter_config] }
     end
   end
 end

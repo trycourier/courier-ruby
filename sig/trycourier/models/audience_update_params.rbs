@@ -3,8 +3,9 @@ module Trycourier
     type audience_update_params =
       {
         description: String?,
-        filter: Trycourier::Models::filter?,
-        name: String?
+        filter: Trycourier::Filter?,
+        name: String?,
+        operator: Trycourier::Models::AudienceUpdateParams::operator?
       }
       & Trycourier::Internal::Type::request_parameters
 
@@ -14,23 +15,38 @@ module Trycourier
 
       attr_accessor description: String?
 
-      attr_accessor filter: Trycourier::Models::filter?
+      attr_accessor filter: Trycourier::Filter?
 
       attr_accessor name: String?
 
+      attr_accessor operator: Trycourier::Models::AudienceUpdateParams::operator?
+
       def initialize: (
         ?description: String?,
-        ?filter: Trycourier::Models::filter?,
+        ?filter: Trycourier::Filter?,
         ?name: String?,
+        ?operator: Trycourier::Models::AudienceUpdateParams::operator?,
         ?request_options: Trycourier::request_opts
       ) -> void
 
       def to_hash: -> {
         description: String?,
-        filter: Trycourier::Models::filter?,
+        filter: Trycourier::Filter?,
         name: String?,
+        operator: Trycourier::Models::AudienceUpdateParams::operator?,
         request_options: Trycourier::RequestOptions
       }
+
+      type operator = :AND | :OR
+
+      module Operator
+        extend Trycourier::Internal::Type::Enum
+
+        AND: :AND
+        OR: :OR
+
+        def self?.values: -> ::Array[Trycourier::Models::AudienceUpdateParams::operator]
+      end
     end
   end
 end

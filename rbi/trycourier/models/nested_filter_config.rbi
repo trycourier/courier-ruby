@@ -8,31 +8,31 @@ module Trycourier
           T.any(Trycourier::NestedFilterConfig, Trycourier::Internal::AnyHash)
         end
 
+      sig { returns(T::Array[Trycourier::FilterConfig]) }
+      attr_accessor :filters
+
       # The operator to use for filtering
       sig { returns(Trycourier::NestedFilterConfig::Operator::OrSymbol) }
       attr_accessor :operator
 
-      sig { returns(T::Array[Trycourier::Filter]) }
-      attr_accessor :rules
-
       sig do
         params(
-          operator: Trycourier::NestedFilterConfig::Operator::OrSymbol,
-          rules: T::Array[Trycourier::Filter]
+          filters: T::Array[Trycourier::FilterConfig],
+          operator: Trycourier::NestedFilterConfig::Operator::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
+        filters:,
         # The operator to use for filtering
-        operator:,
-        rules:
+        operator:
       )
       end
 
       sig do
         override.returns(
           {
-            operator: Trycourier::NestedFilterConfig::Operator::OrSymbol,
-            rules: T::Array[Trycourier::Filter]
+            filters: T::Array[Trycourier::FilterConfig],
+            operator: Trycourier::NestedFilterConfig::Operator::OrSymbol
           }
         )
       end

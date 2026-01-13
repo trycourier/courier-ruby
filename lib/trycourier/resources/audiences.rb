@@ -25,15 +25,17 @@ module Trycourier
 
       # Creates or updates audience.
       #
-      # @overload update(audience_id, description: nil, filter: nil, name: nil, request_options: {})
+      # @overload update(audience_id, description: nil, filter: nil, name: nil, operator: nil, request_options: {})
       #
       # @param audience_id [String] A unique identifier representing the audience id
       #
       # @param description [String, nil] A description of the audience
       #
-      # @param filter [Trycourier::Models::SingleFilterConfig, Trycourier::Models::NestedFilterConfig, nil] A single filter to use for filtering
+      # @param filter [Trycourier::Models::Filter, nil] Filter that contains an array of FilterConfig items
       #
       # @param name [String, nil] The name of the audience
+      #
+      # @param operator [Symbol, Trycourier::Models::AudienceUpdateParams::Operator, nil] The logical operator (AND/OR) for the top-level filter
       #
       # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
       #

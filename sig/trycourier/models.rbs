@@ -123,7 +123,9 @@ module Trycourier
 
   module Expo = Trycourier::Models::Expo
 
-  module Filter = Trycourier::Models::Filter
+  class Filter = Trycourier::Models::Filter
+
+  module FilterConfig = Trycourier::Models::FilterConfig
 
   class Icons = Trycourier::Models::Icons
 

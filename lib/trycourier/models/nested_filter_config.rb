@@ -3,21 +3,21 @@
 module Trycourier
   module Models
     class NestedFilterConfig < Trycourier::Internal::Type::BaseModel
+      # @!attribute filters
+      #
+      #   @return [Array<Trycourier::Models::FilterConfig>]
+      required :filters, -> { Trycourier::Internal::Type::ArrayOf[union: Trycourier::FilterConfig] }
+
       # @!attribute operator
       #   The operator to use for filtering
       #
       #   @return [Symbol, Trycourier::Models::NestedFilterConfig::Operator]
       required :operator, enum: -> { Trycourier::NestedFilterConfig::Operator }
 
-      # @!attribute rules
+      # @!method initialize(filters:, operator:)
+      #   @param filters [Array<Trycourier::Models::FilterConfig>]
       #
-      #   @return [Array<Trycourier::Models::Filter>]
-      required :rules, -> { Trycourier::Internal::Type::ArrayOf[union: Trycourier::Filter] }
-
-      # @!method initialize(operator:, rules:)
       #   @param operator [Symbol, Trycourier::Models::NestedFilterConfig::Operator] The operator to use for filtering
-      #
-      #   @param rules [Array<Trycourier::Models::Filter>]
 
       # The operator to use for filtering
       #
