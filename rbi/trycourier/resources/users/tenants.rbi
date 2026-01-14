@@ -59,7 +59,7 @@ module Trycourier
           tenant_id,
           # Path param: Id of the user to be added to the supplied tenant.
           user_id:,
-          # Body param:
+          # Body param
           profile: nil,
           request_options: {}
         )

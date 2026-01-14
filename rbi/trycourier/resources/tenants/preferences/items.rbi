@@ -25,7 +25,7 @@ module Trycourier
             topic_id,
             # Path param: Id of the tenant to update the default preferences for.
             tenant_id:,
-            # Body param:
+            # Body param
             status:,
             # Body param: The default channels to send to this tenant when has_custom_routing
             # is enabled

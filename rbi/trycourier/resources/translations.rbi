@@ -36,7 +36,7 @@ module Trycourier
         # Path param: The domain you want to retrieve translations for. Only `default` is
         # supported at the moment
         domain:,
-        # Body param:
+        # Body param
         body:,
         request_options: {}
       )

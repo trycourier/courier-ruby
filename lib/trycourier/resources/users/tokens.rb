@@ -39,7 +39,7 @@ module Trycourier
         #
         # @param user_id [String] Path param: The user's ID. This can be any uniquely identifiable string.
         #
-        # @param patch [Array<Trycourier::Models::Users::TokenUpdateParams::Patch>] Body param:
+        # @param patch [Array<Trycourier::Models::Users::TokenUpdateParams::Patch>] Body param
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -141,7 +141,7 @@ module Trycourier
         #
         # @param body_token [String] Body param: Full body of the token. Must match token in URL path parameter.
         #
-        # @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey] Body param:
+        # @param provider_key [Symbol, Trycourier::Models::Users::UserToken::ProviderKey] Body param
         #
         # @param device [Trycourier::Models::Users::UserToken::Device, nil] Body param: Information about the device the token came from.
         #

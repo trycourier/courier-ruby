@@ -62,7 +62,7 @@ module Trycourier
           # Path param: A unique identifier associated with the user whose preferences you
           # wish to retrieve.
           user_id:,
-          # Body param:
+          # Body param
           topic:,
           # Query param: Update the preferences of a user for this specific tenant context.
           tenant_id: nil,
