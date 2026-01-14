@@ -13,6 +13,8 @@ module Trycourier
 
   AudienceFilter = Trycourier::Models::AudienceFilter
 
+  AudienceFilterConfig = Trycourier::Models::AudienceFilterConfig
+
   AudienceListMembersParams = Trycourier::Models::AudienceListMembersParams
 
   AudienceListParams = Trycourier::Models::AudienceListParams
@@ -129,7 +131,7 @@ module Trycourier
 
   Expo = Trycourier::Models::Expo
 
-  Filter = Trycourier::Models::Filter
+  FilterConfig = Trycourier::Models::FilterConfig
 
   Icons = Trycourier::Models::Icons
 
@@ -188,8 +190,6 @@ module Trycourier
   MsTeamsRecipient = Trycourier::Models::MsTeamsRecipient
 
   MultipleTokens = Trycourier::Models::MultipleTokens
-
-  NestedFilterConfig = Trycourier::Models::NestedFilterConfig
 
   NotificationGetContent = Trycourier::Models::NotificationGetContent
 
@@ -254,8 +254,6 @@ module Trycourier
   SendToSlackEmail = Trycourier::Models::SendToSlackEmail
 
   SendToSlackUserID = Trycourier::Models::SendToSlackUserID
-
-  SingleFilterConfig = Trycourier::Models::SingleFilterConfig
 
   Slack = Trycourier::Models::Slack
 

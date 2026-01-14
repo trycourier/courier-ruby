@@ -71,7 +71,7 @@ module Trycourier
           user_id,
           # Path param: A unique identifier representing the list you wish to retrieve.
           list_id:,
-          # Body param:
+          # Body param
           preferences: nil,
           request_options: {}
         )

@@ -21,12 +21,6 @@ module Trycourier
       #   @return [String]
       required :description, String
 
-      # @!attribute filter
-      #   A single filter to use for filtering
-      #
-      #   @return [Trycourier::Models::SingleFilterConfig, Trycourier::Models::NestedFilterConfig]
-      required :filter, union: -> { Trycourier::Filter }
-
       # @!attribute name
       #   The name of the audience
       #
@@ -38,18 +32,48 @@ module Trycourier
       #   @return [String]
       required :updated_at, String
 
-      # @!method initialize(id:, created_at:, description:, filter:, name:, updated_at:)
+      # @!attribute filter
+      #   Filter configuration for audience membership containing an array of filter rules
+      #
+      #   @return [Trycourier::Models::AudienceFilterConfig, nil]
+      optional :filter, -> { Trycourier::AudienceFilterConfig }, nil?: true
+
+      # @!attribute operator
+      #   The logical operator (AND/OR) for the top-level filter
+      #
+      #   @return [Symbol, Trycourier::Models::Audience::Operator, nil]
+      optional :operator, enum: -> { Trycourier::Audience::Operator }
+
+      # @!method initialize(id:, created_at:, description:, name:, updated_at:, filter: nil, operator: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Trycourier::Models::Audience} for more details.
+      #
       #   @param id [String] A unique identifier representing the audience_id
       #
       #   @param created_at [String]
       #
       #   @param description [String] A description of the audience
       #
-      #   @param filter [Trycourier::Models::SingleFilterConfig, Trycourier::Models::NestedFilterConfig] A single filter to use for filtering
-      #
       #   @param name [String] The name of the audience
       #
       #   @param updated_at [String]
+      #
+      #   @param filter [Trycourier::Models::AudienceFilterConfig, nil] Filter configuration for audience membership containing an array of filter rules
+      #
+      #   @param operator [Symbol, Trycourier::Models::Audience::Operator] The logical operator (AND/OR) for the top-level filter
+
+      # The logical operator (AND/OR) for the top-level filter
+      #
+      # @see Trycourier::Models::Audience#operator
+      module Operator
+        extend Trycourier::Internal::Type::Enum
+
+        AND = :AND
+        OR = :OR
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

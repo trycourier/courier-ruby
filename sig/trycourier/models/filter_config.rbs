@@ -1,0 +1,43 @@
+module Trycourier
+  module Models
+    type filter_config =
+      {
+        operator: String,
+        filters: ::Array[Trycourier::FilterConfig],
+        path: String,
+        value: String
+      }
+
+    class FilterConfig < Trycourier::Internal::Type::BaseModel
+      attr_accessor operator: String
+
+      attr_reader filters: ::Array[Trycourier::FilterConfig]?
+
+      def filters=: (
+        ::Array[Trycourier::FilterConfig]
+      ) -> ::Array[Trycourier::FilterConfig]
+
+      attr_reader path: String?
+
+      def path=: (String) -> String
+
+      attr_reader value: String?
+
+      def value=: (String) -> String
+
+      def initialize: (
+        operator: String,
+        ?filters: ::Array[Trycourier::FilterConfig],
+        ?path: String,
+        ?value: String
+      ) -> void
+
+      def to_hash: -> {
+        operator: String,
+        filters: ::Array[Trycourier::FilterConfig],
+        path: String,
+        value: String
+      }
+    end
+  end
+end

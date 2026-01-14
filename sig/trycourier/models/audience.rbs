@@ -5,9 +5,10 @@ module Trycourier
         id: String,
         created_at: String,
         description: String,
-        filter: Trycourier::Models::filter,
         name: String,
-        updated_at: String
+        updated_at: String,
+        filter: Trycourier::AudienceFilterConfig?,
+        operator: Trycourier::Models::Audience::operator
       }
 
     class Audience < Trycourier::Internal::Type::BaseModel
@@ -17,29 +18,48 @@ module Trycourier
 
       attr_accessor description: String
 
-      attr_accessor filter: Trycourier::Models::filter
-
       attr_accessor name: String
 
       attr_accessor updated_at: String
+
+      attr_accessor filter: Trycourier::AudienceFilterConfig?
+
+      attr_reader operator: Trycourier::Models::Audience::operator?
+
+      def operator=: (
+        Trycourier::Models::Audience::operator
+      ) -> Trycourier::Models::Audience::operator
 
       def initialize: (
         id: String,
         created_at: String,
         description: String,
-        filter: Trycourier::Models::filter,
         name: String,
-        updated_at: String
+        updated_at: String,
+        ?filter: Trycourier::AudienceFilterConfig?,
+        ?operator: Trycourier::Models::Audience::operator
       ) -> void
 
       def to_hash: -> {
         id: String,
         created_at: String,
         description: String,
-        filter: Trycourier::Models::filter,
         name: String,
-        updated_at: String
+        updated_at: String,
+        filter: Trycourier::AudienceFilterConfig?,
+        operator: Trycourier::Models::Audience::operator
       }
+
+      type operator = :AND | :OR
+
+      module Operator
+        extend Trycourier::Internal::Type::Enum
+
+        AND: :AND
+        OR: :OR
+
+        def self?.values: -> ::Array[Trycourier::Models::Audience::operator]
+      end
     end
   end
 end

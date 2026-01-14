@@ -3,7 +3,7 @@ module Trycourier
     type elemental_channel_node = { channel: String, raw: ::Hash[Symbol, top]? }
 
     class ElementalChannelNode < Trycourier::Models::ElementalBaseNode
-      def channel: -> String
+      def channel: -> String?
 
       def channel=: (String _) -> String
 
@@ -11,7 +11,7 @@ module Trycourier
 
       def raw=: (::Hash[Symbol, top]? _) -> ::Hash[Symbol, top]?
 
-      def initialize: (channel: String, ?raw: ::Hash[Symbol, top]?) -> void
+      def initialize: (?channel: String, ?raw: ::Hash[Symbol, top]?) -> void
 
       def to_hash: -> { channel: String, raw: ::Hash[Symbol, top]? }
     end

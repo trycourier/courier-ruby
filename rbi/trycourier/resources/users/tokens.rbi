@@ -36,7 +36,7 @@ module Trycourier
           token,
           # Path param: The user's ID. This can be any uniquely identifiable string.
           user_id:,
-          # Body param:
+          # Body param
           patch:,
           request_options: {}
         )
@@ -109,7 +109,7 @@ module Trycourier
           user_id:,
           # Body param: Full body of the token. Must match token in URL path parameter.
           body_token:,
-          # Body param:
+          # Body param
           provider_key:,
           # Body param: Information about the device the token came from.
           device: nil,

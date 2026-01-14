@@ -6,11 +6,11 @@ module Trycourier
       class Checks
         # @overload update(submission_id, id:, checks:, request_options: {})
         #
-        # @param submission_id [String] Path param:
+        # @param submission_id [String] Path param
         #
-        # @param id [String] Path param:
+        # @param id [String] Path param
         #
-        # @param checks [Array<Trycourier::Models::BaseCheck>] Body param:
+        # @param checks [Array<Trycourier::Models::BaseCheck>] Body param
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

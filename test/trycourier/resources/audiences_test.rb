@@ -17,9 +17,10 @@ class Trycourier::Test::Resources::AudiencesTest < Trycourier::Test::ResourceTes
         id: String,
         created_at: String,
         description: String,
-        filter: Trycourier::Filter,
         name: String,
-        updated_at: String
+        updated_at: String,
+        filter: Trycourier::AudienceFilterConfig | nil,
+        operator: Trycourier::Audience::Operator | nil
       }
     end
   end

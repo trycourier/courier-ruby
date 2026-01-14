@@ -22,14 +22,10 @@ module Trycourier
         params(
           audience_id: String,
           description: T.nilable(String),
-          filter:
-            T.nilable(
-              T.any(
-                Trycourier::SingleFilterConfig::OrHash,
-                Trycourier::NestedFilterConfig
-              )
-            ),
+          filter: T.nilable(Trycourier::AudienceFilterConfig::OrHash),
           name: T.nilable(String),
+          operator:
+            T.nilable(Trycourier::AudienceUpdateParams::Operator::OrSymbol),
           request_options: Trycourier::RequestOptions::OrHash
         ).returns(Trycourier::Models::AudienceUpdateResponse)
       end
@@ -38,10 +34,12 @@ module Trycourier
         audience_id,
         # A description of the audience
         description: nil,
-        # A single filter to use for filtering
+        # Filter configuration for audience membership containing an array of filter rules
         filter: nil,
         # The name of the audience
         name: nil,
+        # The logical operator (AND/OR) for the top-level filter
+        operator: nil,
         request_options: {}
       )
       end

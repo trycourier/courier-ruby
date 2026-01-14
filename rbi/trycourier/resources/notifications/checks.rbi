@@ -13,11 +13,11 @@ module Trycourier
           ).returns(Trycourier::Models::Notifications::CheckUpdateResponse)
         end
         def update(
-          # Path param:
+          # Path param
           submission_id,
-          # Path param:
+          # Path param
           id:,
-          # Body param:
+          # Body param
           checks:,
           request_options: {}
         )

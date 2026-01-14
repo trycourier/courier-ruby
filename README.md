@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "trycourier", "~> 4.6.1"
+gem "trycourier", "~> 4.6.2"
 ```
 
 <!-- x-release-please-end -->
@@ -221,25 +221,25 @@ courier.send_.message(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :published
-puts(Trycourier::AutomationListParams::Version::PUBLISHED)
+# :AND
+puts(Trycourier::AudienceUpdateParams::Operator::AND)
 
-# Revealed type: `T.all(Trycourier::AutomationListParams::Version, Symbol)`
-T.reveal_type(Trycourier::AutomationListParams::Version::PUBLISHED)
+# Revealed type: `T.all(Trycourier::AudienceUpdateParams::Operator, Symbol)`
+T.reveal_type(Trycourier::AudienceUpdateParams::Operator::AND)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-courier.automations.list(
-  version: Trycourier::AutomationListParams::Version::PUBLISHED,
+courier.audiences.update(
+  operator: Trycourier::AudienceUpdateParams::Operator::AND,
   # …
 )
 
 # Literal values are also permissible:
-courier.automations.list(
-  version: :published,
+courier.audiences.update(
+  operator: :AND,
   # …
 )
 ```
