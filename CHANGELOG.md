@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.6.2 (2026-01-14)
+
+Full Changelog: [v4.6.1...v4.6.2](https://github.com/trycourier/courier-ruby/compare/v4.6.1...v4.6.2)
+
+### Chores
+
+* fix typo in descriptions ([620d8d1](https://github.com/trycourier/courier-ruby/commit/620d8d14300bc3ca8a7c53ba0e6475d251773f98))
+* **internal:** regenerate SDK with no functional changes ([258dc3c](https://github.com/trycourier/courier-ruby/commit/258dc3c812e714cb593afbbba68c4f64be184741))
+* **internal:** regenerate SDK with no functional changes ([87e9439](https://github.com/trycourier/courier-ruby/commit/87e943981b53c04bb806af69a3a5293c4ffa5f5b))
+* remove custom code ([7ada104](https://github.com/trycourier/courier-ruby/commit/7ada104121a203cfcc3bbc0d05bd818bfbbcf834))
+
 ## 4.6.1 (2026-01-12)
 
 Full Changelog: [v4.6.0...v4.6.1](https://github.com/trycourier/courier-ruby/compare/v4.6.0...v4.6.1)
