@@ -44,7 +44,7 @@ module Trycourier
       #
       # @param domain [String] Path param: The domain you want to retrieve translations for. Only `default` is
       #
-      # @param body [String] Body param:
+      # @param body [String] Body param
       #
       # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
       #

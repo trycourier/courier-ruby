@@ -70,7 +70,7 @@ module Trycourier
         #
         # @param user_id [String] Path param: Id of the user to be added to the supplied tenant.
         #
-        # @param profile [Hash{Symbol=>Object}, nil] Body param:
+        # @param profile [Hash{Symbol=>Object}, nil] Body param
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

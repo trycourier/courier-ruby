@@ -16,7 +16,7 @@ module Trycourier
           #
           # @param tenant_id [String] Path param: Id of the tenant to update the default preferences for.
           #
-          # @param status [Symbol, Trycourier::Models::SubscriptionTopicNew::Status] Body param:
+          # @param status [Symbol, Trycourier::Models::SubscriptionTopicNew::Status] Body param
           #
           # @param custom_routing [Array<Symbol, Trycourier::Models::ChannelClassification>, nil] Body param: The default channels to send to this tenant when has_custom_routing
           #

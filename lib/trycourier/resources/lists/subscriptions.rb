@@ -90,7 +90,7 @@ module Trycourier
         #
         # @param list_id [String] Path param: A unique identifier representing the list you wish to retrieve.
         #
-        # @param preferences [Trycourier::Models::RecipientPreferences, nil] Body param:
+        # @param preferences [Trycourier::Models::RecipientPreferences, nil] Body param
         #
         # @param request_options [Trycourier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

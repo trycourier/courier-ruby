@@ -76,7 +76,7 @@ module Trycourier
         #
         # @param user_id [String] Path param: A unique identifier associated with the user whose preferences you w
         #
-        # @param topic [Trycourier::Models::Users::PreferenceUpdateOrCreateTopicParams::Topic] Body param:
+        # @param topic [Trycourier::Models::Users::PreferenceUpdateOrCreateTopicParams::Topic] Body param
         #
         # @param tenant_id [String, nil] Query param: Update the preferences of a user for this specific tenant context.
         #
