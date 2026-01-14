@@ -10,8 +10,11 @@ module Trycourier
 
       # The channel the contents of this element should be applied to. Can be `email`,
       # `push`, `direct_message`, `sms` or a provider such as slack
-      sig { returns(String) }
-      attr_accessor :channel
+      sig { returns(T.nilable(String)) }
+      attr_reader :channel
+
+      sig { params(channel: String).void }
+      attr_writer :channel
 
       # Raw data to apply to the channel. If `elements` has not been specified, `raw` is
       # required.
@@ -37,7 +40,7 @@ module Trycourier
       def self.new(
         # The channel the contents of this element should be applied to. Can be `email`,
         # `push`, `direct_message`, `sms` or a provider such as slack
-        channel:,
+        channel: nil,
         # Raw data to apply to the channel. If `elements` has not been specified, `raw` is
         # required.
         raw: nil

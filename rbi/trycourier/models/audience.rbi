@@ -26,11 +26,13 @@ module Trycourier
       sig { returns(String) }
       attr_accessor :updated_at
 
-      # Filter that contains an array of FilterConfig items
-      sig { returns(T.nilable(Trycourier::Filter)) }
+      # Filter configuration for audience membership containing an array of filter rules
+      sig { returns(T.nilable(Trycourier::AudienceFilterConfig)) }
       attr_reader :filter
 
-      sig { params(filter: T.nilable(Trycourier::Filter::OrHash)).void }
+      sig do
+        params(filter: T.nilable(Trycourier::AudienceFilterConfig::OrHash)).void
+      end
       attr_writer :filter
 
       # The logical operator (AND/OR) for the top-level filter
@@ -47,7 +49,7 @@ module Trycourier
           description: String,
           name: String,
           updated_at: String,
-          filter: T.nilable(Trycourier::Filter::OrHash),
+          filter: T.nilable(Trycourier::AudienceFilterConfig::OrHash),
           operator: Trycourier::Audience::Operator::OrSymbol
         ).returns(T.attached_class)
       end
@@ -60,7 +62,7 @@ module Trycourier
         # The name of the audience
         name:,
         updated_at:,
-        # Filter that contains an array of FilterConfig items
+        # Filter configuration for audience membership containing an array of filter rules
         filter: nil,
         # The logical operator (AND/OR) for the top-level filter
         operator: nil
@@ -75,7 +77,7 @@ module Trycourier
             description: String,
             name: String,
             updated_at: String,
-            filter: T.nilable(Trycourier::Filter),
+            filter: T.nilable(Trycourier::AudienceFilterConfig),
             operator: Trycourier::Audience::Operator::TaggedSymbol
           }
         )

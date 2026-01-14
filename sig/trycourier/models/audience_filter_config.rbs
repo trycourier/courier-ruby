@@ -1,0 +1,13 @@
+module Trycourier
+  module Models
+    type audience_filter_config = { filters: ::Array[Trycourier::FilterConfig] }
+
+    class AudienceFilterConfig < Trycourier::Internal::Type::BaseModel
+      attr_accessor filters: ::Array[Trycourier::FilterConfig]
+
+      def initialize: (filters: ::Array[Trycourier::FilterConfig]) -> void
+
+      def to_hash: -> { filters: ::Array[Trycourier::FilterConfig] }
+    end
+  end
+end

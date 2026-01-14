@@ -7,8 +7,8 @@ module Trycourier
       #   The channel the contents of this element should be applied to. Can be `email`,
       #   `push`, `direct_message`, `sms` or a provider such as slack
       #
-      #   @return [String]
-      required :channel, String
+      #   @return [String, nil]
+      optional :channel, String
 
       # @!attribute raw
       #   Raw data to apply to the channel. If `elements` has not been specified, `raw` is
@@ -17,7 +17,7 @@ module Trycourier
       #   @return [Hash{Symbol=>Object}, nil]
       optional :raw, Trycourier::Internal::Type::HashOf[Trycourier::Internal::Type::Unknown], nil?: true
 
-      # @!method initialize(channel:, raw: nil)
+      # @!method initialize(channel: nil, raw: nil)
       #   Some parameter documentations has been truncated, see
       #   {Trycourier::Models::ElementalChannelNode} for more details.
       #

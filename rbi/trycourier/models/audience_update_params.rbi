@@ -15,11 +15,13 @@ module Trycourier
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # Filter that contains an array of FilterConfig items
-      sig { returns(T.nilable(Trycourier::Filter)) }
+      # Filter configuration for audience membership containing an array of filter rules
+      sig { returns(T.nilable(Trycourier::AudienceFilterConfig)) }
       attr_reader :filter
 
-      sig { params(filter: T.nilable(Trycourier::Filter::OrHash)).void }
+      sig do
+        params(filter: T.nilable(Trycourier::AudienceFilterConfig::OrHash)).void
+      end
       attr_writer :filter
 
       # The name of the audience
@@ -35,7 +37,7 @@ module Trycourier
       sig do
         params(
           description: T.nilable(String),
-          filter: T.nilable(Trycourier::Filter::OrHash),
+          filter: T.nilable(Trycourier::AudienceFilterConfig::OrHash),
           name: T.nilable(String),
           operator:
             T.nilable(Trycourier::AudienceUpdateParams::Operator::OrSymbol),
@@ -45,7 +47,7 @@ module Trycourier
       def self.new(
         # A description of the audience
         description: nil,
-        # Filter that contains an array of FilterConfig items
+        # Filter configuration for audience membership containing an array of filter rules
         filter: nil,
         # The name of the audience
         name: nil,
@@ -59,7 +61,7 @@ module Trycourier
         override.returns(
           {
             description: T.nilable(String),
-            filter: T.nilable(Trycourier::Filter),
+            filter: T.nilable(Trycourier::AudienceFilterConfig),
             name: T.nilable(String),
             operator:
               T.nilable(Trycourier::AudienceUpdateParams::Operator::OrSymbol),
