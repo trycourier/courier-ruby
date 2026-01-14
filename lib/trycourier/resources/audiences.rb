@@ -23,6 +23,9 @@ module Trycourier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Trycourier::Models::AudienceUpdateParams} for more details.
+      #
       # Creates or updates audience.
       #
       # @overload update(audience_id, description: nil, filter: nil, name: nil, operator: nil, request_options: {})
@@ -31,7 +34,7 @@ module Trycourier
       #
       # @param description [String, nil] A description of the audience
       #
-      # @param filter [Trycourier::Models::Filter, nil] Filter that contains an array of FilterConfig items
+      # @param filter [Trycourier::Models::AudienceFilterConfig, nil] Filter configuration for audience membership containing an array of filter rules
       #
       # @param name [String, nil] The name of the audience
       #

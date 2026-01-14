@@ -22,7 +22,7 @@ module Trycourier
         params(
           audience_id: String,
           description: T.nilable(String),
-          filter: T.nilable(Trycourier::Filter::OrHash),
+          filter: T.nilable(Trycourier::AudienceFilterConfig::OrHash),
           name: T.nilable(String),
           operator:
             T.nilable(Trycourier::AudienceUpdateParams::Operator::OrSymbol),
@@ -34,7 +34,7 @@ module Trycourier
         audience_id,
         # A description of the audience
         description: nil,
-        # Filter that contains an array of FilterConfig items
+        # Filter configuration for audience membership containing an array of filter rules
         filter: nil,
         # The name of the audience
         name: nil,

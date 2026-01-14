@@ -3,7 +3,7 @@ module Trycourier
     type audience_update_params =
       {
         description: String?,
-        filter: Trycourier::Filter?,
+        filter: Trycourier::AudienceFilterConfig?,
         name: String?,
         operator: Trycourier::Models::AudienceUpdateParams::operator?
       }
@@ -15,7 +15,7 @@ module Trycourier
 
       attr_accessor description: String?
 
-      attr_accessor filter: Trycourier::Filter?
+      attr_accessor filter: Trycourier::AudienceFilterConfig?
 
       attr_accessor name: String?
 
@@ -23,7 +23,7 @@ module Trycourier
 
       def initialize: (
         ?description: String?,
-        ?filter: Trycourier::Filter?,
+        ?filter: Trycourier::AudienceFilterConfig?,
         ?name: String?,
         ?operator: Trycourier::Models::AudienceUpdateParams::operator?,
         ?request_options: Trycourier::request_opts
@@ -31,7 +31,7 @@ module Trycourier
 
       def to_hash: -> {
         description: String?,
-        filter: Trycourier::Filter?,
+        filter: Trycourier::AudienceFilterConfig?,
         name: String?,
         operator: Trycourier::Models::AudienceUpdateParams::operator?,
         request_options: Trycourier::RequestOptions

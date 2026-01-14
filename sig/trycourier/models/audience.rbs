@@ -7,7 +7,7 @@ module Trycourier
         description: String,
         name: String,
         updated_at: String,
-        filter: Trycourier::Filter?,
+        filter: Trycourier::AudienceFilterConfig?,
         operator: Trycourier::Models::Audience::operator
       }
 
@@ -22,7 +22,7 @@ module Trycourier
 
       attr_accessor updated_at: String
 
-      attr_accessor filter: Trycourier::Filter?
+      attr_accessor filter: Trycourier::AudienceFilterConfig?
 
       attr_reader operator: Trycourier::Models::Audience::operator?
 
@@ -36,7 +36,7 @@ module Trycourier
         description: String,
         name: String,
         updated_at: String,
-        ?filter: Trycourier::Filter?,
+        ?filter: Trycourier::AudienceFilterConfig?,
         ?operator: Trycourier::Models::Audience::operator
       ) -> void
 
@@ -46,7 +46,7 @@ module Trycourier
         description: String,
         name: String,
         updated_at: String,
-        filter: Trycourier::Filter?,
+        filter: Trycourier::AudienceFilterConfig?,
         operator: Trycourier::Models::Audience::operator
       }
 
