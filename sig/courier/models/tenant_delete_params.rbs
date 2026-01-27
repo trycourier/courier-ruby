@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type tenant_delete_params =
+      {  } & Courier::Internal::Type::request_parameters
+
+    class TenantDeleteParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Courier::request_opts) -> void
+
+      def to_hash: -> { request_options: Courier::RequestOptions }
+    end
+  end
+end

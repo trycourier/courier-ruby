@@ -1,0 +1,15 @@
+module Courier
+  module Resources
+    class Automations
+      attr_reader invoke: Courier::Resources::Automations::Invoke
+
+      def list: (
+        ?cursor: String,
+        ?version: Courier::Models::AutomationListParams::version,
+        ?request_options: Courier::request_opts
+      ) -> Courier::AutomationTemplateListResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

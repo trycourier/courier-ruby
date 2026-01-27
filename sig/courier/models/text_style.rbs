@@ -1,0 +1,16 @@
+module Courier
+  module Models
+    type text_style = :text | :h1 | :h2 | :subtext
+
+    module TextStyle
+      extend Courier::Internal::Type::Enum
+
+      TEXT: :text
+      H1: :h1
+      H2: :h2
+      SUBTEXT: :subtext
+
+      def self?.values: -> ::Array[Courier::Models::text_style]
+    end
+  end
+end

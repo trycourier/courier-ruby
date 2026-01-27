@@ -1,0 +1,20 @@
+module Courier
+  module Resources
+    class Translations
+      def retrieve: (
+        String locale,
+        domain: String,
+        ?request_options: Courier::request_opts
+      ) -> String
+
+      def update: (
+        String locale,
+        domain: String,
+        body: String,
+        ?request_options: Courier::request_opts
+      ) -> nil
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

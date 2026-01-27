@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type webhook_auth_mode = :none | :basic | :bearer
+
+    module WebhookAuthMode
+      extend Courier::Internal::Type::Enum
+
+      NONE: :none
+      BASIC: :basic
+      BEARER: :bearer
+
+      def self?.values: -> ::Array[Courier::Models::webhook_auth_mode]
+    end
+  end
+end

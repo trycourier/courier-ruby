@@ -1,0 +1,22 @@
+module Courier
+  module Resources
+    class Notifications
+      attr_reader draft: Courier::Resources::Notifications::Draft
+
+      attr_reader checks: Courier::Resources::Notifications::Checks
+
+      def list: (
+        ?cursor: String?,
+        ?notes: bool?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::NotificationListResponse
+
+      def retrieve_content: (
+        String id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationGetContent
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

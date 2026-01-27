@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type user_profile_firebase_token = String | ::Array[String]
+
+    module UserProfileFirebaseToken
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::user_profile_firebase_token]
+
+      StringArray: Courier::Internal::Type::Converter
+    end
+  end
+end

@@ -1,0 +1,16 @@
+module Courier
+  module Resources
+    class Inbound
+      def track_event: (
+        event: String,
+        message_id: String,
+        properties: ::Hash[Symbol, top],
+        type: Courier::Models::InboundTrackEventParams::type_,
+        ?user_id: String?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::InboundTrackEventResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

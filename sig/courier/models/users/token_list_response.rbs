@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    module Users
+      type token_list_response = { tokens: ::Array[Courier::Users::UserToken] }
+
+      class TokenListResponse < Courier::Internal::Type::BaseModel
+        attr_accessor tokens: ::Array[Courier::Users::UserToken]
+
+        def initialize: (tokens: ::Array[Courier::Users::UserToken]) -> void
+
+        def to_hash: -> { tokens: ::Array[Courier::Users::UserToken] }
+      end
+    end
+  end
+end

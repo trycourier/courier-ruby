@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type preference_status = :OPTED_IN | :OPTED_OUT | :REQUIRED
+
+    module PreferenceStatus
+      extend Courier::Internal::Type::Enum
+
+      OPTED_IN: :OPTED_IN
+      OPTED_OUT: :OPTED_OUT
+      REQUIRED: :REQUIRED
+
+      def self?.values: -> ::Array[Courier::Models::preference_status]
+    end
+  end
+end

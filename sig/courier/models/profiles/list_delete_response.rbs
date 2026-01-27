@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    module Profiles
+      type list_delete_response =
+        { status: Courier::Models::Profiles::ListDeleteResponse::status }
+
+      class ListDeleteResponse < Courier::Internal::Type::BaseModel
+        attr_accessor status: Courier::Models::Profiles::ListDeleteResponse::status
+
+        def initialize: (
+          status: Courier::Models::Profiles::ListDeleteResponse::status
+        ) -> void
+
+        def to_hash: -> {
+          status: Courier::Models::Profiles::ListDeleteResponse::status
+        }
+
+        type status = :SUCCESS
+
+        module Status
+          extend Courier::Internal::Type::Enum
+
+          SUCCESS: :SUCCESS
+
+          def self?.values: -> ::Array[Courier::Models::Profiles::ListDeleteResponse::status]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module Courier
+  module Models
+    type notification_list_params =
+      { cursor: String?, notes: bool? }
+      & Courier::Internal::Type::request_parameters
+
+    class NotificationListParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor cursor: String?
+
+      attr_accessor notes: bool?
+
+      def initialize: (
+        ?cursor: String?,
+        ?notes: bool?,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String?,
+        notes: bool?,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

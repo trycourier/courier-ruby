@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type elemental_meta_node_with_type =
+      { type: Courier::Models::ElementalMetaNodeWithType::type_ }
+
+    class ElementalMetaNodeWithType < Courier::Models::ElementalBaseNode
+      def `type`: -> Courier::Models::ElementalMetaNodeWithType::type_?
+
+      def type=: (
+        Courier::Models::ElementalMetaNodeWithType::type_ _
+      ) -> Courier::Models::ElementalMetaNodeWithType::type_
+
+      def initialize: (
+        ?type: Courier::Models::ElementalMetaNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::ElementalMetaNodeWithType::type_
+      }
+
+      type type_ = :meta
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        META: :meta
+
+        def self?.values: -> ::Array[Courier::Models::ElementalMetaNodeWithType::type_]
+      end
+    end
+  end
+end

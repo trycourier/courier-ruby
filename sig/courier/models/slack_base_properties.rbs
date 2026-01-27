@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type slack_base_properties = { access_token: String }
+
+    class SlackBaseProperties < Courier::Internal::Type::BaseModel
+      attr_accessor access_token: String
+
+      def initialize: (access_token: String) -> void
+
+      def to_hash: -> { access_token: String }
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type elemental_action_node_with_type =
+      { type: Courier::Models::ElementalActionNodeWithType::type_ }
+
+    class ElementalActionNodeWithType < Courier::Models::ElementalBaseNode
+      def `type`: -> Courier::Models::ElementalActionNodeWithType::type_?
+
+      def type=: (
+        Courier::Models::ElementalActionNodeWithType::type_ _
+      ) -> Courier::Models::ElementalActionNodeWithType::type_
+
+      def initialize: (
+        ?type: Courier::Models::ElementalActionNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::ElementalActionNodeWithType::type_
+      }
+
+      type type_ = :action
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        ACTION: :action
+
+        def self?.values: -> ::Array[Courier::Models::ElementalActionNodeWithType::type_]
+      end
+    end
+  end
+end

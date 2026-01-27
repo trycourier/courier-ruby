@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type webhook_recipient = { webhook: Courier::WebhookProfile }
+
+    class WebhookRecipient < Courier::Internal::Type::BaseModel
+      attr_accessor webhook: Courier::WebhookProfile
+
+      def initialize: (webhook: Courier::WebhookProfile) -> void
+
+      def to_hash: -> { webhook: Courier::WebhookProfile }
+    end
+  end
+end
