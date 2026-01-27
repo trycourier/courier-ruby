@@ -1,0 +1,27 @@
+module Courier
+  module Models
+    module Users
+      type token_add_single_params =
+        { user_id: String } & Courier::Internal::Type::request_parameters
+
+      class TokenAddSingleParams < Courier::Models::Users::UserToken
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        def user_id: -> String
+
+        def user_id=: (String _) -> String
+
+        def initialize: (
+          user_id: String,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          user_id: String,
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

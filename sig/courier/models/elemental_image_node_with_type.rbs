@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type elemental_image_node_with_type =
+      { type: Courier::Models::ElementalImageNodeWithType::type_ }
+
+    class ElementalImageNodeWithType < Courier::Models::ElementalBaseNode
+      def `type`: -> Courier::Models::ElementalImageNodeWithType::type_?
+
+      def type=: (
+        Courier::Models::ElementalImageNodeWithType::type_ _
+      ) -> Courier::Models::ElementalImageNodeWithType::type_
+
+      def initialize: (
+        ?type: Courier::Models::ElementalImageNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::ElementalImageNodeWithType::type_
+      }
+
+      type type_ = :image
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        IMAGE: :image
+
+        def self?.values: -> ::Array[Courier::Models::ElementalImageNodeWithType::type_]
+      end
+    end
+  end
+end

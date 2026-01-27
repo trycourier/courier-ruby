@@ -1,0 +1,16 @@
+module Courier
+  module Models
+    type ms_teams =
+      Courier::SendToMsTeamsUserID
+      | Courier::SendToMsTeamsEmail
+      | Courier::SendToMsTeamsChannelID
+      | Courier::SendToMsTeamsConversationID
+      | Courier::SendToMsTeamsChannelName
+
+    module MsTeams
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::ms_teams]
+    end
+  end
+end

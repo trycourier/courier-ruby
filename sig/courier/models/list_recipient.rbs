@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    type list_recipient =
+      {
+        data: ::Hash[Symbol, top]?,
+        filters: ::Array[Courier::ListFilter]?,
+        list_id: String?
+      }
+
+    class ListRecipient < Courier::Internal::Type::BaseModel
+      attr_accessor data: ::Hash[Symbol, top]?
+
+      attr_accessor filters: ::Array[Courier::ListFilter]?
+
+      attr_accessor list_id: String?
+
+      def initialize: (
+        ?data: ::Hash[Symbol, top]?,
+        ?filters: ::Array[Courier::ListFilter]?,
+        ?list_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Hash[Symbol, top]?,
+        filters: ::Array[Courier::ListFilter]?,
+        list_id: String?
+      }
+    end
+  end
+end

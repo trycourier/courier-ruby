@@ -1,0 +1,309 @@
+module Courier
+  class AirshipProfile = Courier::Models::AirshipProfile
+
+  class AirshipProfileAudience = Courier::Models::AirshipProfileAudience
+
+  module Alignment = Courier::Models::Alignment
+
+  class Audience = Courier::Models::Audience
+
+  class AudienceDeleteParams = Courier::Models::AudienceDeleteParams
+
+  class AudienceFilter = Courier::Models::AudienceFilter
+
+  class AudienceFilterConfig = Courier::Models::AudienceFilterConfig
+
+  class AudienceListMembersParams = Courier::Models::AudienceListMembersParams
+
+  class AudienceListParams = Courier::Models::AudienceListParams
+
+  class AudienceRecipient = Courier::Models::AudienceRecipient
+
+  class AudienceRetrieveParams = Courier::Models::AudienceRetrieveParams
+
+  class AudienceUpdateParams = Courier::Models::AudienceUpdateParams
+
+  class AuditEvent = Courier::Models::AuditEvent
+
+  class AuditEventListParams = Courier::Models::AuditEventListParams
+
+  class AuditEventRetrieveParams = Courier::Models::AuditEventRetrieveParams
+
+  class AuthIssueTokenParams = Courier::Models::AuthIssueTokenParams
+
+  class AutomationInvokeResponse = Courier::Models::AutomationInvokeResponse
+
+  class AutomationListParams = Courier::Models::AutomationListParams
+
+  module Automations = Courier::Models::Automations
+
+  class AutomationTemplate = Courier::Models::AutomationTemplate
+
+  class AutomationTemplateListResponse = Courier::Models::AutomationTemplateListResponse
+
+  class BaseCheck = Courier::Models::BaseCheck
+
+  class BaseTemplateTenantAssociation = Courier::Models::BaseTemplateTenantAssociation
+
+  class Brand = Courier::Models::Brand
+
+  class BrandColors = Courier::Models::BrandColors
+
+  class BrandCreateParams = Courier::Models::BrandCreateParams
+
+  class BrandDeleteParams = Courier::Models::BrandDeleteParams
+
+  class BrandListParams = Courier::Models::BrandListParams
+
+  class BrandRetrieveParams = Courier::Models::BrandRetrieveParams
+
+  class BrandSettings = Courier::Models::BrandSettings
+
+  class BrandSettingsEmail = Courier::Models::BrandSettingsEmail
+
+  class BrandSettingsInApp = Courier::Models::BrandSettingsInApp
+
+  class BrandSnippet = Courier::Models::BrandSnippet
+
+  class BrandSnippets = Courier::Models::BrandSnippets
+
+  class BrandTemplate = Courier::Models::BrandTemplate
+
+  class BrandUpdateParams = Courier::Models::BrandUpdateParams
+
+  class BulkAddUsersParams = Courier::Models::BulkAddUsersParams
+
+  class BulkCreateJobParams = Courier::Models::BulkCreateJobParams
+
+  class BulkListUsersParams = Courier::Models::BulkListUsersParams
+
+  class BulkRetrieveJobParams = Courier::Models::BulkRetrieveJobParams
+
+  class BulkRunJobParams = Courier::Models::BulkRunJobParams
+
+  module ChannelClassification = Courier::Models::ChannelClassification
+
+  class ChannelPreference = Courier::Models::ChannelPreference
+
+  class Check = Courier::Models::Check
+
+  class DefaultPreferences = Courier::Models::DefaultPreferences
+
+  class DeviceType = Courier::Models::DeviceType
+
+  module Discord = Courier::Models::Discord
+
+  class ElementalActionNodeWithType = Courier::Models::ElementalActionNodeWithType
+
+  class ElementalBaseNode = Courier::Models::ElementalBaseNode
+
+  class ElementalChannelNode = Courier::Models::ElementalChannelNode
+
+  class ElementalChannelNodeWithType = Courier::Models::ElementalChannelNodeWithType
+
+  class ElementalContent = Courier::Models::ElementalContent
+
+  class ElementalContentSugar = Courier::Models::ElementalContentSugar
+
+  class ElementalDividerNodeWithType = Courier::Models::ElementalDividerNodeWithType
+
+  class ElementalImageNodeWithType = Courier::Models::ElementalImageNodeWithType
+
+  class ElementalMetaNodeWithType = Courier::Models::ElementalMetaNodeWithType
+
+  module ElementalNode = Courier::Models::ElementalNode
+
+  class ElementalQuoteNodeWithType = Courier::Models::ElementalQuoteNodeWithType
+
+  class ElementalTextNodeWithType = Courier::Models::ElementalTextNodeWithType
+
+  class EmailFooter = Courier::Models::EmailFooter
+
+  class EmailHead = Courier::Models::EmailHead
+
+  class EmailHeader = Courier::Models::EmailHeader
+
+  module Expo = Courier::Models::Expo
+
+  class FilterConfig = Courier::Models::FilterConfig
+
+  class Icons = Courier::Models::Icons
+
+  class InboundBulkMessage = Courier::Models::InboundBulkMessage
+
+  class InboundBulkMessageUser = Courier::Models::InboundBulkMessageUser
+
+  class InboundTrackEventParams = Courier::Models::InboundTrackEventParams
+
+  class Intercom = Courier::Models::Intercom
+
+  class IntercomRecipient = Courier::Models::IntercomRecipient
+
+  class ListDeleteParams = Courier::Models::ListDeleteParams
+
+  class ListFilter = Courier::Models::ListFilter
+
+  class ListListParams = Courier::Models::ListListParams
+
+  class ListPatternRecipient = Courier::Models::ListPatternRecipient
+
+  class ListRecipient = Courier::Models::ListRecipient
+
+  class ListRestoreParams = Courier::Models::ListRestoreParams
+
+  class ListRetrieveParams = Courier::Models::ListRetrieveParams
+
+  module Lists = Courier::Models::Lists
+
+  class ListUpdateParams = Courier::Models::ListUpdateParams
+
+  class Logo = Courier::Models::Logo
+
+  class MessageCancelParams = Courier::Models::MessageCancelParams
+
+  class MessageContentParams = Courier::Models::MessageContentParams
+
+  class MessageContext = Courier::Models::MessageContext
+
+  class MessageDetails = Courier::Models::MessageDetails
+
+  class MessageHistoryParams = Courier::Models::MessageHistoryParams
+
+  class MessageListParams = Courier::Models::MessageListParams
+
+  class MessageRetrieveParams = Courier::Models::MessageRetrieveParams
+
+  class MessageRouting = Courier::Models::MessageRouting
+
+  module MessageRoutingChannel = Courier::Models::MessageRoutingChannel
+
+  module MsTeams = Courier::Models::MsTeams
+
+  class MsTeamsBaseProperties = Courier::Models::MsTeamsBaseProperties
+
+  class MsTeamsRecipient = Courier::Models::MsTeamsRecipient
+
+  class MultipleTokens = Courier::Models::MultipleTokens
+
+  class NotificationGetContent = Courier::Models::NotificationGetContent
+
+  class NotificationListParams = Courier::Models::NotificationListParams
+
+  class NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
+
+  class NotificationRetrieveContentParams = Courier::Models::NotificationRetrieveContentParams
+
+  module Notifications = Courier::Models::Notifications
+
+  class Pagerduty = Courier::Models::Pagerduty
+
+  class PagerdutyRecipient = Courier::Models::PagerdutyRecipient
+
+  class Paging = Courier::Models::Paging
+
+  class Preference = Courier::Models::Preference
+
+  module PreferenceStatus = Courier::Models::PreferenceStatus
+
+  class ProfileCreateParams = Courier::Models::ProfileCreateParams
+
+  class ProfileDeleteParams = Courier::Models::ProfileDeleteParams
+
+  class ProfileReplaceParams = Courier::Models::ProfileReplaceParams
+
+  class ProfileRetrieveParams = Courier::Models::ProfileRetrieveParams
+
+  module Profiles = Courier::Models::Profiles
+
+  class ProfileUpdateParams = Courier::Models::ProfileUpdateParams
+
+  class PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient
+
+  class RecipientPreferences = Courier::Models::RecipientPreferences
+
+  class RequestArchiveParams = Courier::Models::RequestArchiveParams
+
+  class Rule = Courier::Models::Rule
+
+  class SendDirectMessage = Courier::Models::SendDirectMessage
+
+  class SendMessageParams = Courier::Models::SendMessageParams
+
+  class SendToChannel = Courier::Models::SendToChannel
+
+  class SendToMsTeamsChannelID = Courier::Models::SendToMsTeamsChannelID
+
+  class SendToMsTeamsChannelName = Courier::Models::SendToMsTeamsChannelName
+
+  class SendToMsTeamsConversationID = Courier::Models::SendToMsTeamsConversationID
+
+  class SendToMsTeamsEmail = Courier::Models::SendToMsTeamsEmail
+
+  class SendToMsTeamsUserID = Courier::Models::SendToMsTeamsUserID
+
+  class SendToSlackChannel = Courier::Models::SendToSlackChannel
+
+  class SendToSlackEmail = Courier::Models::SendToSlackEmail
+
+  class SendToSlackUserID = Courier::Models::SendToSlackUserID
+
+  module Slack = Courier::Models::Slack
+
+  class SlackBaseProperties = Courier::Models::SlackBaseProperties
+
+  class SlackRecipient = Courier::Models::SlackRecipient
+
+  class SubscribeToListsRequestItem = Courier::Models::SubscribeToListsRequestItem
+
+  class SubscriptionList = Courier::Models::SubscriptionList
+
+  class SubscriptionTopicNew = Courier::Models::SubscriptionTopicNew
+
+  class Tenant = Courier::Models::Tenant
+
+  class TenantAssociation = Courier::Models::TenantAssociation
+
+  class TenantDeleteParams = Courier::Models::TenantDeleteParams
+
+  class TenantListParams = Courier::Models::TenantListParams
+
+  class TenantListUsersParams = Courier::Models::TenantListUsersParams
+
+  class TenantRetrieveParams = Courier::Models::TenantRetrieveParams
+
+  module Tenants = Courier::Models::Tenants
+
+  class TenantUpdateParams = Courier::Models::TenantUpdateParams
+
+  module TextStyle = Courier::Models::TextStyle
+
+  class Token = Courier::Models::Token
+
+  class TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
+
+  class TranslationUpdateParams = Courier::Models::TranslationUpdateParams
+
+  class UserProfile = Courier::Models::UserProfile
+
+  module UserProfileFirebaseToken = Courier::Models::UserProfileFirebaseToken
+
+  class UserRecipient = Courier::Models::UserRecipient
+
+  module Users = Courier::Models::Users
+
+  class Utm = Courier::Models::Utm
+
+  class WebhookAuthentication = Courier::Models::WebhookAuthentication
+
+  module WebhookAuthMode = Courier::Models::WebhookAuthMode
+
+  module WebhookMethod = Courier::Models::WebhookMethod
+
+  class WebhookProfile = Courier::Models::WebhookProfile
+
+  module WebhookProfileType = Courier::Models::WebhookProfileType
+
+  class WebhookRecipient = Courier::Models::WebhookRecipient
+
+  class WidgetBackground = Courier::Models::WidgetBackground
+end

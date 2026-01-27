@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type slack_recipient = { slack: Courier::Models::slack }
+
+    class SlackRecipient < Courier::Internal::Type::BaseModel
+      attr_accessor slack: Courier::Models::slack
+
+      def initialize: (slack: Courier::Models::slack) -> void
+
+      def to_hash: -> { slack: Courier::Models::slack }
+    end
+  end
+end

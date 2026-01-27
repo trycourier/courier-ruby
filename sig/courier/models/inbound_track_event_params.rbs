@@ -1,0 +1,56 @@
+module Courier
+  module Models
+    type inbound_track_event_params =
+      {
+        event: String,
+        message_id: String,
+        properties: ::Hash[Symbol, top],
+        type: Courier::Models::InboundTrackEventParams::type_,
+        user_id: String?
+      }
+      & Courier::Internal::Type::request_parameters
+
+    class InboundTrackEventParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor event: String
+
+      attr_accessor message_id: String
+
+      attr_accessor properties: ::Hash[Symbol, top]
+
+      attr_accessor type: Courier::Models::InboundTrackEventParams::type_
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        event: String,
+        message_id: String,
+        properties: ::Hash[Symbol, top],
+        type: Courier::Models::InboundTrackEventParams::type_,
+        ?user_id: String?,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        event: String,
+        message_id: String,
+        properties: ::Hash[Symbol, top],
+        type: Courier::Models::InboundTrackEventParams::type_,
+        user_id: String?,
+        request_options: Courier::RequestOptions
+      }
+
+      type type_ = :track
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        TRACK: :track
+
+        def self?.values: -> ::Array[Courier::Models::InboundTrackEventParams::type_]
+      end
+    end
+  end
+end

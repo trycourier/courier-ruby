@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type elemental_quote_node_with_type =
+      { type: Courier::Models::ElementalQuoteNodeWithType::type_ }
+
+    class ElementalQuoteNodeWithType < Courier::Models::ElementalBaseNode
+      def `type`: -> Courier::Models::ElementalQuoteNodeWithType::type_?
+
+      def type=: (
+        Courier::Models::ElementalQuoteNodeWithType::type_ _
+      ) -> Courier::Models::ElementalQuoteNodeWithType::type_
+
+      def initialize: (
+        ?type: Courier::Models::ElementalQuoteNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::ElementalQuoteNodeWithType::type_
+      }
+
+      type type_ = :quote
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        QUOTE: :quote
+
+        def self?.values: -> ::Array[Courier::Models::ElementalQuoteNodeWithType::type_]
+      end
+    end
+  end
+end

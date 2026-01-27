@@ -1,0 +1,37 @@
+module Courier
+  module Resources
+    class Profiles
+      attr_reader lists: Courier::Resources::Profiles::Lists
+
+      def create: (
+        String user_id,
+        profile: ::Hash[Symbol, top],
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::ProfileCreateResponse
+
+      def retrieve: (
+        String user_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::ProfileRetrieveResponse
+
+      def update: (
+        String user_id,
+        patch: ::Array[Courier::ProfileUpdateParams::Patch],
+        ?request_options: Courier::request_opts
+      ) -> nil
+
+      def delete: (
+        String user_id,
+        ?request_options: Courier::request_opts
+      ) -> nil
+
+      def replace: (
+        String user_id,
+        profile: ::Hash[Symbol, top],
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::ProfileReplaceResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

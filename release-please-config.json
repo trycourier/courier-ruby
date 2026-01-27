@@ -60,7 +60,7 @@
     }
   ],
   "release-type": "ruby",
-  "version-file": "lib/trycourier/version.rb",
+  "version-file": "lib/courier/version.rb",
   "extra-files": [
     {
       "type": "ruby-readme",

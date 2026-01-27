@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type ms_teams_recipient = { ms_teams: Courier::Models::ms_teams }
+
+    class MsTeamsRecipient < Courier::Internal::Type::BaseModel
+      attr_accessor ms_teams: Courier::Models::ms_teams
+
+      def initialize: (ms_teams: Courier::Models::ms_teams) -> void
+
+      def to_hash: -> { ms_teams: Courier::Models::ms_teams }
+    end
+  end
+end

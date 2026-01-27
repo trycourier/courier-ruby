@@ -1,0 +1,48 @@
+module Courier
+  module Models
+    type automation_list_params =
+      {
+        cursor: String,
+        version: Courier::Models::AutomationListParams::version
+      }
+      & Courier::Internal::Type::request_parameters
+
+    class AutomationListParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader version: Courier::Models::AutomationListParams::version?
+
+      def version=: (
+        Courier::Models::AutomationListParams::version
+      ) -> Courier::Models::AutomationListParams::version
+
+      def initialize: (
+        ?cursor: String,
+        ?version: Courier::Models::AutomationListParams::version,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        version: Courier::Models::AutomationListParams::version,
+        request_options: Courier::RequestOptions
+      }
+
+      type version = :published | :draft
+
+      module Version
+        extend Courier::Internal::Type::Enum
+
+        PUBLISHED: :published
+        DRAFT: :draft
+
+        def self?.values: -> ::Array[Courier::Models::AutomationListParams::version]
+      end
+    end
+  end
+end
