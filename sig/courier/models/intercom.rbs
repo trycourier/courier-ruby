@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type intercom = { from: String, to: Courier::IntercomRecipient }
+
+    class Intercom < Courier::Internal::Type::BaseModel
+      attr_accessor from: String
+
+      attr_accessor to: Courier::IntercomRecipient
+
+      def initialize: (from: String, to: Courier::IntercomRecipient) -> void
+
+      def to_hash: -> { from: String, to: Courier::IntercomRecipient }
+    end
+  end
+end

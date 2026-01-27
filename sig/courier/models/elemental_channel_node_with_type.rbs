@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type elemental_channel_node_with_type =
+      { type: Courier::Models::ElementalChannelNodeWithType::type_ }
+
+    class ElementalChannelNodeWithType < Courier::Models::ElementalChannelNode
+      def `type`: -> Courier::Models::ElementalChannelNodeWithType::type_?
+
+      def type=: (
+        Courier::Models::ElementalChannelNodeWithType::type_ _
+      ) -> Courier::Models::ElementalChannelNodeWithType::type_
+
+      def initialize: (
+        ?type: Courier::Models::ElementalChannelNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::ElementalChannelNodeWithType::type_
+      }
+
+      type type_ = :channel
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        CHANNEL: :channel
+
+        def self?.values: -> ::Array[Courier::Models::ElementalChannelNodeWithType::type_]
+      end
+    end
+  end
+end

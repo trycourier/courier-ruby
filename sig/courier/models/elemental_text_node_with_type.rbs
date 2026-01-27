@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type elemental_text_node_with_type =
+      { type: Courier::Models::ElementalTextNodeWithType::type_ }
+
+    class ElementalTextNodeWithType < Courier::Models::ElementalBaseNode
+      def `type`: -> Courier::Models::ElementalTextNodeWithType::type_?
+
+      def type=: (
+        Courier::Models::ElementalTextNodeWithType::type_ _
+      ) -> Courier::Models::ElementalTextNodeWithType::type_
+
+      def initialize: (
+        ?type: Courier::Models::ElementalTextNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::ElementalTextNodeWithType::type_
+      }
+
+      type type_ = :text
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        TEXT: :text
+
+        def self?.values: -> ::Array[Courier::Models::ElementalTextNodeWithType::type_]
+      end
+    end
+  end
+end

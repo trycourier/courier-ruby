@@ -1,0 +1,50 @@
+module Courier
+  module Models
+    type audience_filter =
+      {
+        operator: Courier::Models::AudienceFilter::operator,
+        path: Courier::Models::AudienceFilter::path,
+        value: String
+      }
+
+    class AudienceFilter < Courier::Internal::Type::BaseModel
+      attr_accessor operator: Courier::Models::AudienceFilter::operator
+
+      attr_accessor path: Courier::Models::AudienceFilter::path
+
+      attr_accessor value: String
+
+      def initialize: (
+        operator: Courier::Models::AudienceFilter::operator,
+        path: Courier::Models::AudienceFilter::path,
+        value: String
+      ) -> void
+
+      def to_hash: -> {
+        operator: Courier::Models::AudienceFilter::operator,
+        path: Courier::Models::AudienceFilter::path,
+        value: String
+      }
+
+      type operator = :MEMBER_OF
+
+      module Operator
+        extend Courier::Internal::Type::Enum
+
+        MEMBER_OF: :MEMBER_OF
+
+        def self?.values: -> ::Array[Courier::Models::AudienceFilter::operator]
+      end
+
+      type path = :account_id
+
+      module Path
+        extend Courier::Internal::Type::Enum
+
+        ACCOUNT_ID: :account_id
+
+        def self?.values: -> ::Array[Courier::Models::AudienceFilter::path]
+      end
+    end
+  end
+end

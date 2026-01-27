@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type audience_filter_config = { filters: ::Array[Courier::FilterConfig] }
+
+    class AudienceFilterConfig < Courier::Internal::Type::BaseModel
+      attr_accessor filters: ::Array[Courier::FilterConfig]
+
+      def initialize: (filters: ::Array[Courier::FilterConfig]) -> void
+
+      def to_hash: -> { filters: ::Array[Courier::FilterConfig] }
+    end
+  end
+end

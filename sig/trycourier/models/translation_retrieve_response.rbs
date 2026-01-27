@@ -1,5 +1,0 @@
-module Trycourier
-  module Models
-    class TranslationRetrieveResponse = String
-  end
-end

@@ -1,0 +1,65 @@
+module Courier
+  module Models
+    type audience =
+      {
+        id: String,
+        created_at: String,
+        description: String,
+        name: String,
+        updated_at: String,
+        filter: Courier::AudienceFilterConfig?,
+        operator: Courier::Models::Audience::operator
+      }
+
+    class Audience < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: String
+
+      attr_accessor description: String
+
+      attr_accessor name: String
+
+      attr_accessor updated_at: String
+
+      attr_accessor filter: Courier::AudienceFilterConfig?
+
+      attr_reader operator: Courier::Models::Audience::operator?
+
+      def operator=: (
+        Courier::Models::Audience::operator
+      ) -> Courier::Models::Audience::operator
+
+      def initialize: (
+        id: String,
+        created_at: String,
+        description: String,
+        name: String,
+        updated_at: String,
+        ?filter: Courier::AudienceFilterConfig?,
+        ?operator: Courier::Models::Audience::operator
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: String,
+        description: String,
+        name: String,
+        updated_at: String,
+        filter: Courier::AudienceFilterConfig?,
+        operator: Courier::Models::Audience::operator
+      }
+
+      type operator = :AND | :OR
+
+      module Operator
+        extend Courier::Internal::Type::Enum
+
+        AND: :AND
+        OR: :OR
+
+        def self?.values: -> ::Array[Courier::Models::Audience::operator]
+      end
+    end
+  end
+end

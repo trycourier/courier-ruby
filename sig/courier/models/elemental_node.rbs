@@ -1,0 +1,18 @@
+module Courier
+  module Models
+    type elemental_node =
+      Courier::ElementalTextNodeWithType
+      | Courier::ElementalMetaNodeWithType
+      | Courier::ElementalChannelNodeWithType
+      | Courier::ElementalImageNodeWithType
+      | Courier::ElementalActionNodeWithType
+      | Courier::ElementalDividerNodeWithType
+      | Courier::ElementalQuoteNodeWithType
+
+    module ElementalNode
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::elemental_node]
+    end
+  end
+end

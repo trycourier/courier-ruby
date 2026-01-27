@@ -1,0 +1,99 @@
+module Courier
+  module Models
+    type message_content_response =
+      { results: ::Array[Courier::Models::MessageContentResponse::Result] }
+
+    class MessageContentResponse < Courier::Internal::Type::BaseModel
+      attr_accessor results: ::Array[Courier::Models::MessageContentResponse::Result]
+
+      def initialize: (
+        results: ::Array[Courier::Models::MessageContentResponse::Result]
+      ) -> void
+
+      def to_hash: -> {
+        results: ::Array[Courier::Models::MessageContentResponse::Result]
+      }
+
+      type result =
+        {
+          channel: String,
+          channel_id: String,
+          content: Courier::Models::MessageContentResponse::Result::Content
+        }
+
+      class Result < Courier::Internal::Type::BaseModel
+        attr_accessor channel: String
+
+        attr_accessor channel_id: String
+
+        attr_accessor content: Courier::Models::MessageContentResponse::Result::Content
+
+        def initialize: (
+          channel: String,
+          channel_id: String,
+          content: Courier::Models::MessageContentResponse::Result::Content
+        ) -> void
+
+        def to_hash: -> {
+          channel: String,
+          channel_id: String,
+          content: Courier::Models::MessageContentResponse::Result::Content
+        }
+
+        type content =
+          {
+            blocks: ::Array[Courier::Models::MessageContentResponse::Result::Content::Block],
+            body: String,
+            html: String,
+            subject: String,
+            text: String,
+            title: String
+          }
+
+        class Content < Courier::Internal::Type::BaseModel
+          attr_accessor blocks: ::Array[Courier::Models::MessageContentResponse::Result::Content::Block]
+
+          attr_accessor body: String
+
+          attr_accessor html: String
+
+          attr_accessor subject: String
+
+          attr_accessor text: String
+
+          attr_accessor title: String
+
+          def initialize: (
+            blocks: ::Array[Courier::Models::MessageContentResponse::Result::Content::Block],
+            body: String,
+            html: String,
+            subject: String,
+            text: String,
+            title: String
+          ) -> void
+
+          def to_hash: -> {
+            blocks: ::Array[Courier::Models::MessageContentResponse::Result::Content::Block],
+            body: String,
+            html: String,
+            subject: String,
+            text: String,
+            title: String
+          }
+
+          type block = { text: String, type: String }
+
+          class Block < Courier::Internal::Type::BaseModel
+            attr_accessor text: String
+
+            attr_accessor type: String
+
+            def initialize: (text: String, type: String) -> void
+
+            def to_hash: -> { text: String, type: String }
+          end
+        end
+      end
+    end
+  end
+end

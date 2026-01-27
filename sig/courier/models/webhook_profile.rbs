@@ -1,0 +1,40 @@
+module Courier
+  module Models
+    type webhook_profile =
+      {
+        url: String,
+        authentication: Courier::WebhookAuthentication?,
+        headers: ::Hash[Symbol, String]?,
+        method_: Courier::Models::webhook_method?,
+        profile: Courier::Models::webhook_profile_type?
+      }
+
+    class WebhookProfile < Courier::Internal::Type::BaseModel
+      attr_accessor url: String
+
+      attr_accessor authentication: Courier::WebhookAuthentication?
+
+      attr_accessor headers: ::Hash[Symbol, String]?
+
+      attr_accessor method_: Courier::Models::webhook_method?
+
+      attr_accessor profile: Courier::Models::webhook_profile_type?
+
+      def initialize: (
+        url: String,
+        ?authentication: Courier::WebhookAuthentication?,
+        ?headers: ::Hash[Symbol, String]?,
+        ?method_: Courier::Models::webhook_method?,
+        ?profile: Courier::Models::webhook_profile_type?
+      ) -> void
+
+      def to_hash: -> {
+        url: String,
+        authentication: Courier::WebhookAuthentication?,
+        headers: ::Hash[Symbol, String]?,
+        method_: Courier::Models::webhook_method?,
+        profile: Courier::Models::webhook_profile_type?
+      }
+    end
+  end
+end

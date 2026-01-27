@@ -1,0 +1,28 @@
+module Courier
+  module Models
+    type automation_template_list_response =
+      { cursor: String, templates: ::Array[Courier::AutomationTemplate] }
+
+    class AutomationTemplateListResponse < Courier::Internal::Type::BaseModel
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader templates: ::Array[Courier::AutomationTemplate]?
+
+      def templates=: (
+        ::Array[Courier::AutomationTemplate]
+      ) -> ::Array[Courier::AutomationTemplate]
+
+      def initialize: (
+        ?cursor: String,
+        ?templates: ::Array[Courier::AutomationTemplate]
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        templates: ::Array[Courier::AutomationTemplate]
+      }
+    end
+  end
+end

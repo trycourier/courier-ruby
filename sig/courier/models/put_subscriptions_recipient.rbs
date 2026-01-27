@@ -1,0 +1,22 @@
+module Courier
+  module Models
+    type put_subscriptions_recipient =
+      { recipient_id: String, preferences: Courier::RecipientPreferences? }
+
+    class PutSubscriptionsRecipient < Courier::Internal::Type::BaseModel
+      attr_accessor recipient_id: String
+
+      attr_accessor preferences: Courier::RecipientPreferences?
+
+      def initialize: (
+        recipient_id: String,
+        ?preferences: Courier::RecipientPreferences?
+      ) -> void
+
+      def to_hash: -> {
+        recipient_id: String,
+        preferences: Courier::RecipientPreferences?
+      }
+    end
+  end
+end

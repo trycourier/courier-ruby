@@ -1,0 +1,11 @@
+module Courier
+  module Models
+    type discord = Courier::SendToChannel | Courier::SendDirectMessage
+
+    module Discord
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::discord]
+    end
+  end
+end

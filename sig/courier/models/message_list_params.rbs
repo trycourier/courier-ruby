@@ -1,0 +1,97 @@
+module Courier
+  module Models
+    type message_list_params =
+      {
+        archived: bool?,
+        cursor: String?,
+        enqueued_after: String?,
+        event: String?,
+        list: String?,
+        message_id: String?,
+        notification: String?,
+        provider: ::Array[String?],
+        recipient: String?,
+        status: ::Array[String?],
+        tag: ::Array[String?],
+        tags: String?,
+        tenant_id: String?,
+        trace_id: String?
+      }
+      & Courier::Internal::Type::request_parameters
+
+    class MessageListParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor archived: bool?
+
+      attr_accessor cursor: String?
+
+      attr_accessor enqueued_after: String?
+
+      attr_accessor event: String?
+
+      attr_accessor list: String?
+
+      attr_accessor message_id: String?
+
+      attr_accessor notification: String?
+
+      attr_reader provider: ::Array[String?]?
+
+      def provider=: (::Array[String?]) -> ::Array[String?]
+
+      attr_accessor recipient: String?
+
+      attr_reader status: ::Array[String?]?
+
+      def status=: (::Array[String?]) -> ::Array[String?]
+
+      attr_reader tag: ::Array[String?]?
+
+      def tag=: (::Array[String?]) -> ::Array[String?]
+
+      attr_accessor tags: String?
+
+      attr_accessor tenant_id: String?
+
+      attr_accessor trace_id: String?
+
+      def initialize: (
+        ?archived: bool?,
+        ?cursor: String?,
+        ?enqueued_after: String?,
+        ?event: String?,
+        ?list: String?,
+        ?message_id: String?,
+        ?notification: String?,
+        ?provider: ::Array[String?],
+        ?recipient: String?,
+        ?status: ::Array[String?],
+        ?tag: ::Array[String?],
+        ?tags: String?,
+        ?tenant_id: String?,
+        ?trace_id: String?,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        archived: bool?,
+        cursor: String?,
+        enqueued_after: String?,
+        event: String?,
+        list: String?,
+        message_id: String?,
+        notification: String?,
+        provider: ::Array[String?],
+        recipient: String?,
+        status: ::Array[String?],
+        tag: ::Array[String?],
+        tags: String?,
+        tenant_id: String?,
+        trace_id: String?,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type elemental_divider_node_with_type =
+      { type: Courier::Models::ElementalDividerNodeWithType::type_ }
+
+    class ElementalDividerNodeWithType < Courier::Models::ElementalBaseNode
+      def `type`: -> Courier::Models::ElementalDividerNodeWithType::type_?
+
+      def type=: (
+        Courier::Models::ElementalDividerNodeWithType::type_ _
+      ) -> Courier::Models::ElementalDividerNodeWithType::type_
+
+      def initialize: (
+        ?type: Courier::Models::ElementalDividerNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::ElementalDividerNodeWithType::type_
+      }
+
+      type type_ = :divider
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        DIVIDER: :divider
+
+        def self?.values: -> ::Array[Courier::Models::ElementalDividerNodeWithType::type_]
+      end
+    end
+  end
+end

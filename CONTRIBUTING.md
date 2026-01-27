@@ -14,7 +14,7 @@ This will install all the required dependencies.
 
 ## Modifying/Adding code
 
-Most of the SDK is generated code. Modifications to code will be persisted between generations, but may result in merge conflicts between manual patches and changes from the generator. The generator will never modify the contents of `lib/trycourier/helpers/` and `examples/` directory.
+Most of the SDK is generated code. Modifications to code will be persisted between generations, but may result in merge conflicts between manual patches and changes from the generator. The generator will never modify the contents of `lib/courier/helpers/` and `examples/` directory.
 
 ## Adding and running examples
 
@@ -24,7 +24,7 @@ All files in the `examples/` directory are not modified by the generator and can
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative "../lib/trycourier"
+require_relative "../lib/courier"
 
 # ...
 ```

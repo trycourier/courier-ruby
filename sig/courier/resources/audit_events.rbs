@@ -1,0 +1,17 @@
+module Courier
+  module Resources
+    class AuditEvents
+      def retrieve: (
+        String audit_event_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::AuditEvent
+
+      def list: (
+        ?cursor: String?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::AuditEventListResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

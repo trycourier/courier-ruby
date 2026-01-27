@@ -1,0 +1,55 @@
+module Courier
+  module Models
+    type automation_template =
+      {
+        id: String,
+        name: String,
+        version: Courier::Models::AutomationTemplate::version,
+        created_at: Time,
+        updated_at: Time
+      }
+
+    class AutomationTemplate < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor name: String
+
+      attr_accessor version: Courier::Models::AutomationTemplate::version
+
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        name: String,
+        version: Courier::Models::AutomationTemplate::version,
+        ?created_at: Time,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        name: String,
+        version: Courier::Models::AutomationTemplate::version,
+        created_at: Time,
+        updated_at: Time
+      }
+
+      type version = :published | :draft
+
+      module Version
+        extend Courier::Internal::Type::Enum
+
+        PUBLISHED: :published
+        DRAFT: :draft
+
+        def self?.values: -> ::Array[Courier::Models::AutomationTemplate::version]
+      end
+    end
+  end
+end

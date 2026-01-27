@@ -1,0 +1,28 @@
+module Courier
+  module Models
+    type list_list_params =
+      { cursor: String?, pattern: String? }
+      & Courier::Internal::Type::request_parameters
+
+    class ListListParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor cursor: String?
+
+      attr_accessor pattern: String?
+
+      def initialize: (
+        ?cursor: String?,
+        ?pattern: String?,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String?,
+        pattern: String?,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Courier
+  module Models
+    type webhook_authentication =
+      {
+        mode: Courier::Models::webhook_auth_mode,
+        token: String?,
+        password: String?,
+        username: String?
+      }
+
+    class WebhookAuthentication < Courier::Internal::Type::BaseModel
+      attr_accessor mode: Courier::Models::webhook_auth_mode
+
+      attr_accessor token: String?
+
+      attr_accessor password: String?
+
+      attr_accessor username: String?
+
+      def initialize: (
+        mode: Courier::Models::webhook_auth_mode,
+        ?token: String?,
+        ?password: String?,
+        ?username: String?
+      ) -> void
+
+      def to_hash: -> {
+        mode: Courier::Models::webhook_auth_mode,
+        token: String?,
+        password: String?,
+        username: String?
+      }
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module Courier
+  module Models
+    type slack =
+      Courier::SendToSlackChannel
+      | Courier::SendToSlackEmail
+      | Courier::SendToSlackUserID
+
+    module Slack
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::slack]
+    end
+  end
+end

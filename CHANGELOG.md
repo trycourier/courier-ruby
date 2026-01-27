@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.6.3 (2026-01-27)
+
+Full Changelog: [v4.6.2...v4.6.3](https://github.com/trycourier/courier-ruby/compare/v4.6.2...v4.6.3)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([58351ff](https://github.com/trycourier/courier-ruby/commit/58351ffafedee9170ccedf73d79c2c87fe84ca7b))
+
+
+### Documentation
+
+* **types:** update version field description in AutomationTemplate ([df81741](https://github.com/trycourier/courier-ruby/commit/df8174149d84e67dd15ca2e54b45ac3e4682039a))
+
 ## 4.6.2 (2026-01-14)
 
 Full Changelog: [v4.6.1...v4.6.2](https://github.com/trycourier/courier-ruby/compare/v4.6.1...v4.6.2)

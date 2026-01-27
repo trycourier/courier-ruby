@@ -1,0 +1,11 @@
+module Courier
+  module Models
+    type expo = Courier::Token | Courier::MultipleTokens
+
+    module Expo
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::expo]
+    end
+  end
+end
