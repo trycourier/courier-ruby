@@ -43,13 +43,13 @@ If you’d like to use the repository from source, you can either install from g
 To install via git in your `Gemfile`:
 
 ```ruby
-gem "trycourier", git: "https://www.github.com/trycourier/courier-ruby"
+gem "trycourier", git: "https://github.com/trycourier/courier-ruby"
 ```
 
 Alternatively, reference local copy of the repo:
 
 ```bash
-$ git clone -- 'https://www.github.com/trycourier/courier-ruby' '<path-to-repo>'
+$ git clone -- 'https://github.com/trycourier/courier-ruby' '<path-to-repo>'
 ```
 
 ```ruby
