@@ -194,7 +194,19 @@ module Courier
                 Courier::SlackRecipient,
                 Courier::MsTeamsRecipient,
                 Courier::PagerdutyRecipient,
-                Courier::WebhookRecipient
+                Courier::WebhookRecipient,
+                T::Array[
+                  T.any(
+                    Courier::UserRecipient,
+                    Courier::AudienceRecipient,
+                    Courier::ListRecipient,
+                    Courier::ListPatternRecipient,
+                    Courier::SlackRecipient,
+                    Courier::MsTeamsRecipient,
+                    Courier::PagerdutyRecipient,
+                    Courier::WebhookRecipient
+                  )
+                ]
               )
             )
           )
@@ -252,7 +264,19 @@ module Courier
                   Courier::SlackRecipient::OrHash,
                   Courier::MsTeamsRecipient::OrHash,
                   Courier::PagerdutyRecipient::OrHash,
-                  Courier::WebhookRecipient::OrHash
+                  Courier::WebhookRecipient::OrHash,
+                  T::Array[
+                    T.any(
+                      Courier::UserRecipient::OrHash,
+                      Courier::AudienceRecipient::OrHash,
+                      Courier::ListRecipient::OrHash,
+                      Courier::ListPatternRecipient::OrHash,
+                      Courier::SlackRecipient::OrHash,
+                      Courier::MsTeamsRecipient::OrHash,
+                      Courier::PagerdutyRecipient::OrHash,
+                      Courier::WebhookRecipient::OrHash
+                    )
+                  ]
                 )
               )
           ).returns(T.attached_class)
@@ -319,7 +343,19 @@ module Courier
                     Courier::SlackRecipient,
                     Courier::MsTeamsRecipient,
                     Courier::PagerdutyRecipient,
-                    Courier::WebhookRecipient
+                    Courier::WebhookRecipient,
+                    T::Array[
+                      T.any(
+                        Courier::UserRecipient,
+                        Courier::AudienceRecipient,
+                        Courier::ListRecipient,
+                        Courier::ListPatternRecipient,
+                        Courier::SlackRecipient,
+                        Courier::MsTeamsRecipient,
+                        Courier::PagerdutyRecipient,
+                        Courier::WebhookRecipient
+                      )
+                    ]
                   )
                 )
             }
@@ -1083,9 +1119,47 @@ module Courier
                 Courier::SlackRecipient,
                 Courier::MsTeamsRecipient,
                 Courier::PagerdutyRecipient,
-                Courier::WebhookRecipient
+                Courier::WebhookRecipient,
+                T::Array[
+                  Courier::SendMessageParams::Message::To::UnionMember8::Variants
+                ]
               )
             end
+
+          # A single recipient of the message. Choose one of the following types based on
+          # how you want to identify the recipient: - **User**: Send to a specific user by
+          # user_id, email, or phone number - **Audience**: Send to all users in an
+          # audience - **List**: Send to all users in a list - **List Pattern**: Send to
+          # users in lists matching a pattern - **Slack**: Send via Slack (channel, email,
+          # or user_id) - **MS Teams**: Send via Microsoft Teams - **PagerDuty**: Send via
+          # PagerDuty - **Webhook**: Send via webhook
+          module UnionMember8
+            extend Courier::Internal::Type::Union
+
+            Variants =
+              T.type_alias do
+                T.any(
+                  Courier::UserRecipient,
+                  Courier::AudienceRecipient,
+                  Courier::ListRecipient,
+                  Courier::ListPatternRecipient,
+                  Courier::SlackRecipient,
+                  Courier::MsTeamsRecipient,
+                  Courier::PagerdutyRecipient,
+                  Courier::WebhookRecipient
+                )
+              end
+
+            sig do
+              override.returns(
+                T::Array[
+                  Courier::SendMessageParams::Message::To::UnionMember8::Variants
+                ]
+              )
+            end
+            def self.variants
+            end
+          end
 
           sig do
             override.returns(
@@ -1094,6 +1168,14 @@ module Courier
           end
           def self.variants
           end
+
+          UnionMember8Array =
+            T.let(
+              Courier::Internal::Type::ArrayOf[
+                union: Courier::SendMessageParams::Message::To::UnionMember8
+              ],
+              Courier::Internal::Type::Converter
+            )
         end
       end
     end
