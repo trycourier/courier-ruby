@@ -422,11 +422,30 @@ module Courier
           | Courier::MsTeamsRecipient
           | Courier::PagerdutyRecipient
           | Courier::WebhookRecipient
+          | ::Array[Courier::Models::SendMessageParams::Message::To::union_member8]
 
         module To
           extend Courier::Internal::Type::Union
 
+          type union_member8 =
+            Courier::UserRecipient
+            | Courier::AudienceRecipient
+            | Courier::ListRecipient
+            | Courier::ListPatternRecipient
+            | Courier::SlackRecipient
+            | Courier::MsTeamsRecipient
+            | Courier::PagerdutyRecipient
+            | Courier::WebhookRecipient
+
+          module UnionMember8
+            extend Courier::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::To::union_member8]
+          end
+
           def self?.variants: -> ::Array[Courier::Models::SendMessageParams::Message::to]
+
+          UnionMember8Array: Courier::Internal::Type::Converter
         end
       end
     end

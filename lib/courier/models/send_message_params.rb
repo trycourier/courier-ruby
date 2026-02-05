@@ -100,7 +100,7 @@ module Courier
         # @!attribute to
         #   The recipient or a list of recipients of the message
         #
-        #   @return [Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient, nil]
+        #   @return [Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient, Array<Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient>, nil]
         optional :to, union: -> { Courier::SendMessageParams::Message::To }, nil?: true
 
         # @!method initialize(brand_id: nil, channels: nil, content: nil, context: nil, data: nil, delay: nil, expiry: nil, metadata: nil, preferences: nil, providers: nil, routing: nil, template: nil, timeout: nil, to: nil)
@@ -136,7 +136,7 @@ module Courier
         #
         #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #
-        #   @param to [Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient, nil] The recipient or a list of recipients of the message
+        #   @param to [Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient, Array<Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient>, nil] The recipient or a list of recipients of the message
 
         class Channel < Courier::Internal::Type::BaseModel
           # @!attribute brand_id
@@ -520,8 +520,54 @@ module Courier
           # Send via webhook
           variant -> { Courier::WebhookRecipient }
 
+          variant -> { Courier::Models::SendMessageParams::Message::To::UnionMember8Array }
+
+          # A single recipient of the message. Choose one of the following types based on
+          # how you want to identify the recipient: - **User**: Send to a specific user by
+          # user_id, email, or phone number - **Audience**: Send to all users in an
+          # audience - **List**: Send to all users in a list - **List Pattern**: Send to
+          # users in lists matching a pattern - **Slack**: Send via Slack (channel, email,
+          # or user_id) - **MS Teams**: Send via Microsoft Teams - **PagerDuty**: Send via
+          # PagerDuty - **Webhook**: Send via webhook
+          module UnionMember8
+            extend Courier::Internal::Type::Union
+
+            # Send to a specific user by user_id, email, phone_number, or list_id
+            variant -> { Courier::UserRecipient }
+
+            # Send to all users in an audience
+            variant -> { Courier::AudienceRecipient }
+
+            # Send to all users in a specific list
+            variant -> { Courier::ListRecipient }
+
+            # Send to users in lists matching a pattern
+            variant -> { Courier::ListPatternRecipient }
+
+            # Send via Slack (channel, email, or user_id)
+            variant -> { Courier::SlackRecipient }
+
+            # Send via Microsoft Teams
+            variant -> { Courier::MsTeamsRecipient }
+
+            # Send via PagerDuty
+            variant -> { Courier::PagerdutyRecipient }
+
+            # Send via webhook
+            variant -> { Courier::WebhookRecipient }
+
+            # @!method self.variants
+            #   @return [Array(Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient)]
+          end
+
           # @!method self.variants
-          #   @return [Array(Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient)]
+          #   @return [Array(Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient, Array<Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient>)]
+
+          # @type [Courier::Internal::Type::Converter]
+          UnionMember8Array =
+            Courier::Internal::Type::ArrayOf[union: -> {
+              Courier::SendMessageParams::Message::To::UnionMember8
+            }]
         end
       end
     end
