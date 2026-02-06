@@ -1,0 +1,24 @@
+module Courier
+  module Models
+    type put_tenant_template_request =
+      { template: Courier::TenantTemplateInput, published: bool }
+
+    class PutTenantTemplateRequest < Courier::Internal::Type::BaseModel
+      attr_accessor template: Courier::TenantTemplateInput
+
+      attr_reader published: bool?
+
+      def published=: (bool) -> bool
+
+      def initialize: (
+        template: Courier::TenantTemplateInput,
+        ?published: bool
+      ) -> void
+
+      def to_hash: -> {
+        template: Courier::TenantTemplateInput,
+        published: bool
+      }
+    end
+  end
+end

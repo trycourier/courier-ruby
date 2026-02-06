@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type post_tenant_template_publish_request = { version: String }
+
+    class PostTenantTemplatePublishRequest < Courier::Internal::Type::BaseModel
+      attr_reader version: String?
+
+      def version=: (String) -> String
+
+      def initialize: (?version: String) -> void
+
+      def to_hash: -> { version: String }
+    end
+  end
+end

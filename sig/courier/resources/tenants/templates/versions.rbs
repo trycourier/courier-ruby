@@ -1,0 +1,18 @@
+module Courier
+  module Resources
+    class Tenants
+      class Templates
+        class Versions
+          def retrieve: (
+            String version,
+            tenant_id: String,
+            template_id: String,
+            ?request_options: Courier::request_opts
+          ) -> Courier::BaseTemplateTenantAssociation
+
+          def initialize: (client: Courier::Client) -> void
+        end
+      end
+    end
+  end
+end
