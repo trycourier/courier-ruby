@@ -201,6 +201,10 @@ module Courier
 
   class Paging = Courier::Models::Paging
 
+  class PostTenantTemplatePublishRequest = Courier::Models::PostTenantTemplatePublishRequest
+
+  class PostTenantTemplatePublishResponse = Courier::Models::PostTenantTemplatePublishResponse
+
   class Preference = Courier::Models::Preference
 
   module PreferenceStatus = Courier::Models::PreferenceStatus
@@ -218,6 +222,10 @@ module Courier
   class ProfileUpdateParams = Courier::Models::ProfileUpdateParams
 
   class PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient
+
+  class PutTenantTemplateRequest = Courier::Models::PutTenantTemplateRequest
+
+  class PutTenantTemplateResponse = Courier::Models::PutTenantTemplateResponse
 
   class RecipientPreferences = Courier::Models::RecipientPreferences
 
@@ -272,6 +280,8 @@ module Courier
   class TenantRetrieveParams = Courier::Models::TenantRetrieveParams
 
   module Tenants = Courier::Models::Tenants
+
+  class TenantTemplateInput = Courier::Models::TenantTemplateInput
 
   class TenantUpdateParams = Courier::Models::TenantUpdateParams
 

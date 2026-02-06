@@ -2,6 +2,8 @@ module Courier
   module Resources
     class Tenants
       class Templates
+        attr_reader versions: Courier::Resources::Tenants::Templates::Versions
+
         def retrieve: (
           String template_id,
           tenant_id: String,
@@ -14,6 +16,21 @@ module Courier
           ?limit: Integer?,
           ?request_options: Courier::request_opts
         ) -> Courier::Models::Tenants::TemplateListResponse
+
+        def publish: (
+          String template_id,
+          tenant_id: String,
+          ?version: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::PostTenantTemplatePublishResponse
+
+        def replace: (
+          String template_id,
+          tenant_id: String,
+          template: Courier::TenantTemplateInput,
+          ?published: bool,
+          ?request_options: Courier::request_opts
+        ) -> Courier::PutTenantTemplateResponse
 
         def initialize: (client: Courier::Client) -> void
       end

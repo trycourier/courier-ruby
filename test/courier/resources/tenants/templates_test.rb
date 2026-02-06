@@ -43,4 +43,45 @@ class Courier::Test::Resources::Tenants::TemplatesTest < Courier::Test::Resource
       }
     end
   end
+
+  def test_publish_required_params
+    skip("Prism tests are disabled")
+
+    response = @courier.tenants.templates.publish("template_id", tenant_id: "tenant_id")
+
+    assert_pattern do
+      response => Courier::PostTenantTemplatePublishResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        published_at: String,
+        version: String
+      }
+    end
+  end
+
+  def test_replace_required_params
+    skip("Prism tests are disabled")
+
+    response =
+      @courier.tenants.templates.replace(
+        "template_id",
+        tenant_id: "tenant_id",
+        template: {content: {elements: [{}], version: "version"}}
+      )
+
+    assert_pattern do
+      response => Courier::PutTenantTemplateResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        version: String,
+        published_at: String | nil
+      }
+    end
+  end
 end
