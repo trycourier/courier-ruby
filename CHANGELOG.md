@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.7.0 (2026-02-06)
+
+Full Changelog: [v4.6.3...v4.7.0](https://github.com/trycourier/courier-ruby/compare/v4.6.3...v4.7.0)
+
+### Features
+
+* **api:** add array support to send_message to parameter ([02f83d3](https://github.com/trycourier/courier-ruby/commit/02f83d3b73bea1b85a5bda3fe30080e0e807f753))
+* **api:** add publish/replace methods and versions sub-resource to tenants templates ([7642e1b](https://github.com/trycourier/courier-ruby/commit/7642e1b9f7433ae5046f4a170c11479aee626cc4))
+
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([2045d2e](https://github.com/trycourier/courier-ruby/commit/2045d2e9d416abe826dd87ff993838407784dccc))
+
+
+### Chores
+
+* **docs:** remove www prefix ([8667b7a](https://github.com/trycourier/courier-ruby/commit/8667b7a6f52b4559e4f941b78b724b94f393b996))
+
 ## 4.6.3 (2026-01-27)
 
 Full Changelog: [v4.6.2...v4.6.3](https://github.com/trycourier/courier-ruby/compare/v4.6.2...v4.6.3)
