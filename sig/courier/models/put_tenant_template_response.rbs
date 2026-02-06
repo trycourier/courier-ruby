@@ -1,0 +1,22 @@
+module Courier
+  module Models
+    type put_tenant_template_response =
+      { id: String, version: String, published_at: String? }
+
+    class PutTenantTemplateResponse < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor version: String
+
+      attr_accessor published_at: String?
+
+      def initialize: (
+        id: String,
+        version: String,
+        ?published_at: String?
+      ) -> void
+
+      def to_hash: -> { id: String, version: String, published_at: String? }
+    end
+  end
+end

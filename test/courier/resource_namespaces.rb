@@ -18,8 +18,14 @@ module Courier
       module Profiles
       end
 
+      module Templates
+      end
+
       module Tenants
         module Preferences
+        end
+
+        module Templates
         end
       end
 

@@ -1,0 +1,167 @@
+module Courier
+  module Models
+    type tenant_template_input =
+      {
+        content: Courier::ElementalContent,
+        channels: ::Hash[Symbol, Courier::TenantTemplateInput::Channel],
+        providers: ::Hash[Symbol, Courier::TenantTemplateInput::Provider],
+        routing: Courier::MessageRouting
+      }
+
+    class TenantTemplateInput < Courier::Internal::Type::BaseModel
+      attr_accessor content: Courier::ElementalContent
+
+      attr_reader channels: ::Hash[Symbol, Courier::TenantTemplateInput::Channel]?
+
+      def channels=: (
+        ::Hash[Symbol, Courier::TenantTemplateInput::Channel]
+      ) -> ::Hash[Symbol, Courier::TenantTemplateInput::Channel]
+
+      attr_reader providers: ::Hash[Symbol, Courier::TenantTemplateInput::Provider]?
+
+      def providers=: (
+        ::Hash[Symbol, Courier::TenantTemplateInput::Provider]
+      ) -> ::Hash[Symbol, Courier::TenantTemplateInput::Provider]
+
+      attr_reader routing: Courier::MessageRouting?
+
+      def routing=: (Courier::MessageRouting) -> Courier::MessageRouting
+
+      def initialize: (
+        content: Courier::ElementalContent,
+        ?channels: ::Hash[Symbol, Courier::TenantTemplateInput::Channel],
+        ?providers: ::Hash[Symbol, Courier::TenantTemplateInput::Provider],
+        ?routing: Courier::MessageRouting
+      ) -> void
+
+      def to_hash: -> {
+        content: Courier::ElementalContent,
+        channels: ::Hash[Symbol, Courier::TenantTemplateInput::Channel],
+        providers: ::Hash[Symbol, Courier::TenantTemplateInput::Provider],
+        routing: Courier::MessageRouting
+      }
+
+      type channel =
+        {
+          brand_id: String?,
+          if_: String?,
+          metadata: Courier::TenantTemplateInput::Channel::Metadata?,
+          override: ::Hash[Symbol, top]?,
+          providers: ::Array[String]?,
+          routing_method: Courier::Models::TenantTemplateInput::Channel::routing_method?,
+          timeouts: Courier::TenantTemplateInput::Channel::Timeouts?
+        }
+
+      class Channel < Courier::Internal::Type::BaseModel
+        attr_accessor brand_id: String?
+
+        attr_accessor if_: String?
+
+        attr_accessor metadata: Courier::TenantTemplateInput::Channel::Metadata?
+
+        attr_accessor override: ::Hash[Symbol, top]?
+
+        attr_accessor providers: ::Array[String]?
+
+        attr_accessor routing_method: Courier::Models::TenantTemplateInput::Channel::routing_method?
+
+        attr_accessor timeouts: Courier::TenantTemplateInput::Channel::Timeouts?
+
+        def initialize: (
+          ?brand_id: String?,
+          ?if_: String?,
+          ?metadata: Courier::TenantTemplateInput::Channel::Metadata?,
+          ?override: ::Hash[Symbol, top]?,
+          ?providers: ::Array[String]?,
+          ?routing_method: Courier::Models::TenantTemplateInput::Channel::routing_method?,
+          ?timeouts: Courier::TenantTemplateInput::Channel::Timeouts?
+        ) -> void
+
+        def to_hash: -> {
+          brand_id: String?,
+          if_: String?,
+          metadata: Courier::TenantTemplateInput::Channel::Metadata?,
+          override: ::Hash[Symbol, top]?,
+          providers: ::Array[String]?,
+          routing_method: Courier::Models::TenantTemplateInput::Channel::routing_method?,
+          timeouts: Courier::TenantTemplateInput::Channel::Timeouts?
+        }
+
+        type metadata = { utm: Courier::Utm? }
+
+        class Metadata < Courier::Internal::Type::BaseModel
+          attr_accessor utm: Courier::Utm?
+
+          def initialize: (?utm: Courier::Utm?) -> void
+
+          def to_hash: -> { utm: Courier::Utm? }
+        end
+
+        type routing_method = :all | :single
+
+        module RoutingMethod
+          extend Courier::Internal::Type::Enum
+
+          ALL: :all
+          SINGLE: :single
+
+          def self?.values: -> ::Array[Courier::Models::TenantTemplateInput::Channel::routing_method]
+        end
+
+        type timeouts = { channel: Integer?, provider: Integer? }
+
+        class Timeouts < Courier::Internal::Type::BaseModel
+          attr_accessor channel: Integer?
+
+          attr_accessor provider: Integer?
+
+          def initialize: (?channel: Integer?, ?provider: Integer?) -> void
+
+          def to_hash: -> { channel: Integer?, provider: Integer? }
+        end
+      end
+
+      type provider =
+        {
+          if_: String?,
+          metadata: Courier::TenantTemplateInput::Provider::Metadata?,
+          override: ::Hash[Symbol, top]?,
+          timeouts: Integer?
+        }
+
+      class Provider < Courier::Internal::Type::BaseModel
+        attr_accessor if_: String?
+
+        attr_accessor metadata: Courier::TenantTemplateInput::Provider::Metadata?
+
+        attr_accessor override: ::Hash[Symbol, top]?
+
+        attr_accessor timeouts: Integer?
+
+        def initialize: (
+          ?if_: String?,
+          ?metadata: Courier::TenantTemplateInput::Provider::Metadata?,
+          ?override: ::Hash[Symbol, top]?,
+          ?timeouts: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          if_: String?,
+          metadata: Courier::TenantTemplateInput::Provider::Metadata?,
+          override: ::Hash[Symbol, top]?,
+          timeouts: Integer?
+        }
+
+        type metadata = { utm: Courier::Utm? }
+
+        class Metadata < Courier::Internal::Type::BaseModel
+          attr_accessor utm: Courier::Utm?
+
+          def initialize: (?utm: Courier::Utm?) -> void
+
+          def to_hash: -> { utm: Courier::Utm? }
+        end
+      end
+    end
+  end
+end
