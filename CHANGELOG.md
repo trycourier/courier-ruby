@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.7.1 (2026-02-07)
+
+Full Changelog: [v4.7.0...v4.7.1](https://github.com/trycourier/courier-ruby/compare/v4.7.0...v4.7.1)
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([70d1c0d](https://github.com/trycourier/courier-ruby/commit/70d1c0d55a6982b059be2809cae088351ba7f112))
+
 ## 4.7.0 (2026-02-06)
 
 Full Changelog: [v4.6.3...v4.7.0](https://github.com/trycourier/courier-ruby/compare/v4.6.3...v4.7.0)
