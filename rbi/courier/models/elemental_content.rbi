@@ -29,9 +29,6 @@ module Courier
       sig { returns(String) }
       attr_accessor :version
 
-      sig { returns(T.nilable(String)) }
-      attr_accessor :brand
-
       sig do
         params(
           elements:
@@ -46,15 +43,13 @@ module Courier
                 Courier::ElementalQuoteNodeWithType::OrHash
               )
             ],
-          version: String,
-          brand: T.nilable(String)
+          version: String
         ).returns(T.attached_class)
       end
       def self.new(
         elements:,
         # For example, "2022-01-01"
-        version:,
-        brand: nil
+        version:
       )
       end
 
@@ -73,8 +68,7 @@ module Courier
                   Courier::ElementalQuoteNodeWithType
                 )
               ],
-            version: String,
-            brand: T.nilable(String)
+            version: String
           }
         )
       end
