@@ -1,29 +1,21 @@
 module Courier
   module Models
     type elemental_content =
-      {
-        elements: ::Array[Courier::Models::elemental_node],
-        version: String,
-        brand: String?
-      }
+      { elements: ::Array[Courier::Models::elemental_node], version: String }
 
     class ElementalContent < Courier::Internal::Type::BaseModel
       attr_accessor elements: ::Array[Courier::Models::elemental_node]
 
       attr_accessor version: String
 
-      attr_accessor brand: String?
-
       def initialize: (
         elements: ::Array[Courier::Models::elemental_node],
-        version: String,
-        ?brand: String?
+        version: String
       ) -> void
 
       def to_hash: -> {
         elements: ::Array[Courier::Models::elemental_node],
-        version: String,
-        brand: String?
+        version: String
       }
     end
   end
