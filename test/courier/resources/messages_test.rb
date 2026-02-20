@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::MessagesTest < Courier::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.messages.retrieve("message_id")
 
@@ -14,7 +14,7 @@ class Courier::Test::Resources::MessagesTest < Courier::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.messages.list
 
@@ -31,7 +31,7 @@ class Courier::Test::Resources::MessagesTest < Courier::Test::ResourceTest
   end
 
   def test_cancel
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.messages.cancel("message_id")
 
@@ -58,7 +58,7 @@ class Courier::Test::Resources::MessagesTest < Courier::Test::ResourceTest
   end
 
   def test_content
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.messages.content("message_id")
 
@@ -74,7 +74,7 @@ class Courier::Test::Resources::MessagesTest < Courier::Test::ResourceTest
   end
 
   def test_history
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.messages.history("message_id")
 

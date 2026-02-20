@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::TenantsTest < Courier::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.tenants.retrieve("tenant_id")
 
@@ -26,7 +26,7 @@ class Courier::Test::Resources::TenantsTest < Courier::Test::ResourceTest
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.tenants.update("tenant_id", name: "name")
 
@@ -48,7 +48,7 @@ class Courier::Test::Resources::TenantsTest < Courier::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.tenants.list
 
@@ -69,7 +69,7 @@ class Courier::Test::Resources::TenantsTest < Courier::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.tenants.delete("tenant_id")
 
@@ -79,7 +79,7 @@ class Courier::Test::Resources::TenantsTest < Courier::Test::ResourceTest
   end
 
   def test_list_users
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.tenants.list_users("tenant_id")
 

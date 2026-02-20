@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::BulkTest < Courier::Test::ResourceTest
   def test_add_users_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.bulk.add_users("job_id", users: [{}])
 
@@ -14,7 +14,7 @@ class Courier::Test::Resources::BulkTest < Courier::Test::ResourceTest
   end
 
   def test_create_job_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.bulk.create_job(message: {event: "event"})
 
@@ -30,7 +30,7 @@ class Courier::Test::Resources::BulkTest < Courier::Test::ResourceTest
   end
 
   def test_list_users
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.bulk.list_users("job_id")
 
@@ -47,7 +47,7 @@ class Courier::Test::Resources::BulkTest < Courier::Test::ResourceTest
   end
 
   def test_retrieve_job
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.bulk.retrieve_job("job_id")
 
@@ -63,7 +63,7 @@ class Courier::Test::Resources::BulkTest < Courier::Test::ResourceTest
   end
 
   def test_run_job
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.bulk.run_job("job_id")
 

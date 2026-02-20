@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::ListsTest < Courier::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.lists.retrieve("list_id")
 
@@ -23,7 +23,7 @@ class Courier::Test::Resources::ListsTest < Courier::Test::ResourceTest
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.lists.update("list_id", name: "name")
 
@@ -33,7 +33,7 @@ class Courier::Test::Resources::ListsTest < Courier::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.lists.list
 
@@ -50,7 +50,7 @@ class Courier::Test::Resources::ListsTest < Courier::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.lists.delete("list_id")
 
@@ -60,7 +60,7 @@ class Courier::Test::Resources::ListsTest < Courier::Test::ResourceTest
   end
 
   def test_restore
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.lists.restore("list_id")
 
