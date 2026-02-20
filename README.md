@@ -1,3 +1,4 @@
+<!-- AUTO-GENERATED-OVERVIEW:START — Do not edit this section. It is synced from mintlify-docs. -->
 # Courier Ruby API library
 
 The Courier Ruby library provides convenient access to the Courier REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/trycourier/courier-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
@@ -257,3 +258,4 @@ Ruby 3.2.0 or higher.
 ## Contributing
 
 See [the contributing documentation](https://github.com/trycourier/courier-ruby/tree/main/CONTRIBUTING.md).
+<!-- AUTO-GENERATED-OVERVIEW:END -->
