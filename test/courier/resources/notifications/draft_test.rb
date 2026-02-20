@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Courier::Test::Resources::Notifications::DraftTest < Courier::Test::ResourceTest
   def test_retrieve_content
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.notifications.draft.retrieve_content("id")
 

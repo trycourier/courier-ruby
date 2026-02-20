@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Courier::Test::Resources::Notifications::ChecksTest < Courier::Test::ResourceTest
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @courier.notifications.checks.update(
@@ -25,7 +25,7 @@ class Courier::Test::Resources::Notifications::ChecksTest < Courier::Test::Resou
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.notifications.checks.list("submissionId", id: "id")
 
@@ -41,7 +41,7 @@ class Courier::Test::Resources::Notifications::ChecksTest < Courier::Test::Resou
   end
 
   def test_delete_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.notifications.checks.delete("submissionId", id: "id")
 

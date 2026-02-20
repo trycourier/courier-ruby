@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::RequestsTest < Courier::Test::ResourceTest
   def test_archive
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.requests.archive("request_id")
 

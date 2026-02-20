@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Courier::Test::Resources::Tenants::Preferences::ItemsTest < Courier::Test::ResourceTest
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @courier.tenants.preferences.items.update("topic_id", tenant_id: "tenant_id", status: :OPTED_IN)
@@ -15,7 +15,7 @@ class Courier::Test::Resources::Tenants::Preferences::ItemsTest < Courier::Test:
   end
 
   def test_delete_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.tenants.preferences.items.delete("topic_id", tenant_id: "tenant_id")
 

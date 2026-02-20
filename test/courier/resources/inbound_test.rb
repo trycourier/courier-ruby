@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::InboundTest < Courier::Test::ResourceTest
   def test_track_event_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @courier.inbound.track_event(

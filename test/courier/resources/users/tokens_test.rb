@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
   def test_retrieve_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tokens.retrieve("token", user_id: "user_id")
 
@@ -14,7 +14,7 @@ class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tokens.update("token", user_id: "user_id", patch: [{op: "op", path: "path"}])
 
@@ -24,7 +24,7 @@ class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tokens.list("user_id")
 
@@ -40,7 +40,7 @@ class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
   end
 
   def test_delete_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tokens.delete("token", user_id: "user_id")
 
@@ -50,7 +50,7 @@ class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
   end
 
   def test_add_multiple
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tokens.add_multiple("user_id")
 
@@ -60,7 +60,7 @@ class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
   end
 
   def test_add_single_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @courier.users.tokens.add_single(

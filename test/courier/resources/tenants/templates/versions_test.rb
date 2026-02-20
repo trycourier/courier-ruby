@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Courier::Test::Resources::Tenants::Templates::VersionsTest < Courier::Test::ResourceTest
   def test_retrieve_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @courier.tenants.templates.versions.retrieve(
