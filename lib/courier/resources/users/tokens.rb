@@ -133,30 +133,28 @@ module Courier
         #
         # Adds a single token to a user and overwrites a matching existing token.
         #
-        # @overload add_single(path_token, user_id:, body_token:, provider_key:, device: nil, expiry_date: nil, properties: nil, tracking: nil, request_options: {})
+        # @overload add_single(token, user_id:, provider_key:, device: nil, expiry_date: nil, properties: nil, tracking: nil, request_options: {})
         #
-        # @param path_token [String] Path param: The full token string.
+        # @param token [String] Path param: The full token string.
         #
         # @param user_id [String] Path param: The user's ID. This can be any uniquely identifiable string.
         #
-        # @param body_token [String] Body param: Full body of the token. Must match token in URL path parameter.
+        # @param provider_key [Symbol, Courier::Models::Users::TokenAddSingleParams::ProviderKey] Body param
         #
-        # @param provider_key [Symbol, Courier::Models::Users::UserToken::ProviderKey] Body param
-        #
-        # @param device [Courier::Models::Users::UserToken::Device, nil] Body param: Information about the device the token came from.
+        # @param device [Courier::Models::Users::TokenAddSingleParams::Device, nil] Body param: Information about the device the token came from.
         #
         # @param expiry_date [String, Boolean, nil] Body param: ISO 8601 formatted date the token expires. Defaults to 2 months. Set
         #
         # @param properties [Object] Body param: Properties about the token.
         #
-        # @param tracking [Courier::Models::Users::UserToken::Tracking, nil] Body param: Tracking information about the device the token came from.
+        # @param tracking [Courier::Models::Users::TokenAddSingleParams::Tracking, nil] Body param: Tracking information about the device the token came from.
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [nil]
         #
         # @see Courier::Models::Users::TokenAddSingleParams
-        def add_single(path_token, params)
+        def add_single(token, params)
           parsed, options = Courier::Users::TokenAddSingleParams.dump_request(params)
           user_id =
             parsed.delete(:user_id) do
@@ -164,7 +162,7 @@ module Courier
             end
           @client.request(
             method: :put,
-            path: ["users/%1$s/tokens/%2$s", user_id, path_token],
+            path: ["users/%1$s/tokens/%2$s", user_id, token],
             body: parsed,
             model: NilClass,
             options: options
