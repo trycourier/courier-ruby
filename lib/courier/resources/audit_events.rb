@@ -36,10 +36,11 @@ module Courier
       # @see Courier::Models::AuditEventListParams
       def list(params = {})
         parsed, options = Courier::AuditEventListParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "audit-events",
-          query: parsed,
+          query: query,
           model: Courier::Models::AuditEventListResponse,
           options: options
         )

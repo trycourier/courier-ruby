@@ -70,10 +70,11 @@ module Courier
       # @see Courier::Models::ListListParams
       def list(params = {})
         parsed, options = Courier::ListListParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "lists",
-          query: parsed,
+          query: query,
           model: Courier::Models::ListListResponse,
           options: options
         )

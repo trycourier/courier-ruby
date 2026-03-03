@@ -68,10 +68,11 @@ module Courier
       # @see Courier::Models::MessageListParams
       def list(params = {})
         parsed, options = Courier::MessageListParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "messages",
-          query: parsed.transform_keys(message_id: "messageId", trace_id: "traceId"),
+          query: query.transform_keys(message_id: "messageId", trace_id: "traceId"),
           model: Courier::Models::MessageListResponse,
           options: options
         )
@@ -139,10 +140,11 @@ module Courier
       # @see Courier::Models::MessageHistoryParams
       def history(message_id, params = {})
         parsed, options = Courier::MessageHistoryParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["messages/%1$s/history", message_id],
-          query: parsed,
+          query: query,
           model: Courier::Models::MessageHistoryResponse,
           options: options
         )

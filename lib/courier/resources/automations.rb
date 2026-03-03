@@ -24,10 +24,11 @@ module Courier
       # @see Courier::Models::AutomationListParams
       def list(params = {})
         parsed, options = Courier::AutomationListParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "automations",
-          query: parsed,
+          query: query,
           model: Courier::AutomationTemplateListResponse,
           options: options
         )

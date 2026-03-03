@@ -22,10 +22,11 @@ module Courier
         # @see Courier::Models::Users::PreferenceRetrieveParams
         def retrieve(user_id, params = {})
           parsed, options = Courier::Users::PreferenceRetrieveParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["users/%1$s/preferences", user_id],
-            query: parsed,
+            query: query,
             model: Courier::Models::Users::PreferenceRetrieveResponse,
             options: options
           )
@@ -51,6 +52,7 @@ module Courier
         # @see Courier::Models::Users::PreferenceRetrieveTopicParams
         def retrieve_topic(topic_id, params)
           parsed, options = Courier::Users::PreferenceRetrieveTopicParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed)
           user_id =
             parsed.delete(:user_id) do
               raise ArgumentError.new("missing required path argument #{_1}")
@@ -58,7 +60,7 @@ module Courier
           @client.request(
             method: :get,
             path: ["users/%1$s/preferences/%2$s", user_id, topic_id],
-            query: parsed,
+            query: query,
             model: Courier::Models::Users::PreferenceRetrieveTopicResponse,
             options: options
           )
@@ -85,16 +87,17 @@ module Courier
         #
         # @see Courier::Models::Users::PreferenceUpdateOrCreateTopicParams
         def update_or_create_topic(topic_id, params)
+          query_params = [:tenant_id]
           parsed, options = Courier::Users::PreferenceUpdateOrCreateTopicParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed.slice(*query_params))
           user_id =
             parsed.delete(:user_id) do
               raise ArgumentError.new("missing required path argument #{_1}")
             end
-          query_params = [:tenant_id]
           @client.request(
             method: :put,
             path: ["users/%1$s/preferences/%2$s", user_id, topic_id],
-            query: parsed.slice(*query_params),
+            query: query,
             body: parsed.except(*query_params),
             model: Courier::Models::Users::PreferenceUpdateOrCreateTopicResponse,
             options: options
