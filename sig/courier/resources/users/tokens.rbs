@@ -32,14 +32,13 @@ module Courier
         ) -> nil
 
         def add_single: (
-          String path_token,
+          String token,
           user_id: String,
-          body_token: String,
-          provider_key: Courier::Models::Users::UserToken::provider_key,
-          ?device: Courier::Users::UserToken::Device?,
-          ?expiry_date: Courier::Models::Users::UserToken::expiry_date?,
+          provider_key: Courier::Models::Users::TokenAddSingleParams::provider_key,
+          ?device: Courier::Users::TokenAddSingleParams::Device?,
+          ?expiry_date: Courier::Models::Users::TokenAddSingleParams::expiry_date?,
           ?properties: top,
-          ?tracking: Courier::Users::UserToken::Tracking?,
+          ?tracking: Courier::Users::TokenAddSingleParams::Tracking?,
           ?request_options: Courier::request_opts
         ) -> nil
 

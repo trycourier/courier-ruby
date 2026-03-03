@@ -89,25 +89,27 @@ module Courier
         # Adds a single token to a user and overwrites a matching existing token.
         sig do
           params(
-            path_token: String,
+            token: String,
             user_id: String,
-            body_token: String,
-            provider_key: Courier::Users::UserToken::ProviderKey::OrSymbol,
-            device: T.nilable(Courier::Users::UserToken::Device::OrHash),
+            provider_key:
+              Courier::Users::TokenAddSingleParams::ProviderKey::OrSymbol,
+            device:
+              T.nilable(Courier::Users::TokenAddSingleParams::Device::OrHash),
             expiry_date:
-              T.nilable(Courier::Users::UserToken::ExpiryDate::Variants),
+              T.nilable(
+                Courier::Users::TokenAddSingleParams::ExpiryDate::Variants
+              ),
             properties: T.anything,
-            tracking: T.nilable(Courier::Users::UserToken::Tracking::OrHash),
+            tracking:
+              T.nilable(Courier::Users::TokenAddSingleParams::Tracking::OrHash),
             request_options: Courier::RequestOptions::OrHash
           ).void
         end
         def add_single(
           # Path param: The full token string.
-          path_token,
+          token,
           # Path param: The user's ID. This can be any uniquely identifiable string.
           user_id:,
-          # Body param: Full body of the token. Must match token in URL path parameter.
-          body_token:,
           # Body param
           provider_key:,
           # Body param: Information about the device the token came from.

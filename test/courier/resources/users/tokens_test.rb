@@ -62,13 +62,7 @@ class Courier::Test::Resources::Users::TokensTest < Courier::Test::ResourceTest
   def test_add_single_required_params
     skip("Mock server tests are disabled")
 
-    response =
-      @courier.users.tokens.add_single(
-        "token",
-        user_id: "user_id",
-        body_token: "token",
-        provider_key: :"firebase-fcm"
-      )
+    response = @courier.users.tokens.add_single("token", user_id: "user_id", provider_key: :"firebase-fcm")
 
     assert_pattern do
       response => nil
