@@ -24,10 +24,11 @@ module Courier
         # @see Courier::Models::Users::TenantListParams
         def list(user_id, params = {})
           parsed, options = Courier::Users::TenantListParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["users/%1$s/tenants", user_id],
-            query: parsed,
+            query: query,
             model: Courier::Models::Users::TenantListResponse,
             options: options
           )

@@ -69,10 +69,11 @@ module Courier
       # @see Courier::Models::AudienceListParams
       def list(params = {})
         parsed, options = Courier::AudienceListParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "audiences",
-          query: parsed,
+          query: query,
           model: Courier::Models::AudienceListResponse,
           options: options
         )
@@ -113,10 +114,11 @@ module Courier
       # @see Courier::Models::AudienceListMembersParams
       def list_members(audience_id, params = {})
         parsed, options = Courier::AudienceListMembersParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["audiences/%1$s/members", audience_id],
-          query: parsed,
+          query: query,
           model: Courier::Models::AudienceListMembersResponse,
           options: options
         )

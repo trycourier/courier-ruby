@@ -82,10 +82,11 @@ module Courier
       # @see Courier::Models::BrandListParams
       def list(params = {})
         parsed, options = Courier::BrandListParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "brands",
-          query: parsed,
+          query: query,
           model: Courier::Models::BrandListResponse,
           options: options
         )

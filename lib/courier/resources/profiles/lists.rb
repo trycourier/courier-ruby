@@ -22,10 +22,11 @@ module Courier
         # @see Courier::Models::Profiles::ListRetrieveParams
         def retrieve(user_id, params = {})
           parsed, options = Courier::Profiles::ListRetrieveParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["profiles/%1$s/lists", user_id],
-            query: parsed,
+            query: query,
             model: Courier::Models::Profiles::ListRetrieveResponse,
             options: options
           )
