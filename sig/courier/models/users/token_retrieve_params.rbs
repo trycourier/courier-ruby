@@ -2,7 +2,8 @@ module Courier
   module Models
     module Users
       type token_retrieve_params =
-        { user_id: String } & Courier::Internal::Type::request_parameters
+        { user_id: String, token: String }
+        & Courier::Internal::Type::request_parameters
 
       class TokenRetrieveParams < Courier::Internal::Type::BaseModel
         extend Courier::Internal::Type::RequestParameters::Converter
@@ -10,13 +11,17 @@ module Courier
 
         attr_accessor user_id: String
 
+        attr_accessor token: String
+
         def initialize: (
           user_id: String,
+          token: String,
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
           user_id: String,
+          token: String,
           request_options: Courier::RequestOptions
         }
       end

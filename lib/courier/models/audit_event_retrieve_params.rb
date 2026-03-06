@@ -7,7 +7,13 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute audit_event_id
+      #
+      #   @return [String]
+      required :audit_event_id, String
+
+      # @!method initialize(audit_event_id:, request_options: {})
+      #   @param audit_event_id [String]
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
     end
   end

@@ -1,21 +1,25 @@
 module Courier
   module Models
     type profile_replace_params =
-      { profile: ::Hash[Symbol, top] }
+      { user_id: String, profile: ::Hash[Symbol, top] }
       & Courier::Internal::Type::request_parameters
 
     class ProfileReplaceParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      attr_accessor user_id: String
+
       attr_accessor profile: ::Hash[Symbol, top]
 
       def initialize: (
+        user_id: String,
         profile: ::Hash[Symbol, top],
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
+        user_id: String,
         profile: ::Hash[Symbol, top],
         request_options: Courier::RequestOptions
       }

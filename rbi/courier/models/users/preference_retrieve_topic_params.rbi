@@ -18,6 +18,9 @@ module Courier
         sig { returns(String) }
         attr_accessor :user_id
 
+        sig { returns(String) }
+        attr_accessor :topic_id
+
         # Query the preferences of a user for this specific tenant context.
         sig { returns(T.nilable(String)) }
         attr_accessor :tenant_id
@@ -25,12 +28,14 @@ module Courier
         sig do
           params(
             user_id: String,
+            topic_id: String,
             tenant_id: T.nilable(String),
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
           user_id:,
+          topic_id:,
           # Query the preferences of a user for this specific tenant context.
           tenant_id: nil,
           request_options: {}
@@ -41,6 +46,7 @@ module Courier
           override.returns(
             {
               user_id: String,
+              topic_id: String,
               tenant_id: T.nilable(String),
               request_options: Courier::RequestOptions
             }

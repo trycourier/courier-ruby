@@ -3,7 +3,7 @@ module Courier
     module Tenants
       module Templates
         type version_retrieve_params =
-          { tenant_id: String, template_id: String }
+          { tenant_id: String, template_id: String, version: String }
           & Courier::Internal::Type::request_parameters
 
         class VersionRetrieveParams < Courier::Internal::Type::BaseModel
@@ -14,15 +14,19 @@ module Courier
 
           attr_accessor template_id: String
 
+          attr_accessor version: String
+
           def initialize: (
             tenant_id: String,
             template_id: String,
+            version: String,
             ?request_options: Courier::request_opts
           ) -> void
 
           def to_hash: -> {
             tenant_id: String,
             template_id: String,
+            version: String,
             request_options: Courier::RequestOptions
           }
         end

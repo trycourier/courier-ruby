@@ -7,7 +7,13 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute user_id
+      #
+      #   @return [String]
+      required :user_id, String
+
+      # @!method initialize(user_id:, request_options: {})
+      #   @param user_id [String]
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
     end
   end

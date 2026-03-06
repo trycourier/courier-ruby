@@ -13,6 +13,11 @@ module Courier
         #   @return [String]
         required :user_id, String
 
+        # @!attribute topic_id
+        #
+        #   @return [String]
+        required :topic_id, String
+
         # @!attribute topic
         #
         #   @return [Courier::Models::Users::PreferenceUpdateOrCreateTopicParams::Topic]
@@ -24,8 +29,10 @@ module Courier
         #   @return [String, nil]
         optional :tenant_id, String, nil?: true
 
-        # @!method initialize(user_id:, topic:, tenant_id: nil, request_options: {})
+        # @!method initialize(user_id:, topic_id:, topic:, tenant_id: nil, request_options: {})
         #   @param user_id [String]
+        #
+        #   @param topic_id [String]
         #
         #   @param topic [Courier::Models::Users::PreferenceUpdateOrCreateTopicParams::Topic]
         #

@@ -7,6 +7,11 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      # @!attribute tenant_id
+      #
+      #   @return [String]
+      required :tenant_id, String
+
       # @!attribute name
       #   Name of the tenant.
       #
@@ -44,9 +49,11 @@ module Courier
       #   @return [Hash{Symbol=>Object}, nil]
       optional :user_profile, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
 
-      # @!method initialize(name:, brand_id: nil, default_preferences: nil, parent_tenant_id: nil, properties: nil, user_profile: nil, request_options: {})
+      # @!method initialize(tenant_id:, name:, brand_id: nil, default_preferences: nil, parent_tenant_id: nil, properties: nil, user_profile: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::TenantUpdateParams} for more details.
+      #
+      #   @param tenant_id [String]
       #
       #   @param name [String] Name of the tenant.
       #

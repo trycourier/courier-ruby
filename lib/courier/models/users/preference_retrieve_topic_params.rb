@@ -13,14 +13,21 @@ module Courier
         #   @return [String]
         required :user_id, String
 
+        # @!attribute topic_id
+        #
+        #   @return [String]
+        required :topic_id, String
+
         # @!attribute tenant_id
         #   Query the preferences of a user for this specific tenant context.
         #
         #   @return [String, nil]
         optional :tenant_id, String, nil?: true
 
-        # @!method initialize(user_id:, tenant_id: nil, request_options: {})
+        # @!method initialize(user_id:, topic_id:, tenant_id: nil, request_options: {})
         #   @param user_id [String]
+        #
+        #   @param topic_id [String]
         #
         #   @param tenant_id [String, nil] Query the preferences of a user for this specific tenant context.
         #

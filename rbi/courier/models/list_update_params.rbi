@@ -12,6 +12,9 @@ module Courier
         end
 
       sig { returns(String) }
+      attr_accessor :list_id
+
+      sig { returns(String) }
       attr_accessor :name
 
       sig { returns(T.nilable(Courier::RecipientPreferences)) }
@@ -26,17 +29,19 @@ module Courier
 
       sig do
         params(
+          list_id: String,
           name: String,
           preferences: T.nilable(Courier::RecipientPreferences::OrHash),
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(name:, preferences: nil, request_options: {})
+      def self.new(list_id:, name:, preferences: nil, request_options: {})
       end
 
       sig do
         override.returns(
           {
+            list_id: String,
             name: String,
             preferences: T.nilable(Courier::RecipientPreferences),
             request_options: Courier::RequestOptions

@@ -11,6 +11,9 @@ module Courier
           T.any(Courier::TenantUpdateParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :tenant_id
+
       # Name of the tenant.
       sig { returns(String) }
       attr_accessor :name
@@ -45,6 +48,7 @@ module Courier
 
       sig do
         params(
+          tenant_id: String,
           name: String,
           brand_id: T.nilable(String),
           default_preferences: T.nilable(Courier::DefaultPreferences::OrHash),
@@ -55,6 +59,7 @@ module Courier
         ).returns(T.attached_class)
       end
       def self.new(
+        tenant_id:,
         # Name of the tenant.
         name:,
         # Brand to be used for the account when one is not specified by the send call.
@@ -75,6 +80,7 @@ module Courier
       sig do
         override.returns(
           {
+            tenant_id: String,
             name: String,
             brand_id: T.nilable(String),
             default_preferences: T.nilable(Courier::DefaultPreferences),

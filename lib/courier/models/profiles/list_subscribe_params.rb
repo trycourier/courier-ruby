@@ -8,12 +8,18 @@ module Courier
         extend Courier::Internal::Type::RequestParameters::Converter
         include Courier::Internal::Type::RequestParameters
 
+        # @!attribute user_id
+        #
+        #   @return [String]
+        required :user_id, String
+
         # @!attribute lists
         #
         #   @return [Array<Courier::Models::SubscribeToListsRequestItem>]
         required :lists, -> { Courier::Internal::Type::ArrayOf[Courier::SubscribeToListsRequestItem] }
 
-        # @!method initialize(lists:, request_options: {})
+        # @!method initialize(user_id:, lists:, request_options: {})
+        #   @param user_id [String]
         #   @param lists [Array<Courier::Models::SubscribeToListsRequestItem>]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
       end

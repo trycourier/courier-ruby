@@ -1,7 +1,8 @@
 module Courier
   module Models
     type translation_retrieve_params =
-      { domain: String } & Courier::Internal::Type::request_parameters
+      { domain: String, locale: String }
+      & Courier::Internal::Type::request_parameters
 
     class TranslationRetrieveParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
@@ -9,13 +10,17 @@ module Courier
 
       attr_accessor domain: String
 
+      attr_accessor locale: String
+
       def initialize: (
         domain: String,
+        locale: String,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         domain: String,
+        locale: String,
         request_options: Courier::RequestOptions
       }
     end

@@ -4,6 +4,7 @@ module Courier
       type preference_update_or_create_topic_params =
         {
           user_id: String,
+          topic_id: String,
           topic: Courier::Users::PreferenceUpdateOrCreateTopicParams::Topic,
           tenant_id: String?
         }
@@ -15,12 +16,15 @@ module Courier
 
         attr_accessor user_id: String
 
+        attr_accessor topic_id: String
+
         attr_accessor topic: Courier::Users::PreferenceUpdateOrCreateTopicParams::Topic
 
         attr_accessor tenant_id: String?
 
         def initialize: (
           user_id: String,
+          topic_id: String,
           topic: Courier::Users::PreferenceUpdateOrCreateTopicParams::Topic,
           ?tenant_id: String?,
           ?request_options: Courier::request_opts
@@ -28,6 +32,7 @@ module Courier
 
         def to_hash: -> {
           user_id: String,
+          topic_id: String,
           topic: Courier::Users::PreferenceUpdateOrCreateTopicParams::Topic,
           tenant_id: String?,
           request_options: Courier::RequestOptions

@@ -13,8 +13,14 @@ module Courier
         #   @return [String]
         required :id, String
 
-        # @!method initialize(id:, request_options: {})
+        # @!attribute submission_id
+        #
+        #   @return [String]
+        required :submission_id, String
+
+        # @!method initialize(id:, submission_id:, request_options: {})
         #   @param id [String]
+        #   @param submission_id [String]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
       end
     end

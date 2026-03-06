@@ -18,18 +18,26 @@ module Courier
         sig { returns(String) }
         attr_accessor :list_id
 
+        sig { returns(String) }
+        attr_accessor :user_id
+
         sig do
           params(
             list_id: String,
+            user_id: String,
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(list_id:, request_options: {})
+        def self.new(list_id:, user_id:, request_options: {})
         end
 
         sig do
           override.returns(
-            { list_id: String, request_options: Courier::RequestOptions }
+            {
+              list_id: String,
+              user_id: String,
+              request_options: Courier::RequestOptions
+            }
           )
         end
         def to_hash

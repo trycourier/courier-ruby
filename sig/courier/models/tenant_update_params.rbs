@@ -2,6 +2,7 @@ module Courier
   module Models
     type tenant_update_params =
       {
+        tenant_id: String,
         name: String,
         brand_id: String?,
         default_preferences: Courier::DefaultPreferences?,
@@ -14,6 +15,8 @@ module Courier
     class TenantUpdateParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
+
+      attr_accessor tenant_id: String
 
       attr_accessor name: String
 
@@ -28,6 +31,7 @@ module Courier
       attr_accessor user_profile: ::Hash[Symbol, top]?
 
       def initialize: (
+        tenant_id: String,
         name: String,
         ?brand_id: String?,
         ?default_preferences: Courier::DefaultPreferences?,
@@ -38,6 +42,7 @@ module Courier
       ) -> void
 
       def to_hash: -> {
+        tenant_id: String,
         name: String,
         brand_id: String?,
         default_preferences: Courier::DefaultPreferences?,
