@@ -2,7 +2,7 @@ module Courier
   module Models
     module Users
       type tenant_add_single_params =
-        { user_id: String, profile: ::Hash[Symbol, top]? }
+        { user_id: String, tenant_id: String, profile: ::Hash[Symbol, top]? }
         & Courier::Internal::Type::request_parameters
 
       class TenantAddSingleParams < Courier::Internal::Type::BaseModel
@@ -11,16 +11,20 @@ module Courier
 
         attr_accessor user_id: String
 
+        attr_accessor tenant_id: String
+
         attr_accessor profile: ::Hash[Symbol, top]?
 
         def initialize: (
           user_id: String,
+          tenant_id: String,
           ?profile: ::Hash[Symbol, top]?,
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
           user_id: String,
+          tenant_id: String,
           profile: ::Hash[Symbol, top]?,
           request_options: Courier::RequestOptions
         }

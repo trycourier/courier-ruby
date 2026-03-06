@@ -18,23 +18,28 @@ module Courier
         sig { returns(String) }
         attr_accessor :user_id
 
+        sig { returns(String) }
+        attr_accessor :tenant_id
+
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :profile
 
         sig do
           params(
             user_id: String,
+            tenant_id: String,
             profile: T.nilable(T::Hash[Symbol, T.anything]),
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(user_id:, profile: nil, request_options: {})
+        def self.new(user_id:, tenant_id:, profile: nil, request_options: {})
         end
 
         sig do
           override.returns(
             {
               user_id: String,
+              tenant_id: String,
               profile: T.nilable(T::Hash[Symbol, T.anything]),
               request_options: Courier::RequestOptions
             }

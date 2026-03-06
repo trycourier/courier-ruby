@@ -12,13 +12,19 @@ module Courier
       #   @return [String]
       required :domain, String
 
+      # @!attribute locale
+      #
+      #   @return [String]
+      required :locale, String
+
       # @!attribute body
       #
       #   @return [String]
       required :body, String
 
-      # @!method initialize(domain:, body:, request_options: {})
+      # @!method initialize(domain:, locale:, body:, request_options: {})
       #   @param domain [String]
+      #   @param locale [String]
       #   @param body [String]
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
     end

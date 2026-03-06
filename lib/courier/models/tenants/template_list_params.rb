@@ -8,6 +8,11 @@ module Courier
         extend Courier::Internal::Type::RequestParameters::Converter
         include Courier::Internal::Type::RequestParameters
 
+        # @!attribute tenant_id
+        #
+        #   @return [String]
+        required :tenant_id, String
+
         # @!attribute cursor
         #   Continue the pagination with the next cursor
         #
@@ -20,7 +25,9 @@ module Courier
         #   @return [Integer, nil]
         optional :limit, Integer, nil?: true
 
-        # @!method initialize(cursor: nil, limit: nil, request_options: {})
+        # @!method initialize(tenant_id:, cursor: nil, limit: nil, request_options: {})
+        #   @param tenant_id [String]
+        #
         #   @param cursor [String, nil] Continue the pagination with the next cursor
         #
         #   @param limit [Integer, nil] The number of templates to return (defaults to 20, maximum value of 100)

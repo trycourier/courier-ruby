@@ -11,17 +11,22 @@ module Courier
           T.any(Courier::ProfileUpdateParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :user_id
+
       # List of patch operations to apply to the profile.
       sig { returns(T::Array[Courier::ProfileUpdateParams::Patch]) }
       attr_accessor :patch
 
       sig do
         params(
+          user_id: String,
           patch: T::Array[Courier::ProfileUpdateParams::Patch::OrHash],
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        user_id:,
         # List of patch operations to apply to the profile.
         patch:,
         request_options: {}
@@ -31,6 +36,7 @@ module Courier
       sig do
         override.returns(
           {
+            user_id: String,
             patch: T::Array[Courier::ProfileUpdateParams::Patch],
             request_options: Courier::RequestOptions
           }

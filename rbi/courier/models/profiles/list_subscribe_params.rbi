@@ -15,21 +15,26 @@ module Courier
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :user_id
+
         sig { returns(T::Array[Courier::SubscribeToListsRequestItem]) }
         attr_accessor :lists
 
         sig do
           params(
+            user_id: String,
             lists: T::Array[Courier::SubscribeToListsRequestItem::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(lists:, request_options: {})
+        def self.new(user_id:, lists:, request_options: {})
         end
 
         sig do
           override.returns(
             {
+              user_id: String,
               lists: T::Array[Courier::SubscribeToListsRequestItem],
               request_options: Courier::RequestOptions
             }

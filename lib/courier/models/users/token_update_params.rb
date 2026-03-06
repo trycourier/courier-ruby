@@ -13,13 +13,19 @@ module Courier
         #   @return [String]
         required :user_id, String
 
+        # @!attribute token
+        #
+        #   @return [String]
+        required :token, String
+
         # @!attribute patch
         #
         #   @return [Array<Courier::Models::Users::TokenUpdateParams::Patch>]
         required :patch, -> { Courier::Internal::Type::ArrayOf[Courier::Users::TokenUpdateParams::Patch] }
 
-        # @!method initialize(user_id:, patch:, request_options: {})
+        # @!method initialize(user_id:, token:, patch:, request_options: {})
         #   @param user_id [String]
+        #   @param token [String]
         #   @param patch [Array<Courier::Models::Users::TokenUpdateParams::Patch>]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
 

@@ -1,21 +1,25 @@
 module Courier
   module Models
     type bulk_add_users_params =
-      { users: ::Array[Courier::InboundBulkMessageUser] }
+      { job_id: String, users: ::Array[Courier::InboundBulkMessageUser] }
       & Courier::Internal::Type::request_parameters
 
     class BulkAddUsersParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      attr_accessor job_id: String
+
       attr_accessor users: ::Array[Courier::InboundBulkMessageUser]
 
       def initialize: (
+        job_id: String,
         users: ::Array[Courier::InboundBulkMessageUser],
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
+        job_id: String,
         users: ::Array[Courier::InboundBulkMessageUser],
         request_options: Courier::RequestOptions
       }

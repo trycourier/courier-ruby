@@ -18,6 +18,9 @@ module Courier
         sig { returns(String) }
         attr_accessor :user_id
 
+        sig { returns(String) }
+        attr_accessor :token
+
         sig do
           returns(Courier::Users::TokenAddSingleParams::ProviderKey::OrSymbol)
         end
@@ -70,6 +73,7 @@ module Courier
         sig do
           params(
             user_id: String,
+            token: String,
             provider_key:
               Courier::Users::TokenAddSingleParams::ProviderKey::OrSymbol,
             device:
@@ -86,6 +90,7 @@ module Courier
         end
         def self.new(
           user_id:,
+          token:,
           provider_key:,
           # Information about the device the token came from.
           device: nil,
@@ -104,6 +109,7 @@ module Courier
           override.returns(
             {
               user_id: String,
+              token: String,
               provider_key:
                 Courier::Users::TokenAddSingleParams::ProviderKey::OrSymbol,
               device: T.nilable(Courier::Users::TokenAddSingleParams::Device),

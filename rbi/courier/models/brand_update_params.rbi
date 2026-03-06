@@ -11,6 +11,9 @@ module Courier
           T.any(Courier::BrandUpdateParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :brand_id
+
       # The name of the brand.
       sig { returns(String) }
       attr_accessor :name
@@ -29,6 +32,7 @@ module Courier
 
       sig do
         params(
+          brand_id: String,
           name: String,
           settings: T.nilable(Courier::BrandSettings::OrHash),
           snippets: T.nilable(Courier::BrandSnippets::OrHash),
@@ -36,6 +40,7 @@ module Courier
         ).returns(T.attached_class)
       end
       def self.new(
+        brand_id:,
         # The name of the brand.
         name:,
         settings: nil,
@@ -47,6 +52,7 @@ module Courier
       sig do
         override.returns(
           {
+            brand_id: String,
             name: String,
             settings: T.nilable(Courier::BrandSettings),
             snippets: T.nilable(Courier::BrandSnippets),

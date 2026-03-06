@@ -2,7 +2,8 @@ module Courier
   module Models
     module Tenants
       type template_publish_params =
-        { tenant_id: String } & Courier::Internal::Type::request_parameters
+        { tenant_id: String, template_id: String }
+        & Courier::Internal::Type::request_parameters
 
       class TemplatePublishParams < Courier::Models::PostTenantTemplatePublishRequest
         extend Courier::Internal::Type::RequestParameters::Converter
@@ -12,13 +13,19 @@ module Courier
 
         def tenant_id=: (String _) -> String
 
+        def template_id: -> String
+
+        def template_id=: (String _) -> String
+
         def initialize: (
           tenant_id: String,
+          template_id: String,
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
           tenant_id: String,
+          template_id: String,
           request_options: Courier::RequestOptions
         }
       end

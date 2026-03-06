@@ -4,6 +4,7 @@ module Courier
       type token_update_params =
         {
           user_id: String,
+          token: String,
           patch: ::Array[Courier::Users::TokenUpdateParams::Patch]
         }
         & Courier::Internal::Type::request_parameters
@@ -14,16 +15,20 @@ module Courier
 
         attr_accessor user_id: String
 
+        attr_accessor token: String
+
         attr_accessor patch: ::Array[Courier::Users::TokenUpdateParams::Patch]
 
         def initialize: (
           user_id: String,
+          token: String,
           patch: ::Array[Courier::Users::TokenUpdateParams::Patch],
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
           user_id: String,
+          token: String,
           patch: ::Array[Courier::Users::TokenUpdateParams::Patch],
           request_options: Courier::RequestOptions
         }

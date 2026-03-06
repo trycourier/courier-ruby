@@ -15,23 +15,28 @@ module Courier
         sig { returns(String) }
         attr_accessor :user_id
 
+        sig { returns(String) }
+        attr_accessor :token
+
         sig { returns(T::Array[Courier::Users::TokenUpdateParams::Patch]) }
         attr_accessor :patch
 
         sig do
           params(
             user_id: String,
+            token: String,
             patch: T::Array[Courier::Users::TokenUpdateParams::Patch::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(user_id:, patch:, request_options: {})
+        def self.new(user_id:, token:, patch:, request_options: {})
         end
 
         sig do
           override.returns(
             {
               user_id: String,
+              token: String,
               patch: T::Array[Courier::Users::TokenUpdateParams::Patch],
               request_options: Courier::RequestOptions
             }

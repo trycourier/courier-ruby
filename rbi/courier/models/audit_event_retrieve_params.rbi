@@ -11,15 +11,23 @@ module Courier
           T.any(Courier::AuditEventRetrieveParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :audit_event_id
+
       sig do
-        params(request_options: Courier::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          audit_event_id: String,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(audit_event_id:, request_options: {})
       end
 
-      sig { override.returns({ request_options: Courier::RequestOptions }) }
+      sig do
+        override.returns(
+          { audit_event_id: String, request_options: Courier::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

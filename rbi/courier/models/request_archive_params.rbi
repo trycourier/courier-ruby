@@ -11,15 +11,23 @@ module Courier
           T.any(Courier::RequestArchiveParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :request_id
+
       sig do
-        params(request_options: Courier::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          request_id: String,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(request_id:, request_options: {})
       end
 
-      sig { override.returns({ request_options: Courier::RequestOptions }) }
+      sig do
+        override.returns(
+          { request_id: String, request_options: Courier::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

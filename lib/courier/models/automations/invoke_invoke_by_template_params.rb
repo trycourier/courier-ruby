@@ -8,6 +8,11 @@ module Courier
         extend Courier::Internal::Type::RequestParameters::Converter
         include Courier::Internal::Type::RequestParameters
 
+        # @!attribute template_id
+        #
+        #   @return [String]
+        required :template_id, String
+
         # @!attribute recipient
         #
         #   @return [String, nil]
@@ -33,7 +38,8 @@ module Courier
         #   @return [String, nil]
         optional :template, String, nil?: true
 
-        # @!method initialize(recipient:, brand: nil, data: nil, profile: nil, template: nil, request_options: {})
+        # @!method initialize(template_id:, recipient:, brand: nil, data: nil, profile: nil, template: nil, request_options: {})
+        #   @param template_id [String]
         #   @param recipient [String, nil]
         #   @param brand [String, nil]
         #   @param data [Hash{Symbol=>Object}, nil]

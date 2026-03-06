@@ -7,6 +7,11 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      # @!attribute list_id
+      #
+      #   @return [String]
+      required :list_id, String
+
       # @!attribute name
       #
       #   @return [String]
@@ -17,7 +22,8 @@ module Courier
       #   @return [Courier::Models::RecipientPreferences, nil]
       optional :preferences, -> { Courier::RecipientPreferences }, nil?: true
 
-      # @!method initialize(name:, preferences: nil, request_options: {})
+      # @!method initialize(list_id:, name:, preferences: nil, request_options: {})
+      #   @param list_id [String]
       #   @param name [String]
       #   @param preferences [Courier::Models::RecipientPreferences, nil]
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]

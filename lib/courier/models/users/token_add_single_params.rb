@@ -13,6 +13,11 @@ module Courier
         #   @return [String]
         required :user_id, String
 
+        # @!attribute token
+        #
+        #   @return [String]
+        required :token, String
+
         # @!attribute provider_key
         #
         #   @return [Symbol, Courier::Models::Users::TokenAddSingleParams::ProviderKey]
@@ -43,11 +48,13 @@ module Courier
         #   @return [Courier::Models::Users::TokenAddSingleParams::Tracking, nil]
         optional :tracking, -> { Courier::Users::TokenAddSingleParams::Tracking }, nil?: true
 
-        # @!method initialize(user_id:, provider_key:, device: nil, expiry_date: nil, properties: nil, tracking: nil, request_options: {})
+        # @!method initialize(user_id:, token:, provider_key:, device: nil, expiry_date: nil, properties: nil, tracking: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Courier::Models::Users::TokenAddSingleParams} for more details.
         #
         #   @param user_id [String]
+        #
+        #   @param token [String]
         #
         #   @param provider_key [Symbol, Courier::Models::Users::TokenAddSingleParams::ProviderKey]
         #

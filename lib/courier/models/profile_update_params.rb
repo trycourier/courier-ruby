@@ -7,13 +7,20 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      # @!attribute user_id
+      #
+      #   @return [String]
+      required :user_id, String
+
       # @!attribute patch
       #   List of patch operations to apply to the profile.
       #
       #   @return [Array<Courier::Models::ProfileUpdateParams::Patch>]
       required :patch, -> { Courier::Internal::Type::ArrayOf[Courier::ProfileUpdateParams::Patch] }
 
-      # @!method initialize(patch:, request_options: {})
+      # @!method initialize(user_id:, patch:, request_options: {})
+      #   @param user_id [String]
+      #
       #   @param patch [Array<Courier::Models::ProfileUpdateParams::Patch>] List of patch operations to apply to the profile.
       #
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
