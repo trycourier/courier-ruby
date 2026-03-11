@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type journeys_invoke_response = { run_id: String }
+
+    class JourneysInvokeResponse < Courier::Internal::Type::BaseModel
+      attr_accessor run_id: String
+
+      def initialize: (run_id: String) -> void
+
+      def to_hash: -> { run_id: String }
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Courier
+  module Resources
+    class Journeys
+      def list: (
+        ?cursor: String,
+        ?version: Courier::Models::JourneyListParams::version,
+        ?request_options: Courier::request_opts
+      ) -> Courier::JourneysListResponse
+
+      def invoke: (
+        String template_id,
+        ?data: ::Hash[Symbol, top],
+        ?profile: ::Hash[Symbol, top],
+        ?user_id: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::JourneysInvokeResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

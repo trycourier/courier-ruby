@@ -33,6 +33,9 @@ module Courier
     # @return [Courier::Resources::Automations]
     attr_reader :automations
 
+    # @return [Courier::Resources::Journeys]
+    attr_reader :journeys
+
     # @return [Courier::Resources::Brands]
     attr_reader :brands
 
@@ -118,6 +121,7 @@ module Courier
       @audit_events = Courier::Resources::AuditEvents.new(client: self)
       @auth = Courier::Resources::Auth.new(client: self)
       @automations = Courier::Resources::Automations.new(client: self)
+      @journeys = Courier::Resources::Journeys.new(client: self)
       @brands = Courier::Resources::Brands.new(client: self)
       @bulk = Courier::Resources::Bulk.new(client: self)
       @inbound = Courier::Resources::Inbound.new(client: self)

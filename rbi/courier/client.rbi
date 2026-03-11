@@ -28,6 +28,9 @@ module Courier
     sig { returns(Courier::Resources::Automations) }
     attr_reader :automations
 
+    sig { returns(Courier::Resources::Journeys) }
+    attr_reader :journeys
+
     sig { returns(Courier::Resources::Brands) }
     attr_reader :brands
 
