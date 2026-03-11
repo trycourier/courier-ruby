@@ -1,0 +1,36 @@
+module Courier
+  module Models
+    type journeys_invoke_request =
+      {
+        data: ::Hash[Symbol, top],
+        profile: ::Hash[Symbol, top],
+        user_id: String
+      }
+
+    class JourneysInvokeRequest < Courier::Internal::Type::BaseModel
+      attr_reader data: ::Hash[Symbol, top]?
+
+      def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader profile: ::Hash[Symbol, top]?
+
+      def profile=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      def initialize: (
+        ?data: ::Hash[Symbol, top],
+        ?profile: ::Hash[Symbol, top],
+        ?user_id: String
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Hash[Symbol, top],
+        profile: ::Hash[Symbol, top],
+        user_id: String
+      }
+    end
+  end
+end

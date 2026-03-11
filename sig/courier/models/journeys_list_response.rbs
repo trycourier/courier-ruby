@@ -1,0 +1,23 @@
+module Courier
+  module Models
+    type journeys_list_response =
+      { cursor: String, templates: ::Array[Courier::Journey] }
+
+    class JourneysListResponse < Courier::Internal::Type::BaseModel
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader templates: ::Array[Courier::Journey]?
+
+      def templates=: (::Array[Courier::Journey]) -> ::Array[Courier::Journey]
+
+      def initialize: (
+        ?cursor: String,
+        ?templates: ::Array[Courier::Journey]
+      ) -> void
+
+      def to_hash: -> { cursor: String, templates: ::Array[Courier::Journey] }
+    end
+  end
+end

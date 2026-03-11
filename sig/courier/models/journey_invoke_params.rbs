@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    type journey_invoke_params =
+      { template_id: String } & Courier::Internal::Type::request_parameters
+
+    class JourneyInvokeParams < Courier::Models::JourneysInvokeRequest
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      def template_id: -> String
+
+      def template_id=: (String _) -> String
+
+      def initialize: (
+        template_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        template_id: String,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

@@ -20,6 +20,8 @@ module Courier
 
     attr_reader automations: Courier::Resources::Automations
 
+    attr_reader journeys: Courier::Resources::Journeys
+
     attr_reader brands: Courier::Resources::Brands
 
     attr_reader bulk: Courier::Resources::Bulk
