@@ -13,16 +13,6 @@ module Courier
       sig { returns(String) }
       attr_accessor :id
 
-      # A UTC timestamp at which the recipient clicked on a tracked link for the first
-      # time. Stored as a millisecond representation of the Unix epoch.
-      sig { returns(Integer) }
-      attr_accessor :clicked
-
-      # A UTC timestamp at which the Integration provider delivered the message. Stored
-      # as a millisecond representation of the Unix epoch.
-      sig { returns(Integer) }
-      attr_accessor :delivered
-
       # A UTC timestamp at which Courier received the message request. Stored as a
       # millisecond representation of the Unix epoch.
       sig { returns(Integer) }
@@ -36,58 +26,74 @@ module Courier
       sig { returns(String) }
       attr_accessor :notification
 
-      # A UTC timestamp at which the recipient opened a message for the first time.
-      # Stored as a millisecond representation of the Unix epoch.
-      sig { returns(Integer) }
-      attr_accessor :opened
-
       # A unique identifier associated with the recipient of the delivered message.
       sig { returns(String) }
       attr_accessor :recipient
-
-      # A UTC timestamp at which Courier passed the message to the Integration provider.
-      # Stored as a millisecond representation of the Unix epoch.
-      sig { returns(Integer) }
-      attr_accessor :sent
 
       # The current status of the message.
       sig { returns(Courier::MessageDetails::Status::TaggedSymbol) }
       attr_accessor :status
 
+      # A UTC timestamp at which the recipient clicked on a tracked link for the first
+      # time. Stored as a millisecond representation of the Unix epoch.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :clicked
+
+      sig { params(clicked: Integer).void }
+      attr_writer :clicked
+
+      # A UTC timestamp at which the Integration provider delivered the message. Stored
+      # as a millisecond representation of the Unix epoch.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :delivered
+
+      sig { params(delivered: Integer).void }
+      attr_writer :delivered
+
       # A message describing the error that occurred.
       sig { returns(T.nilable(String)) }
       attr_accessor :error
+
+      # A UTC timestamp at which the recipient opened a message for the first time.
+      # Stored as a millisecond representation of the Unix epoch.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :opened
+
+      sig { params(opened: Integer).void }
+      attr_writer :opened
 
       # The reason for the current status of the message.
       sig { returns(T.nilable(Courier::MessageDetails::Reason::TaggedSymbol)) }
       attr_accessor :reason
 
+      # A UTC timestamp at which Courier passed the message to the Integration provider.
+      # Stored as a millisecond representation of the Unix epoch.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :sent
+
+      sig { params(sent: Integer).void }
+      attr_writer :sent
+
       sig do
         params(
           id: String,
-          clicked: Integer,
-          delivered: Integer,
           enqueued: Integer,
           event: String,
           notification: String,
-          opened: Integer,
           recipient: String,
-          sent: Integer,
           status: Courier::MessageDetails::Status::OrSymbol,
+          clicked: Integer,
+          delivered: Integer,
           error: T.nilable(String),
-          reason: T.nilable(Courier::MessageDetails::Reason::OrSymbol)
+          opened: Integer,
+          reason: T.nilable(Courier::MessageDetails::Reason::OrSymbol),
+          sent: Integer
         ).returns(T.attached_class)
       end
       def self.new(
         # A unique identifier associated with the message you wish to retrieve (results
         # from a send).
         id:,
-        # A UTC timestamp at which the recipient clicked on a tracked link for the first
-        # time. Stored as a millisecond representation of the Unix epoch.
-        clicked:,
-        # A UTC timestamp at which the Integration provider delivered the message. Stored
-        # as a millisecond representation of the Unix epoch.
-        delivered:,
         # A UTC timestamp at which Courier received the message request. Stored as a
         # millisecond representation of the Unix epoch.
         enqueued:,
@@ -95,20 +101,26 @@ module Courier
         event:,
         # A unique identifier associated with the notification of the delivered message.
         notification:,
-        # A UTC timestamp at which the recipient opened a message for the first time.
-        # Stored as a millisecond representation of the Unix epoch.
-        opened:,
         # A unique identifier associated with the recipient of the delivered message.
         recipient:,
-        # A UTC timestamp at which Courier passed the message to the Integration provider.
-        # Stored as a millisecond representation of the Unix epoch.
-        sent:,
         # The current status of the message.
         status:,
+        # A UTC timestamp at which the recipient clicked on a tracked link for the first
+        # time. Stored as a millisecond representation of the Unix epoch.
+        clicked: nil,
+        # A UTC timestamp at which the Integration provider delivered the message. Stored
+        # as a millisecond representation of the Unix epoch.
+        delivered: nil,
         # A message describing the error that occurred.
         error: nil,
+        # A UTC timestamp at which the recipient opened a message for the first time.
+        # Stored as a millisecond representation of the Unix epoch.
+        opened: nil,
         # The reason for the current status of the message.
-        reason: nil
+        reason: nil,
+        # A UTC timestamp at which Courier passed the message to the Integration provider.
+        # Stored as a millisecond representation of the Unix epoch.
+        sent: nil
       )
       end
 
@@ -116,17 +128,17 @@ module Courier
         override.returns(
           {
             id: String,
-            clicked: Integer,
-            delivered: Integer,
             enqueued: Integer,
             event: String,
             notification: String,
-            opened: Integer,
             recipient: String,
-            sent: Integer,
             status: Courier::MessageDetails::Status::TaggedSymbol,
+            clicked: Integer,
+            delivered: Integer,
             error: T.nilable(String),
-            reason: T.nilable(Courier::MessageDetails::Reason::TaggedSymbol)
+            opened: Integer,
+            reason: T.nilable(Courier::MessageDetails::Reason::TaggedSymbol),
+            sent: Integer
           }
         )
       end

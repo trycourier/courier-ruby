@@ -3,25 +3,21 @@ module Courier
     type message_details =
       {
         id: String,
-        clicked: Integer,
-        delivered: Integer,
         enqueued: Integer,
         event: String,
         notification: String,
-        opened: Integer,
         recipient: String,
-        sent: Integer,
         status: Courier::Models::MessageDetails::status,
+        clicked: Integer,
+        delivered: Integer,
         error: String?,
-        reason: Courier::Models::MessageDetails::reason?
+        opened: Integer,
+        reason: Courier::Models::MessageDetails::reason?,
+        sent: Integer
       }
 
     class MessageDetails < Courier::Internal::Type::BaseModel
       attr_accessor id: String
-
-      attr_accessor clicked: Integer
-
-      attr_accessor delivered: Integer
 
       attr_accessor enqueued: Integer
 
@@ -29,46 +25,58 @@ module Courier
 
       attr_accessor notification: String
 
-      attr_accessor opened: Integer
-
       attr_accessor recipient: String
-
-      attr_accessor sent: Integer
 
       attr_accessor status: Courier::Models::MessageDetails::status
 
+      attr_reader clicked: Integer?
+
+      def clicked=: (Integer) -> Integer
+
+      attr_reader delivered: Integer?
+
+      def delivered=: (Integer) -> Integer
+
       attr_accessor error: String?
+
+      attr_reader opened: Integer?
+
+      def opened=: (Integer) -> Integer
 
       attr_accessor reason: Courier::Models::MessageDetails::reason?
 
+      attr_reader sent: Integer?
+
+      def sent=: (Integer) -> Integer
+
       def initialize: (
         id: String,
-        clicked: Integer,
-        delivered: Integer,
         enqueued: Integer,
         event: String,
         notification: String,
-        opened: Integer,
         recipient: String,
-        sent: Integer,
         status: Courier::Models::MessageDetails::status,
+        ?clicked: Integer,
+        ?delivered: Integer,
         ?error: String?,
-        ?reason: Courier::Models::MessageDetails::reason?
+        ?opened: Integer,
+        ?reason: Courier::Models::MessageDetails::reason?,
+        ?sent: Integer
       ) -> void
 
       def to_hash: -> {
         id: String,
-        clicked: Integer,
-        delivered: Integer,
         enqueued: Integer,
         event: String,
         notification: String,
-        opened: Integer,
         recipient: String,
-        sent: Integer,
         status: Courier::Models::MessageDetails::status,
+        clicked: Integer,
+        delivered: Integer,
         error: String?,
-        reason: Courier::Models::MessageDetails::reason?
+        opened: Integer,
+        reason: Courier::Models::MessageDetails::reason?,
+        sent: Integer
       }
 
       type status =

@@ -42,17 +42,17 @@ class Courier::Test::Resources::MessagesTest < Courier::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        clicked: Integer,
-        delivered: Integer,
         enqueued: Integer,
         event: String,
         notification: String,
-        opened: Integer,
         recipient: String,
-        sent: Integer,
         status: Courier::MessageDetails::Status,
+        clicked: Integer | nil,
+        delivered: Integer | nil,
         error: String | nil,
-        reason: Courier::MessageDetails::Reason | nil
+        opened: Integer | nil,
+        reason: Courier::MessageDetails::Reason | nil,
+        sent: Integer | nil
       }
     end
   end
