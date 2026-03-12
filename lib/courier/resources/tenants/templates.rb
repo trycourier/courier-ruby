@@ -51,10 +51,11 @@ module Courier
         # @see Courier::Models::Tenants::TemplateListParams
         def list(tenant_id, params = {})
           parsed, options = Courier::Tenants::TemplateListParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["tenants/%1$s/templates", tenant_id],
-            query: parsed,
+            query: query,
             model: Courier::Models::Tenants::TemplateListResponse,
             options: options
           )

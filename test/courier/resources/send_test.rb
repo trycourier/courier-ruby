@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::SendTest < Courier::Test::ResourceTest
   def test_message_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.send_.message(message: {})
 

@@ -18,23 +18,28 @@ module Courier
         sig { returns(String) }
         attr_accessor :id
 
+        sig { returns(String) }
+        attr_accessor :submission_id
+
         sig { returns(T::Array[Courier::BaseCheck]) }
         attr_accessor :checks
 
         sig do
           params(
             id: String,
+            submission_id: String,
             checks: T::Array[Courier::BaseCheck::OrHash],
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(id:, checks:, request_options: {})
+        def self.new(id:, submission_id:, checks:, request_options: {})
         end
 
         sig do
           override.returns(
             {
               id: String,
+              submission_id: String,
               checks: T::Array[Courier::BaseCheck],
               request_options: Courier::RequestOptions
             }

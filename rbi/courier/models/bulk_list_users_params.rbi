@@ -11,6 +11,9 @@ module Courier
           T.any(Courier::BulkListUsersParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :job_id
+
       # A unique identifier that allows for fetching the next set of users added to the
       # bulk job
       sig { returns(T.nilable(String)) }
@@ -18,11 +21,13 @@ module Courier
 
       sig do
         params(
+          job_id: String,
           cursor: T.nilable(String),
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        job_id:,
         # A unique identifier that allows for fetching the next set of users added to the
         # bulk job
         cursor: nil,
@@ -33,6 +38,7 @@ module Courier
       sig do
         override.returns(
           {
+            job_id: String,
             cursor: T.nilable(String),
             request_options: Courier::RequestOptions
           }

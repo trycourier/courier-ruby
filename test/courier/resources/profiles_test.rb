@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.profiles.create("user_id", profile: {foo: "bar"})
 
@@ -20,7 +20,7 @@ class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.profiles.retrieve("user_id")
 
@@ -37,7 +37,7 @@ class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.profiles.update("user_id", patch: [{op: "op", path: "path", value: "value"}])
 
@@ -47,7 +47,7 @@ class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.profiles.delete("user_id")
 
@@ -57,7 +57,7 @@ class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
   end
 
   def test_replace_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.profiles.replace("user_id", profile: {foo: "bar"})
 

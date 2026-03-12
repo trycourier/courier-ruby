@@ -3,7 +3,8 @@ module Courier
     module Tenants
       module Preferences
         type item_delete_params =
-          { tenant_id: String } & Courier::Internal::Type::request_parameters
+          { tenant_id: String, topic_id: String }
+          & Courier::Internal::Type::request_parameters
 
         class ItemDeleteParams < Courier::Internal::Type::BaseModel
           extend Courier::Internal::Type::RequestParameters::Converter
@@ -11,13 +12,17 @@ module Courier
 
           attr_accessor tenant_id: String
 
+          attr_accessor topic_id: String
+
           def initialize: (
             tenant_id: String,
+            topic_id: String,
             ?request_options: Courier::request_opts
           ) -> void
 
           def to_hash: -> {
             tenant_id: String,
+            topic_id: String,
             request_options: Courier::RequestOptions
           }
         end

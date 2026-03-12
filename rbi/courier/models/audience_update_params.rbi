@@ -11,6 +11,9 @@ module Courier
           T.any(Courier::AudienceUpdateParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :audience_id
+
       # A description of the audience
       sig { returns(T.nilable(String)) }
       attr_accessor :description
@@ -36,6 +39,7 @@ module Courier
 
       sig do
         params(
+          audience_id: String,
           description: T.nilable(String),
           filter: T.nilable(Courier::AudienceFilterConfig::OrHash),
           name: T.nilable(String),
@@ -45,6 +49,7 @@ module Courier
         ).returns(T.attached_class)
       end
       def self.new(
+        audience_id:,
         # A description of the audience
         description: nil,
         # Filter configuration for audience membership containing an array of filter rules
@@ -60,6 +65,7 @@ module Courier
       sig do
         override.returns(
           {
+            audience_id: String,
             description: T.nilable(String),
             filter: T.nilable(Courier::AudienceFilterConfig),
             name: T.nilable(String),

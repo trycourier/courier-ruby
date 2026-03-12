@@ -142,6 +142,18 @@ module Courier
 
   IntercomRecipient = Courier::Models::IntercomRecipient
 
+  Journey = Courier::Models::Journey
+
+  JourneyInvokeParams = Courier::Models::JourneyInvokeParams
+
+  JourneyListParams = Courier::Models::JourneyListParams
+
+  JourneysInvokeRequest = Courier::Models::JourneysInvokeRequest
+
+  JourneysInvokeResponse = Courier::Models::JourneysInvokeResponse
+
+  JourneysListResponse = Courier::Models::JourneysListResponse
+
   ListDeleteParams = Courier::Models::ListDeleteParams
 
   ListFilter = Courier::Models::ListFilter

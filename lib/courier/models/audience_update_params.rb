@@ -7,6 +7,11 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      # @!attribute audience_id
+      #
+      #   @return [String]
+      required :audience_id, String
+
       # @!attribute description
       #   A description of the audience
       #
@@ -31,9 +36,11 @@ module Courier
       #   @return [Symbol, Courier::Models::AudienceUpdateParams::Operator, nil]
       optional :operator, enum: -> { Courier::AudienceUpdateParams::Operator }, nil?: true
 
-      # @!method initialize(description: nil, filter: nil, name: nil, operator: nil, request_options: {})
+      # @!method initialize(audience_id:, description: nil, filter: nil, name: nil, operator: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::AudienceUpdateParams} for more details.
+      #
+      #   @param audience_id [String]
       #
       #   @param description [String, nil] A description of the audience
       #

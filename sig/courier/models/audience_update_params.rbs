@@ -2,6 +2,7 @@ module Courier
   module Models
     type audience_update_params =
       {
+        audience_id: String,
         description: String?,
         filter: Courier::AudienceFilterConfig?,
         name: String?,
@@ -13,6 +14,8 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      attr_accessor audience_id: String
+
       attr_accessor description: String?
 
       attr_accessor filter: Courier::AudienceFilterConfig?
@@ -22,6 +25,7 @@ module Courier
       attr_accessor operator: Courier::Models::AudienceUpdateParams::operator?
 
       def initialize: (
+        audience_id: String,
         ?description: String?,
         ?filter: Courier::AudienceFilterConfig?,
         ?name: String?,
@@ -30,6 +34,7 @@ module Courier
       ) -> void
 
       def to_hash: -> {
+        audience_id: String,
         description: String?,
         filter: Courier::AudienceFilterConfig?,
         name: String?,

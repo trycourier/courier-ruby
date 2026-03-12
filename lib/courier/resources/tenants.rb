@@ -86,10 +86,11 @@ module Courier
       # @see Courier::Models::TenantListParams
       def list(params = {})
         parsed, options = Courier::TenantListParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "tenants",
-          query: parsed,
+          query: query,
           model: Courier::Models::TenantListResponse,
           options: options
         )
@@ -135,10 +136,11 @@ module Courier
       # @see Courier::Models::TenantListUsersParams
       def list_users(tenant_id, params = {})
         parsed, options = Courier::TenantListUsersParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["tenants/%1$s/users", tenant_id],
-          query: parsed,
+          query: query,
           model: Courier::Models::TenantListUsersResponse,
           options: options
         )

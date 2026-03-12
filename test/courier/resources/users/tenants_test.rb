@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Courier::Test::Resources::Users::TenantsTest < Courier::Test::ResourceTest
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tenants.list("user_id")
 
@@ -25,7 +25,7 @@ class Courier::Test::Resources::Users::TenantsTest < Courier::Test::ResourceTest
   end
 
   def test_add_multiple_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tenants.add_multiple("user_id", tenants: [{tenant_id: "tenant_id"}])
 
@@ -35,7 +35,7 @@ class Courier::Test::Resources::Users::TenantsTest < Courier::Test::ResourceTest
   end
 
   def test_add_single_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tenants.add_single("tenant_id", user_id: "user_id")
 
@@ -45,7 +45,7 @@ class Courier::Test::Resources::Users::TenantsTest < Courier::Test::ResourceTest
   end
 
   def test_remove_all
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tenants.remove_all("user_id")
 
@@ -55,7 +55,7 @@ class Courier::Test::Resources::Users::TenantsTest < Courier::Test::ResourceTest
   end
 
   def test_remove_single_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.tenants.remove_single("tenant_id", user_id: "user_id")
 

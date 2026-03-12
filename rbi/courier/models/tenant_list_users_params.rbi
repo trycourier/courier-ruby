@@ -11,6 +11,9 @@ module Courier
           T.any(Courier::TenantListUsersParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :tenant_id
+
       # Continue the pagination with the next cursor
       sig { returns(T.nilable(String)) }
       attr_accessor :cursor
@@ -21,12 +24,14 @@ module Courier
 
       sig do
         params(
+          tenant_id: String,
           cursor: T.nilable(String),
           limit: T.nilable(Integer),
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        tenant_id:,
         # Continue the pagination with the next cursor
         cursor: nil,
         # The number of accounts to return (defaults to 20, maximum value of 100)
@@ -38,6 +43,7 @@ module Courier
       sig do
         override.returns(
           {
+            tenant_id: String,
             cursor: T.nilable(String),
             limit: T.nilable(Integer),
             request_options: Courier::RequestOptions

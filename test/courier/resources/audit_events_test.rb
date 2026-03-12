@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Courier::Test::Resources::AuditEventsTest < Courier::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.audit_events.retrieve("audit-event-id")
 
@@ -25,7 +25,7 @@ class Courier::Test::Resources::AuditEventsTest < Courier::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.audit_events.list
 

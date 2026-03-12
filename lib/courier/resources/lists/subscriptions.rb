@@ -19,10 +19,11 @@ module Courier
         # @see Courier::Models::Lists::SubscriptionListParams
         def list(list_id, params = {})
           parsed, options = Courier::Lists::SubscriptionListParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["lists/%1$s/subscriptions", list_id],
-            query: parsed,
+            query: query,
             model: Courier::Models::Lists::SubscriptionListResponse,
             options: options
           )

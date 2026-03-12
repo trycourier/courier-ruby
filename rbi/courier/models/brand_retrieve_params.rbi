@@ -11,15 +11,23 @@ module Courier
           T.any(Courier::BrandRetrieveParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :brand_id
+
       sig do
-        params(request_options: Courier::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          brand_id: String,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(brand_id:, request_options: {})
       end
 
-      sig { override.returns({ request_options: Courier::RequestOptions }) }
+      sig do
+        override.returns(
+          { brand_id: String, request_options: Courier::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

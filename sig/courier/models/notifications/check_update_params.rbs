@@ -2,7 +2,11 @@ module Courier
   module Models
     module Notifications
       type check_update_params =
-        { id: String, checks: ::Array[Courier::BaseCheck] }
+        {
+          id: String,
+          submission_id: String,
+          checks: ::Array[Courier::BaseCheck]
+        }
         & Courier::Internal::Type::request_parameters
 
       class CheckUpdateParams < Courier::Internal::Type::BaseModel
@@ -11,16 +15,20 @@ module Courier
 
         attr_accessor id: String
 
+        attr_accessor submission_id: String
+
         attr_accessor checks: ::Array[Courier::BaseCheck]
 
         def initialize: (
           id: String,
+          submission_id: String,
           checks: ::Array[Courier::BaseCheck],
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
           id: String,
+          submission_id: String,
           checks: ::Array[Courier::BaseCheck],
           request_options: Courier::RequestOptions
         }

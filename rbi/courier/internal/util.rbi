@@ -303,6 +303,26 @@ module Courier
       class << self
         # @api private
         sig do
+          params(query: Courier::Internal::AnyHash).returns(
+            Courier::Internal::AnyHash
+          )
+        end
+        def encode_query_params(query)
+        end
+
+        # @api private
+        sig do
+          params(
+            collection: Courier::Internal::AnyHash,
+            key: String,
+            element: T.anything
+          ).void
+        end
+        private def write_query_param_element!(collection, key, element)
+        end
+
+        # @api private
+        sig do
           params(
             y: Enumerator::Yielder,
             val: T.anything,

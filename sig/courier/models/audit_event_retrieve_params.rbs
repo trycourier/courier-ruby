@@ -1,15 +1,23 @@
 module Courier
   module Models
     type audit_event_retrieve_params =
-      {  } & Courier::Internal::Type::request_parameters
+      { audit_event_id: String } & Courier::Internal::Type::request_parameters
 
     class AuditEventRetrieveParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Courier::request_opts) -> void
+      attr_accessor audit_event_id: String
 
-      def to_hash: -> { request_options: Courier::RequestOptions }
+      def initialize: (
+        audit_event_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        audit_event_id: String,
+        request_options: Courier::RequestOptions
+      }
     end
   end
 end

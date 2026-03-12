@@ -8,13 +8,20 @@ module Courier
         extend Courier::Internal::Type::RequestParameters::Converter
         include Courier::Internal::Type::RequestParameters
 
+        # @!attribute list_id
+        #
+        #   @return [String]
+        required :list_id, String
+
         # @!attribute cursor
         #   A unique identifier that allows for fetching the next set of list subscriptions
         #
         #   @return [String, nil]
         optional :cursor, String, nil?: true
 
-        # @!method initialize(cursor: nil, request_options: {})
+        # @!method initialize(list_id:, cursor: nil, request_options: {})
+        #   @param list_id [String]
+        #
         #   @param cursor [String, nil] A unique identifier that allows for fetching the next set of list subscriptions
         #
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]

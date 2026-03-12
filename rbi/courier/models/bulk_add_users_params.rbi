@@ -11,21 +11,26 @@ module Courier
           T.any(Courier::BulkAddUsersParams, Courier::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :job_id
+
       sig { returns(T::Array[Courier::InboundBulkMessageUser]) }
       attr_accessor :users
 
       sig do
         params(
+          job_id: String,
           users: T::Array[Courier::InboundBulkMessageUser::OrHash],
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(users:, request_options: {})
+      def self.new(job_id:, users:, request_options: {})
       end
 
       sig do
         override.returns(
           {
+            job_id: String,
             users: T::Array[Courier::InboundBulkMessageUser],
             request_options: Courier::RequestOptions
           }

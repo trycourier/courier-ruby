@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.preferences.retrieve("user_id")
 
@@ -21,7 +21,7 @@ class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::Resource
   end
 
   def test_retrieve_topic_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.users.preferences.retrieve_topic("topic_id", user_id: "user_id")
 
@@ -37,7 +37,7 @@ class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::Resource
   end
 
   def test_update_or_create_topic_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @courier.users.preferences.update_or_create_topic(

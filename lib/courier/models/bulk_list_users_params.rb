@@ -7,6 +7,11 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      # @!attribute job_id
+      #
+      #   @return [String]
+      required :job_id, String
+
       # @!attribute cursor
       #   A unique identifier that allows for fetching the next set of users added to the
       #   bulk job
@@ -14,9 +19,11 @@ module Courier
       #   @return [String, nil]
       optional :cursor, String, nil?: true
 
-      # @!method initialize(cursor: nil, request_options: {})
+      # @!method initialize(job_id:, cursor: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::BulkListUsersParams} for more details.
+      #
+      #   @param job_id [String]
       #
       #   @param cursor [String, nil] A unique identifier that allows for fetching the next set of users added to the
       #

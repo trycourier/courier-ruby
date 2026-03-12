@@ -15,17 +15,22 @@ module Courier
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :list_id
+
         # A unique identifier that allows for fetching the next set of list subscriptions
         sig { returns(T.nilable(String)) }
         attr_accessor :cursor
 
         sig do
           params(
+            list_id: String,
             cursor: T.nilable(String),
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          list_id:,
           # A unique identifier that allows for fetching the next set of list subscriptions
           cursor: nil,
           request_options: {}
@@ -35,6 +40,7 @@ module Courier
         sig do
           override.returns(
             {
+              list_id: String,
               cursor: T.nilable(String),
               request_options: Courier::RequestOptions
             }

@@ -2,7 +2,8 @@ module Courier
   module Models
     module Notifications
       type check_delete_params =
-        { id: String } & Courier::Internal::Type::request_parameters
+        { id: String, submission_id: String }
+        & Courier::Internal::Type::request_parameters
 
       class CheckDeleteParams < Courier::Internal::Type::BaseModel
         extend Courier::Internal::Type::RequestParameters::Converter
@@ -10,12 +11,19 @@ module Courier
 
         attr_accessor id: String
 
+        attr_accessor submission_id: String
+
         def initialize: (
           id: String,
+          submission_id: String,
           ?request_options: Courier::request_opts
         ) -> void
 
-        def to_hash: -> { id: String, request_options: Courier::RequestOptions }
+        def to_hash: -> {
+          id: String,
+          submission_id: String,
+          request_options: Courier::RequestOptions
+        }
       end
     end
   end

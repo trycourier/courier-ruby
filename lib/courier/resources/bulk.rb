@@ -80,10 +80,11 @@ module Courier
       # @see Courier::Models::BulkListUsersParams
       def list_users(job_id, params = {})
         parsed, options = Courier::BulkListUsersParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["bulk/%1$s/users", job_id],
-          query: parsed,
+          query: query,
           model: Courier::Models::BulkListUsersResponse,
           options: options
         )

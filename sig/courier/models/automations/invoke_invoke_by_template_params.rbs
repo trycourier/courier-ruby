@@ -3,6 +3,7 @@ module Courier
     module Automations
       type invoke_invoke_by_template_params =
         {
+          template_id: String,
           recipient: String?,
           brand: String?,
           data: ::Hash[Symbol, top]?,
@@ -15,6 +16,8 @@ module Courier
         extend Courier::Internal::Type::RequestParameters::Converter
         include Courier::Internal::Type::RequestParameters
 
+        attr_accessor template_id: String
+
         attr_accessor recipient: String?
 
         attr_accessor brand: String?
@@ -26,6 +29,7 @@ module Courier
         attr_accessor template: String?
 
         def initialize: (
+          template_id: String,
           recipient: String?,
           ?brand: String?,
           ?data: ::Hash[Symbol, top]?,
@@ -35,6 +39,7 @@ module Courier
         ) -> void
 
         def to_hash: -> {
+          template_id: String,
           recipient: String?,
           brand: String?,
           data: ::Hash[Symbol, top]?,

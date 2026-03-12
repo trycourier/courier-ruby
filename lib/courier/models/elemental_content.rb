@@ -14,17 +14,10 @@ module Courier
       #   @return [String]
       required :version, String
 
-      # @!attribute brand
-      #
-      #   @return [String, nil]
-      optional :brand, String, nil?: true
-
-      # @!method initialize(elements:, version:, brand: nil)
+      # @!method initialize(elements:, version:)
       #   @param elements [Array<Courier::Models::ElementalTextNodeWithType, Courier::Models::ElementalMetaNodeWithType, Courier::Models::ElementalChannelNodeWithType, Courier::Models::ElementalImageNodeWithType, Courier::Models::ElementalActionNodeWithType, Courier::Models::ElementalDividerNodeWithType, Courier::Models::ElementalQuoteNodeWithType>]
       #
       #   @param version [String] For example, "2022-01-01"
-      #
-      #   @param brand [String, nil]
     end
   end
 end

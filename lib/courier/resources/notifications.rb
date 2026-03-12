@@ -22,10 +22,11 @@ module Courier
       # @see Courier::Models::NotificationListParams
       def list(params = {})
         parsed, options = Courier::NotificationListParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "notifications",
-          query: parsed,
+          query: query,
           model: Courier::Models::NotificationListResponse,
           options: options
         )

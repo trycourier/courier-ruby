@@ -15,6 +15,9 @@ module Courier
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :template_id
+
         sig { returns(T.nilable(String)) }
         attr_accessor :recipient
 
@@ -32,6 +35,7 @@ module Courier
 
         sig do
           params(
+            template_id: String,
             recipient: T.nilable(String),
             brand: T.nilable(String),
             data: T.nilable(T::Hash[Symbol, T.anything]),
@@ -41,6 +45,7 @@ module Courier
           ).returns(T.attached_class)
         end
         def self.new(
+          template_id:,
           recipient:,
           brand: nil,
           data: nil,
@@ -53,6 +58,7 @@ module Courier
         sig do
           override.returns(
             {
+              template_id: String,
               recipient: T.nilable(String),
               brand: T.nilable(String),
               data: T.nilable(T::Hash[Symbol, T.anything]),

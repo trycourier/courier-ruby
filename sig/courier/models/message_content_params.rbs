@@ -1,15 +1,23 @@
 module Courier
   module Models
     type message_content_params =
-      {  } & Courier::Internal::Type::request_parameters
+      { message_id: String } & Courier::Internal::Type::request_parameters
 
     class MessageContentParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Courier::request_opts) -> void
+      attr_accessor message_id: String
 
-      def to_hash: -> { request_options: Courier::RequestOptions }
+      def initialize: (
+        message_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        message_id: String,
+        request_options: Courier::RequestOptions
+      }
     end
   end
 end

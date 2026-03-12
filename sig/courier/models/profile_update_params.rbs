@@ -1,21 +1,25 @@
 module Courier
   module Models
     type profile_update_params =
-      { patch: ::Array[Courier::ProfileUpdateParams::Patch] }
+      { user_id: String, patch: ::Array[Courier::ProfileUpdateParams::Patch] }
       & Courier::Internal::Type::request_parameters
 
     class ProfileUpdateParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      attr_accessor user_id: String
+
       attr_accessor patch: ::Array[Courier::ProfileUpdateParams::Patch]
 
       def initialize: (
+        user_id: String,
         patch: ::Array[Courier::ProfileUpdateParams::Patch],
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
+        user_id: String,
         patch: ::Array[Courier::ProfileUpdateParams::Patch],
         request_options: Courier::RequestOptions
       }

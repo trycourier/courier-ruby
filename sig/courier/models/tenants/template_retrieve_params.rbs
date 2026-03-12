@@ -2,7 +2,8 @@ module Courier
   module Models
     module Tenants
       type template_retrieve_params =
-        { tenant_id: String } & Courier::Internal::Type::request_parameters
+        { tenant_id: String, template_id: String }
+        & Courier::Internal::Type::request_parameters
 
       class TemplateRetrieveParams < Courier::Internal::Type::BaseModel
         extend Courier::Internal::Type::RequestParameters::Converter
@@ -10,13 +11,17 @@ module Courier
 
         attr_accessor tenant_id: String
 
+        attr_accessor template_id: String
+
         def initialize: (
           tenant_id: String,
+          template_id: String,
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
           tenant_id: String,
+          template_id: String,
           request_options: Courier::RequestOptions
         }
       end

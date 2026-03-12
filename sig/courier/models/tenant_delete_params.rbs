@@ -1,15 +1,23 @@
 module Courier
   module Models
     type tenant_delete_params =
-      {  } & Courier::Internal::Type::request_parameters
+      { tenant_id: String } & Courier::Internal::Type::request_parameters
 
     class TenantDeleteParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Courier::request_opts) -> void
+      attr_accessor tenant_id: String
 
-      def to_hash: -> { request_options: Courier::RequestOptions }
+      def initialize: (
+        tenant_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        tenant_id: String,
+        request_options: Courier::RequestOptions
+      }
     end
   end
 end

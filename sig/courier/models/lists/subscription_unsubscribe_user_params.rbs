@@ -2,7 +2,8 @@ module Courier
   module Models
     module Lists
       type subscription_unsubscribe_user_params =
-        { list_id: String } & Courier::Internal::Type::request_parameters
+        { list_id: String, user_id: String }
+        & Courier::Internal::Type::request_parameters
 
       class SubscriptionUnsubscribeUserParams < Courier::Internal::Type::BaseModel
         extend Courier::Internal::Type::RequestParameters::Converter
@@ -10,13 +11,17 @@ module Courier
 
         attr_accessor list_id: String
 
+        attr_accessor user_id: String
+
         def initialize: (
           list_id: String,
+          user_id: String,
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
           list_id: String,
+          user_id: String,
           request_options: Courier::RequestOptions
         }
       end

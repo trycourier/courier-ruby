@@ -14,18 +14,26 @@ module Courier
       sig { returns(String) }
       attr_accessor :domain
 
+      sig { returns(String) }
+      attr_accessor :locale
+
       sig do
         params(
           domain: String,
+          locale: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(domain:, request_options: {})
+      def self.new(domain:, locale:, request_options: {})
       end
 
       sig do
         override.returns(
-          { domain: String, request_options: Courier::RequestOptions }
+          {
+            domain: String,
+            locale: String,
+            request_options: Courier::RequestOptions
+          }
         )
       end
       def to_hash

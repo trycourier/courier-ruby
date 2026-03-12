@@ -22,14 +22,18 @@ module Courier
           sig { returns(String) }
           attr_accessor :template_id
 
+          sig { returns(String) }
+          attr_accessor :version
+
           sig do
             params(
               tenant_id: String,
               template_id: String,
+              version: String,
               request_options: Courier::RequestOptions::OrHash
             ).returns(T.attached_class)
           end
-          def self.new(tenant_id:, template_id:, request_options: {})
+          def self.new(tenant_id:, template_id:, version:, request_options: {})
           end
 
           sig do
@@ -37,6 +41,7 @@ module Courier
               {
                 tenant_id: String,
                 template_id: String,
+                version: String,
                 request_options: Courier::RequestOptions
               }
             )

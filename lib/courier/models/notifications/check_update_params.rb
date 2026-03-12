@@ -13,13 +13,19 @@ module Courier
         #   @return [String]
         required :id, String
 
+        # @!attribute submission_id
+        #
+        #   @return [String]
+        required :submission_id, String
+
         # @!attribute checks
         #
         #   @return [Array<Courier::Models::BaseCheck>]
         required :checks, -> { Courier::Internal::Type::ArrayOf[Courier::BaseCheck] }
 
-        # @!method initialize(id:, checks:, request_options: {})
+        # @!method initialize(id:, submission_id:, checks:, request_options: {})
         #   @param id [String]
+        #   @param submission_id [String]
         #   @param checks [Array<Courier::Models::BaseCheck>]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
       end

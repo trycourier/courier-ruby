@@ -1,5 +1,36 @@
 # Changelog
 
+## 4.8.0 (2026-03-12)
+
+Full Changelog: [v4.7.1...v4.8.0](https://github.com/trycourier/courier-ruby/compare/v4.7.1...v4.8.0)
+
+### Features
+
+* **api:** add journeys resource with list and invoke methods ([26a80de](https://github.com/trycourier/courier-ruby/commit/26a80de1aa75c947f63e09da0ae7cb539947ecc4))
+* **api:** add provider_key/device/tracking to token params, remove body_token ([acb3031](https://github.com/trycourier/courier-ruby/commit/acb30313188a385e2ad39be4f4040e4e5836106d))
+* **api:** remove brand field from ElementalContent model ([519fcc0](https://github.com/trycourier/courier-ruby/commit/519fcc0a2f35a1fd61e64362b5a2e7b2d8225232))
+
+
+### Bug Fixes
+
+* mark MessageDetails timestamp fields as optional ([31a0be6](https://github.com/trycourier/courier-ruby/commit/31a0be63ee9969176a7bb3a627eabeb7c26d50f6))
+
+
+### Chores
+
+* **ci:** add build step ([d07ae3d](https://github.com/trycourier/courier-ruby/commit/d07ae3dc073f38ac30af1311f1d70153e441bf51))
+* **ci:** skip uploading artifacts on stainless-internal branches ([d4c0636](https://github.com/trycourier/courier-ruby/commit/d4c06361e5ef4e7c0a3a1660215d63fe845694c5))
+* **internal:** codegen related update ([3a0f51e](https://github.com/trycourier/courier-ruby/commit/3a0f51e6a03c33097f1307ac7974a3c5ca72ac90))
+* **internal:** codegen related update ([1cce4a8](https://github.com/trycourier/courier-ruby/commit/1cce4a8be23782aae7fb9185b8ac2efd06516842))
+* **internal:** remove mock server code ([a81351a](https://github.com/trycourier/courier-ruby/commit/a81351a2fde27b8a785a79436394a991e9048d97))
+* update mock server docs ([62d69fc](https://github.com/trycourier/courier-ruby/commit/62d69fc657babf8ff535e150d74a2283ddb64459))
+
+
+### Documentation
+
+* add AUTO-GENERATED-OVERVIEW markers for README sync ([#75](https://github.com/trycourier/courier-ruby/issues/75)) ([ab86102](https://github.com/trycourier/courier-ruby/commit/ab86102437d2af03dc45beae7262371c70b6847f))
+* sync README from mintlify-docs (2026-02-20 18:11 UTC) ([#76](https://github.com/trycourier/courier-ruby/issues/76)) ([cc67458](https://github.com/trycourier/courier-ruby/commit/cc6745816e152b890b84caaf666178bdbd9d3192))
+
 ## 4.7.1 (2026-02-07)
 
 Full Changelog: [v4.7.0...v4.7.1](https://github.com/trycourier/courier-ruby/compare/v4.7.0...v4.7.1)

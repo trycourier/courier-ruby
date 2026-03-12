@@ -7,6 +7,11 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      # @!attribute brand_id
+      #
+      #   @return [String]
+      required :brand_id, String
+
       # @!attribute name
       #   The name of the brand.
       #
@@ -23,7 +28,9 @@ module Courier
       #   @return [Courier::Models::BrandSnippets, nil]
       optional :snippets, -> { Courier::BrandSnippets }, nil?: true
 
-      # @!method initialize(name:, settings: nil, snippets: nil, request_options: {})
+      # @!method initialize(brand_id:, name:, settings: nil, snippets: nil, request_options: {})
+      #   @param brand_id [String]
+      #
       #   @param name [String] The name of the brand.
       #
       #   @param settings [Courier::Models::BrandSettings, nil]

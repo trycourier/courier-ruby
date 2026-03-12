@@ -1,0 +1,45 @@
+module Courier
+  module Models
+    type journey_list_params =
+      { cursor: String, version: Courier::Models::JourneyListParams::version }
+      & Courier::Internal::Type::request_parameters
+
+    class JourneyListParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader version: Courier::Models::JourneyListParams::version?
+
+      def version=: (
+        Courier::Models::JourneyListParams::version
+      ) -> Courier::Models::JourneyListParams::version
+
+      def initialize: (
+        ?cursor: String,
+        ?version: Courier::Models::JourneyListParams::version,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        version: Courier::Models::JourneyListParams::version,
+        request_options: Courier::RequestOptions
+      }
+
+      type version = :published | :draft
+
+      module Version
+        extend Courier::Internal::Type::Enum
+
+        PUBLISHED: :published
+        DRAFT: :draft
+
+        def self?.values: -> ::Array[Courier::Models::JourneyListParams::version]
+      end
+    end
+  end
+end

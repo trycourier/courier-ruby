@@ -2,6 +2,7 @@ module Courier
   module Models
     type brand_update_params =
       {
+        brand_id: String,
         name: String,
         settings: Courier::BrandSettings?,
         snippets: Courier::BrandSnippets?
@@ -12,6 +13,8 @@ module Courier
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
+      attr_accessor brand_id: String
+
       attr_accessor name: String
 
       attr_accessor settings: Courier::BrandSettings?
@@ -19,6 +22,7 @@ module Courier
       attr_accessor snippets: Courier::BrandSnippets?
 
       def initialize: (
+        brand_id: String,
         name: String,
         ?settings: Courier::BrandSettings?,
         ?snippets: Courier::BrandSnippets?,
@@ -26,6 +30,7 @@ module Courier
       ) -> void
 
       def to_hash: -> {
+        brand_id: String,
         name: String,
         settings: Courier::BrandSettings?,
         snippets: Courier::BrandSnippets?,

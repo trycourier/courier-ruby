@@ -2,20 +2,25 @@ module Courier
   module Models
     module Profiles
       type list_retrieve_params =
-        { cursor: String? } & Courier::Internal::Type::request_parameters
+        { user_id: String, cursor: String? }
+        & Courier::Internal::Type::request_parameters
 
       class ListRetrieveParams < Courier::Internal::Type::BaseModel
         extend Courier::Internal::Type::RequestParameters::Converter
         include Courier::Internal::Type::RequestParameters
 
+        attr_accessor user_id: String
+
         attr_accessor cursor: String?
 
         def initialize: (
+          user_id: String,
           ?cursor: String?,
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
+          user_id: String,
           cursor: String?,
           request_options: Courier::RequestOptions
         }

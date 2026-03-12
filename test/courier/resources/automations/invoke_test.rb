@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Courier::Test::Resources::Automations::InvokeTest < Courier::Test::ResourceTest
   def test_invoke_ad_hoc_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @courier.automations.invoke.invoke_ad_hoc(automation: {steps: [{action: :delay}, {action: :send}]})
@@ -21,7 +21,7 @@ class Courier::Test::Resources::Automations::InvokeTest < Courier::Test::Resourc
   end
 
   def test_invoke_by_template_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @courier.automations.invoke.invoke_by_template("templateId", recipient: "recipient")
 
