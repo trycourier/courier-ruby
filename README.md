@@ -8,7 +8,7 @@ The Courier Ruby SDK provides typed access to the Courier REST API from any Ruby
 Add to your `Gemfile`:
 
 ```ruby
-gem "trycourier", "~> 4.7"
+gem "trycourier"
 ```
 
 Then run `bundle install`.
