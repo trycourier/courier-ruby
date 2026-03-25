@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    type notification_retrieve_params =
+      { id: String, version: String }
+      & Courier::Internal::Type::request_parameters
+
+    class NotificationRetrieveParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader version: String?
+
+      def version=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?version: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        version: String,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

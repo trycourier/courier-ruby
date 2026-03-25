@@ -200,16 +200,42 @@ module Courier
 
   MultipleTokens = Courier::Models::MultipleTokens
 
+  NotificationArchiveParams = Courier::Models::NotificationArchiveParams
+
+  NotificationCreateParams = Courier::Models::NotificationCreateParams
+
   NotificationGetContent = Courier::Models::NotificationGetContent
 
   NotificationListParams = Courier::Models::NotificationListParams
 
   NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
 
+  NotificationPublishParams = Courier::Models::NotificationPublishParams
+
+  NotificationReplaceParams = Courier::Models::NotificationReplaceParams
+
   NotificationRetrieveContentParams =
     Courier::Models::NotificationRetrieveContentParams
 
+  NotificationRetrieveParams = Courier::Models::NotificationRetrieveParams
+
   Notifications = Courier::Models::Notifications
+
+  NotificationTemplateCreateRequest =
+    Courier::Models::NotificationTemplateCreateRequest
+
+  NotificationTemplateGetResponse =
+    Courier::Models::NotificationTemplateGetResponse
+
+  NotificationTemplateMutationResponse =
+    Courier::Models::NotificationTemplateMutationResponse
+
+  NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
+
+  NotificationTemplateSummary = Courier::Models::NotificationTemplateSummary
+
+  NotificationTemplateUpdateRequest =
+    Courier::Models::NotificationTemplateUpdateRequest
 
   Pagerduty = Courier::Models::Pagerduty
 

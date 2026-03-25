@@ -1,0 +1,46 @@
+module Courier
+  module Models
+    type notification_template_mutation_response =
+      {
+        notification: Courier::NotificationTemplateMutationResponse::Notification,
+        state: Courier::Models::NotificationTemplateMutationResponse::state
+      }
+
+    class NotificationTemplateMutationResponse < Courier::Internal::Type::BaseModel
+      attr_accessor notification: Courier::NotificationTemplateMutationResponse::Notification
+
+      attr_accessor state: Courier::Models::NotificationTemplateMutationResponse::state
+
+      def initialize: (
+        notification: Courier::NotificationTemplateMutationResponse::Notification,
+        state: Courier::Models::NotificationTemplateMutationResponse::state
+      ) -> void
+
+      def to_hash: -> {
+        notification: Courier::NotificationTemplateMutationResponse::Notification,
+        state: Courier::Models::NotificationTemplateMutationResponse::state
+      }
+
+      type notification = { id: String }
+
+      class Notification < Courier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type state = :DRAFT | :PUBLISHED
+
+      module State
+        extend Courier::Internal::Type::Enum
+
+        DRAFT: :DRAFT
+        PUBLISHED: :PUBLISHED
+
+        def self?.values: -> ::Array[Courier::Models::NotificationTemplateMutationResponse::state]
+      end
+    end
+  end
+end
