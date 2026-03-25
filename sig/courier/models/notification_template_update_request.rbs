@@ -1,0 +1,40 @@
+module Courier
+  module Models
+    type notification_template_update_request =
+      {
+        notification: Courier::NotificationTemplatePayload,
+        state: Courier::Models::NotificationTemplateUpdateRequest::state
+      }
+
+    class NotificationTemplateUpdateRequest < Courier::Internal::Type::BaseModel
+      attr_accessor notification: Courier::NotificationTemplatePayload
+
+      attr_reader state: Courier::Models::NotificationTemplateUpdateRequest::state?
+
+      def state=: (
+        Courier::Models::NotificationTemplateUpdateRequest::state
+      ) -> Courier::Models::NotificationTemplateUpdateRequest::state
+
+      def initialize: (
+        notification: Courier::NotificationTemplatePayload,
+        ?state: Courier::Models::NotificationTemplateUpdateRequest::state
+      ) -> void
+
+      def to_hash: -> {
+        notification: Courier::NotificationTemplatePayload,
+        state: Courier::Models::NotificationTemplateUpdateRequest::state
+      }
+
+      type state = :DRAFT | :PUBLISHED
+
+      module State
+        extend Courier::Internal::Type::Enum
+
+        DRAFT: :DRAFT
+        PUBLISHED: :PUBLISHED
+
+        def self?.values: -> ::Array[Courier::Models::NotificationTemplateUpdateRequest::state]
+      end
+    end
+  end
+end

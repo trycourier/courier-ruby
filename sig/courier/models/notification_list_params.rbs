@@ -1,7 +1,7 @@
 module Courier
   module Models
     type notification_list_params =
-      { cursor: String?, notes: bool? }
+      { cursor: String?, event_id: String, notes: bool? }
       & Courier::Internal::Type::request_parameters
 
     class NotificationListParams < Courier::Internal::Type::BaseModel
@@ -10,16 +10,22 @@ module Courier
 
       attr_accessor cursor: String?
 
+      attr_reader event_id: String?
+
+      def event_id=: (String) -> String
+
       attr_accessor notes: bool?
 
       def initialize: (
         ?cursor: String?,
+        ?event_id: String,
         ?notes: bool?,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         cursor: String?,
+        event_id: String,
         notes: bool?,
         request_options: Courier::RequestOptions
       }

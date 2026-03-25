@@ -3,6 +3,54 @@
 require_relative "../test_helper"
 
 class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
+  def test_create_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @courier.notifications.create(
+        notification: {
+          brand: {id: "brand_abc"},
+          content: {elements: [{}], version: "2022-01-01"},
+          name: "Welcome Email",
+          routing: {strategy_id: "rs_123"},
+          subscription: {topic_id: "marketing"},
+          tags: %w[onboarding welcome]
+        }
+      )
+
+    assert_pattern do
+      response => Courier::NotificationTemplateMutationResponse
+    end
+
+    assert_pattern do
+      response => {
+        notification: Courier::NotificationTemplateMutationResponse::Notification,
+        state: Courier::NotificationTemplateMutationResponse::State
+      }
+    end
+  end
+
+  def test_retrieve
+    skip("Mock server tests are disabled")
+
+    response = @courier.notifications.retrieve("id")
+
+    assert_pattern do
+      response => Courier::NotificationTemplateGetResponse
+    end
+
+    assert_pattern do
+      response => {
+        created: Integer,
+        creator: String,
+        notification: Courier::NotificationTemplateGetResponse::Notification,
+        state: Courier::NotificationTemplateGetResponse::State,
+        updated: Integer | nil,
+        updater: String | nil
+      }
+    end
+  end
+
   def test_list
     skip("Mock server tests are disabled")
 
@@ -15,7 +63,55 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     assert_pattern do
       response => {
         paging: Courier::Paging,
-        results: ^(Courier::Internal::Type::ArrayOf[Courier::Models::NotificationListResponse::Result])
+        results: ^(Courier::Internal::Type::ArrayOf[union: Courier::Models::NotificationListResponse::Result])
+      }
+    end
+  end
+
+  def test_archive
+    skip("Mock server tests are disabled")
+
+    response = @courier.notifications.archive("id")
+
+    assert_pattern do
+      response => nil
+    end
+  end
+
+  def test_publish
+    skip("Mock server tests are disabled")
+
+    response = @courier.notifications.publish("id")
+
+    assert_pattern do
+      response => nil
+    end
+  end
+
+  def test_replace_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @courier.notifications.replace(
+        "id",
+        notification: {
+          brand: {id: "id"},
+          content: {elements: [{}], version: "2022-01-01"},
+          name: "Updated Name",
+          routing: {strategy_id: "strategy_id"},
+          subscription: {topic_id: "topic_id"},
+          tags: ["updated"]
+        }
+      )
+
+    assert_pattern do
+      response => Courier::NotificationTemplateMutationResponse
+    end
+
+    assert_pattern do
+      response => {
+        notification: Courier::NotificationTemplateMutationResponse::Notification,
+        state: Courier::NotificationTemplateMutationResponse::State
       }
     end
   end

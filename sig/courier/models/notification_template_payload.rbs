@@ -1,0 +1,75 @@
+module Courier
+  module Models
+    type notification_template_payload =
+      {
+        brand: Courier::NotificationTemplatePayload::Brand?,
+        content: Courier::ElementalContent,
+        name: String,
+        routing: Courier::NotificationTemplatePayload::Routing?,
+        subscription: Courier::NotificationTemplatePayload::Subscription?,
+        tags: ::Array[String]
+      }
+
+    class NotificationTemplatePayload < Courier::Internal::Type::BaseModel
+      attr_accessor brand: Courier::NotificationTemplatePayload::Brand?
+
+      attr_accessor content: Courier::ElementalContent
+
+      attr_accessor name: String
+
+      attr_accessor routing: Courier::NotificationTemplatePayload::Routing?
+
+      attr_accessor subscription: Courier::NotificationTemplatePayload::Subscription?
+
+      attr_accessor tags: ::Array[String]
+
+      def initialize: (
+        brand: Courier::NotificationTemplatePayload::Brand?,
+        content: Courier::ElementalContent,
+        name: String,
+        routing: Courier::NotificationTemplatePayload::Routing?,
+        subscription: Courier::NotificationTemplatePayload::Subscription?,
+        tags: ::Array[String]
+      ) -> void
+
+      def to_hash: -> {
+        brand: Courier::NotificationTemplatePayload::Brand?,
+        content: Courier::ElementalContent,
+        name: String,
+        routing: Courier::NotificationTemplatePayload::Routing?,
+        subscription: Courier::NotificationTemplatePayload::Subscription?,
+        tags: ::Array[String]
+      }
+
+      type brand = { id: String }
+
+      class Brand < Courier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type routing = { strategy_id: String }
+
+      class Routing < Courier::Internal::Type::BaseModel
+        attr_accessor strategy_id: String
+
+        def initialize: (strategy_id: String) -> void
+
+        def to_hash: -> { strategy_id: String }
+      end
+
+      type subscription = { topic_id: String }
+
+      class Subscription < Courier::Internal::Type::BaseModel
+        attr_accessor topic_id: String
+
+        def initialize: (topic_id: String) -> void
+
+        def to_hash: -> { topic_id: String }
+      end
+    end
+  end
+end

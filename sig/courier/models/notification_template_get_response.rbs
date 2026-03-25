@@ -1,0 +1,72 @@
+module Courier
+  module Models
+    type notification_template_get_response =
+      {
+        created: Integer,
+        creator: String,
+        notification: Courier::NotificationTemplateGetResponse::Notification,
+        state: Courier::Models::NotificationTemplateGetResponse::state,
+        updated: Integer,
+        updater: String
+      }
+
+    class NotificationTemplateGetResponse < Courier::Internal::Type::BaseModel
+      attr_accessor created: Integer
+
+      attr_accessor creator: String
+
+      attr_accessor notification: Courier::NotificationTemplateGetResponse::Notification
+
+      attr_accessor state: Courier::Models::NotificationTemplateGetResponse::state
+
+      attr_reader updated: Integer?
+
+      def updated=: (Integer) -> Integer
+
+      attr_reader updater: String?
+
+      def updater=: (String) -> String
+
+      def initialize: (
+        created: Integer,
+        creator: String,
+        notification: Courier::NotificationTemplateGetResponse::Notification,
+        state: Courier::Models::NotificationTemplateGetResponse::state,
+        ?updated: Integer,
+        ?updater: String
+      ) -> void
+
+      def to_hash: -> {
+        created: Integer,
+        creator: String,
+        notification: Courier::NotificationTemplateGetResponse::Notification,
+        state: Courier::Models::NotificationTemplateGetResponse::state,
+        updated: Integer,
+        updater: String
+      }
+
+      type notification = { id: String }
+
+      class Notification < Courier::Models::NotificationTemplatePayload
+        def id: -> String
+
+        def id=: (String _) -> String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type state = :DRAFT | :PUBLISHED
+
+      module State
+        extend Courier::Internal::Type::Enum
+
+        DRAFT: :DRAFT
+        PUBLISHED: :PUBLISHED
+
+        def self?.values: -> ::Array[Courier::Models::NotificationTemplateGetResponse::state]
+      end
+    end
+  end
+end
