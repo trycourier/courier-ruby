@@ -78,6 +78,23 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     end
   end
 
+  def test_list_versions
+    skip("Mock server tests are disabled")
+
+    response = @courier.notifications.list_versions("id")
+
+    assert_pattern do
+      response => Courier::NotificationTemplateVersionListResponse
+    end
+
+    assert_pattern do
+      response => {
+        paging: Courier::Paging,
+        versions: ^(Courier::Internal::Type::ArrayOf[Courier::VersionNode])
+      }
+    end
+  end
+
   def test_publish
     skip("Mock server tests are disabled")
 

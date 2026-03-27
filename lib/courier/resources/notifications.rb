@@ -113,11 +113,41 @@ module Courier
         )
       end
 
-      # Publish the current draft of a notification template.
+      # List versions of a notification template.
       #
-      # @overload publish(id, request_options: {})
+      # @overload list_versions(id, cursor: nil, limit: nil, request_options: {})
       #
       # @param id [String] Template ID (nt\_ prefix).
+      #
+      # @param cursor [String] Opaque pagination cursor from a previous response. Omit for the first page.
+      #
+      # @param limit [Integer] Maximum number of versions to return per page. Default 10, max 10.
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::NotificationTemplateVersionListResponse]
+      #
+      # @see Courier::Models::NotificationListVersionsParams
+      def list_versions(id, params = {})
+        parsed, options = Courier::NotificationListVersionsParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["notifications/%1$s/versions", id],
+          query: query,
+          model: Courier::NotificationTemplateVersionListResponse,
+          options: options
+        )
+      end
+
+      # Publish a notification template. Publishes the current draft by default. Pass a
+      # version in the request body to publish a specific historical version.
+      #
+      # @overload publish(id, version: nil, request_options: {})
+      #
+      # @param id [String] Template ID (nt\_ prefix).
+      #
+      # @param version [String] Historical version to publish (e.g. "v001"). Omit to publish the current draft.
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -125,11 +155,13 @@ module Courier
       #
       # @see Courier::Models::NotificationPublishParams
       def publish(id, params = {})
+        parsed, options = Courier::NotificationPublishParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["notifications/%1$s/publish", id],
+          body: parsed,
           model: NilClass,
-          options: params[:request_options]
+          options: options
         )
       end
 

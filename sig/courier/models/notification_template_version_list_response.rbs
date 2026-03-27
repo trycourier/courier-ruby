@@ -1,0 +1,22 @@
+module Courier
+  module Models
+    type notification_template_version_list_response =
+      { paging: Courier::Paging, versions: ::Array[Courier::VersionNode] }
+
+    class NotificationTemplateVersionListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor paging: Courier::Paging
+
+      attr_accessor versions: ::Array[Courier::VersionNode]
+
+      def initialize: (
+        paging: Courier::Paging,
+        versions: ::Array[Courier::VersionNode]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Courier::Paging,
+        versions: ::Array[Courier::VersionNode]
+      }
+    end
+  end
+end

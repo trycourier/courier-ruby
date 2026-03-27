@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class NotificationPublishParams < Courier::Internal::Type::BaseModel
+    class NotificationPublishParams < Courier::Models::NotificationTemplatePublishRequest
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 

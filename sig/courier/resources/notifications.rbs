@@ -26,7 +26,18 @@ module Courier
 
       def archive: (String id, ?request_options: Courier::request_opts) -> nil
 
-      def publish: (String id, ?request_options: Courier::request_opts) -> nil
+      def list_versions: (
+        String id,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationTemplateVersionListResponse
+
+      def publish: (
+        String id,
+        ?version: String,
+        ?request_options: Courier::request_opts
+      ) -> nil
 
       def replace: (
         String id,

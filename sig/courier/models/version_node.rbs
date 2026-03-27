@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type version_node =
+      { created: Integer, creator: String, version: String, has_changes: bool }
+
+    class VersionNode < Courier::Internal::Type::BaseModel
+      attr_accessor created: Integer
+
+      attr_accessor creator: String
+
+      attr_accessor version: String
+
+      attr_reader has_changes: bool?
+
+      def has_changes=: (bool) -> bool
+
+      def initialize: (
+        created: Integer,
+        creator: String,
+        version: String,
+        ?has_changes: bool
+      ) -> void
+
+      def to_hash: -> {
+        created: Integer,
+        creator: String,
+        version: String,
+        has_changes: bool
+      }
+    end
+  end
+end
