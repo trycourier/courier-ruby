@@ -245,6 +245,8 @@ module Courier
 
   NotificationListParams = Courier::Models::NotificationListParams
 
+  NotificationListVersionsParams = Courier::Models::NotificationListVersionsParams
+
   NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
 
   NotificationPublishParams = Courier::Models::NotificationPublishParams
@@ -265,9 +267,13 @@ module Courier
 
   NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
 
+  NotificationTemplatePublishRequest = Courier::Models::NotificationTemplatePublishRequest
+
   NotificationTemplateSummary = Courier::Models::NotificationTemplateSummary
 
   NotificationTemplateUpdateRequest = Courier::Models::NotificationTemplateUpdateRequest
+
+  NotificationTemplateVersionListResponse = Courier::Models::NotificationTemplateVersionListResponse
 
   Pagerduty = Courier::Models::Pagerduty
 
@@ -376,6 +382,8 @@ module Courier
   Users = Courier::Models::Users
 
   Utm = Courier::Models::Utm
+
+  VersionNode = Courier::Models::VersionNode
 
   WebhookAuthentication = Courier::Models::WebhookAuthentication
 

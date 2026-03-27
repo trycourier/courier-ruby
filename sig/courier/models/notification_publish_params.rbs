@@ -3,11 +3,13 @@ module Courier
     type notification_publish_params =
       { id: String } & Courier::Internal::Type::request_parameters
 
-    class NotificationPublishParams < Courier::Internal::Type::BaseModel
+    class NotificationPublishParams < Courier::Models::NotificationTemplatePublishRequest
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      attr_accessor id: String
+      def id: -> String
+
+      def id=: (String _) -> String
 
       def initialize: (
         id: String,

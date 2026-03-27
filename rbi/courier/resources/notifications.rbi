@@ -82,16 +82,40 @@ module Courier
       )
       end
 
-      # Publish the current draft of a notification template.
+      # List versions of a notification template.
       sig do
         params(
           id: String,
+          cursor: String,
+          limit: Integer,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::NotificationTemplateVersionListResponse)
+      end
+      def list_versions(
+        # Template ID (nt\_ prefix).
+        id,
+        # Opaque pagination cursor from a previous response. Omit for the first page.
+        cursor: nil,
+        # Maximum number of versions to return per page. Default 10, max 10.
+        limit: nil,
+        request_options: {}
+      )
+      end
+
+      # Publish a notification template. Publishes the current draft by default. Pass a
+      # version in the request body to publish a specific historical version.
+      sig do
+        params(
+          id: String,
+          version: String,
           request_options: Courier::RequestOptions::OrHash
         ).void
       end
       def publish(
         # Template ID (nt\_ prefix).
         id,
+        # Historical version to publish (e.g. "v001"). Omit to publish the current draft.
+        version: nil,
         request_options: {}
       )
       end

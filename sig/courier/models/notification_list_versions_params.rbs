@@ -1,0 +1,36 @@
+module Courier
+  module Models
+    type notification_list_versions_params =
+      { id: String, cursor: String, limit: Integer }
+      & Courier::Internal::Type::request_parameters
+
+    class NotificationListVersionsParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      def initialize: (
+        id: String,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        cursor: String,
+        limit: Integer,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end
