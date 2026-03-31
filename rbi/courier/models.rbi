@@ -84,7 +84,11 @@ module Courier
 
   BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  Channel = Courier::Models::Channel
+
   ChannelClassification = Courier::Models::ChannelClassification
+
+  ChannelMetadata = Courier::Models::ChannelMetadata
 
   ChannelPreference = Courier::Models::ChannelPreference
 
@@ -109,6 +113,8 @@ module Courier
   ElementalContentSugar = Courier::Models::ElementalContentSugar
 
   ElementalDividerNodeWithType = Courier::Models::ElementalDividerNodeWithType
+
+  ElementalHTMLNodeWithType = Courier::Models::ElementalHTMLNodeWithType
 
   ElementalImageNodeWithType = Courier::Models::ElementalImageNodeWithType
 
@@ -176,6 +182,9 @@ module Courier
 
   MessageCancelParams = Courier::Models::MessageCancelParams
 
+  MessageChannels =
+    T.let(Courier::Models::MessageChannels, Courier::Internal::Type::Converter)
+
   MessageContentParams = Courier::Models::MessageContentParams
 
   MessageContext = Courier::Models::MessageContext
@@ -186,11 +195,18 @@ module Courier
 
   MessageListParams = Courier::Models::MessageListParams
 
+  MessageProviders =
+    T.let(Courier::Models::MessageProviders, Courier::Internal::Type::Converter)
+
+  MessageProvidersType = Courier::Models::MessageProvidersType
+
   MessageRetrieveParams = Courier::Models::MessageRetrieveParams
 
   MessageRouting = Courier::Models::MessageRouting
 
   MessageRoutingChannel = Courier::Models::MessageRoutingChannel
+
+  Metadata = Courier::Models::Metadata
 
   MsTeams = Courier::Models::MsTeams
 
@@ -284,6 +300,29 @@ module Courier
 
   RequestArchiveParams = Courier::Models::RequestArchiveParams
 
+  RoutingStrategyArchiveParams = Courier::Models::RoutingStrategyArchiveParams
+
+  RoutingStrategyCreateParams = Courier::Models::RoutingStrategyCreateParams
+
+  RoutingStrategyCreateRequest = Courier::Models::RoutingStrategyCreateRequest
+
+  RoutingStrategyGetResponse = Courier::Models::RoutingStrategyGetResponse
+
+  RoutingStrategyListParams = Courier::Models::RoutingStrategyListParams
+
+  RoutingStrategyListResponse = Courier::Models::RoutingStrategyListResponse
+
+  RoutingStrategyMutationResponse =
+    Courier::Models::RoutingStrategyMutationResponse
+
+  RoutingStrategyReplaceParams = Courier::Models::RoutingStrategyReplaceParams
+
+  RoutingStrategyReplaceRequest = Courier::Models::RoutingStrategyReplaceRequest
+
+  RoutingStrategyRetrieveParams = Courier::Models::RoutingStrategyRetrieveParams
+
+  RoutingStrategySummary = Courier::Models::RoutingStrategySummary
+
   Rule = Courier::Models::Rule
 
   SendDirectMessage = Courier::Models::SendDirectMessage
@@ -339,6 +378,8 @@ module Courier
   TenantUpdateParams = Courier::Models::TenantUpdateParams
 
   TextStyle = Courier::Models::TextStyle
+
+  Timeouts = Courier::Models::Timeouts
 
   Token = Courier::Models::Token
 

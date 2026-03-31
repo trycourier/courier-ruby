@@ -19,7 +19,7 @@ module Courier
               Courier::ElementalActionNodeWithType,
               Courier::ElementalDividerNodeWithType,
               Courier::ElementalQuoteNodeWithType,
-              Courier::ElementalNode::UnionMember7
+              Courier::ElementalHTMLNodeWithType
             )
           ]
         )
@@ -42,7 +42,7 @@ module Courier
                 Courier::ElementalActionNodeWithType::OrHash,
                 Courier::ElementalDividerNodeWithType::OrHash,
                 Courier::ElementalQuoteNodeWithType::OrHash,
-                Courier::ElementalNode::UnionMember7::OrHash
+                Courier::ElementalHTMLNodeWithType::OrHash
               )
             ],
           version: String
@@ -68,7 +68,7 @@ module Courier
                   Courier::ElementalActionNodeWithType,
                   Courier::ElementalDividerNodeWithType,
                   Courier::ElementalQuoteNodeWithType,
-                  Courier::ElementalNode::UnionMember7
+                  Courier::ElementalHTMLNodeWithType
                 )
               ],
             version: String

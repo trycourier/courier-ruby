@@ -8,39 +8,10 @@ module Courier
       | Courier::ElementalActionNodeWithType
       | Courier::ElementalDividerNodeWithType
       | Courier::ElementalQuoteNodeWithType
-      | Courier::ElementalNode::UnionMember7
+      | Courier::ElementalHTMLNodeWithType
 
     module ElementalNode
       extend Courier::Internal::Type::Union
-
-      type union_member7 =
-        { type: Courier::Models::ElementalNode::UnionMember7::type_ }
-
-      class UnionMember7 < Courier::Models::ElementalBaseNode
-        def `type`: -> Courier::Models::ElementalNode::UnionMember7::type_?
-
-        def type=: (
-          Courier::Models::ElementalNode::UnionMember7::type_ _
-        ) -> Courier::Models::ElementalNode::UnionMember7::type_
-
-        def initialize: (
-          ?type: Courier::Models::ElementalNode::UnionMember7::type_
-        ) -> void
-
-        def to_hash: -> {
-          type: Courier::Models::ElementalNode::UnionMember7::type_
-        }
-
-        type type_ = :html
-
-        module Type
-          extend Courier::Internal::Type::Enum
-
-          HTML: :html
-
-          def self?.values: -> ::Array[Courier::Models::ElementalNode::UnionMember7::type_]
-        end
-      end
 
       def self?.variants: -> ::Array[Courier::Models::elemental_node]
     end

@@ -81,7 +81,11 @@ module Courier
 
   class BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  class Channel = Courier::Models::Channel
+
   module ChannelClassification = Courier::Models::ChannelClassification
+
+  class ChannelMetadata = Courier::Models::ChannelMetadata
 
   class ChannelPreference = Courier::Models::ChannelPreference
 
@@ -106,6 +110,8 @@ module Courier
   class ElementalContentSugar = Courier::Models::ElementalContentSugar
 
   class ElementalDividerNodeWithType = Courier::Models::ElementalDividerNodeWithType
+
+  class ElementalHTMLNodeWithType = Courier::Models::ElementalHTMLNodeWithType
 
   class ElementalImageNodeWithType = Courier::Models::ElementalImageNodeWithType
 
@@ -173,6 +179,8 @@ module Courier
 
   class MessageCancelParams = Courier::Models::MessageCancelParams
 
+  MessageChannels: Courier::Internal::Type::Converter
+
   class MessageContentParams = Courier::Models::MessageContentParams
 
   class MessageContext = Courier::Models::MessageContext
@@ -183,11 +191,17 @@ module Courier
 
   class MessageListParams = Courier::Models::MessageListParams
 
+  MessageProviders: Courier::Internal::Type::Converter
+
+  class MessageProvidersType = Courier::Models::MessageProvidersType
+
   class MessageRetrieveParams = Courier::Models::MessageRetrieveParams
 
   class MessageRouting = Courier::Models::MessageRouting
 
   module MessageRoutingChannel = Courier::Models::MessageRoutingChannel
+
+  class Metadata = Courier::Models::Metadata
 
   module MsTeams = Courier::Models::MsTeams
 
@@ -271,6 +285,28 @@ module Courier
 
   class RequestArchiveParams = Courier::Models::RequestArchiveParams
 
+  class RoutingStrategyArchiveParams = Courier::Models::RoutingStrategyArchiveParams
+
+  class RoutingStrategyCreateParams = Courier::Models::RoutingStrategyCreateParams
+
+  class RoutingStrategyCreateRequest = Courier::Models::RoutingStrategyCreateRequest
+
+  class RoutingStrategyGetResponse = Courier::Models::RoutingStrategyGetResponse
+
+  class RoutingStrategyListParams = Courier::Models::RoutingStrategyListParams
+
+  class RoutingStrategyListResponse = Courier::Models::RoutingStrategyListResponse
+
+  class RoutingStrategyMutationResponse = Courier::Models::RoutingStrategyMutationResponse
+
+  class RoutingStrategyReplaceParams = Courier::Models::RoutingStrategyReplaceParams
+
+  class RoutingStrategyReplaceRequest = Courier::Models::RoutingStrategyReplaceRequest
+
+  class RoutingStrategyRetrieveParams = Courier::Models::RoutingStrategyRetrieveParams
+
+  class RoutingStrategySummary = Courier::Models::RoutingStrategySummary
+
   class Rule = Courier::Models::Rule
 
   class SendDirectMessage = Courier::Models::SendDirectMessage
@@ -326,6 +362,8 @@ module Courier
   class TenantUpdateParams = Courier::Models::TenantUpdateParams
 
   module TextStyle = Courier::Models::TextStyle
+
+  class Timeouts = Courier::Models::Timeouts
 
   class Token = Courier::Models::Token
 

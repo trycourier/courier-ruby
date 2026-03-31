@@ -32,10 +32,8 @@ module Courier
         #   Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
         #   inbox, direct_message, banner, webhook.
         #
-        #   @return [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Channel}, nil]
-        optional :channels,
-                 -> { Courier::Internal::Type::HashOf[Courier::SendMessageParams::Message::Channel] },
-                 nil?: true
+        #   @return [Hash{Symbol=>Courier::Models::Channel}, nil]
+        optional :channels, -> { Courier::Internal::Type::HashOf[Courier::Channel] }, nil?: true
 
         # @!attribute content
         #   Describes content that will work for email, inbox, push, chat, or any channel
@@ -76,10 +74,8 @@ module Courier
 
         # @!attribute providers
         #
-        #   @return [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Provider}, nil]
-        optional :providers,
-                 -> { Courier::Internal::Type::HashOf[Courier::SendMessageParams::Message::Provider] },
-                 nil?: true
+        #   @return [Hash{Symbol=>Courier::Models::MessageProvidersType}, nil]
+        optional :providers, -> { Courier::Internal::Type::HashOf[Courier::MessageProvidersType] }, nil?: true
 
         # @!attribute routing
         #   Customize which channels/providers Courier may deliver the message through.
@@ -112,7 +108,7 @@ module Courier
         #
         #   @param brand_id [String, nil]
         #
-        #   @param channels [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Channel}, nil] Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
+        #   @param channels [Hash{Symbol=>Courier::Models::Channel}, nil] Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
         #
         #   @param content [Courier::Models::ElementalContentSugar, Courier::Models::ElementalContent] Describes content that will work for email, inbox, push, chat, or any channel id
         #
@@ -128,7 +124,7 @@ module Courier
         #
         #   @param preferences [Courier::Models::SendMessageParams::Message::Preferences, nil]
         #
-        #   @param providers [Hash{Symbol=>Courier::Models::SendMessageParams::Message::Provider}, nil]
+        #   @param providers [Hash{Symbol=>Courier::Models::MessageProvidersType}, nil]
         #
         #   @param routing [Courier::Models::SendMessageParams::Message::Routing, nil] Customize which channels/providers Courier may deliver the message through.
         #
@@ -137,106 +133,6 @@ module Courier
         #   @param timeout [Courier::Models::SendMessageParams::Message::Timeout, nil]
         #
         #   @param to [Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient, Array<Courier::Models::UserRecipient, Courier::Models::AudienceRecipient, Courier::Models::ListRecipient, Courier::Models::ListPatternRecipient, Courier::Models::SlackRecipient, Courier::Models::MsTeamsRecipient, Courier::Models::PagerdutyRecipient, Courier::Models::WebhookRecipient>, nil] The recipient or a list of recipients of the message
-
-        class Channel < Courier::Internal::Type::BaseModel
-          # @!attribute brand_id
-          #   Brand id used for rendering.
-          #
-          #   @return [String, nil]
-          optional :brand_id, String, nil?: true
-
-          # @!attribute if_
-          #   JS conditional with access to data/profile.
-          #
-          #   @return [String, nil]
-          optional :if_, String, api_name: :if, nil?: true
-
-          # @!attribute metadata
-          #
-          #   @return [Courier::Models::SendMessageParams::Message::Channel::Metadata, nil]
-          optional :metadata, -> { Courier::SendMessageParams::Message::Channel::Metadata }, nil?: true
-
-          # @!attribute override
-          #   Channel specific overrides.
-          #
-          #   @return [Hash{Symbol=>Object}, nil]
-          optional :override, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
-
-          # @!attribute providers
-          #   Providers enabled for this channel.
-          #
-          #   @return [Array<String>, nil]
-          optional :providers, Courier::Internal::Type::ArrayOf[String], nil?: true
-
-          # @!attribute routing_method
-          #   Defaults to `single`.
-          #
-          #   @return [Symbol, Courier::Models::SendMessageParams::Message::Channel::RoutingMethod, nil]
-          optional :routing_method,
-                   enum: -> { Courier::SendMessageParams::Message::Channel::RoutingMethod },
-                   nil?: true
-
-          # @!attribute timeouts
-          #
-          #   @return [Courier::Models::SendMessageParams::Message::Channel::Timeouts, nil]
-          optional :timeouts, -> { Courier::SendMessageParams::Message::Channel::Timeouts }, nil?: true
-
-          # @!method initialize(brand_id: nil, if_: nil, metadata: nil, override: nil, providers: nil, routing_method: nil, timeouts: nil)
-          #   @param brand_id [String, nil] Brand id used for rendering.
-          #
-          #   @param if_ [String, nil] JS conditional with access to data/profile.
-          #
-          #   @param metadata [Courier::Models::SendMessageParams::Message::Channel::Metadata, nil]
-          #
-          #   @param override [Hash{Symbol=>Object}, nil] Channel specific overrides.
-          #
-          #   @param providers [Array<String>, nil] Providers enabled for this channel.
-          #
-          #   @param routing_method [Symbol, Courier::Models::SendMessageParams::Message::Channel::RoutingMethod, nil] Defaults to `single`.
-          #
-          #   @param timeouts [Courier::Models::SendMessageParams::Message::Channel::Timeouts, nil]
-
-          # @see Courier::Models::SendMessageParams::Message::Channel#metadata
-          class Metadata < Courier::Internal::Type::BaseModel
-            # @!attribute utm
-            #
-            #   @return [Courier::Models::Utm, nil]
-            optional :utm, -> { Courier::Utm }, nil?: true
-
-            # @!method initialize(utm: nil)
-            #   @param utm [Courier::Models::Utm, nil]
-          end
-
-          # Defaults to `single`.
-          #
-          # @see Courier::Models::SendMessageParams::Message::Channel#routing_method
-          module RoutingMethod
-            extend Courier::Internal::Type::Enum
-
-            ALL = :all
-            SINGLE = :single
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # @see Courier::Models::SendMessageParams::Message::Channel#timeouts
-          class Timeouts < Courier::Internal::Type::BaseModel
-            # @!attribute channel
-            #
-            #   @return [Integer, nil]
-            optional :channel, Integer, nil?: true
-
-            # @!attribute provider
-            #
-            #   @return [Integer, nil]
-            optional :provider, Integer, nil?: true
-
-            # @!method initialize(channel: nil, provider: nil)
-            #   @param channel [Integer, nil]
-            #   @param provider [Integer, nil]
-          end
-        end
 
         # Describes content that will work for email, inbox, push, chat, or any channel
         # id.
@@ -360,50 +256,6 @@ module Courier
 
           # @!method initialize(subscription_topic_id:)
           #   @param subscription_topic_id [String] The subscription topic to apply to the message.
-        end
-
-        class Provider < Courier::Internal::Type::BaseModel
-          # @!attribute if_
-          #   JS conditional with access to data/profile.
-          #
-          #   @return [String, nil]
-          optional :if_, String, api_name: :if, nil?: true
-
-          # @!attribute metadata
-          #
-          #   @return [Courier::Models::SendMessageParams::Message::Provider::Metadata, nil]
-          optional :metadata, -> { Courier::SendMessageParams::Message::Provider::Metadata }, nil?: true
-
-          # @!attribute override
-          #   Provider-specific overrides.
-          #
-          #   @return [Hash{Symbol=>Object}, nil]
-          optional :override, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
-
-          # @!attribute timeouts
-          #
-          #   @return [Integer, nil]
-          optional :timeouts, Integer, nil?: true
-
-          # @!method initialize(if_: nil, metadata: nil, override: nil, timeouts: nil)
-          #   @param if_ [String, nil] JS conditional with access to data/profile.
-          #
-          #   @param metadata [Courier::Models::SendMessageParams::Message::Provider::Metadata, nil]
-          #
-          #   @param override [Hash{Symbol=>Object}, nil] Provider-specific overrides.
-          #
-          #   @param timeouts [Integer, nil]
-
-          # @see Courier::Models::SendMessageParams::Message::Provider#metadata
-          class Metadata < Courier::Internal::Type::BaseModel
-            # @!attribute utm
-            #
-            #   @return [Courier::Models::Utm, nil]
-            optional :utm, -> { Courier::Utm }, nil?: true
-
-            # @!method initialize(utm: nil)
-            #   @param utm [Courier::Models::Utm, nil]
-          end
         end
 
         # @see Courier::Models::SendMessageParams::Message#routing

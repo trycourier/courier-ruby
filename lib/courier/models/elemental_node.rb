@@ -37,29 +37,10 @@ module Courier
 
       variant -> { Courier::ElementalQuoteNodeWithType }
 
-      variant -> { Courier::ElementalNode::UnionMember7 }
-
-      class UnionMember7 < Courier::Models::ElementalBaseNode
-        # @!attribute type
-        #
-        #   @return [Symbol, Courier::Models::ElementalNode::UnionMember7::Type, nil]
-        optional :type, enum: -> { Courier::ElementalNode::UnionMember7::Type }
-
-        # @!method initialize(type: nil)
-        #   @param type [Symbol, Courier::Models::ElementalNode::UnionMember7::Type]
-
-        module Type
-          extend Courier::Internal::Type::Enum
-
-          HTML = :html
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-      end
+      variant -> { Courier::ElementalHTMLNodeWithType }
 
       # @!method self.variants
-      #   @return [Array(Courier::Models::ElementalTextNodeWithType, Courier::Models::ElementalMetaNodeWithType, Courier::Models::ElementalChannelNodeWithType, Courier::Models::ElementalImageNodeWithType, Courier::Models::ElementalActionNodeWithType, Courier::Models::ElementalDividerNodeWithType, Courier::Models::ElementalQuoteNodeWithType, Courier::Models::ElementalNode::UnionMember7)]
+      #   @return [Array(Courier::Models::ElementalTextNodeWithType, Courier::Models::ElementalMetaNodeWithType, Courier::Models::ElementalChannelNodeWithType, Courier::Models::ElementalImageNodeWithType, Courier::Models::ElementalActionNodeWithType, Courier::Models::ElementalDividerNodeWithType, Courier::Models::ElementalQuoteNodeWithType, Courier::Models::ElementalHTMLNodeWithType)]
     end
   end
 end

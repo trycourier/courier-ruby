@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type elemental_html_node_with_type =
+      { type: Courier::Models::ElementalHTMLNodeWithType::type_ }
+
+    class ElementalHTMLNodeWithType < Courier::Models::ElementalBaseNode
+      def `type`: -> Courier::Models::ElementalHTMLNodeWithType::type_?
+
+      def type=: (
+        Courier::Models::ElementalHTMLNodeWithType::type_ _
+      ) -> Courier::Models::ElementalHTMLNodeWithType::type_
+
+      def initialize: (
+        ?type: Courier::Models::ElementalHTMLNodeWithType::type_
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::ElementalHTMLNodeWithType::type_
+      }
+
+      type type_ = :html
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        HTML: :html
+
+        def self?.values: -> ::Array[Courier::Models::ElementalHTMLNodeWithType::type_]
+      end
+    end
+  end
+end

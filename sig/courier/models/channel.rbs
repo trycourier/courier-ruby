@@ -1,0 +1,61 @@
+module Courier
+  module Models
+    type channel =
+      {
+        brand_id: String?,
+        if_: String?,
+        metadata: Courier::ChannelMetadata?,
+        override: ::Hash[Symbol, top]?,
+        providers: ::Array[String]?,
+        routing_method: Courier::Models::Channel::routing_method?,
+        timeouts: Courier::Timeouts?
+      }
+
+    class Channel < Courier::Internal::Type::BaseModel
+      attr_accessor brand_id: String?
+
+      attr_accessor if_: String?
+
+      attr_accessor metadata: Courier::ChannelMetadata?
+
+      attr_accessor override: ::Hash[Symbol, top]?
+
+      attr_accessor providers: ::Array[String]?
+
+      attr_accessor routing_method: Courier::Models::Channel::routing_method?
+
+      attr_accessor timeouts: Courier::Timeouts?
+
+      def initialize: (
+        ?brand_id: String?,
+        ?if_: String?,
+        ?metadata: Courier::ChannelMetadata?,
+        ?override: ::Hash[Symbol, top]?,
+        ?providers: ::Array[String]?,
+        ?routing_method: Courier::Models::Channel::routing_method?,
+        ?timeouts: Courier::Timeouts?
+      ) -> void
+
+      def to_hash: -> {
+        brand_id: String?,
+        if_: String?,
+        metadata: Courier::ChannelMetadata?,
+        override: ::Hash[Symbol, top]?,
+        providers: ::Array[String]?,
+        routing_method: Courier::Models::Channel::routing_method?,
+        timeouts: Courier::Timeouts?
+      }
+
+      type routing_method = :all | :single
+
+      module RoutingMethod
+        extend Courier::Internal::Type::Enum
+
+        ALL: :all
+        SINGLE: :single
+
+        def self?.values: -> ::Array[Courier::Models::Channel::routing_method]
+      end
+    end
+  end
+end

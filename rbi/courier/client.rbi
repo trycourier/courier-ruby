@@ -52,6 +52,9 @@ module Courier
     sig { returns(Courier::Resources::Notifications) }
     attr_reader :notifications
 
+    sig { returns(Courier::Resources::RoutingStrategies) }
+    attr_reader :routing_strategies
+
     sig { returns(Courier::Resources::Profiles) }
     attr_reader :profiles
 
