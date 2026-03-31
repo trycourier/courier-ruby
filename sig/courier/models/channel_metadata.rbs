@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type channel_metadata = { utm: Courier::Utm? }
+
+    class ChannelMetadata < Courier::Internal::Type::BaseModel
+      attr_accessor utm: Courier::Utm?
+
+      def initialize: (?utm: Courier::Utm?) -> void
+
+      def to_hash: -> { utm: Courier::Utm? }
+    end
+  end
+end

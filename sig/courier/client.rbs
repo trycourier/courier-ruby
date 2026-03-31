@@ -36,6 +36,8 @@ module Courier
 
     attr_reader notifications: Courier::Resources::Notifications
 
+    attr_reader routing_strategies: Courier::Resources::RoutingStrategies
+
     attr_reader profiles: Courier::Resources::Profiles
 
     attr_reader tenants: Courier::Resources::Tenants

@@ -1,0 +1,7 @@
+module Courier
+  module Models
+    type message_channels = ::Hash[Symbol, Courier::Channel]
+
+    MessageChannels: Courier::Internal::Type::Converter
+  end
+end

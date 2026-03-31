@@ -57,6 +57,9 @@ module Courier
     # @return [Courier::Resources::Notifications]
     attr_reader :notifications
 
+    # @return [Courier::Resources::RoutingStrategies]
+    attr_reader :routing_strategies
+
     # @return [Courier::Resources::Profiles]
     attr_reader :profiles
 
@@ -129,6 +132,7 @@ module Courier
       @messages = Courier::Resources::Messages.new(client: self)
       @requests = Courier::Resources::Requests.new(client: self)
       @notifications = Courier::Resources::Notifications.new(client: self)
+      @routing_strategies = Courier::Resources::RoutingStrategies.new(client: self)
       @profiles = Courier::Resources::Profiles.new(client: self)
       @tenants = Courier::Resources::Tenants.new(client: self)
       @translations = Courier::Resources::Translations.new(client: self)

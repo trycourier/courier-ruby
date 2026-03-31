@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    type routing_strategy_list_response =
+      {
+        paging: Courier::Paging,
+        results: ::Array[Courier::RoutingStrategySummary]
+      }
+
+    class RoutingStrategyListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor paging: Courier::Paging
+
+      attr_accessor results: ::Array[Courier::RoutingStrategySummary]
+
+      def initialize: (
+        paging: Courier::Paging,
+        results: ::Array[Courier::RoutingStrategySummary]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Courier::Paging,
+        results: ::Array[Courier::RoutingStrategySummary]
+      }
+    end
+  end
+end

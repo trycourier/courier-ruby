@@ -1,0 +1,35 @@
+module Courier
+  module Models
+    type message_providers_type =
+      {
+        if_: String?,
+        metadata: Courier::Metadata?,
+        override: ::Hash[Symbol, top]?,
+        timeouts: Integer?
+      }
+
+    class MessageProvidersType < Courier::Internal::Type::BaseModel
+      attr_accessor if_: String?
+
+      attr_accessor metadata: Courier::Metadata?
+
+      attr_accessor override: ::Hash[Symbol, top]?
+
+      attr_accessor timeouts: Integer?
+
+      def initialize: (
+        ?if_: String?,
+        ?metadata: Courier::Metadata?,
+        ?override: ::Hash[Symbol, top]?,
+        ?timeouts: Integer?
+      ) -> void
+
+      def to_hash: -> {
+        if_: String?,
+        metadata: Courier::Metadata?,
+        override: ::Hash[Symbol, top]?,
+        timeouts: Integer?
+      }
+    end
+  end
+end

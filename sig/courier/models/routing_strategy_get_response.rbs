@@ -1,0 +1,70 @@
+module Courier
+  module Models
+    type routing_strategy_get_response =
+      {
+        id: String,
+        channels: Courier::Models::message_channels,
+        created: Integer,
+        creator: String,
+        name: String,
+        providers: Courier::Models::message_providers,
+        routing: Courier::MessageRouting,
+        description: String?,
+        tags: ::Array[String]?,
+        updated: Integer?,
+        updater: String?
+      }
+
+    class RoutingStrategyGetResponse < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor channels: Courier::Models::message_channels
+
+      attr_accessor created: Integer
+
+      attr_accessor creator: String
+
+      attr_accessor name: String
+
+      attr_accessor providers: Courier::Models::message_providers
+
+      attr_accessor routing: Courier::MessageRouting
+
+      attr_accessor description: String?
+
+      attr_accessor tags: ::Array[String]?
+
+      attr_accessor updated: Integer?
+
+      attr_accessor updater: String?
+
+      def initialize: (
+        id: String,
+        channels: Courier::Models::message_channels,
+        created: Integer,
+        creator: String,
+        name: String,
+        providers: Courier::Models::message_providers,
+        routing: Courier::MessageRouting,
+        ?description: String?,
+        ?tags: ::Array[String]?,
+        ?updated: Integer?,
+        ?updater: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        channels: Courier::Models::message_channels,
+        created: Integer,
+        creator: String,
+        name: String,
+        providers: Courier::Models::message_providers,
+        routing: Courier::MessageRouting,
+        description: String?,
+        tags: ::Array[String]?,
+        updated: Integer?,
+        updater: String?
+      }
+    end
+  end
+end

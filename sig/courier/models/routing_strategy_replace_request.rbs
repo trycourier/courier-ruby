@@ -1,0 +1,45 @@
+module Courier
+  module Models
+    type routing_strategy_replace_request =
+      {
+        name: String,
+        routing: Courier::MessageRouting,
+        channels: Courier::Models::message_channels?,
+        description: String?,
+        providers: Courier::Models::message_providers?,
+        tags: ::Array[String]?
+      }
+
+    class RoutingStrategyReplaceRequest < Courier::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor routing: Courier::MessageRouting
+
+      attr_accessor channels: Courier::Models::message_channels?
+
+      attr_accessor description: String?
+
+      attr_accessor providers: Courier::Models::message_providers?
+
+      attr_accessor tags: ::Array[String]?
+
+      def initialize: (
+        name: String,
+        routing: Courier::MessageRouting,
+        ?channels: Courier::Models::message_channels?,
+        ?description: String?,
+        ?providers: Courier::Models::message_providers?,
+        ?tags: ::Array[String]?
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        routing: Courier::MessageRouting,
+        channels: Courier::Models::message_channels?,
+        description: String?,
+        providers: Courier::Models::message_providers?,
+        tags: ::Array[String]?
+      }
+    end
+  end
+end

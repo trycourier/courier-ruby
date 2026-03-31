@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type routing_strategy_mutation_response = { id: String }
+
+    class RoutingStrategyMutationResponse < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      def initialize: (id: String) -> void
+
+      def to_hash: -> { id: String }
+    end
+  end
+end
