@@ -1,5 +1,37 @@
 # Changelog
 
+## 4.9.0 (2026-04-01)
+
+Full Changelog: [v4.8.0...v4.9.0](https://github.com/trycourier/courier-ruby/compare/v4.8.0...v4.9.0)
+
+### Features
+
+* **api:** add html variant to elemental_node union ([a5a5a5d](https://github.com/trycourier/courier-ruby/commit/a5a5a5d025d5ddb27a79872b15efaaa08785b032))
+* **api:** add notification template CRUD methods, update list params/types ([4861f87](https://github.com/trycourier/courier-ruby/commit/4861f87ead15aba7b148dc8d2790fe2d018157c9))
+* **api:** add providers resource with create/retrieve/update/list/delete and catalog ([5191261](https://github.com/trycourier/courier-ruby/commit/519126120e84dea8276094325e49d350eff3f7bc))
+* **api:** add routing_strategies resource with create/retrieve/list/replace/archive ([6c64599](https://github.com/trycourier/courier-ruby/commit/6c645999dd54ac75bdb777745363d662f7d9da64))
+
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([916afaa](https://github.com/trycourier/courier-ruby/commit/916afaafd525d4d77a42a0739e892c4d4cf5d933))
+* **internal:** correct multipart form field name encoding ([7925b72](https://github.com/trycourier/courier-ruby/commit/7925b72544622783dd17527da1729f6f48ddb744))
+* variable name typo ([1f59fd2](https://github.com/trycourier/courier-ruby/commit/1f59fd2c73459908b337b98135efbd79bf0bfb9a))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([22a3e8d](https://github.com/trycourier/courier-ruby/commit/22a3e8d5bbfe6953bca20ba54b7bb2007f4f37c0))
+* **ci:** support opting out of skipping builds on metadata-only commits ([a6c047e](https://github.com/trycourier/courier-ruby/commit/a6c047eaa9730f8c398082cd422bf0bc1087e882))
+* **internal:** tweak CI branches ([08eccfe](https://github.com/trycourier/courier-ruby/commit/08eccfe4c37358304a97686df7248dc02f6ea0f4))
+* **internal:** update gitignore ([95860ac](https://github.com/trycourier/courier-ruby/commit/95860acf54c665132e957913d0fc6187cadaf64c))
+
+
+### Documentation
+
+* add AGENTS.md for AI coding assistants ([#81](https://github.com/trycourier/courier-ruby/issues/81)) ([ff1b8c2](https://github.com/trycourier/courier-ruby/commit/ff1b8c2e58007e1ccd5e631e07f28daf2027cef2))
+* sync README from mintlify-docs (2026-03-23 19:54 UTC) ([#79](https://github.com/trycourier/courier-ruby/issues/79)) ([4b83d99](https://github.com/trycourier/courier-ruby/commit/4b83d99126c8ddedf8e137cfc683bc6be998cc35))
+
 ## 4.8.0 (2026-03-12)
 
 Full Changelog: [v4.7.1...v4.8.0](https://github.com/trycourier/courier-ruby/compare/v4.7.1...v4.8.0)
