@@ -1,0 +1,38 @@
+module Courier
+  module Resources
+    class Providers
+      attr_reader catalog: Courier::Resources::Providers::Catalog
+
+      def create: (
+        provider: String,
+        ?alias_: String,
+        ?settings: ::Hash[Symbol, top],
+        ?title: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Provider
+
+      def retrieve: (
+        String id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Provider
+
+      def update: (
+        String id,
+        provider: String,
+        ?alias_: String,
+        ?settings: ::Hash[Symbol, top],
+        ?title: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Provider
+
+      def list: (
+        ?cursor: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::ProviderListResponse
+
+      def delete: (String id, ?request_options: Courier::request_opts) -> nil
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

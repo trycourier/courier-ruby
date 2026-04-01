@@ -1,0 +1,64 @@
+module Courier
+  module Models
+    type providers_catalog_entry =
+      {
+        channel: String,
+        description: String,
+        name: String,
+        provider: String,
+        settings: ::Hash[Symbol, Courier::ProvidersCatalogEntry::Setting]
+      }
+
+    class ProvidersCatalogEntry < Courier::Internal::Type::BaseModel
+      attr_accessor channel: String
+
+      attr_accessor description: String
+
+      attr_accessor name: String
+
+      attr_accessor provider: String
+
+      attr_accessor settings: ::Hash[Symbol, Courier::ProvidersCatalogEntry::Setting]
+
+      def initialize: (
+        channel: String,
+        description: String,
+        name: String,
+        provider: String,
+        settings: ::Hash[Symbol, Courier::ProvidersCatalogEntry::Setting]
+      ) -> void
+
+      def to_hash: -> {
+        channel: String,
+        description: String,
+        name: String,
+        provider: String,
+        settings: ::Hash[Symbol, Courier::ProvidersCatalogEntry::Setting]
+      }
+
+      type setting = { required: bool, type: String, values: ::Array[String] }
+
+      class Setting < Courier::Internal::Type::BaseModel
+        attr_accessor required: bool
+
+        attr_accessor type: String
+
+        attr_reader values: ::Array[String]?
+
+        def values=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          required: bool,
+          type: String,
+          ?values: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          required: bool,
+          type: String,
+          values: ::Array[String]
+        }
+      end
+    end
+  end
+end

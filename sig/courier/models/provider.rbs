@@ -1,0 +1,52 @@
+module Courier
+  module Models
+    type provider =
+      {
+        id: String,
+        created: Integer,
+        provider: String,
+        settings: ::Hash[Symbol, top],
+        title: String,
+        alias_: String,
+        updated: Integer?
+      }
+
+    class Provider < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created: Integer
+
+      attr_accessor provider: String
+
+      attr_accessor settings: ::Hash[Symbol, top]
+
+      attr_accessor title: String
+
+      attr_reader alias_: String?
+
+      def alias_=: (String) -> String
+
+      attr_accessor updated: Integer?
+
+      def initialize: (
+        id: String,
+        created: Integer,
+        provider: String,
+        settings: ::Hash[Symbol, top],
+        title: String,
+        ?alias_: String,
+        ?updated: Integer?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created: Integer,
+        provider: String,
+        settings: ::Hash[Symbol, top],
+        title: String,
+        alias_: String,
+        updated: Integer?
+      }
+    end
+  end
+end

@@ -290,6 +290,22 @@ module Courier
 
   ProfileUpdateParams = Courier::Models::ProfileUpdateParams
 
+  Provider = Courier::Models::Provider
+
+  ProviderCreateParams = Courier::Models::ProviderCreateParams
+
+  ProviderDeleteParams = Courier::Models::ProviderDeleteParams
+
+  ProviderListParams = Courier::Models::ProviderListParams
+
+  ProviderRetrieveParams = Courier::Models::ProviderRetrieveParams
+
+  Providers = Courier::Models::Providers
+
+  ProvidersCatalogEntry = Courier::Models::ProvidersCatalogEntry
+
+  ProviderUpdateParams = Courier::Models::ProviderUpdateParams
+
   PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient
 
   PutTenantTemplateRequest = Courier::Models::PutTenantTemplateRequest
