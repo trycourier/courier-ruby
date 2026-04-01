@@ -24,6 +24,9 @@ module Courier
     # @return [Courier::Resources::Audiences]
     attr_reader :audiences
 
+    # @return [Courier::Resources::Providers]
+    attr_reader :providers
+
     # @return [Courier::Resources::AuditEvents]
     attr_reader :audit_events
 
@@ -121,6 +124,7 @@ module Courier
 
       @send_ = Courier::Resources::Send.new(client: self)
       @audiences = Courier::Resources::Audiences.new(client: self)
+      @providers = Courier::Resources::Providers.new(client: self)
       @audit_events = Courier::Resources::AuditEvents.new(client: self)
       @auth = Courier::Resources::Auth.new(client: self)
       @automations = Courier::Resources::Automations.new(client: self)
