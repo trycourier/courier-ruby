@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    trycourier (4.8.0)
+    trycourier (4.9.0)
       cgi
       connection_pool
 
