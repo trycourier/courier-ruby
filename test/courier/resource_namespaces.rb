@@ -18,6 +18,9 @@ module Courier
       module Profiles
       end
 
+      module Providers
+      end
+
       module Templates
       end
 

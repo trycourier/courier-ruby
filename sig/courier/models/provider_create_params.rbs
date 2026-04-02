@@ -1,0 +1,47 @@
+module Courier
+  module Models
+    type provider_create_params =
+      {
+        provider: String,
+        alias_: String,
+        settings: ::Hash[Symbol, top],
+        title: String
+      }
+      & Courier::Internal::Type::request_parameters
+
+    class ProviderCreateParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor provider: String
+
+      attr_reader alias_: String?
+
+      def alias_=: (String) -> String
+
+      attr_reader settings: ::Hash[Symbol, top]?
+
+      def settings=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader title: String?
+
+      def title=: (String) -> String
+
+      def initialize: (
+        provider: String,
+        ?alias_: String,
+        ?settings: ::Hash[Symbol, top],
+        ?title: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        provider: String,
+        alias_: String,
+        settings: ::Hash[Symbol, top],
+        title: String,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

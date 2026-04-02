@@ -1,0 +1,40 @@
+module Courier
+  module Models
+    module Providers
+      type catalog_list_params =
+        { channel: String, keys: String, name: String }
+        & Courier::Internal::Type::request_parameters
+
+      class CatalogListParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_reader channel: String?
+
+        def channel=: (String) -> String
+
+        attr_reader keys: String?
+
+        def keys=: (String) -> String
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (
+          ?channel: String,
+          ?keys: String,
+          ?name: String,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          channel: String,
+          keys: String,
+          name: String,
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

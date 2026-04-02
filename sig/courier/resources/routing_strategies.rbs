@@ -1,0 +1,41 @@
+module Courier
+  module Resources
+    class RoutingStrategies
+      def create: (
+        name: String,
+        routing: Courier::MessageRouting,
+        ?channels: Courier::Models::message_channels?,
+        ?description: String?,
+        ?providers: Courier::Models::message_providers?,
+        ?tags: ::Array[String]?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::RoutingStrategyMutationResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::RoutingStrategyGetResponse
+
+      def list: (
+        ?cursor: String?,
+        ?limit: Integer,
+        ?request_options: Courier::request_opts
+      ) -> Courier::RoutingStrategyListResponse
+
+      def archive: (String id, ?request_options: Courier::request_opts) -> nil
+
+      def replace: (
+        String id,
+        name: String,
+        routing: Courier::MessageRouting,
+        ?channels: Courier::Models::message_channels?,
+        ?description: String?,
+        ?providers: Courier::Models::message_providers?,
+        ?tags: ::Array[String]?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::RoutingStrategyMutationResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

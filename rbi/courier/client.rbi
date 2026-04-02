@@ -19,6 +19,9 @@ module Courier
     sig { returns(Courier::Resources::Audiences) }
     attr_reader :audiences
 
+    sig { returns(Courier::Resources::Providers) }
+    attr_reader :providers
+
     sig { returns(Courier::Resources::AuditEvents) }
     attr_reader :audit_events
 
@@ -51,6 +54,9 @@ module Courier
 
     sig { returns(Courier::Resources::Notifications) }
     attr_reader :notifications
+
+    sig { returns(Courier::Resources::RoutingStrategies) }
+    attr_reader :routing_strategies
 
     sig { returns(Courier::Resources::Profiles) }
     attr_reader :profiles

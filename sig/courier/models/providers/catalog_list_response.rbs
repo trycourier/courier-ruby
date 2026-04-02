@@ -1,0 +1,27 @@
+module Courier
+  module Models
+    module Providers
+      type catalog_list_response =
+        {
+          paging: Courier::Paging,
+          results: ::Array[Courier::ProvidersCatalogEntry]
+        }
+
+      class CatalogListResponse < Courier::Internal::Type::BaseModel
+        attr_accessor paging: Courier::Paging
+
+        attr_accessor results: ::Array[Courier::ProvidersCatalogEntry]
+
+        def initialize: (
+          paging: Courier::Paging,
+          results: ::Array[Courier::ProvidersCatalogEntry]
+        ) -> void
+
+        def to_hash: -> {
+          paging: Courier::Paging,
+          results: ::Array[Courier::ProvidersCatalogEntry]
+        }
+      end
+    end
+  end
+end

@@ -24,6 +24,9 @@ module Courier
     # @return [Courier::Resources::Audiences]
     attr_reader :audiences
 
+    # @return [Courier::Resources::Providers]
+    attr_reader :providers
+
     # @return [Courier::Resources::AuditEvents]
     attr_reader :audit_events
 
@@ -56,6 +59,9 @@ module Courier
 
     # @return [Courier::Resources::Notifications]
     attr_reader :notifications
+
+    # @return [Courier::Resources::RoutingStrategies]
+    attr_reader :routing_strategies
 
     # @return [Courier::Resources::Profiles]
     attr_reader :profiles
@@ -118,6 +124,7 @@ module Courier
 
       @send_ = Courier::Resources::Send.new(client: self)
       @audiences = Courier::Resources::Audiences.new(client: self)
+      @providers = Courier::Resources::Providers.new(client: self)
       @audit_events = Courier::Resources::AuditEvents.new(client: self)
       @auth = Courier::Resources::Auth.new(client: self)
       @automations = Courier::Resources::Automations.new(client: self)
@@ -129,6 +136,7 @@ module Courier
       @messages = Courier::Resources::Messages.new(client: self)
       @requests = Courier::Resources::Requests.new(client: self)
       @notifications = Courier::Resources::Notifications.new(client: self)
+      @routing_strategies = Courier::Resources::RoutingStrategies.new(client: self)
       @profiles = Courier::Resources::Profiles.new(client: self)
       @tenants = Courier::Resources::Tenants.new(client: self)
       @translations = Courier::Resources::Translations.new(client: self)

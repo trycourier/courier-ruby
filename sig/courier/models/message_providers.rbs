@@ -1,0 +1,7 @@
+module Courier
+  module Models
+    type message_providers = ::Hash[Symbol, Courier::MessageProvidersType]
+
+    MessageProviders: Courier::Internal::Type::Converter
+  end
+end

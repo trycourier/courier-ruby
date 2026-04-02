@@ -5,11 +5,46 @@ module Courier
 
       attr_reader checks: Courier::Resources::Notifications::Checks
 
+      def create: (
+        notification: Courier::NotificationTemplatePayload,
+        ?state: Courier::Models::NotificationTemplateCreateRequest::state,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationTemplateMutationResponse
+
+      def retrieve: (
+        String id,
+        ?version: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationTemplateGetResponse
+
       def list: (
         ?cursor: String?,
+        ?event_id: String,
         ?notes: bool?,
         ?request_options: Courier::request_opts
       ) -> Courier::Models::NotificationListResponse
+
+      def archive: (String id, ?request_options: Courier::request_opts) -> nil
+
+      def list_versions: (
+        String id,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationTemplateVersionListResponse
+
+      def publish: (
+        String id,
+        ?version: String,
+        ?request_options: Courier::request_opts
+      ) -> nil
+
+      def replace: (
+        String id,
+        notification: Courier::NotificationTemplatePayload,
+        ?state: Courier::Models::NotificationTemplateUpdateRequest::state,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationTemplateMutationResponse
 
       def retrieve_content: (
         String id,

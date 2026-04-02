@@ -58,13 +58,7 @@ module Courier
 
         # Define run-time configuration for channels. Valid ChannelId's: email, sms, push,
         # inbox, direct_message, banner, webhook.
-        sig do
-          returns(
-            T.nilable(
-              T::Hash[Symbol, Courier::SendMessageParams::Message::Channel]
-            )
-          )
-        end
+        sig { returns(T.nilable(T::Hash[Symbol, Courier::Channel])) }
         attr_accessor :channels
 
         # Describes content that will work for email, inbox, push, chat, or any channel
@@ -148,11 +142,7 @@ module Courier
         attr_writer :preferences
 
         sig do
-          returns(
-            T.nilable(
-              T::Hash[Symbol, Courier::SendMessageParams::Message::Provider]
-            )
-          )
+          returns(T.nilable(T::Hash[Symbol, Courier::MessageProvidersType]))
         end
         attr_accessor :providers
 
@@ -218,13 +208,7 @@ module Courier
         sig do
           params(
             brand_id: T.nilable(String),
-            channels:
-              T.nilable(
-                T::Hash[
-                  Symbol,
-                  Courier::SendMessageParams::Message::Channel::OrHash
-                ]
-              ),
+            channels: T.nilable(T::Hash[Symbol, Courier::Channel::OrHash]),
             content:
               T.any(
                 Courier::ElementalContentSugar::OrHash,
@@ -243,12 +227,7 @@ module Courier
                 Courier::SendMessageParams::Message::Preferences::OrHash
               ),
             providers:
-              T.nilable(
-                T::Hash[
-                  Symbol,
-                  Courier::SendMessageParams::Message::Provider::OrHash
-                ]
-              ),
+              T.nilable(T::Hash[Symbol, Courier::MessageProvidersType::OrHash]),
             routing:
               T.nilable(Courier::SendMessageParams::Message::Routing::OrHash),
             template: T.nilable(String),
@@ -309,10 +288,7 @@ module Courier
           override.returns(
             {
               brand_id: T.nilable(String),
-              channels:
-                T.nilable(
-                  T::Hash[Symbol, Courier::SendMessageParams::Message::Channel]
-                ),
+              channels: T.nilable(T::Hash[Symbol, Courier::Channel]),
               content:
                 T.any(
                   Courier::ElementalContentSugar,
@@ -327,9 +303,7 @@ module Courier
               preferences:
                 T.nilable(Courier::SendMessageParams::Message::Preferences),
               providers:
-                T.nilable(
-                  T::Hash[Symbol, Courier::SendMessageParams::Message::Provider]
-                ),
+                T.nilable(T::Hash[Symbol, Courier::MessageProvidersType]),
               routing: T.nilable(Courier::SendMessageParams::Message::Routing),
               template: T.nilable(String),
               timeout: T.nilable(Courier::SendMessageParams::Message::Timeout),
@@ -362,233 +336,6 @@ module Courier
           )
         end
         def to_hash
-        end
-
-        class Channel < Courier::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Courier::SendMessageParams::Message::Channel,
-                Courier::Internal::AnyHash
-              )
-            end
-
-          # Brand id used for rendering.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :brand_id
-
-          # JS conditional with access to data/profile.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :if_
-
-          sig do
-            returns(
-              T.nilable(Courier::SendMessageParams::Message::Channel::Metadata)
-            )
-          end
-          attr_reader :metadata
-
-          sig do
-            params(
-              metadata:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Channel::Metadata::OrHash
-                )
-            ).void
-          end
-          attr_writer :metadata
-
-          # Channel specific overrides.
-          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-          attr_accessor :override
-
-          # Providers enabled for this channel.
-          sig { returns(T.nilable(T::Array[String])) }
-          attr_accessor :providers
-
-          # Defaults to `single`.
-          sig do
-            returns(
-              T.nilable(
-                Courier::SendMessageParams::Message::Channel::RoutingMethod::OrSymbol
-              )
-            )
-          end
-          attr_accessor :routing_method
-
-          sig do
-            returns(
-              T.nilable(Courier::SendMessageParams::Message::Channel::Timeouts)
-            )
-          end
-          attr_reader :timeouts
-
-          sig do
-            params(
-              timeouts:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Channel::Timeouts::OrHash
-                )
-            ).void
-          end
-          attr_writer :timeouts
-
-          sig do
-            params(
-              brand_id: T.nilable(String),
-              if_: T.nilable(String),
-              metadata:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Channel::Metadata::OrHash
-                ),
-              override: T.nilable(T::Hash[Symbol, T.anything]),
-              providers: T.nilable(T::Array[String]),
-              routing_method:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Channel::RoutingMethod::OrSymbol
-                ),
-              timeouts:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Channel::Timeouts::OrHash
-                )
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Brand id used for rendering.
-            brand_id: nil,
-            # JS conditional with access to data/profile.
-            if_: nil,
-            metadata: nil,
-            # Channel specific overrides.
-            override: nil,
-            # Providers enabled for this channel.
-            providers: nil,
-            # Defaults to `single`.
-            routing_method: nil,
-            timeouts: nil
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                brand_id: T.nilable(String),
-                if_: T.nilable(String),
-                metadata:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::Channel::Metadata
-                  ),
-                override: T.nilable(T::Hash[Symbol, T.anything]),
-                providers: T.nilable(T::Array[String]),
-                routing_method:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::Channel::RoutingMethod::OrSymbol
-                  ),
-                timeouts:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::Channel::Timeouts
-                  )
-              }
-            )
-          end
-          def to_hash
-          end
-
-          class Metadata < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendMessageParams::Message::Channel::Metadata,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig { returns(T.nilable(Courier::Utm)) }
-            attr_reader :utm
-
-            sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
-            attr_writer :utm
-
-            sig do
-              params(utm: T.nilable(Courier::Utm::OrHash)).returns(
-                T.attached_class
-              )
-            end
-            def self.new(utm: nil)
-            end
-
-            sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
-            def to_hash
-            end
-          end
-
-          # Defaults to `single`.
-          module RoutingMethod
-            extend Courier::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Courier::SendMessageParams::Message::Channel::RoutingMethod
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            ALL =
-              T.let(
-                :all,
-                Courier::SendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
-              )
-            SINGLE =
-              T.let(
-                :single,
-                Courier::SendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Courier::SendMessageParams::Message::Channel::RoutingMethod::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-
-          class Timeouts < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendMessageParams::Message::Channel::Timeouts,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig { returns(T.nilable(Integer)) }
-            attr_accessor :channel
-
-            sig { returns(T.nilable(Integer)) }
-            attr_accessor :provider
-
-            sig do
-              params(
-                channel: T.nilable(Integer),
-                provider: T.nilable(Integer)
-              ).returns(T.attached_class)
-            end
-            def self.new(channel: nil, provider: nil)
-            end
-
-            sig do
-              override.returns(
-                { channel: T.nilable(Integer), provider: T.nilable(Integer) }
-              )
-            end
-            def to_hash
-            end
-          end
         end
 
         # Describes content that will work for email, inbox, push, chat, or any channel
@@ -804,109 +551,6 @@ module Courier
 
           sig { override.returns({ subscription_topic_id: String }) }
           def to_hash
-          end
-        end
-
-        class Provider < Courier::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Courier::SendMessageParams::Message::Provider,
-                Courier::Internal::AnyHash
-              )
-            end
-
-          # JS conditional with access to data/profile.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :if_
-
-          sig do
-            returns(
-              T.nilable(Courier::SendMessageParams::Message::Provider::Metadata)
-            )
-          end
-          attr_reader :metadata
-
-          sig do
-            params(
-              metadata:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Provider::Metadata::OrHash
-                )
-            ).void
-          end
-          attr_writer :metadata
-
-          # Provider-specific overrides.
-          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-          attr_accessor :override
-
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :timeouts
-
-          sig do
-            params(
-              if_: T.nilable(String),
-              metadata:
-                T.nilable(
-                  Courier::SendMessageParams::Message::Provider::Metadata::OrHash
-                ),
-              override: T.nilable(T::Hash[Symbol, T.anything]),
-              timeouts: T.nilable(Integer)
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # JS conditional with access to data/profile.
-            if_: nil,
-            metadata: nil,
-            # Provider-specific overrides.
-            override: nil,
-            timeouts: nil
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                if_: T.nilable(String),
-                metadata:
-                  T.nilable(
-                    Courier::SendMessageParams::Message::Provider::Metadata
-                  ),
-                override: T.nilable(T::Hash[Symbol, T.anything]),
-                timeouts: T.nilable(Integer)
-              }
-            )
-          end
-          def to_hash
-          end
-
-          class Metadata < Courier::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Courier::SendMessageParams::Message::Provider::Metadata,
-                  Courier::Internal::AnyHash
-                )
-              end
-
-            sig { returns(T.nilable(Courier::Utm)) }
-            attr_reader :utm
-
-            sig { params(utm: T.nilable(Courier::Utm::OrHash)).void }
-            attr_writer :utm
-
-            sig do
-              params(utm: T.nilable(Courier::Utm::OrHash)).returns(
-                T.attached_class
-              )
-            end
-            def self.new(utm: nil)
-            end
-
-            sig { override.returns({ utm: T.nilable(Courier::Utm) }) }
-            def to_hash
-            end
           end
         end
 

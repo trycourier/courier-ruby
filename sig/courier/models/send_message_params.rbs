@@ -23,7 +23,7 @@ module Courier
       type message =
         {
           brand_id: String?,
-          channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
+          channels: Courier::Models::message_channels?,
           content: Courier::Models::SendMessageParams::Message::content,
           context: Courier::MessageContext?,
           data: ::Hash[Symbol, top]?,
@@ -31,7 +31,7 @@ module Courier
           expiry: Courier::SendMessageParams::Message::Expiry?,
           metadata: Courier::SendMessageParams::Message::Metadata?,
           preferences: Courier::SendMessageParams::Message::Preferences?,
-          providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
+          providers: Courier::Models::message_providers?,
           routing: Courier::SendMessageParams::Message::Routing?,
           template: String?,
           timeout: Courier::SendMessageParams::Message::Timeout?,
@@ -41,7 +41,7 @@ module Courier
       class Message < Courier::Internal::Type::BaseModel
         attr_accessor brand_id: String?
 
-        attr_accessor channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?
+        attr_accessor channels: Courier::Models::message_channels?
 
         attr_reader content: Courier::Models::SendMessageParams::Message::content?
 
@@ -61,7 +61,7 @@ module Courier
 
         attr_accessor preferences: Courier::SendMessageParams::Message::Preferences?
 
-        attr_accessor providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?
+        attr_accessor providers: Courier::Models::message_providers?
 
         attr_accessor routing: Courier::SendMessageParams::Message::Routing?
 
@@ -73,7 +73,7 @@ module Courier
 
         def initialize: (
           ?brand_id: String?,
-          ?channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
+          ?channels: Courier::Models::message_channels?,
           ?content: Courier::Models::SendMessageParams::Message::content,
           ?context: Courier::MessageContext?,
           ?data: ::Hash[Symbol, top]?,
@@ -81,7 +81,7 @@ module Courier
           ?expiry: Courier::SendMessageParams::Message::Expiry?,
           ?metadata: Courier::SendMessageParams::Message::Metadata?,
           ?preferences: Courier::SendMessageParams::Message::Preferences?,
-          ?providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
+          ?providers: Courier::Models::message_providers?,
           ?routing: Courier::SendMessageParams::Message::Routing?,
           ?template: String?,
           ?timeout: Courier::SendMessageParams::Message::Timeout?,
@@ -90,7 +90,7 @@ module Courier
 
         def to_hash: -> {
           brand_id: String?,
-          channels: ::Hash[Symbol, Courier::SendMessageParams::Message::Channel]?,
+          channels: Courier::Models::message_channels?,
           content: Courier::Models::SendMessageParams::Message::content,
           context: Courier::MessageContext?,
           data: ::Hash[Symbol, top]?,
@@ -98,92 +98,12 @@ module Courier
           expiry: Courier::SendMessageParams::Message::Expiry?,
           metadata: Courier::SendMessageParams::Message::Metadata?,
           preferences: Courier::SendMessageParams::Message::Preferences?,
-          providers: ::Hash[Symbol, Courier::SendMessageParams::Message::Provider]?,
+          providers: Courier::Models::message_providers?,
           routing: Courier::SendMessageParams::Message::Routing?,
           template: String?,
           timeout: Courier::SendMessageParams::Message::Timeout?,
           to: Courier::Models::SendMessageParams::Message::to?
         }
-
-        type channel =
-          {
-            brand_id: String?,
-            if_: String?,
-            metadata: Courier::SendMessageParams::Message::Channel::Metadata?,
-            override: ::Hash[Symbol, top]?,
-            providers: ::Array[String]?,
-            routing_method: Courier::Models::SendMessageParams::Message::Channel::routing_method?,
-            timeouts: Courier::SendMessageParams::Message::Channel::Timeouts?
-          }
-
-        class Channel < Courier::Internal::Type::BaseModel
-          attr_accessor brand_id: String?
-
-          attr_accessor if_: String?
-
-          attr_accessor metadata: Courier::SendMessageParams::Message::Channel::Metadata?
-
-          attr_accessor override: ::Hash[Symbol, top]?
-
-          attr_accessor providers: ::Array[String]?
-
-          attr_accessor routing_method: Courier::Models::SendMessageParams::Message::Channel::routing_method?
-
-          attr_accessor timeouts: Courier::SendMessageParams::Message::Channel::Timeouts?
-
-          def initialize: (
-            ?brand_id: String?,
-            ?if_: String?,
-            ?metadata: Courier::SendMessageParams::Message::Channel::Metadata?,
-            ?override: ::Hash[Symbol, top]?,
-            ?providers: ::Array[String]?,
-            ?routing_method: Courier::Models::SendMessageParams::Message::Channel::routing_method?,
-            ?timeouts: Courier::SendMessageParams::Message::Channel::Timeouts?
-          ) -> void
-
-          def to_hash: -> {
-            brand_id: String?,
-            if_: String?,
-            metadata: Courier::SendMessageParams::Message::Channel::Metadata?,
-            override: ::Hash[Symbol, top]?,
-            providers: ::Array[String]?,
-            routing_method: Courier::Models::SendMessageParams::Message::Channel::routing_method?,
-            timeouts: Courier::SendMessageParams::Message::Channel::Timeouts?
-          }
-
-          type metadata = { utm: Courier::Utm? }
-
-          class Metadata < Courier::Internal::Type::BaseModel
-            attr_accessor utm: Courier::Utm?
-
-            def initialize: (?utm: Courier::Utm?) -> void
-
-            def to_hash: -> { utm: Courier::Utm? }
-          end
-
-          type routing_method = :all | :single
-
-          module RoutingMethod
-            extend Courier::Internal::Type::Enum
-
-            ALL: :all
-            SINGLE: :single
-
-            def self?.values: -> ::Array[Courier::Models::SendMessageParams::Message::Channel::routing_method]
-          end
-
-          type timeouts = { channel: Integer?, provider: Integer? }
-
-          class Timeouts < Courier::Internal::Type::BaseModel
-            attr_accessor channel: Integer?
-
-            attr_accessor provider: Integer?
-
-            def initialize: (?channel: Integer?, ?provider: Integer?) -> void
-
-            def to_hash: -> { channel: Integer?, provider: Integer? }
-          end
-        end
 
         type content =
           Courier::ElementalContentSugar | Courier::ElementalContent
@@ -286,48 +206,6 @@ module Courier
           def initialize: (subscription_topic_id: String) -> void
 
           def to_hash: -> { subscription_topic_id: String }
-        end
-
-        type provider =
-          {
-            if_: String?,
-            metadata: Courier::SendMessageParams::Message::Provider::Metadata?,
-            override: ::Hash[Symbol, top]?,
-            timeouts: Integer?
-          }
-
-        class Provider < Courier::Internal::Type::BaseModel
-          attr_accessor if_: String?
-
-          attr_accessor metadata: Courier::SendMessageParams::Message::Provider::Metadata?
-
-          attr_accessor override: ::Hash[Symbol, top]?
-
-          attr_accessor timeouts: Integer?
-
-          def initialize: (
-            ?if_: String?,
-            ?metadata: Courier::SendMessageParams::Message::Provider::Metadata?,
-            ?override: ::Hash[Symbol, top]?,
-            ?timeouts: Integer?
-          ) -> void
-
-          def to_hash: -> {
-            if_: String?,
-            metadata: Courier::SendMessageParams::Message::Provider::Metadata?,
-            override: ::Hash[Symbol, top]?,
-            timeouts: Integer?
-          }
-
-          type metadata = { utm: Courier::Utm? }
-
-          class Metadata < Courier::Internal::Type::BaseModel
-            attr_accessor utm: Courier::Utm?
-
-            def initialize: (?utm: Courier::Utm?) -> void
-
-            def to_hash: -> { utm: Courier::Utm? }
-          end
         end
 
         type routing =

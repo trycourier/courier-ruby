@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type timeouts = { channel: Integer?, provider: Integer? }
+
+    class Timeouts < Courier::Internal::Type::BaseModel
+      attr_accessor channel: Integer?
+
+      attr_accessor provider: Integer?
+
+      def initialize: (?channel: Integer?, ?provider: Integer?) -> void
+
+      def to_hash: -> { channel: Integer?, provider: Integer? }
+    end
+  end
+end

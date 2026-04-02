@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type notification_template_publish_request = { version: String }
+
+    class NotificationTemplatePublishRequest < Courier::Internal::Type::BaseModel
+      attr_reader version: String?
+
+      def version=: (String) -> String
+
+      def initialize: (?version: String) -> void
+
+      def to_hash: -> { version: String }
+    end
+  end
+end

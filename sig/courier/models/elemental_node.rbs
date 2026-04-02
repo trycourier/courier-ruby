@@ -8,6 +8,7 @@ module Courier
       | Courier::ElementalActionNodeWithType
       | Courier::ElementalDividerNodeWithType
       | Courier::ElementalQuoteNodeWithType
+      | Courier::ElementalHTMLNodeWithType
 
     module ElementalNode
       extend Courier::Internal::Type::Union

@@ -1,0 +1,16 @@
+module Courier
+  module Resources
+    class Providers
+      class Catalog
+        def list: (
+          ?channel: String,
+          ?keys: String,
+          ?name: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::Models::Providers::CatalogListResponse
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end

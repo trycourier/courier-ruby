@@ -24,7 +24,8 @@ module Courier
             Courier::ElementalImageNodeWithType,
             Courier::ElementalActionNodeWithType,
             Courier::ElementalDividerNodeWithType,
-            Courier::ElementalQuoteNodeWithType
+            Courier::ElementalQuoteNodeWithType,
+            Courier::ElementalHTMLNodeWithType
           )
         end
 

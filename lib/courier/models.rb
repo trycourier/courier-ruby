@@ -121,7 +121,11 @@ module Courier
 
   BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  Channel = Courier::Models::Channel
+
   ChannelClassification = Courier::Models::ChannelClassification
+
+  ChannelMetadata = Courier::Models::ChannelMetadata
 
   ChannelPreference = Courier::Models::ChannelPreference
 
@@ -146,6 +150,8 @@ module Courier
   ElementalContentSugar = Courier::Models::ElementalContentSugar
 
   ElementalDividerNodeWithType = Courier::Models::ElementalDividerNodeWithType
+
+  ElementalHTMLNodeWithType = Courier::Models::ElementalHTMLNodeWithType
 
   ElementalImageNodeWithType = Courier::Models::ElementalImageNodeWithType
 
@@ -213,6 +219,9 @@ module Courier
 
   MessageCancelParams = Courier::Models::MessageCancelParams
 
+  # @type [Courier::Internal::Type::Converter]
+  MessageChannels = Courier::Models::MessageChannels
+
   MessageContentParams = Courier::Models::MessageContentParams
 
   MessageContext = Courier::Models::MessageContext
@@ -223,11 +232,18 @@ module Courier
 
   MessageListParams = Courier::Models::MessageListParams
 
+  # @type [Courier::Internal::Type::Converter]
+  MessageProviders = Courier::Models::MessageProviders
+
+  MessageProvidersType = Courier::Models::MessageProvidersType
+
   MessageRetrieveParams = Courier::Models::MessageRetrieveParams
 
   MessageRouting = Courier::Models::MessageRouting
 
   MessageRoutingChannel = Courier::Models::MessageRoutingChannel
+
+  Metadata = Courier::Models::Metadata
 
   MsTeams = Courier::Models::MsTeams
 
@@ -237,15 +253,43 @@ module Courier
 
   MultipleTokens = Courier::Models::MultipleTokens
 
+  NotificationArchiveParams = Courier::Models::NotificationArchiveParams
+
+  NotificationCreateParams = Courier::Models::NotificationCreateParams
+
   NotificationGetContent = Courier::Models::NotificationGetContent
 
   NotificationListParams = Courier::Models::NotificationListParams
 
+  NotificationListVersionsParams = Courier::Models::NotificationListVersionsParams
+
   NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
+
+  NotificationPublishParams = Courier::Models::NotificationPublishParams
+
+  NotificationReplaceParams = Courier::Models::NotificationReplaceParams
 
   NotificationRetrieveContentParams = Courier::Models::NotificationRetrieveContentParams
 
+  NotificationRetrieveParams = Courier::Models::NotificationRetrieveParams
+
   Notifications = Courier::Models::Notifications
+
+  NotificationTemplateCreateRequest = Courier::Models::NotificationTemplateCreateRequest
+
+  NotificationTemplateGetResponse = Courier::Models::NotificationTemplateGetResponse
+
+  NotificationTemplateMutationResponse = Courier::Models::NotificationTemplateMutationResponse
+
+  NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
+
+  NotificationTemplatePublishRequest = Courier::Models::NotificationTemplatePublishRequest
+
+  NotificationTemplateSummary = Courier::Models::NotificationTemplateSummary
+
+  NotificationTemplateUpdateRequest = Courier::Models::NotificationTemplateUpdateRequest
+
+  NotificationTemplateVersionListResponse = Courier::Models::NotificationTemplateVersionListResponse
 
   Pagerduty = Courier::Models::Pagerduty
 
@@ -273,6 +317,22 @@ module Courier
 
   ProfileUpdateParams = Courier::Models::ProfileUpdateParams
 
+  Provider = Courier::Models::Provider
+
+  ProviderCreateParams = Courier::Models::ProviderCreateParams
+
+  ProviderDeleteParams = Courier::Models::ProviderDeleteParams
+
+  ProviderListParams = Courier::Models::ProviderListParams
+
+  ProviderRetrieveParams = Courier::Models::ProviderRetrieveParams
+
+  Providers = Courier::Models::Providers
+
+  ProvidersCatalogEntry = Courier::Models::ProvidersCatalogEntry
+
+  ProviderUpdateParams = Courier::Models::ProviderUpdateParams
+
   PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient
 
   PutTenantTemplateRequest = Courier::Models::PutTenantTemplateRequest
@@ -282,6 +342,28 @@ module Courier
   RecipientPreferences = Courier::Models::RecipientPreferences
 
   RequestArchiveParams = Courier::Models::RequestArchiveParams
+
+  RoutingStrategyArchiveParams = Courier::Models::RoutingStrategyArchiveParams
+
+  RoutingStrategyCreateParams = Courier::Models::RoutingStrategyCreateParams
+
+  RoutingStrategyCreateRequest = Courier::Models::RoutingStrategyCreateRequest
+
+  RoutingStrategyGetResponse = Courier::Models::RoutingStrategyGetResponse
+
+  RoutingStrategyListParams = Courier::Models::RoutingStrategyListParams
+
+  RoutingStrategyListResponse = Courier::Models::RoutingStrategyListResponse
+
+  RoutingStrategyMutationResponse = Courier::Models::RoutingStrategyMutationResponse
+
+  RoutingStrategyReplaceParams = Courier::Models::RoutingStrategyReplaceParams
+
+  RoutingStrategyReplaceRequest = Courier::Models::RoutingStrategyReplaceRequest
+
+  RoutingStrategyRetrieveParams = Courier::Models::RoutingStrategyRetrieveParams
+
+  RoutingStrategySummary = Courier::Models::RoutingStrategySummary
 
   Rule = Courier::Models::Rule
 
@@ -339,6 +421,8 @@ module Courier
 
   TextStyle = Courier::Models::TextStyle
 
+  Timeouts = Courier::Models::Timeouts
+
   Token = Courier::Models::Token
 
   TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
@@ -354,6 +438,8 @@ module Courier
   Users = Courier::Models::Users
 
   Utm = Courier::Models::Utm
+
+  VersionNode = Courier::Models::VersionNode
 
   WebhookAuthentication = Courier::Models::WebhookAuthentication
 
