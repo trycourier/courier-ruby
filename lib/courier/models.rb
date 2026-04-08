@@ -45,6 +45,8 @@ module Courier
 
   Alignment = Courier::Models::Alignment
 
+  AssociatedNotificationListResponse = Courier::Models::AssociatedNotificationListResponse
+
   Audience = Courier::Models::Audience
 
   AudienceDeleteParams = Courier::Models::AudienceDeleteParams
@@ -370,6 +372,8 @@ module Courier
   RoutingStrategyCreateRequest = Courier::Models::RoutingStrategyCreateRequest
 
   RoutingStrategyGetResponse = Courier::Models::RoutingStrategyGetResponse
+
+  RoutingStrategyListNotificationsParams = Courier::Models::RoutingStrategyListNotificationsParams
 
   RoutingStrategyListParams = Courier::Models::RoutingStrategyListParams
 

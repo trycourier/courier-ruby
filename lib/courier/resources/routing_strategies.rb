@@ -105,6 +105,34 @@ module Courier
         )
       end
 
+      # List notification templates associated with a routing strategy. Includes
+      # template metadata only, not full content.
+      #
+      # @overload list_notifications(id, cursor: nil, limit: nil, request_options: {})
+      #
+      # @param id [String] Routing strategy ID (`rs_` prefix).
+      #
+      # @param cursor [String, nil] Opaque pagination cursor from a previous response. Omit for the first page.
+      #
+      # @param limit [Integer] Maximum number of results per page. Default 20, max 100.
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::AssociatedNotificationListResponse]
+      #
+      # @see Courier::Models::RoutingStrategyListNotificationsParams
+      def list_notifications(id, params = {})
+        parsed, options = Courier::RoutingStrategyListNotificationsParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["routing-strategies/%1$s/notifications", id],
+          query: query,
+          model: Courier::AssociatedNotificationListResponse,
+          options: options
+        )
+      end
+
       # Replace a routing strategy. Full document replacement; the caller must send the
       # complete desired state. Missing optional fields are cleared.
       #

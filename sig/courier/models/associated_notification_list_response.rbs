@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    type associated_notification_list_response =
+      {
+        paging: Courier::Paging,
+        results: ::Array[Courier::NotificationTemplateSummary]
+      }
+
+    class AssociatedNotificationListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor paging: Courier::Paging
+
+      attr_accessor results: ::Array[Courier::NotificationTemplateSummary]
+
+      def initialize: (
+        paging: Courier::Paging,
+        results: ::Array[Courier::NotificationTemplateSummary]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Courier::Paging,
+        results: ::Array[Courier::NotificationTemplateSummary]
+      }
+    end
+  end
+end
