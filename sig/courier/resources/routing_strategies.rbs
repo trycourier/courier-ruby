@@ -24,6 +24,13 @@ module Courier
 
       def archive: (String id, ?request_options: Courier::request_opts) -> nil
 
+      def list_notifications: (
+        String id,
+        ?cursor: String?,
+        ?limit: Integer,
+        ?request_options: Courier::request_opts
+      ) -> Courier::AssociatedNotificationListResponse
+
       def replace: (
         String id,
         name: String,
