@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.10.0 (2026-04-08)
+
+Full Changelog: [v4.9.0...v4.10.0](https://github.com/trycourier/courier-ruby/compare/v4.9.0...v4.10.0)
+
+### Features
+
+* **api:** add list_notifications method to routing_strategies ([ce8f121](https://github.com/trycourier/courier-ruby/commit/ce8f1217d52377144e053e51497310e71fef1dea))
+* **api:** add put_content/put_element/put_locale, remove draft resource, update retrieve_content ([ecb21e4](https://github.com/trycourier/courier-ruby/commit/ecb21e4913ec80513471153abab2e75d80afffb5))
+
 ## 4.9.0 (2026-04-01)
 
 Full Changelog: [v4.8.0...v4.9.0](https://github.com/trycourier/courier-ruby/compare/v4.8.0...v4.9.0)
