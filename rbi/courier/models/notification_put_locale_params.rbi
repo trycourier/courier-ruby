@@ -2,14 +2,14 @@
 
 module Courier
   module Models
-    class NotificationRetrieveContentParams < Courier::Internal::Type::BaseModel
+    class NotificationPutLocaleParams < Courier::Models::NotificationLocalePutRequest
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            Courier::NotificationRetrieveContentParams,
+            Courier::NotificationPutLocaleParams,
             Courier::Internal::AnyHash
           )
         end
@@ -17,35 +17,24 @@ module Courier
       sig { returns(String) }
       attr_accessor :id
 
-      # Accepts `draft`, `published`, or a version string (e.g., `v001`). Defaults to
-      # `published`.
-      sig { returns(T.nilable(String)) }
-      attr_reader :version
-
-      sig { params(version: String).void }
-      attr_writer :version
+      sig { returns(String) }
+      attr_accessor :locale_id
 
       sig do
         params(
           id: String,
-          version: String,
+          locale_id: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(
-        id:,
-        # Accepts `draft`, `published`, or a version string (e.g., `v001`). Defaults to
-        # `published`.
-        version: nil,
-        request_options: {}
-      )
+      def self.new(id:, locale_id:, request_options: {})
       end
 
       sig do
         override.returns(
           {
             id: String,
-            version: String,
+            locale_id: String,
             request_options: Courier::RequestOptions
           }
         )

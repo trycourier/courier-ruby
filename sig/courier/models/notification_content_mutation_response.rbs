@@ -1,0 +1,47 @@
+module Courier
+  module Models
+    type notification_content_mutation_response =
+      {
+        id: String,
+        elements: ::Array[Courier::NotificationContentMutationResponse::Element],
+        state: Courier::Models::notification_template_state,
+        version: String
+      }
+
+    class NotificationContentMutationResponse < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor elements: ::Array[Courier::NotificationContentMutationResponse::Element]
+
+      attr_accessor state: Courier::Models::notification_template_state
+
+      attr_accessor version: String
+
+      def initialize: (
+        id: String,
+        elements: ::Array[Courier::NotificationContentMutationResponse::Element],
+        state: Courier::Models::notification_template_state,
+        version: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        elements: ::Array[Courier::NotificationContentMutationResponse::Element],
+        state: Courier::Models::notification_template_state,
+        version: String
+      }
+
+      type element = { id: String, checksum: String }
+
+      class Element < Courier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor checksum: String
+
+        def initialize: (id: String, checksum: String) -> void
+
+        def to_hash: -> { id: String, checksum: String }
+      end
+    end
+  end
+end

@@ -3,9 +3,6 @@
 module Courier
   module Resources
     class Notifications
-      # @return [Courier::Resources::Notifications::Draft]
-      attr_reader :draft
-
       # @return [Courier::Resources::Notifications::Checks]
       attr_reader :checks
 
@@ -165,6 +162,111 @@ module Courier
         )
       end
 
+      # Replace the elemental content of a notification template. Overwrites all
+      # elements in the template with the provided content. Only supported for V2
+      # (elemental) templates.
+      #
+      # @overload put_content(id, content:, state: nil, request_options: {})
+      #
+      # @param id [String] Notification template ID (`nt_` prefix).
+      #
+      # @param content [Courier::Models::NotificationContentPutRequest::Content] Elemental content payload. The server defaults `version` when omitted.
+      #
+      # @param state [Symbol, Courier::Models::NotificationTemplateState] Template state. Defaults to `DRAFT`.
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::NotificationContentMutationResponse]
+      #
+      # @see Courier::Models::NotificationPutContentParams
+      def put_content(id, params)
+        parsed, options = Courier::NotificationPutContentParams.dump_request(params)
+        @client.request(
+          method: :put,
+          path: ["notifications/%1$s/content", id],
+          body: parsed,
+          model: Courier::NotificationContentMutationResponse,
+          options: options
+        )
+      end
+
+      # Update a single element within a notification template. Only supported for V2
+      # (elemental) templates.
+      #
+      # @overload put_element(element_id, id:, type:, channels: nil, data: nil, if_: nil, loop_: nil, ref: nil, state: nil, request_options: {})
+      #
+      # @param element_id [String] Path param: Element ID within the template.
+      #
+      # @param id [String] Path param: Notification template ID (`nt_` prefix).
+      #
+      # @param type [String] Body param: Element type (text, meta, action, image, etc.).
+      #
+      # @param channels [Array<String>] Body param
+      #
+      # @param data [Hash{Symbol=>Object}] Body param
+      #
+      # @param if_ [String] Body param
+      #
+      # @param loop_ [String] Body param
+      #
+      # @param ref [String] Body param
+      #
+      # @param state [Symbol, Courier::Models::NotificationTemplateState] Body param: Template state. Defaults to `DRAFT`.
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::NotificationContentMutationResponse]
+      #
+      # @see Courier::Models::NotificationPutElementParams
+      def put_element(element_id, params)
+        parsed, options = Courier::NotificationPutElementParams.dump_request(params)
+        id =
+          parsed.delete(:id) do
+            raise ArgumentError.new("missing required path argument #{_1}")
+          end
+        @client.request(
+          method: :put,
+          path: ["notifications/%1$s/elements/%2$s", id, element_id],
+          body: parsed,
+          model: Courier::NotificationContentMutationResponse,
+          options: options
+        )
+      end
+
+      # Set locale-specific content overrides for a notification template. Each element
+      # override must reference an existing element by ID. Only supported for V2
+      # (elemental) templates.
+      #
+      # @overload put_locale(locale_id, id:, elements:, state: nil, request_options: {})
+      #
+      # @param locale_id [String] Path param: Locale code (e.g., `es`, `fr`, `pt-BR`).
+      #
+      # @param id [String] Path param: Notification template ID (`nt_` prefix).
+      #
+      # @param elements [Array<Courier::Models::NotificationLocalePutRequest::Element>] Body param: Elements with locale-specific content overrides.
+      #
+      # @param state [Symbol, Courier::Models::NotificationTemplateState] Body param: Template state. Defaults to `DRAFT`.
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::NotificationContentMutationResponse]
+      #
+      # @see Courier::Models::NotificationPutLocaleParams
+      def put_locale(locale_id, params)
+        parsed, options = Courier::NotificationPutLocaleParams.dump_request(params)
+        id =
+          parsed.delete(:id) do
+            raise ArgumentError.new("missing required path argument #{_1}")
+          end
+        @client.request(
+          method: :put,
+          path: ["notifications/%1$s/locales/%2$s", id, locale_id],
+          body: parsed,
+          model: Courier::NotificationContentMutationResponse,
+          options: options
+        )
+      end
+
       # Some parameter documentations has been truncated, see
       # {Courier::Models::NotificationReplaceParams} for more details.
       #
@@ -194,20 +296,34 @@ module Courier
         )
       end
 
-      # @overload retrieve_content(id, request_options: {})
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::NotificationRetrieveContentParams} for more details.
       #
-      # @param id [String]
+      # Retrieve the content of a notification template. The response shape depends on
+      # whether the template uses V1 (blocks/channels) or V2 (elemental) content. Use
+      # the `version` query parameter to select draft, published, or a specific
+      # historical version.
+      #
+      # @overload retrieve_content(id, version: nil, request_options: {})
+      #
+      # @param id [String] Notification template ID (`nt_` prefix).
+      #
+      # @param version [String] Accepts `draft`, `published`, or a version string (e.g., `v001`). Defaults to `p
+      #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::NotificationGetContent]
+      # @return [Courier::Models::NotificationContentGetResponse, Courier::Models::NotificationGetContent]
       #
       # @see Courier::Models::NotificationRetrieveContentParams
       def retrieve_content(id, params = {})
+        parsed, options = Courier::NotificationRetrieveContentParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["notifications/%1$s/content", id],
-          model: Courier::NotificationGetContent,
-          options: params[:request_options]
+          query: query,
+          model: Courier::Models::NotificationRetrieveContentResponse,
+          options: options
         )
       end
 
@@ -216,7 +332,6 @@ module Courier
       # @param client [Courier::Client]
       def initialize(client:)
         @client = client
-        @draft = Courier::Resources::Notifications::Draft.new(client: client)
         @checks = Courier::Resources::Notifications::Checks.new(client: client)
       end
     end

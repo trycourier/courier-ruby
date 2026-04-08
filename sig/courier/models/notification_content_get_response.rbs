@@ -1,0 +1,22 @@
+module Courier
+  module Models
+    type notification_content_get_response =
+      { elements: ::Array[Courier::ElementWithChecksums], version: String }
+
+    class NotificationContentGetResponse < Courier::Internal::Type::BaseModel
+      attr_accessor elements: ::Array[Courier::ElementWithChecksums]
+
+      attr_accessor version: String
+
+      def initialize: (
+        elements: ::Array[Courier::ElementWithChecksums],
+        version: String
+      ) -> void
+
+      def to_hash: -> {
+        elements: ::Array[Courier::ElementWithChecksums],
+        version: String
+      }
+    end
+  end
+end

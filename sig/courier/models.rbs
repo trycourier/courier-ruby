@@ -123,6 +123,8 @@ module Courier
 
   class ElementalTextNodeWithType = Courier::Models::ElementalTextNodeWithType
 
+  class ElementWithChecksums = Courier::Models::ElementWithChecksums
+
   class EmailFooter = Courier::Models::EmailFooter
 
   class EmailHead = Courier::Models::EmailHead
@@ -213,7 +215,15 @@ module Courier
 
   class NotificationArchiveParams = Courier::Models::NotificationArchiveParams
 
+  class NotificationContentGetResponse = Courier::Models::NotificationContentGetResponse
+
+  class NotificationContentMutationResponse = Courier::Models::NotificationContentMutationResponse
+
+  class NotificationContentPutRequest = Courier::Models::NotificationContentPutRequest
+
   class NotificationCreateParams = Courier::Models::NotificationCreateParams
+
+  class NotificationElementPutRequest = Courier::Models::NotificationElementPutRequest
 
   class NotificationGetContent = Courier::Models::NotificationGetContent
 
@@ -221,9 +231,17 @@ module Courier
 
   class NotificationListVersionsParams = Courier::Models::NotificationListVersionsParams
 
+  class NotificationLocalePutRequest = Courier::Models::NotificationLocalePutRequest
+
   class NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
 
   class NotificationPublishParams = Courier::Models::NotificationPublishParams
+
+  class NotificationPutContentParams = Courier::Models::NotificationPutContentParams
+
+  class NotificationPutElementParams = Courier::Models::NotificationPutElementParams
+
+  class NotificationPutLocaleParams = Courier::Models::NotificationPutLocaleParams
 
   class NotificationReplaceParams = Courier::Models::NotificationReplaceParams
 
@@ -242,6 +260,8 @@ module Courier
   class NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
 
   class NotificationTemplatePublishRequest = Courier::Models::NotificationTemplatePublishRequest
+
+  module NotificationTemplateState = Courier::Models::NotificationTemplateState
 
   class NotificationTemplateSummary = Courier::Models::NotificationTemplateSummary
 

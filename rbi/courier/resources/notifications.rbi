@@ -3,9 +3,6 @@
 module Courier
   module Resources
     class Notifications
-      sig { returns(Courier::Resources::Notifications::Draft) }
-      attr_reader :draft
-
       sig { returns(Courier::Resources::Notifications::Checks) }
       attr_reader :checks
 
@@ -120,6 +117,93 @@ module Courier
       )
       end
 
+      # Replace the elemental content of a notification template. Overwrites all
+      # elements in the template with the provided content. Only supported for V2
+      # (elemental) templates.
+      sig do
+        params(
+          id: String,
+          content: Courier::NotificationContentPutRequest::Content::OrHash,
+          state: Courier::NotificationTemplateState::OrSymbol,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::NotificationContentMutationResponse)
+      end
+      def put_content(
+        # Notification template ID (`nt_` prefix).
+        id,
+        # Elemental content payload. The server defaults `version` when omitted.
+        content:,
+        # Template state. Defaults to `DRAFT`.
+        state: nil,
+        request_options: {}
+      )
+      end
+
+      # Update a single element within a notification template. Only supported for V2
+      # (elemental) templates.
+      sig do
+        params(
+          element_id: String,
+          id: String,
+          type: String,
+          channels: T::Array[String],
+          data: T::Hash[Symbol, T.anything],
+          if_: String,
+          loop_: String,
+          ref: String,
+          state: Courier::NotificationTemplateState::OrSymbol,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::NotificationContentMutationResponse)
+      end
+      def put_element(
+        # Path param: Element ID within the template.
+        element_id,
+        # Path param: Notification template ID (`nt_` prefix).
+        id:,
+        # Body param: Element type (text, meta, action, image, etc.).
+        type:,
+        # Body param
+        channels: nil,
+        # Body param
+        data: nil,
+        # Body param
+        if_: nil,
+        # Body param
+        loop_: nil,
+        # Body param
+        ref: nil,
+        # Body param: Template state. Defaults to `DRAFT`.
+        state: nil,
+        request_options: {}
+      )
+      end
+
+      # Set locale-specific content overrides for a notification template. Each element
+      # override must reference an existing element by ID. Only supported for V2
+      # (elemental) templates.
+      sig do
+        params(
+          locale_id: String,
+          id: String,
+          elements:
+            T::Array[Courier::NotificationLocalePutRequest::Element::OrHash],
+          state: Courier::NotificationTemplateState::OrSymbol,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::NotificationContentMutationResponse)
+      end
+      def put_locale(
+        # Path param: Locale code (e.g., `es`, `fr`, `pt-BR`).
+        locale_id,
+        # Path param: Notification template ID (`nt_` prefix).
+        id:,
+        # Body param: Elements with locale-specific content overrides.
+        elements:,
+        # Body param: Template state. Defaults to `DRAFT`.
+        state: nil,
+        request_options: {}
+      )
+      end
+
       # Replace a notification template. All fields are required.
       sig do
         params(
@@ -142,13 +226,27 @@ module Courier
       )
       end
 
+      # Retrieve the content of a notification template. The response shape depends on
+      # whether the template uses V1 (blocks/channels) or V2 (elemental) content. Use
+      # the `version` query parameter to select draft, published, or a specific
+      # historical version.
       sig do
         params(
           id: String,
+          version: String,
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::NotificationGetContent)
+        ).returns(
+          Courier::Models::NotificationRetrieveContentResponse::Variants
+        )
       end
-      def retrieve_content(id, request_options: {})
+      def retrieve_content(
+        # Notification template ID (`nt_` prefix).
+        id,
+        # Accepts `draft`, `published`, or a version string (e.g., `v001`). Defaults to
+        # `published`.
+        version: nil,
+        request_options: {}
+      )
       end
 
       # @api private
