@@ -1,0 +1,12 @@
+module Courier
+  module Models
+    type notification_retrieve_content_response =
+      Courier::NotificationContentGetResponse | Courier::NotificationGetContent
+
+    module NotificationRetrieveContentResponse
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::notification_retrieve_content_response]
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module Courier
+  module Models
+    type notification_template_state = :DRAFT | :PUBLISHED
+
+    module NotificationTemplateState
+      extend Courier::Internal::Type::Enum
+
+      DRAFT: :DRAFT
+      PUBLISHED: :PUBLISHED
+
+      def self?.values: -> ::Array[Courier::Models::notification_template_state]
+    end
+  end
+end

@@ -1,28 +1,30 @@
 module Courier
   module Models
-    type notification_retrieve_content_params =
-      { id: String, version: String }
+    type notification_put_locale_params =
+      { id: String, locale_id: String }
       & Courier::Internal::Type::request_parameters
 
-    class NotificationRetrieveContentParams < Courier::Internal::Type::BaseModel
+    class NotificationPutLocaleParams < Courier::Models::NotificationLocalePutRequest
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      attr_accessor id: String
+      def id: -> String
 
-      attr_reader version: String?
+      def id=: (String _) -> String
 
-      def version=: (String) -> String
+      def locale_id: -> String
+
+      def locale_id=: (String _) -> String
 
       def initialize: (
         id: String,
-        ?version: String,
+        locale_id: String,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        version: String,
+        locale_id: String,
         request_options: Courier::RequestOptions
       }
     end

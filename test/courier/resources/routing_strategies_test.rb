@@ -76,6 +76,23 @@ class Courier::Test::Resources::RoutingStrategiesTest < Courier::Test::ResourceT
     end
   end
 
+  def test_list_notifications
+    skip("Mock server tests are disabled")
+
+    response = @courier.routing_strategies.list_notifications("id")
+
+    assert_pattern do
+      response => Courier::AssociatedNotificationListResponse
+    end
+
+    assert_pattern do
+      response => {
+        paging: Courier::Paging,
+        results: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationTemplateSummary])
+      }
+    end
+  end
+
   def test_replace_required_params
     skip("Mock server tests are disabled")
 

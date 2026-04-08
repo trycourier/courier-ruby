@@ -1,8 +1,6 @@
 module Courier
   module Resources
     class Notifications
-      attr_reader draft: Courier::Resources::Notifications::Draft
-
       attr_reader checks: Courier::Resources::Notifications::Checks
 
       def create: (
@@ -39,6 +37,34 @@ module Courier
         ?request_options: Courier::request_opts
       ) -> nil
 
+      def put_content: (
+        String id,
+        content: Courier::NotificationContentPutRequest::Content,
+        ?state: Courier::Models::notification_template_state,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationContentMutationResponse
+
+      def put_element: (
+        String element_id,
+        id: String,
+        type: String,
+        ?channels: ::Array[String],
+        ?data: ::Hash[Symbol, top],
+        ?if_: String,
+        ?loop_: String,
+        ?ref: String,
+        ?state: Courier::Models::notification_template_state,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationContentMutationResponse
+
+      def put_locale: (
+        String locale_id,
+        id: String,
+        elements: ::Array[Courier::NotificationLocalePutRequest::Element],
+        ?state: Courier::Models::notification_template_state,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationContentMutationResponse
+
       def replace: (
         String id,
         notification: Courier::NotificationTemplatePayload,
@@ -48,8 +74,9 @@ module Courier
 
       def retrieve_content: (
         String id,
+        ?version: String,
         ?request_options: Courier::request_opts
-      ) -> Courier::NotificationGetContent
+      ) -> Courier::Models::notification_retrieve_content_response
 
       def initialize: (client: Courier::Client) -> void
     end

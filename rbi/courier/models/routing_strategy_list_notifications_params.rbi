@@ -2,14 +2,14 @@
 
 module Courier
   module Models
-    class NotificationRetrieveContentParams < Courier::Internal::Type::BaseModel
+    class RoutingStrategyListNotificationsParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            Courier::NotificationRetrieveContentParams,
+            Courier::RoutingStrategyListNotificationsParams,
             Courier::Internal::AnyHash
           )
         end
@@ -17,26 +17,31 @@ module Courier
       sig { returns(String) }
       attr_accessor :id
 
-      # Accepts `draft`, `published`, or a version string (e.g., `v001`). Defaults to
-      # `published`.
+      # Opaque pagination cursor from a previous response. Omit for the first page.
       sig { returns(T.nilable(String)) }
-      attr_reader :version
+      attr_accessor :cursor
 
-      sig { params(version: String).void }
-      attr_writer :version
+      # Maximum number of results per page. Default 20, max 100.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :limit
+
+      sig { params(limit: Integer).void }
+      attr_writer :limit
 
       sig do
         params(
           id: String,
-          version: String,
+          cursor: T.nilable(String),
+          limit: Integer,
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         id:,
-        # Accepts `draft`, `published`, or a version string (e.g., `v001`). Defaults to
-        # `published`.
-        version: nil,
+        # Opaque pagination cursor from a previous response. Omit for the first page.
+        cursor: nil,
+        # Maximum number of results per page. Default 20, max 100.
+        limit: nil,
         request_options: {}
       )
       end
@@ -45,7 +50,8 @@ module Courier
         override.returns(
           {
             id: String,
-            version: String,
+            cursor: T.nilable(String),
+            limit: Integer,
             request_options: Courier::RequestOptions
           }
         )

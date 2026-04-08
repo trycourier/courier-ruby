@@ -45,6 +45,8 @@ module Courier
 
   Alignment = Courier::Models::Alignment
 
+  AssociatedNotificationListResponse = Courier::Models::AssociatedNotificationListResponse
+
   Audience = Courier::Models::Audience
 
   AudienceDeleteParams = Courier::Models::AudienceDeleteParams
@@ -163,6 +165,8 @@ module Courier
 
   ElementalTextNodeWithType = Courier::Models::ElementalTextNodeWithType
 
+  ElementWithChecksums = Courier::Models::ElementWithChecksums
+
   EmailFooter = Courier::Models::EmailFooter
 
   EmailHead = Courier::Models::EmailHead
@@ -255,7 +259,15 @@ module Courier
 
   NotificationArchiveParams = Courier::Models::NotificationArchiveParams
 
+  NotificationContentGetResponse = Courier::Models::NotificationContentGetResponse
+
+  NotificationContentMutationResponse = Courier::Models::NotificationContentMutationResponse
+
+  NotificationContentPutRequest = Courier::Models::NotificationContentPutRequest
+
   NotificationCreateParams = Courier::Models::NotificationCreateParams
+
+  NotificationElementPutRequest = Courier::Models::NotificationElementPutRequest
 
   NotificationGetContent = Courier::Models::NotificationGetContent
 
@@ -263,9 +275,17 @@ module Courier
 
   NotificationListVersionsParams = Courier::Models::NotificationListVersionsParams
 
+  NotificationLocalePutRequest = Courier::Models::NotificationLocalePutRequest
+
   NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
 
   NotificationPublishParams = Courier::Models::NotificationPublishParams
+
+  NotificationPutContentParams = Courier::Models::NotificationPutContentParams
+
+  NotificationPutElementParams = Courier::Models::NotificationPutElementParams
+
+  NotificationPutLocaleParams = Courier::Models::NotificationPutLocaleParams
 
   NotificationReplaceParams = Courier::Models::NotificationReplaceParams
 
@@ -284,6 +304,8 @@ module Courier
   NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
 
   NotificationTemplatePublishRequest = Courier::Models::NotificationTemplatePublishRequest
+
+  NotificationTemplateState = Courier::Models::NotificationTemplateState
 
   NotificationTemplateSummary = Courier::Models::NotificationTemplateSummary
 
@@ -350,6 +372,8 @@ module Courier
   RoutingStrategyCreateRequest = Courier::Models::RoutingStrategyCreateRequest
 
   RoutingStrategyGetResponse = Courier::Models::RoutingStrategyGetResponse
+
+  RoutingStrategyListNotificationsParams = Courier::Models::RoutingStrategyListNotificationsParams
 
   RoutingStrategyListParams = Courier::Models::RoutingStrategyListParams
 

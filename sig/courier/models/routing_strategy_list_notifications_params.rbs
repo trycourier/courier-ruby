@@ -1,28 +1,32 @@
 module Courier
   module Models
-    type notification_retrieve_content_params =
-      { id: String, version: String }
+    type routing_strategy_list_notifications_params =
+      { id: String, cursor: String?, limit: Integer }
       & Courier::Internal::Type::request_parameters
 
-    class NotificationRetrieveContentParams < Courier::Internal::Type::BaseModel
+    class RoutingStrategyListNotificationsParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
       attr_accessor id: String
 
-      attr_reader version: String?
+      attr_accessor cursor: String?
 
-      def version=: (String) -> String
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
 
       def initialize: (
         id: String,
-        ?version: String,
+        ?cursor: String?,
+        ?limit: Integer,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        version: String,
+        cursor: String?,
+        limit: Integer,
         request_options: Courier::RequestOptions
       }
     end
