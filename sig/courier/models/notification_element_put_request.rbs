@@ -1,0 +1,64 @@
+module Courier
+  module Models
+    type notification_element_put_request =
+      {
+        type: String,
+        channels: ::Array[String],
+        data: ::Hash[Symbol, top],
+        if_: String,
+        loop_: String,
+        ref: String,
+        state: Courier::Models::notification_template_state
+      }
+
+    class NotificationElementPutRequest < Courier::Internal::Type::BaseModel
+      attr_accessor type: String
+
+      attr_reader channels: ::Array[String]?
+
+      def channels=: (::Array[String]) -> ::Array[String]
+
+      attr_reader data: ::Hash[Symbol, top]?
+
+      def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader if_: String?
+
+      def if_=: (String) -> String
+
+      attr_reader loop_: String?
+
+      def loop_=: (String) -> String
+
+      attr_reader ref: String?
+
+      def ref=: (String) -> String
+
+      attr_reader state: Courier::Models::notification_template_state?
+
+      def state=: (
+        Courier::Models::notification_template_state
+      ) -> Courier::Models::notification_template_state
+
+      def initialize: (
+        type: String,
+        ?channels: ::Array[String],
+        ?data: ::Hash[Symbol, top],
+        ?if_: String,
+        ?loop_: String,
+        ?ref: String,
+        ?state: Courier::Models::notification_template_state
+      ) -> void
+
+      def to_hash: -> {
+        type: String,
+        channels: ::Array[String],
+        data: ::Hash[Symbol, top],
+        if_: String,
+        loop_: String,
+        ref: String,
+        state: Courier::Models::notification_template_state
+      }
+    end
+  end
+end

@@ -1,0 +1,50 @@
+module Courier
+  module Models
+    type notification_content_put_request =
+      {
+        content: Courier::NotificationContentPutRequest::Content,
+        state: Courier::Models::notification_template_state
+      }
+
+    class NotificationContentPutRequest < Courier::Internal::Type::BaseModel
+      attr_accessor content: Courier::NotificationContentPutRequest::Content
+
+      attr_reader state: Courier::Models::notification_template_state?
+
+      def state=: (
+        Courier::Models::notification_template_state
+      ) -> Courier::Models::notification_template_state
+
+      def initialize: (
+        content: Courier::NotificationContentPutRequest::Content,
+        ?state: Courier::Models::notification_template_state
+      ) -> void
+
+      def to_hash: -> {
+        content: Courier::NotificationContentPutRequest::Content,
+        state: Courier::Models::notification_template_state
+      }
+
+      type content =
+        { elements: ::Array[Courier::Models::elemental_node], version: String }
+
+      class Content < Courier::Internal::Type::BaseModel
+        attr_accessor elements: ::Array[Courier::Models::elemental_node]
+
+        attr_reader version: String?
+
+        def version=: (String) -> String
+
+        def initialize: (
+          elements: ::Array[Courier::Models::elemental_node],
+          ?version: String
+        ) -> void
+
+        def to_hash: -> {
+          elements: ::Array[Courier::Models::elemental_node],
+          version: String
+        }
+      end
+    end
+  end
+end

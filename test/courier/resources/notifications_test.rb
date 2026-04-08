@@ -105,6 +105,64 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     end
   end
 
+  def test_put_content_required_params
+    skip("Mock server tests are disabled")
+
+    response = @courier.notifications.put_content("id", content: {elements: [{}]})
+
+    assert_pattern do
+      response => Courier::NotificationContentMutationResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        elements: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationContentMutationResponse::Element]),
+        state: Courier::NotificationTemplateState,
+        version: String
+      }
+    end
+  end
+
+  def test_put_element_required_params
+    skip("Mock server tests are disabled")
+
+    response = @courier.notifications.put_element("elementId", id: "id", type: "text")
+
+    assert_pattern do
+      response => Courier::NotificationContentMutationResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        elements: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationContentMutationResponse::Element]),
+        state: Courier::NotificationTemplateState,
+        version: String
+      }
+    end
+  end
+
+  def test_put_locale_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @courier.notifications.put_locale("localeId", id: "id", elements: [{id: "elem_1"}, {id: "elem_2"}])
+
+    assert_pattern do
+      response => Courier::NotificationContentMutationResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        elements: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationContentMutationResponse::Element]),
+        state: Courier::NotificationTemplateState,
+        version: String
+      }
+    end
+  end
+
   def test_replace_required_params
     skip("Mock server tests are disabled")
 
@@ -139,15 +197,14 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     response = @courier.notifications.retrieve_content("id")
 
     assert_pattern do
-      response => Courier::NotificationGetContent
+      response => Courier::Models::NotificationRetrieveContentResponse
     end
 
     assert_pattern do
-      response => {
-        blocks: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationGetContent::Block]) | nil,
-        channels: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationGetContent::Channel]) | nil,
-        checksum: String | nil
-      }
+      case response
+      in Courier::NotificationContentGetResponse
+      in Courier::NotificationGetContent
+      end
     end
   end
 end

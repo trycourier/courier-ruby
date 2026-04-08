@@ -1,0 +1,39 @@
+module Courier
+  module Models
+    type notification_locale_put_request =
+      {
+        elements: ::Array[Courier::NotificationLocalePutRequest::Element],
+        state: Courier::Models::notification_template_state
+      }
+
+    class NotificationLocalePutRequest < Courier::Internal::Type::BaseModel
+      attr_accessor elements: ::Array[Courier::NotificationLocalePutRequest::Element]
+
+      attr_reader state: Courier::Models::notification_template_state?
+
+      def state=: (
+        Courier::Models::notification_template_state
+      ) -> Courier::Models::notification_template_state
+
+      def initialize: (
+        elements: ::Array[Courier::NotificationLocalePutRequest::Element],
+        ?state: Courier::Models::notification_template_state
+      ) -> void
+
+      def to_hash: -> {
+        elements: ::Array[Courier::NotificationLocalePutRequest::Element],
+        state: Courier::Models::notification_template_state
+      }
+
+      type element = { id: String }
+
+      class Element < Courier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

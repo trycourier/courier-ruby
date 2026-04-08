@@ -1,0 +1,60 @@
+module Courier
+  module Models
+    type element_with_checksums =
+      {
+        checksum: String,
+        type: String,
+        id: String,
+        elements: ::Array[Courier::ElementWithChecksums],
+        locales: ::Hash[Symbol, Courier::ElementWithChecksums::Locale]
+      }
+
+    class ElementWithChecksums < Courier::Internal::Type::BaseModel
+      attr_accessor checksum: String
+
+      attr_accessor type: String
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader elements: ::Array[Courier::ElementWithChecksums]?
+
+      def elements=: (
+        ::Array[Courier::ElementWithChecksums]
+      ) -> ::Array[Courier::ElementWithChecksums]
+
+      attr_reader locales: ::Hash[Symbol, Courier::ElementWithChecksums::Locale]?
+
+      def locales=: (
+        ::Hash[Symbol, Courier::ElementWithChecksums::Locale]
+      ) -> ::Hash[Symbol, Courier::ElementWithChecksums::Locale]
+
+      def initialize: (
+        checksum: String,
+        type: String,
+        ?id: String,
+        ?elements: ::Array[Courier::ElementWithChecksums],
+        ?locales: ::Hash[Symbol, Courier::ElementWithChecksums::Locale]
+      ) -> void
+
+      def to_hash: -> {
+        checksum: String,
+        type: String,
+        id: String,
+        elements: ::Array[Courier::ElementWithChecksums],
+        locales: ::Hash[Symbol, Courier::ElementWithChecksums::Locale]
+      }
+
+      type locale = { checksum: String }
+
+      class Locale < Courier::Internal::Type::BaseModel
+        attr_accessor checksum: String
+
+        def initialize: (checksum: String) -> void
+
+        def to_hash: -> { checksum: String }
+      end
+    end
+  end
+end
