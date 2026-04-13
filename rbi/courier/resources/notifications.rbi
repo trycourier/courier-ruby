@@ -13,7 +13,7 @@ module Courier
           notification: Courier::NotificationTemplatePayload::OrHash,
           state: Courier::NotificationTemplateCreateRequest::State::OrSymbol,
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::NotificationTemplateMutationResponse)
+        ).returns(Courier::NotificationTemplateGetResponse)
       end
       def create(
         # Full document shape used in POST and PUT request bodies, and returned inside the
@@ -211,7 +211,7 @@ module Courier
           notification: Courier::NotificationTemplatePayload::OrHash,
           state: Courier::NotificationTemplateUpdateRequest::State::OrSymbol,
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::NotificationTemplateMutationResponse)
+        ).returns(Courier::NotificationTemplateGetResponse)
       end
       def replace(
         # Template ID (nt\_ prefix).

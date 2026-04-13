@@ -13,7 +13,8 @@ module Courier
       required :id, String
 
       # @!attribute provider
-      #   The provider key identifying the type.
+      #   The provider key identifying the type. Required on every request because it
+      #   selects the provider-specific settings schema for validation.
       #
       #   @return [String]
       required :provider, String
@@ -44,7 +45,7 @@ module Courier
       #
       #   @param id [String]
       #
-      #   @param provider [String] The provider key identifying the type.
+      #   @param provider [String] The provider key identifying the type. Required on every request because it sele
       #
       #   @param alias_ [String] Updated alias. Omit to clear.
       #

@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::RoutingStrategies#retrieve
+    # @see Courier::Resources::RoutingStrategies#create
     class RoutingStrategyGetResponse < Courier::Internal::Type::BaseModel
       # @!attribute id
       #   The routing strategy ID (rs\_ prefix).
