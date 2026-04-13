@@ -7,7 +7,7 @@ module Courier
         notification: Courier::NotificationTemplatePayload,
         ?state: Courier::Models::NotificationTemplateCreateRequest::state,
         ?request_options: Courier::request_opts
-      ) -> Courier::NotificationTemplateMutationResponse
+      ) -> Courier::NotificationTemplateGetResponse
 
       def retrieve: (
         String id,
@@ -70,7 +70,7 @@ module Courier
         notification: Courier::NotificationTemplatePayload,
         ?state: Courier::Models::NotificationTemplateUpdateRequest::state,
         ?request_options: Courier::request_opts
-      ) -> Courier::NotificationTemplateMutationResponse
+      ) -> Courier::NotificationTemplateGetResponse
 
       def retrieve_content: (
         String id,

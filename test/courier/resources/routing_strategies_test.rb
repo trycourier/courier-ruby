@@ -13,12 +13,22 @@ class Courier::Test::Resources::RoutingStrategiesTest < Courier::Test::ResourceT
       )
 
     assert_pattern do
-      response => Courier::RoutingStrategyMutationResponse
+      response => Courier::RoutingStrategyGetResponse
     end
 
     assert_pattern do
       response => {
-        id: String
+        id: String,
+        channels: ^(Courier::Internal::Type::HashOf[Courier::Channel]),
+        created: Integer,
+        creator: String,
+        name: String,
+        providers: ^(Courier::Internal::Type::HashOf[Courier::MessageProvidersType]),
+        routing: Courier::MessageRouting,
+        description: String | nil,
+        tags: ^(Courier::Internal::Type::ArrayOf[String]) | nil,
+        updated: Integer | nil,
+        updater: String | nil
       }
     end
   end
@@ -104,12 +114,22 @@ class Courier::Test::Resources::RoutingStrategiesTest < Courier::Test::ResourceT
       )
 
     assert_pattern do
-      response => Courier::RoutingStrategyMutationResponse
+      response => Courier::RoutingStrategyGetResponse
     end
 
     assert_pattern do
       response => {
-        id: String
+        id: String,
+        channels: ^(Courier::Internal::Type::HashOf[Courier::Channel]),
+        created: Integer,
+        creator: String,
+        name: String,
+        providers: ^(Courier::Internal::Type::HashOf[Courier::MessageProvidersType]),
+        routing: Courier::MessageRouting,
+        description: String | nil,
+        tags: ^(Courier::Internal::Type::ArrayOf[String]) | nil,
+        updated: Integer | nil,
+        updater: String | nil
       }
     end
   end
