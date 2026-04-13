@@ -15,7 +15,7 @@ module Courier
             T.nilable(T::Hash[Symbol, Courier::MessageProvidersType::OrHash]),
           tags: T.nilable(T::Array[String]),
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::RoutingStrategyMutationResponse)
+        ).returns(Courier::RoutingStrategyGetResponse)
       end
       def create(
         # Human-readable name for the routing strategy.
@@ -117,7 +117,7 @@ module Courier
             T.nilable(T::Hash[Symbol, Courier::MessageProvidersType::OrHash]),
           tags: T.nilable(T::Array[String]),
           request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::RoutingStrategyMutationResponse)
+        ).returns(Courier::RoutingStrategyGetResponse)
       end
       def replace(
         # Routing strategy ID (rs\_ prefix).

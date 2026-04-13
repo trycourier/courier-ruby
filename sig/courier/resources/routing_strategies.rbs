@@ -9,7 +9,7 @@ module Courier
         ?providers: Courier::Models::message_providers?,
         ?tags: ::Array[String]?,
         ?request_options: Courier::request_opts
-      ) -> Courier::RoutingStrategyMutationResponse
+      ) -> Courier::RoutingStrategyGetResponse
 
       def retrieve: (
         String id,
@@ -40,7 +40,7 @@ module Courier
         ?providers: Courier::Models::message_providers?,
         ?tags: ::Array[String]?,
         ?request_options: Courier::request_opts
-      ) -> Courier::RoutingStrategyMutationResponse
+      ) -> Courier::RoutingStrategyGetResponse
 
       def initialize: (client: Courier::Client) -> void
     end

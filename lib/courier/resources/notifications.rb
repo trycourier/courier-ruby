@@ -20,7 +20,7 @@ module Courier
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::NotificationTemplateMutationResponse]
+      # @return [Courier::Models::NotificationTemplateGetResponse]
       #
       # @see Courier::Models::NotificationCreateParams
       def create(params)
@@ -29,7 +29,7 @@ module Courier
           method: :post,
           path: "notifications",
           body: parsed,
-          model: Courier::NotificationTemplateMutationResponse,
+          model: Courier::NotificationTemplateGetResponse,
           options: options
         )
       end
@@ -282,7 +282,7 @@ module Courier
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::NotificationTemplateMutationResponse]
+      # @return [Courier::Models::NotificationTemplateGetResponse]
       #
       # @see Courier::Models::NotificationReplaceParams
       def replace(id, params)
@@ -291,7 +291,7 @@ module Courier
           method: :put,
           path: ["notifications/%1$s", id],
           body: parsed,
-          model: Courier::NotificationTemplateMutationResponse,
+          model: Courier::NotificationTemplateGetResponse,
           options: options
         )
       end

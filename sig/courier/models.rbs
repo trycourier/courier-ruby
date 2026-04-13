@@ -257,8 +257,6 @@ module Courier
 
   class NotificationTemplateGetResponse = Courier::Models::NotificationTemplateGetResponse
 
-  class NotificationTemplateMutationResponse = Courier::Models::NotificationTemplateMutationResponse
-
   class NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
 
   class NotificationTemplatePublishRequest = Courier::Models::NotificationTemplatePublishRequest
@@ -336,8 +334,6 @@ module Courier
   class RoutingStrategyListParams = Courier::Models::RoutingStrategyListParams
 
   class RoutingStrategyListResponse = Courier::Models::RoutingStrategyListResponse
-
-  class RoutingStrategyMutationResponse = Courier::Models::RoutingStrategyMutationResponse
 
   class RoutingStrategyReplaceParams = Courier::Models::RoutingStrategyReplaceParams
 

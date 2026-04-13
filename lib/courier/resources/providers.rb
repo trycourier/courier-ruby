@@ -61,15 +61,17 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProviderUpdateParams} for more details.
       #
-      # Update an existing provider configuration. The `provider` key is required. All
-      # other fields are optional — omitted fields are cleared from the stored
-      # configuration (this is a full replacement, not a partial merge).
+      # Replace an existing provider configuration. The `provider` key is required and
+      # determines which provider-specific settings schema is applied. All other fields
+      # are optional — omitted fields are cleared from the stored configuration (this is
+      # a full replacement, not a partial merge). Changing the provider type for an
+      # existing configuration is not supported.
       #
       # @overload update(id, provider:, alias_: nil, settings: nil, title: nil, request_options: {})
       #
       # @param id [String] A unique identifier of the provider configuration to update.
       #
-      # @param provider [String] The provider key identifying the type.
+      # @param provider [String] The provider key identifying the type. Required on every request because it sele
       #
       # @param alias_ [String] Updated alias. Omit to clear.
       #
@@ -85,7 +87,7 @@ module Courier
       def update(id, params)
         parsed, options = Courier::ProviderUpdateParams.dump_request(params)
         @client.request(
-          method: :post,
+          method: :put,
           path: ["providers/%1$s", id],
           body: parsed,
           model: Courier::Provider,

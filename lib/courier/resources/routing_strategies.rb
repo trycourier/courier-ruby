@@ -22,7 +22,7 @@ module Courier
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::RoutingStrategyMutationResponse]
+      # @return [Courier::Models::RoutingStrategyGetResponse]
       #
       # @see Courier::Models::RoutingStrategyCreateParams
       def create(params)
@@ -31,7 +31,7 @@ module Courier
           method: :post,
           path: "routing-strategies",
           body: parsed,
-          model: Courier::RoutingStrategyMutationResponse,
+          model: Courier::RoutingStrategyGetResponse,
           options: options
         )
       end
@@ -154,7 +154,7 @@ module Courier
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::RoutingStrategyMutationResponse]
+      # @return [Courier::Models::RoutingStrategyGetResponse]
       #
       # @see Courier::Models::RoutingStrategyReplaceParams
       def replace(id, params)
@@ -163,7 +163,7 @@ module Courier
           method: :put,
           path: ["routing-strategies/%1$s", id],
           body: parsed,
-          model: Courier::RoutingStrategyMutationResponse,
+          model: Courier::RoutingStrategyGetResponse,
           options: options
         )
       end

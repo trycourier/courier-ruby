@@ -14,7 +14,8 @@ module Courier
       sig { returns(String) }
       attr_accessor :id
 
-      # The provider key identifying the type.
+      # The provider key identifying the type. Required on every request because it
+      # selects the provider-specific settings schema for validation.
       sig { returns(String) }
       attr_accessor :provider
 
@@ -53,7 +54,8 @@ module Courier
       end
       def self.new(
         id:,
-        # The provider key identifying the type.
+        # The provider key identifying the type. Required on every request because it
+        # selects the provider-specific settings schema for validation.
         provider:,
         # Updated alias. Omit to clear.
         alias_: nil,

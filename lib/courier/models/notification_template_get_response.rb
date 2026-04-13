@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::Notifications#retrieve
+    # @see Courier::Resources::Notifications#create
     class NotificationTemplateGetResponse < Courier::Internal::Type::BaseModel
       # @!attribute created
       #   Epoch milliseconds when the template was created.
