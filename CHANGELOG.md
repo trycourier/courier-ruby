@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.10.1 (2026-04-13)
+
+Full Changelog: [v4.10.0...v4.10.1](https://github.com/trycourier/courier-ruby/compare/v4.10.0...v4.10.1)
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([6f54534](https://github.com/trycourier/courier-ruby/commit/6f545347ec738929c45b89476d4fc02aa185760b))
+* **types:** correct notifications/routing_strategies return types, remove mutation models ([8020a8f](https://github.com/trycourier/courier-ruby/commit/8020a8fa2015d5f5b4c4703a4354acd3283193bc))
+
 ## 4.10.0 (2026-04-08)
 
 Full Changelog: [v4.9.0...v4.10.0](https://github.com/trycourier/courier-ruby/compare/v4.9.0...v4.10.0)
