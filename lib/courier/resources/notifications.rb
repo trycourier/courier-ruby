@@ -14,13 +14,13 @@ module Courier
       #
       # @overload create(notification:, state: nil, request_options: {})
       #
-      # @param notification [Courier::Models::NotificationTemplatePayload] Full document shape used in POST and PUT request bodies, and returned inside the
+      # @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
       #
       # @param state [Symbol, Courier::Models::NotificationTemplateCreateRequest::State] Template state after creation. Case-insensitive input, normalized to uppercase i
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::NotificationTemplateGetResponse]
+      # @return [Courier::Models::NotificationTemplateResponse]
       #
       # @see Courier::Models::NotificationCreateParams
       def create(params)
@@ -29,7 +29,7 @@ module Courier
           method: :post,
           path: "notifications",
           body: parsed,
-          model: Courier::NotificationTemplateGetResponse,
+          model: Courier::NotificationTemplateResponse,
           options: options
         )
       end
@@ -48,7 +48,7 @@ module Courier
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::NotificationTemplateGetResponse]
+      # @return [Courier::Models::NotificationTemplateResponse]
       #
       # @see Courier::Models::NotificationRetrieveParams
       def retrieve(id, params = {})
@@ -58,7 +58,7 @@ module Courier
           method: :get,
           path: ["notifications/%1$s", id],
           query: query,
-          model: Courier::NotificationTemplateGetResponse,
+          model: Courier::NotificationTemplateResponse,
           options: options
         )
       end
@@ -276,13 +276,13 @@ module Courier
       #
       # @param id [String] Template ID (nt\_ prefix).
       #
-      # @param notification [Courier::Models::NotificationTemplatePayload] Full document shape used in POST and PUT request bodies, and returned inside the
+      # @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
       #
       # @param state [Symbol, Courier::Models::NotificationTemplateUpdateRequest::State] Template state after update. Case-insensitive input, normalized to uppercase in
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Courier::Models::NotificationTemplateGetResponse]
+      # @return [Courier::Models::NotificationTemplateResponse]
       #
       # @see Courier::Models::NotificationReplaceParams
       def replace(id, params)
@@ -291,7 +291,7 @@ module Courier
           method: :put,
           path: ["notifications/%1$s", id],
           body: parsed,
-          model: Courier::NotificationTemplateGetResponse,
+          model: Courier::NotificationTemplateResponse,
           options: options
         )
       end

@@ -1,0 +1,70 @@
+module Courier
+  module Models
+    type notification_template_response =
+      {
+        id: String,
+        created: Integer,
+        creator: String,
+        state: Courier::Models::NotificationTemplateResponse::state,
+        updated: Integer,
+        updater: String
+      }
+
+    class NotificationTemplateResponse < Courier::Models::NotificationTemplatePayload
+      def id: -> String
+
+      def id=: (String _) -> String
+
+      def created: -> Integer
+
+      def created=: (Integer _) -> Integer
+
+      def creator: -> String
+
+      def creator=: (String _) -> String
+
+      def state: -> Courier::Models::NotificationTemplateResponse::state
+
+      def state=: (
+        Courier::Models::NotificationTemplateResponse::state _
+      ) -> Courier::Models::NotificationTemplateResponse::state
+
+      def updated: -> Integer?
+
+      def updated=: (Integer _) -> Integer
+
+      def updater: -> String?
+
+      def updater=: (String _) -> String
+
+      def initialize: (
+        id: String,
+        created: Integer,
+        creator: String,
+        state: Courier::Models::NotificationTemplateResponse::state,
+        ?updated: Integer,
+        ?updater: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created: Integer,
+        creator: String,
+        state: Courier::Models::NotificationTemplateResponse::state,
+        updated: Integer,
+        updater: String
+      }
+
+      type state = :DRAFT | :PUBLISHED
+
+      module State
+        extend Courier::Internal::Type::Enum
+
+        DRAFT: :DRAFT
+        PUBLISHED: :PUBLISHED
+
+        def self?.values: -> ::Array[Courier::Models::NotificationTemplateResponse::state]
+      end
+    end
+  end
+end

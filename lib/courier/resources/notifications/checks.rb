@@ -4,11 +4,13 @@ module Courier
   module Resources
     class Notifications
       class Checks
+        # Replace the checks for a notification template submission.
+        #
         # @overload update(submission_id, id:, checks:, request_options: {})
         #
-        # @param submission_id [String] Path param
+        # @param submission_id [String] Path param: Submission ID.
         #
-        # @param id [String] Path param
+        # @param id [String] Path param: Notification template ID.
         #
         # @param checks [Array<Courier::Models::BaseCheck>] Body param
         #
@@ -32,10 +34,14 @@ module Courier
           )
         end
 
+        # Retrieve the checks for a notification template submission.
+        #
         # @overload list(submission_id, id:, request_options: {})
         #
-        # @param submission_id [String]
-        # @param id [String]
+        # @param submission_id [String] Submission ID.
+        #
+        # @param id [String] Notification template ID.
+        #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Courier::Models::Notifications::CheckListResponse]
@@ -55,10 +61,14 @@ module Courier
           )
         end
 
+        # Cancel a notification template submission.
+        #
         # @overload delete(submission_id, id:, request_options: {})
         #
-        # @param submission_id [String]
-        # @param id [String]
+        # @param submission_id [String] Submission ID.
+        #
+        # @param id [String] Notification template ID.
+        #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [nil]

@@ -47,11 +47,6 @@ module Courier
           #   @return [Array<String>]
           required :event_ids, Courier::Internal::Type::ArrayOf[String]
 
-          # @!attribute note
-          #
-          #   @return [String]
-          required :note, String
-
           # @!attribute routing
           #
           #   @return [Courier::Models::MessageRouting]
@@ -67,6 +62,11 @@ module Courier
           #   @return [Integer]
           required :updated_at, Integer
 
+          # @!attribute note
+          #
+          #   @return [String, nil]
+          optional :note, String
+
           # @!attribute tags
           #
           #   @return [Courier::Models::NotificationListResponse::Result::Notification::Tags, nil]
@@ -77,20 +77,20 @@ module Courier
           #   @return [String, nil]
           optional :title, String, nil?: true
 
-          # @!method initialize(id:, created_at:, event_ids:, note:, routing:, topic_id:, updated_at:, tags: nil, title: nil)
+          # @!method initialize(id:, created_at:, event_ids:, routing:, topic_id:, updated_at:, note: nil, tags: nil, title: nil)
           #   @param id [String]
           #
           #   @param created_at [Integer]
           #
           #   @param event_ids [Array<String>] Array of event IDs associated with this notification
           #
-          #   @param note [String]
-          #
           #   @param routing [Courier::Models::MessageRouting]
           #
           #   @param topic_id [String]
           #
           #   @param updated_at [Integer]
+          #
+          #   @param note [String]
           #
           #   @param tags [Courier::Models::NotificationListResponse::Result::Notification::Tags, nil]
           #

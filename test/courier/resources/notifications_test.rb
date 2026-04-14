@@ -19,18 +19,7 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Courier::NotificationTemplateGetResponse
-    end
-
-    assert_pattern do
-      response => {
-        created: Integer,
-        creator: String,
-        notification: Courier::NotificationTemplateGetResponse::Notification,
-        state: Courier::NotificationTemplateGetResponse::State,
-        updated: Integer | nil,
-        updater: String | nil
-      }
+      response => Courier::NotificationTemplateResponse
     end
   end
 
@@ -40,18 +29,7 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     response = @courier.notifications.retrieve("id")
 
     assert_pattern do
-      response => Courier::NotificationTemplateGetResponse
-    end
-
-    assert_pattern do
-      response => {
-        created: Integer,
-        creator: String,
-        notification: Courier::NotificationTemplateGetResponse::Notification,
-        state: Courier::NotificationTemplateGetResponse::State,
-        updated: Integer | nil,
-        updater: String | nil
-      }
+      response => Courier::NotificationTemplateResponse
     end
   end
 
@@ -184,18 +162,7 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Courier::NotificationTemplateGetResponse
-    end
-
-    assert_pattern do
-      response => {
-        created: Integer,
-        creator: String,
-        notification: Courier::NotificationTemplateGetResponse::Notification,
-        state: Courier::NotificationTemplateGetResponse::State,
-        updated: Integer | nil,
-        updater: String | nil
-      }
+      response => Courier::NotificationTemplateResponse
     end
   end
 
