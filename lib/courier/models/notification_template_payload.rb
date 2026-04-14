@@ -40,8 +40,8 @@ module Courier
       required :tags, Courier::Internal::Type::ArrayOf[String]
 
       # @!method initialize(brand:, content:, name:, routing:, subscription:, tags:)
-      #   Full document shape used in POST and PUT request bodies, and returned inside the
-      #   GET response envelope.
+      #   Core template fields used in POST and PUT request bodies (nested under a
+      #   `notification` key) and returned at the top level in responses.
       #
       #   @param brand [Courier::Models::NotificationTemplatePayload::Brand, nil] Brand reference, or null for no brand.
       #

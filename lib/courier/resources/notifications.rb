@@ -14,7 +14,7 @@ module Courier
       #
       # @overload create(notification:, state: nil, request_options: {})
       #
-      # @param notification [Courier::Models::NotificationTemplatePayload] Full document shape used in POST and PUT request bodies, and returned inside the
+      # @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
       #
       # @param state [Symbol, Courier::Models::NotificationTemplateCreateRequest::State] Template state after creation. Case-insensitive input, normalized to uppercase i
       #
@@ -276,7 +276,7 @@ module Courier
       #
       # @param id [String] Template ID (nt\_ prefix).
       #
-      # @param notification [Courier::Models::NotificationTemplatePayload] Full document shape used in POST and PUT request bodies, and returned inside the
+      # @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
       #
       # @param state [Symbol, Courier::Models::NotificationTemplateUpdateRequest::State] Template state after update. Case-insensitive input, normalized to uppercase in
       #

@@ -4,8 +4,8 @@ module Courier
   module Models
     class NotificationTemplateUpdateRequest < Courier::Internal::Type::BaseModel
       # @!attribute notification
-      #   Full document shape used in POST and PUT request bodies, and returned inside the
-      #   GET response envelope.
+      #   Core template fields used in POST and PUT request bodies (nested under a
+      #   `notification` key) and returned at the top level in responses.
       #
       #   @return [Courier::Models::NotificationTemplatePayload]
       required :notification, -> { Courier::NotificationTemplatePayload }
@@ -24,7 +24,7 @@ module Courier
       #   Request body for replacing a notification template. Same shape as create. All
       #   fields required (PUT = full replacement).
       #
-      #   @param notification [Courier::Models::NotificationTemplatePayload] Full document shape used in POST and PUT request bodies, and returned inside the
+      #   @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
       #
       #   @param state [Symbol, Courier::Models::NotificationTemplateUpdateRequest::State] Template state after update. Case-insensitive input, normalized to uppercase in
 

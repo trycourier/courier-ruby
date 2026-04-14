@@ -16,8 +16,8 @@ module Courier
         ).returns(Courier::NotificationTemplateResponse)
       end
       def create(
-        # Full document shape used in POST and PUT request bodies, and returned inside the
-        # GET response envelope.
+        # Core template fields used in POST and PUT request bodies (nested under a
+        # `notification` key) and returned at the top level in responses.
         notification:,
         # Template state after creation. Case-insensitive input, normalized to uppercase
         # in the response. Defaults to "DRAFT".
@@ -216,8 +216,8 @@ module Courier
       def replace(
         # Template ID (nt\_ prefix).
         id,
-        # Full document shape used in POST and PUT request bodies, and returned inside the
-        # GET response envelope.
+        # Core template fields used in POST and PUT request bodies (nested under a
+        # `notification` key) and returned at the top level in responses.
         notification:,
         # Template state after update. Case-insensitive input, normalized to uppercase in
         # the response. Defaults to "DRAFT".
