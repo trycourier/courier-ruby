@@ -3,7 +3,7 @@
 module Courier
   module Models
     # @see Courier::Resources::Notifications#create
-    class NotificationTemplateGetResponse < Courier::Internal::Type::BaseModel
+    class NotificationTemplateResponse < Courier::Internal::Type::BaseModel
       # @!attribute created
       #   Epoch milliseconds when the template was created.
       #
@@ -20,14 +20,14 @@ module Courier
       #   Full document shape used in POST and PUT request bodies, and returned inside the
       #   GET response envelope.
       #
-      #   @return [Courier::Models::NotificationTemplateGetResponse::Notification]
-      required :notification, -> { Courier::NotificationTemplateGetResponse::Notification }
+      #   @return [Courier::Models::NotificationTemplateResponse::Notification]
+      required :notification, -> { Courier::NotificationTemplateResponse::Notification }
 
       # @!attribute state
       #   The template state. Always uppercase.
       #
-      #   @return [Symbol, Courier::Models::NotificationTemplateGetResponse::State]
-      required :state, enum: -> { Courier::NotificationTemplateGetResponse::State }
+      #   @return [Symbol, Courier::Models::NotificationTemplateResponse::State]
+      required :state, enum: -> { Courier::NotificationTemplateResponse::State }
 
       # @!attribute updated
       #   Epoch milliseconds of last update.
@@ -43,24 +43,25 @@ module Courier
 
       # @!method initialize(created:, creator:, notification:, state:, updated: nil, updater: nil)
       #   Some parameter documentations has been truncated, see
-      #   {Courier::Models::NotificationTemplateGetResponse} for more details.
+      #   {Courier::Models::NotificationTemplateResponse} for more details.
       #
-      #   Envelope response for GET /notifications/{id}. The notification object mirrors
-      #   the POST/PUT input shape. Nullable fields return null when unset.
+      #   Response for GET /notifications/{id}, POST /notifications, and PUT
+      #   /notifications/{id}. Wraps the template payload inside a `notification` key
+      #   alongside metadata.
       #
       #   @param created [Integer] Epoch milliseconds when the template was created.
       #
       #   @param creator [String] User ID of the creator.
       #
-      #   @param notification [Courier::Models::NotificationTemplateGetResponse::Notification] Full document shape used in POST and PUT request bodies, and returned inside the
+      #   @param notification [Courier::Models::NotificationTemplateResponse::Notification] Full document shape used in POST and PUT request bodies, and returned inside the
       #
-      #   @param state [Symbol, Courier::Models::NotificationTemplateGetResponse::State] The template state. Always uppercase.
+      #   @param state [Symbol, Courier::Models::NotificationTemplateResponse::State] The template state. Always uppercase.
       #
       #   @param updated [Integer] Epoch milliseconds of last update.
       #
       #   @param updater [String] User ID of the last updater.
 
-      # @see Courier::Models::NotificationTemplateGetResponse#notification
+      # @see Courier::Models::NotificationTemplateResponse#notification
       class Notification < Courier::Models::NotificationTemplatePayload
         # @!attribute id
         #   The template ID.
@@ -77,7 +78,7 @@ module Courier
 
       # The template state. Always uppercase.
       #
-      # @see Courier::Models::NotificationTemplateGetResponse#state
+      # @see Courier::Models::NotificationTemplateResponse#state
       module State
         extend Courier::Internal::Type::Enum
 

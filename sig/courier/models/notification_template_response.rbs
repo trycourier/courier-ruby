@@ -1,23 +1,23 @@
 module Courier
   module Models
-    type notification_template_get_response =
+    type notification_template_response =
       {
         created: Integer,
         creator: String,
-        notification: Courier::NotificationTemplateGetResponse::Notification,
-        state: Courier::Models::NotificationTemplateGetResponse::state,
+        notification: Courier::NotificationTemplateResponse::Notification,
+        state: Courier::Models::NotificationTemplateResponse::state,
         updated: Integer,
         updater: String
       }
 
-    class NotificationTemplateGetResponse < Courier::Internal::Type::BaseModel
+    class NotificationTemplateResponse < Courier::Internal::Type::BaseModel
       attr_accessor created: Integer
 
       attr_accessor creator: String
 
-      attr_accessor notification: Courier::NotificationTemplateGetResponse::Notification
+      attr_accessor notification: Courier::NotificationTemplateResponse::Notification
 
-      attr_accessor state: Courier::Models::NotificationTemplateGetResponse::state
+      attr_accessor state: Courier::Models::NotificationTemplateResponse::state
 
       attr_reader updated: Integer?
 
@@ -30,8 +30,8 @@ module Courier
       def initialize: (
         created: Integer,
         creator: String,
-        notification: Courier::NotificationTemplateGetResponse::Notification,
-        state: Courier::Models::NotificationTemplateGetResponse::state,
+        notification: Courier::NotificationTemplateResponse::Notification,
+        state: Courier::Models::NotificationTemplateResponse::state,
         ?updated: Integer,
         ?updater: String
       ) -> void
@@ -39,8 +39,8 @@ module Courier
       def to_hash: -> {
         created: Integer,
         creator: String,
-        notification: Courier::NotificationTemplateGetResponse::Notification,
-        state: Courier::Models::NotificationTemplateGetResponse::state,
+        notification: Courier::NotificationTemplateResponse::Notification,
+        state: Courier::Models::NotificationTemplateResponse::state,
         updated: Integer,
         updater: String
       }
@@ -65,7 +65,7 @@ module Courier
         DRAFT: :DRAFT
         PUBLISHED: :PUBLISHED
 
-        def self?.values: -> ::Array[Courier::Models::NotificationTemplateGetResponse::state]
+        def self?.values: -> ::Array[Courier::Models::NotificationTemplateResponse::state]
       end
     end
   end

@@ -297,11 +297,11 @@ module Courier
 
   NotificationTemplateCreateRequest = Courier::Models::NotificationTemplateCreateRequest
 
-  NotificationTemplateGetResponse = Courier::Models::NotificationTemplateGetResponse
-
   NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
 
   NotificationTemplatePublishRequest = Courier::Models::NotificationTemplatePublishRequest
+
+  NotificationTemplateResponse = Courier::Models::NotificationTemplateResponse
 
   NotificationTemplateState = Courier::Models::NotificationTemplateState
 
