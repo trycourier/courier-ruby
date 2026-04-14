@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.10.2 (2026-04-14)
+
+Full Changelog: [v4.10.1...v4.10.2](https://github.com/trycourier/courier-ruby/compare/v4.10.1...v4.10.2)
+
+### Bug Fixes
+
+* **types:** flatten NotificationTemplateResponse model structure ([4c019eb](https://github.com/trycourier/courier-ruby/commit/4c019ebb34aaf3b6c37e778da95c593aa5faa409))
+* **types:** make note optional, flatten NotificationTemplateGetResponse ([05f8c8c](https://github.com/trycourier/courier-ruby/commit/05f8c8c41198a2f8156ac10ccf4a67fa84130350))
+
 ## 4.10.1 (2026-04-13)
 
 Full Changelog: [v4.10.0...v4.10.1](https://github.com/trycourier/courier-ruby/compare/v4.10.0...v4.10.1)
