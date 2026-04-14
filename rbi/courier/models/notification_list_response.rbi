@@ -89,9 +89,6 @@ module Courier
           sig { returns(T::Array[String]) }
           attr_accessor :event_ids
 
-          sig { returns(String) }
-          attr_accessor :note
-
           sig { returns(Courier::MessageRouting) }
           attr_reader :routing
 
@@ -103,6 +100,12 @@ module Courier
 
           sig { returns(Integer) }
           attr_accessor :updated_at
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :note
+
+          sig { params(note: String).void }
+          attr_writer :note
 
           sig do
             returns(
@@ -131,10 +134,10 @@ module Courier
               id: String,
               created_at: Integer,
               event_ids: T::Array[String],
-              note: String,
               routing: Courier::MessageRouting::OrHash,
               topic_id: String,
               updated_at: Integer,
+              note: String,
               tags:
                 T.nilable(
                   Courier::Models::NotificationListResponse::Result::Notification::Tags::OrHash
@@ -147,10 +150,10 @@ module Courier
             created_at:,
             # Array of event IDs associated with this notification
             event_ids:,
-            note:,
             routing:,
             topic_id:,
             updated_at:,
+            note: nil,
             tags: nil,
             title: nil
           )
@@ -162,10 +165,10 @@ module Courier
                 id: String,
                 created_at: Integer,
                 event_ids: T::Array[String],
-                note: String,
                 routing: Courier::MessageRouting,
                 topic_id: String,
                 updated_at: Integer,
+                note: String,
                 tags:
                   T.nilable(
                     Courier::Models::NotificationListResponse::Result::Notification::Tags

@@ -255,11 +255,11 @@ module Courier
 
   class NotificationTemplateCreateRequest = Courier::Models::NotificationTemplateCreateRequest
 
-  class NotificationTemplateGetResponse = Courier::Models::NotificationTemplateGetResponse
-
   class NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
 
   class NotificationTemplatePublishRequest = Courier::Models::NotificationTemplatePublishRequest
+
+  class NotificationTemplateResponse = Courier::Models::NotificationTemplateResponse
 
   module NotificationTemplateState = Courier::Models::NotificationTemplateState
 
