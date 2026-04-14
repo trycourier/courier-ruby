@@ -3,7 +3,13 @@
 module Courier
   module Models
     # @see Courier::Resources::Notifications#create
-    class NotificationTemplateResponse < Courier::Internal::Type::BaseModel
+    class NotificationTemplateResponse < Courier::Models::NotificationTemplatePayload
+      # @!attribute id
+      #   The template ID.
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute created
       #   Epoch milliseconds when the template was created.
       #
@@ -15,13 +21,6 @@ module Courier
       #
       #   @return [String]
       required :creator, String
-
-      # @!attribute notification
-      #   Full document shape used in POST and PUT request bodies, and returned inside the
-      #   GET response envelope.
-      #
-      #   @return [Courier::Models::NotificationTemplateResponse::Notification]
-      required :notification, -> { Courier::NotificationTemplateResponse::Notification }
 
       # @!attribute state
       #   The template state. Always uppercase.
@@ -41,19 +40,15 @@ module Courier
       #   @return [String, nil]
       optional :updater, String
 
-      # @!method initialize(created:, creator:, notification:, state:, updated: nil, updater: nil)
-      #   Some parameter documentations has been truncated, see
-      #   {Courier::Models::NotificationTemplateResponse} for more details.
-      #
+      # @!method initialize(id:, created:, creator:, state:, updated: nil, updater: nil)
       #   Response for GET /notifications/{id}, POST /notifications, and PUT
-      #   /notifications/{id}. Wraps the template payload inside a `notification` key
-      #   alongside metadata.
+      #   /notifications/{id}. Returns all template fields at the top level.
+      #
+      #   @param id [String] The template ID.
       #
       #   @param created [Integer] Epoch milliseconds when the template was created.
       #
       #   @param creator [String] User ID of the creator.
-      #
-      #   @param notification [Courier::Models::NotificationTemplateResponse::Notification] Full document shape used in POST and PUT request bodies, and returned inside the
       #
       #   @param state [Symbol, Courier::Models::NotificationTemplateResponse::State] The template state. Always uppercase.
       #
@@ -61,24 +56,7 @@ module Courier
       #
       #   @param updater [String] User ID of the last updater.
 
-      # @see Courier::Models::NotificationTemplateResponse#notification
-      class Notification < Courier::Models::NotificationTemplatePayload
-        # @!attribute id
-        #   The template ID.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!method initialize(id:)
-        #   Full document shape used in POST and PUT request bodies, and returned inside the
-        #   GET response envelope.
-        #
-        #   @param id [String] The template ID.
-      end
-
       # The template state. Always uppercase.
-      #
-      # @see Courier::Models::NotificationTemplateResponse#state
       module State
         extend Courier::Internal::Type::Enum
 

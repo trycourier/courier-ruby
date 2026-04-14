@@ -21,17 +21,6 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     assert_pattern do
       response => Courier::NotificationTemplateResponse
     end
-
-    assert_pattern do
-      response => {
-        created: Integer,
-        creator: String,
-        notification: Courier::NotificationTemplateResponse::Notification,
-        state: Courier::NotificationTemplateResponse::State,
-        updated: Integer | nil,
-        updater: String | nil
-      }
-    end
   end
 
   def test_retrieve
@@ -41,17 +30,6 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
 
     assert_pattern do
       response => Courier::NotificationTemplateResponse
-    end
-
-    assert_pattern do
-      response => {
-        created: Integer,
-        creator: String,
-        notification: Courier::NotificationTemplateResponse::Notification,
-        state: Courier::NotificationTemplateResponse::State,
-        updated: Integer | nil,
-        updater: String | nil
-      }
     end
   end
 
@@ -185,17 +163,6 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
 
     assert_pattern do
       response => Courier::NotificationTemplateResponse
-    end
-
-    assert_pattern do
-      response => {
-        created: Integer,
-        creator: String,
-        notification: Courier::NotificationTemplateResponse::Notification,
-        state: Courier::NotificationTemplateResponse::State,
-        updated: Integer | nil,
-        updater: String | nil
-      }
     end
   end
 
