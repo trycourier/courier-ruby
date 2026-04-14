@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "trycourier", "~> 4.10.1"
+gem "trycourier", "~> 4.10.2"
 ```
 
 <!-- x-release-please-end -->
