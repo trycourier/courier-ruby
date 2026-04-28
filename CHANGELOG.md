@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.11.0 (2026-04-28)
+
+Full Changelog: [v4.10.2...v4.11.0](https://github.com/trycourier/courier-ruby/compare/v4.10.2...v4.11.0)
+
+### Features
+
+* support setting headers via env ([6f99d29](https://github.com/trycourier/courier-ruby/commit/6f99d290cad4006de8f84b22cbac6694d314a3aa))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([91e8fd1](https://github.com/trycourier/courier-ruby/commit/91e8fd1ecdd6d10def9215f53a73248b754b5386))
+
 ## 4.10.2 (2026-04-14)
 
 Full Changelog: [v4.10.1...v4.10.2](https://github.com/trycourier/courier-ruby/compare/v4.10.1...v4.10.2)
