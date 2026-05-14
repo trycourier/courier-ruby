@@ -6,6 +6,9 @@ module Courier
       module Automations
       end
 
+      module Journeys
+      end
+
       module Lists
       end
 

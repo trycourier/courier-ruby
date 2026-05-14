@@ -1,0 +1,34 @@
+module Courier
+  module Models
+    type journey_exit_node =
+      { type: Courier::Models::JourneyExitNode::type_, id: String }
+
+    class JourneyExitNode < Courier::Internal::Type::BaseModel
+      attr_accessor type: Courier::Models::JourneyExitNode::type_
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      def initialize: (
+        type: Courier::Models::JourneyExitNode::type_,
+        ?id: String
+      ) -> void
+
+      def to_hash: -> {
+        type: Courier::Models::JourneyExitNode::type_,
+        id: String
+      }
+
+      type type_ = :exit
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        EXIT: :exit
+
+        def self?.values: -> ::Array[Courier::Models::JourneyExitNode::type_]
+      end
+    end
+  end
+end

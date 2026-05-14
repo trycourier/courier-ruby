@@ -1,0 +1,140 @@
+module Courier
+  module Models
+    type journey_send_node =
+      {
+        message: Courier::JourneySendNode::Message,
+        type: Courier::Models::JourneySendNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field
+      }
+
+    class JourneySendNode < Courier::Internal::Type::BaseModel
+      attr_accessor message: Courier::JourneySendNode::Message
+
+      attr_accessor type: Courier::Models::JourneySendNode::type_
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      def initialize: (
+        message: Courier::JourneySendNode::Message,
+        type: Courier::Models::JourneySendNode::type_,
+        ?id: String,
+        ?conditions: Courier::Models::journey_conditions_field
+      ) -> void
+
+      def to_hash: -> {
+        message: Courier::JourneySendNode::Message,
+        type: Courier::Models::JourneySendNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field
+      }
+
+      type message =
+        {
+          template: String,
+          data: ::Hash[Symbol, top],
+          delay: Courier::JourneySendNode::Message::Delay,
+          to: Courier::JourneySendNode::Message::To
+        }
+
+      class Message < Courier::Internal::Type::BaseModel
+        attr_accessor template: String
+
+        attr_reader data: ::Hash[Symbol, top]?
+
+        def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+        attr_reader delay: Courier::JourneySendNode::Message::Delay?
+
+        def delay=: (
+          Courier::JourneySendNode::Message::Delay
+        ) -> Courier::JourneySendNode::Message::Delay
+
+        attr_reader to: Courier::JourneySendNode::Message::To?
+
+        def to=: (
+          Courier::JourneySendNode::Message::To
+        ) -> Courier::JourneySendNode::Message::To
+
+        def initialize: (
+          template: String,
+          ?data: ::Hash[Symbol, top],
+          ?delay: Courier::JourneySendNode::Message::Delay,
+          ?to: Courier::JourneySendNode::Message::To
+        ) -> void
+
+        def to_hash: -> {
+          template: String,
+          data: ::Hash[Symbol, top],
+          delay: Courier::JourneySendNode::Message::Delay,
+          to: Courier::JourneySendNode::Message::To
+        }
+
+        type delay = { until_: String, timezone: String }
+
+        class Delay < Courier::Internal::Type::BaseModel
+          attr_accessor until_: String
+
+          attr_reader timezone: String?
+
+          def timezone=: (String) -> String
+
+          def initialize: (until_: String, ?timezone: String) -> void
+
+          def to_hash: -> { until_: String, timezone: String }
+        end
+
+        type to =
+          {
+            email_override: String,
+            phone_number_override: String,
+            user_id_override: String
+          }
+
+        class To < Courier::Internal::Type::BaseModel
+          attr_reader email_override: String?
+
+          def email_override=: (String) -> String
+
+          attr_reader phone_number_override: String?
+
+          def phone_number_override=: (String) -> String
+
+          attr_reader user_id_override: String?
+
+          def user_id_override=: (String) -> String
+
+          def initialize: (
+            ?email_override: String,
+            ?phone_number_override: String,
+            ?user_id_override: String
+          ) -> void
+
+          def to_hash: -> {
+            email_override: String,
+            phone_number_override: String,
+            user_id_override: String
+          }
+        end
+      end
+
+      type type_ = :send
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        SEND: :send
+
+        def self?.values: -> ::Array[Courier::Models::JourneySendNode::type_]
+      end
+    end
+  end
+end

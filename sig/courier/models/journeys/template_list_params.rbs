@@ -1,0 +1,38 @@
+module Courier
+  module Models
+    module Journeys
+      type template_list_params =
+        { template_id: String, cursor: String, limit: Integer }
+        & Courier::Internal::Type::request_parameters
+
+      class TemplateListParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_accessor template_id: String
+
+        attr_reader cursor: String?
+
+        def cursor=: (String) -> String
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        def initialize: (
+          template_id: String,
+          ?cursor: String,
+          ?limit: Integer,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          template_id: String,
+          cursor: String,
+          limit: Integer,
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module Courier
+  module Models
+    type journey_conditions_field =
+      Courier::Models::journey_condition_atom
+      | Courier::JourneyConditionGroup
+      | Courier::JourneyConditionNestedGroup
+
+    module JourneyConditionsField
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::journey_conditions_field]
+    end
+  end
+end

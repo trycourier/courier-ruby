@@ -1,0 +1,40 @@
+module Courier
+  module Models
+    type journey_version_item =
+      {
+        created: Integer?,
+        creator: String?,
+        name: String,
+        published: Integer?,
+        version: String
+      }
+
+    class JourneyVersionItem < Courier::Internal::Type::BaseModel
+      attr_accessor created: Integer?
+
+      attr_accessor creator: String?
+
+      attr_accessor name: String
+
+      attr_accessor published: Integer?
+
+      attr_accessor version: String
+
+      def initialize: (
+        created: Integer?,
+        creator: String?,
+        name: String,
+        published: Integer?,
+        version: String
+      ) -> void
+
+      def to_hash: -> {
+        created: Integer?,
+        creator: String?,
+        name: String,
+        published: Integer?,
+        version: String
+      }
+    end
+  end
+end

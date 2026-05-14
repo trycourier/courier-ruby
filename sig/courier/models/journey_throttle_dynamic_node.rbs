@@ -1,0 +1,76 @@
+module Courier
+  module Models
+    type journey_throttle_dynamic_node =
+      {
+        max_allowed: Integer,
+        period: String,
+        scope: Courier::Models::JourneyThrottleDynamicNode::scope,
+        throttle_key: String,
+        type: Courier::Models::JourneyThrottleDynamicNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field
+      }
+
+    class JourneyThrottleDynamicNode < Courier::Internal::Type::BaseModel
+      attr_accessor max_allowed: Integer
+
+      attr_accessor period: String
+
+      attr_accessor scope: Courier::Models::JourneyThrottleDynamicNode::scope
+
+      attr_accessor throttle_key: String
+
+      attr_accessor type: Courier::Models::JourneyThrottleDynamicNode::type_
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      def initialize: (
+        max_allowed: Integer,
+        period: String,
+        scope: Courier::Models::JourneyThrottleDynamicNode::scope,
+        throttle_key: String,
+        type: Courier::Models::JourneyThrottleDynamicNode::type_,
+        ?id: String,
+        ?conditions: Courier::Models::journey_conditions_field
+      ) -> void
+
+      def to_hash: -> {
+        max_allowed: Integer,
+        period: String,
+        scope: Courier::Models::JourneyThrottleDynamicNode::scope,
+        throttle_key: String,
+        type: Courier::Models::JourneyThrottleDynamicNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field
+      }
+
+      type scope = :dynamic
+
+      module Scope
+        extend Courier::Internal::Type::Enum
+
+        DYNAMIC: :dynamic
+
+        def self?.values: -> ::Array[Courier::Models::JourneyThrottleDynamicNode::scope]
+      end
+
+      type type_ = :throttle
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        THROTTLE: :throttle
+
+        def self?.values: -> ::Array[Courier::Models::JourneyThrottleDynamicNode::type_]
+      end
+    end
+  end
+end

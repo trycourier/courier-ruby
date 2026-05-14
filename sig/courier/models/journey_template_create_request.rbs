@@ -1,0 +1,148 @@
+module Courier
+  module Models
+    type journey_template_create_request =
+      {
+        channel: String,
+        notification: Courier::JourneyTemplateCreateRequest::Notification,
+        provider_key: String,
+        state: String
+      }
+
+    class JourneyTemplateCreateRequest < Courier::Internal::Type::BaseModel
+      attr_accessor channel: String
+
+      attr_accessor notification: Courier::JourneyTemplateCreateRequest::Notification
+
+      attr_reader provider_key: String?
+
+      def provider_key=: (String) -> String
+
+      attr_reader state: String?
+
+      def state=: (String) -> String
+
+      def initialize: (
+        channel: String,
+        notification: Courier::JourneyTemplateCreateRequest::Notification,
+        ?provider_key: String,
+        ?state: String
+      ) -> void
+
+      def to_hash: -> {
+        channel: String,
+        notification: Courier::JourneyTemplateCreateRequest::Notification,
+        provider_key: String,
+        state: String
+      }
+
+      type notification =
+        {
+          brand: Courier::JourneyTemplateCreateRequest::Notification::Brand?,
+          content: Courier::JourneyTemplateCreateRequest::Notification::Content,
+          name: String,
+          subscription: Courier::JourneyTemplateCreateRequest::Notification::Subscription?,
+          tags: ::Array[String]
+        }
+
+      class Notification < Courier::Internal::Type::BaseModel
+        attr_accessor brand: Courier::JourneyTemplateCreateRequest::Notification::Brand?
+
+        attr_accessor content: Courier::JourneyTemplateCreateRequest::Notification::Content
+
+        attr_accessor name: String
+
+        attr_accessor subscription: Courier::JourneyTemplateCreateRequest::Notification::Subscription?
+
+        attr_accessor tags: ::Array[String]
+
+        def initialize: (
+          brand: Courier::JourneyTemplateCreateRequest::Notification::Brand?,
+          content: Courier::JourneyTemplateCreateRequest::Notification::Content,
+          name: String,
+          subscription: Courier::JourneyTemplateCreateRequest::Notification::Subscription?,
+          tags: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          brand: Courier::JourneyTemplateCreateRequest::Notification::Brand?,
+          content: Courier::JourneyTemplateCreateRequest::Notification::Content,
+          name: String,
+          subscription: Courier::JourneyTemplateCreateRequest::Notification::Subscription?,
+          tags: ::Array[String]
+        }
+
+        type brand = { id: String }
+
+        class Brand < Courier::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        type content =
+          {
+            elements: ::Array[Courier::Models::elemental_node],
+            version: Courier::Models::JourneyTemplateCreateRequest::Notification::Content::version,
+            scope: Courier::Models::JourneyTemplateCreateRequest::Notification::Content::scope
+          }
+
+        class Content < Courier::Internal::Type::BaseModel
+          attr_accessor elements: ::Array[Courier::Models::elemental_node]
+
+          attr_accessor version: Courier::Models::JourneyTemplateCreateRequest::Notification::Content::version
+
+          attr_reader scope: Courier::Models::JourneyTemplateCreateRequest::Notification::Content::scope?
+
+          def scope=: (
+            Courier::Models::JourneyTemplateCreateRequest::Notification::Content::scope
+          ) -> Courier::Models::JourneyTemplateCreateRequest::Notification::Content::scope
+
+          def initialize: (
+            elements: ::Array[Courier::Models::elemental_node],
+            version: Courier::Models::JourneyTemplateCreateRequest::Notification::Content::version,
+            ?scope: Courier::Models::JourneyTemplateCreateRequest::Notification::Content::scope
+          ) -> void
+
+          def to_hash: -> {
+            elements: ::Array[Courier::Models::elemental_node],
+            version: Courier::Models::JourneyTemplateCreateRequest::Notification::Content::version,
+            scope: Courier::Models::JourneyTemplateCreateRequest::Notification::Content::scope
+          }
+
+          type version = :"2022-01-01"
+
+          module Version
+            extend Courier::Internal::Type::Enum
+
+            VERSION_2022_01_01: :"2022-01-01"
+
+            def self?.values: -> ::Array[Courier::Models::JourneyTemplateCreateRequest::Notification::Content::version]
+          end
+
+          type scope = :default | :strict
+
+          module Scope
+            extend Courier::Internal::Type::Enum
+
+            DEFAULT: :default
+            STRICT: :strict
+
+            def self?.values: -> ::Array[Courier::Models::JourneyTemplateCreateRequest::Notification::Content::scope]
+          end
+        end
+
+        type subscription = { topic_id: String }
+
+        class Subscription < Courier::Internal::Type::BaseModel
+          attr_accessor topic_id: String
+
+          def initialize: (topic_id: String) -> void
+
+          def to_hash: -> { topic_id: String }
+        end
+      end
+    end
+  end
+end

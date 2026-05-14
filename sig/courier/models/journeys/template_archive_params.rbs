@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    module Journeys
+      type template_archive_params =
+        { template_id: String, notification_id: String }
+        & Courier::Internal::Type::request_parameters
+
+      class TemplateArchiveParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_accessor template_id: String
+
+        attr_accessor notification_id: String
+
+        def initialize: (
+          template_id: String,
+          notification_id: String,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          template_id: String,
+          notification_id: String,
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

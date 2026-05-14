@@ -1,0 +1,66 @@
+module Courier
+  module Models
+    type journey_delay_until_node =
+      {
+        mode: Courier::Models::JourneyDelayUntilNode::mode,
+        type: Courier::Models::JourneyDelayUntilNode::type_,
+        until_: String,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field
+      }
+
+    class JourneyDelayUntilNode < Courier::Internal::Type::BaseModel
+      attr_accessor mode: Courier::Models::JourneyDelayUntilNode::mode
+
+      attr_accessor type: Courier::Models::JourneyDelayUntilNode::type_
+
+      attr_accessor until_: String
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      def initialize: (
+        mode: Courier::Models::JourneyDelayUntilNode::mode,
+        type: Courier::Models::JourneyDelayUntilNode::type_,
+        until_: String,
+        ?id: String,
+        ?conditions: Courier::Models::journey_conditions_field
+      ) -> void
+
+      def to_hash: -> {
+        mode: Courier::Models::JourneyDelayUntilNode::mode,
+        type: Courier::Models::JourneyDelayUntilNode::type_,
+        until_: String,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field
+      }
+
+      type mode = :until
+
+      module Mode
+        extend Courier::Internal::Type::Enum
+
+        UNTIL: :until
+
+        def self?.values: -> ::Array[Courier::Models::JourneyDelayUntilNode::mode]
+      end
+
+      type type_ = :delay
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        DELAY: :delay
+
+        def self?.values: -> ::Array[Courier::Models::JourneyDelayUntilNode::type_]
+      end
+    end
+  end
+end

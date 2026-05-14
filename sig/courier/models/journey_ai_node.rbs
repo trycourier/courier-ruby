@@ -1,0 +1,72 @@
+module Courier
+  module Models
+    type journey_ai_node =
+      {
+        output_schema: ::Hash[Symbol, top],
+        type: Courier::Models::JourneyAINode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field,
+        model: String,
+        user_prompt: String,
+        web_search: bool
+      }
+
+    class JourneyAINode < Courier::Internal::Type::BaseModel
+      attr_accessor output_schema: ::Hash[Symbol, top]
+
+      attr_accessor type: Courier::Models::JourneyAINode::type_
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      attr_reader model: String?
+
+      def model=: (String) -> String
+
+      attr_reader user_prompt: String?
+
+      def user_prompt=: (String) -> String
+
+      attr_reader web_search: bool?
+
+      def web_search=: (bool) -> bool
+
+      def initialize: (
+        output_schema: ::Hash[Symbol, top],
+        type: Courier::Models::JourneyAINode::type_,
+        ?id: String,
+        ?conditions: Courier::Models::journey_conditions_field,
+        ?model: String,
+        ?user_prompt: String,
+        ?web_search: bool
+      ) -> void
+
+      def to_hash: -> {
+        output_schema: ::Hash[Symbol, top],
+        type: Courier::Models::JourneyAINode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field,
+        model: String,
+        user_prompt: String,
+        web_search: bool
+      }
+
+      type type_ = :ai
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        AI: :ai
+
+        def self?.values: -> ::Array[Courier::Models::JourneyAINode::type_]
+      end
+    end
+  end
+end

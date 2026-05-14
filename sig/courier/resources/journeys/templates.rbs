@@ -1,0 +1,58 @@
+module Courier
+  module Resources
+    class Journeys
+      class Templates
+        def create: (
+          String template_id,
+          channel: String,
+          notification: Courier::JourneyTemplateCreateRequest::Notification,
+          ?provider_key: String,
+          ?state: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::JourneyTemplateGetResponse
+
+        def retrieve: (
+          String notification_id,
+          template_id: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::JourneyTemplateGetResponse
+
+        def list: (
+          String template_id,
+          ?cursor: String,
+          ?limit: Integer,
+          ?request_options: Courier::request_opts
+        ) -> Courier::JourneyTemplateListResponse
+
+        def archive: (
+          String notification_id,
+          template_id: String,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def list_versions: (
+          String notification_id,
+          template_id: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::NotificationTemplateVersionListResponse
+
+        def publish: (
+          String notification_id,
+          template_id: String,
+          ?version: String,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def replace: (
+          String notification_id,
+          template_id: String,
+          notification: Courier::JourneyTemplateReplaceRequest::Notification,
+          ?state: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::JourneyTemplateGetResponse
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end
