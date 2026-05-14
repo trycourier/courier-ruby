@@ -1,0 +1,117 @@
+module Courier
+  module Models
+    type journey_node =
+      Courier::JourneyAPIInvokeTriggerNode
+      | Courier::JourneySegmentTriggerNode
+      | Courier::JourneySendNode
+      | Courier::JourneyDelayDurationNode
+      | Courier::JourneyDelayUntilNode
+      | Courier::JourneyFetchGetDeleteNode
+      | Courier::JourneyFetchPostPutNode
+      | Courier::JourneyAINode
+      | Courier::JourneyThrottleStaticNode
+      | Courier::JourneyThrottleDynamicNode
+      | Courier::JourneyExitNode
+      | Courier::JourneyNode::JourneyBranchNode
+
+    module JourneyNode
+      extend Courier::Internal::Type::Union
+
+      type journey_branch_node =
+        {
+          default: Courier::JourneyNode::JourneyBranchNode::Default,
+          paths: ::Array[Courier::JourneyNode::JourneyBranchNode::Path],
+          type: Courier::Models::JourneyNode::JourneyBranchNode::type_,
+          id: String
+        }
+
+      class JourneyBranchNode < Courier::Internal::Type::BaseModel
+        attr_accessor default: Courier::JourneyNode::JourneyBranchNode::Default
+
+        attr_accessor paths: ::Array[Courier::JourneyNode::JourneyBranchNode::Path]
+
+        attr_accessor type: Courier::Models::JourneyNode::JourneyBranchNode::type_
+
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        def initialize: (
+          default: Courier::JourneyNode::JourneyBranchNode::Default,
+          paths: ::Array[Courier::JourneyNode::JourneyBranchNode::Path],
+          type: Courier::Models::JourneyNode::JourneyBranchNode::type_,
+          ?id: String
+        ) -> void
+
+        def to_hash: -> {
+          default: Courier::JourneyNode::JourneyBranchNode::Default,
+          paths: ::Array[Courier::JourneyNode::JourneyBranchNode::Path],
+          type: Courier::Models::JourneyNode::JourneyBranchNode::type_,
+          id: String
+        }
+
+        type default =
+          { nodes: ::Array[Courier::Models::journey_node], label: String }
+
+        class Default < Courier::Internal::Type::BaseModel
+          attr_accessor nodes: ::Array[Courier::Models::journey_node]
+
+          attr_reader label: String?
+
+          def label=: (String) -> String
+
+          def initialize: (
+            nodes: ::Array[Courier::Models::journey_node],
+            ?label: String
+          ) -> void
+
+          def to_hash: -> {
+            nodes: ::Array[Courier::Models::journey_node],
+            label: String
+          }
+        end
+
+        type path =
+          {
+            conditions: Courier::Models::journey_conditions_field,
+            nodes: ::Array[Courier::Models::journey_node],
+            label: String
+          }
+
+        class Path < Courier::Internal::Type::BaseModel
+          attr_accessor conditions: Courier::Models::journey_conditions_field
+
+          attr_accessor nodes: ::Array[Courier::Models::journey_node]
+
+          attr_reader label: String?
+
+          def label=: (String) -> String
+
+          def initialize: (
+            conditions: Courier::Models::journey_conditions_field,
+            nodes: ::Array[Courier::Models::journey_node],
+            ?label: String
+          ) -> void
+
+          def to_hash: -> {
+            conditions: Courier::Models::journey_conditions_field,
+            nodes: ::Array[Courier::Models::journey_node],
+            label: String
+          }
+        end
+
+        type type_ = :branch
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          BRANCH: :branch
+
+          def self?.values: -> ::Array[Courier::Models::JourneyNode::JourneyBranchNode::type_]
+        end
+      end
+
+      def self?.variants: -> ::Array[Courier::Models::journey_node]
+    end
+  end
+end

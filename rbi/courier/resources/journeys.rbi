@@ -3,6 +3,56 @@
 module Courier
   module Resources
     class Journeys
+      sig { returns(Courier::Resources::Journeys::Templates) }
+      attr_reader :templates
+
+      # Create a new journey. The journey is created in DRAFT state. Use POST
+      # /journeys/{templateId}/publish to make it live.
+      sig do
+        params(
+          name: String,
+          nodes:
+            T::Array[
+              T.any(
+                Courier::JourneyAPIInvokeTriggerNode::OrHash,
+                Courier::JourneySegmentTriggerNode::OrHash,
+                Courier::JourneySendNode::OrHash,
+                Courier::JourneyDelayDurationNode::OrHash,
+                Courier::JourneyDelayUntilNode::OrHash,
+                Courier::JourneyFetchGetDeleteNode::OrHash,
+                Courier::JourneyFetchPostPutNode::OrHash,
+                Courier::JourneyAINode::OrHash,
+                Courier::JourneyThrottleStaticNode::OrHash,
+                Courier::JourneyThrottleDynamicNode::OrHash,
+                Courier::JourneyExitNode::OrHash,
+                Courier::JourneyNode::JourneyBranchNode::OrHash
+              )
+            ],
+          enabled: T::Boolean,
+          state: Courier::JourneyState::OrSymbol,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::JourneyResponse)
+      end
+      def create(name:, nodes:, enabled: nil, state: nil, request_options: {})
+      end
+
+      # Fetch a journey by id. Pass `?version=draft` (default `published`) to retrieve
+      # the working draft, or `?version=vN` to retrieve a historical version.
+      sig do
+        params(
+          template_id: String,
+          version: String,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::JourneyResponse)
+      end
+      def retrieve(
+        # Journey id
+        template_id,
+        version: nil,
+        request_options: {}
+      )
+      end
+
       # Get the list of journeys.
       sig do
         params(
@@ -18,6 +68,21 @@ module Courier
         # The version of journeys to retrieve. Accepted values are published (for
         # published journeys) or draft (for draft journeys). Defaults to published.
         version: nil,
+        request_options: {}
+      )
+      end
+
+      # Archive a journey. Archived journeys cannot be invoked. Existing journey runs
+      # continue to completion.
+      sig do
+        params(
+          template_id: String,
+          request_options: Courier::RequestOptions::OrHash
+        ).void
+      end
+      def archive(
+        # Journey id
+        template_id,
         request_options: {}
       )
       end
@@ -51,6 +116,76 @@ module Courier
         # A unique identifier for the user. If not provided, the system will attempt to
         # resolve the user identifier from profile or data objects.
         user_id: nil,
+        request_options: {}
+      )
+      end
+
+      # List published versions of a journey, ordered most recent first.
+      sig do
+        params(
+          template_id: String,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::JourneyVersionsListResponse)
+      end
+      def list_versions(
+        # Journey id
+        template_id,
+        request_options: {}
+      )
+      end
+
+      # Publish the current draft as a new version. Optionally rollback to a prior
+      # version by passing `{ version: 'vN' }`.
+      sig do
+        params(
+          template_id: String,
+          version: String,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::JourneyResponse)
+      end
+      def publish(
+        # Journey id
+        template_id,
+        version: nil,
+        request_options: {}
+      )
+      end
+
+      # Replace the journey draft. Updates the working draft only; call POST
+      # /journeys/{templateId}/publish to make it live.
+      sig do
+        params(
+          template_id: String,
+          name: String,
+          nodes:
+            T::Array[
+              T.any(
+                Courier::JourneyAPIInvokeTriggerNode::OrHash,
+                Courier::JourneySegmentTriggerNode::OrHash,
+                Courier::JourneySendNode::OrHash,
+                Courier::JourneyDelayDurationNode::OrHash,
+                Courier::JourneyDelayUntilNode::OrHash,
+                Courier::JourneyFetchGetDeleteNode::OrHash,
+                Courier::JourneyFetchPostPutNode::OrHash,
+                Courier::JourneyAINode::OrHash,
+                Courier::JourneyThrottleStaticNode::OrHash,
+                Courier::JourneyThrottleDynamicNode::OrHash,
+                Courier::JourneyExitNode::OrHash,
+                Courier::JourneyNode::JourneyBranchNode::OrHash
+              )
+            ],
+          enabled: T::Boolean,
+          state: Courier::JourneyState::OrSymbol,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::JourneyResponse)
+      end
+      def replace(
+        # Journey id
+        template_id,
+        name:,
+        nodes:,
+        enabled: nil,
+        state: nil,
         request_options: {}
       )
       end

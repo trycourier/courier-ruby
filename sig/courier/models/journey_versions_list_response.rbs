@@ -1,0 +1,22 @@
+module Courier
+  module Models
+    type journey_versions_list_response =
+      { paging: Courier::Paging, results: ::Array[Courier::JourneyVersionItem] }
+
+    class JourneyVersionsListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor paging: Courier::Paging
+
+      attr_accessor results: ::Array[Courier::JourneyVersionItem]
+
+      def initialize: (
+        paging: Courier::Paging,
+        results: ::Array[Courier::JourneyVersionItem]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Courier::Paging,
+        results: ::Array[Courier::JourneyVersionItem]
+      }
+    end
+  end
+end

@@ -1,0 +1,157 @@
+module Courier
+  module Models
+    type journey_template_get_response =
+      {
+        id: String,
+        brand: Courier::JourneyTemplateGetResponse::Brand?,
+        content: Courier::JourneyTemplateGetResponse::Content,
+        created: Integer,
+        creator: String,
+        name: String,
+        state: Courier::Models::JourneyTemplateGetResponse::state,
+        subscription: Courier::JourneyTemplateGetResponse::Subscription?,
+        tags: ::Array[String],
+        updated: Integer,
+        updater: String
+      }
+
+    class JourneyTemplateGetResponse < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor brand: Courier::JourneyTemplateGetResponse::Brand?
+
+      attr_accessor content: Courier::JourneyTemplateGetResponse::Content
+
+      attr_accessor created: Integer
+
+      attr_accessor creator: String
+
+      attr_accessor name: String
+
+      attr_accessor state: Courier::Models::JourneyTemplateGetResponse::state
+
+      attr_accessor subscription: Courier::JourneyTemplateGetResponse::Subscription?
+
+      attr_accessor tags: ::Array[String]
+
+      attr_reader updated: Integer?
+
+      def updated=: (Integer) -> Integer
+
+      attr_reader updater: String?
+
+      def updater=: (String) -> String
+
+      def initialize: (
+        id: String,
+        brand: Courier::JourneyTemplateGetResponse::Brand?,
+        content: Courier::JourneyTemplateGetResponse::Content,
+        created: Integer,
+        creator: String,
+        name: String,
+        state: Courier::Models::JourneyTemplateGetResponse::state,
+        subscription: Courier::JourneyTemplateGetResponse::Subscription?,
+        tags: ::Array[String],
+        ?updated: Integer,
+        ?updater: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        brand: Courier::JourneyTemplateGetResponse::Brand?,
+        content: Courier::JourneyTemplateGetResponse::Content,
+        created: Integer,
+        creator: String,
+        name: String,
+        state: Courier::Models::JourneyTemplateGetResponse::state,
+        subscription: Courier::JourneyTemplateGetResponse::Subscription?,
+        tags: ::Array[String],
+        updated: Integer,
+        updater: String
+      }
+
+      type brand = { id: String }
+
+      class Brand < Courier::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type content =
+        {
+          elements: ::Array[Courier::Models::elemental_node],
+          version: Courier::Models::JourneyTemplateGetResponse::Content::version,
+          scope: Courier::Models::JourneyTemplateGetResponse::Content::scope
+        }
+
+      class Content < Courier::Internal::Type::BaseModel
+        attr_accessor elements: ::Array[Courier::Models::elemental_node]
+
+        attr_accessor version: Courier::Models::JourneyTemplateGetResponse::Content::version
+
+        attr_reader scope: Courier::Models::JourneyTemplateGetResponse::Content::scope?
+
+        def scope=: (
+          Courier::Models::JourneyTemplateGetResponse::Content::scope
+        ) -> Courier::Models::JourneyTemplateGetResponse::Content::scope
+
+        def initialize: (
+          elements: ::Array[Courier::Models::elemental_node],
+          version: Courier::Models::JourneyTemplateGetResponse::Content::version,
+          ?scope: Courier::Models::JourneyTemplateGetResponse::Content::scope
+        ) -> void
+
+        def to_hash: -> {
+          elements: ::Array[Courier::Models::elemental_node],
+          version: Courier::Models::JourneyTemplateGetResponse::Content::version,
+          scope: Courier::Models::JourneyTemplateGetResponse::Content::scope
+        }
+
+        type version = :"2022-01-01"
+
+        module Version
+          extend Courier::Internal::Type::Enum
+
+          VERSION_2022_01_01: :"2022-01-01"
+
+          def self?.values: -> ::Array[Courier::Models::JourneyTemplateGetResponse::Content::version]
+        end
+
+        type scope = :default | :strict
+
+        module Scope
+          extend Courier::Internal::Type::Enum
+
+          DEFAULT: :default
+          STRICT: :strict
+
+          def self?.values: -> ::Array[Courier::Models::JourneyTemplateGetResponse::Content::scope]
+        end
+      end
+
+      type state = :DRAFT | :PUBLISHED
+
+      module State
+        extend Courier::Internal::Type::Enum
+
+        DRAFT: :DRAFT
+        PUBLISHED: :PUBLISHED
+
+        def self?.values: -> ::Array[Courier::Models::JourneyTemplateGetResponse::state]
+      end
+
+      type subscription = { topic_id: String }
+
+      class Subscription < Courier::Internal::Type::BaseModel
+        attr_accessor topic_id: String
+
+        def initialize: (topic_id: String) -> void
+
+        def to_hash: -> { topic_id: String }
+      end
+    end
+  end
+end
