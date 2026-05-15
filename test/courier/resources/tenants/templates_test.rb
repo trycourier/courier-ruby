@@ -44,6 +44,16 @@ class Courier::Test::Resources::Tenants::TemplatesTest < Courier::Test::Resource
     end
   end
 
+  def test_delete_required_params
+    skip("Mock server tests are disabled")
+
+    response = @courier.tenants.templates.delete("template_id", tenant_id: "tenant_id")
+
+    assert_pattern do
+      response => nil
+    end
+  end
+
   def test_publish_required_params
     skip("Mock server tests are disabled")
 

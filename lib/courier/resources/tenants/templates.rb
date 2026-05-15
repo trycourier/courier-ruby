@@ -61,6 +61,38 @@ module Courier
           )
         end
 
+        # Deletes the tenant's notification template with the given `template_id`.
+        #
+        # Returns **204 No Content** with an empty body on success.
+        #
+        # Returns **404** if there is no template with this ID for the tenant, including a
+        # second `DELETE` after a successful removal.
+        #
+        # @overload delete(template_id, tenant_id:, request_options: {})
+        #
+        # @param template_id [String] Id of the template to remove from the tenant.
+        #
+        # @param tenant_id [String] Id of the tenant that owns the template.
+        #
+        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [nil]
+        #
+        # @see Courier::Models::Tenants::TemplateDeleteParams
+        def delete(template_id, params)
+          parsed, options = Courier::Tenants::TemplateDeleteParams.dump_request(params)
+          tenant_id =
+            parsed.delete(:tenant_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :delete,
+            path: ["tenants/%1$s/templates/%2$s", tenant_id, template_id],
+            model: NilClass,
+            options: options
+          )
+        end
+
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Tenants::TemplatePublishParams} for more details.
         #
