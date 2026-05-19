@@ -51,6 +51,8 @@ module Courier
       end
       attr_writer :conditions
 
+      # Send a notification template to the recipient. Optionally override the recipient
+      # address, delay the send, or attach `data`.
       sig do
         params(
           message: Courier::JourneySendNode::Message::OrHash,

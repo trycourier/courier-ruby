@@ -57,6 +57,7 @@ module Courier
       sig { params(event_id: String).void }
       attr_writer :event_id
 
+      # Trigger fired by a segment event (`identify`, `group`, or `track`).
       sig do
         params(
           request_type:

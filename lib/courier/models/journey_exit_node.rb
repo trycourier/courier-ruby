@@ -14,6 +14,8 @@ module Courier
       optional :id, String
 
       # @!method initialize(type:, id: nil)
+      #   Terminate the journey run.
+      #
       #   @param type [Symbol, Courier::Models::JourneyExitNode::Type]
       #   @param id [String]
 

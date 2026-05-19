@@ -14,6 +14,8 @@ module Courier
       required :results, -> { Courier::Internal::Type::ArrayOf[Courier::JourneyTemplateSummary] }
 
       # @!method initialize(paging:, results:)
+      #   Paged list of journey-scoped notification templates.
+      #
       #   @param paging [Courier::Models::Paging]
       #   @param results [Array<Courier::Models::JourneyTemplateSummary>]
     end

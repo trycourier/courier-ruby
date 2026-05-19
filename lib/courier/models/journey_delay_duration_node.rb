@@ -35,6 +35,8 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneyDelayDurationNode} for more details.
       #
+      #   Pause the journey run for a fixed `duration`.
+      #
       #   @param duration [String]
       #
       #   @param mode [Symbol, Courier::Models::JourneyDelayDurationNode::Mode]

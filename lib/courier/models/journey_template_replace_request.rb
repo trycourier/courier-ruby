@@ -14,6 +14,8 @@ module Courier
       optional :state, String
 
       # @!method initialize(notification:, state: nil)
+      #   Request body for replacing a journey-scoped notification template draft.
+      #
       #   @param notification [Courier::Models::JourneyTemplateReplaceRequest::Notification]
       #   @param state [String]
 

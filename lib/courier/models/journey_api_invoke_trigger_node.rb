@@ -36,6 +36,9 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneyAPIInvokeTriggerNode} for more details.
       #
+      #   Trigger fired when the journey is invoked via the API. The optional `schema`
+      #   field is a JSON Schema that validates the invocation payload.
+      #
       #   @param trigger_type [Symbol, Courier::Models::JourneyAPIInvokeTriggerNode::TriggerType]
       #
       #   @param type [Symbol, Courier::Models::JourneyAPIInvokeTriggerNode::Type]

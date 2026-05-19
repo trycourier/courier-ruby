@@ -59,6 +59,8 @@ module Courier
       optional :updater, String
 
       # @!method initialize(id:, brand:, content:, created:, creator:, name:, state:, subscription:, tags:, updated: nil, updater: nil)
+      #   A journey-scoped notification template.
+      #
       #   @param id [String]
       #   @param brand [Courier::Models::JourneyTemplateGetResponse::Brand, nil]
       #   @param content [Courier::Models::JourneyTemplateGetResponse::Content]

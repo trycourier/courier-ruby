@@ -37,6 +37,7 @@ module Courier
       sig { params(state: String).void }
       attr_writer :state
 
+      # Request body for creating a notification template scoped to a journey.
       sig do
         params(
           channel: String,

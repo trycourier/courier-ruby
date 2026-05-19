@@ -67,6 +67,8 @@ module Courier
       sig { params(web_search: T::Boolean).void }
       attr_writer :web_search
 
+      # Invoke an AI step with `user_prompt` and optional `web_search`. Returns a
+      # structured response conforming to `output_schema`.
       sig do
         params(
           output_schema: T::Hash[Symbol, T.anything],

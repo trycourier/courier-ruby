@@ -6,8 +6,12 @@ module Courier
       sig { returns(Courier::Resources::Journeys::Templates) }
       attr_reader :templates
 
-      # Create a new journey. The journey is created in DRAFT state. Use POST
-      # /journeys/{templateId}/publish to make it live.
+      # Create a journey. Defaults to `DRAFT` state; pass `state: "PUBLISHED"` to
+      # publish on create. Send nodes are not allowed on `POST`. The standard flow is:
+      # create the journey shell here, add notification templates with
+      # `POST /journeys/{templateId}/templates`, then wire them into the journey with
+      # `PUT /journeys/{templateId}`. Call `POST /journeys/{templateId}/publish` to
+      # publish a draft after the fact.
       sig do
         params(
           name: String,
@@ -33,7 +37,14 @@ module Courier
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::JourneyResponse)
       end
-      def create(name:, nodes:, enabled: nil, state: nil, request_options: {})
+      def create(
+        name:,
+        nodes:,
+        enabled: nil,
+        # Lifecycle state of a journey.
+        state: nil,
+        request_options: {}
+      )
       end
 
       # Fetch a journey by id. Pass `?version=draft` (default `published`) to retrieve
@@ -48,6 +59,7 @@ module Courier
       def retrieve(
         # Journey id
         template_id,
+        # Version selector: `draft`, `published` (default), or `vN`.
         version: nil,
         request_options: {}
       )
@@ -87,7 +99,8 @@ module Courier
       )
       end
 
-      # Invoke a journey run from a journey template.
+      # Invoke a journey by id or alias to start a new run. The response includes a
+      # `runId` identifying the run.
       sig do
         params(
           template_id: String,
@@ -98,8 +111,8 @@ module Courier
         ).returns(Courier::JourneysInvokeResponse)
       end
       def invoke(
-        # A unique identifier representing the journey template to be invoked. This could
-        # be the Journey Template ID or the Journey Template Alias.
+        # A unique identifier representing the journey to be invoked. Accepts a Journey ID
+        # or Journey Alias.
         template_id,
         # Data payload passed to the journey. The expected shape can be predefined using
         # the schema builder in the journey editor. This data is available in journey
@@ -134,8 +147,9 @@ module Courier
       )
       end
 
-      # Publish the current draft as a new version. Optionally rollback to a prior
-      # version by passing `{ version: 'vN' }`.
+      # Publish the current draft as a new version. Body is optional; pass
+      # `{ "version": "vN" }` to roll back to a prior version instead. Returns 404 if
+      # the journey has no draft to publish.
       sig do
         params(
           template_id: String,
@@ -151,8 +165,11 @@ module Courier
       )
       end
 
-      # Replace the journey draft. Updates the working draft only; call POST
-      # /journeys/{templateId}/publish to make it live.
+      # Replace the journey draft. Updates the working draft only; call
+      # `POST /journeys/{templateId}/publish` to make it live, or pass
+      # `state: "PUBLISHED"` in this request to publish immediately. Send-node
+      # `template` ids must already exist and be scoped to this journey, and node ids
+      # must not be claimed by another journey.
       sig do
         params(
           template_id: String,
@@ -185,6 +202,7 @@ module Courier
         name:,
         nodes:,
         enabled: nil,
+        # Lifecycle state of a journey.
         state: nil,
         request_options: {}
       )

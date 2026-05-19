@@ -28,6 +28,7 @@ module Courier
       sig { params(state: String).void }
       attr_writer :state
 
+      # Request body for replacing a journey-scoped notification template draft.
       sig do
         params(
           notification:

@@ -29,6 +29,8 @@ module Courier
       required :version, String
 
       # @!method initialize(created:, creator:, name:, published:, version:)
+      #   A published version of a journey.
+      #
       #   @param created [Integer, nil]
       #   @param creator [String, nil]
       #   @param name [String]

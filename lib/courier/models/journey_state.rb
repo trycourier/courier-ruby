@@ -2,6 +2,7 @@
 
 module Courier
   module Models
+    # Lifecycle state of a journey.
     module JourneyState
       extend Courier::Internal::Type::Enum
 

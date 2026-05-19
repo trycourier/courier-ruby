@@ -14,6 +14,7 @@ module Courier
       sig { returns(String) }
       attr_accessor :template_id
 
+      # Version selector: `draft`, `published` (default), or `vN`.
       sig { returns(T.nilable(String)) }
       attr_reader :version
 
@@ -27,7 +28,12 @@ module Courier
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(template_id:, version: nil, request_options: {})
+      def self.new(
+        template_id:,
+        # Version selector: `draft`, `published` (default), or `vN`.
+        version: nil,
+        request_options: {}
+      )
       end
 
       sig do

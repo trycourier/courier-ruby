@@ -40,6 +40,9 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneyThrottleStaticNode} for more details.
       #
+      #   Throttle the journey by a static `scope` (`user` or `global`), allowing at most
+      #   `max_allowed` invocations per `period`.
+      #
       #   @param max_allowed [Integer]
       #
       #   @param period [String]

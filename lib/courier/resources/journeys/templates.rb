@@ -4,8 +4,8 @@ module Courier
   module Resources
     class Journeys
       class Templates
-        # Create a notification template scoped to this journey. The template is created
-        # in DRAFT state.
+        # Create a notification template scoped to this journey. Defaults to `DRAFT`
+        # state; pass `state: "PUBLISHED"` to publish on create.
         #
         # @overload create(template_id, channel:, notification:, provider_key: nil, state: nil, request_options: {})
         #
@@ -41,7 +41,7 @@ module Courier
         #
         # @overload retrieve(notification_id, template_id:, request_options: {})
         #
-        # @param notification_id [String] Journey template id
+        # @param notification_id [String] Notification template id
         #
         # @param template_id [String] Journey id
         #
@@ -64,16 +64,16 @@ module Courier
           )
         end
 
-        # List notification templates scoped to this journey. Templates scoped to a
-        # journey can only be referenced from `send` nodes of the same journey.
+        # List notification templates scoped to this journey. Journey-scoped notification
+        # templates can only be referenced from `send` nodes within the same journey.
         #
         # @overload list(template_id, cursor: nil, limit: nil, request_options: {})
         #
         # @param template_id [String] Journey id
         #
-        # @param cursor [String]
+        # @param cursor [String] Pagination cursor from a prior response.
         #
-        # @param limit [Integer]
+        # @param limit [Integer] Page size. Minimum 1, maximum 100.
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -92,12 +92,12 @@ module Courier
           )
         end
 
-        # Archive a journey-scoped notification template. Archived templates cannot be
+        # Archive the journey-scoped notification template. Archived templates cannot be
         # sent.
         #
         # @overload archive(notification_id, template_id:, request_options: {})
         #
-        # @param notification_id [String] Journey template id
+        # @param notification_id [String] Notification template id
         #
         # @param template_id [String] Journey id
         #
@@ -120,12 +120,12 @@ module Courier
           )
         end
 
-        # List published versions of a journey-scoped notification template, ordered most
-        # recent first.
+        # List published versions of the journey-scoped notification template, ordered
+        # most recent first.
         #
         # @overload list_versions(notification_id, template_id:, request_options: {})
         #
-        # @param notification_id [String] Journey template id
+        # @param notification_id [String] Notification template id
         #
         # @param template_id [String] Journey id
         #
@@ -148,11 +148,13 @@ module Courier
           )
         end
 
-        # Publish the current draft of a journey-scoped notification template.
+        # Publish the current draft of the journey-scoped notification template as a new
+        # version. Optionally roll back to a prior version by passing
+        # `{ "version": "vN" }`.
         #
         # @overload publish(notification_id, template_id:, version: nil, request_options: {})
         #
-        # @param notification_id [String] Path param: Journey template id
+        # @param notification_id [String] Path param: Notification template id
         #
         # @param template_id [String] Path param: Journey id
         #
@@ -178,11 +180,11 @@ module Courier
           )
         end
 
-        # Replace a journey-scoped notification template draft.
+        # Replace the journey-scoped notification template draft.
         #
         # @overload replace(notification_id, template_id:, notification:, state: nil, request_options: {})
         #
-        # @param notification_id [String] Path param: Journey template id
+        # @param notification_id [String] Path param: Notification template id
         #
         # @param template_id [String] Path param: Journey id
         #

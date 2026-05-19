@@ -60,6 +60,8 @@ module Courier
       sig { params(schema: T::Hash[Symbol, T.anything]).void }
       attr_writer :schema
 
+      # Trigger fired when the journey is invoked via the API. The optional `schema`
+      # field is a JSON Schema that validates the invocation payload.
       sig do
         params(
           trigger_type:

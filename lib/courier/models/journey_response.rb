@@ -40,6 +40,7 @@ module Courier
       required :published, Integer, nil?: true
 
       # @!attribute state
+      #   Lifecycle state of a journey.
       #
       #   @return [Symbol, Courier::Models::JourneyState]
       required :state, enum: -> { Courier::JourneyState }
@@ -55,15 +56,26 @@ module Courier
       required :updater, String, nil?: true
 
       # @!method initialize(id:, created:, creator:, enabled:, name:, nodes:, published:, state:, updated:, updater:)
+      #   A journey, with its current draft or published nodes and metadata.
+      #
       #   @param id [String]
+      #
       #   @param created [Integer, nil]
+      #
       #   @param creator [String, nil]
+      #
       #   @param enabled [Boolean]
+      #
       #   @param name [String]
+      #
       #   @param nodes [Array<Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode>]
+      #
       #   @param published [Integer, nil]
-      #   @param state [Symbol, Courier::Models::JourneyState]
+      #
+      #   @param state [Symbol, Courier::Models::JourneyState] Lifecycle state of a journey.
+      #
       #   @param updated [Integer, nil]
+      #
       #   @param updater [String, nil]
     end
   end
