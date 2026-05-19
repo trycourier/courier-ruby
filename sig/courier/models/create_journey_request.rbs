@@ -1,0 +1,41 @@
+module Courier
+  module Models
+    type create_journey_request =
+      {
+        name: String,
+        nodes: ::Array[Courier::Models::journey_node],
+        enabled: bool,
+        state: Courier::Models::journey_state
+      }
+
+    class CreateJourneyRequest < Courier::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor nodes: ::Array[Courier::Models::journey_node]
+
+      attr_reader enabled: bool?
+
+      def enabled=: (bool) -> bool
+
+      attr_reader state: Courier::Models::journey_state?
+
+      def state=: (
+        Courier::Models::journey_state
+      ) -> Courier::Models::journey_state
+
+      def initialize: (
+        name: String,
+        nodes: ::Array[Courier::Models::journey_node],
+        ?enabled: bool,
+        ?state: Courier::Models::journey_state
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        nodes: ::Array[Courier::Models::journey_node],
+        enabled: bool,
+        state: Courier::Models::journey_state
+      }
+    end
+  end
+end

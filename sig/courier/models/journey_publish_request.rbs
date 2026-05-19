@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type journey_publish_request = { version: String }
+
+    class JourneyPublishRequest < Courier::Internal::Type::BaseModel
+      attr_reader version: String?
+
+      def version=: (String) -> String
+
+      def initialize: (?version: String) -> void
+
+      def to_hash: -> { version: String }
+    end
+  end
+end

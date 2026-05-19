@@ -1,0 +1,16 @@
+module Courier
+  module Models
+    type journey_merge_strategy = :overwrite | :"soft-merge" | :replace | :none
+
+    module JourneyMergeStrategy
+      extend Courier::Internal::Type::Enum
+
+      OVERWRITE: :overwrite
+      SOFT_MERGE: :"soft-merge"
+      REPLACE: :replace
+      NONE: :none
+
+      def self?.values: -> ::Array[Courier::Models::journey_merge_strategy]
+    end
+  end
+end

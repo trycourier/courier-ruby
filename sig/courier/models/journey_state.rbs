@@ -1,0 +1,14 @@
+module Courier
+  module Models
+    type journey_state = :DRAFT | :PUBLISHED
+
+    module JourneyState
+      extend Courier::Internal::Type::Enum
+
+      DRAFT: :DRAFT
+      PUBLISHED: :PUBLISHED
+
+      def self?.values: -> ::Array[Courier::Models::journey_state]
+    end
+  end
+end

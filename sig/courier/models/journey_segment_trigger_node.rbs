@@ -1,0 +1,85 @@
+module Courier
+  module Models
+    type journey_segment_trigger_node =
+      {
+        request_type: Courier::Models::JourneySegmentTriggerNode::request_type,
+        trigger_type: Courier::Models::JourneySegmentTriggerNode::trigger_type,
+        type: Courier::Models::JourneySegmentTriggerNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field,
+        event_id: String
+      }
+
+    class JourneySegmentTriggerNode < Courier::Internal::Type::BaseModel
+      attr_accessor request_type: Courier::Models::JourneySegmentTriggerNode::request_type
+
+      attr_accessor trigger_type: Courier::Models::JourneySegmentTriggerNode::trigger_type
+
+      attr_accessor type: Courier::Models::JourneySegmentTriggerNode::type_
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      attr_reader event_id: String?
+
+      def event_id=: (String) -> String
+
+      def initialize: (
+        request_type: Courier::Models::JourneySegmentTriggerNode::request_type,
+        trigger_type: Courier::Models::JourneySegmentTriggerNode::trigger_type,
+        type: Courier::Models::JourneySegmentTriggerNode::type_,
+        ?id: String,
+        ?conditions: Courier::Models::journey_conditions_field,
+        ?event_id: String
+      ) -> void
+
+      def to_hash: -> {
+        request_type: Courier::Models::JourneySegmentTriggerNode::request_type,
+        trigger_type: Courier::Models::JourneySegmentTriggerNode::trigger_type,
+        type: Courier::Models::JourneySegmentTriggerNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field,
+        event_id: String
+      }
+
+      type request_type = :identify | :group | :track
+
+      module RequestType
+        extend Courier::Internal::Type::Enum
+
+        IDENTIFY: :identify
+        GROUP: :group
+        TRACK: :track
+
+        def self?.values: -> ::Array[Courier::Models::JourneySegmentTriggerNode::request_type]
+      end
+
+      type trigger_type = :segment
+
+      module TriggerType
+        extend Courier::Internal::Type::Enum
+
+        SEGMENT: :segment
+
+        def self?.values: -> ::Array[Courier::Models::JourneySegmentTriggerNode::trigger_type]
+      end
+
+      type type_ = :trigger
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        TRIGGER: :trigger
+
+        def self?.values: -> ::Array[Courier::Models::JourneySegmentTriggerNode::type_]
+      end
+    end
+  end
+end

@@ -1,0 +1,33 @@
+module Courier
+  module Models
+    type journey_condition_group =
+      {
+        and_: ::Array[Courier::Models::journey_condition_atom],
+        or_: ::Array[Courier::Models::journey_condition_atom]
+      }
+
+    class JourneyConditionGroup < Courier::Internal::Type::BaseModel
+      attr_reader and_: ::Array[Courier::Models::journey_condition_atom]?
+
+      def and_=: (
+        ::Array[Courier::Models::journey_condition_atom]
+      ) -> ::Array[Courier::Models::journey_condition_atom]
+
+      attr_reader or_: ::Array[Courier::Models::journey_condition_atom]?
+
+      def or_=: (
+        ::Array[Courier::Models::journey_condition_atom]
+      ) -> ::Array[Courier::Models::journey_condition_atom]
+
+      def initialize: (
+        ?and_: ::Array[Courier::Models::journey_condition_atom],
+        ?or_: ::Array[Courier::Models::journey_condition_atom]
+      ) -> void
+
+      def to_hash: -> {
+        and_: ::Array[Courier::Models::journey_condition_atom],
+        or_: ::Array[Courier::Models::journey_condition_atom]
+      }
+    end
+  end
+end

@@ -1,0 +1,33 @@
+module Courier
+  module Models
+    type journey_condition_nested_group =
+      {
+        and_: ::Array[Courier::JourneyConditionGroup],
+        or_: ::Array[Courier::JourneyConditionGroup]
+      }
+
+    class JourneyConditionNestedGroup < Courier::Internal::Type::BaseModel
+      attr_reader and_: ::Array[Courier::JourneyConditionGroup]?
+
+      def and_=: (
+        ::Array[Courier::JourneyConditionGroup]
+      ) -> ::Array[Courier::JourneyConditionGroup]
+
+      attr_reader or_: ::Array[Courier::JourneyConditionGroup]?
+
+      def or_=: (
+        ::Array[Courier::JourneyConditionGroup]
+      ) -> ::Array[Courier::JourneyConditionGroup]
+
+      def initialize: (
+        ?and_: ::Array[Courier::JourneyConditionGroup],
+        ?or_: ::Array[Courier::JourneyConditionGroup]
+      ) -> void
+
+      def to_hash: -> {
+        and_: ::Array[Courier::JourneyConditionGroup],
+        or_: ::Array[Courier::JourneyConditionGroup]
+      }
+    end
+  end
+end

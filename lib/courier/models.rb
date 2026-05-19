@@ -133,6 +133,8 @@ module Courier
 
   Check = Courier::Models::Check
 
+  CreateJourneyRequest = Courier::Models::CreateJourneyRequest
+
   DefaultPreferences = Courier::Models::DefaultPreferences
 
   DeviceType = Courier::Models::DeviceType
@@ -191,15 +193,86 @@ module Courier
 
   Journey = Courier::Models::Journey
 
+  JourneyAINode = Courier::Models::JourneyAINode
+
+  JourneyAPIInvokeTriggerNode = Courier::Models::JourneyAPIInvokeTriggerNode
+
+  JourneyArchiveParams = Courier::Models::JourneyArchiveParams
+
+  # @type [Courier::Internal::Type::Converter]
+  JourneyConditionAtom = Courier::Models::JourneyConditionAtom
+
+  JourneyConditionGroup = Courier::Models::JourneyConditionGroup
+
+  JourneyConditionNestedGroup = Courier::Models::JourneyConditionNestedGroup
+
+  JourneyConditionsField = Courier::Models::JourneyConditionsField
+
+  JourneyCreateParams = Courier::Models::JourneyCreateParams
+
+  JourneyDelayDurationNode = Courier::Models::JourneyDelayDurationNode
+
+  JourneyDelayUntilNode = Courier::Models::JourneyDelayUntilNode
+
+  JourneyExitNode = Courier::Models::JourneyExitNode
+
+  JourneyFetchGetDeleteNode = Courier::Models::JourneyFetchGetDeleteNode
+
+  JourneyFetchPostPutNode = Courier::Models::JourneyFetchPostPutNode
+
   JourneyInvokeParams = Courier::Models::JourneyInvokeParams
 
   JourneyListParams = Courier::Models::JourneyListParams
+
+  JourneyListVersionsParams = Courier::Models::JourneyListVersionsParams
+
+  JourneyMergeStrategy = Courier::Models::JourneyMergeStrategy
+
+  JourneyNode = Courier::Models::JourneyNode
+
+  JourneyPublishParams = Courier::Models::JourneyPublishParams
+
+  JourneyPublishRequest = Courier::Models::JourneyPublishRequest
+
+  JourneyReplaceParams = Courier::Models::JourneyReplaceParams
+
+  JourneyResponse = Courier::Models::JourneyResponse
+
+  JourneyRetrieveParams = Courier::Models::JourneyRetrieveParams
+
+  Journeys = Courier::Models::Journeys
+
+  JourneySegmentTriggerNode = Courier::Models::JourneySegmentTriggerNode
+
+  JourneySendNode = Courier::Models::JourneySendNode
 
   JourneysInvokeRequest = Courier::Models::JourneysInvokeRequest
 
   JourneysInvokeResponse = Courier::Models::JourneysInvokeResponse
 
   JourneysListResponse = Courier::Models::JourneysListResponse
+
+  JourneyState = Courier::Models::JourneyState
+
+  JourneyTemplateCreateRequest = Courier::Models::JourneyTemplateCreateRequest
+
+  JourneyTemplateGetResponse = Courier::Models::JourneyTemplateGetResponse
+
+  JourneyTemplateListResponse = Courier::Models::JourneyTemplateListResponse
+
+  JourneyTemplatePublishRequest = Courier::Models::JourneyTemplatePublishRequest
+
+  JourneyTemplateReplaceRequest = Courier::Models::JourneyTemplateReplaceRequest
+
+  JourneyTemplateSummary = Courier::Models::JourneyTemplateSummary
+
+  JourneyThrottleDynamicNode = Courier::Models::JourneyThrottleDynamicNode
+
+  JourneyThrottleStaticNode = Courier::Models::JourneyThrottleStaticNode
+
+  JourneyVersionItem = Courier::Models::JourneyVersionItem
+
+  JourneyVersionsListResponse = Courier::Models::JourneyVersionsListResponse
 
   ListDeleteParams = Courier::Models::ListDeleteParams
 

@@ -1,0 +1,68 @@
+module Courier
+  module Models
+    type journey_api_invoke_trigger_node =
+      {
+        trigger_type: Courier::Models::JourneyAPIInvokeTriggerNode::trigger_type,
+        type: Courier::Models::JourneyAPIInvokeTriggerNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field,
+        schema: ::Hash[Symbol, top]
+      }
+
+    class JourneyAPIInvokeTriggerNode < Courier::Internal::Type::BaseModel
+      attr_accessor trigger_type: Courier::Models::JourneyAPIInvokeTriggerNode::trigger_type
+
+      attr_accessor type: Courier::Models::JourneyAPIInvokeTriggerNode::type_
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      attr_reader schema: ::Hash[Symbol, top]?
+
+      def schema=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      def initialize: (
+        trigger_type: Courier::Models::JourneyAPIInvokeTriggerNode::trigger_type,
+        type: Courier::Models::JourneyAPIInvokeTriggerNode::type_,
+        ?id: String,
+        ?conditions: Courier::Models::journey_conditions_field,
+        ?schema: ::Hash[Symbol, top]
+      ) -> void
+
+      def to_hash: -> {
+        trigger_type: Courier::Models::JourneyAPIInvokeTriggerNode::trigger_type,
+        type: Courier::Models::JourneyAPIInvokeTriggerNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field,
+        schema: ::Hash[Symbol, top]
+      }
+
+      type trigger_type = :"api-invoke"
+
+      module TriggerType
+        extend Courier::Internal::Type::Enum
+
+        API_INVOKE: :"api-invoke"
+
+        def self?.values: -> ::Array[Courier::Models::JourneyAPIInvokeTriggerNode::trigger_type]
+      end
+
+      type type_ = :trigger
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        TRIGGER: :trigger
+
+        def self?.values: -> ::Array[Courier::Models::JourneyAPIInvokeTriggerNode::type_]
+      end
+    end
+  end
+end

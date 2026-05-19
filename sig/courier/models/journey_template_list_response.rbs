@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    type journey_template_list_response =
+      {
+        paging: Courier::Paging,
+        results: ::Array[Courier::JourneyTemplateSummary]
+      }
+
+    class JourneyTemplateListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor paging: Courier::Paging
+
+      attr_accessor results: ::Array[Courier::JourneyTemplateSummary]
+
+      def initialize: (
+        paging: Courier::Paging,
+        results: ::Array[Courier::JourneyTemplateSummary]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Courier::Paging,
+        results: ::Array[Courier::JourneyTemplateSummary]
+      }
+    end
+  end
+end

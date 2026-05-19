@@ -1,0 +1,7 @@
+module Courier
+  module Models
+    type journey_condition_atom = ::Array[String]
+
+    JourneyConditionAtom: Courier::Internal::Type::Converter
+  end
+end

@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.11.0 (2026-05-19)
+
+Full Changelog: [v4.10.2...v4.11.0](https://github.com/trycourier/courier-ruby/compare/v4.10.2...v4.11.0)
+
+### Features
+
+* [C-18380] Journeys API reference: copy + naming cleanup ([5930853](https://github.com/trycourier/courier-ruby/commit/5930853b36e87fc434a5f316d5144459d8a5156c))
+* [SUP-607] Add DELETE endpoint for Courier Create tenant templates ([72df650](https://github.com/trycourier/courier-ruby/commit/72df650b8e3e6bde00a5a8f047c16e77f2c97ac3))
+* **api:** add journey CRUD/templates/versioning endpoints, journey node/condition types ([30bc8f6](https://github.com/trycourier/courier-ruby/commit/30bc8f6ad778a9ca44ed7ccbfa743e23170192b4))
+* support setting headers via env ([6f99d29](https://github.com/trycourier/courier-ruby/commit/6f99d290cad4006de8f84b22cbac6694d314a3aa))
+
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([5f06485](https://github.com/trycourier/courier-ruby/commit/5f0648580bf65a97989fbb1f6583ef7166c43c2f))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([91e8fd1](https://github.com/trycourier/courier-ruby/commit/91e8fd1ecdd6d10def9215f53a73248b754b5386))
+
 ## 4.10.2 (2026-04-14)
 
 Full Changelog: [v4.10.1...v4.10.2](https://github.com/trycourier/courier-ruby/compare/v4.10.1...v4.10.2)

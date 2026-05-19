@@ -1,0 +1,100 @@
+module Courier
+  module Models
+    type journey_fetch_post_put_node =
+      {
+        merge_strategy: Courier::Models::journey_merge_strategy,
+        method_: Courier::Models::JourneyFetchPostPutNode::method_,
+        type: Courier::Models::JourneyFetchPostPutNode::type_,
+        url: String,
+        id: String,
+        body: String,
+        conditions: Courier::Models::journey_conditions_field,
+        headers: ::Hash[Symbol, String],
+        query_params: ::Hash[Symbol, String],
+        response_schema: ::Hash[Symbol, top]
+      }
+
+    class JourneyFetchPostPutNode < Courier::Internal::Type::BaseModel
+      attr_accessor merge_strategy: Courier::Models::journey_merge_strategy
+
+      attr_accessor method_: Courier::Models::JourneyFetchPostPutNode::method_
+
+      attr_accessor type: Courier::Models::JourneyFetchPostPutNode::type_
+
+      attr_accessor url: String
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader body: String?
+
+      def body=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      attr_reader headers: ::Hash[Symbol, String]?
+
+      def headers=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader query_params: ::Hash[Symbol, String]?
+
+      def query_params=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader response_schema: ::Hash[Symbol, top]?
+
+      def response_schema=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      def initialize: (
+        merge_strategy: Courier::Models::journey_merge_strategy,
+        method_: Courier::Models::JourneyFetchPostPutNode::method_,
+        type: Courier::Models::JourneyFetchPostPutNode::type_,
+        url: String,
+        ?id: String,
+        ?body: String,
+        ?conditions: Courier::Models::journey_conditions_field,
+        ?headers: ::Hash[Symbol, String],
+        ?query_params: ::Hash[Symbol, String],
+        ?response_schema: ::Hash[Symbol, top]
+      ) -> void
+
+      def to_hash: -> {
+        merge_strategy: Courier::Models::journey_merge_strategy,
+        method_: Courier::Models::JourneyFetchPostPutNode::method_,
+        type: Courier::Models::JourneyFetchPostPutNode::type_,
+        url: String,
+        id: String,
+        body: String,
+        conditions: Courier::Models::journey_conditions_field,
+        headers: ::Hash[Symbol, String],
+        query_params: ::Hash[Symbol, String],
+        response_schema: ::Hash[Symbol, top]
+      }
+
+      type method_ = :post | :put
+
+      module Method
+        extend Courier::Internal::Type::Enum
+
+        POST: :post
+        PUT: :put
+
+        def self?.values: -> ::Array[Courier::Models::JourneyFetchPostPutNode::method_]
+      end
+
+      type type_ = :fetch
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        FETCH: :fetch
+
+        def self?.values: -> ::Array[Courier::Models::JourneyFetchPostPutNode::type_]
+      end
+    end
+  end
+end
