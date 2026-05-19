@@ -23,6 +23,7 @@ module Courier
       sig { returns(String) }
       attr_accessor :version
 
+      # A published version of a journey.
       sig do
         params(
           created: T.nilable(Integer),

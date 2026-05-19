@@ -4,8 +4,8 @@ module Courier
   module Resources
     class Journeys
       class Templates
-        # Create a notification template scoped to this journey. The template is created
-        # in DRAFT state.
+        # Create a notification template scoped to this journey. Defaults to `DRAFT`
+        # state; pass `state: "PUBLISHED"` to publish on create.
         sig do
           params(
             template_id: String,
@@ -39,7 +39,7 @@ module Courier
           ).returns(Courier::JourneyTemplateGetResponse)
         end
         def retrieve(
-          # Journey template id
+          # Notification template id
           notification_id,
           # Journey id
           template_id:,
@@ -47,8 +47,8 @@ module Courier
         )
         end
 
-        # List notification templates scoped to this journey. Templates scoped to a
-        # journey can only be referenced from `send` nodes of the same journey.
+        # List notification templates scoped to this journey. Journey-scoped notification
+        # templates can only be referenced from `send` nodes within the same journey.
         sig do
           params(
             template_id: String,
@@ -60,13 +60,15 @@ module Courier
         def list(
           # Journey id
           template_id,
+          # Pagination cursor from a prior response.
           cursor: nil,
+          # Page size. Minimum 1, maximum 100.
           limit: nil,
           request_options: {}
         )
         end
 
-        # Archive a journey-scoped notification template. Archived templates cannot be
+        # Archive the journey-scoped notification template. Archived templates cannot be
         # sent.
         sig do
           params(
@@ -76,7 +78,7 @@ module Courier
           ).void
         end
         def archive(
-          # Journey template id
+          # Notification template id
           notification_id,
           # Journey id
           template_id:,
@@ -84,8 +86,8 @@ module Courier
         )
         end
 
-        # List published versions of a journey-scoped notification template, ordered most
-        # recent first.
+        # List published versions of the journey-scoped notification template, ordered
+        # most recent first.
         sig do
           params(
             notification_id: String,
@@ -94,7 +96,7 @@ module Courier
           ).returns(Courier::NotificationTemplateVersionListResponse)
         end
         def list_versions(
-          # Journey template id
+          # Notification template id
           notification_id,
           # Journey id
           template_id:,
@@ -102,7 +104,9 @@ module Courier
         )
         end
 
-        # Publish the current draft of a journey-scoped notification template.
+        # Publish the current draft of the journey-scoped notification template as a new
+        # version. Optionally roll back to a prior version by passing
+        # `{ "version": "vN" }`.
         sig do
           params(
             notification_id: String,
@@ -112,7 +116,7 @@ module Courier
           ).void
         end
         def publish(
-          # Path param: Journey template id
+          # Path param: Notification template id
           notification_id,
           # Path param: Journey id
           template_id:,
@@ -122,7 +126,7 @@ module Courier
         )
         end
 
-        # Replace a journey-scoped notification template draft.
+        # Replace the journey-scoped notification template draft.
         sig do
           params(
             notification_id: String,
@@ -134,7 +138,7 @@ module Courier
           ).returns(Courier::JourneyTemplateGetResponse)
         end
         def replace(
-          # Path param: Journey template id
+          # Path param: Notification template id
           notification_id,
           # Path param: Journey id
           template_id:,

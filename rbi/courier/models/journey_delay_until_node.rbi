@@ -51,6 +51,7 @@ module Courier
       end
       attr_writer :conditions
 
+      # Pause the journey run `until` a specific time.
       sig do
         params(
           mode: Courier::JourneyDelayUntilNode::Mode::OrSymbol,

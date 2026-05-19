@@ -18,12 +18,14 @@ module Courier
         sig { returns(String) }
         attr_accessor :template_id
 
+        # Pagination cursor from a prior response.
         sig { returns(T.nilable(String)) }
         attr_reader :cursor
 
         sig { params(cursor: String).void }
         attr_writer :cursor
 
+        # Page size. Minimum 1, maximum 100.
         sig { returns(T.nilable(Integer)) }
         attr_reader :limit
 
@@ -38,7 +40,14 @@ module Courier
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(template_id:, cursor: nil, limit: nil, request_options: {})
+        def self.new(
+          template_id:,
+          # Pagination cursor from a prior response.
+          cursor: nil,
+          # Page size. Minimum 1, maximum 100.
+          limit: nil,
+          request_options: {}
+        )
         end
 
         sig do

@@ -30,6 +30,9 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneySendNode} for more details.
       #
+      #   Send a notification template to the recipient. Optionally override the recipient
+      #   address, delay the send, or attach `data`.
+      #
       #   @param message [Courier::Models::JourneySendNode::Message]
       #
       #   @param type [Symbol, Courier::Models::JourneySendNode::Type]

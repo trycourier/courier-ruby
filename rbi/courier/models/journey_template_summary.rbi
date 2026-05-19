@@ -38,6 +38,8 @@ module Courier
       sig { params(updater: String).void }
       attr_writer :updater
 
+      # Summary fields of a journey-scoped notification template returned in list
+      # responses.
       sig do
         params(
           id: String,

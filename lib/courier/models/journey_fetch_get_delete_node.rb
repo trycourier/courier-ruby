@@ -4,6 +4,7 @@ module Courier
   module Models
     class JourneyFetchGetDeleteNode < Courier::Internal::Type::BaseModel
       # @!attribute merge_strategy
+      #   Strategy for merging a fetch response into the journey run state.
       #
       #   @return [Symbol, Courier::Models::JourneyMergeStrategy]
       required :merge_strategy, enum: -> { Courier::JourneyMergeStrategy }
@@ -56,7 +57,10 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneyFetchGetDeleteNode} for more details.
       #
-      #   @param merge_strategy [Symbol, Courier::Models::JourneyMergeStrategy]
+      #   Issue an HTTP GET or DELETE request and merge the response into the journey
+      #   state per `merge_strategy`.
+      #
+      #   @param merge_strategy [Symbol, Courier::Models::JourneyMergeStrategy] Strategy for merging a fetch response into the journey run state.
       #
       #   @param method_ [Symbol, Courier::Models::JourneyFetchGetDeleteNode::Method]
       #

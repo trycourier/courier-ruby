@@ -40,6 +40,8 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneySegmentTriggerNode} for more details.
       #
+      #   Trigger fired by a segment event (`identify`, `group`, or `track`).
+      #
       #   @param request_type [Symbol, Courier::Models::JourneySegmentTriggerNode::RequestType]
       #
       #   @param trigger_type [Symbol, Courier::Models::JourneySegmentTriggerNode::TriggerType]

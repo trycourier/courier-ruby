@@ -2,6 +2,7 @@
 
 module Courier
   module Models
+    # Strategy for merging a fetch response into the journey run state.
     module JourneyMergeStrategy
       extend Courier::Internal::Type::Enum
 

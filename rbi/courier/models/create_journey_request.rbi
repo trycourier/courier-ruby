@@ -39,12 +39,14 @@ module Courier
       sig { params(enabled: T::Boolean).void }
       attr_writer :enabled
 
+      # Lifecycle state of a journey.
       sig { returns(T.nilable(Courier::JourneyState::OrSymbol)) }
       attr_reader :state
 
       sig { params(state: Courier::JourneyState::OrSymbol).void }
       attr_writer :state
 
+      # Request body for creating a journey.
       sig do
         params(
           name: String,
@@ -69,7 +71,13 @@ module Courier
           state: Courier::JourneyState::OrSymbol
         ).returns(T.attached_class)
       end
-      def self.new(name:, nodes:, enabled: nil, state: nil)
+      def self.new(
+        name:,
+        nodes:,
+        enabled: nil,
+        # Lifecycle state of a journey.
+        state: nil
+      )
       end
 
       sig do

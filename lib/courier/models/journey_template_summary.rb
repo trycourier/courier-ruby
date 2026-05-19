@@ -44,6 +44,9 @@ module Courier
       optional :updater, String
 
       # @!method initialize(id:, created:, creator:, name:, state:, tags:, updated: nil, updater: nil)
+      #   Summary fields of a journey-scoped notification template returned in list
+      #   responses.
+      #
       #   @param id [String]
       #   @param created [Integer]
       #   @param creator [String]

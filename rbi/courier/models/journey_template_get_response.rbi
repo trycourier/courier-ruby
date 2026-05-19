@@ -71,6 +71,7 @@ module Courier
       sig { params(updater: String).void }
       attr_writer :updater
 
+      # A journey-scoped notification template.
       sig do
         params(
           id: String,

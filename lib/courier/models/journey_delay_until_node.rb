@@ -35,6 +35,8 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneyDelayUntilNode} for more details.
       #
+      #   Pause the journey run `until` a specific time.
+      #
       #   @param mode [Symbol, Courier::Models::JourneyDelayUntilNode::Mode]
       #
       #   @param type [Symbol, Courier::Models::JourneyDelayUntilNode::Type]

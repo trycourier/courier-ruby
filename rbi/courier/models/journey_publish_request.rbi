@@ -14,6 +14,8 @@ module Courier
       sig { params(version: String).void }
       attr_writer :version
 
+      # Request body for publishing a journey. Pass `version` to roll back to a prior
+      # version; omit to publish the current draft.
       sig { params(version: String).returns(T.attached_class) }
       def self.new(version: nil)
       end

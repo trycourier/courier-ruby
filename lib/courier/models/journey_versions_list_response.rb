@@ -15,6 +15,8 @@ module Courier
       required :results, -> { Courier::Internal::Type::ArrayOf[Courier::JourneyVersionItem] }
 
       # @!method initialize(paging:, results:)
+      #   Paged list of published journey versions, most recent first.
+      #
       #   @param paging [Courier::Models::Paging]
       #   @param results [Array<Courier::Models::JourneyVersionItem>]
     end

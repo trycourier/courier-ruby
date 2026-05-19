@@ -2,36 +2,46 @@
 
 module Courier
   module Models
-    # A single node in a journey DAG. Discriminated by `type` plus a secondary
+    # A single node in a journey DAG. Discriminated by `type`, with a secondary
     # discriminator on some variants (`trigger_type` for trigger, `mode` for delay,
-    # `method` for fetch, `scope` for throttle). Each variant is exported as a
-    # separate schema for SDK type quality.
+    # `method` for fetch, `scope` for throttle).
     module JourneyNode
       extend Courier::Internal::Type::Union
 
+      # Trigger fired when the journey is invoked via the API. The optional `schema` field is a JSON Schema that validates the invocation payload.
       variant -> { Courier::JourneyAPIInvokeTriggerNode }
 
+      # Trigger fired by a segment event (`identify`, `group`, or `track`).
       variant -> { Courier::JourneySegmentTriggerNode }
 
+      # Send a notification template to the recipient. Optionally override the recipient address, delay the send, or attach `data`.
       variant -> { Courier::JourneySendNode }
 
+      # Pause the journey run for a fixed `duration`.
       variant -> { Courier::JourneyDelayDurationNode }
 
+      # Pause the journey run `until` a specific time.
       variant -> { Courier::JourneyDelayUntilNode }
 
+      # Issue an HTTP GET or DELETE request and merge the response into the journey state per `merge_strategy`.
       variant -> { Courier::JourneyFetchGetDeleteNode }
 
+      # Issue an HTTP POST or PUT request with a `body` and merge the response into the journey state per `merge_strategy`.
       variant -> { Courier::JourneyFetchPostPutNode }
 
+      # Invoke an AI step with `user_prompt` and optional `web_search`. Returns a structured response conforming to `output_schema`.
       variant -> { Courier::JourneyAINode }
 
+      # Throttle the journey by a static `scope` (`user` or `global`), allowing at most `max_allowed` invocations per `period`.
       variant -> { Courier::JourneyThrottleStaticNode }
 
+      # Throttle the journey by a dynamic `throttle_key`, allowing at most `max_allowed` invocations per `period`.
       variant -> { Courier::JourneyThrottleDynamicNode }
 
+      # Terminate the journey run.
       variant -> { Courier::JourneyExitNode }
 
-      # Branch node. Routes to one of `paths[]` whose `conditions` match, else falls through to `default.nodes`. Inlined rather than referenced so the recursive `nodes: JourneyNode[]` cycle stays within a single generated module (Stainless Python forward-ref resolution does not span modules well for this recursion shape).
+      # Branch node. Routes to the first entry in `paths[]` whose `conditions` match, else falls through to `default.nodes`.
       variant -> { Courier::JourneyNode::JourneyBranchNode }
 
       class JourneyBranchNode < Courier::Internal::Type::BaseModel
@@ -56,11 +66,8 @@ module Courier
         optional :id, String
 
         # @!method initialize(default:, paths:, type:, id: nil)
-        #   Branch node. Routes to one of `paths[]` whose `conditions` match, else falls
-        #   through to `default.nodes`. Inlined rather than referenced so the recursive
-        #   `nodes: JourneyNode[]` cycle stays within a single generated module (Stainless
-        #   Python forward-ref resolution does not span modules well for this recursion
-        #   shape).
+        #   Branch node. Routes to the first entry in `paths[]` whose `conditions` match,
+        #   else falls through to `default.nodes`.
         #
         #   @param default [Courier::Models::JourneyNode::JourneyBranchNode::Default]
         #   @param paths [Array<Courier::Models::JourneyNode::JourneyBranchNode::Path>]

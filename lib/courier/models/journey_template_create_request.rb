@@ -24,6 +24,8 @@ module Courier
       optional :state, String
 
       # @!method initialize(channel:, notification:, provider_key: nil, state: nil)
+      #   Request body for creating a notification template scoped to a journey.
+      #
       #   @param channel [String]
       #   @param notification [Courier::Models::JourneyTemplateCreateRequest::Notification]
       #   @param provider_key [String]

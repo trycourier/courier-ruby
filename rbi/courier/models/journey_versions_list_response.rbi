@@ -20,6 +20,7 @@ module Courier
       sig { returns(T::Array[Courier::JourneyVersionItem]) }
       attr_accessor :results
 
+      # Paged list of published journey versions, most recent first.
       sig do
         params(
           paging: Courier::Paging::OrHash,

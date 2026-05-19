@@ -57,6 +57,8 @@ module Courier
       end
       attr_writer :conditions
 
+      # Throttle the journey by a dynamic `throttle_key`, allowing at most `max_allowed`
+      # invocations per `period`.
       sig do
         params(
           max_allowed: Integer,

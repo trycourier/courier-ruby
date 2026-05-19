@@ -13,13 +13,16 @@ module Courier
       required :template_id, String
 
       # @!attribute version
+      #   Version selector: `draft`, `published` (default), or `vN`.
       #
       #   @return [String, nil]
       optional :version, String
 
       # @!method initialize(template_id:, version: nil, request_options: {})
       #   @param template_id [String]
-      #   @param version [String]
+      #
+      #   @param version [String] Version selector: `draft`, `published` (default), or `vN`.
+      #
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
     end
   end

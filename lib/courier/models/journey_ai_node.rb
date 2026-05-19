@@ -46,6 +46,9 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneyAINode} for more details.
       #
+      #   Invoke an AI step with `user_prompt` and optional `web_search`. Returns a
+      #   structured response conforming to `output_schema`.
+      #
       #   @param output_schema [Hash{Symbol=>Object}] A JSONSchema object (Draft-07-compatible). Validated at runtime by Ajv.
       #
       #   @param type [Symbol, Courier::Models::JourneyAINode::Type]

@@ -29,6 +29,7 @@ module Courier
       sig { returns(T.nilable(Integer)) }
       attr_accessor :published
 
+      # Lifecycle state of a journey.
       sig { returns(Courier::JourneyState::TaggedSymbol) }
       attr_accessor :state
 
@@ -38,6 +39,7 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :updater
 
+      # A journey, with its current draft or published nodes and metadata.
       sig do
         params(
           id: String,
@@ -76,6 +78,7 @@ module Courier
         name:,
         nodes:,
         published:,
+        # Lifecycle state of a journey.
         state:,
         updated:,
         updater:

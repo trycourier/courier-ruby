@@ -17,6 +17,7 @@ module Courier
       sig { params(id: String).void }
       attr_writer :id
 
+      # Terminate the journey run.
       sig do
         params(
           type: Courier::JourneyExitNode::Type::OrSymbol,

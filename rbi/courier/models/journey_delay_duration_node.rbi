@@ -51,6 +51,7 @@ module Courier
       end
       attr_writer :conditions
 
+      # Pause the journey run for a fixed `duration`.
       sig do
         params(
           duration: String,

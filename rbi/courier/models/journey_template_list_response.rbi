@@ -20,6 +20,7 @@ module Courier
       sig { returns(T::Array[Courier::JourneyTemplateSummary]) }
       attr_accessor :results
 
+      # Paged list of journey-scoped notification templates.
       sig do
         params(
           paging: Courier::Paging::OrHash,

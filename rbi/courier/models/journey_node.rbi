@@ -2,10 +2,9 @@
 
 module Courier
   module Models
-    # A single node in a journey DAG. Discriminated by `type` plus a secondary
+    # A single node in a journey DAG. Discriminated by `type`, with a secondary
     # discriminator on some variants (`trigger_type` for trigger, `mode` for delay,
-    # `method` for fetch, `scope` for throttle). Each variant is exported as a
-    # separate schema for SDK type quality.
+    # `method` for fetch, `scope` for throttle).
     module JourneyNode
       extend Courier::Internal::Type::Union
 
@@ -58,11 +57,8 @@ module Courier
         sig { params(id: String).void }
         attr_writer :id
 
-        # Branch node. Routes to one of `paths[]` whose `conditions` match, else falls
-        # through to `default.nodes`. Inlined rather than referenced so the recursive
-        # `nodes: JourneyNode[]` cycle stays within a single generated module (Stainless
-        # Python forward-ref resolution does not span modules well for this recursion
-        # shape).
+        # Branch node. Routes to the first entry in `paths[]` whose `conditions` match,
+        # else falls through to `default.nodes`.
         sig do
           params(
             default: Courier::JourneyNode::JourneyBranchNode::Default::OrHash,

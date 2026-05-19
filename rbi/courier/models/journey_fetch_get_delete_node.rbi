@@ -8,6 +8,7 @@ module Courier
           T.any(Courier::JourneyFetchGetDeleteNode, Courier::Internal::AnyHash)
         end
 
+      # Strategy for merging a fetch response into the journey run state.
       sig { returns(Courier::JourneyMergeStrategy::OrSymbol) }
       attr_accessor :merge_strategy
 
@@ -73,6 +74,8 @@ module Courier
       sig { params(response_schema: T::Hash[Symbol, T.anything]).void }
       attr_writer :response_schema
 
+      # Issue an HTTP GET or DELETE request and merge the response into the journey
+      # state per `merge_strategy`.
       sig do
         params(
           merge_strategy: Courier::JourneyMergeStrategy::OrSymbol,
@@ -92,6 +95,7 @@ module Courier
         ).returns(T.attached_class)
       end
       def self.new(
+        # Strategy for merging a fetch response into the journey run state.
         merge_strategy:,
         method_:,
         type:,
