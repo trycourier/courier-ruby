@@ -3,13 +3,14 @@
 module Courier
   module Resources
     class Brands
-      # Create a new brand
+      # Create a new brand. Requires `name` and `settings` (with at least
+      # `colors.primary` and `colors.secondary`).
       #
-      # @overload create(name:, id: nil, settings: nil, snippets: nil, request_options: {})
+      # @overload create(name:, settings:, id: nil, snippets: nil, request_options: {})
       #
       # @param name [String]
+      # @param settings [Courier::Models::BrandSettings]
       # @param id [String, nil]
-      # @param settings [Courier::Models::BrandSettings, nil]
       # @param snippets [Courier::Models::BrandSnippets, nil]
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #

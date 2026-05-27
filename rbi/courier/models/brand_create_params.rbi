@@ -14,14 +14,14 @@ module Courier
       sig { returns(String) }
       attr_accessor :name
 
-      sig { returns(T.nilable(String)) }
-      attr_accessor :id
-
-      sig { returns(T.nilable(Courier::BrandSettings)) }
+      sig { returns(Courier::BrandSettings) }
       attr_reader :settings
 
-      sig { params(settings: T.nilable(Courier::BrandSettings::OrHash)).void }
+      sig { params(settings: Courier::BrandSettings::OrHash).void }
       attr_writer :settings
+
+      sig { returns(T.nilable(String)) }
+      attr_accessor :id
 
       sig { returns(T.nilable(Courier::BrandSnippets)) }
       attr_reader :snippets
@@ -32,16 +32,16 @@ module Courier
       sig do
         params(
           name: String,
+          settings: Courier::BrandSettings::OrHash,
           id: T.nilable(String),
-          settings: T.nilable(Courier::BrandSettings::OrHash),
           snippets: T.nilable(Courier::BrandSnippets::OrHash),
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         name:,
+        settings:,
         id: nil,
-        settings: nil,
         snippets: nil,
         request_options: {}
       )
@@ -51,8 +51,8 @@ module Courier
         override.returns(
           {
             name: String,
+            settings: Courier::BrandSettings,
             id: T.nilable(String),
-            settings: T.nilable(Courier::BrandSettings),
             snippets: T.nilable(Courier::BrandSnippets),
             request_options: Courier::RequestOptions
           }

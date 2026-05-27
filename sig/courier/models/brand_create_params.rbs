@@ -3,8 +3,8 @@ module Courier
     type brand_create_params =
       {
         name: String,
+        settings: Courier::BrandSettings,
         id: String?,
-        settings: Courier::BrandSettings?,
         snippets: Courier::BrandSnippets?
       }
       & Courier::Internal::Type::request_parameters
@@ -15,24 +15,24 @@ module Courier
 
       attr_accessor name: String
 
-      attr_accessor id: String?
+      attr_accessor settings: Courier::BrandSettings
 
-      attr_accessor settings: Courier::BrandSettings?
+      attr_accessor id: String?
 
       attr_accessor snippets: Courier::BrandSnippets?
 
       def initialize: (
         name: String,
+        settings: Courier::BrandSettings,
         ?id: String?,
-        ?settings: Courier::BrandSettings?,
         ?snippets: Courier::BrandSnippets?,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         name: String,
+        settings: Courier::BrandSettings,
         id: String?,
-        settings: Courier::BrandSettings?,
         snippets: Courier::BrandSnippets?,
         request_options: Courier::RequestOptions
       }
