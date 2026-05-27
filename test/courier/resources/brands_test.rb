@@ -6,7 +6,7 @@ class Courier::Test::Resources::BrandsTest < Courier::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.brands.create(name: "name")
+    response = @courier.brands.create(name: "My Brand", settings: {})
 
     assert_pattern do
       response => Courier::Brand

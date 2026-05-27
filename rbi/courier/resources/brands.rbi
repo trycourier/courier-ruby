@@ -3,23 +3,18 @@
 module Courier
   module Resources
     class Brands
-      # Create a new brand
+      # Create a new brand. Requires `name` and `settings` (with at least
+      # `colors.primary` and `colors.secondary`).
       sig do
         params(
           name: String,
+          settings: Courier::BrandSettings::OrHash,
           id: T.nilable(String),
-          settings: T.nilable(Courier::BrandSettings::OrHash),
           snippets: T.nilable(Courier::BrandSnippets::OrHash),
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Brand)
       end
-      def create(
-        name:,
-        id: nil,
-        settings: nil,
-        snippets: nil,
-        request_options: {}
-      )
+      def create(name:, settings:, id: nil, snippets: nil, request_options: {})
       end
 
       # Fetch a specific brand by brand ID.

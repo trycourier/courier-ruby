@@ -3,8 +3,8 @@ module Courier
     class Brands
       def create: (
         name: String,
+        settings: Courier::BrandSettings,
         ?id: String?,
-        ?settings: Courier::BrandSettings?,
         ?snippets: Courier::BrandSnippets?,
         ?request_options: Courier::request_opts
       ) -> Courier::Brand
