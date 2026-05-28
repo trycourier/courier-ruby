@@ -38,11 +38,167 @@ module Courier
       # Throttle the journey by a dynamic `throttle_key`, allowing at most `max_allowed` invocations per `period`.
       variant -> { Courier::JourneyThrottleDynamicNode }
 
+      # Collect events arriving at the node into a single batch and fire one downstream step with the aggregated payload. The first event into a batch owns the run; later contributing events terminate at the batch step. The batch releases when any of `max_items` is reached, a quiet window of `wait_period` elapses, or the `max_wait_period` ceiling hits.
+      variant -> { Courier::JourneyNode::JourneyBatchNode }
+
       # Terminate the journey run.
       variant -> { Courier::JourneyExitNode }
 
       # Branch node. Routes to the first entry in `paths[]` whose `conditions` match, else falls through to `default.nodes`.
       variant -> { Courier::JourneyNode::JourneyBranchNode }
+
+      class JourneyBatchNode < Courier::Internal::Type::BaseModel
+        # @!attribute max_wait_period
+        #   ISO 8601 duration. Hard ceiling from the first event into the batch; releases
+        #   the batch unconditionally when it elapses.
+        #
+        #   @return [String]
+        required :max_wait_period, String
+
+        # @!attribute retain
+        #   How to select which collected events to retain in the aggregated payload when
+        #   the batch releases.
+        #
+        #   @return [Courier::Models::JourneyNode::JourneyBatchNode::Retain]
+        required :retain, -> { Courier::JourneyNode::JourneyBatchNode::Retain }
+
+        # @!attribute scope
+        #
+        #   @return [Symbol, Courier::Models::JourneyNode::JourneyBatchNode::Scope]
+        required :scope, enum: -> { Courier::JourneyNode::JourneyBatchNode::Scope }
+
+        # @!attribute type
+        #
+        #   @return [Symbol, Courier::Models::JourneyNode::JourneyBatchNode::Type]
+        required :type, enum: -> { Courier::JourneyNode::JourneyBatchNode::Type }
+
+        # @!attribute wait_period
+        #   ISO 8601 duration. Quiet window that releases the batch when it elapses with no
+        #   new contributing events. Must be less than `max_wait_period`.
+        #
+        #   @return [String]
+        required :wait_period, String
+
+        # @!attribute id
+        #
+        #   @return [String, nil]
+        optional :id, String
+
+        # @!attribute category_key
+        #   Optional partition key. Events with the same `category_key` are batched
+        #   together; events with different values are batched separately.
+        #
+        #   @return [String, nil]
+        optional :category_key, String
+
+        # @!attribute conditions
+        #   Condition spec for a journey node. Accepts a single condition atom, an AND/OR
+        #   group, or an AND/OR nested group. Omit the `conditions` property entirely to
+        #   express "no conditions".
+        #
+        #   @return [Array<String>, Courier::Models::JourneyConditionGroup, Courier::Models::JourneyConditionNestedGroup, nil]
+        optional :conditions, union: -> { Courier::JourneyConditionsField }
+
+        # @!attribute max_items
+        #   Releases the batch once this many events have been collected.
+        #
+        #   @return [Integer, nil]
+        optional :max_items, Integer
+
+        # @!method initialize(max_wait_period:, retain:, scope:, type:, wait_period:, id: nil, category_key: nil, conditions: nil, max_items: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Courier::Models::JourneyNode::JourneyBatchNode} for more details.
+        #
+        #   Collect events arriving at the node into a single batch and fire one downstream
+        #   step with the aggregated payload. The first event into a batch owns the run;
+        #   later contributing events terminate at the batch step. The batch releases when
+        #   any of `max_items` is reached, a quiet window of `wait_period` elapses, or the
+        #   `max_wait_period` ceiling hits.
+        #
+        #   @param max_wait_period [String] ISO 8601 duration. Hard ceiling from the first event into the batch; releases th
+        #
+        #   @param retain [Courier::Models::JourneyNode::JourneyBatchNode::Retain] How to select which collected events to retain in the aggregated payload when th
+        #
+        #   @param scope [Symbol, Courier::Models::JourneyNode::JourneyBatchNode::Scope]
+        #
+        #   @param type [Symbol, Courier::Models::JourneyNode::JourneyBatchNode::Type]
+        #
+        #   @param wait_period [String] ISO 8601 duration. Quiet window that releases the batch when it elapses with no
+        #
+        #   @param id [String]
+        #
+        #   @param category_key [String] Optional partition key. Events with the same `category_key` are batched together
+        #
+        #   @param conditions [Array<String>, Courier::Models::JourneyConditionGroup, Courier::Models::JourneyConditionNestedGroup] Condition spec for a journey node. Accepts a single condition atom, an AND/OR gr
+        #
+        #   @param max_items [Integer] Releases the batch once this many events have been collected.
+
+        # @see Courier::Models::JourneyNode::JourneyBatchNode#retain
+        class Retain < Courier::Internal::Type::BaseModel
+          # @!attribute count
+          #
+          #   @return [Integer]
+          required :count, Integer
+
+          # @!attribute type
+          #
+          #   @return [Symbol, Courier::Models::JourneyNode::JourneyBatchNode::Retain::Type]
+          required :type, enum: -> { Courier::JourneyNode::JourneyBatchNode::Retain::Type }
+
+          # @!attribute sort_key
+          #   Dot-path into the event payload (e.g. `data.priority`). Required when `type` is
+          #   `highest` or `lowest`.
+          #
+          #   @return [String, nil]
+          optional :sort_key, String
+
+          # @!method initialize(count:, type:, sort_key: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Courier::Models::JourneyNode::JourneyBatchNode::Retain} for more details.
+          #
+          #   How to select which collected events to retain in the aggregated payload when
+          #   the batch releases.
+          #
+          #   @param count [Integer]
+          #
+          #   @param type [Symbol, Courier::Models::JourneyNode::JourneyBatchNode::Retain::Type]
+          #
+          #   @param sort_key [String] Dot-path into the event payload (e.g. `data.priority`). Required when `type` is
+
+          # @see Courier::Models::JourneyNode::JourneyBatchNode::Retain#type
+          module Type
+            extend Courier::Internal::Type::Enum
+
+            FIRST = :first
+            LAST = :last
+            HIGHEST = :highest
+            LOWEST = :lowest
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
+
+        # @see Courier::Models::JourneyNode::JourneyBatchNode#scope
+        module Scope
+          extend Courier::Internal::Type::Enum
+
+          USER = :user
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # @see Courier::Models::JourneyNode::JourneyBatchNode#type
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          BATCH = :batch
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
 
       class JourneyBranchNode < Courier::Internal::Type::BaseModel
         # @!attribute default
@@ -133,7 +289,7 @@ module Courier
       end
 
       # @!method self.variants
-      #   @return [Array(Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode)]
+      #   @return [Array(Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode)]
     end
   end
 end
