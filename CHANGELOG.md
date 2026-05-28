@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.12.0 (2026-05-28)
+
+Full Changelog: [v4.11.0...v4.12.0](https://github.com/trycourier/courier-ruby/compare/v4.11.0...v4.12.0)
+
+### Features
+
+* C-18612 Add Journeys `batch` node variant to OpenAPI spec ([046a5de](https://github.com/trycourier/courier-ruby/commit/046a5de8a353a40c44f3901313151bf62105c19c))
+* Mark `settings` as required on POST /brands ([72fb020](https://github.com/trycourier/courier-ruby/commit/72fb020cc45f9c4b5384d7492fb8908ac3e82379))
+
 ## 4.11.0 (2026-05-19)
 
 Full Changelog: [v4.10.2...v4.11.0](https://github.com/trycourier/courier-ruby/compare/v4.10.2...v4.11.0)

@@ -11,11 +11,141 @@ module Courier
       | Courier::JourneyAINode
       | Courier::JourneyThrottleStaticNode
       | Courier::JourneyThrottleDynamicNode
+      | Courier::JourneyNode::JourneyBatchNode
       | Courier::JourneyExitNode
       | Courier::JourneyNode::JourneyBranchNode
 
     module JourneyNode
       extend Courier::Internal::Type::Union
+
+      type journey_batch_node =
+        {
+          max_wait_period: String,
+          retain: Courier::JourneyNode::JourneyBatchNode::Retain,
+          scope: Courier::Models::JourneyNode::JourneyBatchNode::scope,
+          type: Courier::Models::JourneyNode::JourneyBatchNode::type_,
+          wait_period: String,
+          id: String,
+          category_key: String,
+          conditions: Courier::Models::journey_conditions_field,
+          max_items: Integer
+        }
+
+      class JourneyBatchNode < Courier::Internal::Type::BaseModel
+        attr_accessor max_wait_period: String
+
+        attr_accessor retain: Courier::JourneyNode::JourneyBatchNode::Retain
+
+        attr_accessor scope: Courier::Models::JourneyNode::JourneyBatchNode::scope
+
+        attr_accessor type: Courier::Models::JourneyNode::JourneyBatchNode::type_
+
+        attr_accessor wait_period: String
+
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader category_key: String?
+
+        def category_key=: (String) -> String
+
+        attr_reader conditions: Courier::Models::journey_conditions_field?
+
+        def conditions=: (
+          Courier::Models::journey_conditions_field
+        ) -> Courier::Models::journey_conditions_field
+
+        attr_reader max_items: Integer?
+
+        def max_items=: (Integer) -> Integer
+
+        def initialize: (
+          max_wait_period: String,
+          retain: Courier::JourneyNode::JourneyBatchNode::Retain,
+          scope: Courier::Models::JourneyNode::JourneyBatchNode::scope,
+          type: Courier::Models::JourneyNode::JourneyBatchNode::type_,
+          wait_period: String,
+          ?id: String,
+          ?category_key: String,
+          ?conditions: Courier::Models::journey_conditions_field,
+          ?max_items: Integer
+        ) -> void
+
+        def to_hash: -> {
+          max_wait_period: String,
+          retain: Courier::JourneyNode::JourneyBatchNode::Retain,
+          scope: Courier::Models::JourneyNode::JourneyBatchNode::scope,
+          type: Courier::Models::JourneyNode::JourneyBatchNode::type_,
+          wait_period: String,
+          id: String,
+          category_key: String,
+          conditions: Courier::Models::journey_conditions_field,
+          max_items: Integer
+        }
+
+        type retain =
+          {
+            count: Integer,
+            type: Courier::Models::JourneyNode::JourneyBatchNode::Retain::type_,
+            sort_key: String
+          }
+
+        class Retain < Courier::Internal::Type::BaseModel
+          attr_accessor count: Integer
+
+          attr_accessor type: Courier::Models::JourneyNode::JourneyBatchNode::Retain::type_
+
+          attr_reader sort_key: String?
+
+          def sort_key=: (String) -> String
+
+          def initialize: (
+            count: Integer,
+            type: Courier::Models::JourneyNode::JourneyBatchNode::Retain::type_,
+            ?sort_key: String
+          ) -> void
+
+          def to_hash: -> {
+            count: Integer,
+            type: Courier::Models::JourneyNode::JourneyBatchNode::Retain::type_,
+            sort_key: String
+          }
+
+          type type_ = :first | :last | :highest | :lowest
+
+          module Type
+            extend Courier::Internal::Type::Enum
+
+            FIRST: :first
+            LAST: :last
+            HIGHEST: :highest
+            LOWEST: :lowest
+
+            def self?.values: -> ::Array[Courier::Models::JourneyNode::JourneyBatchNode::Retain::type_]
+          end
+        end
+
+        type scope = :user
+
+        module Scope
+          extend Courier::Internal::Type::Enum
+
+          USER: :user
+
+          def self?.values: -> ::Array[Courier::Models::JourneyNode::JourneyBatchNode::scope]
+        end
+
+        type type_ = :batch
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          BATCH: :batch
+
+          def self?.values: -> ::Array[Courier::Models::JourneyNode::JourneyBatchNode::type_]
+        end
+      end
 
       type journey_branch_node =
         {
