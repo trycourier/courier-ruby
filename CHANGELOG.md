@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.13.0 (2026-06-12)
+
+Full Changelog: [v4.12.0...v4.13.0](https://github.com/trycourier/courier-ruby/compare/v4.12.0...v4.13.0)
+
+### Features
+
+* **digests:** document digest REST endpoints in OpenAPI spec ([6fdd4fc](https://github.com/trycourier/courier-ruby/commit/6fdd4fc94c104e0f3ca8905108a18eeafd9c5abc))
+
 ## 4.12.0 (2026-05-28)
 
 Full Changelog: [v4.11.0...v4.12.0](https://github.com/trycourier/courier-ruby/compare/v4.11.0...v4.12.0)
