@@ -28,6 +28,8 @@ module Courier
 
     attr_reader bulk: Courier::Resources::Bulk
 
+    attr_reader digests: Courier::Resources::Digests
+
     attr_reader inbound: Courier::Resources::Inbound
 
     attr_reader lists: Courier::Resources::Lists

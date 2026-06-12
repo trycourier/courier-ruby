@@ -1,0 +1,21 @@
+module Courier
+  module Resources
+    class Digests
+      class Schedules
+        def list_instances: (
+          String schedule_id,
+          ?cursor: String,
+          ?limit: Integer,
+          ?request_options: Courier::request_opts
+        ) -> Courier::DigestInstanceListResponse
+
+        def release: (
+          String schedule_id,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end
