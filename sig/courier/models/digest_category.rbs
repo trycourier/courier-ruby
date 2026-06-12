@@ -1,0 +1,46 @@
+module Courier
+  module Models
+    type digest_category =
+      {
+        category_key: String,
+        retain: Courier::Models::DigestCategory::retain,
+        sort_key: String
+      }
+
+    class DigestCategory < Courier::Internal::Type::BaseModel
+      attr_accessor category_key: String
+
+      attr_accessor retain: Courier::Models::DigestCategory::retain
+
+      attr_reader sort_key: String?
+
+      def sort_key=: (String) -> String
+
+      def initialize: (
+        category_key: String,
+        retain: Courier::Models::DigestCategory::retain,
+        ?sort_key: String
+      ) -> void
+
+      def to_hash: -> {
+        category_key: String,
+        retain: Courier::Models::DigestCategory::retain,
+        sort_key: String
+      }
+
+      type retain = :first | :last | :highest | :lowest | :none
+
+      module Retain
+        extend Courier::Internal::Type::Enum
+
+        FIRST: :first
+        LAST: :last
+        HIGHEST: :highest
+        LOWEST: :lowest
+        NONE: :none
+
+        def self?.values: -> ::Array[Courier::Models::DigestCategory::retain]
+      end
+    end
+  end
+end

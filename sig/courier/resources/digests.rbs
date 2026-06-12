@@ -1,0 +1,9 @@
+module Courier
+  module Resources
+    class Digests
+      attr_reader schedules: Courier::Resources::Digests::Schedules
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

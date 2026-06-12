@@ -1,0 +1,83 @@
+module Courier
+  module Models
+    type digest_instance =
+      {
+        digest_instance_id: String,
+        event_count: Integer,
+        status: Courier::Models::DigestInstance::status,
+        user_id: String,
+        categories: ::Array[Courier::DigestCategory],
+        category_key_counts: ::Hash[Symbol, Integer],
+        created_at: String,
+        disabled: bool,
+        tenant_id: String?
+      }
+
+    class DigestInstance < Courier::Internal::Type::BaseModel
+      attr_accessor digest_instance_id: String
+
+      attr_accessor event_count: Integer
+
+      attr_accessor status: Courier::Models::DigestInstance::status
+
+      attr_accessor user_id: String
+
+      attr_reader categories: ::Array[Courier::DigestCategory]?
+
+      def categories=: (
+        ::Array[Courier::DigestCategory]
+      ) -> ::Array[Courier::DigestCategory]
+
+      attr_reader category_key_counts: ::Hash[Symbol, Integer]?
+
+      def category_key_counts=: (
+        ::Hash[Symbol, Integer]
+      ) -> ::Hash[Symbol, Integer]
+
+      attr_reader created_at: String?
+
+      def created_at=: (String) -> String
+
+      attr_reader disabled: bool?
+
+      def disabled=: (bool) -> bool
+
+      attr_accessor tenant_id: String?
+
+      def initialize: (
+        digest_instance_id: String,
+        event_count: Integer,
+        status: Courier::Models::DigestInstance::status,
+        user_id: String,
+        ?categories: ::Array[Courier::DigestCategory],
+        ?category_key_counts: ::Hash[Symbol, Integer],
+        ?created_at: String,
+        ?disabled: bool,
+        ?tenant_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        digest_instance_id: String,
+        event_count: Integer,
+        status: Courier::Models::DigestInstance::status,
+        user_id: String,
+        categories: ::Array[Courier::DigestCategory],
+        category_key_counts: ::Hash[Symbol, Integer],
+        created_at: String,
+        disabled: bool,
+        tenant_id: String?
+      }
+
+      type status = :IN_PROGRESS | :COMPLETED
+
+      module Status
+        extend Courier::Internal::Type::Enum
+
+        IN_PROGRESS: :IN_PROGRESS
+        COMPLETED: :COMPLETED
+
+        def self?.values: -> ::Array[Courier::Models::DigestInstance::status]
+      end
+    end
+  end
+end

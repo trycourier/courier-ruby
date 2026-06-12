@@ -45,6 +45,9 @@ module Courier
     # @return [Courier::Resources::Bulk]
     attr_reader :bulk
 
+    # @return [Courier::Resources::Digests]
+    attr_reader :digests
+
     # @return [Courier::Resources::Inbound]
     attr_reader :inbound
 
@@ -145,6 +148,7 @@ module Courier
       @journeys = Courier::Resources::Journeys.new(client: self)
       @brands = Courier::Resources::Brands.new(client: self)
       @bulk = Courier::Resources::Bulk.new(client: self)
+      @digests = Courier::Resources::Digests.new(client: self)
       @inbound = Courier::Resources::Inbound.new(client: self)
       @lists = Courier::Resources::Lists.new(client: self)
       @messages = Courier::Resources::Messages.new(client: self)
