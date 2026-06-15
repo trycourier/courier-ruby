@@ -40,6 +40,9 @@ module Courier
     sig { returns(Courier::Resources::Bulk) }
     attr_reader :bulk
 
+    sig { returns(Courier::Resources::Digests) }
+    attr_reader :digests
+
     sig { returns(Courier::Resources::Inbound) }
     attr_reader :inbound
 

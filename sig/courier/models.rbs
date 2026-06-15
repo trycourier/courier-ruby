@@ -99,6 +99,14 @@ module Courier
 
   class DeviceType = Courier::Models::DeviceType
 
+  class DigestCategory = Courier::Models::DigestCategory
+
+  class DigestInstance = Courier::Models::DigestInstance
+
+  class DigestInstanceListResponse = Courier::Models::DigestInstanceListResponse
+
+  module Digests = Courier::Models::Digests
+
   module Discord = Courier::Models::Discord
 
   class ElementalActionNodeWithType = Courier::Models::ElementalActionNodeWithType

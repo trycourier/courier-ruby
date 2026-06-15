@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    module Digests
+      type schedule_release_params =
+        { schedule_id: String } & Courier::Internal::Type::request_parameters
+
+      class ScheduleReleaseParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_accessor schedule_id: String
+
+        def initialize: (
+          schedule_id: String,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          schedule_id: String,
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

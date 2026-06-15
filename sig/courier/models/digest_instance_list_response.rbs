@@ -1,0 +1,57 @@
+module Courier
+  module Models
+    type digest_instance_list_response =
+      {
+        has_more: bool,
+        items: ::Array[Courier::DigestInstance],
+        type: Courier::Models::DigestInstanceListResponse::type_,
+        cursor: String?,
+        next_url: String?,
+        url: String
+      }
+
+    class DigestInstanceListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor has_more: bool
+
+      attr_accessor items: ::Array[Courier::DigestInstance]
+
+      attr_accessor type: Courier::Models::DigestInstanceListResponse::type_
+
+      attr_accessor cursor: String?
+
+      attr_accessor next_url: String?
+
+      attr_reader url: String?
+
+      def url=: (String) -> String
+
+      def initialize: (
+        has_more: bool,
+        items: ::Array[Courier::DigestInstance],
+        type: Courier::Models::DigestInstanceListResponse::type_,
+        ?cursor: String?,
+        ?next_url: String?,
+        ?url: String
+      ) -> void
+
+      def to_hash: -> {
+        has_more: bool,
+        items: ::Array[Courier::DigestInstance],
+        type: Courier::Models::DigestInstanceListResponse::type_,
+        cursor: String?,
+        next_url: String?,
+        url: String
+      }
+
+      type type_ = :list
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        LIST: :list
+
+        def self?.values: -> ::Array[Courier::Models::DigestInstanceListResponse::type_]
+      end
+    end
+  end
+end
