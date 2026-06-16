@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.14.0 (2026-06-16)
+
+Full Changelog: [v4.13.0...v4.14.0](https://github.com/trycourier/courier-ruby/compare/v4.13.0...v4.14.0)
+
+### Features
+
+* **openapi:** add DELETE /users/{id}/preferences/{topicId} ([417d5c8](https://github.com/trycourier/courier-ruby/commit/417d5c8d2e96bbb345d08908d35e3f3b4b6b7172))
+
 ## 4.13.0 (2026-06-12)
 
 Full Changelog: [v4.12.0...v4.13.0](https://github.com/trycourier/courier-ruby/compare/v4.12.0...v4.13.0)

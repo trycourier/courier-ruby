@@ -20,6 +20,16 @@ class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::Resource
     end
   end
 
+  def test_delete_topic_required_params
+    skip("Mock server tests are disabled")
+
+    response = @courier.users.preferences.delete_topic("topic_id", user_id: "user_id")
+
+    assert_pattern do
+      response => nil
+    end
+  end
+
   def test_retrieve_topic_required_params
     skip("Mock server tests are disabled")
 
