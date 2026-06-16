@@ -22,6 +22,29 @@ module Courier
         )
         end
 
+        # Remove a user's preferences for a specific subscription topic, resetting the
+        # topic to its effective default. This operation is idempotent: deleting a
+        # preference that does not exist succeeds with no error.
+        sig do
+          params(
+            topic_id: String,
+            user_id: String,
+            tenant_id: T.nilable(String),
+            request_options: Courier::RequestOptions::OrHash
+          ).void
+        end
+        def delete_topic(
+          # Path param: A unique identifier associated with a subscription topic.
+          topic_id,
+          # Path param: A unique identifier associated with the user whose preferences you
+          # wish to delete.
+          user_id:,
+          # Query param: Delete the preferences of a user for this specific tenant context.
+          tenant_id: nil,
+          request_options: {}
+        )
+        end
+
         # Fetch user preferences for a specific subscription topic.
         sig do
           params(
