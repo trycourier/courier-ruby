@@ -33,6 +33,42 @@ module Courier
         end
 
         # Some parameter documentations has been truncated, see
+        # {Courier::Models::Users::PreferenceDeleteTopicParams} for more details.
+        #
+        # Remove a user's preferences for a specific subscription topic, resetting the
+        # topic to its effective default. This operation is idempotent: deleting a
+        # preference that does not exist succeeds with no error.
+        #
+        # @overload delete_topic(topic_id, user_id:, tenant_id: nil, request_options: {})
+        #
+        # @param topic_id [String] Path param: A unique identifier associated with a subscription topic.
+        #
+        # @param user_id [String] Path param: A unique identifier associated with the user whose preferences you w
+        #
+        # @param tenant_id [String, nil] Query param: Delete the preferences of a user for this specific tenant context.
+        #
+        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [nil]
+        #
+        # @see Courier::Models::Users::PreferenceDeleteTopicParams
+        def delete_topic(topic_id, params)
+          parsed, options = Courier::Users::PreferenceDeleteTopicParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed)
+          user_id =
+            parsed.delete(:user_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :delete,
+            path: ["users/%1$s/preferences/%2$s", user_id, topic_id],
+            query: query,
+            model: NilClass,
+            options: options
+          )
+        end
+
+        # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::PreferenceRetrieveTopicParams} for more details.
         #
         # Fetch user preferences for a specific subscription topic.
