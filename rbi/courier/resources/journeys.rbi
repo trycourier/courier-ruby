@@ -29,6 +29,7 @@ module Courier
                 Courier::JourneyThrottleStaticNode::OrHash,
                 Courier::JourneyThrottleDynamicNode::OrHash,
                 Courier::JourneyNode::JourneyBatchNode::OrHash,
+                Courier::JourneyNode::JourneyAddToDigestNode::OrHash,
                 Courier::JourneyExitNode::OrHash,
                 Courier::JourneyNode::JourneyBranchNode::OrHash
               )
@@ -189,6 +190,7 @@ module Courier
                 Courier::JourneyThrottleStaticNode::OrHash,
                 Courier::JourneyThrottleDynamicNode::OrHash,
                 Courier::JourneyNode::JourneyBatchNode::OrHash,
+                Courier::JourneyNode::JourneyAddToDigestNode::OrHash,
                 Courier::JourneyExitNode::OrHash,
                 Courier::JourneyNode::JourneyBranchNode::OrHash
               )

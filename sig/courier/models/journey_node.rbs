@@ -12,6 +12,7 @@ module Courier
       | Courier::JourneyThrottleStaticNode
       | Courier::JourneyThrottleDynamicNode
       | Courier::JourneyNode::JourneyBatchNode
+      | Courier::JourneyNode::JourneyAddToDigestNode
       | Courier::JourneyExitNode
       | Courier::JourneyNode::JourneyBranchNode
 
@@ -144,6 +145,54 @@ module Courier
           BATCH: :batch
 
           def self?.values: -> ::Array[Courier::Models::JourneyNode::JourneyBatchNode::type_]
+        end
+      end
+
+      type journey_add_to_digest_node =
+        {
+          subscription_topic_id: String,
+          type: Courier::Models::JourneyNode::JourneyAddToDigestNode::type_,
+          id: String,
+          conditions: Courier::Models::journey_conditions_field
+        }
+
+      class JourneyAddToDigestNode < Courier::Internal::Type::BaseModel
+        attr_accessor subscription_topic_id: String
+
+        attr_accessor type: Courier::Models::JourneyNode::JourneyAddToDigestNode::type_
+
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader conditions: Courier::Models::journey_conditions_field?
+
+        def conditions=: (
+          Courier::Models::journey_conditions_field
+        ) -> Courier::Models::journey_conditions_field
+
+        def initialize: (
+          subscription_topic_id: String,
+          type: Courier::Models::JourneyNode::JourneyAddToDigestNode::type_,
+          ?id: String,
+          ?conditions: Courier::Models::journey_conditions_field
+        ) -> void
+
+        def to_hash: -> {
+          subscription_topic_id: String,
+          type: Courier::Models::JourneyNode::JourneyAddToDigestNode::type_,
+          id: String,
+          conditions: Courier::Models::journey_conditions_field
+        }
+
+        type type_ = :"add-to-digest"
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          ADD_TO_DIGEST: :"add-to-digest"
+
+          def self?.values: -> ::Array[Courier::Models::JourneyNode::JourneyAddToDigestNode::type_]
         end
       end
 
