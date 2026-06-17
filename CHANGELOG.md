@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.15.0 (2026-06-17)
+
+Full Changelog: [v4.14.0...v4.15.0](https://github.com/trycourier/courier-ruby/compare/v4.14.0...v4.15.0)
+
+### Features
+
+* **openapi:** add add-to-digest JourneyNode variant ([55fdd8f](https://github.com/trycourier/courier-ruby/commit/55fdd8feb37743d64201641e86d95f56ce22c603))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([1e1b51c](https://github.com/trycourier/courier-ruby/commit/1e1b51ce2b17c5bc05193efca068828cd64ce81f))
+
 ## 4.14.0 (2026-06-16)
 
 Full Changelog: [v4.13.0...v4.14.0](https://github.com/trycourier/courier-ruby/compare/v4.13.0...v4.14.0)
