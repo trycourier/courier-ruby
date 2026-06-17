@@ -41,6 +41,9 @@ module Courier
       # Collect events arriving at the node into a single batch and fire one downstream step with the aggregated payload. The first event into a batch owns the run; later contributing events terminate at the batch step. The batch releases when any of `max_items` is reached, a quiet window of `wait_period` elapses, or the `max_wait_period` ceiling hits.
       variant -> { Courier::JourneyNode::JourneyBatchNode }
 
+      # Add the current event to a digest keyed by the given subscription topic. The digest accumulates events and releases them on the schedule configured for the topic.
+      variant -> { Courier::JourneyNode::JourneyAddToDigestNode }
+
       # Terminate the journey run.
       variant -> { Courier::JourneyExitNode }
 
@@ -200,6 +203,58 @@ module Courier
         end
       end
 
+      class JourneyAddToDigestNode < Courier::Internal::Type::BaseModel
+        # @!attribute subscription_topic_id
+        #   The subscription topic that owns the digest the event is added to.
+        #
+        #   @return [String]
+        required :subscription_topic_id, String
+
+        # @!attribute type
+        #
+        #   @return [Symbol, Courier::Models::JourneyNode::JourneyAddToDigestNode::Type]
+        required :type, enum: -> { Courier::JourneyNode::JourneyAddToDigestNode::Type }
+
+        # @!attribute id
+        #
+        #   @return [String, nil]
+        optional :id, String
+
+        # @!attribute conditions
+        #   Condition spec for a journey node. Accepts a single condition atom, an AND/OR
+        #   group, or an AND/OR nested group. Omit the `conditions` property entirely to
+        #   express "no conditions".
+        #
+        #   @return [Array<String>, Courier::Models::JourneyConditionGroup, Courier::Models::JourneyConditionNestedGroup, nil]
+        optional :conditions, union: -> { Courier::JourneyConditionsField }
+
+        # @!method initialize(subscription_topic_id:, type:, id: nil, conditions: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Courier::Models::JourneyNode::JourneyAddToDigestNode} for more details.
+        #
+        #   Add the current event to a digest keyed by the given subscription topic. The
+        #   digest accumulates events and releases them on the schedule configured for the
+        #   topic.
+        #
+        #   @param subscription_topic_id [String] The subscription topic that owns the digest the event is added to.
+        #
+        #   @param type [Symbol, Courier::Models::JourneyNode::JourneyAddToDigestNode::Type]
+        #
+        #   @param id [String]
+        #
+        #   @param conditions [Array<String>, Courier::Models::JourneyConditionGroup, Courier::Models::JourneyConditionNestedGroup] Condition spec for a journey node. Accepts a single condition atom, an AND/OR gr
+
+        # @see Courier::Models::JourneyNode::JourneyAddToDigestNode#type
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          ADD_TO_DIGEST = :"add-to-digest"
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
       class JourneyBranchNode < Courier::Internal::Type::BaseModel
         # @!attribute default
         #
@@ -289,7 +344,7 @@ module Courier
       end
 
       # @!method self.variants
-      #   @return [Array(Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode)]
+      #   @return [Array(Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyNode::JourneyAddToDigestNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode)]
     end
   end
 end
