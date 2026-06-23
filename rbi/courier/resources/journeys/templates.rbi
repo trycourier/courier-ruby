@@ -126,6 +126,59 @@ module Courier
         )
         end
 
+        # Replace the elemental content of a journey-scoped notification template.
+        # Overwrites all elements in the template draft with the provided content.
+        sig do
+          params(
+            notification_id: String,
+            template_id: String,
+            content: Courier::NotificationContentPutRequest::Content::OrHash,
+            state: Courier::NotificationTemplateState::OrSymbol,
+            request_options: Courier::RequestOptions::OrHash
+          ).returns(Courier::NotificationContentMutationResponse)
+        end
+        def put_content(
+          # Path param: Notification template id
+          notification_id,
+          # Path param: Journey id
+          template_id:,
+          # Body param: Elemental content payload. The server defaults `version` when
+          # omitted.
+          content:,
+          # Body param: Template state. Defaults to `DRAFT`.
+          state: nil,
+          request_options: {}
+        )
+        end
+
+        # Set locale-specific content overrides for a journey-scoped notification
+        # template. Each element override must reference an existing element by ID.
+        sig do
+          params(
+            locale_id: String,
+            template_id: String,
+            notification_id: String,
+            elements:
+              T::Array[Courier::NotificationLocalePutRequest::Element::OrHash],
+            state: Courier::NotificationTemplateState::OrSymbol,
+            request_options: Courier::RequestOptions::OrHash
+          ).returns(Courier::NotificationContentMutationResponse)
+        end
+        def put_locale(
+          # Path param: Locale code (e.g., `es`, `fr`, `pt-BR`).
+          locale_id,
+          # Path param: Journey id
+          template_id:,
+          # Path param: Notification template id
+          notification_id:,
+          # Body param: Elements with locale-specific content overrides.
+          elements:,
+          # Body param: Template state. Defaults to `DRAFT`.
+          state: nil,
+          request_options: {}
+        )
+        end
+
         # Replace the journey-scoped notification template draft.
         sig do
           params(
@@ -146,6 +199,31 @@ module Courier
           notification:,
           # Body param
           state: nil,
+          request_options: {}
+        )
+        end
+
+        # Retrieve the elemental content of a journey-scoped notification template. The
+        # response contains the versioned elements along with their content checksums,
+        # which can be used to detect changes between versions. Pass `?version=draft`
+        # (default `published`) to retrieve the working draft, or `?version=vN` for a
+        # historical version.
+        sig do
+          params(
+            notification_id: String,
+            template_id: String,
+            version: String,
+            request_options: Courier::RequestOptions::OrHash
+          ).returns(Courier::NotificationContentGetResponse)
+        end
+        def retrieve_content(
+          # Path param: Notification template id
+          notification_id,
+          # Path param: Journey id
+          template_id:,
+          # Query param: Accepts `draft`, `published`, or a version string (e.g., `v001`).
+          # Defaults to `published`.
+          version: nil,
           request_options: {}
         )
         end

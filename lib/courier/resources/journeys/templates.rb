@@ -180,6 +180,81 @@ module Courier
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Courier::Models::Journeys::TemplatePutContentParams} for more details.
+        #
+        # Replace the elemental content of a journey-scoped notification template.
+        # Overwrites all elements in the template draft with the provided content.
+        #
+        # @overload put_content(notification_id, template_id:, content:, state: nil, request_options: {})
+        #
+        # @param notification_id [String] Path param: Notification template id
+        #
+        # @param template_id [String] Path param: Journey id
+        #
+        # @param content [Courier::Models::NotificationContentPutRequest::Content] Body param: Elemental content payload. The server defaults `version` when omitte
+        #
+        # @param state [Symbol, Courier::Models::NotificationTemplateState] Body param: Template state. Defaults to `DRAFT`.
+        #
+        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Courier::Models::NotificationContentMutationResponse]
+        #
+        # @see Courier::Models::Journeys::TemplatePutContentParams
+        def put_content(notification_id, params)
+          parsed, options = Courier::Journeys::TemplatePutContentParams.dump_request(params)
+          template_id =
+            parsed.delete(:template_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :put,
+            path: ["journeys/%1$s/templates/%2$s/content", template_id, notification_id],
+            body: parsed,
+            model: Courier::NotificationContentMutationResponse,
+            options: options
+          )
+        end
+
+        # Set locale-specific content overrides for a journey-scoped notification
+        # template. Each element override must reference an existing element by ID.
+        #
+        # @overload put_locale(locale_id, template_id:, notification_id:, elements:, state: nil, request_options: {})
+        #
+        # @param locale_id [String] Path param: Locale code (e.g., `es`, `fr`, `pt-BR`).
+        #
+        # @param template_id [String] Path param: Journey id
+        #
+        # @param notification_id [String] Path param: Notification template id
+        #
+        # @param elements [Array<Courier::Models::NotificationLocalePutRequest::Element>] Body param: Elements with locale-specific content overrides.
+        #
+        # @param state [Symbol, Courier::Models::NotificationTemplateState] Body param: Template state. Defaults to `DRAFT`.
+        #
+        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Courier::Models::NotificationContentMutationResponse]
+        #
+        # @see Courier::Models::Journeys::TemplatePutLocaleParams
+        def put_locale(locale_id, params)
+          parsed, options = Courier::Journeys::TemplatePutLocaleParams.dump_request(params)
+          template_id =
+            parsed.delete(:template_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          notification_id =
+            parsed.delete(:notification_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :put,
+            path: ["journeys/%1$s/templates/%2$s/locales/%3$s", template_id, notification_id, locale_id],
+            body: parsed,
+            model: Courier::NotificationContentMutationResponse,
+            options: options
+          )
+        end
+
         # Replace the journey-scoped notification template draft.
         #
         # @overload replace(notification_id, template_id:, notification:, state: nil, request_options: {})
@@ -208,6 +283,44 @@ module Courier
             path: ["journeys/%1$s/templates/%2$s", template_id, notification_id],
             body: parsed,
             model: Courier::JourneyTemplateGetResponse,
+            options: options
+          )
+        end
+
+        # Some parameter documentations has been truncated, see
+        # {Courier::Models::Journeys::TemplateRetrieveContentParams} for more details.
+        #
+        # Retrieve the elemental content of a journey-scoped notification template. The
+        # response contains the versioned elements along with their content checksums,
+        # which can be used to detect changes between versions. Pass `?version=draft`
+        # (default `published`) to retrieve the working draft, or `?version=vN` for a
+        # historical version.
+        #
+        # @overload retrieve_content(notification_id, template_id:, version: nil, request_options: {})
+        #
+        # @param notification_id [String] Path param: Notification template id
+        #
+        # @param template_id [String] Path param: Journey id
+        #
+        # @param version [String] Query param: Accepts `draft`, `published`, or a version string (e.g., `v001`). D
+        #
+        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Courier::Models::NotificationContentGetResponse]
+        #
+        # @see Courier::Models::Journeys::TemplateRetrieveContentParams
+        def retrieve_content(notification_id, params)
+          parsed, options = Courier::Journeys::TemplateRetrieveContentParams.dump_request(params)
+          query = Courier::Internal::Util.encode_query_params(parsed)
+          template_id =
+            parsed.delete(:template_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :get,
+            path: ["journeys/%1$s/templates/%2$s/content", template_id, notification_id],
+            query: query,
+            model: Courier::NotificationContentGetResponse,
             options: options
           )
         end

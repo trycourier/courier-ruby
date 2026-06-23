@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.16.0 (2026-06-23)
+
+Full Changelog: [v4.15.0...v4.16.0](https://github.com/trycourier/courier-ruby/compare/v4.15.0...v4.16.0)
+
+### Features
+
+* **journeys:** add content + locale endpoints to journey-scoped templates ([9309361](https://github.com/trycourier/courier-ruby/commit/93093616ebe031a0d3c4b5ffe5b365affa5d0c6a))
+
+
+### Documentation
+
+* **journeys:** clarify checksum usage + re-trigger docs sync for journey content endpoints ([dfff96b](https://github.com/trycourier/courier-ruby/commit/dfff96ba54ef12d492fff54f5c1d973a3e3d9028))
+
 ## 4.15.0 (2026-06-17)
 
 Full Changelog: [v4.14.0...v4.15.0](https://github.com/trycourier/courier-ruby/compare/v4.14.0...v4.15.0)
