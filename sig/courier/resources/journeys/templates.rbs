@@ -43,6 +43,23 @@ module Courier
           ?request_options: Courier::request_opts
         ) -> nil
 
+        def put_content: (
+          String notification_id,
+          template_id: String,
+          content: Courier::NotificationContentPutRequest::Content,
+          ?state: Courier::Models::notification_template_state,
+          ?request_options: Courier::request_opts
+        ) -> Courier::NotificationContentMutationResponse
+
+        def put_locale: (
+          String locale_id,
+          template_id: String,
+          notification_id: String,
+          elements: ::Array[Courier::NotificationLocalePutRequest::Element],
+          ?state: Courier::Models::notification_template_state,
+          ?request_options: Courier::request_opts
+        ) -> Courier::NotificationContentMutationResponse
+
         def replace: (
           String notification_id,
           template_id: String,
@@ -50,6 +67,13 @@ module Courier
           ?state: String,
           ?request_options: Courier::request_opts
         ) -> Courier::JourneyTemplateGetResponse
+
+        def retrieve_content: (
+          String notification_id,
+          template_id: String,
+          ?version: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::NotificationContentGetResponse
 
         def initialize: (client: Courier::Client) -> void
       end
