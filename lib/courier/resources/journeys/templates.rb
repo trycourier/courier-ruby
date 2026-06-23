@@ -291,9 +291,10 @@ module Courier
         # {Courier::Models::Journeys::TemplateRetrieveContentParams} for more details.
         #
         # Retrieve the elemental content of a journey-scoped notification template. The
-        # response contains the versioned elements with their content checksums. Pass
-        # `?version=draft` (default `published`) to retrieve the working draft, or
-        # `?version=vN` for a historical version.
+        # response contains the versioned elements along with their content checksums,
+        # which can be used to detect changes between versions. Pass `?version=draft`
+        # (default `published`) to retrieve the working draft, or `?version=vN` for a
+        # historical version.
         #
         # @overload retrieve_content(notification_id, template_id:, version: nil, request_options: {})
         #
