@@ -381,7 +381,43 @@ module Courier
 
   Preference = Courier::Models::Preference
 
+  PreferenceSectionArchiveParams =
+    Courier::Models::PreferenceSectionArchiveParams
+
+  PreferenceSectionCreateParams = Courier::Models::PreferenceSectionCreateParams
+
+  PreferenceSectionCreateRequest =
+    Courier::Models::PreferenceSectionCreateRequest
+
+  PreferenceSectionGetResponse = Courier::Models::PreferenceSectionGetResponse
+
+  PreferenceSectionListParams = Courier::Models::PreferenceSectionListParams
+
+  PreferenceSectionListResponse = Courier::Models::PreferenceSectionListResponse
+
+  PreferenceSectionPublishParams =
+    Courier::Models::PreferenceSectionPublishParams
+
+  PreferenceSectionReplaceParams =
+    Courier::Models::PreferenceSectionReplaceParams
+
+  PreferenceSectionReplaceRequest =
+    Courier::Models::PreferenceSectionReplaceRequest
+
+  PreferenceSectionRetrieveParams =
+    Courier::Models::PreferenceSectionRetrieveParams
+
+  PreferenceSections = Courier::Models::PreferenceSections
+
   PreferenceStatus = Courier::Models::PreferenceStatus
+
+  PreferenceTopicCreateRequest = Courier::Models::PreferenceTopicCreateRequest
+
+  PreferenceTopicGetResponse = Courier::Models::PreferenceTopicGetResponse
+
+  PreferenceTopicListResponse = Courier::Models::PreferenceTopicListResponse
+
+  PreferenceTopicReplaceRequest = Courier::Models::PreferenceTopicReplaceRequest
 
   ProfileCreateParams = Courier::Models::ProfileCreateParams
 
@@ -410,6 +446,8 @@ module Courier
   ProvidersCatalogEntry = Courier::Models::ProvidersCatalogEntry
 
   ProviderUpdateParams = Courier::Models::ProviderUpdateParams
+
+  PublishPreferencesResponse = Courier::Models::PublishPreferencesResponse
 
   PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient
 

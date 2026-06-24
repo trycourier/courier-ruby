@@ -1,0 +1,40 @@
+module Courier
+  module Models
+    type publish_preferences_response =
+      {
+        page_id: String,
+        published_at: String,
+        published_version: Float,
+        preview_url: String?,
+        published_by: String?
+      }
+
+    class PublishPreferencesResponse < Courier::Internal::Type::BaseModel
+      attr_accessor page_id: String
+
+      attr_accessor published_at: String
+
+      attr_accessor published_version: Float
+
+      attr_accessor preview_url: String?
+
+      attr_accessor published_by: String?
+
+      def initialize: (
+        page_id: String,
+        published_at: String,
+        published_version: Float,
+        ?preview_url: String?,
+        ?published_by: String?
+      ) -> void
+
+      def to_hash: -> {
+        page_id: String,
+        published_at: String,
+        published_version: Float,
+        preview_url: String?,
+        published_by: String?
+      }
+    end
+  end
+end
