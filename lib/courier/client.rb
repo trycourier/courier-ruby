@@ -66,6 +66,9 @@ module Courier
     # @return [Courier::Resources::RoutingStrategies]
     attr_reader :routing_strategies
 
+    # @return [Courier::Resources::PreferenceSections]
+    attr_reader :preference_sections
+
     # @return [Courier::Resources::Profiles]
     attr_reader :profiles
 
@@ -155,6 +158,7 @@ module Courier
       @requests = Courier::Resources::Requests.new(client: self)
       @notifications = Courier::Resources::Notifications.new(client: self)
       @routing_strategies = Courier::Resources::RoutingStrategies.new(client: self)
+      @preference_sections = Courier::Resources::PreferenceSections.new(client: self)
       @profiles = Courier::Resources::Profiles.new(client: self)
       @tenants = Courier::Resources::Tenants.new(client: self)
       @translations = Courier::Resources::Translations.new(client: self)

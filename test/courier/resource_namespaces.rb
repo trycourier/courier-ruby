@@ -21,6 +21,9 @@ module Courier
       module Preferences
       end
 
+      module PreferenceSections
+      end
+
       module Profiles
       end
 

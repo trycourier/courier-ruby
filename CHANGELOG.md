@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.17.0 (2026-06-24)
+
+Full Changelog: [v4.16.0...v4.17.0](https://github.com/trycourier/courier-ruby/compare/v4.16.0...v4.17.0)
+
+### Features
+
+* **preferences:** workspace preference sections & nested topics endpoints ([d53ac7b](https://github.com/trycourier/courier-ruby/commit/d53ac7b093745632465f9b8fc4136964e48ed88f))
+
 ## 4.16.0 (2026-06-23)
 
 Full Changelog: [v4.15.0...v4.16.0](https://github.com/trycourier/courier-ruby/compare/v4.15.0...v4.16.0)
