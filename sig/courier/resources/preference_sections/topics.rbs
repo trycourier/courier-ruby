@@ -1,0 +1,49 @@
+module Courier
+  module Resources
+    class PreferenceSections
+      class Topics
+        def create: (
+          String section_id,
+          default_status: Courier::Models::PreferenceTopicCreateRequest::default_status,
+          name: String,
+          ?allowed_preferences: ::Array[Courier::Models::PreferenceTopicCreateRequest::allowed_preference]?,
+          ?include_unsubscribe_header: bool?,
+          ?routing_options: ::Array[Courier::Models::channel_classification]?,
+          ?topic_data: ::Hash[Symbol, top]?,
+          ?request_options: Courier::request_opts
+        ) -> Courier::PreferenceTopicGetResponse
+
+        def retrieve: (
+          String topic_id,
+          section_id: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::PreferenceTopicGetResponse
+
+        def list: (
+          String section_id,
+          ?request_options: Courier::request_opts
+        ) -> Courier::PreferenceTopicListResponse
+
+        def archive: (
+          String topic_id,
+          section_id: String,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def replace: (
+          String topic_id,
+          section_id: String,
+          default_status: Courier::Models::PreferenceTopicReplaceRequest::default_status,
+          name: String,
+          ?allowed_preferences: ::Array[Courier::Models::PreferenceTopicReplaceRequest::allowed_preference]?,
+          ?include_unsubscribe_header: bool?,
+          ?routing_options: ::Array[Courier::Models::channel_classification]?,
+          ?topic_data: ::Hash[Symbol, top]?,
+          ?request_options: Courier::request_opts
+        ) -> Courier::PreferenceTopicGetResponse
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end
