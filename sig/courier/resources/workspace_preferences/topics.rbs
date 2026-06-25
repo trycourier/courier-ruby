@@ -1,0 +1,49 @@
+module Courier
+  module Resources
+    class WorkspacePreferences
+      class Topics
+        def create: (
+          String section_id,
+          default_status: Courier::Models::WorkspacePreferenceTopicCreateRequest::default_status,
+          name: String,
+          ?allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::allowed_preference]?,
+          ?include_unsubscribe_header: bool?,
+          ?routing_options: ::Array[Courier::Models::channel_classification]?,
+          ?topic_data: ::Hash[Symbol, top]?,
+          ?request_options: Courier::request_opts
+        ) -> Courier::WorkspacePreferenceTopicGetResponse
+
+        def retrieve: (
+          String topic_id,
+          section_id: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::WorkspacePreferenceTopicGetResponse
+
+        def list: (
+          String section_id,
+          ?request_options: Courier::request_opts
+        ) -> Courier::WorkspacePreferenceTopicListResponse
+
+        def archive: (
+          String topic_id,
+          section_id: String,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def replace: (
+          String topic_id,
+          section_id: String,
+          default_status: Courier::Models::WorkspacePreferenceTopicReplaceRequest::default_status,
+          name: String,
+          ?allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicReplaceRequest::allowed_preference]?,
+          ?include_unsubscribe_header: bool?,
+          ?routing_options: ::Array[Courier::Models::channel_classification]?,
+          ?topic_data: ::Hash[Symbol, top]?,
+          ?request_options: Courier::request_opts
+        ) -> Courier::WorkspacePreferenceTopicGetResponse
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end

@@ -361,37 +361,7 @@ module Courier
 
   class Preference = Courier::Models::Preference
 
-  class PreferenceSectionArchiveParams = Courier::Models::PreferenceSectionArchiveParams
-
-  class PreferenceSectionCreateParams = Courier::Models::PreferenceSectionCreateParams
-
-  class PreferenceSectionCreateRequest = Courier::Models::PreferenceSectionCreateRequest
-
-  class PreferenceSectionGetResponse = Courier::Models::PreferenceSectionGetResponse
-
-  class PreferenceSectionListParams = Courier::Models::PreferenceSectionListParams
-
-  class PreferenceSectionListResponse = Courier::Models::PreferenceSectionListResponse
-
-  class PreferenceSectionPublishParams = Courier::Models::PreferenceSectionPublishParams
-
-  class PreferenceSectionReplaceParams = Courier::Models::PreferenceSectionReplaceParams
-
-  class PreferenceSectionReplaceRequest = Courier::Models::PreferenceSectionReplaceRequest
-
-  class PreferenceSectionRetrieveParams = Courier::Models::PreferenceSectionRetrieveParams
-
-  module PreferenceSections = Courier::Models::PreferenceSections
-
   module PreferenceStatus = Courier::Models::PreferenceStatus
-
-  class PreferenceTopicCreateRequest = Courier::Models::PreferenceTopicCreateRequest
-
-  class PreferenceTopicGetResponse = Courier::Models::PreferenceTopicGetResponse
-
-  class PreferenceTopicListResponse = Courier::Models::PreferenceTopicListResponse
-
-  class PreferenceTopicReplaceRequest = Courier::Models::PreferenceTopicReplaceRequest
 
   class ProfileCreateParams = Courier::Models::ProfileCreateParams
 
@@ -544,4 +514,34 @@ module Courier
   class WebhookRecipient = Courier::Models::WebhookRecipient
 
   class WidgetBackground = Courier::Models::WidgetBackground
+
+  class WorkspacePreferenceArchiveParams = Courier::Models::WorkspacePreferenceArchiveParams
+
+  class WorkspacePreferenceCreateParams = Courier::Models::WorkspacePreferenceCreateParams
+
+  class WorkspacePreferenceCreateRequest = Courier::Models::WorkspacePreferenceCreateRequest
+
+  class WorkspacePreferenceGetResponse = Courier::Models::WorkspacePreferenceGetResponse
+
+  class WorkspacePreferenceListParams = Courier::Models::WorkspacePreferenceListParams
+
+  class WorkspacePreferenceListResponse = Courier::Models::WorkspacePreferenceListResponse
+
+  class WorkspacePreferencePublishParams = Courier::Models::WorkspacePreferencePublishParams
+
+  class WorkspacePreferenceReplaceParams = Courier::Models::WorkspacePreferenceReplaceParams
+
+  class WorkspacePreferenceReplaceRequest = Courier::Models::WorkspacePreferenceReplaceRequest
+
+  class WorkspacePreferenceRetrieveParams = Courier::Models::WorkspacePreferenceRetrieveParams
+
+  module WorkspacePreferences = Courier::Models::WorkspacePreferences
+
+  class WorkspacePreferenceTopicCreateRequest = Courier::Models::WorkspacePreferenceTopicCreateRequest
+
+  class WorkspacePreferenceTopicGetResponse = Courier::Models::WorkspacePreferenceTopicGetResponse
+
+  class WorkspacePreferenceTopicListResponse = Courier::Models::WorkspacePreferenceTopicListResponse
+
+  class WorkspacePreferenceTopicReplaceRequest = Courier::Models::WorkspacePreferenceTopicReplaceRequest
 end
