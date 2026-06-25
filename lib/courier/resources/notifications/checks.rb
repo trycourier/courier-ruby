@@ -61,7 +61,7 @@ module Courier
           )
         end
 
-        # Cancel a notification template submission.
+        # Cancel a submission for a notification template.
         #
         # @overload delete(submission_id, id:, request_options: {})
         #

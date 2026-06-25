@@ -41,7 +41,7 @@ module Courier
         )
         end
 
-        # Cancel a notification template submission.
+        # Cancel a submission for a notification template.
         sig do
           params(
             submission_id: String,
