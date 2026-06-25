@@ -24,7 +24,7 @@ module Courier
         )
         end
 
-        # Retrieve the checks for a notification template submission.
+        # Retrieve the submission checks for a notification template.
         sig do
           params(
             submission_id: String,
