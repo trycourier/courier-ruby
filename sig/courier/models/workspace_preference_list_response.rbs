@@ -1,0 +1,18 @@
+module Courier
+  module Models
+    type workspace_preference_list_response =
+      { results: ::Array[Courier::WorkspacePreferenceGetResponse] }
+
+    class WorkspacePreferenceListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor results: ::Array[Courier::WorkspacePreferenceGetResponse]
+
+      def initialize: (
+        results: ::Array[Courier::WorkspacePreferenceGetResponse]
+      ) -> void
+
+      def to_hash: -> {
+        results: ::Array[Courier::WorkspacePreferenceGetResponse]
+      }
+    end
+  end
+end

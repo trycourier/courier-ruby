@@ -1,0 +1,42 @@
+module Courier
+  module Resources
+    class WorkspacePreferences
+      attr_reader topics: Courier::Resources::WorkspacePreferences::Topics
+
+      def create: (
+        name: String,
+        ?has_custom_routing: bool?,
+        ?routing_options: ::Array[Courier::Models::channel_classification]?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::WorkspacePreferenceGetResponse
+
+      def retrieve: (
+        String section_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::WorkspacePreferenceGetResponse
+
+      def list: (
+        ?request_options: Courier::request_opts
+      ) -> Courier::WorkspacePreferenceListResponse
+
+      def archive: (
+        String section_id,
+        ?request_options: Courier::request_opts
+      ) -> nil
+
+      def publish: (
+        ?request_options: Courier::request_opts
+      ) -> Courier::PublishPreferencesResponse
+
+      def replace: (
+        String section_id,
+        name: String,
+        ?has_custom_routing: bool?,
+        ?routing_options: ::Array[Courier::Models::channel_classification]?,
+        ?request_options: Courier::request_opts
+      ) -> Courier::WorkspacePreferenceGetResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end
