@@ -34,7 +34,7 @@ module Courier
           )
         end
 
-        # Retrieve the checks for a notification template submission.
+        # Retrieve the submission checks for a notification template.
         #
         # @overload list(submission_id, id:, request_options: {})
         #
