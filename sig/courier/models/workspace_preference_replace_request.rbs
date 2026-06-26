@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    type workspace_preference_replace_request =
+      {
+        name: String,
+        has_custom_routing: bool?,
+        routing_options: ::Array[Courier::Models::channel_classification]?
+      }
+
+    class WorkspacePreferenceReplaceRequest < Courier::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor has_custom_routing: bool?
+
+      attr_accessor routing_options: ::Array[Courier::Models::channel_classification]?
+
+      def initialize: (
+        name: String,
+        ?has_custom_routing: bool?,
+        ?routing_options: ::Array[Courier::Models::channel_classification]?
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        has_custom_routing: bool?,
+        routing_options: ::Array[Courier::Models::channel_classification]?
+      }
+    end
+  end
+end

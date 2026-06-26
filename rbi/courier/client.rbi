@@ -61,8 +61,8 @@ module Courier
     sig { returns(Courier::Resources::RoutingStrategies) }
     attr_reader :routing_strategies
 
-    sig { returns(Courier::Resources::PreferenceSections) }
-    attr_reader :preference_sections
+    sig { returns(Courier::Resources::WorkspacePreferences) }
+    attr_reader :workspace_preferences
 
     sig { returns(Courier::Resources::Profiles) }
     attr_reader :profiles

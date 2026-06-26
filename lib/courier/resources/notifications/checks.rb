@@ -4,7 +4,7 @@ module Courier
   module Resources
     class Notifications
       class Checks
-        # Replace the checks for a notification template submission.
+        # Replace the submission checks for a notification template.
         #
         # @overload update(submission_id, id:, checks:, request_options: {})
         #
@@ -34,7 +34,7 @@ module Courier
           )
         end
 
-        # Retrieve the checks for a notification template submission.
+        # Retrieve the submission checks for a notification template.
         #
         # @overload list(submission_id, id:, request_options: {})
         #
@@ -61,7 +61,7 @@ module Courier
           )
         end
 
-        # Cancel a notification template submission.
+        # Cancel a submission for a notification template.
         #
         # @overload delete(submission_id, id:, request_options: {})
         #

@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    # @see Courier::Resources::PreferenceSections#publish
+    # @see Courier::Resources::WorkspacePreferences#publish
     class PublishPreferencesResponse < Courier::Internal::Type::BaseModel
       # @!attribute page_id
       #   Id of the published page snapshot.

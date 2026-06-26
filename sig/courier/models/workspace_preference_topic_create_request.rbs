@@ -1,0 +1,68 @@
+module Courier
+  module Models
+    type workspace_preference_topic_create_request =
+      {
+        default_status: Courier::Models::WorkspacePreferenceTopicCreateRequest::default_status,
+        name: String,
+        allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::allowed_preference]?,
+        include_unsubscribe_header: bool?,
+        routing_options: ::Array[Courier::Models::channel_classification]?,
+        topic_data: ::Hash[Symbol, top]?
+      }
+
+    class WorkspacePreferenceTopicCreateRequest < Courier::Internal::Type::BaseModel
+      attr_accessor default_status: Courier::Models::WorkspacePreferenceTopicCreateRequest::default_status
+
+      attr_accessor name: String
+
+      attr_accessor allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::allowed_preference]?
+
+      attr_accessor include_unsubscribe_header: bool?
+
+      attr_accessor routing_options: ::Array[Courier::Models::channel_classification]?
+
+      attr_accessor topic_data: ::Hash[Symbol, top]?
+
+      def initialize: (
+        default_status: Courier::Models::WorkspacePreferenceTopicCreateRequest::default_status,
+        name: String,
+        ?allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::allowed_preference]?,
+        ?include_unsubscribe_header: bool?,
+        ?routing_options: ::Array[Courier::Models::channel_classification]?,
+        ?topic_data: ::Hash[Symbol, top]?
+      ) -> void
+
+      def to_hash: -> {
+        default_status: Courier::Models::WorkspacePreferenceTopicCreateRequest::default_status,
+        name: String,
+        allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::allowed_preference]?,
+        include_unsubscribe_header: bool?,
+        routing_options: ::Array[Courier::Models::channel_classification]?,
+        topic_data: ::Hash[Symbol, top]?
+      }
+
+      type default_status = :OPTED_OUT | :OPTED_IN | :REQUIRED
+
+      module DefaultStatus
+        extend Courier::Internal::Type::Enum
+
+        OPTED_OUT: :OPTED_OUT
+        OPTED_IN: :OPTED_IN
+        REQUIRED: :REQUIRED
+
+        def self?.values: -> ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::default_status]
+      end
+
+      type allowed_preference = :snooze | :channel_preferences
+
+      module AllowedPreference
+        extend Courier::Internal::Type::Enum
+
+        SNOOZE: :snooze
+        CHANNEL_PREFERENCES: :channel_preferences
+
+        def self?.values: -> ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::allowed_preference]
+      end
+    end
+  end
+end

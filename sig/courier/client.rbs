@@ -42,7 +42,7 @@ module Courier
 
     attr_reader routing_strategies: Courier::Resources::RoutingStrategies
 
-    attr_reader preference_sections: Courier::Resources::PreferenceSections
+    attr_reader workspace_preferences: Courier::Resources::WorkspacePreferences
 
     attr_reader profiles: Courier::Resources::Profiles
 

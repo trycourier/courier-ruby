@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.17.1 (2026-06-25)
+
+Full Changelog: [v4.17.0...v4.17.1](https://github.com/trycourier/courier-ruby/compare/v4.17.0...v4.17.1)
+
+### Documentation
+
+* **openapi:** add full response examples to every endpoint ([be9724a](https://github.com/trycourier/courier-ruby/commit/be9724a3a5d7317bd31d99160414959b58d1e5bb))
+* **openapi:** reword Cancel Submission description ([68565aa](https://github.com/trycourier/courier-ruby/commit/68565aa1f8de141d9780a390da4b48aeb178624e))
+* **openapi:** reword Get Submission Checks description ([94541e4](https://github.com/trycourier/courier-ruby/commit/94541e4aaebbf1ac567e1047d2ce84e5ad97741b))
+* **openapi:** reword Replace Submission Checks description ([7aa63c1](https://github.com/trycourier/courier-ruby/commit/7aa63c14c83b9585ec963d426f47b2720b5b04cc))
+
 ## 4.17.0 (2026-06-24)
 
 Full Changelog: [v4.16.0...v4.17.0](https://github.com/trycourier/courier-ruby/compare/v4.16.0...v4.17.0)

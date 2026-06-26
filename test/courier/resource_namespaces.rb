@@ -21,9 +21,6 @@ module Courier
       module Preferences
       end
 
-      module PreferenceSections
-      end
-
       module Profiles
       end
 
@@ -42,6 +39,9 @@ module Courier
       end
 
       module Users
+      end
+
+      module WorkspacePreferences
       end
     end
   end
