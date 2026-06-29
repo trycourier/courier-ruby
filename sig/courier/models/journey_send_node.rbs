@@ -5,7 +5,8 @@ module Courier
         message: Courier::JourneySendNode::Message,
         type: Courier::Models::JourneySendNode::type_,
         id: String,
-        conditions: Courier::Models::journey_conditions_field
+        conditions: Courier::Models::journey_conditions_field,
+        experiment: Courier::JourneyExperiment
       }
 
     class JourneySendNode < Courier::Internal::Type::BaseModel
@@ -23,31 +24,37 @@ module Courier
         Courier::Models::journey_conditions_field
       ) -> Courier::Models::journey_conditions_field
 
+      attr_reader experiment: Courier::JourneyExperiment?
+
+      def experiment=: (
+        Courier::JourneyExperiment
+      ) -> Courier::JourneyExperiment
+
       def initialize: (
         message: Courier::JourneySendNode::Message,
         type: Courier::Models::JourneySendNode::type_,
         ?id: String,
-        ?conditions: Courier::Models::journey_conditions_field
+        ?conditions: Courier::Models::journey_conditions_field,
+        ?experiment: Courier::JourneyExperiment
       ) -> void
 
       def to_hash: -> {
         message: Courier::JourneySendNode::Message,
         type: Courier::Models::JourneySendNode::type_,
         id: String,
-        conditions: Courier::Models::journey_conditions_field
+        conditions: Courier::Models::journey_conditions_field,
+        experiment: Courier::JourneyExperiment
       }
 
       type message =
         {
-          template: String,
           data: ::Hash[Symbol, top],
           delay: Courier::JourneySendNode::Message::Delay,
+          template: String,
           to: Courier::JourneySendNode::Message::To
         }
 
       class Message < Courier::Internal::Type::BaseModel
-        attr_accessor template: String
-
         attr_reader data: ::Hash[Symbol, top]?
 
         def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
@@ -58,6 +65,10 @@ module Courier
           Courier::JourneySendNode::Message::Delay
         ) -> Courier::JourneySendNode::Message::Delay
 
+        attr_reader template: String?
+
+        def template=: (String) -> String
+
         attr_reader to: Courier::JourneySendNode::Message::To?
 
         def to=: (
@@ -65,16 +76,16 @@ module Courier
         ) -> Courier::JourneySendNode::Message::To
 
         def initialize: (
-          template: String,
           ?data: ::Hash[Symbol, top],
           ?delay: Courier::JourneySendNode::Message::Delay,
+          ?template: String,
           ?to: Courier::JourneySendNode::Message::To
         ) -> void
 
         def to_hash: -> {
-          template: String,
           data: ::Hash[Symbol, top],
           delay: Courier::JourneySendNode::Message::Delay,
+          template: String,
           to: Courier::JourneySendNode::Message::To
         }
 

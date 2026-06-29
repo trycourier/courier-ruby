@@ -1,0 +1,32 @@
+module Courier
+  module Models
+    type journey_experiment_variant =
+      { id: String, template_id: String, weight: Float, name: String }
+
+    class JourneyExperimentVariant < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor template_id: String
+
+      attr_accessor weight: Float
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      def initialize: (
+        id: String,
+        template_id: String,
+        weight: Float,
+        ?name: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        template_id: String,
+        weight: Float,
+        name: String
+      }
+    end
+  end
+end

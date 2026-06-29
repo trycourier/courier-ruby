@@ -28,6 +28,11 @@ module Courier
         ?request_options: Courier::request_opts
       ) -> nil
 
+      def cancel: (
+        cancel_journey_request: Courier::Models::cancel_journey_request,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::cancel_journey_response
+
       def invoke: (
         String template_id,
         ?data: ::Hash[Symbol, top],
