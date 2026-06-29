@@ -123,6 +123,10 @@ module Courier
 
   BulkRunJobParams = Courier::Models::BulkRunJobParams
 
+  CancelJourneyRequest = Courier::Models::CancelJourneyRequest
+
+  CancelJourneyResponse = Courier::Models::CancelJourneyResponse
+
   Channel = Courier::Models::Channel
 
   ChannelClassification = Courier::Models::ChannelClassification
@@ -207,6 +211,8 @@ module Courier
 
   JourneyArchiveParams = Courier::Models::JourneyArchiveParams
 
+  JourneyCancelParams = Courier::Models::JourneyCancelParams
+
   # @type [Courier::Internal::Type::Converter]
   JourneyConditionAtom = Courier::Models::JourneyConditionAtom
 
@@ -223,6 +229,10 @@ module Courier
   JourneyDelayUntilNode = Courier::Models::JourneyDelayUntilNode
 
   JourneyExitNode = Courier::Models::JourneyExitNode
+
+  JourneyExperiment = Courier::Models::JourneyExperiment
+
+  JourneyExperimentVariant = Courier::Models::JourneyExperimentVariant
 
   JourneyFetchGetDeleteNode = Courier::Models::JourneyFetchGetDeleteNode
 

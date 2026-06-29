@@ -26,12 +26,23 @@ module Courier
       #   @return [Array<String>, Courier::Models::JourneyConditionGroup, Courier::Models::JourneyConditionNestedGroup, nil]
       optional :conditions, union: -> { Courier::JourneyConditionsField }
 
-      # @!method initialize(message:, type:, id: nil, conditions: nil)
+      # @!attribute experiment
+      #   A/B experiment config for a send node. The recipient is deterministically
+      #   bucketed by `bucketingKey` and routed to one of the `variants` in proportion to
+      #   its `weight`. Present on a send node INSTEAD OF `message.template`.
+      #
+      #   @return [Courier::Models::JourneyExperiment, nil]
+      optional :experiment, -> { Courier::JourneyExperiment }
+
+      # @!method initialize(message:, type:, id: nil, conditions: nil, experiment: nil)
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneySendNode} for more details.
       #
-      #   Send a notification template to the recipient. Optionally override the recipient
-      #   address, delay the send, or attach `data`.
+      #   Send to the recipient. A send node sources its content from EXACTLY ONE of
+      #   `message.template` (a single notification template) or `experiment` (an A/B
+      #   split across weighted template variants) — supplying both, or neither, is
+      #   rejected. Optionally override the recipient address, delay the send, or attach
+      #   `data`.
       #
       #   @param message [Courier::Models::JourneySendNode::Message]
       #
@@ -40,14 +51,11 @@ module Courier
       #   @param id [String]
       #
       #   @param conditions [Array<String>, Courier::Models::JourneyConditionGroup, Courier::Models::JourneyConditionNestedGroup] Condition spec for a journey node. Accepts a single condition atom, an AND/OR gr
+      #
+      #   @param experiment [Courier::Models::JourneyExperiment] A/B experiment config for a send node. The recipient is deterministically bucket
 
       # @see Courier::Models::JourneySendNode#message
       class Message < Courier::Internal::Type::BaseModel
-        # @!attribute template
-        #
-        #   @return [String]
-        required :template, String
-
         # @!attribute data
         #
         #   @return [Hash{Symbol=>Object}, nil]
@@ -58,15 +66,20 @@ module Courier
         #   @return [Courier::Models::JourneySendNode::Message::Delay, nil]
         optional :delay, -> { Courier::JourneySendNode::Message::Delay }
 
+        # @!attribute template
+        #
+        #   @return [String, nil]
+        optional :template, String
+
         # @!attribute to
         #
         #   @return [Courier::Models::JourneySendNode::Message::To, nil]
         optional :to, -> { Courier::JourneySendNode::Message::To }
 
-        # @!method initialize(template:, data: nil, delay: nil, to: nil)
-        #   @param template [String]
+        # @!method initialize(data: nil, delay: nil, template: nil, to: nil)
         #   @param data [Hash{Symbol=>Object}]
         #   @param delay [Courier::Models::JourneySendNode::Message::Delay]
+        #   @param template [String]
         #   @param to [Courier::Models::JourneySendNode::Message::To]
 
         # @see Courier::Models::JourneySendNode::Message#delay
