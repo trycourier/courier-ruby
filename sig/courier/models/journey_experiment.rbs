@@ -1,0 +1,39 @@
+module Courier
+  module Models
+    type journey_experiment =
+      {
+        bucketing_key: String,
+        variants: ::Array[Courier::JourneyExperimentVariant],
+        id: String,
+        name: String
+      }
+
+    class JourneyExperiment < Courier::Internal::Type::BaseModel
+      attr_accessor bucketing_key: String
+
+      attr_accessor variants: ::Array[Courier::JourneyExperimentVariant]
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      def initialize: (
+        bucketing_key: String,
+        variants: ::Array[Courier::JourneyExperimentVariant],
+        ?id: String,
+        ?name: String
+      ) -> void
+
+      def to_hash: -> {
+        bucketing_key: String,
+        variants: ::Array[Courier::JourneyExperimentVariant],
+        id: String,
+        name: String
+      }
+    end
+  end
+end

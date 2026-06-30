@@ -14,7 +14,7 @@ module Courier
       # Trigger fired by a segment event (`identify`, `group`, or `track`).
       variant -> { Courier::JourneySegmentTriggerNode }
 
-      # Send a notification template to the recipient. Optionally override the recipient address, delay the send, or attach `data`.
+      # Send to the recipient. A send node sources its content from EXACTLY ONE of `message.template` (a single notification template) or `experiment` (an A/B split across weighted template variants) — supplying both, or neither, is rejected. Optionally override the recipient address, delay the send, or attach `data`.
       variant -> { Courier::JourneySendNode }
 
       # Pause the journey run for a fixed `duration`.

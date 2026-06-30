@@ -1,0 +1,33 @@
+module Courier
+  module Models
+    type cancel_journey_request =
+      Courier::CancelJourneyRequest::ByCancelationToken
+      | Courier::CancelJourneyRequest::ByRunID
+
+    module CancelJourneyRequest
+      extend Courier::Internal::Type::Union
+
+      type by_cancelation_token = { cancelation_token: String }
+
+      class ByCancelationToken < Courier::Internal::Type::BaseModel
+        attr_accessor cancelation_token: String
+
+        def initialize: (cancelation_token: String) -> void
+
+        def to_hash: -> { cancelation_token: String }
+      end
+
+      type by_run_id = { run_id: String }
+
+      class ByRunID < Courier::Internal::Type::BaseModel
+        attr_accessor run_id: String
+
+        def initialize: (run_id: String) -> void
+
+        def to_hash: -> { run_id: String }
+      end
+
+      def self?.variants: -> ::Array[Courier::Models::cancel_journey_request]
+    end
+  end
+end

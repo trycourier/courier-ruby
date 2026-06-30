@@ -84,6 +84,23 @@ class Courier::Test::Resources::JourneysTest < Courier::Test::ResourceTest
     end
   end
 
+  def test_cancel_required_params
+    skip("Mock server tests are disabled")
+
+    response = @courier.journeys.cancel(cancel_journey_request: {cancelation_token: "order-1234"})
+
+    assert_pattern do
+      response => Courier::CancelJourneyResponse
+    end
+
+    assert_pattern do
+      case response
+      in Courier::CancelJourneyResponse::TokenBranch
+      in Courier::CancelJourneyResponse::RunIDBranch
+      end
+    end
+  end
+
   def test_invoke
     skip("Mock server tests are disabled")
 
