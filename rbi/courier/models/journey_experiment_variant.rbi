@@ -19,16 +19,16 @@ module Courier
       sig { returns(Float) }
       attr_accessor :weight
 
-      # Optional, cosmetic display name for the variant.
+      # Optional display name for the variant.
       sig { returns(T.nilable(String)) }
       attr_reader :name
 
       sig { params(name: String).void }
       attr_writer :name
 
-      # A single weighted arm of an experiment. Variant ids must be unique within the
-      # experiment and the sum of all variant weights must be greater than 0. Weights
-      # are relative (no sum-to-100 requirement) — routing normalizes them
+      # A single weighted variant of an experiment. Variant ids must be unique within
+      # the experiment and the sum of all variant weights must be greater than 0.
+      # Weights are relative (no sum-to-100 requirement) — routing normalizes them
       # proportionally.
       sig do
         params(
@@ -44,7 +44,7 @@ module Courier
         template_id:,
         # Relative routing weight. Must be non-negative.
         weight:,
-        # Optional, cosmetic display name for the variant.
+        # Optional display name for the variant.
         name: nil
       )
       end

@@ -17,14 +17,14 @@ module Courier
       required :variants, -> { Courier::Internal::Type::ArrayOf[Courier::JourneyExperimentVariant] }
 
       # @!attribute id
-      #   Server-authoritative experiment id (prefixed `exp_`). Omit to have the server
-      #   mint one; when supplied it must be a valid `exp_` id.
+      #   Unique experiment id (prefixed `exp_`). Omit to have one generated
+      #   automatically; when supplied it must be a valid `exp_` id.
       #
       #   @return [String, nil]
       optional :id, String
 
       # @!attribute name
-      #   Optional, cosmetic display name for the experiment.
+      #   Optional display name for the experiment.
       #
       #   @return [String, nil]
       optional :name, String
@@ -41,9 +41,9 @@ module Courier
       #
       #   @param variants [Array<Courier::Models::JourneyExperimentVariant>] Between 2 and 10 weighted template variants.
       #
-      #   @param id [String] Server-authoritative experiment id (prefixed `exp_`). Omit to have the server mi
+      #   @param id [String] Unique experiment id (prefixed `exp_`). Omit to have one generated automatically
       #
-      #   @param name [String] Optional, cosmetic display name for the experiment.
+      #   @param name [String] Optional display name for the experiment.
     end
   end
 end

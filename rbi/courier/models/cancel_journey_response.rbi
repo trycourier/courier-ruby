@@ -2,9 +2,10 @@
 
 module Courier
   module Models
-    # `202 Accepted` body for `POST /journeys/cancel`, echoing the submitted
-    # identifier. The token branch returns `{ cancelation_token }`; the run_id branch
-    # returns `{ run_id, status }`.
+    # `202 Accepted` body for `POST /journeys/cancel`, returning the submitted
+    # identifier. When called with `cancelation_token`, returns
+    # `{ cancelation_token }`; when called with `run_id`, returns
+    # `{ run_id, status }`.
     module CancelJourneyResponse
       extend Courier::Internal::Type::Union
 
@@ -49,18 +50,18 @@ module Courier
         sig { returns(String) }
         attr_accessor :run_id
 
-        # The run's resulting status. `CANCELED` when the run was active and we canceled
-        # it; `PROCESSED` or `ERROR` when the run had already finished and was left
-        # untouched; `CANCELED` for an already-canceled run.
+        # The run's resulting status. `CANCELED` when the run was active and has been
+        # canceled; `PROCESSED` or `ERROR` when the run had already finished and was left
+        # unchanged; `CANCELED` for an already-canceled run.
         sig { returns(String) }
         attr_accessor :status
 
         sig { params(run_id: String, status: String).returns(T.attached_class) }
         def self.new(
           run_id:,
-          # The run's resulting status. `CANCELED` when the run was active and we canceled
-          # it; `PROCESSED` or `ERROR` when the run had already finished and was left
-          # untouched; `CANCELED` for an already-canceled run.
+          # The run's resulting status. `CANCELED` when the run was active and has been
+          # canceled; `PROCESSED` or `ERROR` when the run had already finished and was left
+          # unchanged; `CANCELED` for an already-canceled run.
           status:
         )
         end

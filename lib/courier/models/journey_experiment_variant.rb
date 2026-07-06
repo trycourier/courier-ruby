@@ -21,15 +21,15 @@ module Courier
       required :weight, Float
 
       # @!attribute name
-      #   Optional, cosmetic display name for the variant.
+      #   Optional display name for the variant.
       #
       #   @return [String, nil]
       optional :name, String
 
       # @!method initialize(id:, template_id:, weight:, name: nil)
-      #   A single weighted arm of an experiment. Variant ids must be unique within the
-      #   experiment and the sum of all variant weights must be greater than 0. Weights
-      #   are relative (no sum-to-100 requirement) — routing normalizes them
+      #   A single weighted variant of an experiment. Variant ids must be unique within
+      #   the experiment and the sum of all variant weights must be greater than 0.
+      #   Weights are relative (no sum-to-100 requirement) — routing normalizes them
       #   proportionally.
       #
       #   @param id [String]
@@ -38,7 +38,7 @@ module Courier
       #
       #   @param weight [Float] Relative routing weight. Must be non-negative.
       #
-      #   @param name [String] Optional, cosmetic display name for the variant.
+      #   @param name [String] Optional display name for the variant.
     end
   end
 end

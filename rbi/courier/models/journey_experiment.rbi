@@ -17,15 +17,15 @@ module Courier
       sig { returns(T::Array[Courier::JourneyExperimentVariant]) }
       attr_accessor :variants
 
-      # Server-authoritative experiment id (prefixed `exp_`). Omit to have the server
-      # mint one; when supplied it must be a valid `exp_` id.
+      # Unique experiment id (prefixed `exp_`). Omit to have one generated
+      # automatically; when supplied it must be a valid `exp_` id.
       sig { returns(T.nilable(String)) }
       attr_reader :id
 
       sig { params(id: String).void }
       attr_writer :id
 
-      # Optional, cosmetic display name for the experiment.
+      # Optional display name for the experiment.
       sig { returns(T.nilable(String)) }
       attr_reader :name
 
@@ -49,10 +49,10 @@ module Courier
         bucketing_key:,
         # Between 2 and 10 weighted template variants.
         variants:,
-        # Server-authoritative experiment id (prefixed `exp_`). Omit to have the server
-        # mint one; when supplied it must be a valid `exp_` id.
+        # Unique experiment id (prefixed `exp_`). Omit to have one generated
+        # automatically; when supplied it must be a valid `exp_` id.
         id: nil,
-        # Optional, cosmetic display name for the experiment.
+        # Optional display name for the experiment.
         name: nil
       )
       end
