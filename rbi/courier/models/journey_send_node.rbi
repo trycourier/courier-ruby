@@ -51,8 +51,20 @@ module Courier
       end
       attr_writer :conditions
 
-      # Send a notification template to the recipient. Optionally override the recipient
-      # address, delay the send, or attach `data`.
+      # A/B experiment config for a send node. The recipient is deterministically
+      # bucketed by `bucketingKey` and routed to one of the `variants` in proportion to
+      # its `weight`. Present on a send node INSTEAD OF `message.template`.
+      sig { returns(T.nilable(Courier::JourneyExperiment)) }
+      attr_reader :experiment
+
+      sig { params(experiment: Courier::JourneyExperiment::OrHash).void }
+      attr_writer :experiment
+
+      # Send to the recipient. A send node sources its content from EXACTLY ONE of
+      # `message.template` (a single notification template) or `experiment` (an A/B
+      # split across weighted template variants) — supplying both, or neither, is
+      # rejected. Optionally override the recipient address, delay the send, or attach
+      # `data`.
       sig do
         params(
           message: Courier::JourneySendNode::Message::OrHash,
@@ -63,7 +75,8 @@ module Courier
               T::Array[String],
               Courier::JourneyConditionGroup::OrHash,
               Courier::JourneyConditionNestedGroup::OrHash
-            )
+            ),
+          experiment: Courier::JourneyExperiment::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -73,7 +86,11 @@ module Courier
         # Condition spec for a journey node. Accepts a single condition atom, an AND/OR
         # group, or an AND/OR nested group. Omit the `conditions` property entirely to
         # express "no conditions".
-        conditions: nil
+        conditions: nil,
+        # A/B experiment config for a send node. The recipient is deterministically
+        # bucketed by `bucketingKey` and routed to one of the `variants` in proportion to
+        # its `weight`. Present on a send node INSTEAD OF `message.template`.
+        experiment: nil
       )
       end
 
@@ -88,7 +105,8 @@ module Courier
                 T::Array[String],
                 Courier::JourneyConditionGroup,
                 Courier::JourneyConditionNestedGroup
-              )
+              ),
+            experiment: Courier::JourneyExperiment
           }
         )
       end
@@ -100,9 +118,6 @@ module Courier
           T.type_alias do
             T.any(Courier::JourneySendNode::Message, Courier::Internal::AnyHash)
           end
-
-        sig { returns(String) }
-        attr_accessor :template
 
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_reader :data
@@ -118,6 +133,12 @@ module Courier
         end
         attr_writer :delay
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :template
+
+        sig { params(template: String).void }
+        attr_writer :template
+
         sig { returns(T.nilable(Courier::JourneySendNode::Message::To)) }
         attr_reader :to
 
@@ -126,21 +147,21 @@ module Courier
 
         sig do
           params(
-            template: String,
             data: T::Hash[Symbol, T.anything],
             delay: Courier::JourneySendNode::Message::Delay::OrHash,
+            template: String,
             to: Courier::JourneySendNode::Message::To::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(template:, data: nil, delay: nil, to: nil)
+        def self.new(data: nil, delay: nil, template: nil, to: nil)
         end
 
         sig do
           override.returns(
             {
-              template: String,
               data: T::Hash[Symbol, T.anything],
               delay: Courier::JourneySendNode::Message::Delay,
+              template: String,
               to: Courier::JourneySendNode::Message::To
             }
           )

@@ -101,6 +101,31 @@ module Courier
       )
       end
 
+      # Cancel journey runs. The request body must include EXACTLY ONE of
+      # `cancelation_token` (cancels every run associated with the token) or `run_id`
+      # (cancels a single tenant-scoped run). Supplying both or neither returns a `400`.
+      # A `run_id` that does not match a run for the tenant returns `404`. Cancelation
+      # is idempotent: a run that has already finished (`PROCESSED`/`ERROR`) or was
+      # already `CANCELED` is left unchanged and its current status is returned.
+      sig do
+        params(
+          cancel_journey_request:
+            T.any(
+              Courier::CancelJourneyRequest::ByCancelationToken::OrHash,
+              Courier::CancelJourneyRequest::ByRunID::OrHash
+            ),
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::CancelJourneyResponse::Variants)
+      end
+      def cancel(
+        # Request body for `POST /journeys/cancel`. Provide EXACTLY ONE of
+        # `cancelation_token` (cancels every run associated with the token) or `run_id`
+        # (cancels a single tenant-scoped run).
+        cancel_journey_request:,
+        request_options: {}
+      )
+      end
+
       # Invoke a journey by id or alias to start a new run. The response includes a
       # `runId` identifying the run.
       sig do

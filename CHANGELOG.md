@@ -1,5 +1,25 @@
 # Changelog
 
+## 4.18.0 (2026-07-06)
+
+Full Changelog: [v4.17.1...v4.18.0](https://github.com/trycourier/courier-ruby/compare/v4.17.1...v4.18.0)
+
+### Features
+
+* **openapi:** Journeys cancel-by-token endpoint + send-node experiments (C-18986) ([12613c6](https://github.com/trycourier/courier-ruby/commit/12613c65e9b4facc19f7fa23cc92fac0b2ea8684))
+
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([192d613](https://github.com/trycourier/courier-ruby/commit/192d6133c29e2ae7bfcd7c54bd1c244894f01b94))
+
+
+### Documentation
+
+* **openapi:** reword Cancel journey runs 400 description (re-trigger deploy) ([89ceaab](https://github.com/trycourier/courier-ruby/commit/89ceaab2e20d45c3dd807427f5e4d248ba94cc8a))
+* **openapi:** reword Cancel journey runs description (re-trigger deploy) ([ccce802](https://github.com/trycourier/courier-ruby/commit/ccce8027d4279de031ff2f7e95a250e512dbfbed))
+* **openapi:** tighten Journeys cancel/experiment copy (C-19177) ([10c4f1d](https://github.com/trycourier/courier-ruby/commit/10c4f1d3ca27c525ec5d75d49f4bb30cc0d6180d))
+
 ## 4.17.1 (2026-06-25)
 
 Full Changelog: [v4.17.0...v4.17.1](https://github.com/trycourier/courier-ruby/compare/v4.17.0...v4.17.1)

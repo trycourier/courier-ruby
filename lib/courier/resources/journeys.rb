@@ -115,6 +115,36 @@ module Courier
       end
 
       # Some parameter documentations has been truncated, see
+      # {Courier::Models::JourneyCancelParams} for more details.
+      #
+      # Cancel journey runs. The request body must include EXACTLY ONE of
+      # `cancelation_token` (cancels every run associated with the token) or `run_id`
+      # (cancels a single tenant-scoped run). Supplying both or neither returns a `400`.
+      # A `run_id` that does not match a run for the tenant returns `404`. Cancelation
+      # is idempotent: a run that has already finished (`PROCESSED`/`ERROR`) or was
+      # already `CANCELED` is left unchanged and its current status is returned.
+      #
+      # @overload cancel(cancel_journey_request:, request_options: {})
+      #
+      # @param cancel_journey_request [Courier::Models::CancelJourneyRequest::ByCancelationToken, Courier::Models::CancelJourneyRequest::ByRunID] Request body for `POST /journeys/cancel`. Provide EXACTLY ONE of `cancelation_to
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::CancelJourneyResponse::TokenBranch, Courier::Models::CancelJourneyResponse::RunIDBranch]
+      #
+      # @see Courier::Models::JourneyCancelParams
+      def cancel(params)
+        parsed, options = Courier::JourneyCancelParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "journeys/cancel",
+          body: parsed[:cancel_journey_request],
+          model: Courier::CancelJourneyResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
       # {Courier::Models::JourneyInvokeParams} for more details.
       #
       # Invoke a journey by id or alias to start a new run. The response includes a
