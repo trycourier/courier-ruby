@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.18.1 (2026-07-07)
+
+Full Changelog: [v4.18.0...v4.18.1](https://github.com/trycourier/courier-ruby/compare/v4.18.0...v4.18.1)
+
+### Documentation
+
+* **openapi:** document audiences filter combinator (SUP-686) ([fdf42fe](https://github.com/trycourier/courier-ruby/commit/fdf42fecbd77058dbba53a198942efa509bbc1a1))
+
 ## 4.18.0 (2026-07-06)
 
 Full Changelog: [v4.17.1...v4.18.0](https://github.com/trycourier/courier-ruby/compare/v4.17.1...v4.18.0)
