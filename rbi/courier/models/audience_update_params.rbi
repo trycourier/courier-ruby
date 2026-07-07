@@ -31,7 +31,9 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
-      # The logical operator (AND/OR) for the top-level filter
+      # The logical operator (AND/OR) combining the top-level `filter.filters`.
+      # Convenience alias for `filter.operator`: if set, it is applied to the top-level
+      # filter group. Prefer setting `operator` directly inside `filter`.
       sig do
         returns(T.nilable(Courier::AudienceUpdateParams::Operator::OrSymbol))
       end
@@ -56,7 +58,9 @@ module Courier
         filter: nil,
         # The name of the audience
         name: nil,
-        # The logical operator (AND/OR) for the top-level filter
+        # The logical operator (AND/OR) combining the top-level `filter.filters`.
+        # Convenience alias for `filter.operator`: if set, it is applied to the top-level
+        # filter group. Prefer setting `operator` directly inside `filter`.
         operator: nil,
         request_options: {}
       )
@@ -78,7 +82,9 @@ module Courier
       def to_hash
       end
 
-      # The logical operator (AND/OR) for the top-level filter
+      # The logical operator (AND/OR) combining the top-level `filter.filters`.
+      # Convenience alias for `filter.operator`: if set, it is applied to the top-level
+      # filter group. Prefer setting `operator` directly inside `filter`.
       module Operator
         extend Courier::Internal::Type::Enum
 

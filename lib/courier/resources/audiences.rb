@@ -38,7 +38,7 @@ module Courier
       #
       # @param name [String, nil] The name of the audience
       #
-      # @param operator [Symbol, Courier::Models::AudienceUpdateParams::Operator, nil] The logical operator (AND/OR) for the top-level filter
+      # @param operator [Symbol, Courier::Models::AudienceUpdateParams::Operator, nil] The logical operator (AND/OR) combining the top-level `filter.filters`. Convenie
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #

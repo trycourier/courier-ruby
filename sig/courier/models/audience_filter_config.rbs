@@ -1,13 +1,40 @@
 module Courier
   module Models
-    type audience_filter_config = { filters: ::Array[Courier::FilterConfig] }
+    type audience_filter_config =
+      {
+        filters: ::Array[Courier::FilterConfig],
+        operator: Courier::Models::AudienceFilterConfig::operator
+      }
 
     class AudienceFilterConfig < Courier::Internal::Type::BaseModel
       attr_accessor filters: ::Array[Courier::FilterConfig]
 
-      def initialize: (filters: ::Array[Courier::FilterConfig]) -> void
+      attr_reader operator: Courier::Models::AudienceFilterConfig::operator?
 
-      def to_hash: -> { filters: ::Array[Courier::FilterConfig] }
+      def operator=: (
+        Courier::Models::AudienceFilterConfig::operator
+      ) -> Courier::Models::AudienceFilterConfig::operator
+
+      def initialize: (
+        filters: ::Array[Courier::FilterConfig],
+        ?operator: Courier::Models::AudienceFilterConfig::operator
+      ) -> void
+
+      def to_hash: -> {
+        filters: ::Array[Courier::FilterConfig],
+        operator: Courier::Models::AudienceFilterConfig::operator
+      }
+
+      type operator = :AND | :OR
+
+      module Operator
+        extend Courier::Internal::Type::Enum
+
+        AND: :AND
+        OR: :OR
+
+        def self?.values: -> ::Array[Courier::Models::AudienceFilterConfig::operator]
+      end
     end
   end
 end

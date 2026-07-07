@@ -39,7 +39,8 @@ module Courier
       optional :filter, -> { Courier::AudienceFilterConfig }, nil?: true
 
       # @!attribute operator
-      #   The logical operator (AND/OR) for the top-level filter
+      #   The logical operator (AND/OR) combining the top-level `filter.filters`.
+      #   Convenience alias for `filter.operator`.
       #
       #   @return [Symbol, Courier::Models::Audience::Operator, nil]
       optional :operator, enum: -> { Courier::Audience::Operator }
@@ -60,9 +61,10 @@ module Courier
       #
       #   @param filter [Courier::Models::AudienceFilterConfig, nil] Filter configuration for audience membership containing an array of filter rules
       #
-      #   @param operator [Symbol, Courier::Models::Audience::Operator] The logical operator (AND/OR) for the top-level filter
+      #   @param operator [Symbol, Courier::Models::Audience::Operator] The logical operator (AND/OR) combining the top-level `filter.filters`. Convenie
 
-      # The logical operator (AND/OR) for the top-level filter
+      # The logical operator (AND/OR) combining the top-level `filter.filters`.
+      # Convenience alias for `filter.operator`.
       #
       # @see Courier::Models::Audience#operator
       module Operator
