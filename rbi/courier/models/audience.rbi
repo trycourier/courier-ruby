@@ -33,7 +33,8 @@ module Courier
       end
       attr_writer :filter
 
-      # The logical operator (AND/OR) for the top-level filter
+      # The logical operator (AND/OR) combining the top-level `filter.filters`.
+      # Convenience alias for `filter.operator`.
       sig { returns(T.nilable(Courier::Audience::Operator::TaggedSymbol)) }
       attr_reader :operator
 
@@ -62,7 +63,8 @@ module Courier
         updated_at:,
         # Filter configuration for audience membership containing an array of filter rules
         filter: nil,
-        # The logical operator (AND/OR) for the top-level filter
+        # The logical operator (AND/OR) combining the top-level `filter.filters`.
+        # Convenience alias for `filter.operator`.
         operator: nil
       )
       end
@@ -83,7 +85,8 @@ module Courier
       def to_hash
       end
 
-      # The logical operator (AND/OR) for the top-level filter
+      # The logical operator (AND/OR) combining the top-level `filter.filters`.
+      # Convenience alias for `filter.operator`.
       module Operator
         extend Courier::Internal::Type::Enum
 
