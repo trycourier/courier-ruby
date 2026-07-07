@@ -38,7 +38,9 @@ module Courier
         filter: nil,
         # The name of the audience
         name: nil,
-        # The logical operator (AND/OR) for the top-level filter
+        # The logical operator (AND/OR) combining the top-level `filter.filters`.
+        # Convenience alias for `filter.operator`: if set, it is applied to the top-level
+        # filter group. Prefer setting `operator` directly inside `filter`.
         operator: nil,
         request_options: {}
       )
