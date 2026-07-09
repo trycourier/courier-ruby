@@ -26,7 +26,7 @@ module Courier
         end
         attr_accessor :topics
 
-        # Update the preferences of a user for this specific tenant context.
+        # Replace the preferences of a user for this specific tenant context.
         sig { returns(T.nilable(String)) }
         attr_accessor :tenant_id
 
@@ -47,7 +47,7 @@ module Courier
           # provided. Any existing override not listed here is reset to its topic default;
           # an empty array resets every existing override.
           topics:,
-          # Update the preferences of a user for this specific tenant context.
+          # Replace the preferences of a user for this specific tenant context.
           tenant_id: nil,
           request_options: {}
         )

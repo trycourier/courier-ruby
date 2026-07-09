@@ -23,7 +23,7 @@ module Courier
                  -> { Courier::Internal::Type::ArrayOf[Courier::Users::PreferenceBulkReplaceParams::Topic] }
 
         # @!attribute tenant_id
-        #   Update the preferences of a user for this specific tenant context.
+        #   Replace the preferences of a user for this specific tenant context.
         #
         #   @return [String, nil]
         optional :tenant_id, String, nil?: true
@@ -36,7 +36,7 @@ module Courier
         #
         #   @param topics [Array<Courier::Models::Users::PreferenceBulkReplaceParams::Topic>] The complete set of topic overrides for the user. Up to 50 topics may be provide
         #
-        #   @param tenant_id [String, nil] Update the preferences of a user for this specific tenant context.
+        #   @param tenant_id [String, nil] Replace the preferences of a user for this specific tenant context.
         #
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
 
