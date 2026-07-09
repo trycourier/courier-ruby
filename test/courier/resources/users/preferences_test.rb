@@ -20,6 +20,51 @@ class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::Resource
     end
   end
 
+  def test_bulk_replace_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @courier.users.preferences.bulk_replace(
+        "user_id",
+        topics: [{status: :OPTED_IN, topic_id: "74Q4QGFBEX481DP6JRPMV751H4XT"}]
+      )
+
+    assert_pattern do
+      response => Courier::Models::Users::PreferenceBulkReplaceResponse
+    end
+
+    assert_pattern do
+      response => {
+        deleted: ^(Courier::Internal::Type::ArrayOf[String]),
+        items: ^(Courier::Internal::Type::ArrayOf[Courier::Users::BulkPreferenceTopic])
+      }
+    end
+  end
+
+  def test_bulk_update_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @courier.users.preferences.bulk_update(
+        "user_id",
+        topics: [
+          {status: :OPTED_IN, topic_id: "74Q4QGFBEX481DP6JRPMV751H4XT"},
+          {status: :OPTED_OUT, topic_id: "5Q4QGFBEX481DP6JRPMV751H4YU"}
+        ]
+      )
+
+    assert_pattern do
+      response => Courier::Models::Users::PreferenceBulkUpdateResponse
+    end
+
+    assert_pattern do
+      response => {
+        errors: ^(Courier::Internal::Type::ArrayOf[Courier::Models::Users::PreferenceBulkUpdateResponse::Error]),
+        items: ^(Courier::Internal::Type::ArrayOf[Courier::Users::BulkPreferenceTopic])
+      }
+    end
+  end
+
   def test_delete_topic_required_params
     skip("Mock server tests are disabled")
 

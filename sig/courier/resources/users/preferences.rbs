@@ -8,6 +8,20 @@ module Courier
           ?request_options: Courier::request_opts
         ) -> Courier::Models::Users::PreferenceRetrieveResponse
 
+        def bulk_replace: (
+          String user_id,
+          topics: ::Array[Courier::Users::PreferenceBulkReplaceParams::Topic],
+          ?tenant_id: String?,
+          ?request_options: Courier::request_opts
+        ) -> Courier::Models::Users::PreferenceBulkReplaceResponse
+
+        def bulk_update: (
+          String user_id,
+          topics: ::Array[Courier::Users::PreferenceBulkUpdateParams::Topic],
+          ?tenant_id: String?,
+          ?request_options: Courier::request_opts
+        ) -> Courier::Models::Users::PreferenceBulkUpdateResponse
+
         def delete_topic: (
           String topic_id,
           user_id: String,
