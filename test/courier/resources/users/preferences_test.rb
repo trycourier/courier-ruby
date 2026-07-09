@@ -26,7 +26,7 @@ class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::Resource
     response =
       @courier.users.preferences.bulk_replace(
         "user_id",
-        topics: [{status: :OPTED_IN, topic_id: "74Q4QGFBEX481DP6JRPMV751H4XT"}]
+        topics: [{status: :OPTED_IN, topic_id: "pt_01kx4h2jdafq8bk996nn92357r"}]
       )
 
     assert_pattern do
@@ -48,8 +48,8 @@ class Courier::Test::Resources::Users::PreferencesTest < Courier::Test::Resource
       @courier.users.preferences.bulk_update(
         "user_id",
         topics: [
-          {status: :OPTED_IN, topic_id: "74Q4QGFBEX481DP6JRPMV751H4XT"},
-          {status: :OPTED_OUT, topic_id: "5Q4QGFBEX481DP6JRPMV751H4YU"}
+          {status: :OPTED_IN, topic_id: "pt_01kx4h2jdafq8bk996nn92357r"},
+          {status: :OPTED_OUT, topic_id: "pt_01kx4h2jdafq8bk99eyt3dx43x"}
         ]
       )
 
