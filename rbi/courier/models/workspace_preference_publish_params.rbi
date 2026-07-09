@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class WorkspacePreferencePublishParams < Courier::Internal::Type::BaseModel
+    class WorkspacePreferencePublishParams < Courier::Models::PublishPreferencesRequest
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 

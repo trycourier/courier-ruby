@@ -26,6 +26,12 @@ module Courier
                },
                nil?: true
 
+      # @!attribute description
+      #   Optional description shown under the topic on the hosted preferences page.
+      #
+      #   @return [String, nil]
+      optional :description, String, nil?: true
+
       # @!attribute include_unsubscribe_header
       #   Whether to include a list-unsubscribe header on emails for this topic.
       #
@@ -46,7 +52,7 @@ module Courier
       #   @return [Hash{Symbol=>Object}, nil]
       optional :topic_data, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
 
-      # @!method initialize(default_status:, name:, allowed_preferences: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil)
+      # @!method initialize(default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil)
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::WorkspacePreferenceTopicCreateRequest} for more details.
       #
@@ -57,6 +63,8 @@ module Courier
       #   @param name [String] Human-readable name for the preference topic.
       #
       #   @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::AllowedPreference>, nil] Preference controls a recipient may customize for this topic. Defaults to empty
+      #
+      #   @param description [String, nil] Optional description shown under the topic on the hosted preferences page.
       #
       #   @param include_unsubscribe_header [Boolean, nil] Whether to include a list-unsubscribe header on emails for this topic.
       #

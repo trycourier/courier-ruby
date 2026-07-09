@@ -9,6 +9,13 @@ module Courier
       #   @return [String]
       required :name, String
 
+      # @!attribute description
+      #   Optional description shown under the section on the hosted preferences page.
+      #   Omit to clear.
+      #
+      #   @return [String, nil]
+      optional :description, String, nil?: true
+
       # @!attribute has_custom_routing
       #   Whether the workspace preference defines custom routing for its topics.
       #
@@ -23,11 +30,16 @@ module Courier
                -> { Courier::Internal::Type::ArrayOf[enum: Courier::ChannelClassification] },
                nil?: true
 
-      # @!method initialize(name:, has_custom_routing: nil, routing_options: nil)
+      # @!method initialize(name:, description: nil, has_custom_routing: nil, routing_options: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Courier::Models::WorkspacePreferenceReplaceRequest} for more details.
+      #
       #   Request body for replacing a workspace preference. Full document replacement;
       #   missing optional fields are cleared.
       #
       #   @param name [String] Human-readable name for the workspace preference.
+      #
+      #   @param description [String, nil] Optional description shown under the section on the hosted preferences page. Omi
       #
       #   @param has_custom_routing [Boolean, nil] Whether the workspace preference defines custom routing for its topics.
       #

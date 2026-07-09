@@ -46,6 +46,12 @@ module Courier
       #   @return [String, nil]
       optional :creator, String, nil?: true
 
+      # @!attribute description
+      #   Optional description shown under the section on the hosted preferences page.
+      #
+      #   @return [String, nil]
+      optional :description, String, nil?: true
+
       # @!attribute updated
       #   ISO-8601 timestamp of the last update.
       #
@@ -58,7 +64,7 @@ module Courier
       #   @return [String, nil]
       optional :updater, String, nil?: true
 
-      # @!method initialize(id:, created:, has_custom_routing:, name:, routing_options:, topics:, creator: nil, updated: nil, updater: nil)
+      # @!method initialize(id:, created:, has_custom_routing:, name:, routing_options:, topics:, creator: nil, description: nil, updated: nil, updater: nil)
       #   A workspace preference in your workspace, including its topics.
       #
       #   @param id [String] The workspace preference id.
@@ -74,6 +80,8 @@ module Courier
       #   @param topics [Array<Courier::Models::WorkspacePreferenceTopicGetResponse>] The topics contained in this workspace preference.
       #
       #   @param creator [String, nil] Id of the creator.
+      #
+      #   @param description [String, nil] Optional description shown under the section on the hosted preferences page.
       #
       #   @param updated [String, nil] ISO-8601 timestamp of the last update.
       #

@@ -9,6 +9,7 @@ module Courier
         routing_options: ::Array[Courier::Models::channel_classification],
         topics: ::Array[Courier::WorkspacePreferenceTopicGetResponse],
         creator: String?,
+        description: String?,
         updated: String?,
         updater: String?
       }
@@ -28,6 +29,8 @@ module Courier
 
       attr_accessor creator: String?
 
+      attr_accessor description: String?
+
       attr_accessor updated: String?
 
       attr_accessor updater: String?
@@ -40,6 +43,7 @@ module Courier
         routing_options: ::Array[Courier::Models::channel_classification],
         topics: ::Array[Courier::WorkspacePreferenceTopicGetResponse],
         ?creator: String?,
+        ?description: String?,
         ?updated: String?,
         ?updater: String?
       ) -> void
@@ -52,6 +56,7 @@ module Courier
         routing_options: ::Array[Courier::Models::channel_classification],
         topics: ::Array[Courier::WorkspacePreferenceTopicGetResponse],
         creator: String?,
+        description: String?,
         updated: String?,
         updater: String?
       }

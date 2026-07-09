@@ -21,6 +21,7 @@ class Courier::Test::Resources::WorkspacePreferencesTest < Courier::Test::Resour
         routing_options: ^(Courier::Internal::Type::ArrayOf[enum: Courier::ChannelClassification]),
         topics: ^(Courier::Internal::Type::ArrayOf[Courier::WorkspacePreferenceTopicGetResponse]),
         creator: String | nil,
+        description: String | nil,
         updated: String | nil,
         updater: String | nil
       }
@@ -45,6 +46,7 @@ class Courier::Test::Resources::WorkspacePreferencesTest < Courier::Test::Resour
         routing_options: ^(Courier::Internal::Type::ArrayOf[enum: Courier::ChannelClassification]),
         topics: ^(Courier::Internal::Type::ArrayOf[Courier::WorkspacePreferenceTopicGetResponse]),
         creator: String | nil,
+        description: String | nil,
         updated: String | nil,
         updater: String | nil
       }
@@ -115,6 +117,7 @@ class Courier::Test::Resources::WorkspacePreferencesTest < Courier::Test::Resour
         routing_options: ^(Courier::Internal::Type::ArrayOf[enum: Courier::ChannelClassification]),
         topics: ^(Courier::Internal::Type::ArrayOf[Courier::WorkspacePreferenceTopicGetResponse]),
         creator: String | nil,
+        description: String | nil,
         updated: String | nil,
         updater: String | nil
       }

@@ -1,0 +1,26 @@
+module Courier
+  module Models
+    type publish_preferences_request =
+      { brand_id: String?, description: String?, heading: String? }
+
+    class PublishPreferencesRequest < Courier::Internal::Type::BaseModel
+      attr_accessor brand_id: String?
+
+      attr_accessor description: String?
+
+      attr_accessor heading: String?
+
+      def initialize: (
+        ?brand_id: String?,
+        ?description: String?,
+        ?heading: String?
+      ) -> void
+
+      def to_hash: -> {
+        brand_id: String?,
+        description: String?,
+        heading: String?
+      }
+    end
+  end
+end

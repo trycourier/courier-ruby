@@ -19,6 +19,7 @@ module Courier
                   Courier::WorkspacePreferenceTopicCreateRequest::AllowedPreference::OrSymbol
                 ]
               ),
+            description: T.nilable(String),
             include_unsubscribe_header: T.nilable(T::Boolean),
             routing_options:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
@@ -36,6 +37,8 @@ module Courier
           # Preference controls a recipient may customize for this topic. Defaults to empty
           # if omitted.
           allowed_preferences: nil,
+          # Optional description shown under the topic on the hosted preferences page.
+          description: nil,
           # Whether to include a list-unsubscribe header on emails for this topic.
           include_unsubscribe_header: nil,
           # Default channels delivered for this topic. Defaults to empty if omitted.
@@ -112,6 +115,7 @@ module Courier
                   Courier::WorkspacePreferenceTopicReplaceRequest::AllowedPreference::OrSymbol
                 ]
               ),
+            description: T.nilable(String),
             include_unsubscribe_header: T.nilable(T::Boolean),
             routing_options:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
@@ -131,6 +135,9 @@ module Courier
           name:,
           # Body param: Preference controls a recipient may customize. Omit to clear.
           allowed_preferences: nil,
+          # Body param: Optional description shown under the topic on the hosted preferences
+          # page. Omit to clear.
+          description: nil,
           # Body param: Whether to include a list-unsubscribe header on emails for this
           # topic.
           include_unsubscribe_header: nil,
