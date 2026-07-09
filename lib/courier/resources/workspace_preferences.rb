@@ -10,9 +10,11 @@ module Courier
       # returned. Topics are created inside a workspace preference via POST
       # /preferences/sections/{section_id}/topics.
       #
-      # @overload create(name:, has_custom_routing: nil, routing_options: nil, request_options: {})
+      # @overload create(name:, description: nil, has_custom_routing: nil, routing_options: nil, request_options: {})
       #
       # @param name [String] Human-readable name for the workspace preference.
+      #
+      # @param description [String, nil] Optional description shown under the section on the hosted preferences page.
       #
       # @param has_custom_routing [Boolean, nil] Whether the workspace preference defines custom routing for its topics.
       #
@@ -94,11 +96,20 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::WorkspacePreferencePublishParams} for more details.
+      #
       # Publish the workspace's preferences page. Takes a snapshot of every workspace
       # preference with its topics under a new published version, making the current
       # state visible on the hosted preferences page (non-draft).
       #
-      # @overload publish(request_options: {})
+      # @overload publish(brand_id: nil, description: nil, heading: nil, request_options: {})
+      #
+      # @param brand_id [String, nil] Brand for the hosted page - "default" (workspace default brand), "none" (no bran
+      #
+      # @param description [String, nil] Description shown under the heading on the hosted preferences page.
+      #
+      # @param heading [String, nil] Heading shown at the top of the hosted preferences page.
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -106,22 +117,29 @@ module Courier
       #
       # @see Courier::Models::WorkspacePreferencePublishParams
       def publish(params = {})
+        parsed, options = Courier::WorkspacePreferencePublishParams.dump_request(params)
         @client.request(
           method: :post,
           path: "preferences/publish",
+          body: parsed,
           model: Courier::PublishPreferencesResponse,
-          options: params[:request_options]
+          options: options
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::WorkspacePreferenceReplaceParams} for more details.
+      #
       # Replace a workspace preference. Full document replacement; missing optional
       # fields are cleared. Topics attached to the workspace preference are unaffected.
       #
-      # @overload replace(section_id, name:, has_custom_routing: nil, routing_options: nil, request_options: {})
+      # @overload replace(section_id, name:, description: nil, has_custom_routing: nil, routing_options: nil, request_options: {})
       #
       # @param section_id [String] Id of the workspace preference.
       #
       # @param name [String] Human-readable name for the workspace preference.
+      #
+      # @param description [String, nil] Optional description shown under the section on the hosted preferences page. Omi
       #
       # @param has_custom_routing [Boolean, nil] Whether the workspace preference defines custom routing for its topics.
       #

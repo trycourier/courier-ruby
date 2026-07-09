@@ -11,7 +11,7 @@ module Courier
         # 404 if the workspace preference does not exist. The topic id is generated and
         # returned.
         #
-        # @overload create(section_id, default_status:, name:, allowed_preferences: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, request_options: {})
+        # @overload create(section_id, default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, request_options: {})
         #
         # @param section_id [String] Id of the workspace preference to create the topic in.
         #
@@ -20,6 +20,8 @@ module Courier
         # @param name [String] Human-readable name for the preference topic.
         #
         # @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::AllowedPreference>, nil] Preference controls a recipient may customize for this topic. Defaults to empty
+        #
+        # @param description [String, nil] Optional description shown under the topic on the hosted preferences page.
         #
         # @param include_unsubscribe_header [Boolean, nil] Whether to include a list-unsubscribe header on emails for this topic.
         #
@@ -126,7 +128,7 @@ module Courier
         # Replace a topic within a workspace preference. Full document replacement;
         # missing optional fields are cleared. Same 404 rules as GET.
         #
-        # @overload replace(topic_id, section_id:, default_status:, name:, allowed_preferences: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, request_options: {})
+        # @overload replace(topic_id, section_id:, default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, request_options: {})
         #
         # @param topic_id [String] Path param: Id of the subscription preference topic.
         #
@@ -137,6 +139,8 @@ module Courier
         # @param name [String] Body param: Human-readable name for the preference topic.
         #
         # @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicReplaceRequest::AllowedPreference>, nil] Body param: Preference controls a recipient may customize. Omit to clear.
+        #
+        # @param description [String, nil] Body param: Optional description shown under the topic on the hosted preferences
         #
         # @param include_unsubscribe_header [Boolean, nil] Body param: Whether to include a list-unsubscribe header on emails for this topi
         #

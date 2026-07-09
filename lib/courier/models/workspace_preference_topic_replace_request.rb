@@ -25,6 +25,13 @@ module Courier
                },
                nil?: true
 
+      # @!attribute description
+      #   Optional description shown under the topic on the hosted preferences page. Omit
+      #   to clear.
+      #
+      #   @return [String, nil]
+      optional :description, String, nil?: true
+
       # @!attribute include_unsubscribe_header
       #   Whether to include a list-unsubscribe header on emails for this topic.
       #
@@ -45,7 +52,10 @@ module Courier
       #   @return [Hash{Symbol=>Object}, nil]
       optional :topic_data, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
 
-      # @!method initialize(default_status:, name:, allowed_preferences: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil)
+      # @!method initialize(default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Courier::Models::WorkspacePreferenceTopicReplaceRequest} for more details.
+      #
       #   Request body for replacing a preference topic. Full document replacement;
       #   missing optional fields are cleared.
       #
@@ -54,6 +64,8 @@ module Courier
       #   @param name [String] Human-readable name for the preference topic.
       #
       #   @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicReplaceRequest::AllowedPreference>, nil] Preference controls a recipient may customize. Omit to clear.
+      #
+      #   @param description [String, nil] Optional description shown under the topic on the hosted preferences page. Omit
       #
       #   @param include_unsubscribe_header [Boolean, nil] Whether to include a list-unsubscribe header on emails for this topic.
       #

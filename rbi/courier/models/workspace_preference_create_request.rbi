@@ -15,6 +15,10 @@ module Courier
       sig { returns(String) }
       attr_accessor :name
 
+      # Optional description shown under the section on the hosted preferences page.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :description
+
       # Whether the workspace preference defines custom routing for its topics.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :has_custom_routing
@@ -29,6 +33,7 @@ module Courier
       sig do
         params(
           name: String,
+          description: T.nilable(String),
           has_custom_routing: T.nilable(T::Boolean),
           routing_options:
             T.nilable(T::Array[Courier::ChannelClassification::OrSymbol])
@@ -37,6 +42,8 @@ module Courier
       def self.new(
         # Human-readable name for the workspace preference.
         name:,
+        # Optional description shown under the section on the hosted preferences page.
+        description: nil,
         # Whether the workspace preference defines custom routing for its topics.
         has_custom_routing: nil,
         # Default channels for the workspace preference. Defaults to empty if omitted.
@@ -48,6 +55,7 @@ module Courier
         override.returns(
           {
             name: String,
+            description: T.nilable(String),
             has_custom_routing: T.nilable(T::Boolean),
             routing_options:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol])

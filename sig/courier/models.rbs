@@ -403,6 +403,8 @@ module Courier
 
   class ProviderUpdateParams = Courier::Models::ProviderUpdateParams
 
+  class PublishPreferencesRequest = Courier::Models::PublishPreferencesRequest
+
   class PublishPreferencesResponse = Courier::Models::PublishPreferencesResponse
 
   class PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient

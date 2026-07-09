@@ -61,6 +61,10 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :creator
 
+      # Optional description shown under the topic on the hosted preferences page.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :description
+
       # Id of the last updater.
       sig { returns(T.nilable(String)) }
       attr_accessor :updater
@@ -82,6 +86,7 @@ module Courier
           topic_data: T::Hash[Symbol, T.anything],
           updated: String,
           creator: T.nilable(String),
+          description: T.nilable(String),
           updater: T.nilable(String)
         ).returns(T.attached_class)
       end
@@ -106,6 +111,8 @@ module Courier
         updated:,
         # Id of the creator.
         creator: nil,
+        # Optional description shown under the topic on the hosted preferences page.
+        description: nil,
         # Id of the last updater.
         updater: nil
       )
@@ -129,6 +136,7 @@ module Courier
             topic_data: T::Hash[Symbol, T.anything],
             updated: String,
             creator: T.nilable(String),
+            description: T.nilable(String),
             updater: T.nilable(String)
           }
         )
