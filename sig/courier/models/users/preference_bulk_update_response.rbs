@@ -1,0 +1,39 @@
+module Courier
+  module Models
+    module Users
+      type preference_bulk_update_response =
+        {
+          errors: ::Array[Courier::Models::Users::PreferenceBulkUpdateResponse::Error],
+          items: ::Array[Courier::Users::BulkPreferenceTopic]
+        }
+
+      class PreferenceBulkUpdateResponse < Courier::Internal::Type::BaseModel
+        attr_accessor errors: ::Array[Courier::Models::Users::PreferenceBulkUpdateResponse::Error]
+
+        attr_accessor items: ::Array[Courier::Users::BulkPreferenceTopic]
+
+        def initialize: (
+          errors: ::Array[Courier::Models::Users::PreferenceBulkUpdateResponse::Error],
+          items: ::Array[Courier::Users::BulkPreferenceTopic]
+        ) -> void
+
+        def to_hash: -> {
+          errors: ::Array[Courier::Models::Users::PreferenceBulkUpdateResponse::Error],
+          items: ::Array[Courier::Users::BulkPreferenceTopic]
+        }
+
+        type error = { reason: String, topic_id: String }
+
+        class Error < Courier::Internal::Type::BaseModel
+          attr_accessor reason: String
+
+          attr_accessor topic_id: String
+
+          def initialize: (reason: String, topic_id: String) -> void
+
+          def to_hash: -> { reason: String, topic_id: String }
+        end
+      end
+    end
+  end
+end

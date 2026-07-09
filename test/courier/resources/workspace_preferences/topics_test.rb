@@ -29,6 +29,7 @@ class Courier::Test::Resources::WorkspacePreferences::TopicsTest < Courier::Test
         topic_data: ^(Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown]),
         updated: String,
         creator: String | nil,
+        description: String | nil,
         updater: String | nil
       }
     end
@@ -55,6 +56,7 @@ class Courier::Test::Resources::WorkspacePreferences::TopicsTest < Courier::Test
         topic_data: ^(Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown]),
         updated: String,
         creator: String | nil,
+        description: String | nil,
         updater: String | nil
       }
     end
@@ -113,6 +115,7 @@ class Courier::Test::Resources::WorkspacePreferences::TopicsTest < Courier::Test
         topic_data: ^(Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown]),
         updated: String,
         creator: String | nil,
+        description: String | nil,
         updater: String | nil
       }
     end

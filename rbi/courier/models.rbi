@@ -423,6 +423,8 @@ module Courier
 
   ProviderUpdateParams = Courier::Models::ProviderUpdateParams
 
+  PublishPreferencesRequest = Courier::Models::PublishPreferencesRequest
+
   PublishPreferencesResponse = Courier::Models::PublishPreferencesResponse
 
   PutSubscriptionsRecipient = Courier::Models::PutSubscriptionsRecipient

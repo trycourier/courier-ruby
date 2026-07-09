@@ -1,0 +1,27 @@
+module Courier
+  module Models
+    module Users
+      type preference_bulk_replace_response =
+        {
+          deleted: ::Array[String],
+          items: ::Array[Courier::Users::BulkPreferenceTopic]
+        }
+
+      class PreferenceBulkReplaceResponse < Courier::Internal::Type::BaseModel
+        attr_accessor deleted: ::Array[String]
+
+        attr_accessor items: ::Array[Courier::Users::BulkPreferenceTopic]
+
+        def initialize: (
+          deleted: ::Array[String],
+          items: ::Array[Courier::Users::BulkPreferenceTopic]
+        ) -> void
+
+        def to_hash: -> {
+          deleted: ::Array[String],
+          items: ::Array[Courier::Users::BulkPreferenceTopic]
+        }
+      end
+    end
+  end
+end

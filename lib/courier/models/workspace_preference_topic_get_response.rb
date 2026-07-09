@@ -64,13 +64,19 @@ module Courier
       #   @return [String, nil]
       optional :creator, String, nil?: true
 
+      # @!attribute description
+      #   Optional description shown under the topic on the hosted preferences page.
+      #
+      #   @return [String, nil]
+      optional :description, String, nil?: true
+
       # @!attribute updater
       #   Id of the last updater.
       #
       #   @return [String, nil]
       optional :updater, String, nil?: true
 
-      # @!method initialize(id:, allowed_preferences:, created:, default_status:, include_unsubscribe_header:, name:, routing_options:, topic_data:, updated:, creator: nil, updater: nil)
+      # @!method initialize(id:, allowed_preferences:, created:, default_status:, include_unsubscribe_header:, name:, routing_options:, topic_data:, updated:, creator: nil, description: nil, updater: nil)
       #   A subscription preference topic in your workspace.
       #
       #   @param id [String] The preference topic id.
@@ -92,6 +98,8 @@ module Courier
       #   @param updated [String] ISO-8601 timestamp of the last update.
       #
       #   @param creator [String, nil] Id of the creator.
+      #
+      #   @param description [String, nil] Optional description shown under the topic on the hosted preferences page.
       #
       #   @param updater [String, nil] Id of the last updater.
 

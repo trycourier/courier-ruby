@@ -39,6 +39,10 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :creator
 
+      # Optional description shown under the section on the hosted preferences page.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :description
+
       # ISO-8601 timestamp of the last update.
       sig { returns(T.nilable(String)) }
       attr_accessor :updated
@@ -58,6 +62,7 @@ module Courier
           topics:
             T::Array[Courier::WorkspacePreferenceTopicGetResponse::OrHash],
           creator: T.nilable(String),
+          description: T.nilable(String),
           updated: T.nilable(String),
           updater: T.nilable(String)
         ).returns(T.attached_class)
@@ -77,6 +82,8 @@ module Courier
         topics:,
         # Id of the creator.
         creator: nil,
+        # Optional description shown under the section on the hosted preferences page.
+        description: nil,
         # ISO-8601 timestamp of the last update.
         updated: nil,
         # Id of the last updater.
@@ -95,6 +102,7 @@ module Courier
               T::Array[Courier::ChannelClassification::TaggedSymbol],
             topics: T::Array[Courier::WorkspacePreferenceTopicGetResponse],
             creator: T.nilable(String),
+            description: T.nilable(String),
             updated: T.nilable(String),
             updater: T.nilable(String)
           }

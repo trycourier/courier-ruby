@@ -5,6 +5,7 @@ module Courier
 
       def create: (
         name: String,
+        ?description: String?,
         ?has_custom_routing: bool?,
         ?routing_options: ::Array[Courier::Models::channel_classification]?,
         ?request_options: Courier::request_opts
@@ -25,12 +26,16 @@ module Courier
       ) -> nil
 
       def publish: (
+        ?brand_id: String?,
+        ?description: String?,
+        ?heading: String?,
         ?request_options: Courier::request_opts
       ) -> Courier::PublishPreferencesResponse
 
       def replace: (
         String section_id,
         name: String,
+        ?description: String?,
         ?has_custom_routing: bool?,
         ?routing_options: ::Array[Courier::Models::channel_classification]?,
         ?request_options: Courier::request_opts

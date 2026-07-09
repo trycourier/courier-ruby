@@ -12,6 +12,7 @@ module Courier
         topic_data: ::Hash[Symbol, top],
         updated: String,
         creator: String?,
+        description: String?,
         updater: String?
       }
 
@@ -36,6 +37,8 @@ module Courier
 
       attr_accessor creator: String?
 
+      attr_accessor description: String?
+
       attr_accessor updater: String?
 
       def initialize: (
@@ -49,6 +52,7 @@ module Courier
         topic_data: ::Hash[Symbol, top],
         updated: String,
         ?creator: String?,
+        ?description: String?,
         ?updater: String?
       ) -> void
 
@@ -63,6 +67,7 @@ module Courier
         topic_data: ::Hash[Symbol, top],
         updated: String,
         creator: String?,
+        description: String?,
         updater: String?
       }
 
