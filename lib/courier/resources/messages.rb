@@ -150,6 +150,33 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::MessageResendParams} for more details.
+      #
+      # Resend a previously sent message. The original send request is loaded from
+      # storage and a brand-new send is enqueued for the same recipient and content,
+      # producing a **new** `messageId` — the original message is not modified.
+      # Throttled by a per-message rate limit; a repeat inside the limit window returns
+      # `429 Too Many Requests`.
+      #
+      # @overload resend(message_id, request_options: {})
+      #
+      # @param message_id [String] A unique identifier representing the message ID of the original message to resen
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::MessageResendResponse]
+      #
+      # @see Courier::Models::MessageResendParams
+      def resend(message_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["messages/%1$s/resend", message_id],
+          model: Courier::Models::MessageResendResponse,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [Courier::Client]
