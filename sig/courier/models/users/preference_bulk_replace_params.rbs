@@ -1,0 +1,87 @@
+module Courier
+  module Models
+    module Users
+      type preference_bulk_replace_params =
+        {
+          user_id: String,
+          topics: ::Array[Courier::Users::PreferenceBulkReplaceParams::Topic],
+          tenant_id: String?
+        }
+        & Courier::Internal::Type::request_parameters
+
+      class PreferenceBulkReplaceParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_accessor user_id: String
+
+        attr_accessor topics: ::Array[Courier::Users::PreferenceBulkReplaceParams::Topic]
+
+        attr_accessor tenant_id: String?
+
+        def initialize: (
+          user_id: String,
+          topics: ::Array[Courier::Users::PreferenceBulkReplaceParams::Topic],
+          ?tenant_id: String?,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          user_id: String,
+          topics: ::Array[Courier::Users::PreferenceBulkReplaceParams::Topic],
+          tenant_id: String?,
+          request_options: Courier::RequestOptions
+        }
+
+        type topic =
+          {
+            status: Courier::Models::Users::PreferenceBulkReplaceParams::Topic::status,
+            topic_id: String,
+            custom_routing: ::Array[Courier::Models::channel_classification],
+            has_custom_routing: bool
+          }
+
+        class Topic < Courier::Internal::Type::BaseModel
+          attr_accessor status: Courier::Models::Users::PreferenceBulkReplaceParams::Topic::status
+
+          attr_accessor topic_id: String
+
+          attr_reader custom_routing: ::Array[Courier::Models::channel_classification]?
+
+          def custom_routing=: (
+            ::Array[Courier::Models::channel_classification]
+          ) -> ::Array[Courier::Models::channel_classification]
+
+          attr_reader has_custom_routing: bool?
+
+          def has_custom_routing=: (bool) -> bool
+
+          def initialize: (
+            status: Courier::Models::Users::PreferenceBulkReplaceParams::Topic::status,
+            topic_id: String,
+            ?custom_routing: ::Array[Courier::Models::channel_classification],
+            ?has_custom_routing: bool
+          ) -> void
+
+          def to_hash: -> {
+            status: Courier::Models::Users::PreferenceBulkReplaceParams::Topic::status,
+            topic_id: String,
+            custom_routing: ::Array[Courier::Models::channel_classification],
+            has_custom_routing: bool
+          }
+
+          type status = :OPTED_IN | :OPTED_OUT
+
+          module Status
+            extend Courier::Internal::Type::Enum
+
+            OPTED_IN: :OPTED_IN
+            OPTED_OUT: :OPTED_OUT
+
+            def self?.values: -> ::Array[Courier::Models::Users::PreferenceBulkReplaceParams::Topic::status]
+          end
+        end
+      end
+    end
+  end
+end
