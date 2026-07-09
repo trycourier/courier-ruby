@@ -88,4 +88,20 @@ class Courier::Test::Resources::MessagesTest < Courier::Test::ResourceTest
       }
     end
   end
+
+  def test_resend
+    skip("Mock server tests are disabled")
+
+    response = @courier.messages.resend("message_id")
+
+    assert_pattern do
+      response => Courier::Models::MessageResendResponse
+    end
+
+    assert_pattern do
+      response => {
+        message_id: String
+      }
+    end
+  end
 end
