@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.19.0 (2026-07-09)
+
+Full Changelog: [v4.18.2...v4.19.0](https://github.com/trycourier/courier-ruby/compare/v4.18.2...v4.19.0)
+
+### Features
+
+* Add bulk user preference upsert and replace endpoints ([695929f](https://github.com/trycourier/courier-ruby/commit/695929f41a7c07c28ef9c3cb6913890b30759404))
+* Preferences v3 REST fields: section/topic description + publish body ([df7c59d](https://github.com/trycourier/courier-ruby/commit/df7c59d084f401ea9523db27b35bdccfc0696f2f))
+
 ## 4.18.2 (2026-07-09)
 
 Full Changelog: [v4.18.1...v4.18.2](https://github.com/trycourier/courier-ruby/compare/v4.18.1...v4.18.2)
