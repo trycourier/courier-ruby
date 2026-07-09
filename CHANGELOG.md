@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.18.2 (2026-07-09)
+
+Full Changelog: [v4.18.1...v4.18.2](https://github.com/trycourier/courier-ruby/compare/v4.18.1...v4.18.2)
+
+### Chores
+
+* update api-spec with new message resend endpoint ([a785ed4](https://github.com/trycourier/courier-ruby/commit/a785ed495410f21ee51c4a5c5f3a8c87a59578c4))
+
 ## 4.18.1 (2026-07-07)
 
 Full Changelog: [v4.18.0...v4.18.1](https://github.com/trycourier/courier-ruby/compare/v4.18.0...v4.18.1)
