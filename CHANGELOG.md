@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.19.1 (2026-07-09)
+
+Full Changelog: [v4.19.0...v4.19.1](https://github.com/trycourier/courier-ruby/compare/v4.19.0...v4.19.1)
+
 ## 4.19.0 (2026-07-09)
 
 Full Changelog: [v4.18.2...v4.19.0](https://github.com/trycourier/courier-ruby/compare/v4.18.2...v4.19.0)
