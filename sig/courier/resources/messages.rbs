@@ -40,6 +40,11 @@ module Courier
         ?request_options: Courier::request_opts
       ) -> Courier::Models::MessageHistoryResponse
 
+      def resend: (
+        String message_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::MessageResendResponse
+
       def initialize: (client: Courier::Client) -> void
     end
   end

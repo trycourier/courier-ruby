@@ -1,0 +1,23 @@
+module Courier
+  module Models
+    type message_resend_params =
+      { message_id: String } & Courier::Internal::Type::request_parameters
+
+    class MessageResendParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor message_id: String
+
+      def initialize: (
+        message_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        message_id: String,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

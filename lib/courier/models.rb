@@ -332,6 +332,8 @@ module Courier
 
   MessageProvidersType = Courier::Models::MessageProvidersType
 
+  MessageResendParams = Courier::Models::MessageResendParams
+
   MessageRetrieveParams = Courier::Models::MessageRetrieveParams
 
   MessageRouting = Courier::Models::MessageRouting
