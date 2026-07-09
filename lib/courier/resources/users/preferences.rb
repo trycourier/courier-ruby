@@ -59,7 +59,7 @@ module Courier
         #
         # @param topics [Array<Courier::Models::Users::PreferenceBulkReplaceParams::Topic>] Body param: The complete set of topic overrides for the user. Up to 50 topics ma
         #
-        # @param tenant_id [String, nil] Query param: Update the preferences of a user for this specific tenant context.
+        # @param tenant_id [String, nil] Query param: Replace the preferences of a user for this specific tenant context.
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

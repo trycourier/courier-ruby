@@ -58,7 +58,7 @@ module Courier
           # may be provided. Any existing override not listed here is reset to its topic
           # default; an empty array resets every existing override.
           topics:,
-          # Query param: Update the preferences of a user for this specific tenant context.
+          # Query param: Replace the preferences of a user for this specific tenant context.
           tenant_id: nil,
           request_options: {}
         )
