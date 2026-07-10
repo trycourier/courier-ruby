@@ -9,11 +9,11 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     response =
       @courier.notifications.create(
         notification: {
-          brand: {id: "brand_abc"},
+          brand: {id: "bnd_01kx4mrd0pfzw8wt7pn7p2fzag"},
           content: {elements: [{}], version: "2022-01-01"},
           name: "Welcome Email",
-          routing: {strategy_id: "rs_123"},
-          subscription: {topic_id: "marketing"},
+          routing: {strategy_id: "rs_01kx4h2jdafq8bk9amzvy6hbv0"},
+          subscription: {topic_id: "pt_01kx4h2jdafq8bk9a26x0kvd1t"},
           tags: %w[onboarding welcome]
         }
       )
