@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.19.2 (2026-07-10)
+
+Full Changelog: [v4.19.1...v4.19.2](https://github.com/trycourier/courier-ruby/compare/v4.19.1...v4.19.2)
+
+### Documentation
+
+* **openapi:** canonical type-id prefixes across all examples ([#162](https://github.com/trycourier/courier-ruby/issues/162)) ([c72a6f6](https://github.com/trycourier/courier-ruby/commit/c72a6f63809b553dd84f047498ce8d695b311b09))
+* **openapi:** use canonical type-id prefixes in id examples ([#160](https://github.com/trycourier/courier-ruby/issues/160)) ([ea3ec70](https://github.com/trycourier/courier-ruby/commit/ea3ec70a9339c34c0e162d807fe58ee4cbc8cc62))
+
 ## 4.19.1 (2026-07-09)
 
 Full Changelog: [v4.19.0...v4.19.1](https://github.com/trycourier/courier-ruby/compare/v4.19.0...v4.19.1)
