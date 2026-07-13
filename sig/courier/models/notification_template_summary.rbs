@@ -8,6 +8,7 @@ module Courier
         name: String,
         state: Courier::Models::NotificationTemplateSummary::state,
         tags: ::Array[String],
+        subscription_topic_id: String,
         updated: Integer,
         updater: String
       }
@@ -25,6 +26,10 @@ module Courier
 
       attr_accessor tags: ::Array[String]
 
+      attr_reader subscription_topic_id: String?
+
+      def subscription_topic_id=: (String) -> String
+
       attr_reader updated: Integer?
 
       def updated=: (Integer) -> Integer
@@ -40,6 +45,7 @@ module Courier
         name: String,
         state: Courier::Models::NotificationTemplateSummary::state,
         tags: ::Array[String],
+        ?subscription_topic_id: String,
         ?updated: Integer,
         ?updater: String
       ) -> void
@@ -51,6 +57,7 @@ module Courier
         name: String,
         state: Courier::Models::NotificationTemplateSummary::state,
         tags: ::Array[String],
+        subscription_topic_id: String,
         updated: Integer,
         updater: String
       }
