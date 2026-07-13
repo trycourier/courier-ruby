@@ -31,6 +31,14 @@ module Courier
       sig { returns(T::Array[String]) }
       attr_accessor :tags
 
+      # The linked subscription (preference) topic of the published version. Omitted
+      # when no topic is linked or the template has never been published.
+      sig { returns(T.nilable(String)) }
+      attr_reader :subscription_topic_id
+
+      sig { params(subscription_topic_id: String).void }
+      attr_writer :subscription_topic_id
+
       # Epoch milliseconds of last update.
       sig { returns(T.nilable(Integer)) }
       attr_reader :updated
@@ -54,6 +62,7 @@ module Courier
           name: String,
           state: Courier::NotificationTemplateSummary::State::OrSymbol,
           tags: T::Array[String],
+          subscription_topic_id: String,
           updated: Integer,
           updater: String
         ).returns(T.attached_class)
@@ -67,6 +76,9 @@ module Courier
         name:,
         state:,
         tags:,
+        # The linked subscription (preference) topic of the published version. Omitted
+        # when no topic is linked or the template has never been published.
+        subscription_topic_id: nil,
         # Epoch milliseconds of last update.
         updated: nil,
         # User ID of the last updater.
@@ -83,6 +95,7 @@ module Courier
             name: String,
             state: Courier::NotificationTemplateSummary::State::TaggedSymbol,
             tags: T::Array[String],
+            subscription_topic_id: String,
             updated: Integer,
             updater: String
           }
