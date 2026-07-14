@@ -110,6 +110,31 @@ module Courier
         )
       end
 
+      # Duplicate a notification template. Creates a standalone copy within the same
+      # workspace and environment, with " COPY" appended to the title. The copy clones
+      # the source draft's tags, brand, subscription topic, routing strategy, channels,
+      # and content, and is always created as a standalone template (it is not linked to
+      # any journey or broadcast, even if the source was). Templates that are scoped to
+      # a journey or a broadcast cannot be duplicated through this endpoint.
+      #
+      # @overload duplicate(id, request_options: {})
+      #
+      # @param id [String] Template ID (nt\_ prefix).
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::NotificationTemplateResponse]
+      #
+      # @see Courier::Models::NotificationDuplicateParams
+      def duplicate(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["notifications/%1$s/duplicate", id],
+          model: Courier::NotificationTemplateResponse,
+          options: params[:request_options]
+        )
+      end
+
       # List versions of a notification template.
       #
       # @overload list_versions(id, cursor: nil, limit: nil, request_options: {})
