@@ -60,6 +60,16 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     end
   end
 
+  def test_duplicate
+    skip("Mock server tests are disabled")
+
+    response = @courier.notifications.duplicate("id")
+
+    assert_pattern do
+      response => Courier::NotificationTemplateResponse
+    end
+  end
+
   def test_list_versions
     skip("Mock server tests are disabled")
 

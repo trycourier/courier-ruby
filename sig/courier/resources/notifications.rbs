@@ -24,6 +24,11 @@ module Courier
 
       def archive: (String id, ?request_options: Courier::request_opts) -> nil
 
+      def duplicate: (
+        String id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationTemplateResponse
+
       def list_versions: (
         String id,
         ?cursor: String,
