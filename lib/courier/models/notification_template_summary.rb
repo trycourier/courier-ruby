@@ -42,6 +42,13 @@ module Courier
       #   @return [String, nil]
       optional :subscription_topic_id, String
 
+      # @!attribute topic_id
+      #   Alias of subscription_topic_id, provided under the same name V1 list items use
+      #   for the linked topic. Always carries the same value as subscription_topic_id.
+      #
+      #   @return [String, nil]
+      optional :topic_id, String
+
       # @!attribute updated
       #   Epoch milliseconds of last update.
       #
@@ -54,7 +61,7 @@ module Courier
       #   @return [String, nil]
       optional :updater, String
 
-      # @!method initialize(id:, created:, creator:, name:, state:, tags:, subscription_topic_id: nil, updated: nil, updater: nil)
+      # @!method initialize(id:, created:, creator:, name:, state:, tags:, subscription_topic_id: nil, topic_id: nil, updated: nil, updater: nil)
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::NotificationTemplateSummary} for more details.
       #
@@ -73,6 +80,8 @@ module Courier
       #   @param tags [Array<String>]
       #
       #   @param subscription_topic_id [String] The linked subscription (preference) topic of the published version. Omitted whe
+      #
+      #   @param topic_id [String] Alias of subscription_topic_id, provided under the same name V1 list items use f
       #
       #   @param updated [Integer] Epoch milliseconds of last update.
       #
