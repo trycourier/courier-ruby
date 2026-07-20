@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.20.0 (2026-07-20)
+
+Full Changelog: [v4.19.2...v4.20.0](https://github.com/trycourier/courier-ruby/compare/v4.19.2...v4.20.0)
+
+### Features
+
+* Document POST /notifications/{id}/duplicate [C-18607] ([#165](https://github.com/trycourier/courier-ruby/issues/165)) ([212644c](https://github.com/trycourier/courier-ruby/commit/212644cd49ac7b108944831e04289d2e9e073b7d))
+* Merge pull request [#149](https://github.com/trycourier/courier-ruby/issues/149) from trycourier/geraldosilva/c-19201-notification-template-subscription-topic-id ([cd697fa](https://github.com/trycourier/courier-ruby/commit/cd697fa2d3b49db32db582dae1789ab03706ced5))
+* Merge pull request [#168](https://github.com/trycourier/courier-ruby/issues/168) from trycourier/geraldosilva/c-19419-topic-id-notification-template-summary ([71d47f3](https://github.com/trycourier/courier-ruby/commit/71d47f336799157c0dfd99276951359d391a8a7d))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([c5fe04e](https://github.com/trycourier/courier-ruby/commit/c5fe04ea6c0ed2c5ce38ca49738c293e44557688))
+
 ## 4.19.2 (2026-07-10)
 
 Full Changelog: [v4.19.1...v4.19.2](https://github.com/trycourier/courier-ruby/compare/v4.19.1...v4.19.2)

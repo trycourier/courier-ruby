@@ -317,6 +317,8 @@ module Courier
 
   class NotificationCreateParams = Courier::Models::NotificationCreateParams
 
+  class NotificationDuplicateParams = Courier::Models::NotificationDuplicateParams
+
   class NotificationElementPutRequest = Courier::Models::NotificationElementPutRequest
 
   class NotificationGetContent = Courier::Models::NotificationGetContent
