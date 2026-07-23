@@ -26,8 +26,6 @@ module Courier
 
     attr_reader brands: Courier::Resources::Brands
 
-    attr_reader bulk: Courier::Resources::Bulk
-
     attr_reader digests: Courier::Resources::Digests
 
     attr_reader inbound: Courier::Resources::Inbound

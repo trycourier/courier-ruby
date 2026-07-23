@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.21.0 (2026-07-23)
+
+Full Changelog: [v4.20.0...v4.21.0](https://github.com/trycourier/courier-ruby/compare/v4.20.0...v4.21.0)
+
+### Features
+
+* Remove /bulk endpoints from api-spec (C-19507) ([#171](https://github.com/trycourier/courier-ruby/issues/171)) ([e10d767](https://github.com/trycourier/courier-ruby/commit/e10d767174c28e0ae756041d7d2f1f78f2c72241))
+
 ## 4.20.0 (2026-07-20)
 
 Full Changelog: [v4.19.2...v4.20.0](https://github.com/trycourier/courier-ruby/compare/v4.19.2...v4.20.0)

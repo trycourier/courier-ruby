@@ -113,16 +113,6 @@ module Courier
 
   BrandUpdateParams = Courier::Models::BrandUpdateParams
 
-  BulkAddUsersParams = Courier::Models::BulkAddUsersParams
-
-  BulkCreateJobParams = Courier::Models::BulkCreateJobParams
-
-  BulkListUsersParams = Courier::Models::BulkListUsersParams
-
-  BulkRetrieveJobParams = Courier::Models::BulkRetrieveJobParams
-
-  BulkRunJobParams = Courier::Models::BulkRunJobParams
-
   CancelJourneyRequest = Courier::Models::CancelJourneyRequest
 
   CancelJourneyResponse = Courier::Models::CancelJourneyResponse
@@ -192,10 +182,6 @@ module Courier
   FilterConfig = Courier::Models::FilterConfig
 
   Icons = Courier::Models::Icons
-
-  InboundBulkMessage = Courier::Models::InboundBulkMessage
-
-  InboundBulkMessageUser = Courier::Models::InboundBulkMessageUser
 
   InboundTrackEventParams = Courier::Models::InboundTrackEventParams
 

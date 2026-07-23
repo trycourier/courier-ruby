@@ -37,9 +37,6 @@ module Courier
     sig { returns(Courier::Resources::Brands) }
     attr_reader :brands
 
-    sig { returns(Courier::Resources::Bulk) }
-    attr_reader :bulk
-
     sig { returns(Courier::Resources::Digests) }
     attr_reader :digests
 
