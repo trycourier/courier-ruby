@@ -81,10 +81,14 @@ module Courier
               )
             end
 
+          # The subscription status to set: OPTED_IN or OPTED_OUT. REQUIRED is a topic-level
+          # default, not a user choice; the API rejects opting a user out of a REQUIRED
+          # topic.
           sig { returns(Courier::PreferenceStatus::OrSymbol) }
           attr_accessor :status
 
-          # The Channels a user has chosen to receive notifications through for this topic
+          # The channels to deliver this topic on when has_custom_routing is true. One or
+          # more of: direct_message, email, push, sms, webhook, inbox.
           sig do
             returns(
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol])
@@ -92,6 +96,8 @@ module Courier
           end
           attr_accessor :custom_routing
 
+          # Set to true to route this topic to the channels in custom_routing instead of the
+          # topic's default routing.
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :has_custom_routing
 
@@ -104,9 +110,15 @@ module Courier
             ).returns(T.attached_class)
           end
           def self.new(
+            # The subscription status to set: OPTED_IN or OPTED_OUT. REQUIRED is a topic-level
+            # default, not a user choice; the API rejects opting a user out of a REQUIRED
+            # topic.
             status:,
-            # The Channels a user has chosen to receive notifications through for this topic
+            # The channels to deliver this topic on when has_custom_routing is true. One or
+            # more of: direct_message, email, push, sms, webhook, inbox.
             custom_routing: nil,
+            # Set to true to route this topic to the channels in custom_routing instead of the
+            # topic's default routing.
             has_custom_routing: nil
           )
           end
