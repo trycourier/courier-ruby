@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.21.1 (2026-07-23)
+
+Full Changelog: [v4.21.0...v4.21.1](https://github.com/trycourier/courier-ruby/compare/v4.21.0...v4.21.1)
+
+### Documentation
+
+* **openapi:** describe user topic-preference fields explicitly ([#172](https://github.com/trycourier/courier-ruby/issues/172)) ([c540bdb](https://github.com/trycourier/courier-ruby/commit/c540bdb855f180d850feeabf1a30ed4394092b50))
+
 ## 4.21.0 (2026-07-23)
 
 Full Changelog: [v4.20.0...v4.21.0](https://github.com/trycourier/courier-ruby/compare/v4.20.0...v4.21.0)
