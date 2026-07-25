@@ -7,7 +7,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::TenantListParams} for more details.
         #
-        # Returns a paginated list of user tenant associations.
+        # Returns the tenants a user belongs to, with cursor paging. A user can belong to
+        # many tenants, each with its own profile and preferences.
         #
         # @overload list(user_id, cursor: nil, limit: nil, request_options: {})
         #
@@ -34,9 +35,8 @@ module Courier
           )
         end
 
-        # This endpoint is used to add a user to multiple tenants in one call. A custom
-        # profile can also be supplied for each tenant. This profile will be merged with
-        # the user's main profile when sending to the user with that tenant.
+        # Adds a user to several tenants in one call, each optionally with a per-tenant
+        # profile that overrides their workspace profile.
         #
         # @overload add_multiple(user_id, tenants:, request_options: {})
         #
@@ -60,10 +60,8 @@ module Courier
           )
         end
 
-        # This endpoint is used to add a single tenant.
-        #
-        # A custom profile can also be supplied with the tenant. This profile will be
-        # merged with the user's main profile when sending to the user with that tenant.
+        # Adds a user to one tenant, optionally with a tenant-specific profile that
+        # overrides their workspace profile for sends in that tenant.
         #
         # @overload add_single(tenant_id, user_id:, profile: nil, request_options: {})
         #
@@ -93,7 +91,8 @@ module Courier
           )
         end
 
-        # Removes a user from any tenants they may have been associated with.
+        # Removes a user from every tenant they belong to in one call. Their
+        # workspace-level profile is a separate resource.
         #
         # @overload remove_all(user_id, request_options: {})
         #
@@ -113,7 +112,8 @@ module Courier
           )
         end
 
-        # Removes a user from the supplied tenant.
+        # Removes a user from one tenant. Their other tenant memberships and workspace
+        # profile are managed through separate endpoints.
         #
         # @overload remove_single(tenant_id, user_id:, request_options: {})
         #

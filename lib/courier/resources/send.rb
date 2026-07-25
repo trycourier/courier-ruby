@@ -6,7 +6,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::SendMessageParams} for more details.
       #
-      # Send a message to one or more recipients.
+      # Sends a message to one or more recipients and returns a requestId. Courier
+      # routes it to email, SMS, push, chat, or in-app based on your rules.
       #
       # @overload message(message:, request_options: {})
       #

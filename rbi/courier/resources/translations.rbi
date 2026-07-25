@@ -3,7 +3,8 @@
 module Courier
   module Resources
     class Translations
-      # Get translations by locale
+      # Returns the translation strings stored for one domain and locale, for use in
+      # localized notification content.
       sig do
         params(
           locale: String,
@@ -21,7 +22,8 @@ module Courier
       )
       end
 
-      # Update a translation
+      # Uploads the translation strings for one domain and locale. Courier uses them to
+      # render localized content for recipients in that locale.
       sig do
         params(
           locale: String,

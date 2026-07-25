@@ -3,7 +3,8 @@
 module Courier
   module Resources
     class Audiences
-      # Returns the specified audience by id.
+      # Returns one audience with its name, description, and the filter and AND or OR
+      # operator that decide which users belong to it.
       sig do
         params(
           audience_id: String,
@@ -17,7 +18,8 @@ module Courier
       )
       end
 
-      # Creates or updates audience.
+      # Creates or replaces an audience from a filter and an AND or OR operator.
+      # Membership recalculates automatically as profiles change.
       sig do
         params(
           audience_id: String,
@@ -46,7 +48,8 @@ module Courier
       )
       end
 
-      # Get the audiences associated with the authorization token.
+      # Returns the audiences in the workspace with paging. Audiences are filter-based
+      # groups that recalculate as user profiles change.
       sig do
         params(
           cursor: T.nilable(String),
@@ -60,7 +63,8 @@ module Courier
       )
       end
 
-      # Deletes the specified audience.
+      # Deletes an audience permanently, so update any caller sending to it by audience
+      # id first. Those sends fail once the audience is gone.
       sig do
         params(
           audience_id: String,
@@ -74,7 +78,8 @@ module Courier
       )
       end
 
-      # Get list of members of an audience.
+      # Returns the users currently matching an audience filter, with paging. Membership
+      # is recalculated, so results shift as profiles change.
       sig do
         params(
           audience_id: String,

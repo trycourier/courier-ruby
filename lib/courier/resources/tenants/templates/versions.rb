@@ -8,13 +8,8 @@ module Courier
           # Some parameter documentations has been truncated, see
           # {Courier::Models::Tenants::Templates::VersionRetrieveParams} for more details.
           #
-          # Fetches a specific version of a tenant template.
-          #
-          # Supports the following version formats:
-          #
-          # - `latest` - The most recent version of the template
-          # - `published` - The currently published version
-          # - `v{version}` - A specific version (e.g., "v1", "v2", "v1.0.0")
+          # Returns one version of a tenant template, addressed by version number or by
+          # latest, with its content and publish timestamp.
           #
           # @overload retrieve(version, tenant_id:, template_id:, request_options: {})
           #

@@ -7,9 +7,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Digests::ScheduleListInstancesParams} for more details.
         #
-        # List the digest instances for a schedule. Each instance represents the events
-        # accumulated for a single user against the schedule, and can be used to monitor
-        # digest accumulation before the digest is released.
+        # Returns the digest instances for a schedule, one per user, with cursor paging.
+        # Use it to see what has accumulated before a digest releases.
         #
         # @overload list_instances(schedule_id, cursor: nil, limit: nil, request_options: {})
         #

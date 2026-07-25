@@ -3,7 +3,8 @@
 module Courier
   module Resources
     class Inbound
-      # Courier Track Event
+      # Records an inbound event that can trigger a journey. Requires an event name, a
+      # messageId you generate, a type, and a properties object.
       sig do
         params(
           event: String,

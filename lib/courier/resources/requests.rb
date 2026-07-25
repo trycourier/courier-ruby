@@ -3,7 +3,8 @@
 module Courier
   module Resources
     class Requests
-      # Archive message
+      # Archives a send request by its request id. Use it to remove test sends or
+      # superseded requests from the message list without deleting them.
       #
       # @overload archive(request_id, request_options: {})
       #

@@ -6,9 +6,8 @@ module Courier
       sig { returns(Courier::Resources::WorkspacePreferences::Topics) }
       attr_reader :topics
 
-      # Create a workspace preference. The workspace preference id is generated and
-      # returned. Topics are created inside a workspace preference via POST
-      # /preferences/sections/{section_id}/topics.
+      # Creates a workspace preference and returns its generated id. Add subscription
+      # topics to it afterwards with the topics endpoint.
       sig do
         params(
           name: String,
@@ -32,7 +31,8 @@ module Courier
       )
       end
 
-      # Retrieve a workspace preference by id, including its topics.
+      # Returns one workspace preference by id, including its subscription topics,
+      # routing options, and custom routing flag.
       sig do
         params(
           section_id: String,
@@ -46,8 +46,8 @@ module Courier
       )
       end
 
-      # List the workspace's preferences. Each workspace preference embeds its topics.
-      # Scoped to the workspace of the API key.
+      # Returns the workspace's preferences, each embedding its subscription topics,
+      # routing options, and whether custom routing is allowed.
       sig do
         params(request_options: Courier::RequestOptions::OrHash).returns(
           Courier::WorkspacePreferenceListResponse
@@ -71,9 +71,8 @@ module Courier
       )
       end
 
-      # Publish the workspace's preferences page. Takes a snapshot of every workspace
-      # preference with its topics under a new published version, making the current
-      # state visible on the hosted preferences page (non-draft).
+      # Publishes the workspace preference page, snapshotting every preference and
+      # topic, and returns the page id and a preview URL.
       sig do
         params(
           brand_id: T.nilable(String),

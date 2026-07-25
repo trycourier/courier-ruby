@@ -4,7 +4,8 @@ module Courier
   module Resources
     class Profiles
       class Lists
-        # Returns the subscribed lists for a specified user.
+        # Returns the lists a user is subscribed to, with paging. Use it to check what a
+        # recipient will receive before sending to a list.
         sig do
           params(
             user_id: String,
@@ -22,7 +23,8 @@ module Courier
         )
         end
 
-        # Removes all list subscriptions for given user.
+        # Removes every list subscription for a user at once. Their profile and
+        # preferences are untouched, so this only affects list-targeted sends.
         sig do
           params(
             user_id: String,
@@ -36,8 +38,8 @@ module Courier
         )
         end
 
-        # Subscribes the given user to one or more lists. If the list does not exist, it
-        # will be created.
+        # Subscribes a user to one or more lists, creating any list that does not yet
+        # exist. Optional preferences apply to each subscription.
         sig do
           params(
             user_id: String,

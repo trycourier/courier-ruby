@@ -9,7 +9,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::AutomationListParams} for more details.
       #
-      # Get the list of automations.
+      # Lists the workspace's saved automation templates, each with its id and a cursor
+      # for paging to the next page of results.
       #
       # @overload list(cursor: nil, version: nil, request_options: {})
       #
