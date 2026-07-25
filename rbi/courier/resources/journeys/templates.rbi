@@ -28,9 +28,8 @@ module Courier
         )
         end
 
-        # Fetch a journey-scoped notification template by id. Pass `?version=draft`
-        # (default `published`) to retrieve the working draft, or `?version=vN` for a
-        # historical version.
+        # Returns a journey's own notification template with its name, brand, subscription
+        # topic, and content. Defaults to the published version.
         sig do
           params(
             notification_id: String,
@@ -68,8 +67,8 @@ module Courier
         )
         end
 
-        # Archive the journey-scoped notification template. Archived templates cannot be
-        # sent.
+        # Archives one journey's notification template, preventing further sends. Detach
+        # any send node referencing it beforehand.
         sig do
           params(
             notification_id: String,
@@ -86,8 +85,8 @@ module Courier
         )
         end
 
-        # List published versions of the journey-scoped notification template, ordered
-        # most recent first.
+        # Lists the published versions of a template that belongs to a journey, most
+        # recent first. Paged by cursor.
         sig do
           params(
             notification_id: String,
@@ -104,9 +103,8 @@ module Courier
         )
         end
 
-        # Publish the current draft of the journey-scoped notification template as a new
-        # version. Optionally roll back to a prior version by passing
-        # `{ "version": "vN" }`.
+        # Publishes a journey-scoped template's draft as a new version. Pass a version
+        # instead to roll back the template to an earlier publish.
         sig do
           params(
             notification_id: String,
@@ -179,7 +177,8 @@ module Courier
         )
         end
 
-        # Replace the journey-scoped notification template draft.
+        # Replaces the draft content of one journey's notification template. Publish it
+        # before send nodes referencing it render the change.
         sig do
           params(
             notification_id: String,
@@ -203,11 +202,8 @@ module Courier
         )
         end
 
-        # Retrieve the elemental content of a journey-scoped notification template. The
-        # response contains the versioned elements along with their content checksums,
-        # which can be used to detect changes between versions. Pass `?version=draft`
-        # (default `published`) to retrieve the working draft, or `?version=vN` for a
-        # historical version.
+        # Returns the Elemental elements and version of a journey-scoped template's
+        # content. Compare versions to see what changed between publishes.
         sig do
           params(
             notification_id: String,

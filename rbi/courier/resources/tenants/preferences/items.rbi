@@ -5,7 +5,8 @@ module Courier
     class Tenants
       class Preferences
         class Items
-          # Create or Replace Default Preferences For Topic
+          # Sets a tenant's default opt-in status for one subscription topic, which applies
+          # to every member unless a user sets their own override.
           sig do
             params(
               topic_id: String,
@@ -36,7 +37,8 @@ module Courier
           )
           end
 
-          # Remove Default Preferences For Topic
+          # Removes a tenant's default preference for one subscription topic, addressed by
+          # tenant id and topic id.
           sig do
             params(
               topic_id: String,

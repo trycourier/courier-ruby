@@ -4,10 +4,8 @@ module Courier
   module Resources
     class Automations
       class Invoke
-        # Invoke an ad hoc automation run. This endpoint accepts a JSON payload with a
-        # series of automation steps. For information about what steps are available,
-        # checkout the ad hoc automation guide
-        # [here](https://www.courier.com/docs/automations/steps/).
+        # Runs a series of automation steps supplied inline, without a saved template, and
+        # returns a runId.
         #
         # @overload invoke_ad_hoc(automation:, brand: nil, data: nil, profile: nil, recipient: nil, template: nil, request_options: {})
         #
@@ -36,7 +34,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Automations::InvokeInvokeByTemplateParams} for more details.
         #
-        # Invoke an automation run from an automation template.
+        # Starts an automation run from a saved template for one recipient, with optional
+        # data and profile, and returns a runId.
         #
         # @overload invoke_by_template(template_id, recipient:, brand: nil, data: nil, profile: nil, template: nil, request_options: {})
         #

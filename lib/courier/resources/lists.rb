@@ -6,7 +6,8 @@ module Courier
       # @return [Courier::Resources::Lists::Subscriptions]
       attr_reader :subscriptions
 
-      # Returns a list based on the list ID provided.
+      # Returns one list by id with its name and created and updated timestamps. Fetch
+      # its subscribers separately with the subscriptions endpoint.
       #
       # @overload retrieve(list_id, request_options: {})
       #
@@ -26,7 +27,8 @@ module Courier
         )
       end
 
-      # Create or replace an existing list with the supplied values.
+      # Creates or replaces a list from a name and preferences. Subscribers are managed
+      # through the separate subscriptions endpoints.
       #
       # @overload update(list_id, name:, preferences: nil, request_options: {})
       #
@@ -55,7 +57,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ListListParams} for more details.
       #
-      # Returns all of the lists, with the ability to filter based on a pattern.
+      # Returns the workspace's lists, filterable by a pattern to fetch a subset such as
+      # every regional list. Paged by cursor.
       #
       # @overload list(cursor: nil, pattern: nil, request_options: {})
       #
@@ -80,7 +83,8 @@ module Courier
         )
       end
 
-      # Delete a list by list ID.
+      # Deletes a list, halting sends that target it. A previously deleted list can be
+      # brought back with the companion restore endpoint.
       #
       # @overload delete(list_id, request_options: {})
       #
@@ -100,7 +104,8 @@ module Courier
         )
       end
 
-      # Restore a previously deleted list.
+      # Restores a previously deleted list along with its subscribers, so a list removed
+      # by mistake can be brought back rather than rebuilt.
       #
       # @overload restore(list_id, request_options: {})
       #

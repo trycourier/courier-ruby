@@ -7,7 +7,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Profiles::ListRetrieveParams} for more details.
         #
-        # Returns the subscribed lists for a specified user.
+        # Returns the lists a user is subscribed to, with paging. Use it to check what a
+        # recipient will receive before sending to a list.
         #
         # @overload retrieve(user_id, cursor: nil, request_options: {})
         #
@@ -35,7 +36,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Profiles::ListDeleteParams} for more details.
         #
-        # Removes all list subscriptions for given user.
+        # Removes every list subscription for a user at once. Their profile and
+        # preferences are untouched, so this only affects list-targeted sends.
         #
         # @overload delete(user_id, request_options: {})
         #
@@ -58,8 +60,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Profiles::ListSubscribeParams} for more details.
         #
-        # Subscribes the given user to one or more lists. If the list does not exist, it
-        # will be created.
+        # Subscribes a user to one or more lists, creating any list that does not yet
+        # exist. Optional preferences apply to each subscription.
         #
         # @overload subscribe(user_id, lists:, request_options: {})
         #

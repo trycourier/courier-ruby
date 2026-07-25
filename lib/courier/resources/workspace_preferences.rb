@@ -6,9 +6,8 @@ module Courier
       # @return [Courier::Resources::WorkspacePreferences::Topics]
       attr_reader :topics
 
-      # Create a workspace preference. The workspace preference id is generated and
-      # returned. Topics are created inside a workspace preference via POST
-      # /preferences/sections/{section_id}/topics.
+      # Creates a workspace preference and returns its generated id. Add subscription
+      # topics to it afterwards with the topics endpoint.
       #
       # @overload create(name:, description: nil, has_custom_routing: nil, routing_options: nil, request_options: {})
       #
@@ -36,7 +35,8 @@ module Courier
         )
       end
 
-      # Retrieve a workspace preference by id, including its topics.
+      # Returns one workspace preference by id, including its subscription topics,
+      # routing options, and custom routing flag.
       #
       # @overload retrieve(section_id, request_options: {})
       #
@@ -56,8 +56,8 @@ module Courier
         )
       end
 
-      # List the workspace's preferences. Each workspace preference embeds its topics.
-      # Scoped to the workspace of the API key.
+      # Returns the workspace's preferences, each embedding its subscription topics,
+      # routing options, and whether custom routing is allowed.
       #
       # @overload list(request_options: {})
       #
@@ -99,9 +99,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::WorkspacePreferencePublishParams} for more details.
       #
-      # Publish the workspace's preferences page. Takes a snapshot of every workspace
-      # preference with its topics under a new published version, making the current
-      # state visible on the hosted preferences page (non-draft).
+      # Publishes the workspace preference page, snapshotting every preference and
+      # topic, and returns the page id and a preview URL.
       #
       # @overload publish(brand_id: nil, description: nil, heading: nil, request_options: {})
       #

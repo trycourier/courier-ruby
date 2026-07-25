@@ -3,7 +3,8 @@
 module Courier
   module Resources
     class Audiences
-      # Returns the specified audience by id.
+      # Returns one audience with its name, description, and the filter and AND or OR
+      # operator that decide which users belong to it.
       #
       # @overload retrieve(audience_id, request_options: {})
       #
@@ -26,7 +27,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::AudienceUpdateParams} for more details.
       #
-      # Creates or updates audience.
+      # Creates or replaces an audience from a filter and an AND or OR operator.
+      # Membership recalculates automatically as profiles change.
       #
       # @overload update(audience_id, description: nil, filter: nil, name: nil, operator: nil, request_options: {})
       #
@@ -56,7 +58,8 @@ module Courier
         )
       end
 
-      # Get the audiences associated with the authorization token.
+      # Returns the audiences in the workspace with paging. Audiences are filter-based
+      # groups that recalculate as user profiles change.
       #
       # @overload list(cursor: nil, request_options: {})
       #
@@ -79,7 +82,8 @@ module Courier
         )
       end
 
-      # Deletes the specified audience.
+      # Deletes an audience permanently, so update any caller sending to it by audience
+      # id first. Those sends fail once the audience is gone.
       #
       # @overload delete(audience_id, request_options: {})
       #
@@ -99,7 +103,8 @@ module Courier
         )
       end
 
-      # Get list of members of an audience.
+      # Returns the users currently matching an audience filter, with paging. Membership
+      # is recalculated, so results shift as profiles change.
       #
       # @overload list_members(audience_id, cursor: nil, request_options: {})
       #

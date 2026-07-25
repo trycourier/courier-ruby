@@ -6,7 +6,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::AuthIssueTokenParams} for more details.
       #
-      # Returns a new access token.
+      # Returns a JWT for authenticating client-side SDKs such as the Inbox. You supply
+      # the scope and an expires_in duration, both required.
       #
       # @overload issue_token(expires_in:, scope:, request_options: {})
       #

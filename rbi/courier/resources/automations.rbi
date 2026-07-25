@@ -6,7 +6,8 @@ module Courier
       sig { returns(Courier::Resources::Automations::Invoke) }
       attr_reader :invoke
 
-      # Get the list of automations.
+      # Lists the workspace's saved automation templates, each with its id and a cursor
+      # for paging to the next page of results.
       sig do
         params(
           cursor: String,

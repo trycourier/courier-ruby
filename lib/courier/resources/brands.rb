@@ -3,8 +3,8 @@
 module Courier
   module Resources
     class Brands
-      # Create a new brand. Requires `name` and `settings` (with at least
-      # `colors.primary` and `colors.secondary`).
+      # Creates a brand from a name and settings, including primary and secondary
+      # colors. Brands supply the logo, colors, and styling that templates render with.
       #
       # @overload create(name:, settings:, id: nil, snippets: nil, request_options: {})
       #
@@ -22,7 +22,8 @@ module Courier
         @client.request(method: :post, path: "brands", body: parsed, model: Courier::Brand, options: options)
       end
 
-      # Fetch a specific brand by brand ID.
+      # Returns one brand by id, including its colors, logo and styling settings,
+      # Handlebars snippets, and published version.
       #
       # @overload retrieve(brand_id, request_options: {})
       #
@@ -42,7 +43,8 @@ module Courier
         )
       end
 
-      # Replace an existing brand with the supplied values.
+      # Replaces a brand with the values you supply, so send the complete settings and
+      # snippets rather than only the fields you want changed.
       #
       # @overload update(brand_id, name:, settings: nil, snippets: nil, request_options: {})
       #
@@ -70,7 +72,8 @@ module Courier
         )
       end
 
-      # Get the list of brands.
+      # Lists the workspace's brands. Every entry carries its name, styling settings,
+      # snippets, and published version.
       #
       # @overload list(cursor: nil, request_options: {})
       #
@@ -93,7 +96,8 @@ module Courier
         )
       end
 
-      # Delete a brand by brand ID.
+      # Deletes a brand by id. Reassign any template or tenant that references it before
+      # deleting to keep their styling intact.
       #
       # @overload delete(brand_id, request_options: {})
       #

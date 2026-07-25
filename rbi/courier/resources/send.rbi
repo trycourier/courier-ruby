@@ -3,7 +3,8 @@
 module Courier
   module Resources
     class Send
-      # Send a message to one or more recipients.
+      # Sends a message to one or more recipients and returns a requestId. Courier
+      # routes it to email, SMS, push, chat, or in-app based on your rules.
       sig do
         params(
           message: Courier::SendMessageParams::Message::OrHash,
