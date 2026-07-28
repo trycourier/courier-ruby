@@ -32,15 +32,32 @@ module Courier
             ],
           enabled: T::Boolean,
           state: Courier::JourneyState::OrSymbol,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::JourneyResponse)
       end
       def create(
+        # Body param
         name:,
+        # Body param
         nodes:,
+        # Body param
         enabled: nil,
-        # Lifecycle state of a journey.
+        # Body param: Lifecycle state of a journey.
         state: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
@@ -107,14 +124,28 @@ module Courier
               Courier::CancelJourneyRequest::ByCancelationToken::OrHash,
               Courier::CancelJourneyRequest::ByRunID::OrHash
             ),
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::CancelJourneyResponse::Variants)
       end
       def cancel(
-        # Request body for `POST /journeys/cancel`. Provide EXACTLY ONE of
+        # Body param: Request body for `POST /journeys/cancel`. Provide EXACTLY ONE of
         # `cancelation_token` (cancels every run associated with the token) or `run_id`
         # (cancels a single tenant-scoped run).
         cancel_journey_request:,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
@@ -127,28 +158,42 @@ module Courier
           data: T::Hash[Symbol, T.anything],
           profile: T::Hash[Symbol, T.anything],
           user_id: String,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::JourneysInvokeResponse)
       end
       def invoke(
-        # A unique identifier representing the journey to be invoked. Accepts a Journey ID
-        # or Journey Alias.
+        # Path param: A unique identifier representing the journey to be invoked. Accepts
+        # a Journey ID or Journey Alias.
         template_id,
-        # Data payload passed to the journey. The expected shape can be predefined using
-        # the schema builder in the journey editor. This data is available in journey
-        # steps for condition evaluation and template variable interpolation. Can also
-        # contain user identifiers (user_id, userId, anonymousId) if not provided
-        # elsewhere.
+        # Body param: Data payload passed to the journey. The expected shape can be
+        # predefined using the schema builder in the journey editor. This data is
+        # available in journey steps for condition evaluation and template variable
+        # interpolation. Can also contain user identifiers (user_id, userId, anonymousId)
+        # if not provided elsewhere.
         data: nil,
-        # Profile data for the user. Can contain contact information (email,
+        # Body param: Profile data for the user. Can contain contact information (email,
         # phone_number), user identifiers (user_id, userId, anonymousId), or any custom
         # profile fields. Profile fields are merged with any existing stored profile for
         # the user. Include context.tenant_id to load a tenant-scoped profile for
         # multi-tenant scenarios.
         profile: nil,
-        # A unique identifier for the user. If not provided, the system will attempt to
-        # resolve the user identifier from profile or data objects.
+        # Body param: A unique identifier for the user. If not provided, the system will
+        # attempt to resolve the user identifier from profile or data objects.
         user_id: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
@@ -174,13 +219,28 @@ module Courier
         params(
           template_id: String,
           version: String,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::JourneyResponse)
       end
       def publish(
-        # Journey id
+        # Path param: Journey id
         template_id,
+        # Body param
         version: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end

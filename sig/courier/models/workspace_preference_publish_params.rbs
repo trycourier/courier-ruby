@@ -1,15 +1,32 @@
 module Courier
   module Models
     type workspace_preference_publish_params =
-      {  } & Courier::Internal::Type::request_parameters
+      { idempotency_key: String, x_idempotency_expiration: String }
+      & Courier::Internal::Type::request_parameters
 
     class WorkspacePreferencePublishParams < Courier::Models::PublishPreferencesRequest
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Courier::request_opts) -> void
+      def idempotency_key: -> String?
 
-      def to_hash: -> { request_options: Courier::RequestOptions }
+      def idempotency_key=: (String _) -> String
+
+      def x_idempotency_expiration: -> String?
+
+      def x_idempotency_expiration=: (String _) -> String
+
+      def initialize: (
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        idempotency_key: String,
+        x_idempotency_expiration: String,
+        request_options: Courier::RequestOptions
+      }
     end
   end
 end

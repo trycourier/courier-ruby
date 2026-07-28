@@ -12,15 +12,19 @@ module Courier
       # Configures a provider integration from a Courier provider key and its settings.
       # Check the catalog endpoint for the schema each provider expects.
       #
-      # @overload create(provider:, alias_: nil, settings: nil, title: nil, request_options: {})
+      # @overload create(provider:, alias_: nil, settings: nil, title: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param provider [String] The provider key identifying the type (e.g. "sendgrid", "twilio"). Must be a kno
+      # @param provider [String] Body param: The provider key identifying the type (e.g. "sendgrid", "twilio"). M
       #
-      # @param alias_ [String] Optional alias for this configuration.
+      # @param alias_ [String] Body param: Optional alias for this configuration.
       #
-      # @param settings [Hash{Symbol=>Object}] Provider-specific settings (snake_case keys). Defaults to an empty object when o
+      # @param settings [Hash{Symbol=>Object}] Body param: Provider-specific settings (snake_case keys). Defaults to an empty o
       #
-      # @param title [String] Optional display title. Omit to use "Default Configuration".
+      # @param title [String] Body param: Optional display title. Omit to use "Default Configuration".
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -29,10 +33,13 @@ module Courier
       # @see Courier::Models::ProviderCreateParams
       def create(params)
         parsed, options = Courier::ProviderCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: "providers",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::Provider,
           options: options
         )

@@ -11,6 +11,8 @@ module Courier
           ?include_unsubscribe_header: bool?,
           ?routing_options: ::Array[Courier::Models::channel_classification]?,
           ?topic_data: ::Hash[Symbol, top]?,
+          ?idempotency_key: String,
+          ?x_idempotency_expiration: String,
           ?request_options: Courier::request_opts
         ) -> Courier::WorkspacePreferenceTopicGetResponse
 

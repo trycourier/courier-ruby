@@ -1,15 +1,32 @@
 module Courier
   module Models
     type journey_cancel_params =
-      {  } & Courier::Internal::Type::request_parameters
+      { idempotency_key: String, x_idempotency_expiration: String }
+      & Courier::Internal::Type::request_parameters
 
     class JourneyCancelParams < Courier::Internal::Type::BaseModel
       extend Courier::Internal::Type::RequestParameters::Converter
       include Courier::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Courier::request_opts) -> void
+      attr_reader idempotency_key: String?
 
-      def to_hash: -> { request_options: Courier::RequestOptions }
+      def idempotency_key=: (String) -> String
+
+      attr_reader x_idempotency_expiration: String?
+
+      def x_idempotency_expiration=: (String) -> String
+
+      def initialize: (
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        idempotency_key: String,
+        x_idempotency_expiration: String,
+        request_options: Courier::RequestOptions
+      }
     end
   end
 end

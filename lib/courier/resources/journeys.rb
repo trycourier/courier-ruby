@@ -6,18 +6,25 @@ module Courier
       # @return [Courier::Resources::Journeys::Templates]
       attr_reader :templates
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::JourneyCreateParams} for more details.
+      #
       # Creates a journey from a set of nodes, in draft state unless you pass a
       # published state. Send nodes cannot be included until their templates exist.
       #
-      # @overload create(name:, nodes:, enabled: nil, state: nil, request_options: {})
+      # @overload create(name:, nodes:, enabled: nil, state: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param name [String]
+      # @param name [String] Body param
       #
-      # @param nodes [Array<Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyNode::JourneyAddToDigestNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode>]
+      # @param nodes [Array<Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyNode::JourneyAddToDigestNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode>] Body param
       #
-      # @param enabled [Boolean]
+      # @param enabled [Boolean] Body param
       #
-      # @param state [Symbol, Courier::Models::JourneyState] Lifecycle state of a journey.
+      # @param state [Symbol, Courier::Models::JourneyState] Body param: Lifecycle state of a journey.
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -26,10 +33,13 @@ module Courier
       # @see Courier::Models::JourneyCreateParams
       def create(params)
         parsed, options = Courier::JourneyCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: "journeys",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::JourneyResponse,
           options: options
         )
@@ -117,9 +127,13 @@ module Courier
       # Cancels in-flight journey runs, either every run sharing a cancelation token or
       # one run by id. Use it to stop a sequence when the event resolves.
       #
-      # @overload cancel(cancel_journey_request:, request_options: {})
+      # @overload cancel(cancel_journey_request:, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param cancel_journey_request [Courier::Models::CancelJourneyRequest::ByCancelationToken, Courier::Models::CancelJourneyRequest::ByRunID] Request body for `POST /journeys/cancel`. Provide EXACTLY ONE of `cancelation_to
+      # @param cancel_journey_request [Courier::Models::CancelJourneyRequest::ByCancelationToken, Courier::Models::CancelJourneyRequest::ByRunID] Body param: Request body for `POST /journeys/cancel`. Provide EXACTLY ONE of `ca
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -131,6 +145,10 @@ module Courier
         @client.request(
           method: :post,
           path: "journeys/cancel",
+          headers: parsed.except(:cancel_journey_request).transform_keys(
+            idempotency_key: "idempotency-key",
+            x_idempotency_expiration: "x-idempotency-expiration"
+          ),
           body: parsed[:cancel_journey_request],
           model: Courier::CancelJourneyResponse,
           options: options
@@ -143,15 +161,19 @@ module Courier
       # Starts a journey run for one user and returns a runId. Runs execute
       # asynchronously, so the response arrives before any message is sent.
       #
-      # @overload invoke(template_id, data: nil, profile: nil, user_id: nil, request_options: {})
+      # @overload invoke(template_id, data: nil, profile: nil, user_id: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param template_id [String] A unique identifier representing the journey to be invoked. Accepts a Journey ID
+      # @param template_id [String] Path param: A unique identifier representing the journey to be invoked. Accepts
       #
-      # @param data [Hash{Symbol=>Object}] Data payload passed to the journey. The expected shape can be predefined using t
+      # @param data [Hash{Symbol=>Object}] Body param: Data payload passed to the journey. The expected shape can be predef
       #
-      # @param profile [Hash{Symbol=>Object}] Profile data for the user. Can contain contact information (email, phone_number)
+      # @param profile [Hash{Symbol=>Object}] Body param: Profile data for the user. Can contain contact information (email, p
       #
-      # @param user_id [String] A unique identifier for the user. If not provided, the system will attempt to re
+      # @param user_id [String] Body param: A unique identifier for the user. If not provided, the system will a
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -160,10 +182,13 @@ module Courier
       # @see Courier::Models::JourneyInvokeParams
       def invoke(template_id, params = {})
         parsed, options = Courier::JourneyInvokeParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: ["journeys/%1$s/invoke", template_id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::JourneysInvokeResponse,
           options: options
         )
@@ -190,14 +215,21 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::JourneyPublishParams} for more details.
+      #
       # Publishes a journey's current draft as a new version, making it live for new
       # runs. Pass a version instead to roll back to an earlier one.
       #
-      # @overload publish(template_id, version: nil, request_options: {})
+      # @overload publish(template_id, version: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param template_id [String] Journey id
+      # @param template_id [String] Path param: Journey id
       #
-      # @param version [String]
+      # @param version [String] Body param
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -206,10 +238,13 @@ module Courier
       # @see Courier::Models::JourneyPublishParams
       def publish(template_id, params = {})
         parsed, options = Courier::JourneyPublishParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: ["journeys/%1$s/publish", template_id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::JourneyResponse,
           options: options
         )

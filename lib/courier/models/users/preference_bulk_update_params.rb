@@ -27,7 +27,17 @@ module Courier
         #   @return [String, nil]
         optional :tenant_id, String, nil?: true
 
-        # @!method initialize(user_id:, topics:, tenant_id: nil, request_options: {})
+        # @!attribute idempotency_key
+        #
+        #   @return [String, nil]
+        optional :idempotency_key, String
+
+        # @!attribute x_idempotency_expiration
+        #
+        #   @return [String, nil]
+        optional :x_idempotency_expiration, String
+
+        # @!method initialize(user_id:, topics:, tenant_id: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Courier::Models::Users::PreferenceBulkUpdateParams} for more details.
         #
@@ -36,6 +46,10 @@ module Courier
         #   @param topics [Array<Courier::Models::Users::PreferenceBulkUpdateParams::Topic>] The topics to create or update. Between 1 and 50 topics may be provided in a sin
         #
         #   @param tenant_id [String, nil] Update the preferences of a user for this specific tenant context.
+        #
+        #   @param idempotency_key [String]
+        #
+        #   @param x_idempotency_expiration [String]
         #
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
 

@@ -38,13 +38,25 @@ module Courier
         #   @return [String, nil]
         optional :template, String, nil?: true
 
-        # @!method initialize(template_id:, recipient:, brand: nil, data: nil, profile: nil, template: nil, request_options: {})
+        # @!attribute idempotency_key
+        #
+        #   @return [String, nil]
+        optional :idempotency_key, String
+
+        # @!attribute x_idempotency_expiration
+        #
+        #   @return [String, nil]
+        optional :x_idempotency_expiration, String
+
+        # @!method initialize(template_id:, recipient:, brand: nil, data: nil, profile: nil, template: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #   @param template_id [String]
         #   @param recipient [String, nil]
         #   @param brand [String, nil]
         #   @param data [Hash{Symbol=>Object}, nil]
         #   @param profile [Hash{Symbol=>Object}, nil]
         #   @param template [String, nil]
+        #   @param idempotency_key [String]
+        #   @param x_idempotency_expiration [String]
         #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
       end
     end

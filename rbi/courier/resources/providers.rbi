@@ -14,21 +14,35 @@ module Courier
           alias_: String,
           settings: T::Hash[Symbol, T.anything],
           title: String,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Provider)
       end
       def create(
-        # The provider key identifying the type (e.g. "sendgrid", "twilio"). Must be a
-        # known Courier provider — see the catalog endpoint for valid keys.
+        # Body param: The provider key identifying the type (e.g. "sendgrid", "twilio").
+        # Must be a known Courier provider — see the catalog endpoint for valid keys.
         provider:,
-        # Optional alias for this configuration.
+        # Body param: Optional alias for this configuration.
         alias_: nil,
-        # Provider-specific settings (snake_case keys). Defaults to an empty object when
-        # omitted. Use the catalog endpoint to discover required fields for a given
-        # provider — omitting a required field returns a 400 validation error.
+        # Body param: Provider-specific settings (snake_case keys). Defaults to an empty
+        # object when omitted. Use the catalog endpoint to discover required fields for a
+        # given provider — omitting a required field returns a 400 validation error.
         settings: nil,
-        # Optional display title. Omit to use "Default Configuration".
+        # Body param: Optional display title. Omit to use "Default Configuration".
         title: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end

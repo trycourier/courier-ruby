@@ -8,6 +8,8 @@ module Courier
         ?description: String?,
         ?has_custom_routing: bool?,
         ?routing_options: ::Array[Courier::Models::channel_classification]?,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::WorkspacePreferenceGetResponse
 
@@ -29,6 +31,8 @@ module Courier
         ?brand_id: String?,
         ?description: String?,
         ?heading: String?,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::PublishPreferencesResponse
 

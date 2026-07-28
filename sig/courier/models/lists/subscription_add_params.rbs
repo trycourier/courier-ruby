@@ -4,7 +4,9 @@ module Courier
       type subscription_add_params =
         {
           list_id: String,
-          recipients: ::Array[Courier::PutSubscriptionsRecipient]
+          recipients: ::Array[Courier::PutSubscriptionsRecipient],
+          idempotency_key: String,
+          x_idempotency_expiration: String
         }
         & Courier::Internal::Type::request_parameters
 
@@ -16,15 +18,27 @@ module Courier
 
         attr_accessor recipients: ::Array[Courier::PutSubscriptionsRecipient]
 
+        attr_reader idempotency_key: String?
+
+        def idempotency_key=: (String) -> String
+
+        attr_reader x_idempotency_expiration: String?
+
+        def x_idempotency_expiration=: (String) -> String
+
         def initialize: (
           list_id: String,
           recipients: ::Array[Courier::PutSubscriptionsRecipient],
+          ?idempotency_key: String,
+          ?x_idempotency_expiration: String,
           ?request_options: Courier::request_opts
         ) -> void
 
         def to_hash: -> {
           list_id: String,
           recipients: ::Array[Courier::PutSubscriptionsRecipient],
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions
         }
       end

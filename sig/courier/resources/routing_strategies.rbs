@@ -8,6 +8,8 @@ module Courier
         ?description: String?,
         ?providers: Courier::Models::message_providers?,
         ?tags: ::Array[String]?,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::RoutingStrategyGetResponse
 

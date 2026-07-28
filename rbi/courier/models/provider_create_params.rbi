@@ -39,12 +39,26 @@ module Courier
       sig { params(title: String).void }
       attr_writer :title
 
+      sig { returns(T.nilable(String)) }
+      attr_reader :idempotency_key
+
+      sig { params(idempotency_key: String).void }
+      attr_writer :idempotency_key
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :x_idempotency_expiration
+
+      sig { params(x_idempotency_expiration: String).void }
+      attr_writer :x_idempotency_expiration
+
       sig do
         params(
           provider: String,
           alias_: String,
           settings: T::Hash[Symbol, T.anything],
           title: String,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -60,6 +74,8 @@ module Courier
         settings: nil,
         # Optional display title. Omit to use "Default Configuration".
         title: nil,
+        idempotency_key: nil,
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
@@ -71,6 +87,8 @@ module Courier
             alias_: String,
             settings: T::Hash[Symbol, T.anything],
             title: String,
+            idempotency_key: String,
+            x_idempotency_expiration: String,
             request_options: Courier::RequestOptions
           }
         )

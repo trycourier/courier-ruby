@@ -6,6 +6,8 @@ module Courier
         settings: Courier::BrandSettings,
         ?id: String?,
         ?snippets: Courier::BrandSnippets?,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::Brand
 

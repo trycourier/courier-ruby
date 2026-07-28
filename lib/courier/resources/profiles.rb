@@ -12,11 +12,15 @@ module Courier
       # Merges the supplied values into a user's profile, creating it if absent and
       # leaving any key you omit untouched. Prefer this for everyday writes.
       #
-      # @overload create(user_id, profile:, request_options: {})
+      # @overload create(user_id, profile:, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param user_id [String] A unique identifier representing the user associated with the requested profile.
+      # @param user_id [String] Path param: A unique identifier representing the user associated with the reques
       #
-      # @param profile [Hash{Symbol=>Object}]
+      # @param profile [Hash{Symbol=>Object}] Body param
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -25,10 +29,13 @@ module Courier
       # @see Courier::Models::ProfileCreateParams
       def create(user_id, params)
         parsed, options = Courier::ProfileCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: ["profiles/%1$s", user_id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::Models::ProfileCreateResponse,
           options: options
         )

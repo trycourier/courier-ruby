@@ -72,13 +72,17 @@ module Courier
         # Adds or updates a user's preferences for several subscription topics at once.
         # Topics you leave out keep whatever they were set to before.
         #
-        # @overload bulk_update(user_id, topics:, tenant_id: nil, request_options: {})
+        # @overload bulk_update(user_id, topics:, tenant_id: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
         # @param user_id [String] Path param: A unique identifier associated with the user whose preferences you w
         #
         # @param topics [Array<Courier::Models::Users::PreferenceBulkUpdateParams::Topic>] Body param: The topics to create or update. Between 1 and 50 topics may be provi
         #
         # @param tenant_id [String, nil] Query param: Update the preferences of a user for this specific tenant context.
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -87,13 +91,16 @@ module Courier
         # @see Courier::Models::Users::PreferenceBulkUpdateParams
         def bulk_update(user_id, params)
           query_params = [:tenant_id]
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           parsed, options = Courier::Users::PreferenceBulkUpdateParams.dump_request(params)
           query = Courier::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
             method: :post,
             path: ["users/%1$s/preferences", user_id],
             query: query,
-            body: parsed.except(*query_params),
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*query_params, *header_params.keys),
             model: Courier::Models::Users::PreferenceBulkUpdateResponse,
             options: options
           )

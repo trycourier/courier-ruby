@@ -3,15 +3,26 @@
 module Courier
   module Resources
     class Brands
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::BrandCreateParams} for more details.
+      #
       # Creates a brand from a name and settings, including primary and secondary
       # colors. Brands supply the logo, colors, and styling that templates render with.
       #
-      # @overload create(name:, settings:, id: nil, snippets: nil, request_options: {})
+      # @overload create(name:, settings:, id: nil, snippets: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param name [String]
-      # @param settings [Courier::Models::BrandSettings]
-      # @param id [String, nil]
-      # @param snippets [Courier::Models::BrandSnippets, nil]
+      # @param name [String] Body param
+      #
+      # @param settings [Courier::Models::BrandSettings] Body param
+      #
+      # @param id [String, nil] Body param
+      #
+      # @param snippets [Courier::Models::BrandSnippets, nil] Body param
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
+      #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Courier::Models::Brand]
@@ -19,7 +30,16 @@ module Courier
       # @see Courier::Models::BrandCreateParams
       def create(params)
         parsed, options = Courier::BrandCreateParams.dump_request(params)
-        @client.request(method: :post, path: "brands", body: parsed, model: Courier::Brand, options: options)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
+        @client.request(
+          method: :post,
+          path: "brands",
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
+          model: Courier::Brand,
+          options: options
+        )
       end
 
       # Returns one brand by id, including its colors, logo and styling settings,

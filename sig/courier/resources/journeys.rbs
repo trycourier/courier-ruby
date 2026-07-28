@@ -8,6 +8,8 @@ module Courier
         nodes: ::Array[Courier::Models::journey_node],
         ?enabled: bool,
         ?state: Courier::Models::journey_state,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::JourneyResponse
 
@@ -30,6 +32,8 @@ module Courier
 
       def cancel: (
         cancel_journey_request: Courier::Models::cancel_journey_request,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::Models::cancel_journey_response
 
@@ -38,6 +42,8 @@ module Courier
         ?data: ::Hash[Symbol, top],
         ?profile: ::Hash[Symbol, top],
         ?user_id: String,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::JourneysInvokeResponse
 
@@ -49,6 +55,8 @@ module Courier
       def publish: (
         String template_id,
         ?version: String,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::JourneyResponse
 

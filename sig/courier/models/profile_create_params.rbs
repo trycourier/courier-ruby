@@ -1,7 +1,12 @@
 module Courier
   module Models
     type profile_create_params =
-      { user_id: String, profile: ::Hash[Symbol, top] }
+      {
+        user_id: String,
+        profile: ::Hash[Symbol, top],
+        idempotency_key: String,
+        x_idempotency_expiration: String
+      }
       & Courier::Internal::Type::request_parameters
 
     class ProfileCreateParams < Courier::Internal::Type::BaseModel
@@ -12,15 +17,27 @@ module Courier
 
       attr_accessor profile: ::Hash[Symbol, top]
 
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader x_idempotency_expiration: String?
+
+      def x_idempotency_expiration=: (String) -> String
+
       def initialize: (
         user_id: String,
         profile: ::Hash[Symbol, top],
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         user_id: String,
         profile: ::Hash[Symbol, top],
+        idempotency_key: String,
+        x_idempotency_expiration: String,
         request_options: Courier::RequestOptions
       }
     end

@@ -3,6 +3,8 @@ module Courier
     class Send
       def message: (
         message: Courier::SendMessageParams::Message,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::Models::SendMessageResponse
 
