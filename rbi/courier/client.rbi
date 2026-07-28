@@ -46,6 +46,9 @@ module Courier
     sig { returns(Courier::Resources::Lists) }
     attr_reader :lists
 
+    sig { returns(Courier::Resources::Inbox) }
+    attr_reader :inbox
+
     sig { returns(Courier::Resources::Messages) }
     attr_reader :messages
 
