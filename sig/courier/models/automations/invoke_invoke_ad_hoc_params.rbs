@@ -8,7 +8,9 @@ module Courier
           data: ::Hash[Symbol, top]?,
           profile: ::Hash[Symbol, top]?,
           recipient: String?,
-          template: String?
+          template: String?,
+          idempotency_key: String,
+          x_idempotency_expiration: String
         }
         & Courier::Internal::Type::request_parameters
 
@@ -28,6 +30,14 @@ module Courier
 
         attr_accessor template: String?
 
+        attr_reader idempotency_key: String?
+
+        def idempotency_key=: (String) -> String
+
+        attr_reader x_idempotency_expiration: String?
+
+        def x_idempotency_expiration=: (String) -> String
+
         def initialize: (
           automation: Courier::Automations::InvokeInvokeAdHocParams::Automation,
           ?brand: String?,
@@ -35,6 +45,8 @@ module Courier
           ?profile: ::Hash[Symbol, top]?,
           ?recipient: String?,
           ?template: String?,
+          ?idempotency_key: String,
+          ?x_idempotency_expiration: String,
           ?request_options: Courier::request_opts
         ) -> void
 
@@ -45,6 +57,8 @@ module Courier
           profile: ::Hash[Symbol, top]?,
           recipient: String?,
           template: String?,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions
         }
 

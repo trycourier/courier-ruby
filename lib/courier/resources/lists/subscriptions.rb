@@ -30,14 +30,21 @@ module Courier
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Courier::Models::Lists::SubscriptionAddParams} for more details.
+        #
         # Subscribes additional users to the list, without modifying existing
         # subscriptions. If the list does not exist, it will be automatically created.
         #
-        # @overload add(list_id, recipients:, request_options: {})
+        # @overload add(list_id, recipients:, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
-        # @param list_id [String] A unique identifier representing the list you wish to retrieve.
+        # @param list_id [String] Path param: A unique identifier representing the list you wish to retrieve.
         #
-        # @param recipients [Array<Courier::Models::PutSubscriptionsRecipient>]
+        # @param recipients [Array<Courier::Models::PutSubscriptionsRecipient>] Body param
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -46,10 +53,13 @@ module Courier
         # @see Courier::Models::Lists::SubscriptionAddParams
         def add(list_id, params)
           parsed, options = Courier::Lists::SubscriptionAddParams.dump_request(params)
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           @client.request(
             method: :post,
             path: ["lists/%1$s/subscriptions", list_id],
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: NilClass,
             options: options
           )

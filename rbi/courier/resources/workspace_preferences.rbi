@@ -15,18 +15,35 @@ module Courier
           has_custom_routing: T.nilable(T::Boolean),
           routing_options:
             T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::WorkspacePreferenceGetResponse)
       end
       def create(
-        # Human-readable name for the workspace preference.
+        # Body param: Human-readable name for the workspace preference.
         name:,
-        # Optional description shown under the section on the hosted preferences page.
+        # Body param: Optional description shown under the section on the hosted
+        # preferences page.
         description: nil,
-        # Whether the workspace preference defines custom routing for its topics.
+        # Body param: Whether the workspace preference defines custom routing for its
+        # topics.
         has_custom_routing: nil,
-        # Default channels for the workspace preference. Defaults to empty if omitted.
+        # Body param: Default channels for the workspace preference. Defaults to empty if
+        # omitted.
         routing_options: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
@@ -78,17 +95,31 @@ module Courier
           brand_id: T.nilable(String),
           description: T.nilable(String),
           heading: T.nilable(String),
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::PublishPreferencesResponse)
       end
       def publish(
-        # Brand for the hosted page - "default" (workspace default brand), "none" (no
-        # brand), or a specific brand id. Defaults to "default".
+        # Body param: Brand for the hosted page - "default" (workspace default brand),
+        # "none" (no brand), or a specific brand id. Defaults to "default".
         brand_id: nil,
-        # Description shown under the heading on the hosted preferences page.
+        # Body param: Description shown under the heading on the hosted preferences page.
         description: nil,
-        # Heading shown at the top of the hosted preferences page.
+        # Body param: Heading shown at the top of the hosted preferences page.
         heading: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end

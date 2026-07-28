@@ -43,6 +43,18 @@ module Courier
         sig { returns(T.nilable(String)) }
         attr_accessor :template
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :idempotency_key
+
+        sig { params(idempotency_key: String).void }
+        attr_writer :idempotency_key
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_idempotency_expiration
+
+        sig { params(x_idempotency_expiration: String).void }
+        attr_writer :x_idempotency_expiration
+
         sig do
           params(
             automation:
@@ -52,6 +64,8 @@ module Courier
             profile: T.nilable(T::Hash[Symbol, T.anything]),
             recipient: T.nilable(String),
             template: T.nilable(String),
+            idempotency_key: String,
+            x_idempotency_expiration: String,
             request_options: Courier::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -62,6 +76,8 @@ module Courier
           profile: nil,
           recipient: nil,
           template: nil,
+          idempotency_key: nil,
+          x_idempotency_expiration: nil,
           request_options: {}
         )
         end
@@ -76,6 +92,8 @@ module Courier
               profile: T.nilable(T::Hash[Symbol, T.anything]),
               recipient: T.nilable(String),
               template: T.nilable(String),
+              idempotency_key: String,
+              x_idempotency_expiration: String,
               request_options: Courier::RequestOptions
             }
           )

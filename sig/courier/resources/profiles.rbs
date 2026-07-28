@@ -6,6 +6,8 @@ module Courier
       def create: (
         String user_id,
         profile: ::Hash[Symbol, top],
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::Models::ProfileCreateResponse
 

@@ -29,12 +29,26 @@ module Courier
       sig { params(snippets: T.nilable(Courier::BrandSnippets::OrHash)).void }
       attr_writer :snippets
 
+      sig { returns(T.nilable(String)) }
+      attr_reader :idempotency_key
+
+      sig { params(idempotency_key: String).void }
+      attr_writer :idempotency_key
+
+      sig { returns(T.nilable(String)) }
+      attr_reader :x_idempotency_expiration
+
+      sig { params(x_idempotency_expiration: String).void }
+      attr_writer :x_idempotency_expiration
+
       sig do
         params(
           name: String,
           settings: Courier::BrandSettings::OrHash,
           id: T.nilable(String),
           snippets: T.nilable(Courier::BrandSnippets::OrHash),
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -43,6 +57,8 @@ module Courier
         settings:,
         id: nil,
         snippets: nil,
+        idempotency_key: nil,
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
@@ -54,6 +70,8 @@ module Courier
             settings: Courier::BrandSettings,
             id: T.nilable(String),
             snippets: T.nilable(Courier::BrandSnippets),
+            idempotency_key: String,
+            x_idempotency_expiration: String,
             request_options: Courier::RequestOptions
           }
         )

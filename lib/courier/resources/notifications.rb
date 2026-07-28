@@ -12,11 +12,15 @@ module Courier
       # Create a notification template. Requires all fields in the notification object.
       # Templates are created in draft state by default.
       #
-      # @overload create(notification:, state: nil, request_options: {})
+      # @overload create(notification:, state: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
+      # @param notification [Courier::Models::NotificationTemplatePayload] Body param: Core template fields used in POST and PUT request bodies (nested und
       #
-      # @param state [Symbol, Courier::Models::NotificationTemplateCreateRequest::State] Template state after creation. Case-insensitive input, normalized to uppercase i
+      # @param state [Symbol, Courier::Models::NotificationTemplateCreateRequest::State] Body param: Template state after creation. Case-insensitive input, normalized to
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -25,10 +29,13 @@ module Courier
       # @see Courier::Models::NotificationCreateParams
       def create(params)
         parsed, options = Courier::NotificationCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: "notifications",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::NotificationTemplateResponse,
           options: options
         )
@@ -162,14 +169,21 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::NotificationPublishParams} for more details.
+      #
       # Publish a notification template. Publishes the current draft by default. Pass a
       # version in the request body to publish a specific historical version.
       #
-      # @overload publish(id, version: nil, request_options: {})
+      # @overload publish(id, version: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param id [String] Template ID (nt\_ prefix).
+      # @param id [String] Path param: Template ID (nt\_ prefix).
       #
-      # @param version [String] Historical version to publish (e.g. "v001"). Omit to publish the current draft.
+      # @param version [String] Body param: Historical version to publish (e.g. "v001"). Omit to publish the cur
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -178,10 +192,13 @@ module Courier
       # @see Courier::Models::NotificationPublishParams
       def publish(id, params = {})
         parsed, options = Courier::NotificationPublishParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: ["notifications/%1$s/publish", id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: NilClass,
           options: options
         )

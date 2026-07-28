@@ -10,23 +10,27 @@ module Courier
         # Creates a subscription topic inside a workspace preference. The default status
         # sets whether users start opted in, opted out, or required.
         #
-        # @overload create(section_id, default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, request_options: {})
+        # @overload create(section_id, default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
-        # @param section_id [String] Id of the workspace preference to create the topic in.
+        # @param section_id [String] Path param: Id of the workspace preference to create the topic in.
         #
-        # @param default_status [Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::DefaultStatus] The default subscription status applied when a recipient has not set their own.
+        # @param default_status [Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::DefaultStatus] Body param: The default subscription status applied when a recipient has not set
         #
-        # @param name [String] Human-readable name for the preference topic.
+        # @param name [String] Body param: Human-readable name for the preference topic.
         #
-        # @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::AllowedPreference>, nil] Preference controls a recipient may customize for this topic. Defaults to empty
+        # @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::AllowedPreference>, nil] Body param: Preference controls a recipient may customize for this topic. Defaul
         #
-        # @param description [String, nil] Optional description shown under the topic on the hosted preferences page.
+        # @param description [String, nil] Body param: Optional description shown under the topic on the hosted preferences
         #
-        # @param include_unsubscribe_header [Boolean, nil] Whether to include a list-unsubscribe header on emails for this topic.
+        # @param include_unsubscribe_header [Boolean, nil] Body param: Whether to include a list-unsubscribe header on emails for this topi
         #
-        # @param routing_options [Array<Symbol, Courier::Models::ChannelClassification>, nil] Default channels delivered for this topic. Defaults to empty if omitted.
+        # @param routing_options [Array<Symbol, Courier::Models::ChannelClassification>, nil] Body param: Default channels delivered for this topic. Defaults to empty if omit
         #
-        # @param topic_data [Hash{Symbol=>Object}, nil] Arbitrary metadata associated with the topic.
+        # @param topic_data [Hash{Symbol=>Object}, nil] Body param: Arbitrary metadata associated with the topic.
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -35,10 +39,13 @@ module Courier
         # @see Courier::Models::WorkspacePreferences::TopicCreateParams
         def create(section_id, params)
           parsed, options = Courier::WorkspacePreferences::TopicCreateParams.dump_request(params)
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           @client.request(
             method: :post,
             path: ["preferences/sections/%1$s/topics", section_id],
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: Courier::WorkspacePreferenceTopicGetResponse,
             options: options
           )

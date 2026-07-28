@@ -6,6 +6,8 @@ module Courier
       def create: (
         notification: Courier::NotificationTemplatePayload,
         ?state: Courier::Models::NotificationTemplateCreateRequest::state,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> Courier::NotificationTemplateResponse
 
@@ -39,6 +41,8 @@ module Courier
       def publish: (
         String id,
         ?version: String,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> nil
 

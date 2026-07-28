@@ -63,11 +63,15 @@ module Courier
         # Subscribes a user to one or more lists, creating any list that does not yet
         # exist. Optional preferences apply to each subscription.
         #
-        # @overload subscribe(user_id, lists:, request_options: {})
+        # @overload subscribe(user_id, lists:, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
-        # @param user_id [String] A unique identifier representing the user associated with the requested user pro
+        # @param user_id [String] Path param: A unique identifier representing the user associated with the reques
         #
-        # @param lists [Array<Courier::Models::SubscribeToListsRequestItem>]
+        # @param lists [Array<Courier::Models::SubscribeToListsRequestItem>] Body param
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -76,10 +80,13 @@ module Courier
         # @see Courier::Models::Profiles::ListSubscribeParams
         def subscribe(user_id, params)
           parsed, options = Courier::Profiles::ListSubscribeParams.dump_request(params)
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           @client.request(
             method: :post,
             path: ["profiles/%1$s/lists", user_id],
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: Courier::Models::Profiles::ListSubscribeResponse,
             options: options
           )
