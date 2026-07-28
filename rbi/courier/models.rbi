@@ -149,6 +149,8 @@ module Courier
 
   InboundTrackEventParams = Courier::Models::InboundTrackEventParams
 
+  Inbox = Courier::Models::Inbox
+
   Intercom = Courier::Models::Intercom
 
   IntercomRecipient = Courier::Models::IntercomRecipient

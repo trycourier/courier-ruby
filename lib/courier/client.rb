@@ -51,6 +51,9 @@ module Courier
     # @return [Courier::Resources::Lists]
     attr_reader :lists
 
+    # @return [Courier::Resources::Inbox]
+    attr_reader :inbox
+
     # @return [Courier::Resources::Messages]
     attr_reader :messages
 
@@ -150,6 +153,7 @@ module Courier
       @digests = Courier::Resources::Digests.new(client: self)
       @inbound = Courier::Resources::Inbound.new(client: self)
       @lists = Courier::Resources::Lists.new(client: self)
+      @inbox = Courier::Resources::Inbox.new(client: self)
       @messages = Courier::Resources::Messages.new(client: self)
       @requests = Courier::Resources::Requests.new(client: self)
       @notifications = Courier::Resources::Notifications.new(client: self)
