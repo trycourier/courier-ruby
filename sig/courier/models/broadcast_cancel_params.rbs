@@ -1,0 +1,23 @@
+module Courier
+  module Models
+    type broadcast_cancel_params =
+      { broadcast_id: String } & Courier::Internal::Type::request_parameters
+
+    class BroadcastCancelParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor broadcast_id: String
+
+      def initialize: (
+        broadcast_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        broadcast_id: String,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

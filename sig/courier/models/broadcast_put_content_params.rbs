@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    type broadcast_put_content_params =
+      { broadcast_id: String } & Courier::Internal::Type::request_parameters
+
+    class BroadcastPutContentParams < Courier::Models::NotificationContentPutRequest
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      def broadcast_id: -> String
+
+      def broadcast_id=: (String _) -> String
+
+      def initialize: (
+        broadcast_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        broadcast_id: String,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

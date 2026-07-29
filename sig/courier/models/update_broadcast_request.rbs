@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type update_broadcast_request = { name: String }
+
+    class UpdateBroadcastRequest < Courier::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      def initialize: (name: String) -> void
+
+      def to_hash: -> { name: String }
+    end
+  end
+end

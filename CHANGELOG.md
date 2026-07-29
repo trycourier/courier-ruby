@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.23.0 (2026-07-29)
+
+Full Changelog: [v4.22.0...v4.23.0](https://github.com/trycourier/courier-ruby/compare/v4.22.0...v4.23.0)
+
+### Features
+
+* **broadcasts:** document Broadcasts CRUD REST API ([#170](https://github.com/trycourier/courier-ruby/issues/170)) ([122e598](https://github.com/trycourier/courier-ruby/commit/122e5984cc48c30473a81fd3003c4fd899fc1cc6))
+
 ## 4.22.0 (2026-07-29)
 
 Full Changelog: [v4.21.0...v4.22.0](https://github.com/trycourier/courier-ruby/compare/v4.21.0...v4.22.0)

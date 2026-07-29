@@ -1,0 +1,40 @@
+module Courier
+  module Models
+    type create_broadcast_request =
+      {
+        channel: Courier::Models::CreateBroadcastRequest::channel,
+        name: String
+      }
+
+    class CreateBroadcastRequest < Courier::Internal::Type::BaseModel
+      attr_accessor channel: Courier::Models::CreateBroadcastRequest::channel
+
+      attr_accessor name: String
+
+      def initialize: (
+        channel: Courier::Models::CreateBroadcastRequest::channel,
+        name: String
+      ) -> void
+
+      def to_hash: -> {
+        channel: Courier::Models::CreateBroadcastRequest::channel,
+        name: String
+      }
+
+      type channel = :email | :sms | :push | :inbox | :slack | :msteams
+
+      module Channel
+        extend Courier::Internal::Type::Enum
+
+        EMAIL: :email
+        SMS: :sms
+        PUSH: :push
+        INBOX: :inbox
+        SLACK: :slack
+        MSTEAMS: :msteams
+
+        def self?.values: -> ::Array[Courier::Models::CreateBroadcastRequest::channel]
+      end
+    end
+  end
+end

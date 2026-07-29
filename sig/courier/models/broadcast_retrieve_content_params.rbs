@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    type broadcast_retrieve_content_params =
+      { broadcast_id: String, version: String }
+      & Courier::Internal::Type::request_parameters
+
+    class BroadcastRetrieveContentParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor broadcast_id: String
+
+      attr_reader version: String?
+
+      def version=: (String) -> String
+
+      def initialize: (
+        broadcast_id: String,
+        ?version: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        broadcast_id: String,
+        version: String,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end
