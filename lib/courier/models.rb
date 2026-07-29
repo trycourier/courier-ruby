@@ -113,6 +113,34 @@ module Courier
 
   BrandUpdateParams = Courier::Models::BrandUpdateParams
 
+  Broadcast = Courier::Models::Broadcast
+
+  BroadcastArchiveParams = Courier::Models::BroadcastArchiveParams
+
+  BroadcastCancelParams = Courier::Models::BroadcastCancelParams
+
+  BroadcastCreateParams = Courier::Models::BroadcastCreateParams
+
+  BroadcastDuplicateParams = Courier::Models::BroadcastDuplicateParams
+
+  BroadcastListParams = Courier::Models::BroadcastListParams
+
+  BroadcastListResponse = Courier::Models::BroadcastListResponse
+
+  BroadcastPutContentParams = Courier::Models::BroadcastPutContentParams
+
+  BroadcastRetrieveContentParams = Courier::Models::BroadcastRetrieveContentParams
+
+  BroadcastRetrieveParams = Courier::Models::BroadcastRetrieveParams
+
+  BroadcastSchedule = Courier::Models::BroadcastSchedule
+
+  BroadcastScheduleParams = Courier::Models::BroadcastScheduleParams
+
+  BroadcastSendParams = Courier::Models::BroadcastSendParams
+
+  BroadcastUpdateParams = Courier::Models::BroadcastUpdateParams
+
   CancelJourneyRequest = Courier::Models::CancelJourneyRequest
 
   CancelJourneyResponse = Courier::Models::CancelJourneyResponse
@@ -126,6 +154,8 @@ module Courier
   ChannelPreference = Courier::Models::ChannelPreference
 
   Check = Courier::Models::Check
+
+  CreateBroadcastRequest = Courier::Models::CreateBroadcastRequest
 
   CreateJourneyRequest = Courier::Models::CreateJourneyRequest
 
@@ -474,6 +504,10 @@ module Courier
 
   Rule = Courier::Models::Rule
 
+  ScheduleBroadcastRequest = Courier::Models::ScheduleBroadcastRequest
+
+  SendBroadcastRequest = Courier::Models::SendBroadcastRequest
+
   SendDirectMessage = Courier::Models::SendDirectMessage
 
   SendMessageParams = Courier::Models::SendMessageParams
@@ -535,6 +569,8 @@ module Courier
   TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
 
   TranslationUpdateParams = Courier::Models::TranslationUpdateParams
+
+  UpdateBroadcastRequest = Courier::Models::UpdateBroadcastRequest
 
   UserProfile = Courier::Models::UserProfile
 

@@ -1,0 +1,74 @@
+module Courier
+  module Resources
+    class Broadcasts
+      def create: (
+        channel: Courier::Models::CreateBroadcastRequest::channel,
+        name: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Broadcast
+
+      def retrieve: (
+        String broadcast_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Broadcast
+
+      def update: (
+        String broadcast_id,
+        name: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Broadcast
+
+      def list: (
+        ?cursor: String?,
+        ?limit: Integer,
+        ?request_options: Courier::request_opts
+      ) -> Courier::BroadcastListResponse
+
+      def archive: (
+        String broadcast_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Broadcast
+
+      def cancel: (
+        String broadcast_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Broadcast
+
+      def duplicate: (
+        String broadcast_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Broadcast
+
+      def put_content: (
+        String broadcast_id,
+        content: Courier::NotificationContentPutRequest::Content,
+        ?state: Courier::Models::notification_template_state,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationContentMutationResponse
+
+      def retrieve_content: (
+        String broadcast_id,
+        ?version: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::NotificationContentGetResponse
+
+      def schedule: (
+        String broadcast_id,
+        recipient_id: String,
+        recipient_type: Courier::Models::ScheduleBroadcastRequest::recipient_type,
+        scheduled_to: String,
+        ?timezone: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Broadcast
+
+      def send_: (
+        String broadcast_id,
+        recipient_id: String,
+        recipient_type: Courier::Models::SendBroadcastRequest::recipient_type,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Broadcast
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

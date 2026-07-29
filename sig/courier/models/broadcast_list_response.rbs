@@ -1,0 +1,22 @@
+module Courier
+  module Models
+    type broadcast_list_response =
+      { paging: Courier::Paging, results: ::Array[Courier::Broadcast] }
+
+    class BroadcastListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor paging: Courier::Paging
+
+      attr_accessor results: ::Array[Courier::Broadcast]
+
+      def initialize: (
+        paging: Courier::Paging,
+        results: ::Array[Courier::Broadcast]
+      ) -> void
+
+      def to_hash: -> {
+        paging: Courier::Paging,
+        results: ::Array[Courier::Broadcast]
+      }
+    end
+  end
+end

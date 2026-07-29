@@ -1,0 +1,98 @@
+module Courier
+  module Models
+    type broadcast =
+      {
+        id: String,
+        channel: Courier::Models::Broadcast::channel,
+        created_at: String,
+        created_by: String,
+        name: String,
+        status: Courier::Models::Broadcast::status,
+        updated_at: String,
+        updated_by: String,
+        archived_at: String?,
+        archived_by: String?,
+        schedule: Courier::BroadcastSchedule?
+      }
+
+    class Broadcast < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor channel: Courier::Models::Broadcast::channel
+
+      attr_accessor created_at: String
+
+      attr_accessor created_by: String
+
+      attr_accessor name: String
+
+      attr_accessor status: Courier::Models::Broadcast::status
+
+      attr_accessor updated_at: String
+
+      attr_accessor updated_by: String
+
+      attr_accessor archived_at: String?
+
+      attr_accessor archived_by: String?
+
+      attr_accessor schedule: Courier::BroadcastSchedule?
+
+      def initialize: (
+        id: String,
+        channel: Courier::Models::Broadcast::channel,
+        created_at: String,
+        created_by: String,
+        name: String,
+        status: Courier::Models::Broadcast::status,
+        updated_at: String,
+        updated_by: String,
+        ?archived_at: String?,
+        ?archived_by: String?,
+        ?schedule: Courier::BroadcastSchedule?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        channel: Courier::Models::Broadcast::channel,
+        created_at: String,
+        created_by: String,
+        name: String,
+        status: Courier::Models::Broadcast::status,
+        updated_at: String,
+        updated_by: String,
+        archived_at: String?,
+        archived_by: String?,
+        schedule: Courier::BroadcastSchedule?
+      }
+
+      type channel = :email | :sms | :push | :inbox | :slack | :msteams
+
+      module Channel
+        extend Courier::Internal::Type::Enum
+
+        EMAIL: :email
+        SMS: :sms
+        PUSH: :push
+        INBOX: :inbox
+        SLACK: :slack
+        MSTEAMS: :msteams
+
+        def self?.values: -> ::Array[Courier::Models::Broadcast::channel]
+      end
+
+      type status = :draft | :scheduled | :sending | :sent
+
+      module Status
+        extend Courier::Internal::Type::Enum
+
+        DRAFT: :draft
+        SCHEDULED: :scheduled
+        SENDING: :sending
+        SENT: :sent
+
+        def self?.values: -> ::Array[Courier::Models::Broadcast::status]
+      end
+    end
+  end
+end
