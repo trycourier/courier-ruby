@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Define reusable channel routing and failover strategies, and see which templates
+    # use them.
     class RoutingStrategies
       # Some parameter documentations has been truncated, see
       # {Courier::Models::RoutingStrategyCreateParams} for more details.

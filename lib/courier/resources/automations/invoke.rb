@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Automations
+      # Invoke a stored automation template or an ad hoc automation defined in the
+      # request.
       class Invoke
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Automations::InvokeInvokeAdHocParams} for more details.

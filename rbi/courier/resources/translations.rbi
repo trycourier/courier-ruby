@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Store and retrieve the translation strings Courier uses to render localized
+    # template content.
     class Translations
       # Returns the translation strings stored for one domain and locale, for use in
       # localized notification content.

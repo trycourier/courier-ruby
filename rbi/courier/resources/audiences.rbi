@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Define filter-based groups whose membership Courier recalculates as user
+    # profiles change.
     class Audiences
       # Returns one audience with its name, description, and the filter and AND or OR
       # operator that decide which users belong to it.

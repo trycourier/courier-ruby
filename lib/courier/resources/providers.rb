@@ -2,7 +2,11 @@
 
 module Courier
   module Resources
+    # Configure the channel providers Courier delivers through, and browse the
+    # provider types it supports.
     class Providers
+      # Configure the channel providers Courier delivers through, and browse the
+      # provider types it supports.
       # @return [Courier::Resources::Providers::Catalog]
       attr_reader :catalog
 

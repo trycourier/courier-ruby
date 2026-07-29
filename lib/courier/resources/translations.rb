@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Store and retrieve the translation strings Courier uses to render localized
+    # template content.
     class Translations
       # Some parameter documentations has been truncated, see
       # {Courier::Models::TranslationRetrieveParams} for more details.

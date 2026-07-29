@@ -2,7 +2,11 @@
 
 module Courier
   module Resources
+    # Create, update, version, publish, and localize notification templates and their
+    # content.
     class Notifications
+      # Create, update, version, publish, and localize notification templates and their
+      # content.
       # @return [Courier::Resources::Notifications::Checks]
       attr_reader :checks
 

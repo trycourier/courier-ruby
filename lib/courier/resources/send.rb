@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Send a message to one or more recipients — users, lists, audiences, or tenants —
+    # across every channel you have configured.
     class Send
       # Some parameter documentations has been truncated, see
       # {Courier::Models::SendMessageParams} for more details.

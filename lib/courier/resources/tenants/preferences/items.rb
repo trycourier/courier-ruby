@@ -4,6 +4,8 @@ module Courier
   module Resources
     class Tenants
       class Preferences
+        # Manage tenants — the organizations, teams, or accounts your users belong to —
+        # along with their users and default preferences.
         class Items
           # Some parameter documentations has been truncated, see
           # {Courier::Models::Tenants::Preferences::ItemUpdateParams} for more details.

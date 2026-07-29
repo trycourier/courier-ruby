@@ -3,6 +3,7 @@
 module Courier
   module Resources
     class Inbox
+      # Manage the messages in a user's in-app inbox.
       # @return [Courier::Resources::Inbox::Messages]
       attr_reader :messages
 

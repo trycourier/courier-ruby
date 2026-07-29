@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Digests
+      # Inspect what has accumulated in a digest schedule and release a digest ahead of
+      # its next scheduled delivery.
       class Schedules
         # Returns the digest instances for a schedule, one per user, with cursor paging.
         # Use it to see what has accumulated before a digest releases.

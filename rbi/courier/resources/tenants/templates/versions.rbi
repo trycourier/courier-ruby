@@ -4,6 +4,8 @@ module Courier
   module Resources
     class Tenants
       class Templates
+        # Manage the templates and template versions scoped to a single tenant, including
+        # the ones authored in the embedded designer.
         class Versions
           # Returns one version of a tenant template, addressed by version number or by
           # latest, with its content and publish timestamp.

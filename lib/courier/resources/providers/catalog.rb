@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Providers
+      # Configure the channel providers Courier delivers through, and browse the
+      # provider types it supports.
       class Catalog
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Providers::CatalogListParams} for more details.

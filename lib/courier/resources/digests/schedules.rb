@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Digests
+      # Inspect what has accumulated in a digest schedule and release a digest ahead of
+      # its next scheduled delivery.
       class Schedules
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Digests::ScheduleListInstancesParams} for more details.

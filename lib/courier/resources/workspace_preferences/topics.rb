@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class WorkspacePreferences
+      # Manage the workspace catalog of subscription topics, the sections that group
+      # them, and publishing the preference page.
       class Topics
         # Some parameter documentations has been truncated, see
         # {Courier::Models::WorkspacePreferences::TopicCreateParams} for more details.

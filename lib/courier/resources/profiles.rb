@@ -2,7 +2,11 @@
 
 module Courier
   module Resources
+    # Store the contact information Courier delivers to for each user — email, phone
+    # number, push tokens, and any custom data you send to.
     class Profiles
+      # Store the contact information Courier delivers to for each user — email, phone
+      # number, push tokens, and any custom data you send to.
       # @return [Courier::Resources::Profiles::Lists]
       attr_reader :lists
 

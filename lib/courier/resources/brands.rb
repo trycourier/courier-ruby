@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Manage the logos, colors, and layout that give the templates you send a
+    # consistent look.
     class Brands
       # Some parameter documentations has been truncated, see
       # {Courier::Models::BrandCreateParams} for more details.

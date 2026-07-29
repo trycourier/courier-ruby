@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Look up the messages Courier has accepted, inspect their delivery history and
+    # rendered output, and cancel, resend, or archive them.
     class Messages
       # Returns a sent message's status, recipient, event, and per-provider delivery
       # detail, with timestamps for enqueued, sent, delivered, opened, and clicked.

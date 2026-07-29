@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Lists
+      # Manage static groups of users that you subscribe explicitly, and send to them by
+      # list id or list pattern.
       class Subscriptions
         # Returns the users subscribed to a list with paging, each with the preferences
         # recorded for that subscription.

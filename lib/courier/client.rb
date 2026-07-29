@@ -18,63 +18,98 @@ module Courier
     # @return [String]
     attr_reader :api_key
 
+    # Send a message to one or more recipients — users, lists, audiences, or tenants —
+    # across every channel you have configured.
     # @return [Courier::Resources::Send]
     attr_reader :send_
 
+    # Define filter-based groups whose membership Courier recalculates as user
+    # profiles change.
     # @return [Courier::Resources::Audiences]
     attr_reader :audiences
 
+    # Configure the channel providers Courier delivers through, and browse the
+    # provider types it supports.
     # @return [Courier::Resources::Providers]
     attr_reader :providers
 
+    # Read the audit trail of configuration and access changes in your workspace.
     # @return [Courier::Resources::AuditEvents]
     attr_reader :audit_events
 
+    # Issue scoped, short-lived JWTs so client-side SDKs — Inbox, Preferences, and the
+    # embedded designer — can call Courier as a single user. Server-side requests
+    # authenticate with your workspace API key instead.
     # @return [Courier::Resources::Auth]
     attr_reader :auth
 
+    # Invoke a stored automation template or an ad hoc automation defined in the
+    # request.
     # @return [Courier::Resources::Automations]
     attr_reader :automations
 
+    # Build, version, publish, invoke, and cancel multi-step notification workflows,
+    # along with the templates scoped to them.
     # @return [Courier::Resources::Journeys]
     attr_reader :journeys
 
+    # Manage the logos, colors, and layout that give the templates you send a
+    # consistent look.
     # @return [Courier::Resources::Brands]
     attr_reader :brands
 
     # @return [Courier::Resources::Digests]
     attr_reader :digests
 
+    # Record an inbound event that triggers the journeys and automations mapped to it.
     # @return [Courier::Resources::Inbound]
     attr_reader :inbound
 
+    # Manage static groups of users that you subscribe explicitly, and send to them by
+    # list id or list pattern.
     # @return [Courier::Resources::Lists]
     attr_reader :lists
 
     # @return [Courier::Resources::Inbox]
     attr_reader :inbox
 
+    # Look up the messages Courier has accepted, inspect their delivery history and
+    # rendered output, and cancel, resend, or archive them.
     # @return [Courier::Resources::Messages]
     attr_reader :messages
 
+    # Look up the messages Courier has accepted, inspect their delivery history and
+    # rendered output, and cancel, resend, or archive them.
     # @return [Courier::Resources::Requests]
     attr_reader :requests
 
+    # Create, update, version, publish, and localize notification templates and their
+    # content.
     # @return [Courier::Resources::Notifications]
     attr_reader :notifications
 
+    # Define reusable channel routing and failover strategies, and see which templates
+    # use them.
     # @return [Courier::Resources::RoutingStrategies]
     attr_reader :routing_strategies
 
+    # Manage the workspace catalog of subscription topics, the sections that group
+    # them, and publishing the preference page.
     # @return [Courier::Resources::WorkspacePreferences]
     attr_reader :workspace_preferences
 
+    # Store the contact information Courier delivers to for each user — email, phone
+    # number, push tokens, and any custom data you send to.
     # @return [Courier::Resources::Profiles]
     attr_reader :profiles
 
+    # Manage tenants — the organizations, teams, or accounts your users belong to —
+    # along with their users and default preferences.
     # @return [Courier::Resources::Tenants]
     attr_reader :tenants
 
+    # Store and retrieve the translation strings Courier uses to render localized
+    # template content.
     # @return [Courier::Resources::Translations]
     attr_reader :translations
 

@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Send a message to one or more recipients — users, lists, audiences, or tenants —
+    # across every channel you have configured.
     class Send
       # Sends a message to one or more recipients and returns a requestId. Courier
       # routes it to email, SMS, push, chat, or in-app based on your rules.

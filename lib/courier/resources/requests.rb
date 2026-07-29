@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Look up the messages Courier has accepted, inspect their delivery history and
+    # rendered output, and cancel, resend, or archive them.
     class Requests
       # Archives a send request by its request id. Use it to remove test sends or
       # superseded requests from the message list without deleting them.
