@@ -4,6 +4,8 @@ module Courier
   module Resources
     class Tenants
       class Preferences
+        # Manage tenants — the organizations, teams, or accounts your users belong to —
+        # along with their users and default preferences.
         class Items
           # Sets a tenant's default opt-in status for one subscription topic, which applies
           # to every member unless a user sets their own override.

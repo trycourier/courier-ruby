@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Manage the logos, colors, and layout that give the templates you send a
+    # consistent look.
     class Brands
       # Creates a brand from a name and settings, including primary and secondary
       # colors. Brands supply the logo, colors, and styling that templates render with.

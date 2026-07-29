@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Users
+      # Read and write a single user's notification preferences, per topic and per
+      # channel.
       class Preferences
         # Returns a user's preference overrides with paging, one entry per subscription
         # topic they have set a choice for.

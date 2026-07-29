@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Journeys
+      # Build, version, publish, invoke, and cancel multi-step notification workflows,
+      # along with the templates scoped to them.
       class Templates
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Journeys::TemplateCreateParams} for more details.

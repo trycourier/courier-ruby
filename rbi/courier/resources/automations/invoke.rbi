@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Automations
+      # Invoke a stored automation template or an ad hoc automation defined in the
+      # request.
       class Invoke
         # Runs a series of automation steps supplied inline, without a saved template, and
         # returns a runId.

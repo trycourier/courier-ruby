@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Journeys
+      # Build, version, publish, invoke, and cancel multi-step notification workflows,
+      # along with the templates scoped to them.
       class Templates
         # Create a notification template scoped to this journey. Defaults to `DRAFT`
         # state; pass `state: "PUBLISHED"` to publish on create.

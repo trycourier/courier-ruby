@@ -2,6 +2,7 @@
 
 module Courier
   module Resources
+    # Record an inbound event that triggers the journeys and automations mapped to it.
     class Inbound
       # Some parameter documentations has been truncated, see
       # {Courier::Models::InboundTrackEventParams} for more details.

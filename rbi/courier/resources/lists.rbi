@@ -2,7 +2,11 @@
 
 module Courier
   module Resources
+    # Manage static groups of users that you subscribe explicitly, and send to them by
+    # list id or list pattern.
     class Lists
+      # Manage static groups of users that you subscribe explicitly, and send to them by
+      # list id or list pattern.
       sig { returns(Courier::Resources::Lists::Subscriptions) }
       attr_reader :subscriptions
 

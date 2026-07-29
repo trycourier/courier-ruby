@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Look up the messages Courier has accepted, inspect their delivery history and
+    # rendered output, and cancel, resend, or archive them.
     class Messages
       # Some parameter documentations has been truncated, see
       # {Courier::Models::MessageRetrieveParams} for more details.

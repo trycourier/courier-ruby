@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Users
+      # Associate a user with one or more tenants, and read or remove those
+      # associations.
       class Tenants
         # Returns the tenants a user belongs to, with cursor paging. A user can belong to
         # many tenants, each with its own profile and preferences.

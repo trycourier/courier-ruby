@@ -2,10 +2,14 @@
 
 module Courier
   module Resources
+    # Manage tenants — the organizations, teams, or accounts your users belong to —
+    # along with their users and default preferences.
     class Tenants
       sig { returns(Courier::Resources::Tenants::Preferences) }
       attr_reader :preferences
 
+      # Manage the templates and template versions scoped to a single tenant, including
+      # the ones authored in the embedded designer.
       sig { returns(Courier::Resources::Tenants::Templates) }
       attr_reader :templates
 

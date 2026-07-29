@@ -2,6 +2,7 @@
 
 module Courier
   module Resources
+    # Read the audit trail of configuration and access changes in your workspace.
     class AuditEvents
       # Returns one audit event by id, including the actor who performed it, the target
       # they changed, the source, the event type, and a timestamp.

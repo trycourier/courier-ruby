@@ -3,7 +3,11 @@
 module Courier
   module Resources
     class Tenants
+      # Manage the templates and template versions scoped to a single tenant, including
+      # the ones authored in the embedded designer.
       class Templates
+        # Manage the templates and template versions scoped to a single tenant, including
+        # the ones authored in the embedded designer.
         # @return [Courier::Resources::Tenants::Templates::Versions]
         attr_reader :versions
 

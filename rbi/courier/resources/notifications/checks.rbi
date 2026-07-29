@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Notifications
+      # Create, update, version, publish, and localize notification templates and their
+      # content.
       class Checks
         # Replaces the approval checks on a template submission with the complete set
         # supplied in the request body.

@@ -3,6 +3,7 @@
 module Courier
   module Resources
     class Inbox
+      # Manage the messages in a user's in-app inbox.
       class Messages
         # Delete a user's inbox message. The message is removed from every inbox read (it
         # stops appearing in the recipient's Inbox); it can be restored.

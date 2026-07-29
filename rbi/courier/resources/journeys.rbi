@@ -2,7 +2,11 @@
 
 module Courier
   module Resources
+    # Build, version, publish, invoke, and cancel multi-step notification workflows,
+    # along with the templates scoped to them.
     class Journeys
+      # Build, version, publish, invoke, and cancel multi-step notification workflows,
+      # along with the templates scoped to them.
       sig { returns(Courier::Resources::Journeys::Templates) }
       attr_reader :templates
 

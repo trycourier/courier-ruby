@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Users
+      # Associate a user with one or more tenants, and read or remove those
+      # associations.
       class Tenants
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::TenantListParams} for more details.

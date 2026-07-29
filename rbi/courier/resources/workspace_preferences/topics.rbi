@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class WorkspacePreferences
+      # Manage the workspace catalog of subscription topics, the sections that group
+      # them, and publishing the preference page.
       class Topics
         # Creates a subscription topic inside a workspace preference. The default status
         # sets whether users start opted in, opted out, or required.

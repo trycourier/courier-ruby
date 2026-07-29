@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Profiles
+      # Store the contact information Courier delivers to for each user — email, phone
+      # number, push tokens, and any custom data you send to.
       class Lists
         # Returns the lists a user is subscribed to, with paging. Use it to check what a
         # recipient will receive before sending to a list.

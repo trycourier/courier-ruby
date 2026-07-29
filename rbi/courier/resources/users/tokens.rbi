@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Users
+      # Register and manage the APNS and FCM device tokens Courier delivers push
+      # notifications to.
       class Tokens
         # Returns one device token with its provider key, status and status reason, expiry
         # date, and any properties stored alongside it.

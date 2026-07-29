@@ -4,6 +4,8 @@ module Courier
   module Resources
     class Tenants
       class Templates
+        # Manage the templates and template versions scoped to a single tenant, including
+        # the ones authored in the embedded designer.
         class Versions
           # Some parameter documentations has been truncated, see
           # {Courier::Models::Tenants::Templates::VersionRetrieveParams} for more details.

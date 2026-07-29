@@ -2,7 +2,11 @@
 
 module Courier
   module Resources
+    # Invoke a stored automation template or an ad hoc automation defined in the
+    # request.
     class Automations
+      # Invoke a stored automation template or an ad hoc automation defined in the
+      # request.
       sig { returns(Courier::Resources::Automations::Invoke) }
       attr_reader :invoke
 

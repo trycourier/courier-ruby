@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Providers
+      # Configure the channel providers Courier delivers through, and browse the
+      # provider types it supports.
       class Catalog
         # Returns the provider types Courier supports, each with a display name,
         # description, and the configuration fields it requires.

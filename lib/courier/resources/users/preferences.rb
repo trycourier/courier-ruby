@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Users
+      # Read and write a single user's notification preferences, per topic and per
+      # channel.
       class Preferences
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::PreferenceRetrieveParams} for more details.
