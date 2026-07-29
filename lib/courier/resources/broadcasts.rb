@@ -2,6 +2,8 @@
 
 module Courier
   module Resources
+    # Create a one-off send to a list or audience, author its content, then send it
+    # immediately or schedule it for later.
     class Broadcasts
       # Create a broadcast. Provisions a private notification template for the broadcast
       # and returns the new broadcast in the draft state. Exactly one channel is
