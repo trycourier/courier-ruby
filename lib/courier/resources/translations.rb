@@ -2,11 +2,14 @@
 
 module Courier
   module Resources
+    # Store and retrieve the translation strings Courier uses to render localized
+    # template content.
     class Translations
       # Some parameter documentations has been truncated, see
       # {Courier::Models::TranslationRetrieveParams} for more details.
       #
-      # Get translations by locale
+      # Returns the translation strings stored for one domain and locale, for use in
+      # localized notification content.
       #
       # @overload retrieve(locale, domain:, request_options: {})
       #
@@ -36,7 +39,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::TranslationUpdateParams} for more details.
       #
-      # Update a translation
+      # Uploads the translation strings for one domain and locale. Courier uses them to
+      # render localized content for recipients in that locale.
       #
       # @overload update(locale, domain:, body:, request_options: {})
       #

@@ -2,7 +2,11 @@
 
 module Courier
   module Resources
+    # Create, update, version, publish, and localize notification templates and their
+    # content.
     class Notifications
+      # Create, update, version, publish, and localize notification templates and their
+      # content.
       sig { returns(Courier::Resources::Notifications::Checks) }
       attr_reader :checks
 
@@ -12,16 +16,30 @@ module Courier
         params(
           notification: Courier::NotificationTemplatePayload::OrHash,
           state: Courier::NotificationTemplateCreateRequest::State::OrSymbol,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::NotificationTemplateResponse)
       end
       def create(
-        # Core template fields used in POST and PUT request bodies (nested under a
-        # `notification` key) and returned at the top level in responses.
+        # Body param: Core template fields used in POST and PUT request bodies (nested
+        # under a `notification` key) and returned at the top level in responses.
         notification:,
-        # Template state after creation. Case-insensitive input, normalized to uppercase
-        # in the response. Defaults to "DRAFT".
+        # Body param: Template state after creation. Case-insensitive input, normalized to
+        # uppercase in the response. Defaults to "DRAFT".
         state: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
@@ -45,7 +63,8 @@ module Courier
       )
       end
 
-      # List notification templates in your workspace.
+      # Lists the workspace's notification templates. Each carries a name, tags, brand,
+      # routing, and its draft or published state.
       sig do
         params(
           cursor: T.nilable(String),
@@ -65,7 +84,8 @@ module Courier
       )
       end
 
-      # Archive a notification template.
+      # Archives a notification template, preventing new sends from referencing it. The
+      # template stays retrievable for its version history.
       sig do
         params(
           id: String,
@@ -79,12 +99,9 @@ module Courier
       )
       end
 
-      # Duplicate a notification template. Creates a standalone copy within the same
-      # workspace and environment, with " COPY" appended to the title. The copy clones
-      # the source draft's tags, brand, subscription topic, routing strategy, channels,
-      # and content, and is always created as a standalone template (it is not linked to
-      # any journey or broadcast, even if the source was). Templates that are scoped to
-      # a journey or a broadcast cannot be duplicated through this endpoint.
+      # Copies a notification template within the same workspace and environment,
+      # appending " COPY" to the title. The copy is standalone and independently
+      # editable.
       sig do
         params(
           id: String,
@@ -98,7 +115,8 @@ module Courier
       )
       end
 
-      # List versions of a notification template.
+      # Returns a notification template's published versions, most recent first, for
+      # comparison or rollback. Paged.
       sig do
         params(
           id: String,
@@ -124,21 +142,35 @@ module Courier
         params(
           id: String,
           version: String,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).void
       end
       def publish(
-        # Template ID (nt\_ prefix).
+        # Path param: Template ID (nt\_ prefix).
         id,
-        # Historical version to publish (e.g. "v001"). Omit to publish the current draft.
+        # Body param: Historical version to publish (e.g. "v001"). Omit to publish the
+        # current draft.
         version: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
 
-      # Replace the elemental content of a notification template. Overwrites all
-      # elements in the template with the provided content. Only supported for V2
-      # (elemental) templates.
+      # Replaces all Elemental content in a template, overwriting every existing
+      # element. Supported for V2 templates only, not V1 blocks and channels.
       sig do
         params(
           id: String,
@@ -158,8 +190,8 @@ module Courier
       )
       end
 
-      # Update a single element within a notification template. Only supported for V2
-      # (elemental) templates.
+      # Replaces one Elemental element in a template, addressed by its element id.
+      # Supported for V2 templates only, not V1 blocks and channels.
       sig do
         params(
           element_id: String,
@@ -197,9 +229,8 @@ module Courier
       )
       end
 
-      # Set locale-specific content overrides for a notification template. Each element
-      # override must reference an existing element by ID. Only supported for V2
-      # (elemental) templates.
+      # Sets locale-specific content overrides for a template. Each override must
+      # reference an element that already exists in the default content.
       sig do
         params(
           locale_id: String,
@@ -223,7 +254,8 @@ module Courier
       )
       end
 
-      # Replace a notification template. All fields are required.
+      # Replaces a notification template in full, so send every field rather than only
+      # the ones you want changed. Publish separately to make it live.
       sig do
         params(
           id: String,
@@ -245,10 +277,8 @@ module Courier
       )
       end
 
-      # Retrieve the content of a notification template. The response shape depends on
-      # whether the template uses V1 (blocks/channels) or V2 (elemental) content. Use
-      # the `version` query parameter to select draft, published, or a specific
-      # historical version.
+      # Returns a template's content and checksum. V2 templates return Elemental
+      # elements, while V1 templates return blocks and channels instead.
       sig do
         params(
           id: String,

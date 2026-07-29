@@ -2,25 +2,33 @@
 
 module Courier
   module Resources
+    # Configure the channel providers Courier delivers through, and browse the
+    # provider types it supports.
     class Providers
+      # Configure the channel providers Courier delivers through, and browse the
+      # provider types it supports.
       # @return [Courier::Resources::Providers::Catalog]
       attr_reader :catalog
 
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProviderCreateParams} for more details.
       #
-      # Create a new provider configuration. The `provider` field must be a known
-      # Courier provider key (see catalog).
+      # Configures a provider integration from a Courier provider key and its settings.
+      # Check the catalog endpoint for the schema each provider expects.
       #
-      # @overload create(provider:, alias_: nil, settings: nil, title: nil, request_options: {})
+      # @overload create(provider:, alias_: nil, settings: nil, title: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param provider [String] The provider key identifying the type (e.g. "sendgrid", "twilio"). Must be a kno
+      # @param provider [String] Body param: The provider key identifying the type (e.g. "sendgrid", "twilio"). M
       #
-      # @param alias_ [String] Optional alias for this configuration.
+      # @param alias_ [String] Body param: Optional alias for this configuration.
       #
-      # @param settings [Hash{Symbol=>Object}] Provider-specific settings (snake_case keys). Defaults to an empty object when o
+      # @param settings [Hash{Symbol=>Object}] Body param: Provider-specific settings (snake_case keys). Defaults to an empty o
       #
-      # @param title [String] Optional display title. Omit to use "Default Configuration".
+      # @param title [String] Body param: Optional display title. Omit to use "Default Configuration".
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -29,16 +37,20 @@ module Courier
       # @see Courier::Models::ProviderCreateParams
       def create(params)
         parsed, options = Courier::ProviderCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: "providers",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::Provider,
           options: options
         )
       end
 
-      # Fetch a single provider configuration by ID.
+      # Returns one configured provider by id, including its channel, provider key,
+      # alias, title, and current settings.
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -61,11 +73,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProviderUpdateParams} for more details.
       #
-      # Replace an existing provider configuration. The `provider` key is required and
-      # determines which provider-specific settings schema is applied. All other fields
-      # are optional — omitted fields are cleared from the stored configuration (this is
-      # a full replacement, not a partial merge). Changing the provider type for an
-      # existing configuration is not supported.
+      # Replaces a provider's configuration in full, clearing any field you omit rather
+      # than merging it. Send the complete settings object.
       #
       # @overload update(id, provider:, alias_: nil, settings: nil, title: nil, request_options: {})
       #
@@ -95,8 +104,8 @@ module Courier
         )
       end
 
-      # List configured provider integrations for the current workspace. Supports
-      # cursor-based pagination.
+      # Lists the provider integrations configured in the workspace, one entry per
+      # channel and provider key with its alias and settings.
       #
       # @overload list(cursor: nil, request_options: {})
       #
@@ -119,8 +128,8 @@ module Courier
         )
       end
 
-      # Delete a provider configuration. Returns 409 if the provider is still referenced
-      # by routing or notifications.
+      # Deletes a provider configuration, which fails while routing strategies or
+      # templates still reference it. Update those references first.
       #
       # @overload delete(id, request_options: {})
       #

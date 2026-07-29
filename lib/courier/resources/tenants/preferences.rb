@@ -4,6 +4,8 @@ module Courier
   module Resources
     class Tenants
       class Preferences
+        # Manage tenants — the organizations, teams, or accounts your users belong to —
+        # along with their users and default preferences.
         # @return [Courier::Resources::Tenants::Preferences::Items]
         attr_reader :items
 

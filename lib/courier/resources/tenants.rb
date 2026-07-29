@@ -2,14 +2,19 @@
 
 module Courier
   module Resources
+    # Manage tenants — the organizations, teams, or accounts your users belong to —
+    # along with their users and default preferences.
     class Tenants
       # @return [Courier::Resources::Tenants::Preferences]
       attr_reader :preferences
 
+      # Manage the templates and template versions scoped to a single tenant, including
+      # the ones authored in the embedded designer.
       # @return [Courier::Resources::Tenants::Templates]
       attr_reader :templates
 
-      # Get a Tenant
+      # Returns one tenant with its name, parent tenant id, default preferences,
+      # properties, and the user profile applied to its members.
       #
       # @overload retrieve(tenant_id, request_options: {})
       #
@@ -32,7 +37,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::TenantUpdateParams} for more details.
       #
-      # Create or Replace a Tenant
+      # Creates or replaces a tenant from a name, parent, brand, properties, and default
+      # preferences supplied in the request body.
       #
       # @overload update(tenant_id, name:, brand_id: nil, default_preferences: nil, parent_tenant_id: nil, properties: nil, user_profile: nil, request_options: {})
       #
@@ -69,7 +75,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::TenantListParams} for more details.
       #
-      # Get a List of Tenants
+      # Lists the workspace's tenants, each carrying a name, parent tenant, properties,
+      # and default preferences. Paged.
       #
       # @overload list(cursor: nil, limit: nil, parent_tenant_id: nil, request_options: {})
       #
@@ -96,7 +103,8 @@ module Courier
         )
       end
 
-      # Delete a Tenant
+      # Deletes a tenant. Its members' workspace-level profiles and preferences live
+      # outside the tenant and are managed separately.
       #
       # @overload delete(tenant_id, request_options: {})
       #
@@ -119,7 +127,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::TenantListUsersParams} for more details.
       #
-      # Get Users in Tenant
+      # Returns the users belonging to a tenant with cursor paging. Use it to see who a
+      # tenant-scoped send will reach.
       #
       # @overload list_users(tenant_id, cursor: nil, limit: nil, request_options: {})
       #

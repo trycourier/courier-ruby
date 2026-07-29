@@ -2,23 +2,32 @@
 
 module Courier
   module Resources
+    # Define reusable channel routing and failover strategies, and see which templates
+    # use them.
     class RoutingStrategies
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::RoutingStrategyCreateParams} for more details.
+      #
       # Create a routing strategy. Requires a name and routing configuration at minimum.
       # Channels and providers default to empty if omitted.
       #
-      # @overload create(name:, routing:, channels: nil, description: nil, providers: nil, tags: nil, request_options: {})
+      # @overload create(name:, routing:, channels: nil, description: nil, providers: nil, tags: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param name [String] Human-readable name for the routing strategy.
+      # @param name [String] Body param: Human-readable name for the routing strategy.
       #
-      # @param routing [Courier::Models::MessageRouting] Routing tree defining channel selection method and order.
+      # @param routing [Courier::Models::MessageRouting] Body param: Routing tree defining channel selection method and order.
       #
-      # @param channels [Hash{Symbol=>Courier::Models::Channel}, nil] Per-channel delivery configuration. Defaults to empty if omitted.
+      # @param channels [Hash{Symbol=>Courier::Models::Channel}, nil] Body param: Per-channel delivery configuration. Defaults to empty if omitted.
       #
-      # @param description [String, nil] Optional description of the routing strategy.
+      # @param description [String, nil] Body param: Optional description of the routing strategy.
       #
-      # @param providers [Hash{Symbol=>Courier::Models::MessageProvidersType}, nil] Per-provider delivery configuration. Defaults to empty if omitted.
+      # @param providers [Hash{Symbol=>Courier::Models::MessageProvidersType}, nil] Body param: Per-provider delivery configuration. Defaults to empty if omitted.
       #
-      # @param tags [Array<String>, nil] Optional tags for categorization.
+      # @param tags [Array<String>, nil] Body param: Optional tags for categorization.
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -27,17 +36,20 @@ module Courier
       # @see Courier::Models::RoutingStrategyCreateParams
       def create(params)
         parsed, options = Courier::RoutingStrategyCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: "routing-strategies",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::RoutingStrategyGetResponse,
           options: options
         )
       end
 
-      # Retrieve a routing strategy by ID. Returns the full entity including routing
-      # content and metadata.
+      # Returns one routing strategy by id with its name, tags, channels, and the
+      # routing rules that decide provider order and fallback.
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -105,8 +117,8 @@ module Courier
         )
       end
 
-      # List notification templates associated with a routing strategy. Includes
-      # template metadata only, not full content.
+      # Returns the notification templates using a routing strategy, with paging. Check
+      # this before changing a strategy that templates depend on.
       #
       # @overload list_notifications(id, cursor: nil, limit: nil, request_options: {})
       #

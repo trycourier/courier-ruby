@@ -3,8 +3,11 @@
 module Courier
   module Resources
     class Lists
+      # Manage static groups of users that you subscribe explicitly, and send to them by
+      # list id or list pattern.
       class Subscriptions
-        # Get the list's subscriptions.
+        # Returns the users subscribed to a list with paging, each with the preferences
+        # recorded for that subscription.
         sig do
           params(
             list_id: String,
@@ -27,13 +30,28 @@ module Courier
           params(
             list_id: String,
             recipients: T::Array[Courier::PutSubscriptionsRecipient::OrHash],
+            idempotency_key: String,
+            x_idempotency_expiration: String,
             request_options: Courier::RequestOptions::OrHash
           ).void
         end
         def add(
-          # A unique identifier representing the list you wish to retrieve.
+          # Path param: A unique identifier representing the list you wish to retrieve.
           list_id,
+          # Body param
           recipients:,
+          # Header param: A unique key that makes this request idempotent. If Courier
+          # receives another request with the same `Idempotency-Key`, it returns the stored
+          # response from the first request without performing the operation again
+          # (including the original status code and any error). Use it to safely retry
+          # `POST` requests after network failures without risking duplicate sends. The key
+          # is scoped to this endpoint.
+          idempotency_key: nil,
+          # Header param: How long the idempotency key remains valid, as a Unix epoch
+          # timestamp in seconds or an ISO 8601 date string. Only applies when
+          # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+          # maximum is 1 year.
+          x_idempotency_expiration: nil,
           request_options: {}
         )
         end
@@ -55,8 +73,8 @@ module Courier
         )
         end
 
-        # Subscribe a user to an existing list (note: if the List does not exist, it will
-        # be automatically created).
+        # Subscribes one user to a list, creating the list if it does not yet exist.
+        # Optional preferences apply to this subscription only.
         sig do
           params(
             user_id: String,
@@ -77,7 +95,8 @@ module Courier
         )
         end
 
-        # Delete a subscription to a list by list ID and user ID.
+        # Removes one user's subscription to a list, addressed by list id and user id. The
+        # user's profile and other subscriptions are separate resources.
         sig do
           params(
             user_id: String,

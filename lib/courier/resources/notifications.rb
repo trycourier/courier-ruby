@@ -2,7 +2,11 @@
 
 module Courier
   module Resources
+    # Create, update, version, publish, and localize notification templates and their
+    # content.
     class Notifications
+      # Create, update, version, publish, and localize notification templates and their
+      # content.
       # @return [Courier::Resources::Notifications::Checks]
       attr_reader :checks
 
@@ -12,11 +16,15 @@ module Courier
       # Create a notification template. Requires all fields in the notification object.
       # Templates are created in draft state by default.
       #
-      # @overload create(notification:, state: nil, request_options: {})
+      # @overload create(notification:, state: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
+      # @param notification [Courier::Models::NotificationTemplatePayload] Body param: Core template fields used in POST and PUT request bodies (nested und
       #
-      # @param state [Symbol, Courier::Models::NotificationTemplateCreateRequest::State] Template state after creation. Case-insensitive input, normalized to uppercase i
+      # @param state [Symbol, Courier::Models::NotificationTemplateCreateRequest::State] Body param: Template state after creation. Case-insensitive input, normalized to
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -25,10 +33,13 @@ module Courier
       # @see Courier::Models::NotificationCreateParams
       def create(params)
         parsed, options = Courier::NotificationCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: "notifications",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::NotificationTemplateResponse,
           options: options
         )
@@ -63,7 +74,8 @@ module Courier
         )
       end
 
-      # List notification templates in your workspace.
+      # Lists the workspace's notification templates. Each carries a name, tags, brand,
+      # routing, and its draft or published state.
       #
       # @overload list(cursor: nil, event_id: nil, notes: nil, request_options: {})
       #
@@ -90,7 +102,8 @@ module Courier
         )
       end
 
-      # Archive a notification template.
+      # Archives a notification template, preventing new sends from referencing it. The
+      # template stays retrievable for its version history.
       #
       # @overload archive(id, request_options: {})
       #
@@ -110,12 +123,9 @@ module Courier
         )
       end
 
-      # Duplicate a notification template. Creates a standalone copy within the same
-      # workspace and environment, with " COPY" appended to the title. The copy clones
-      # the source draft's tags, brand, subscription topic, routing strategy, channels,
-      # and content, and is always created as a standalone template (it is not linked to
-      # any journey or broadcast, even if the source was). Templates that are scoped to
-      # a journey or a broadcast cannot be duplicated through this endpoint.
+      # Copies a notification template within the same workspace and environment,
+      # appending " COPY" to the title. The copy is standalone and independently
+      # editable.
       #
       # @overload duplicate(id, request_options: {})
       #
@@ -135,7 +145,8 @@ module Courier
         )
       end
 
-      # List versions of a notification template.
+      # Returns a notification template's published versions, most recent first, for
+      # comparison or rollback. Paged.
       #
       # @overload list_versions(id, cursor: nil, limit: nil, request_options: {})
       #
@@ -162,14 +173,21 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::NotificationPublishParams} for more details.
+      #
       # Publish a notification template. Publishes the current draft by default. Pass a
       # version in the request body to publish a specific historical version.
       #
-      # @overload publish(id, version: nil, request_options: {})
+      # @overload publish(id, version: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param id [String] Template ID (nt\_ prefix).
+      # @param id [String] Path param: Template ID (nt\_ prefix).
       #
-      # @param version [String] Historical version to publish (e.g. "v001"). Omit to publish the current draft.
+      # @param version [String] Body param: Historical version to publish (e.g. "v001"). Omit to publish the cur
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -178,18 +196,20 @@ module Courier
       # @see Courier::Models::NotificationPublishParams
       def publish(id, params = {})
         parsed, options = Courier::NotificationPublishParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: ["notifications/%1$s/publish", id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: NilClass,
           options: options
         )
       end
 
-      # Replace the elemental content of a notification template. Overwrites all
-      # elements in the template with the provided content. Only supported for V2
-      # (elemental) templates.
+      # Replaces all Elemental content in a template, overwriting every existing
+      # element. Supported for V2 templates only, not V1 blocks and channels.
       #
       # @overload put_content(id, content:, state: nil, request_options: {})
       #
@@ -215,8 +235,8 @@ module Courier
         )
       end
 
-      # Update a single element within a notification template. Only supported for V2
-      # (elemental) templates.
+      # Replaces one Elemental element in a template, addressed by its element id.
+      # Supported for V2 templates only, not V1 blocks and channels.
       #
       # @overload put_element(element_id, id:, type:, channels: nil, data: nil, if_: nil, loop_: nil, ref: nil, state: nil, request_options: {})
       #
@@ -258,9 +278,8 @@ module Courier
         )
       end
 
-      # Set locale-specific content overrides for a notification template. Each element
-      # override must reference an existing element by ID. Only supported for V2
-      # (elemental) templates.
+      # Sets locale-specific content overrides for a template. Each override must
+      # reference an element that already exists in the default content.
       #
       # @overload put_locale(locale_id, id:, elements:, state: nil, request_options: {})
       #
@@ -295,7 +314,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::NotificationReplaceParams} for more details.
       #
-      # Replace a notification template. All fields are required.
+      # Replaces a notification template in full, so send every field rather than only
+      # the ones you want changed. Publish separately to make it live.
       #
       # @overload replace(id, notification:, state: nil, request_options: {})
       #
@@ -324,10 +344,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::NotificationRetrieveContentParams} for more details.
       #
-      # Retrieve the content of a notification template. The response shape depends on
-      # whether the template uses V1 (blocks/channels) or V2 (elemental) content. Use
-      # the `version` query parameter to select draft, published, or a specific
-      # historical version.
+      # Returns a template's content and checksum. V2 templates return Elemental
+      # elements, while V1 templates return blocks and channels instead.
       #
       # @overload retrieve_content(id, version: nil, request_options: {})
       #

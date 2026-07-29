@@ -2,21 +2,29 @@
 
 module Courier
   module Resources
+    # Store the contact information Courier delivers to for each user — email, phone
+    # number, push tokens, and any custom data you send to.
     class Profiles
+      # Store the contact information Courier delivers to for each user — email, phone
+      # number, push tokens, and any custom data you send to.
       # @return [Courier::Resources::Profiles::Lists]
       attr_reader :lists
 
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProfileCreateParams} for more details.
       #
-      # Merge the supplied values with an existing profile or create a new profile if
-      # one doesn't already exist.
+      # Merges the supplied values into a user's profile, creating it if absent and
+      # leaving any key you omit untouched. Prefer this for everyday writes.
       #
-      # @overload create(user_id, profile:, request_options: {})
+      # @overload create(user_id, profile:, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param user_id [String] A unique identifier representing the user associated with the requested profile.
+      # @param user_id [String] Path param: A unique identifier representing the user associated with the reques
       #
-      # @param profile [Hash{Symbol=>Object}]
+      # @param profile [Hash{Symbol=>Object}] Body param
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -25,10 +33,13 @@ module Courier
       # @see Courier::Models::ProfileCreateParams
       def create(user_id, params)
         parsed, options = Courier::ProfileCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: ["profiles/%1$s", user_id],
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::Models::ProfileCreateResponse,
           options: options
         )
@@ -37,7 +48,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProfileRetrieveParams} for more details.
       #
-      # Returns the specified user profile.
+      # Returns a user's stored profile and preferences, including the email address,
+      # phone number, and push tokens Courier can reach them on.
       #
       # @overload retrieve(user_id, request_options: {})
       #
@@ -60,7 +72,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProfileUpdateParams} for more details.
       #
-      # Update a profile
+      # Applies a JSON Patch to a user profile, adding, removing, or replacing
+      # individual fields without sending the whole object.
       #
       # @overload update(user_id, patch:, request_options: {})
       #
@@ -87,7 +100,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProfileDeleteParams} for more details.
       #
-      # Deletes the specified user profile.
+      # Deletes a user's profile and stored contact details. List subscriptions and
+      # preferences are separate resources, so remove those too if required.
       #
       # @overload delete(user_id, request_options: {})
       #
@@ -110,11 +124,8 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProfileReplaceParams} for more details.
       #
-      # When using `PUT`, be sure to include all the key-value pairs required by the
-      # recipient's profile. Any key-value pairs that exist in the profile but fail to
-      # be included in the `PUT` request will be removed from the profile. Remember, a
-      # `PUT` update is a full replacement of the data. For partial updates, use the
-      # [Patch](https://www.courier.com/docs/reference/profiles/patch/) request.
+      # Overwrites a user profile in full, removing any key absent from the request
+      # body. Use the patch endpoint when changing a single field.
       #
       # @overload replace(user_id, profile:, request_options: {})
       #

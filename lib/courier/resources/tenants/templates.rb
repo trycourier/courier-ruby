@@ -3,11 +3,16 @@
 module Courier
   module Resources
     class Tenants
+      # Manage the templates and template versions scoped to a single tenant, including
+      # the ones authored in the embedded designer.
       class Templates
+        # Manage the templates and template versions scoped to a single tenant, including
+        # the ones authored in the embedded designer.
         # @return [Courier::Resources::Tenants::Templates::Versions]
         attr_reader :versions
 
-        # Get a Template in Tenant
+        # Returns a tenant's notification template with its content, version, and created,
+        # updated, and published timestamps.
         #
         # @overload retrieve(template_id, tenant_id:, request_options: {})
         #
@@ -34,7 +39,8 @@ module Courier
           )
         end
 
-        # List Templates in Tenant
+        # Lists a tenant's notification templates, each carrying its version and published
+        # timestamp. Paged.
         #
         # @overload list(tenant_id, cursor: nil, limit: nil, request_options: {})
         #
@@ -61,12 +67,8 @@ module Courier
           )
         end
 
-        # Deletes the tenant's notification template with the given `template_id`.
-        #
-        # Returns **204 No Content** with an empty body on success.
-        #
-        # Returns **404** if there is no template with this ID for the tenant, including a
-        # second `DELETE` after a successful removal.
+        # Deletes a tenant's notification template by id. Sends for that tenant then use
+        # the workspace template registered under the same id.
         #
         # @overload delete(template_id, tenant_id:, request_options: {})
         #
@@ -96,10 +98,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Tenants::TemplatePublishParams} for more details.
         #
-        # Publishes a specific version of a notification template for a tenant.
-        #
-        # The template must already exist in the tenant's notification map. If no version
-        # is specified, defaults to publishing the "latest" version.
+        # Publishes a version of a tenant's notification template, making it the content
+        # that tenant's sends render from until you publish another.
         #
         # @overload publish(template_id, tenant_id:, version: nil, request_options: {})
         #
@@ -132,13 +132,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Tenants::TemplateReplaceParams} for more details.
         #
-        # Creates or updates a notification template for a tenant.
-        #
-        # If the template already exists for the tenant, it will be updated (200).
-        # Otherwise, a new template is created (201).
-        #
-        # Optionally publishes the template immediately if the `published` flag is set to
-        # true.
+        # Creates or updates a notification template scoped to one tenant, letting a
+        # tenant override the content the workspace template would send.
         #
         # @overload replace(template_id, tenant_id:, template:, published: nil, request_options: {})
         #

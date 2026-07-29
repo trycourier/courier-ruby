@@ -1,7 +1,11 @@
 module Courier
   module Models
     type send_message_params =
-      { message: Courier::SendMessageParams::Message }
+      {
+        message: Courier::SendMessageParams::Message,
+        idempotency_key: String,
+        x_idempotency_expiration: String
+      }
       & Courier::Internal::Type::request_parameters
 
     class SendMessageParams < Courier::Internal::Type::BaseModel
@@ -10,13 +14,25 @@ module Courier
 
       attr_accessor message: Courier::SendMessageParams::Message
 
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      attr_reader x_idempotency_expiration: String?
+
+      def x_idempotency_expiration=: (String) -> String
+
       def initialize: (
         message: Courier::SendMessageParams::Message,
+        ?idempotency_key: String,
+        ?x_idempotency_expiration: String,
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         message: Courier::SendMessageParams::Message,
+        idempotency_key: String,
+        x_idempotency_expiration: String,
         request_options: Courier::RequestOptions
       }
 

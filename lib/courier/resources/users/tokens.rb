@@ -3,8 +3,11 @@
 module Courier
   module Resources
     class Users
+      # Register and manage the APNS and FCM device tokens Courier delivers push
+      # notifications to.
       class Tokens
-        # Get single token available for a `:token`
+        # Returns one device token with its provider key, status and status reason, expiry
+        # date, and any properties stored alongside it.
         #
         # @overload retrieve(token, user_id:, request_options: {})
         #
@@ -31,7 +34,8 @@ module Courier
           )
         end
 
-        # Apply a JSON Patch (RFC 6902) to the specified token.
+        # Applies a JSON Patch to a device token, changing its status, expiry, or
+        # properties without re-registering it.
         #
         # @overload update(token, user_id:, patch:, request_options: {})
         #
@@ -61,7 +65,8 @@ module Courier
           )
         end
 
-        # Gets all tokens available for a :user_id
+        # Returns every device token registered for a user, each with its provider key,
+        # status, and expiry date.
         #
         # @overload list(user_id, request_options: {})
         #
@@ -81,7 +86,8 @@ module Courier
           )
         end
 
-        # Delete User Token
+        # Deletes one device token for a user, addressed by the token value, so push sends
+        # no longer target that device.
         #
         # @overload delete(token, user_id:, request_options: {})
         #
@@ -108,7 +114,8 @@ module Courier
           )
         end
 
-        # Adds multiple tokens to a user and overwrites matching existing tokens.
+        # Registers several device tokens for a user in one call, overwriting any stored
+        # token with a matching value.
         #
         # @overload add_multiple(user_id, request_options: {})
         #
@@ -131,7 +138,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::TokenAddSingleParams} for more details.
         #
-        # Adds a single token to a user and overwrites a matching existing token.
+        # Registers one device token for a user against a provider key, overwriting the
+        # token if it already exists. Push sends resolve tokens per user.
         #
         # @overload add_single(token, user_id:, provider_key:, device: nil, expiry_date: nil, properties: nil, tracking: nil, request_options: {})
         #

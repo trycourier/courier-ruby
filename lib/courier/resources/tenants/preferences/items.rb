@@ -4,11 +4,14 @@ module Courier
   module Resources
     class Tenants
       class Preferences
+        # Manage tenants — the organizations, teams, or accounts your users belong to —
+        # along with their users and default preferences.
         class Items
           # Some parameter documentations has been truncated, see
           # {Courier::Models::Tenants::Preferences::ItemUpdateParams} for more details.
           #
-          # Create or Replace Default Preferences For Topic
+          # Sets a tenant's default opt-in status for one subscription topic, which applies
+          # to every member unless a user sets their own override.
           #
           # @overload update(topic_id, tenant_id:, status:, custom_routing: nil, has_custom_routing: nil, request_options: {})
           #
@@ -42,7 +45,8 @@ module Courier
             )
           end
 
-          # Remove Default Preferences For Topic
+          # Removes a tenant's default preference for one subscription topic, addressed by
+          # tenant id and topic id.
           #
           # @overload delete(topic_id, tenant_id:, request_options: {})
           #

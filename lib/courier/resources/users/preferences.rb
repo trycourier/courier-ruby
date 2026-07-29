@@ -3,11 +3,14 @@
 module Courier
   module Resources
     class Users
+      # Read and write a single user's notification preferences, per topic and per
+      # channel.
       class Preferences
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::PreferenceRetrieveParams} for more details.
         #
-        # Fetch all user preferences.
+        # Returns a user's preference overrides with paging, one entry per subscription
+        # topic they have set a choice for.
         #
         # @overload retrieve(user_id, tenant_id: nil, request_options: {})
         #
@@ -35,23 +38,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::PreferenceBulkReplaceParams} for more details.
         #
-        # Replace a user's complete set of preference overrides in a single request. The
-        # topics in the request body become the recipient's entire set of overrides:
-        # listed topics are created or updated, and every existing override that is not
-        # included in the body is reset to its topic default. Submitting an empty `topics`
-        # array is a valid clear-all that resets every existing override.
-        #
-        # This operation is validation-atomic (all-or-nothing): structural validation
-        # fails fast with a single `400`, and if any topic is semantically invalid (an
-        # unknown topic, a `REQUIRED` topic that cannot be opted out, or a custom routing
-        # request that is not available on the workspace's plan) the request returns a
-        # single `400` aggregating every failure in `errors` and writes nothing. On
-        # success it returns `200` with `items` (the complete resulting override set) and
-        # `deleted` (the ids of the overrides that were reset to default).
-        #
-        # Every `topic_id` in the response — in `items`, `deleted`, and any `errors` — is
-        # returned in Courier's canonical topic id form, regardless of the form supplied
-        # in the request.
+        # Replaces a user's entire set of preference overrides. Any topic you leave out is
+        # reset to its default, so send the full set rather than a subset.
         #
         # @overload bulk_replace(user_id, topics:, tenant_id: nil, request_options: {})
         #
@@ -83,31 +71,20 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::PreferenceBulkUpdateParams} for more details.
         #
-        # Additively create or update a user's preferences for one or more subscription
-        # topics in a single request. Only the topics included in the request body are
-        # created or updated; any existing overrides for topics not listed are left
-        # untouched.
+        # Adds or updates a user's preferences for several subscription topics at once.
+        # Topics you leave out keep whatever they were set to before.
         #
-        # Structural validation of the request body fails fast with a single `400`. Beyond
-        # that, each topic is processed independently (partial-success, not
-        # all-or-nothing): valid topics are written and returned in `items`, while topics
-        # that cannot be applied are collected in `errors` with a per-topic `reason` (for
-        # example an unknown topic, a `REQUIRED` topic that cannot be opted out, a custom
-        # routing request that is not available on the workspace's plan, or a write
-        # failure). The request therefore returns `200` with both lists whenever the body
-        # is structurally valid.
-        #
-        # Every `topic_id` in the response — in both `items` and `errors` — is returned in
-        # Courier's canonical topic id form, regardless of the form supplied in the
-        # request.
-        #
-        # @overload bulk_update(user_id, topics:, tenant_id: nil, request_options: {})
+        # @overload bulk_update(user_id, topics:, tenant_id: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
         # @param user_id [String] Path param: A unique identifier associated with the user whose preferences you w
         #
         # @param topics [Array<Courier::Models::Users::PreferenceBulkUpdateParams::Topic>] Body param: The topics to create or update. Between 1 and 50 topics may be provi
         #
         # @param tenant_id [String, nil] Query param: Update the preferences of a user for this specific tenant context.
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -116,13 +93,16 @@ module Courier
         # @see Courier::Models::Users::PreferenceBulkUpdateParams
         def bulk_update(user_id, params)
           query_params = [:tenant_id]
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           parsed, options = Courier::Users::PreferenceBulkUpdateParams.dump_request(params)
           query = Courier::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
             method: :post,
             path: ["users/%1$s/preferences", user_id],
             query: query,
-            body: parsed.except(*query_params),
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*query_params, *header_params.keys),
             model: Courier::Models::Users::PreferenceBulkUpdateResponse,
             options: options
           )
@@ -131,9 +111,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::PreferenceDeleteTopicParams} for more details.
         #
-        # Remove a user's preferences for a specific subscription topic, resetting the
-        # topic to its effective default. This operation is idempotent: deleting a
-        # preference that does not exist succeeds with no error.
+        # Removes a user's override for one subscription topic, resetting it to the
+        # effective default from the tenant or workspace.
         #
         # @overload delete_topic(topic_id, user_id:, tenant_id: nil, request_options: {})
         #
@@ -167,7 +146,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::PreferenceRetrieveTopicParams} for more details.
         #
-        # Fetch user preferences for a specific subscription topic.
+        # Returns a user's opt-in status and channel choices for one subscription topic,
+        # or the effective default if they have set no override.
         #
         # @overload retrieve_topic(topic_id, user_id:, tenant_id: nil, request_options: {})
         #
@@ -201,7 +181,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Users::PreferenceUpdateOrCreateTopicParams} for more details.
         #
-        # Update or Create user preferences for a specific subscription topic.
+        # Sets a user's opt-in status and channel choices for one subscription topic,
+        # overriding the tenant default for that topic only.
         #
         # @overload update_or_create_topic(topic_id, user_id:, topic:, tenant_id: nil, request_options: {})
         #

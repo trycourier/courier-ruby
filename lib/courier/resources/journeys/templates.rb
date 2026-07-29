@@ -3,21 +3,30 @@
 module Courier
   module Resources
     class Journeys
+      # Build, version, publish, invoke, and cancel multi-step notification workflows,
+      # along with the templates scoped to them.
       class Templates
+        # Some parameter documentations has been truncated, see
+        # {Courier::Models::Journeys::TemplateCreateParams} for more details.
+        #
         # Create a notification template scoped to this journey. Defaults to `DRAFT`
         # state; pass `state: "PUBLISHED"` to publish on create.
         #
-        # @overload create(template_id, channel:, notification:, provider_key: nil, state: nil, request_options: {})
+        # @overload create(template_id, channel:, notification:, provider_key: nil, state: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
-        # @param template_id [String] Journey id
+        # @param template_id [String] Path param: Journey id
         #
-        # @param channel [String]
+        # @param channel [String] Body param
         #
-        # @param notification [Courier::Models::JourneyTemplateCreateRequest::Notification]
+        # @param notification [Courier::Models::JourneyTemplateCreateRequest::Notification] Body param
         #
-        # @param provider_key [String]
+        # @param provider_key [String] Body param
         #
-        # @param state [String]
+        # @param state [String] Body param
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -26,18 +35,20 @@ module Courier
         # @see Courier::Models::Journeys::TemplateCreateParams
         def create(template_id, params)
           parsed, options = Courier::Journeys::TemplateCreateParams.dump_request(params)
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           @client.request(
             method: :post,
             path: ["journeys/%1$s/templates", template_id],
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: Courier::JourneyTemplateGetResponse,
             options: options
           )
         end
 
-        # Fetch a journey-scoped notification template by id. Pass `?version=draft`
-        # (default `published`) to retrieve the working draft, or `?version=vN` for a
-        # historical version.
+        # Returns a journey's own notification template with its name, brand, subscription
+        # topic, and content. Defaults to the published version.
         #
         # @overload retrieve(notification_id, template_id:, request_options: {})
         #
@@ -92,8 +103,8 @@ module Courier
           )
         end
 
-        # Archive the journey-scoped notification template. Archived templates cannot be
-        # sent.
+        # Archives one journey's notification template, preventing further sends. Detach
+        # any send node referencing it beforehand.
         #
         # @overload archive(notification_id, template_id:, request_options: {})
         #
@@ -120,8 +131,8 @@ module Courier
           )
         end
 
-        # List published versions of the journey-scoped notification template, ordered
-        # most recent first.
+        # Lists the published versions of a template that belongs to a journey, most
+        # recent first. Paged by cursor.
         #
         # @overload list_versions(notification_id, template_id:, request_options: {})
         #
@@ -148,17 +159,23 @@ module Courier
           )
         end
 
-        # Publish the current draft of the journey-scoped notification template as a new
-        # version. Optionally roll back to a prior version by passing
-        # `{ "version": "vN" }`.
+        # Some parameter documentations has been truncated, see
+        # {Courier::Models::Journeys::TemplatePublishParams} for more details.
         #
-        # @overload publish(notification_id, template_id:, version: nil, request_options: {})
+        # Publishes a journey-scoped template's draft as a new version. Pass a version
+        # instead to roll back the template to an earlier publish.
+        #
+        # @overload publish(notification_id, template_id:, version: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
         # @param notification_id [String] Path param: Notification template id
         #
         # @param template_id [String] Path param: Journey id
         #
         # @param version [String] Body param
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -171,10 +188,13 @@ module Courier
             parsed.delete(:template_id) do
               raise ArgumentError.new("missing required path argument #{_1}")
             end
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           @client.request(
             method: :post,
             path: ["journeys/%1$s/templates/%2$s/publish", template_id, notification_id],
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: NilClass,
             options: options
           )
@@ -255,7 +275,8 @@ module Courier
           )
         end
 
-        # Replace the journey-scoped notification template draft.
+        # Replaces the draft content of one journey's notification template. Publish it
+        # before send nodes referencing it render the change.
         #
         # @overload replace(notification_id, template_id:, notification:, state: nil, request_options: {})
         #
@@ -290,11 +311,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Journeys::TemplateRetrieveContentParams} for more details.
         #
-        # Retrieve the elemental content of a journey-scoped notification template. The
-        # response contains the versioned elements along with their content checksums,
-        # which can be used to detect changes between versions. Pass `?version=draft`
-        # (default `published`) to retrieve the working draft, or `?version=vN` for a
-        # historical version.
+        # Returns the Elemental elements and version of a journey-scoped template's
+        # content. Compare versions to see what changed between publishes.
         #
         # @overload retrieve_content(notification_id, template_id:, version: nil, request_options: {})
         #

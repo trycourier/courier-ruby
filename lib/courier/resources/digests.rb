@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Digests
+      # Inspect what has accumulated in a digest schedule and release a digest ahead of
+      # its next scheduled delivery.
       # @return [Courier::Resources::Digests::Schedules]
       attr_reader :schedules
 

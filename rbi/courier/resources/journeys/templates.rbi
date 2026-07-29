@@ -3,6 +3,8 @@
 module Courier
   module Resources
     class Journeys
+      # Build, version, publish, invoke, and cancel multi-step notification workflows,
+      # along with the templates scoped to them.
       class Templates
         # Create a notification template scoped to this journey. Defaults to `DRAFT`
         # state; pass `state: "PUBLISHED"` to publish on create.
@@ -14,23 +16,40 @@ module Courier
               Courier::JourneyTemplateCreateRequest::Notification::OrHash,
             provider_key: String,
             state: String,
+            idempotency_key: String,
+            x_idempotency_expiration: String,
             request_options: Courier::RequestOptions::OrHash
           ).returns(Courier::JourneyTemplateGetResponse)
         end
         def create(
-          # Journey id
+          # Path param: Journey id
           template_id,
+          # Body param
           channel:,
+          # Body param
           notification:,
+          # Body param
           provider_key: nil,
+          # Body param
           state: nil,
+          # Header param: A unique key that makes this request idempotent. If Courier
+          # receives another request with the same `Idempotency-Key`, it returns the stored
+          # response from the first request without performing the operation again
+          # (including the original status code and any error). Use it to safely retry
+          # `POST` requests after network failures without risking duplicate sends. The key
+          # is scoped to this endpoint.
+          idempotency_key: nil,
+          # Header param: How long the idempotency key remains valid, as a Unix epoch
+          # timestamp in seconds or an ISO 8601 date string. Only applies when
+          # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+          # maximum is 1 year.
+          x_idempotency_expiration: nil,
           request_options: {}
         )
         end
 
-        # Fetch a journey-scoped notification template by id. Pass `?version=draft`
-        # (default `published`) to retrieve the working draft, or `?version=vN` for a
-        # historical version.
+        # Returns a journey's own notification template with its name, brand, subscription
+        # topic, and content. Defaults to the published version.
         sig do
           params(
             notification_id: String,
@@ -68,8 +87,8 @@ module Courier
         )
         end
 
-        # Archive the journey-scoped notification template. Archived templates cannot be
-        # sent.
+        # Archives one journey's notification template, preventing further sends. Detach
+        # any send node referencing it beforehand.
         sig do
           params(
             notification_id: String,
@@ -86,8 +105,8 @@ module Courier
         )
         end
 
-        # List published versions of the journey-scoped notification template, ordered
-        # most recent first.
+        # Lists the published versions of a template that belongs to a journey, most
+        # recent first. Paged by cursor.
         sig do
           params(
             notification_id: String,
@@ -104,14 +123,15 @@ module Courier
         )
         end
 
-        # Publish the current draft of the journey-scoped notification template as a new
-        # version. Optionally roll back to a prior version by passing
-        # `{ "version": "vN" }`.
+        # Publishes a journey-scoped template's draft as a new version. Pass a version
+        # instead to roll back the template to an earlier publish.
         sig do
           params(
             notification_id: String,
             template_id: String,
             version: String,
+            idempotency_key: String,
+            x_idempotency_expiration: String,
             request_options: Courier::RequestOptions::OrHash
           ).void
         end
@@ -122,6 +142,18 @@ module Courier
           template_id:,
           # Body param
           version: nil,
+          # Header param: A unique key that makes this request idempotent. If Courier
+          # receives another request with the same `Idempotency-Key`, it returns the stored
+          # response from the first request without performing the operation again
+          # (including the original status code and any error). Use it to safely retry
+          # `POST` requests after network failures without risking duplicate sends. The key
+          # is scoped to this endpoint.
+          idempotency_key: nil,
+          # Header param: How long the idempotency key remains valid, as a Unix epoch
+          # timestamp in seconds or an ISO 8601 date string. Only applies when
+          # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+          # maximum is 1 year.
+          x_idempotency_expiration: nil,
           request_options: {}
         )
         end
@@ -179,7 +211,8 @@ module Courier
         )
         end
 
-        # Replace the journey-scoped notification template draft.
+        # Replaces the draft content of one journey's notification template. Publish it
+        # before send nodes referencing it render the change.
         sig do
           params(
             notification_id: String,
@@ -203,11 +236,8 @@ module Courier
         )
         end
 
-        # Retrieve the elemental content of a journey-scoped notification template. The
-        # response contains the versioned elements along with their content checksums,
-        # which can be used to detect changes between versions. Pass `?version=draft`
-        # (default `published`) to retrieve the working draft, or `?version=vN` for a
-        # historical version.
+        # Returns the Elemental elements and version of a journey-scoped template's
+        # content. Compare versions to see what changed between publishes.
         sig do
           params(
             notification_id: String,

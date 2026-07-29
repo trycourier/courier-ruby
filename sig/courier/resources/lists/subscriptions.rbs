@@ -11,6 +11,8 @@ module Courier
         def add: (
           String list_id,
           recipients: ::Array[Courier::PutSubscriptionsRecipient],
+          ?idempotency_key: String,
+          ?x_idempotency_expiration: String,
           ?request_options: Courier::request_opts
         ) -> nil
 

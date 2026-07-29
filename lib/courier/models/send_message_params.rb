@@ -14,11 +14,25 @@ module Courier
       #   @return [Courier::Models::SendMessageParams::Message]
       required :message, -> { Courier::SendMessageParams::Message }
 
-      # @!method initialize(message:, request_options: {})
+      # @!attribute idempotency_key
+      #
+      #   @return [String, nil]
+      optional :idempotency_key, String
+
+      # @!attribute x_idempotency_expiration
+      #
+      #   @return [String, nil]
+      optional :x_idempotency_expiration, String
+
+      # @!method initialize(message:, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::SendMessageParams} for more details.
       #
       #   @param message [Courier::Models::SendMessageParams::Message] The message property has the following primary top-level properties. They define
+      #
+      #   @param idempotency_key [String]
+      #
+      #   @param x_idempotency_expiration [String]
       #
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
 

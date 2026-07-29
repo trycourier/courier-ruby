@@ -2,23 +2,33 @@
 
 module Courier
   module Resources
+    # Manage the workspace catalog of subscription topics, the sections that group
+    # them, and publishing the preference page.
     class WorkspacePreferences
+      # Manage the workspace catalog of subscription topics, the sections that group
+      # them, and publishing the preference page.
       # @return [Courier::Resources::WorkspacePreferences::Topics]
       attr_reader :topics
 
-      # Create a workspace preference. The workspace preference id is generated and
-      # returned. Topics are created inside a workspace preference via POST
-      # /preferences/sections/{section_id}/topics.
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::WorkspacePreferenceCreateParams} for more details.
       #
-      # @overload create(name:, description: nil, has_custom_routing: nil, routing_options: nil, request_options: {})
+      # Creates a workspace preference and returns its generated id. Add subscription
+      # topics to it afterwards with the topics endpoint.
       #
-      # @param name [String] Human-readable name for the workspace preference.
+      # @overload create(name:, description: nil, has_custom_routing: nil, routing_options: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param description [String, nil] Optional description shown under the section on the hosted preferences page.
+      # @param name [String] Body param: Human-readable name for the workspace preference.
       #
-      # @param has_custom_routing [Boolean, nil] Whether the workspace preference defines custom routing for its topics.
+      # @param description [String, nil] Body param: Optional description shown under the section on the hosted preferenc
       #
-      # @param routing_options [Array<Symbol, Courier::Models::ChannelClassification>, nil] Default channels for the workspace preference. Defaults to empty if omitted.
+      # @param has_custom_routing [Boolean, nil] Body param: Whether the workspace preference defines custom routing for its topi
+      #
+      # @param routing_options [Array<Symbol, Courier::Models::ChannelClassification>, nil] Body param: Default channels for the workspace preference. Defaults to empty if
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -27,16 +37,20 @@ module Courier
       # @see Courier::Models::WorkspacePreferenceCreateParams
       def create(params)
         parsed, options = Courier::WorkspacePreferenceCreateParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: "preferences/sections",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::WorkspacePreferenceGetResponse,
           options: options
         )
       end
 
-      # Retrieve a workspace preference by id, including its topics.
+      # Returns one workspace preference by id, including its subscription topics,
+      # routing options, and custom routing flag.
       #
       # @overload retrieve(section_id, request_options: {})
       #
@@ -56,8 +70,8 @@ module Courier
         )
       end
 
-      # List the workspace's preferences. Each workspace preference embeds its topics.
-      # Scoped to the workspace of the API key.
+      # Returns the workspace's preferences, each embedding its subscription topics,
+      # routing options, and whether custom routing is allowed.
       #
       # @overload list(request_options: {})
       #
@@ -99,17 +113,20 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::WorkspacePreferencePublishParams} for more details.
       #
-      # Publish the workspace's preferences page. Takes a snapshot of every workspace
-      # preference with its topics under a new published version, making the current
-      # state visible on the hosted preferences page (non-draft).
+      # Publishes the workspace preference page, snapshotting every preference and
+      # topic, and returns the page id and a preview URL.
       #
-      # @overload publish(brand_id: nil, description: nil, heading: nil, request_options: {})
+      # @overload publish(brand_id: nil, description: nil, heading: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param brand_id [String, nil] Brand for the hosted page - "default" (workspace default brand), "none" (no bran
+      # @param brand_id [String, nil] Body param: Brand for the hosted page - "default" (workspace default brand), "no
       #
-      # @param description [String, nil] Description shown under the heading on the hosted preferences page.
+      # @param description [String, nil] Body param: Description shown under the heading on the hosted preferences page.
       #
-      # @param heading [String, nil] Heading shown at the top of the hosted preferences page.
+      # @param heading [String, nil] Body param: Heading shown at the top of the hosted preferences page.
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -118,10 +135,13 @@ module Courier
       # @see Courier::Models::WorkspacePreferencePublishParams
       def publish(params = {})
         parsed, options = Courier::WorkspacePreferencePublishParams.dump_request(params)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
         @client.request(
           method: :post,
           path: "preferences/publish",
-          body: parsed,
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
           model: Courier::PublishPreferencesResponse,
           options: options
         )

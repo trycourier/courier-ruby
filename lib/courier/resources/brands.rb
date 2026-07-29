@@ -2,16 +2,29 @@
 
 module Courier
   module Resources
+    # Manage the logos, colors, and layout that give the templates you send a
+    # consistent look.
     class Brands
-      # Create a new brand. Requires `name` and `settings` (with at least
-      # `colors.primary` and `colors.secondary`).
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::BrandCreateParams} for more details.
       #
-      # @overload create(name:, settings:, id: nil, snippets: nil, request_options: {})
+      # Creates a brand from a name and settings, including primary and secondary
+      # colors. Brands supply the logo, colors, and styling that templates render with.
       #
-      # @param name [String]
-      # @param settings [Courier::Models::BrandSettings]
-      # @param id [String, nil]
-      # @param snippets [Courier::Models::BrandSnippets, nil]
+      # @overload create(name:, settings:, id: nil, snippets: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
+      #
+      # @param name [String] Body param
+      #
+      # @param settings [Courier::Models::BrandSettings] Body param
+      #
+      # @param id [String, nil] Body param
+      #
+      # @param snippets [Courier::Models::BrandSnippets, nil] Body param
+      #
+      # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+      #
+      # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
+      #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Courier::Models::Brand]
@@ -19,10 +32,20 @@ module Courier
       # @see Courier::Models::BrandCreateParams
       def create(params)
         parsed, options = Courier::BrandCreateParams.dump_request(params)
-        @client.request(method: :post, path: "brands", body: parsed, model: Courier::Brand, options: options)
+        header_params =
+          {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
+        @client.request(
+          method: :post,
+          path: "brands",
+          headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+          body: parsed.except(*header_params.keys),
+          model: Courier::Brand,
+          options: options
+        )
       end
 
-      # Fetch a specific brand by brand ID.
+      # Returns one brand by id, including its colors, logo and styling settings,
+      # Handlebars snippets, and published version.
       #
       # @overload retrieve(brand_id, request_options: {})
       #
@@ -42,7 +65,8 @@ module Courier
         )
       end
 
-      # Replace an existing brand with the supplied values.
+      # Replaces a brand with the values you supply, so send the complete settings and
+      # snippets rather than only the fields you want changed.
       #
       # @overload update(brand_id, name:, settings: nil, snippets: nil, request_options: {})
       #
@@ -70,7 +94,8 @@ module Courier
         )
       end
 
-      # Get the list of brands.
+      # Lists the workspace's brands. Every entry carries its name, styling settings,
+      # snippets, and published version.
       #
       # @overload list(cursor: nil, request_options: {})
       #
@@ -93,7 +118,8 @@ module Courier
         )
       end
 
-      # Delete a brand by brand ID.
+      # Deletes a brand by id. Reassign any template or tenant that references it before
+      # deleting to keep their styling intact.
       #
       # @overload delete(brand_id, request_options: {})
       #

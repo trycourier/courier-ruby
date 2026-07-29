@@ -3,8 +3,11 @@
 module Courier
   module Resources
     class Notifications
+      # Create, update, version, publish, and localize notification templates and their
+      # content.
       class Checks
-        # Replace the submission checks for a notification template.
+        # Replaces the approval checks on a template submission with the complete set
+        # supplied in the request body.
         #
         # @overload update(submission_id, id:, checks:, request_options: {})
         #
@@ -34,7 +37,8 @@ module Courier
           )
         end
 
-        # Retrieve the submission checks for a notification template.
+        # Returns the approval checks recorded for a template submission, each with its
+        # pass or fail result.
         #
         # @overload list(submission_id, id:, request_options: {})
         #
@@ -61,7 +65,8 @@ module Courier
           )
         end
 
-        # Cancel a submission for a notification template.
+        # Cancels a pending template submission, withdrawing it from the approval
+        # workflow. The template stays in draft and can be resubmitted later.
         #
         # @overload delete(submission_id, id:, request_options: {})
         #

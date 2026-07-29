@@ -2,14 +2,19 @@
 
 module Courier
   module Resources
+    # Manage tenants — the organizations, teams, or accounts your users belong to —
+    # along with their users and default preferences.
     class Tenants
       sig { returns(Courier::Resources::Tenants::Preferences) }
       attr_reader :preferences
 
+      # Manage the templates and template versions scoped to a single tenant, including
+      # the ones authored in the embedded designer.
       sig { returns(Courier::Resources::Tenants::Templates) }
       attr_reader :templates
 
-      # Get a Tenant
+      # Returns one tenant with its name, parent tenant id, default preferences,
+      # properties, and the user profile applied to its members.
       sig do
         params(
           tenant_id: String,
@@ -23,7 +28,8 @@ module Courier
       )
       end
 
-      # Create or Replace a Tenant
+      # Creates or replaces a tenant from a name, parent, brand, properties, and default
+      # preferences supplied in the request body.
       sig do
         params(
           tenant_id: String,
@@ -56,7 +62,8 @@ module Courier
       )
       end
 
-      # Get a List of Tenants
+      # Lists the workspace's tenants, each carrying a name, parent tenant, properties,
+      # and default preferences. Paged.
       sig do
         params(
           cursor: T.nilable(String),
@@ -76,7 +83,8 @@ module Courier
       )
       end
 
-      # Delete a Tenant
+      # Deletes a tenant. Its members' workspace-level profiles and preferences live
+      # outside the tenant and are managed separately.
       sig do
         params(
           tenant_id: String,
@@ -90,7 +98,8 @@ module Courier
       )
       end
 
-      # Get Users in Tenant
+      # Returns the users belonging to a tenant with cursor paging. Use it to see who a
+      # tenant-scoped send will reach.
       sig do
         params(
           tenant_id: String,

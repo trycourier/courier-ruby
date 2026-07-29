@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.22.0 (2026-07-29)
+
+Full Changelog: [v4.21.0...v4.22.0](https://github.com/trycourier/courier-ruby/compare/v4.21.0...v4.22.0)
+
+### Features
+
+* Document DELETE/PUT restore for inbox messages (C-19268) ([#175](https://github.com/trycourier/courier-ruby/issues/175)) ([36c1d01](https://github.com/trycourier/courier-ruby/commit/36c1d0116770621edfefe94781e72a8061e43781))
+* spec: rename and reorder the API reference sections ([#179](https://github.com/trycourier/courier-ruby/issues/179)) ([997010e](https://github.com/trycourier/courier-ruby/commit/997010e32d3e0aed0ac138c67a8383ba1f99d416))
+
+
+### Documentation
+
+* **openapi:** describe user topic-preference fields explicitly ([#172](https://github.com/trycourier/courier-ruby/issues/172)) ([c540bdb](https://github.com/trycourier/courier-ruby/commit/c540bdb855f180d850feeabf1a30ed4394092b50))
+* **openapi:** document Idempotency-Key header on idempotent POST endpoints ([#176](https://github.com/trycourier/courier-ruby/issues/176)) ([b76b6bb](https://github.com/trycourier/courier-ruby/commit/b76b6bbbd0e856d486037d7d140b2d934eb150ea))
+* **openapi:** rewrite operation descriptions for agents and SEO ([#174](https://github.com/trycourier/courier-ruby/issues/174)) ([8a8c25b](https://github.com/trycourier/courier-ruby/commit/8a8c25b54b9a8db2cd906ab09ac8729423fa35b8))
+
 ## 4.21.0 (2026-07-23)
 
 Full Changelog: [v4.20.0...v4.21.0](https://github.com/trycourier/courier-ruby/compare/v4.20.0...v4.21.0)

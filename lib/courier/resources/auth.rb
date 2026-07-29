@@ -2,11 +2,15 @@
 
 module Courier
   module Resources
+    # Issue scoped, short-lived JWTs so client-side SDKs — Inbox, Preferences, and the
+    # embedded designer — can call Courier as a single user. Server-side requests
+    # authenticate with your workspace API key instead.
     class Auth
       # Some parameter documentations has been truncated, see
       # {Courier::Models::AuthIssueTokenParams} for more details.
       #
-      # Returns a new access token.
+      # Returns a JWT for authenticating client-side SDKs such as the Inbox. You supply
+      # the scope and an expires_in duration, both required.
       #
       # @overload issue_token(expires_in:, scope:, request_options: {})
       #

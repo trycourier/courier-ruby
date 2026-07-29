@@ -3,12 +3,18 @@
 module Courier
   module Resources
     class Users
+      # Read and write a single user's notification preferences, per topic and per
+      # channel.
       # @return [Courier::Resources::Users::Preferences]
       attr_reader :preferences
 
+      # Associate a user with one or more tenants, and read or remove those
+      # associations.
       # @return [Courier::Resources::Users::Tenants]
       attr_reader :tenants
 
+      # Register and manage the APNS and FCM device tokens Courier delivers push
+      # notifications to.
       # @return [Courier::Resources::Users::Tokens]
       attr_reader :tokens
 

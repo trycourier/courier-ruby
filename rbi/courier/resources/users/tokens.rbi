@@ -3,8 +3,11 @@
 module Courier
   module Resources
     class Users
+      # Register and manage the APNS and FCM device tokens Courier delivers push
+      # notifications to.
       class Tokens
-        # Get single token available for a `:token`
+        # Returns one device token with its provider key, status and status reason, expiry
+        # date, and any properties stored alongside it.
         sig do
           params(
             token: String,
@@ -21,7 +24,8 @@ module Courier
         )
         end
 
-        # Apply a JSON Patch (RFC 6902) to the specified token.
+        # Applies a JSON Patch to a device token, changing its status, expiry, or
+        # properties without re-registering it.
         sig do
           params(
             token: String,
@@ -41,7 +45,8 @@ module Courier
         )
         end
 
-        # Gets all tokens available for a :user_id
+        # Returns every device token registered for a user, each with its provider key,
+        # status, and expiry date.
         sig do
           params(
             user_id: String,
@@ -55,7 +60,8 @@ module Courier
         )
         end
 
-        # Delete User Token
+        # Deletes one device token for a user, addressed by the token value, so push sends
+        # no longer target that device.
         sig do
           params(
             token: String,
@@ -72,7 +78,8 @@ module Courier
         )
         end
 
-        # Adds multiple tokens to a user and overwrites matching existing tokens.
+        # Registers several device tokens for a user in one call, overwriting any stored
+        # token with a matching value.
         sig do
           params(
             user_id: String,
@@ -86,7 +93,8 @@ module Courier
         )
         end
 
-        # Adds a single token to a user and overwrites a matching existing token.
+        # Registers one device token for a user against a provider key, overwriting the
+        # token if it already exists. Push sends resolve tokens per user.
         sig do
           params(
             token: String,

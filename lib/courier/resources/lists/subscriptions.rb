@@ -3,8 +3,11 @@
 module Courier
   module Resources
     class Lists
+      # Manage static groups of users that you subscribe explicitly, and send to them by
+      # list id or list pattern.
       class Subscriptions
-        # Get the list's subscriptions.
+        # Returns the users subscribed to a list with paging, each with the preferences
+        # recorded for that subscription.
         #
         # @overload list(list_id, cursor: nil, request_options: {})
         #
@@ -29,14 +32,21 @@ module Courier
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Courier::Models::Lists::SubscriptionAddParams} for more details.
+        #
         # Subscribes additional users to the list, without modifying existing
         # subscriptions. If the list does not exist, it will be automatically created.
         #
-        # @overload add(list_id, recipients:, request_options: {})
+        # @overload add(list_id, recipients:, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
-        # @param list_id [String] A unique identifier representing the list you wish to retrieve.
+        # @param list_id [String] Path param: A unique identifier representing the list you wish to retrieve.
         #
-        # @param recipients [Array<Courier::Models::PutSubscriptionsRecipient>]
+        # @param recipients [Array<Courier::Models::PutSubscriptionsRecipient>] Body param
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -45,10 +55,13 @@ module Courier
         # @see Courier::Models::Lists::SubscriptionAddParams
         def add(list_id, params)
           parsed, options = Courier::Lists::SubscriptionAddParams.dump_request(params)
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           @client.request(
             method: :post,
             path: ["lists/%1$s/subscriptions", list_id],
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: NilClass,
             options: options
           )
@@ -82,8 +95,8 @@ module Courier
         # Some parameter documentations has been truncated, see
         # {Courier::Models::Lists::SubscriptionSubscribeUserParams} for more details.
         #
-        # Subscribe a user to an existing list (note: if the List does not exist, it will
-        # be automatically created).
+        # Subscribes one user to a list, creating the list if it does not yet exist.
+        # Optional preferences apply to this subscription only.
         #
         # @overload subscribe_user(user_id, list_id:, preferences: nil, request_options: {})
         #
@@ -113,7 +126,8 @@ module Courier
           )
         end
 
-        # Delete a subscription to a list by list ID and user ID.
+        # Removes one user's subscription to a list, addressed by list id and user id. The
+        # user's profile and other subscriptions are separate resources.
         #
         # @overload unsubscribe_user(user_id, list_id:, request_options: {})
         #

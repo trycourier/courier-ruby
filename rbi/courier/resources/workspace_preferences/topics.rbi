@@ -3,10 +3,11 @@
 module Courier
   module Resources
     class WorkspacePreferences
+      # Manage the workspace catalog of subscription topics, the sections that group
+      # them, and publishing the preference page.
       class Topics
-        # Create a subscription preference topic inside a workspace preference. Fails with
-        # 404 if the workspace preference does not exist. The topic id is generated and
-        # returned.
+        # Creates a subscription topic inside a workspace preference. The default status
+        # sets whether users start opted in, opted out, or required.
         sig do
           params(
             section_id: String,
@@ -24,34 +25,51 @@ module Courier
             routing_options:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
             topic_data: T.nilable(T::Hash[Symbol, T.anything]),
+            idempotency_key: String,
+            x_idempotency_expiration: String,
             request_options: Courier::RequestOptions::OrHash
           ).returns(Courier::WorkspacePreferenceTopicGetResponse)
         end
         def create(
-          # Id of the workspace preference to create the topic in.
+          # Path param: Id of the workspace preference to create the topic in.
           section_id,
-          # The default subscription status applied when a recipient has not set their own.
+          # Body param: The default subscription status applied when a recipient has not set
+          # their own.
           default_status:,
-          # Human-readable name for the preference topic.
+          # Body param: Human-readable name for the preference topic.
           name:,
-          # Preference controls a recipient may customize for this topic. Defaults to empty
-          # if omitted.
+          # Body param: Preference controls a recipient may customize for this topic.
+          # Defaults to empty if omitted.
           allowed_preferences: nil,
-          # Optional description shown under the topic on the hosted preferences page.
+          # Body param: Optional description shown under the topic on the hosted preferences
+          # page.
           description: nil,
-          # Whether to include a list-unsubscribe header on emails for this topic.
+          # Body param: Whether to include a list-unsubscribe header on emails for this
+          # topic.
           include_unsubscribe_header: nil,
-          # Default channels delivered for this topic. Defaults to empty if omitted.
+          # Body param: Default channels delivered for this topic. Defaults to empty if
+          # omitted.
           routing_options: nil,
-          # Arbitrary metadata associated with the topic.
+          # Body param: Arbitrary metadata associated with the topic.
           topic_data: nil,
+          # Header param: A unique key that makes this request idempotent. If Courier
+          # receives another request with the same `Idempotency-Key`, it returns the stored
+          # response from the first request without performing the operation again
+          # (including the original status code and any error). Use it to safely retry
+          # `POST` requests after network failures without risking duplicate sends. The key
+          # is scoped to this endpoint.
+          idempotency_key: nil,
+          # Header param: How long the idempotency key remains valid, as a Unix epoch
+          # timestamp in seconds or an ISO 8601 date string. Only applies when
+          # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+          # maximum is 1 year.
+          x_idempotency_expiration: nil,
           request_options: {}
         )
         end
 
-        # Retrieve a topic within a workspace preference. Returns 404 if the workspace
-        # preference does not exist, the topic does not exist, or the topic belongs to a
-        # different workspace preference.
+        # Returns one subscription topic with its default status, routing options, allowed
+        # preferences, and unsubscribe header setting.
         sig do
           params(
             topic_id: String,
@@ -68,7 +86,8 @@ module Courier
         )
         end
 
-        # List the topics in a workspace preference.
+        # Returns the subscription topics inside a workspace preference, each with its
+        # default status and routing options.
         sig do
           params(
             section_id: String,
@@ -82,8 +101,8 @@ module Courier
         )
         end
 
-        # Archive a topic and remove it from its workspace preference. Same 404 rules as
-        # GET.
+        # Archives a subscription topic and removes it from its workspace preference,
+        # addressed by section id and topic id.
         sig do
           params(
             topic_id: String,

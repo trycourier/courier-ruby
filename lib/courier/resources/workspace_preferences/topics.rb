@@ -3,31 +3,36 @@
 module Courier
   module Resources
     class WorkspacePreferences
+      # Manage the workspace catalog of subscription topics, the sections that group
+      # them, and publishing the preference page.
       class Topics
         # Some parameter documentations has been truncated, see
         # {Courier::Models::WorkspacePreferences::TopicCreateParams} for more details.
         #
-        # Create a subscription preference topic inside a workspace preference. Fails with
-        # 404 if the workspace preference does not exist. The topic id is generated and
-        # returned.
+        # Creates a subscription topic inside a workspace preference. The default status
+        # sets whether users start opted in, opted out, or required.
         #
-        # @overload create(section_id, default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, request_options: {})
+        # @overload create(section_id, default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
-        # @param section_id [String] Id of the workspace preference to create the topic in.
+        # @param section_id [String] Path param: Id of the workspace preference to create the topic in.
         #
-        # @param default_status [Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::DefaultStatus] The default subscription status applied when a recipient has not set their own.
+        # @param default_status [Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::DefaultStatus] Body param: The default subscription status applied when a recipient has not set
         #
-        # @param name [String] Human-readable name for the preference topic.
+        # @param name [String] Body param: Human-readable name for the preference topic.
         #
-        # @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::AllowedPreference>, nil] Preference controls a recipient may customize for this topic. Defaults to empty
+        # @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::AllowedPreference>, nil] Body param: Preference controls a recipient may customize for this topic. Defaul
         #
-        # @param description [String, nil] Optional description shown under the topic on the hosted preferences page.
+        # @param description [String, nil] Body param: Optional description shown under the topic on the hosted preferences
         #
-        # @param include_unsubscribe_header [Boolean, nil] Whether to include a list-unsubscribe header on emails for this topic.
+        # @param include_unsubscribe_header [Boolean, nil] Body param: Whether to include a list-unsubscribe header on emails for this topi
         #
-        # @param routing_options [Array<Symbol, Courier::Models::ChannelClassification>, nil] Default channels delivered for this topic. Defaults to empty if omitted.
+        # @param routing_options [Array<Symbol, Courier::Models::ChannelClassification>, nil] Body param: Default channels delivered for this topic. Defaults to empty if omit
         #
-        # @param topic_data [Hash{Symbol=>Object}, nil] Arbitrary metadata associated with the topic.
+        # @param topic_data [Hash{Symbol=>Object}, nil] Body param: Arbitrary metadata associated with the topic.
+        #
+        # @param idempotency_key [String] Header param: A unique key that makes this request idempotent. If Courier receiv
+        #
+        # @param x_idempotency_expiration [String] Header param: How long the idempotency key remains valid, as a Unix epoch timest
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -36,18 +41,20 @@ module Courier
         # @see Courier::Models::WorkspacePreferences::TopicCreateParams
         def create(section_id, params)
           parsed, options = Courier::WorkspacePreferences::TopicCreateParams.dump_request(params)
+          header_params =
+            {idempotency_key: "idempotency-key", x_idempotency_expiration: "x-idempotency-expiration"}
           @client.request(
             method: :post,
             path: ["preferences/sections/%1$s/topics", section_id],
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: Courier::WorkspacePreferenceTopicGetResponse,
             options: options
           )
         end
 
-        # Retrieve a topic within a workspace preference. Returns 404 if the workspace
-        # preference does not exist, the topic does not exist, or the topic belongs to a
-        # different workspace preference.
+        # Returns one subscription topic with its default status, routing options, allowed
+        # preferences, and unsubscribe header setting.
         #
         # @overload retrieve(topic_id, section_id:, request_options: {})
         #
@@ -74,7 +81,8 @@ module Courier
           )
         end
 
-        # List the topics in a workspace preference.
+        # Returns the subscription topics inside a workspace preference, each with its
+        # default status and routing options.
         #
         # @overload list(section_id, request_options: {})
         #
@@ -94,8 +102,8 @@ module Courier
           )
         end
 
-        # Archive a topic and remove it from its workspace preference. Same 404 rules as
-        # GET.
+        # Archives a subscription topic and removes it from its workspace preference,
+        # addressed by section id and topic id.
         #
         # @overload archive(topic_id, section_id:, request_options: {})
         #

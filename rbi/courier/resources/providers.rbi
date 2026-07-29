@@ -2,38 +2,57 @@
 
 module Courier
   module Resources
+    # Configure the channel providers Courier delivers through, and browse the
+    # provider types it supports.
     class Providers
+      # Configure the channel providers Courier delivers through, and browse the
+      # provider types it supports.
       sig { returns(Courier::Resources::Providers::Catalog) }
       attr_reader :catalog
 
-      # Create a new provider configuration. The `provider` field must be a known
-      # Courier provider key (see catalog).
+      # Configures a provider integration from a Courier provider key and its settings.
+      # Check the catalog endpoint for the schema each provider expects.
       sig do
         params(
           provider: String,
           alias_: String,
           settings: T::Hash[Symbol, T.anything],
           title: String,
+          idempotency_key: String,
+          x_idempotency_expiration: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Provider)
       end
       def create(
-        # The provider key identifying the type (e.g. "sendgrid", "twilio"). Must be a
-        # known Courier provider — see the catalog endpoint for valid keys.
+        # Body param: The provider key identifying the type (e.g. "sendgrid", "twilio").
+        # Must be a known Courier provider — see the catalog endpoint for valid keys.
         provider:,
-        # Optional alias for this configuration.
+        # Body param: Optional alias for this configuration.
         alias_: nil,
-        # Provider-specific settings (snake_case keys). Defaults to an empty object when
-        # omitted. Use the catalog endpoint to discover required fields for a given
-        # provider — omitting a required field returns a 400 validation error.
+        # Body param: Provider-specific settings (snake_case keys). Defaults to an empty
+        # object when omitted. Use the catalog endpoint to discover required fields for a
+        # given provider — omitting a required field returns a 400 validation error.
         settings: nil,
-        # Optional display title. Omit to use "Default Configuration".
+        # Body param: Optional display title. Omit to use "Default Configuration".
         title: nil,
+        # Header param: A unique key that makes this request idempotent. If Courier
+        # receives another request with the same `Idempotency-Key`, it returns the stored
+        # response from the first request without performing the operation again
+        # (including the original status code and any error). Use it to safely retry
+        # `POST` requests after network failures without risking duplicate sends. The key
+        # is scoped to this endpoint.
+        idempotency_key: nil,
+        # Header param: How long the idempotency key remains valid, as a Unix epoch
+        # timestamp in seconds or an ISO 8601 date string. Only applies when
+        # `Idempotency-Key` is provided. If omitted, the key is retained for 25 hours; the
+        # maximum is 1 year.
+        x_idempotency_expiration: nil,
         request_options: {}
       )
       end
 
-      # Fetch a single provider configuration by ID.
+      # Returns one configured provider by id, including its channel, provider key,
+      # alias, title, and current settings.
       sig do
         params(
           id: String,
@@ -47,11 +66,8 @@ module Courier
       )
       end
 
-      # Replace an existing provider configuration. The `provider` key is required and
-      # determines which provider-specific settings schema is applied. All other fields
-      # are optional — omitted fields are cleared from the stored configuration (this is
-      # a full replacement, not a partial merge). Changing the provider type for an
-      # existing configuration is not supported.
+      # Replaces a provider's configuration in full, clearing any field you omit rather
+      # than merging it. Send the complete settings object.
       sig do
         params(
           id: String,
@@ -80,8 +96,8 @@ module Courier
       )
       end
 
-      # List configured provider integrations for the current workspace. Supports
-      # cursor-based pagination.
+      # Lists the provider integrations configured in the workspace, one entry per
+      # channel and provider key with its alias and settings.
       sig do
         params(
           cursor: String,
@@ -95,8 +111,8 @@ module Courier
       )
       end
 
-      # Delete a provider configuration. Returns 409 if the provider is still referenced
-      # by routing or notifications.
+      # Deletes a provider configuration, which fails while routing strategies or
+      # templates still reference it. Update those references first.
       sig do
         params(
           id: String,

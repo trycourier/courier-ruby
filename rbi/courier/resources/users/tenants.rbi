@@ -3,8 +3,11 @@
 module Courier
   module Resources
     class Users
+      # Associate a user with one or more tenants, and read or remove those
+      # associations.
       class Tenants
-        # Returns a paginated list of user tenant associations.
+        # Returns the tenants a user belongs to, with cursor paging. A user can belong to
+        # many tenants, each with its own profile and preferences.
         sig do
           params(
             user_id: String,
@@ -24,9 +27,8 @@ module Courier
         )
         end
 
-        # This endpoint is used to add a user to multiple tenants in one call. A custom
-        # profile can also be supplied for each tenant. This profile will be merged with
-        # the user's main profile when sending to the user with that tenant.
+        # Adds a user to several tenants in one call, each optionally with a per-tenant
+        # profile that overrides their workspace profile.
         sig do
           params(
             user_id: String,
@@ -42,10 +44,8 @@ module Courier
         )
         end
 
-        # This endpoint is used to add a single tenant.
-        #
-        # A custom profile can also be supplied with the tenant. This profile will be
-        # merged with the user's main profile when sending to the user with that tenant.
+        # Adds a user to one tenant, optionally with a tenant-specific profile that
+        # overrides their workspace profile for sends in that tenant.
         sig do
           params(
             tenant_id: String,
@@ -65,7 +65,8 @@ module Courier
         )
         end
 
-        # Removes a user from any tenants they may have been associated with.
+        # Removes a user from every tenant they belong to in one call. Their
+        # workspace-level profile is a separate resource.
         sig do
           params(
             user_id: String,
@@ -79,7 +80,8 @@ module Courier
         )
         end
 
-        # Removes a user from the supplied tenant.
+        # Removes a user from one tenant. Their other tenant memberships and workspace
+        # profile are managed through separate endpoints.
         sig do
           params(
             tenant_id: String,

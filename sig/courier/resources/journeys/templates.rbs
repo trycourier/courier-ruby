@@ -8,6 +8,8 @@ module Courier
           notification: Courier::JourneyTemplateCreateRequest::Notification,
           ?provider_key: String,
           ?state: String,
+          ?idempotency_key: String,
+          ?x_idempotency_expiration: String,
           ?request_options: Courier::request_opts
         ) -> Courier::JourneyTemplateGetResponse
 
@@ -40,6 +42,8 @@ module Courier
           String notification_id,
           template_id: String,
           ?version: String,
+          ?idempotency_key: String,
+          ?x_idempotency_expiration: String,
           ?request_options: Courier::request_opts
         ) -> nil
 

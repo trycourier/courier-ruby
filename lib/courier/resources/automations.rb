@@ -2,14 +2,19 @@
 
 module Courier
   module Resources
+    # Invoke a stored automation template or an ad hoc automation defined in the
+    # request.
     class Automations
+      # Invoke a stored automation template or an ad hoc automation defined in the
+      # request.
       # @return [Courier::Resources::Automations::Invoke]
       attr_reader :invoke
 
       # Some parameter documentations has been truncated, see
       # {Courier::Models::AutomationListParams} for more details.
       #
-      # Get the list of automations.
+      # Lists the workspace's saved automation templates, each with its id and a cursor
+      # for paging to the next page of results.
       #
       # @overload list(cursor: nil, version: nil, request_options: {})
       #

@@ -9,6 +9,8 @@ module Courier
           ?profile: ::Hash[Symbol, top]?,
           ?recipient: String?,
           ?template: String?,
+          ?idempotency_key: String,
+          ?x_idempotency_expiration: String,
           ?request_options: Courier::request_opts
         ) -> Courier::AutomationInvokeResponse
 
@@ -19,6 +21,8 @@ module Courier
           ?data: ::Hash[Symbol, top]?,
           ?profile: ::Hash[Symbol, top]?,
           ?template: String?,
+          ?idempotency_key: String,
+          ?x_idempotency_expiration: String,
           ?request_options: Courier::request_opts
         ) -> Courier::AutomationInvokeResponse
 

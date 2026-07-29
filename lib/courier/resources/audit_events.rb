@@ -2,8 +2,10 @@
 
 module Courier
   module Resources
+    # Read the audit trail of configuration and access changes in your workspace.
     class AuditEvents
-      # Fetch a specific audit event by ID.
+      # Returns one audit event by id, including the actor who performed it, the target
+      # they changed, the source, the event type, and a timestamp.
       #
       # @overload retrieve(audit_event_id, request_options: {})
       #
@@ -23,7 +25,8 @@ module Courier
         )
       end
 
-      # Fetch the list of audit events
+      # Returns the workspace's audit event log with cursor paging. Each event records
+      # the actor, target, source, type, and timestamp of a change.
       #
       # @overload list(cursor: nil, request_options: {})
       #
