@@ -1,0 +1,46 @@
+module Courier
+  module Models
+    type broadcast_schedule =
+      {
+        recipient_id: String,
+        recipient_type: Courier::Models::BroadcastSchedule::recipient_type,
+        scheduled_to: String?,
+        timezone: String?
+      }
+
+    class BroadcastSchedule < Courier::Internal::Type::BaseModel
+      attr_accessor recipient_id: String
+
+      attr_accessor recipient_type: Courier::Models::BroadcastSchedule::recipient_type
+
+      attr_accessor scheduled_to: String?
+
+      attr_accessor timezone: String?
+
+      def initialize: (
+        recipient_id: String,
+        recipient_type: Courier::Models::BroadcastSchedule::recipient_type,
+        ?scheduled_to: String?,
+        ?timezone: String?
+      ) -> void
+
+      def to_hash: -> {
+        recipient_id: String,
+        recipient_type: Courier::Models::BroadcastSchedule::recipient_type,
+        scheduled_to: String?,
+        timezone: String?
+      }
+
+      type recipient_type = :list | :audience
+
+      module RecipientType
+        extend Courier::Internal::Type::Enum
+
+        LIST: :list
+        AUDIENCE: :audience
+
+        def self?.values: -> ::Array[Courier::Models::BroadcastSchedule::recipient_type]
+      end
+    end
+  end
+end

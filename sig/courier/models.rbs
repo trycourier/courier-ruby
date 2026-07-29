@@ -73,6 +73,34 @@ module Courier
 
   class BrandUpdateParams = Courier::Models::BrandUpdateParams
 
+  class Broadcast = Courier::Models::Broadcast
+
+  class BroadcastArchiveParams = Courier::Models::BroadcastArchiveParams
+
+  class BroadcastCancelParams = Courier::Models::BroadcastCancelParams
+
+  class BroadcastCreateParams = Courier::Models::BroadcastCreateParams
+
+  class BroadcastDuplicateParams = Courier::Models::BroadcastDuplicateParams
+
+  class BroadcastListParams = Courier::Models::BroadcastListParams
+
+  class BroadcastListResponse = Courier::Models::BroadcastListResponse
+
+  class BroadcastPutContentParams = Courier::Models::BroadcastPutContentParams
+
+  class BroadcastRetrieveContentParams = Courier::Models::BroadcastRetrieveContentParams
+
+  class BroadcastRetrieveParams = Courier::Models::BroadcastRetrieveParams
+
+  class BroadcastSchedule = Courier::Models::BroadcastSchedule
+
+  class BroadcastScheduleParams = Courier::Models::BroadcastScheduleParams
+
+  class BroadcastSendParams = Courier::Models::BroadcastSendParams
+
+  class BroadcastUpdateParams = Courier::Models::BroadcastUpdateParams
+
   module CancelJourneyRequest = Courier::Models::CancelJourneyRequest
 
   module CancelJourneyResponse = Courier::Models::CancelJourneyResponse
@@ -86,6 +114,8 @@ module Courier
   class ChannelPreference = Courier::Models::ChannelPreference
 
   class Check = Courier::Models::Check
+
+  class CreateBroadcastRequest = Courier::Models::CreateBroadcastRequest
 
   class CreateJourneyRequest = Courier::Models::CreateJourneyRequest
 
@@ -431,6 +461,10 @@ module Courier
 
   class Rule = Courier::Models::Rule
 
+  class ScheduleBroadcastRequest = Courier::Models::ScheduleBroadcastRequest
+
+  class SendBroadcastRequest = Courier::Models::SendBroadcastRequest
+
   class SendDirectMessage = Courier::Models::SendDirectMessage
 
   class SendMessageParams = Courier::Models::SendMessageParams
@@ -492,6 +526,8 @@ module Courier
   class TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
 
   class TranslationUpdateParams = Courier::Models::TranslationUpdateParams
+
+  class UpdateBroadcastRequest = Courier::Models::UpdateBroadcastRequest
 
   class UserProfile = Courier::Models::UserProfile
 

@@ -1,0 +1,36 @@
+module Courier
+  module Models
+    type send_broadcast_request =
+      {
+        recipient_id: String,
+        recipient_type: Courier::Models::SendBroadcastRequest::recipient_type
+      }
+
+    class SendBroadcastRequest < Courier::Internal::Type::BaseModel
+      attr_accessor recipient_id: String
+
+      attr_accessor recipient_type: Courier::Models::SendBroadcastRequest::recipient_type
+
+      def initialize: (
+        recipient_id: String,
+        recipient_type: Courier::Models::SendBroadcastRequest::recipient_type
+      ) -> void
+
+      def to_hash: -> {
+        recipient_id: String,
+        recipient_type: Courier::Models::SendBroadcastRequest::recipient_type
+      }
+
+      type recipient_type = :list | :audience
+
+      module RecipientType
+        extend Courier::Internal::Type::Enum
+
+        LIST: :list
+        AUDIENCE: :audience
+
+        def self?.values: -> ::Array[Courier::Models::SendBroadcastRequest::recipient_type]
+      end
+    end
+  end
+end
