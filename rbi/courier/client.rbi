@@ -48,6 +48,8 @@ module Courier
     sig { returns(Courier::Resources::Journeys) }
     attr_reader :journeys
 
+    # Create a one-off send to a list or audience, author its content, then send it
+    # immediately or schedule it for later.
     sig { returns(Courier::Resources::Broadcasts) }
     attr_reader :broadcasts
 

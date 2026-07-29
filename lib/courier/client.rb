@@ -53,6 +53,8 @@ module Courier
     # @return [Courier::Resources::Journeys]
     attr_reader :journeys
 
+    # Create a one-off send to a list or audience, author its content, then send it
+    # immediately or schedule it for later.
     # @return [Courier::Resources::Broadcasts]
     attr_reader :broadcasts
 
