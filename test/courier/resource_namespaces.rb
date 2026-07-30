@@ -9,9 +9,6 @@ module Courier
       module Digests
       end
 
-      module Inbox
-      end
-
       module Journeys
       end
 

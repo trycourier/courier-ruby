@@ -70,9 +70,6 @@ module Courier
     sig { returns(Courier::Resources::Lists) }
     attr_reader :lists
 
-    sig { returns(Courier::Resources::Inbox) }
-    attr_reader :inbox
-
     # Look up the messages Courier has accepted, inspect their delivery history and
     # rendered output, and cancel, resend, or archive them.
     sig { returns(Courier::Resources::Messages) }
