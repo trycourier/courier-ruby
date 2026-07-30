@@ -34,8 +34,6 @@ module Courier
 
     attr_reader lists: Courier::Resources::Lists
 
-    attr_reader inbox: Courier::Resources::Inbox
-
     attr_reader messages: Courier::Resources::Messages
 
     attr_reader requests: Courier::Resources::Requests
