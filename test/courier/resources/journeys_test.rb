@@ -9,7 +9,7 @@ class Courier::Test::Resources::JourneysTest < Courier::Test::ResourceTest
     response =
       @courier.journeys.create(
         name: "Welcome Journey",
-        nodes: [{trigger_type: :"api-invoke", type: :trigger}, {trigger_type: :"api-invoke", type: :trigger}]
+        nodes: [{trigger_type: :"api-invoke", type: :trigger}, {message: {}, type: :send}, {type: :exit}]
       )
 
     assert_pattern do
