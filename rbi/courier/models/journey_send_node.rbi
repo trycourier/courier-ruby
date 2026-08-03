@@ -63,8 +63,8 @@ module Courier
       # Send to the recipient. A send node sources its content from EXACTLY ONE of
       # `message.template` (a single notification template) or `experiment` (an A/B
       # split across weighted template variants) — supplying both, or neither, is
-      # rejected. Optionally override the recipient address, delay the send, or attach
-      # `data`.
+      # rejected. Optionally override the recipient address, send as a tenant, delay the
+      # send, or attach `data`.
       sig do
         params(
           message: Courier::JourneySendNode::Message::OrHash,
@@ -119,6 +119,18 @@ module Courier
             T.any(Courier::JourneySendNode::Message, Courier::Internal::AnyHash)
           end
 
+        # Tenant context for this send. Set it to deliver on behalf of one of your
+        # customers, so the message uses that tenant's brand and settings.
+        sig { returns(T.nilable(Courier::JourneySendNode::Message::Context)) }
+        attr_reader :context
+
+        sig do
+          params(
+            context: Courier::JourneySendNode::Message::Context::OrHash
+          ).void
+        end
+        attr_writer :context
+
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_reader :data
 
@@ -147,18 +159,28 @@ module Courier
 
         sig do
           params(
+            context: Courier::JourneySendNode::Message::Context::OrHash,
             data: T::Hash[Symbol, T.anything],
             delay: Courier::JourneySendNode::Message::Delay::OrHash,
             template: String,
             to: Courier::JourneySendNode::Message::To::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(data: nil, delay: nil, template: nil, to: nil)
+        def self.new(
+          # Tenant context for this send. Set it to deliver on behalf of one of your
+          # customers, so the message uses that tenant's brand and settings.
+          context: nil,
+          data: nil,
+          delay: nil,
+          template: nil,
+          to: nil
+        )
         end
 
         sig do
           override.returns(
             {
+              context: Courier::JourneySendNode::Message::Context,
               data: T::Hash[Symbol, T.anything],
               delay: Courier::JourneySendNode::Message::Delay,
               template: String,
@@ -167,6 +189,53 @@ module Courier
           )
         end
         def to_hash
+        end
+
+        class Context < Courier::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Courier::JourneySendNode::Message::Context,
+                Courier::Internal::AnyHash
+              )
+            end
+
+          # The tenant to send as. Accepts either a literal tenant id (`acme-tenant`) or a
+          # whole-string mustache reference to a value the run already holds —
+          # `{{data.tenant_id}}` from the invocation payload, or `{{f1.body.tenant_id}}`
+          # from the response of an earlier fetch node with id `f1`. A reference is resolved
+          # separately on every run, so a single journey can deliver as many tenants. Two
+          # forms are rejected with `400`: mid-string interpolation such as
+          # `tenant-{{data.region}}`, and any value beginning with `refs.`, which is
+          # reserved for internal use. A reference that resolves to nothing at run time does
+          # not stop the run — the message is still sent, with no tenant context — so make
+          # sure the referenced value is always present. `GET` returns the value in the same
+          # form it was supplied.
+          sig { returns(String) }
+          attr_accessor :tenant_id
+
+          # Tenant context for this send. Set it to deliver on behalf of one of your
+          # customers, so the message uses that tenant's brand and settings.
+          sig { params(tenant_id: String).returns(T.attached_class) }
+          def self.new(
+            # The tenant to send as. Accepts either a literal tenant id (`acme-tenant`) or a
+            # whole-string mustache reference to a value the run already holds —
+            # `{{data.tenant_id}}` from the invocation payload, or `{{f1.body.tenant_id}}`
+            # from the response of an earlier fetch node with id `f1`. A reference is resolved
+            # separately on every run, so a single journey can deliver as many tenants. Two
+            # forms are rejected with `400`: mid-string interpolation such as
+            # `tenant-{{data.region}}`, and any value beginning with `refs.`, which is
+            # reserved for internal use. A reference that resolves to nothing at run time does
+            # not stop the run — the message is still sent, with no tenant context — so make
+            # sure the referenced value is always present. `GET` returns the value in the same
+            # form it was supplied.
+            tenant_id:
+          )
+          end
+
+          sig { override.returns({ tenant_id: String }) }
+          def to_hash
+          end
         end
 
         class Delay < Courier::Internal::Type::BaseModel

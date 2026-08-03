@@ -41,8 +41,8 @@ module Courier
       #   Send to the recipient. A send node sources its content from EXACTLY ONE of
       #   `message.template` (a single notification template) or `experiment` (an A/B
       #   split across weighted template variants) — supplying both, or neither, is
-      #   rejected. Optionally override the recipient address, delay the send, or attach
-      #   `data`.
+      #   rejected. Optionally override the recipient address, send as a tenant, delay the
+      #   send, or attach `data`.
       #
       #   @param message [Courier::Models::JourneySendNode::Message]
       #
@@ -56,6 +56,13 @@ module Courier
 
       # @see Courier::Models::JourneySendNode#message
       class Message < Courier::Internal::Type::BaseModel
+        # @!attribute context
+        #   Tenant context for this send. Set it to deliver on behalf of one of your
+        #   customers, so the message uses that tenant's brand and settings.
+        #
+        #   @return [Courier::Models::JourneySendNode::Message::Context, nil]
+        optional :context, -> { Courier::JourneySendNode::Message::Context }
+
         # @!attribute data
         #
         #   @return [Hash{Symbol=>Object}, nil]
@@ -76,11 +83,47 @@ module Courier
         #   @return [Courier::Models::JourneySendNode::Message::To, nil]
         optional :to, -> { Courier::JourneySendNode::Message::To }
 
-        # @!method initialize(data: nil, delay: nil, template: nil, to: nil)
+        # @!method initialize(context: nil, data: nil, delay: nil, template: nil, to: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Courier::Models::JourneySendNode::Message} for more details.
+        #
+        #   @param context [Courier::Models::JourneySendNode::Message::Context] Tenant context for this send. Set it to deliver on behalf of one of your custome
+        #
         #   @param data [Hash{Symbol=>Object}]
+        #
         #   @param delay [Courier::Models::JourneySendNode::Message::Delay]
+        #
         #   @param template [String]
+        #
         #   @param to [Courier::Models::JourneySendNode::Message::To]
+
+        # @see Courier::Models::JourneySendNode::Message#context
+        class Context < Courier::Internal::Type::BaseModel
+          # @!attribute tenant_id
+          #   The tenant to send as. Accepts either a literal tenant id (`acme-tenant`) or a
+          #   whole-string mustache reference to a value the run already holds —
+          #   `{{data.tenant_id}}` from the invocation payload, or `{{f1.body.tenant_id}}`
+          #   from the response of an earlier fetch node with id `f1`. A reference is resolved
+          #   separately on every run, so a single journey can deliver as many tenants. Two
+          #   forms are rejected with `400`: mid-string interpolation such as
+          #   `tenant-{{data.region}}`, and any value beginning with `refs.`, which is
+          #   reserved for internal use. A reference that resolves to nothing at run time does
+          #   not stop the run — the message is still sent, with no tenant context — so make
+          #   sure the referenced value is always present. `GET` returns the value in the same
+          #   form it was supplied.
+          #
+          #   @return [String]
+          required :tenant_id, String
+
+          # @!method initialize(tenant_id:)
+          #   Some parameter documentations has been truncated, see
+          #   {Courier::Models::JourneySendNode::Message::Context} for more details.
+          #
+          #   Tenant context for this send. Set it to deliver on behalf of one of your
+          #   customers, so the message uses that tenant's brand and settings.
+          #
+          #   @param tenant_id [String] The tenant to send as. Accepts either a literal tenant id (`acme-tenant`) or a w
+        end
 
         # @see Courier::Models::JourneySendNode::Message#delay
         class Delay < Courier::Internal::Type::BaseModel
