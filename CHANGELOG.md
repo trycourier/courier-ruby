@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.24.0 (2026-08-03)
+
+Full Changelog: [v4.23.0...v4.24.0](https://github.com/trycourier/courier-ruby/compare/v4.23.0...v4.24.0)
+
+### Features
+
+* Merge pull request [#183](https://github.com/trycourier/courier-ruby/issues/183) from trycourier/dantran/c-19684-api-spec-document-messagecontexttenant_id-on-journey-send ([aedb9a8](https://github.com/trycourier/courier-ruby/commit/aedb9a8a3a7bc1ed7a5a63cf1c4330bc119a6155))
+* spec: remove inbox message delete/restore endpoints for now (C-19268) ([#182](https://github.com/trycourier/courier-ruby/issues/182)) ([d98f978](https://github.com/trycourier/courier-ruby/commit/d98f9786a8396cb9258d4f798240dc53d57c7b98))
+* spec: reorder API reference sections to match the Studio nav ([#180](https://github.com/trycourier/courier-ruby/issues/180)) ([fe03907](https://github.com/trycourier/courier-ruby/commit/fe03907ebe05595a7e9edf4ff7ecf11711c3156b))
+
 ## 4.23.0 (2026-07-29)
 
 Full Changelog: [v4.22.0...v4.23.0](https://github.com/trycourier/courier-ruby/compare/v4.22.0...v4.23.0)
