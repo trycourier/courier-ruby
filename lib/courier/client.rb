@@ -53,6 +53,8 @@ module Courier
     # @return [Courier::Resources::Journeys]
     attr_reader :journeys
 
+    # Create a one-off send to a list or audience, author its content, then send it
+    # immediately or schedule it for later.
     # @return [Courier::Resources::Broadcasts]
     attr_reader :broadcasts
 
@@ -72,9 +74,6 @@ module Courier
     # list id or list pattern.
     # @return [Courier::Resources::Lists]
     attr_reader :lists
-
-    # @return [Courier::Resources::Inbox]
-    attr_reader :inbox
 
     # Look up the messages Courier has accepted, inspect their delivery history and
     # rendered output, and cancel, resend, or archive them.
@@ -192,7 +191,6 @@ module Courier
       @digests = Courier::Resources::Digests.new(client: self)
       @inbound = Courier::Resources::Inbound.new(client: self)
       @lists = Courier::Resources::Lists.new(client: self)
-      @inbox = Courier::Resources::Inbox.new(client: self)
       @messages = Courier::Resources::Messages.new(client: self)
       @requests = Courier::Resources::Requests.new(client: self)
       @notifications = Courier::Resources::Notifications.new(client: self)

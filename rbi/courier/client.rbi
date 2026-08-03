@@ -48,6 +48,8 @@ module Courier
     sig { returns(Courier::Resources::Journeys) }
     attr_reader :journeys
 
+    # Create a one-off send to a list or audience, author its content, then send it
+    # immediately or schedule it for later.
     sig { returns(Courier::Resources::Broadcasts) }
     attr_reader :broadcasts
 
@@ -67,9 +69,6 @@ module Courier
     # list id or list pattern.
     sig { returns(Courier::Resources::Lists) }
     attr_reader :lists
-
-    sig { returns(Courier::Resources::Inbox) }
-    attr_reader :inbox
 
     # Look up the messages Courier has accepted, inspect their delivery history and
     # rendered output, and cancel, resend, or archive them.

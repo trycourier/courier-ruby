@@ -1,9 +1,0 @@
-module Courier
-  module Resources
-    class Inbox
-      attr_reader messages: Courier::Resources::Inbox::Messages
-
-      def initialize: (client: Courier::Client) -> void
-    end
-  end
-end

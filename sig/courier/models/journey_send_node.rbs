@@ -48,6 +48,7 @@ module Courier
 
       type message =
         {
+          context: Courier::JourneySendNode::Message::Context,
           data: ::Hash[Symbol, top],
           delay: Courier::JourneySendNode::Message::Delay,
           template: String,
@@ -55,6 +56,12 @@ module Courier
         }
 
       class Message < Courier::Internal::Type::BaseModel
+        attr_reader context: Courier::JourneySendNode::Message::Context?
+
+        def context=: (
+          Courier::JourneySendNode::Message::Context
+        ) -> Courier::JourneySendNode::Message::Context
+
         attr_reader data: ::Hash[Symbol, top]?
 
         def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
@@ -76,6 +83,7 @@ module Courier
         ) -> Courier::JourneySendNode::Message::To
 
         def initialize: (
+          ?context: Courier::JourneySendNode::Message::Context,
           ?data: ::Hash[Symbol, top],
           ?delay: Courier::JourneySendNode::Message::Delay,
           ?template: String,
@@ -83,11 +91,22 @@ module Courier
         ) -> void
 
         def to_hash: -> {
+          context: Courier::JourneySendNode::Message::Context,
           data: ::Hash[Symbol, top],
           delay: Courier::JourneySendNode::Message::Delay,
           template: String,
           to: Courier::JourneySendNode::Message::To
         }
+
+        type context = { tenant_id: String }
+
+        class Context < Courier::Internal::Type::BaseModel
+          attr_accessor tenant_id: String
+
+          def initialize: (tenant_id: String) -> void
+
+          def to_hash: -> { tenant_id: String }
+        end
 
         type delay = { until_: String, timezone: String }
 
