@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.25.0 (2026-08-04)
+
+Full Changelog: [v4.24.0...v4.25.0](https://github.com/trycourier/courier-ruby/compare/v4.24.0...v4.25.0)
+
+### Features
+
+* Merge pull request [#178](https://github.com/trycourier/courier-ruby/issues/178) from trycourier/geraldosilva/c-19484-elemental-formatting-controls ([00857bd](https://github.com/trycourier/courier-ruby/commit/00857bd332c959f343c6344b58e4cc19ff916700))
+
 ## 4.24.0 (2026-08-03)
 
 Full Changelog: [v4.23.0...v4.24.0](https://github.com/trycourier/courier-ruby/compare/v4.23.0...v4.24.0)
