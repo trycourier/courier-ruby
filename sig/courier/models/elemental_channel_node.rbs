@@ -1,19 +1,50 @@
 module Courier
   module Models
-    type elemental_channel_node = { channel: String, raw: ::Hash[Symbol, top]? }
+    type elemental_channel_node =
+      {
+        channel: String,
+        font_size: String?,
+        line_height: String?,
+        padding: String?,
+        raw: ::Hash[Symbol, top]?
+      }
 
     class ElementalChannelNode < Courier::Models::ElementalBaseNode
       def channel: -> String?
 
       def channel=: (String _) -> String
 
+      def font_size: -> String?
+
+      def font_size=: (String? _) -> String?
+
+      def line_height: -> String?
+
+      def line_height=: (String? _) -> String?
+
+      def padding: -> String?
+
+      def padding=: (String? _) -> String?
+
       def raw: -> ::Hash[Symbol, top]?
 
       def raw=: (::Hash[Symbol, top]? _) -> ::Hash[Symbol, top]?
 
-      def initialize: (?channel: String, ?raw: ::Hash[Symbol, top]?) -> void
+      def initialize: (
+        ?channel: String,
+        ?font_size: String?,
+        ?line_height: String?,
+        ?padding: String?,
+        ?raw: ::Hash[Symbol, top]?
+      ) -> void
 
-      def to_hash: -> { channel: String, raw: ::Hash[Symbol, top]? }
+      def to_hash: -> {
+        channel: String,
+        font_size: String?,
+        line_height: String?,
+        padding: String?,
+        raw: ::Hash[Symbol, top]?
+      }
     end
   end
 end
