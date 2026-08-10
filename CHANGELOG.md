@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.26.0 (2026-08-10)
+
+Full Changelog: [v4.25.0...v4.26.0](https://github.com/trycourier/courier-ruby/compare/v4.25.0...v4.26.0)
+
+### Features
+
+* Merge pull request [#185](https://github.com/trycourier/courier-ruby/issues/185) from trycourier/geraldosilva/c-19821-notifications-alias-v2 ([c9a2bd8](https://github.com/trycourier/courier-ruby/commit/c9a2bd82de3f3cca82a5de6430e09e93490b709e))
+
 ## 4.25.0 (2026-08-04)
 
 Full Changelog: [v4.24.0...v4.25.0](https://github.com/trycourier/courier-ruby/compare/v4.24.0...v4.25.0)
