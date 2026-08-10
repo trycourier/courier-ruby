@@ -16,6 +16,22 @@ module Courier
       sig { params(channel: String).void }
       attr_writer :channel
 
+      # Email only. Document-level base font size (CSS px, e.g. `16px`) for body content
+      # — text, quote, list and action button labels. Heading styles (`h1`/`h2`/`h3`)
+      # and `subtext` keep their preset sizes.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :font_size
+
+      # Email only. Document-level line height (CSS px or unitless multiplier, e.g.
+      # `24px` or `1.5`) applied to all body content unless overridden per block.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :line_height
+
+      # Email only. Document-level body padding applied once around the email body, as a
+      # CSS px shorthand (1–4 values), e.g. `48px 64px`.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :padding
+
       # Raw data to apply to the channel. If `elements` has not been specified, `raw` is
       # required.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
@@ -34,6 +50,9 @@ module Courier
       sig do
         params(
           channel: String,
+          font_size: T.nilable(String),
+          line_height: T.nilable(String),
+          padding: T.nilable(String),
           raw: T.nilable(T::Hash[Symbol, T.anything])
         ).returns(T.attached_class)
       end
@@ -41,6 +60,16 @@ module Courier
         # The channel the contents of this element should be applied to. Can be `email`,
         # `push`, `direct_message`, `sms` or a provider such as slack
         channel: nil,
+        # Email only. Document-level base font size (CSS px, e.g. `16px`) for body content
+        # — text, quote, list and action button labels. Heading styles (`h1`/`h2`/`h3`)
+        # and `subtext` keep their preset sizes.
+        font_size: nil,
+        # Email only. Document-level line height (CSS px or unitless multiplier, e.g.
+        # `24px` or `1.5`) applied to all body content unless overridden per block.
+        line_height: nil,
+        # Email only. Document-level body padding applied once around the email body, as a
+        # CSS px shorthand (1–4 values), e.g. `48px 64px`.
+        padding: nil,
         # Raw data to apply to the channel. If `elements` has not been specified, `raw` is
         # required.
         raw: nil
@@ -49,7 +78,13 @@ module Courier
 
       sig do
         override.returns(
-          { channel: String, raw: T.nilable(T::Hash[Symbol, T.anything]) }
+          {
+            channel: String,
+            font_size: T.nilable(String),
+            line_height: T.nilable(String),
+            padding: T.nilable(String),
+            raw: T.nilable(T::Hash[Symbol, T.anything])
+          }
         )
       end
       def to_hash
