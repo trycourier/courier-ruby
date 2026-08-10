@@ -29,6 +29,17 @@ module Courier
       end
       attr_accessor :state
 
+      # A template's send-time alias as returned by a read, omitted entirely when it has
+      # none. Usually a single string; an array for a template that resolves from
+      # several aliases, which writes through this API can no longer produce — only
+      # templates predating that restriction, or aliases attached outside this API, hold
+      # more than one.
+      sig { returns(T.nilable(Courier::NotificationTemplateAlias::Variants)) }
+      attr_reader :alias_
+
+      sig { params(alias_: Courier::NotificationTemplateAlias::Variants).void }
+      attr_writer :alias_
+
       # Epoch milliseconds of last update.
       sig { returns(T.nilable(Integer)) }
       attr_reader :updated
@@ -51,6 +62,7 @@ module Courier
           created: Integer,
           creator: String,
           state: Courier::NotificationTemplateResponse::State::OrSymbol,
+          alias_: Courier::NotificationTemplateAlias::Variants,
           updated: Integer,
           updater: String
         ).returns(T.attached_class)
@@ -64,6 +76,12 @@ module Courier
         creator:,
         # The template state. Always uppercase.
         state:,
+        # A template's send-time alias as returned by a read, omitted entirely when it has
+        # none. Usually a single string; an array for a template that resolves from
+        # several aliases, which writes through this API can no longer produce — only
+        # templates predating that restriction, or aliases attached outside this API, hold
+        # more than one.
+        alias_: nil,
         # Epoch milliseconds of last update.
         updated: nil,
         # User ID of the last updater.
@@ -78,6 +96,7 @@ module Courier
             created: Integer,
             creator: String,
             state: Courier::NotificationTemplateResponse::State::TaggedSymbol,
+            alias_: Courier::NotificationTemplateAlias::Variants,
             updated: Integer,
             updater: String
           }

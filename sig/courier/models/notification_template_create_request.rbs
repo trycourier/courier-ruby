@@ -2,12 +2,12 @@ module Courier
   module Models
     type notification_template_create_request =
       {
-        notification: Courier::NotificationTemplatePayload,
+        notification: Courier::NotificationTemplateWritePayload,
         state: Courier::Models::NotificationTemplateCreateRequest::state
       }
 
     class NotificationTemplateCreateRequest < Courier::Internal::Type::BaseModel
-      attr_accessor notification: Courier::NotificationTemplatePayload
+      attr_accessor notification: Courier::NotificationTemplateWritePayload
 
       attr_reader state: Courier::Models::NotificationTemplateCreateRequest::state?
 
@@ -16,12 +16,12 @@ module Courier
       ) -> Courier::Models::NotificationTemplateCreateRequest::state
 
       def initialize: (
-        notification: Courier::NotificationTemplatePayload,
+        notification: Courier::NotificationTemplateWritePayload,
         ?state: Courier::Models::NotificationTemplateCreateRequest::state
       ) -> void
 
       def to_hash: -> {
-        notification: Courier::NotificationTemplatePayload,
+        notification: Courier::NotificationTemplateWritePayload,
         state: Courier::Models::NotificationTemplateCreateRequest::state
       }
 

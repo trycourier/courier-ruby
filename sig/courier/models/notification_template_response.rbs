@@ -6,6 +6,7 @@ module Courier
         created: Integer,
         creator: String,
         state: Courier::Models::NotificationTemplateResponse::state,
+        alias_: Courier::Models::notification_template_alias,
         updated: Integer,
         updater: String
       }
@@ -29,6 +30,12 @@ module Courier
         Courier::Models::NotificationTemplateResponse::state _
       ) -> Courier::Models::NotificationTemplateResponse::state
 
+      def alias_: -> Courier::Models::notification_template_alias?
+
+      def alias_=: (
+        Courier::Models::notification_template_alias _
+      ) -> Courier::Models::notification_template_alias
+
       def updated: -> Integer?
 
       def updated=: (Integer _) -> Integer
@@ -42,6 +49,7 @@ module Courier
         created: Integer,
         creator: String,
         state: Courier::Models::NotificationTemplateResponse::state,
+        ?alias_: Courier::Models::notification_template_alias,
         ?updated: Integer,
         ?updater: String
       ) -> void
@@ -51,6 +59,7 @@ module Courier
         created: Integer,
         creator: String,
         state: Courier::Models::NotificationTemplateResponse::state,
+        alias_: Courier::Models::notification_template_alias,
         updated: Integer,
         updater: String
       }

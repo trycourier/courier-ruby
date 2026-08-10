@@ -4,7 +4,7 @@ module Courier
       attr_reader checks: Courier::Resources::Notifications::Checks
 
       def create: (
-        notification: Courier::NotificationTemplatePayload,
+        notification: Courier::NotificationTemplateWritePayload,
         ?state: Courier::Models::NotificationTemplateCreateRequest::state,
         ?idempotency_key: String,
         ?x_idempotency_expiration: String,
@@ -76,7 +76,7 @@ module Courier
 
       def replace: (
         String id,
-        notification: Courier::NotificationTemplatePayload,
+        notification: Courier::NotificationTemplateWritePayload,
         ?state: Courier::Models::NotificationTemplateUpdateRequest::state,
         ?request_options: Courier::request_opts
       ) -> Courier::NotificationTemplateResponse

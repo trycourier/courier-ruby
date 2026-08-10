@@ -18,7 +18,7 @@ module Courier
       #
       # @overload create(notification:, state: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
-      # @param notification [Courier::Models::NotificationTemplatePayload] Body param: Core template fields used in POST and PUT request bodies (nested und
+      # @param notification [Courier::Models::NotificationTemplateWritePayload] Body param: Template fields accepted in POST and PUT request bodies, nested unde
       #
       # @param state [Symbol, Courier::Models::NotificationTemplateCreateRequest::State] Body param: Template state after creation. Case-insensitive input, normalized to
       #
@@ -321,7 +321,7 @@ module Courier
       #
       # @param id [String] Template ID (nt\_ prefix).
       #
-      # @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
+      # @param notification [Courier::Models::NotificationTemplateWritePayload] Template fields accepted in POST and PUT request bodies, nested under a `notific
       #
       # @param state [Symbol, Courier::Models::NotificationTemplateUpdateRequest::State] Template state after update. Case-insensitive input, normalized to uppercase in
       #
