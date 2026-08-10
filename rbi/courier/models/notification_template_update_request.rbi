@@ -11,13 +11,15 @@ module Courier
           )
         end
 
-      # Core template fields used in POST and PUT request bodies (nested under a
-      # `notification` key) and returned at the top level in responses.
-      sig { returns(Courier::NotificationTemplatePayload) }
+      # Template fields accepted in POST and PUT request bodies, nested under a
+      # `notification` key.
+      sig { returns(Courier::NotificationTemplateWritePayload) }
       attr_reader :notification
 
       sig do
-        params(notification: Courier::NotificationTemplatePayload::OrHash).void
+        params(
+          notification: Courier::NotificationTemplateWritePayload::OrHash
+        ).void
       end
       attr_writer :notification
 
@@ -38,16 +40,17 @@ module Courier
       attr_writer :state
 
       # Request body for replacing a notification template. Same shape as create. All
-      # fields required (PUT = full replacement).
+      # fields required (PUT = full replacement), except `alias`, whose omission means
+      # "leave the existing aliases alone".
       sig do
         params(
-          notification: Courier::NotificationTemplatePayload::OrHash,
+          notification: Courier::NotificationTemplateWritePayload::OrHash,
           state: Courier::NotificationTemplateUpdateRequest::State::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
-        # Core template fields used in POST and PUT request bodies (nested under a
-        # `notification` key) and returned at the top level in responses.
+        # Template fields accepted in POST and PUT request bodies, nested under a
+        # `notification` key.
         notification:,
         # Template state after update. Case-insensitive input, normalized to uppercase in
         # the response. Defaults to "DRAFT".
@@ -58,7 +61,7 @@ module Courier
       sig do
         override.returns(
           {
-            notification: Courier::NotificationTemplatePayload,
+            notification: Courier::NotificationTemplateWritePayload,
             state: Courier::NotificationTemplateUpdateRequest::State::OrSymbol
           }
         )

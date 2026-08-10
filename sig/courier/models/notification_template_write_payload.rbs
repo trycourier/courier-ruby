@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type notification_template_write_payload = { alias_: String? }
+
+    class NotificationTemplateWritePayload < Courier::Models::NotificationTemplatePayload
+      def alias_: -> String?
+
+      def alias_=: (String? _) -> String?
+
+      def initialize: (?alias_: String?) -> void
+
+      def to_hash: -> { alias_: String? }
+    end
+  end
+end

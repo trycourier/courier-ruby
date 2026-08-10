@@ -378,6 +378,8 @@ module Courier
 
   Notifications = Courier::Models::Notifications
 
+  NotificationTemplateAlias = Courier::Models::NotificationTemplateAlias
+
   NotificationTemplateCreateRequest =
     Courier::Models::NotificationTemplateCreateRequest
 
@@ -397,6 +399,9 @@ module Courier
 
   NotificationTemplateVersionListResponse =
     Courier::Models::NotificationTemplateVersionListResponse
+
+  NotificationTemplateWritePayload =
+    Courier::Models::NotificationTemplateWritePayload
 
   Pagerduty = Courier::Models::Pagerduty
 

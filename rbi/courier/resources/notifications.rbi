@@ -14,7 +14,7 @@ module Courier
       # Templates are created in draft state by default.
       sig do
         params(
-          notification: Courier::NotificationTemplatePayload::OrHash,
+          notification: Courier::NotificationTemplateWritePayload::OrHash,
           state: Courier::NotificationTemplateCreateRequest::State::OrSymbol,
           idempotency_key: String,
           x_idempotency_expiration: String,
@@ -22,8 +22,8 @@ module Courier
         ).returns(Courier::NotificationTemplateResponse)
       end
       def create(
-        # Body param: Core template fields used in POST and PUT request bodies (nested
-        # under a `notification` key) and returned at the top level in responses.
+        # Body param: Template fields accepted in POST and PUT request bodies, nested
+        # under a `notification` key.
         notification:,
         # Body param: Template state after creation. Case-insensitive input, normalized to
         # uppercase in the response. Defaults to "DRAFT".
@@ -259,7 +259,7 @@ module Courier
       sig do
         params(
           id: String,
-          notification: Courier::NotificationTemplatePayload::OrHash,
+          notification: Courier::NotificationTemplateWritePayload::OrHash,
           state: Courier::NotificationTemplateUpdateRequest::State::OrSymbol,
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::NotificationTemplateResponse)
@@ -267,8 +267,8 @@ module Courier
       def replace(
         # Template ID (nt\_ prefix).
         id,
-        # Core template fields used in POST and PUT request bodies (nested under a
-        # `notification` key) and returned at the top level in responses.
+        # Template fields accepted in POST and PUT request bodies, nested under a
+        # `notification` key.
         notification:,
         # Template state after update. Case-insensitive input, normalized to uppercase in
         # the response. Defaults to "DRAFT".
