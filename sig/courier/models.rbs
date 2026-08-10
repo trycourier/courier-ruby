@@ -363,6 +363,8 @@ module Courier
 
   module Notifications = Courier::Models::Notifications
 
+  module NotificationTemplateAlias = Courier::Models::NotificationTemplateAlias
+
   class NotificationTemplateCreateRequest = Courier::Models::NotificationTemplateCreateRequest
 
   class NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
@@ -378,6 +380,8 @@ module Courier
   class NotificationTemplateUpdateRequest = Courier::Models::NotificationTemplateUpdateRequest
 
   class NotificationTemplateVersionListResponse = Courier::Models::NotificationTemplateVersionListResponse
+
+  class NotificationTemplateWritePayload = Courier::Models::NotificationTemplateWritePayload
 
   class Pagerduty = Courier::Models::Pagerduty
 

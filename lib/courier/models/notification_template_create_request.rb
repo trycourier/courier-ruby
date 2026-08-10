@@ -4,11 +4,11 @@ module Courier
   module Models
     class NotificationTemplateCreateRequest < Courier::Internal::Type::BaseModel
       # @!attribute notification
-      #   Core template fields used in POST and PUT request bodies (nested under a
-      #   `notification` key) and returned at the top level in responses.
+      #   Template fields accepted in POST and PUT request bodies, nested under a
+      #   `notification` key.
       #
-      #   @return [Courier::Models::NotificationTemplatePayload]
-      required :notification, -> { Courier::NotificationTemplatePayload }
+      #   @return [Courier::Models::NotificationTemplateWritePayload]
+      required :notification, -> { Courier::NotificationTemplateWritePayload }
 
       # @!attribute state
       #   Template state after creation. Case-insensitive input, normalized to uppercase
@@ -23,7 +23,7 @@ module Courier
       #
       #   Request body for creating a notification template.
       #
-      #   @param notification [Courier::Models::NotificationTemplatePayload] Core template fields used in POST and PUT request bodies (nested under a `notifi
+      #   @param notification [Courier::Models::NotificationTemplateWritePayload] Template fields accepted in POST and PUT request bodies, nested under a `notific
       #
       #   @param state [Symbol, Courier::Models::NotificationTemplateCreateRequest::State] Template state after creation. Case-insensitive input, normalized to uppercase i
 

@@ -28,6 +28,16 @@ module Courier
       #   @return [Symbol, Courier::Models::NotificationTemplateResponse::State]
       required :state, enum: -> { Courier::NotificationTemplateResponse::State }
 
+      # @!attribute alias_
+      #   A template's send-time alias as returned by a read, omitted entirely when it has
+      #   none. Usually a single string; an array for a template that resolves from
+      #   several aliases, which writes through this API can no longer produce — only
+      #   templates predating that restriction, or aliases attached outside this API, hold
+      #   more than one.
+      #
+      #   @return [String, Array<String>, nil]
+      optional :alias_, union: -> { Courier::NotificationTemplateAlias }, api_name: :alias
+
       # @!attribute updated
       #   Epoch milliseconds of last update.
       #
@@ -40,7 +50,10 @@ module Courier
       #   @return [String, nil]
       optional :updater, String
 
-      # @!method initialize(id:, created:, creator:, state:, updated: nil, updater: nil)
+      # @!method initialize(id:, created:, creator:, state:, alias_: nil, updated: nil, updater: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Courier::Models::NotificationTemplateResponse} for more details.
+      #
       #   Response for GET /notifications/{id}, POST /notifications, and PUT
       #   /notifications/{id}. Returns all template fields at the top level.
       #
@@ -51,6 +64,8 @@ module Courier
       #   @param creator [String] User ID of the creator.
       #
       #   @param state [Symbol, Courier::Models::NotificationTemplateResponse::State] The template state. Always uppercase.
+      #
+      #   @param alias_ [String, Array<String>] A template's send-time alias as returned by a read, omitted entirely when it has
       #
       #   @param updated [Integer] Epoch milliseconds of last update.
       #
