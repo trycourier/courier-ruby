@@ -1,0 +1,650 @@
+# Changelog
+
+## 4.26.0 (2026-08-10)
+
+Full Changelog: [v4.25.0...v4.26.0](https://github.com/trycourier/courier-ruby/compare/v4.25.0...v4.26.0)
+
+### Features
+
+* Merge pull request [#185](https://github.com/trycourier/courier-ruby/issues/185) from trycourier/geraldosilva/c-19821-notifications-alias-v2 ([c9a2bd8](https://github.com/trycourier/courier-ruby/commit/c9a2bd82de3f3cca82a5de6430e09e93490b709e))
+
+## 4.25.0 (2026-08-04)
+
+Full Changelog: [v4.24.0...v4.25.0](https://github.com/trycourier/courier-ruby/compare/v4.24.0...v4.25.0)
+
+### Features
+
+* Merge pull request [#178](https://github.com/trycourier/courier-ruby/issues/178) from trycourier/geraldosilva/c-19484-elemental-formatting-controls ([00857bd](https://github.com/trycourier/courier-ruby/commit/00857bd332c959f343c6344b58e4cc19ff916700))
+
+## 4.24.0 (2026-08-03)
+
+Full Changelog: [v4.23.0...v4.24.0](https://github.com/trycourier/courier-ruby/compare/v4.23.0...v4.24.0)
+
+### Features
+
+* Merge pull request [#183](https://github.com/trycourier/courier-ruby/issues/183) from trycourier/dantran/c-19684-api-spec-document-messagecontexttenant_id-on-journey-send ([aedb9a8](https://github.com/trycourier/courier-ruby/commit/aedb9a8a3a7bc1ed7a5a63cf1c4330bc119a6155))
+* spec: remove inbox message delete/restore endpoints for now (C-19268) ([#182](https://github.com/trycourier/courier-ruby/issues/182)) ([d98f978](https://github.com/trycourier/courier-ruby/commit/d98f9786a8396cb9258d4f798240dc53d57c7b98))
+* spec: reorder API reference sections to match the Studio nav ([#180](https://github.com/trycourier/courier-ruby/issues/180)) ([fe03907](https://github.com/trycourier/courier-ruby/commit/fe03907ebe05595a7e9edf4ff7ecf11711c3156b))
+
+## 4.23.0 (2026-07-29)
+
+Full Changelog: [v4.22.0...v4.23.0](https://github.com/trycourier/courier-ruby/compare/v4.22.0...v4.23.0)
+
+### Features
+
+* **broadcasts:** document Broadcasts CRUD REST API ([#170](https://github.com/trycourier/courier-ruby/issues/170)) ([122e598](https://github.com/trycourier/courier-ruby/commit/122e5984cc48c30473a81fd3003c4fd899fc1cc6))
+
+## 4.22.0 (2026-07-29)
+
+Full Changelog: [v4.21.0...v4.22.0](https://github.com/trycourier/courier-ruby/compare/v4.21.0...v4.22.0)
+
+### Features
+
+* Document DELETE/PUT restore for inbox messages (C-19268) ([#175](https://github.com/trycourier/courier-ruby/issues/175)) ([36c1d01](https://github.com/trycourier/courier-ruby/commit/36c1d0116770621edfefe94781e72a8061e43781))
+* spec: rename and reorder the API reference sections ([#179](https://github.com/trycourier/courier-ruby/issues/179)) ([997010e](https://github.com/trycourier/courier-ruby/commit/997010e32d3e0aed0ac138c67a8383ba1f99d416))
+
+
+### Documentation
+
+* **openapi:** describe user topic-preference fields explicitly ([#172](https://github.com/trycourier/courier-ruby/issues/172)) ([c540bdb](https://github.com/trycourier/courier-ruby/commit/c540bdb855f180d850feeabf1a30ed4394092b50))
+* **openapi:** document Idempotency-Key header on idempotent POST endpoints ([#176](https://github.com/trycourier/courier-ruby/issues/176)) ([b76b6bb](https://github.com/trycourier/courier-ruby/commit/b76b6bbbd0e856d486037d7d140b2d934eb150ea))
+* **openapi:** rewrite operation descriptions for agents and SEO ([#174](https://github.com/trycourier/courier-ruby/issues/174)) ([8a8c25b](https://github.com/trycourier/courier-ruby/commit/8a8c25b54b9a8db2cd906ab09ac8729423fa35b8))
+
+## 4.21.0 (2026-07-23)
+
+Full Changelog: [v4.20.0...v4.21.0](https://github.com/trycourier/courier-ruby/compare/v4.20.0...v4.21.0)
+
+### Features
+
+* Remove /bulk endpoints from api-spec (C-19507) ([#171](https://github.com/trycourier/courier-ruby/issues/171)) ([e10d767](https://github.com/trycourier/courier-ruby/commit/e10d767174c28e0ae756041d7d2f1f78f2c72241))
+
+## 4.20.0 (2026-07-20)
+
+Full Changelog: [v4.19.2...v4.20.0](https://github.com/trycourier/courier-ruby/compare/v4.19.2...v4.20.0)
+
+### Features
+
+* Document POST /notifications/{id}/duplicate [C-18607] ([#165](https://github.com/trycourier/courier-ruby/issues/165)) ([212644c](https://github.com/trycourier/courier-ruby/commit/212644cd49ac7b108944831e04289d2e9e073b7d))
+* Merge pull request [#149](https://github.com/trycourier/courier-ruby/issues/149) from trycourier/geraldosilva/c-19201-notification-template-subscription-topic-id ([cd697fa](https://github.com/trycourier/courier-ruby/commit/cd697fa2d3b49db32db582dae1789ab03706ced5))
+* Merge pull request [#168](https://github.com/trycourier/courier-ruby/issues/168) from trycourier/geraldosilva/c-19419-topic-id-notification-template-summary ([71d47f3](https://github.com/trycourier/courier-ruby/commit/71d47f336799157c0dfd99276951359d391a8a7d))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([c5fe04e](https://github.com/trycourier/courier-ruby/commit/c5fe04ea6c0ed2c5ce38ca49738c293e44557688))
+
+## 4.19.2 (2026-07-10)
+
+Full Changelog: [v4.19.1...v4.19.2](https://github.com/trycourier/courier-ruby/compare/v4.19.1...v4.19.2)
+
+### Documentation
+
+* **openapi:** canonical type-id prefixes across all examples ([#162](https://github.com/trycourier/courier-ruby/issues/162)) ([c72a6f6](https://github.com/trycourier/courier-ruby/commit/c72a6f63809b553dd84f047498ce8d695b311b09))
+* **openapi:** use canonical type-id prefixes in id examples ([#160](https://github.com/trycourier/courier-ruby/issues/160)) ([ea3ec70](https://github.com/trycourier/courier-ruby/commit/ea3ec70a9339c34c0e162d807fe58ee4cbc8cc62))
+
+## 4.19.1 (2026-07-09)
+
+Full Changelog: [v4.19.0...v4.19.1](https://github.com/trycourier/courier-ruby/compare/v4.19.0...v4.19.1)
+
+## 4.19.0 (2026-07-09)
+
+Full Changelog: [v4.18.2...v4.19.0](https://github.com/trycourier/courier-ruby/compare/v4.18.2...v4.19.0)
+
+### Features
+
+* Add bulk user preference upsert and replace endpoints ([695929f](https://github.com/trycourier/courier-ruby/commit/695929f41a7c07c28ef9c3cb6913890b30759404))
+* Preferences v3 REST fields: section/topic description + publish body ([df7c59d](https://github.com/trycourier/courier-ruby/commit/df7c59d084f401ea9523db27b35bdccfc0696f2f))
+
+## 4.18.2 (2026-07-09)
+
+Full Changelog: [v4.18.1...v4.18.2](https://github.com/trycourier/courier-ruby/compare/v4.18.1...v4.18.2)
+
+### Chores
+
+* update api-spec with new message resend endpoint ([a785ed4](https://github.com/trycourier/courier-ruby/commit/a785ed495410f21ee51c4a5c5f3a8c87a59578c4))
+
+## 4.18.1 (2026-07-07)
+
+Full Changelog: [v4.18.0...v4.18.1](https://github.com/trycourier/courier-ruby/compare/v4.18.0...v4.18.1)
+
+### Documentation
+
+* **openapi:** document audiences filter combinator (SUP-686) ([fdf42fe](https://github.com/trycourier/courier-ruby/commit/fdf42fecbd77058dbba53a198942efa509bbc1a1))
+
+## 4.18.0 (2026-07-06)
+
+Full Changelog: [v4.17.1...v4.18.0](https://github.com/trycourier/courier-ruby/compare/v4.17.1...v4.18.0)
+
+### Features
+
+* **openapi:** Journeys cancel-by-token endpoint + send-node experiments (C-18986) ([12613c6](https://github.com/trycourier/courier-ruby/commit/12613c65e9b4facc19f7fa23cc92fac0b2ea8684))
+
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([192d613](https://github.com/trycourier/courier-ruby/commit/192d6133c29e2ae7bfcd7c54bd1c244894f01b94))
+
+
+### Documentation
+
+* **openapi:** reword Cancel journey runs 400 description (re-trigger deploy) ([89ceaab](https://github.com/trycourier/courier-ruby/commit/89ceaab2e20d45c3dd807427f5e4d248ba94cc8a))
+* **openapi:** reword Cancel journey runs description (re-trigger deploy) ([ccce802](https://github.com/trycourier/courier-ruby/commit/ccce8027d4279de031ff2f7e95a250e512dbfbed))
+* **openapi:** tighten Journeys cancel/experiment copy (C-19177) ([10c4f1d](https://github.com/trycourier/courier-ruby/commit/10c4f1d3ca27c525ec5d75d49f4bb30cc0d6180d))
+
+## 4.17.1 (2026-06-25)
+
+Full Changelog: [v4.17.0...v4.17.1](https://github.com/trycourier/courier-ruby/compare/v4.17.0...v4.17.1)
+
+### Documentation
+
+* **openapi:** add full response examples to every endpoint ([be9724a](https://github.com/trycourier/courier-ruby/commit/be9724a3a5d7317bd31d99160414959b58d1e5bb))
+* **openapi:** reword Cancel Submission description ([68565aa](https://github.com/trycourier/courier-ruby/commit/68565aa1f8de141d9780a390da4b48aeb178624e))
+* **openapi:** reword Get Submission Checks description ([94541e4](https://github.com/trycourier/courier-ruby/commit/94541e4aaebbf1ac567e1047d2ce84e5ad97741b))
+* **openapi:** reword Replace Submission Checks description ([7aa63c1](https://github.com/trycourier/courier-ruby/commit/7aa63c14c83b9585ec963d426f47b2720b5b04cc))
+
+## 4.17.0 (2026-06-24)
+
+Full Changelog: [v4.16.0...v4.17.0](https://github.com/trycourier/courier-ruby/compare/v4.16.0...v4.17.0)
+
+### Features
+
+* **preferences:** workspace preference sections & nested topics endpoints ([d53ac7b](https://github.com/trycourier/courier-ruby/commit/d53ac7b093745632465f9b8fc4136964e48ed88f))
+
+## 4.16.0 (2026-06-23)
+
+Full Changelog: [v4.15.0...v4.16.0](https://github.com/trycourier/courier-ruby/compare/v4.15.0...v4.16.0)
+
+### Features
+
+* **journeys:** add content + locale endpoints to journey-scoped templates ([9309361](https://github.com/trycourier/courier-ruby/commit/93093616ebe031a0d3c4b5ffe5b365affa5d0c6a))
+
+
+### Documentation
+
+* **journeys:** clarify checksum usage + re-trigger docs sync for journey content endpoints ([dfff96b](https://github.com/trycourier/courier-ruby/commit/dfff96ba54ef12d492fff54f5c1d973a3e3d9028))
+
+## 4.15.0 (2026-06-17)
+
+Full Changelog: [v4.14.0...v4.15.0](https://github.com/trycourier/courier-ruby/compare/v4.14.0...v4.15.0)
+
+### Features
+
+* **openapi:** add add-to-digest JourneyNode variant ([55fdd8f](https://github.com/trycourier/courier-ruby/commit/55fdd8feb37743d64201641e86d95f56ce22c603))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([1e1b51c](https://github.com/trycourier/courier-ruby/commit/1e1b51ce2b17c5bc05193efca068828cd64ce81f))
+
+## 4.14.0 (2026-06-16)
+
+Full Changelog: [v4.13.0...v4.14.0](https://github.com/trycourier/courier-ruby/compare/v4.13.0...v4.14.0)
+
+### Features
+
+* **openapi:** add DELETE /users/{id}/preferences/{topicId} ([417d5c8](https://github.com/trycourier/courier-ruby/commit/417d5c8d2e96bbb345d08908d35e3f3b4b6b7172))
+
+## 4.13.0 (2026-06-12)
+
+Full Changelog: [v4.12.0...v4.13.0](https://github.com/trycourier/courier-ruby/compare/v4.12.0...v4.13.0)
+
+### Features
+
+* **digests:** document digest REST endpoints in OpenAPI spec ([6fdd4fc](https://github.com/trycourier/courier-ruby/commit/6fdd4fc94c104e0f3ca8905108a18eeafd9c5abc))
+
+## 4.12.0 (2026-05-28)
+
+Full Changelog: [v4.11.0...v4.12.0](https://github.com/trycourier/courier-ruby/compare/v4.11.0...v4.12.0)
+
+### Features
+
+* C-18612 Add Journeys `batch` node variant to OpenAPI spec ([046a5de](https://github.com/trycourier/courier-ruby/commit/046a5de8a353a40c44f3901313151bf62105c19c))
+* Mark `settings` as required on POST /brands ([72fb020](https://github.com/trycourier/courier-ruby/commit/72fb020cc45f9c4b5384d7492fb8908ac3e82379))
+
+## 4.11.0 (2026-05-19)
+
+Full Changelog: [v4.10.2...v4.11.0](https://github.com/trycourier/courier-ruby/compare/v4.10.2...v4.11.0)
+
+### Features
+
+* [C-18380] Journeys API reference: copy + naming cleanup ([5930853](https://github.com/trycourier/courier-ruby/commit/5930853b36e87fc434a5f316d5144459d8a5156c))
+* [SUP-607] Add DELETE endpoint for Courier Create tenant templates ([72df650](https://github.com/trycourier/courier-ruby/commit/72df650b8e3e6bde00a5a8f047c16e77f2c97ac3))
+* **api:** add journey CRUD/templates/versioning endpoints, journey node/condition types ([30bc8f6](https://github.com/trycourier/courier-ruby/commit/30bc8f6ad778a9ca44ed7ccbfa743e23170192b4))
+* support setting headers via env ([6f99d29](https://github.com/trycourier/courier-ruby/commit/6f99d290cad4006de8f84b22cbac6694d314a3aa))
+
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([5f06485](https://github.com/trycourier/courier-ruby/commit/5f0648580bf65a97989fbb1f6583ef7166c43c2f))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([91e8fd1](https://github.com/trycourier/courier-ruby/commit/91e8fd1ecdd6d10def9215f53a73248b754b5386))
+
+## 4.10.2 (2026-04-14)
+
+Full Changelog: [v4.10.1...v4.10.2](https://github.com/trycourier/courier-ruby/compare/v4.10.1...v4.10.2)
+
+### Bug Fixes
+
+* **types:** flatten NotificationTemplateResponse model structure ([4c019eb](https://github.com/trycourier/courier-ruby/commit/4c019ebb34aaf3b6c37e778da95c593aa5faa409))
+* **types:** make note optional, flatten NotificationTemplateGetResponse ([05f8c8c](https://github.com/trycourier/courier-ruby/commit/05f8c8c41198a2f8156ac10ccf4a67fa84130350))
+
+## 4.10.1 (2026-04-13)
+
+Full Changelog: [v4.10.0...v4.10.1](https://github.com/trycourier/courier-ruby/compare/v4.10.0...v4.10.1)
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([6f54534](https://github.com/trycourier/courier-ruby/commit/6f545347ec738929c45b89476d4fc02aa185760b))
+* **types:** correct notifications/routing_strategies return types, remove mutation models ([8020a8f](https://github.com/trycourier/courier-ruby/commit/8020a8fa2015d5f5b4c4703a4354acd3283193bc))
+
+## 4.10.0 (2026-04-08)
+
+Full Changelog: [v4.9.0...v4.10.0](https://github.com/trycourier/courier-ruby/compare/v4.9.0...v4.10.0)
+
+### Features
+
+* **api:** add list_notifications method to routing_strategies ([ce8f121](https://github.com/trycourier/courier-ruby/commit/ce8f1217d52377144e053e51497310e71fef1dea))
+* **api:** add put_content/put_element/put_locale, remove draft resource, update retrieve_content ([ecb21e4](https://github.com/trycourier/courier-ruby/commit/ecb21e4913ec80513471153abab2e75d80afffb5))
+
+## 4.9.0 (2026-04-01)
+
+Full Changelog: [v4.8.0...v4.9.0](https://github.com/trycourier/courier-ruby/compare/v4.8.0...v4.9.0)
+
+### Features
+
+* **api:** add html variant to elemental_node union ([a5a5a5d](https://github.com/trycourier/courier-ruby/commit/a5a5a5d025d5ddb27a79872b15efaaa08785b032))
+* **api:** add notification template CRUD methods, update list params/types ([4861f87](https://github.com/trycourier/courier-ruby/commit/4861f87ead15aba7b148dc8d2790fe2d018157c9))
+* **api:** add providers resource with create/retrieve/update/list/delete and catalog ([5191261](https://github.com/trycourier/courier-ruby/commit/519126120e84dea8276094325e49d350eff3f7bc))
+* **api:** add routing_strategies resource with create/retrieve/list/replace/archive ([6c64599](https://github.com/trycourier/courier-ruby/commit/6c645999dd54ac75bdb777745363d662f7d9da64))
+
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([916afaa](https://github.com/trycourier/courier-ruby/commit/916afaafd525d4d77a42a0739e892c4d4cf5d933))
+* **internal:** correct multipart form field name encoding ([7925b72](https://github.com/trycourier/courier-ruby/commit/7925b72544622783dd17527da1729f6f48ddb744))
+* variable name typo ([1f59fd2](https://github.com/trycourier/courier-ruby/commit/1f59fd2c73459908b337b98135efbd79bf0bfb9a))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([22a3e8d](https://github.com/trycourier/courier-ruby/commit/22a3e8d5bbfe6953bca20ba54b7bb2007f4f37c0))
+* **ci:** support opting out of skipping builds on metadata-only commits ([a6c047e](https://github.com/trycourier/courier-ruby/commit/a6c047eaa9730f8c398082cd422bf0bc1087e882))
+* **internal:** tweak CI branches ([08eccfe](https://github.com/trycourier/courier-ruby/commit/08eccfe4c37358304a97686df7248dc02f6ea0f4))
+* **internal:** update gitignore ([95860ac](https://github.com/trycourier/courier-ruby/commit/95860acf54c665132e957913d0fc6187cadaf64c))
+
+
+### Documentation
+
+* add AGENTS.md for AI coding assistants ([#81](https://github.com/trycourier/courier-ruby/issues/81)) ([ff1b8c2](https://github.com/trycourier/courier-ruby/commit/ff1b8c2e58007e1ccd5e631e07f28daf2027cef2))
+* sync README from mintlify-docs (2026-03-23 19:54 UTC) ([#79](https://github.com/trycourier/courier-ruby/issues/79)) ([4b83d99](https://github.com/trycourier/courier-ruby/commit/4b83d99126c8ddedf8e137cfc683bc6be998cc35))
+
+## 4.8.0 (2026-03-12)
+
+Full Changelog: [v4.7.1...v4.8.0](https://github.com/trycourier/courier-ruby/compare/v4.7.1...v4.8.0)
+
+### Features
+
+* **api:** add journeys resource with list and invoke methods ([26a80de](https://github.com/trycourier/courier-ruby/commit/26a80de1aa75c947f63e09da0ae7cb539947ecc4))
+* **api:** add provider_key/device/tracking to token params, remove body_token ([acb3031](https://github.com/trycourier/courier-ruby/commit/acb30313188a385e2ad39be4f4040e4e5836106d))
+* **api:** remove brand field from ElementalContent model ([519fcc0](https://github.com/trycourier/courier-ruby/commit/519fcc0a2f35a1fd61e64362b5a2e7b2d8225232))
+
+
+### Bug Fixes
+
+* mark MessageDetails timestamp fields as optional ([31a0be6](https://github.com/trycourier/courier-ruby/commit/31a0be63ee9969176a7bb3a627eabeb7c26d50f6))
+
+
+### Chores
+
+* **ci:** add build step ([d07ae3d](https://github.com/trycourier/courier-ruby/commit/d07ae3dc073f38ac30af1311f1d70153e441bf51))
+* **ci:** skip uploading artifacts on stainless-internal branches ([d4c0636](https://github.com/trycourier/courier-ruby/commit/d4c06361e5ef4e7c0a3a1660215d63fe845694c5))
+* **internal:** codegen related update ([3a0f51e](https://github.com/trycourier/courier-ruby/commit/3a0f51e6a03c33097f1307ac7974a3c5ca72ac90))
+* **internal:** codegen related update ([1cce4a8](https://github.com/trycourier/courier-ruby/commit/1cce4a8be23782aae7fb9185b8ac2efd06516842))
+* **internal:** remove mock server code ([a81351a](https://github.com/trycourier/courier-ruby/commit/a81351a2fde27b8a785a79436394a991e9048d97))
+* update mock server docs ([62d69fc](https://github.com/trycourier/courier-ruby/commit/62d69fc657babf8ff535e150d74a2283ddb64459))
+
+
+### Documentation
+
+* add AUTO-GENERATED-OVERVIEW markers for README sync ([#75](https://github.com/trycourier/courier-ruby/issues/75)) ([ab86102](https://github.com/trycourier/courier-ruby/commit/ab86102437d2af03dc45beae7262371c70b6847f))
+* sync README from mintlify-docs (2026-02-20 18:11 UTC) ([#76](https://github.com/trycourier/courier-ruby/issues/76)) ([cc67458](https://github.com/trycourier/courier-ruby/commit/cc6745816e152b890b84caaf666178bdbd9d3192))
+
+## 4.7.1 (2026-02-07)
+
+Full Changelog: [v4.7.0...v4.7.1](https://github.com/trycourier/courier-ruby/compare/v4.7.0...v4.7.1)
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([70d1c0d](https://github.com/trycourier/courier-ruby/commit/70d1c0d55a6982b059be2809cae088351ba7f112))
+
+## 4.7.0 (2026-02-06)
+
+Full Changelog: [v4.6.3...v4.7.0](https://github.com/trycourier/courier-ruby/compare/v4.6.3...v4.7.0)
+
+### Features
+
+* **api:** add array support to send_message to parameter ([02f83d3](https://github.com/trycourier/courier-ruby/commit/02f83d3b73bea1b85a5bda3fe30080e0e807f753))
+* **api:** add publish/replace methods and versions sub-resource to tenants templates ([7642e1b](https://github.com/trycourier/courier-ruby/commit/7642e1b9f7433ae5046f4a170c11479aee626cc4))
+
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([2045d2e](https://github.com/trycourier/courier-ruby/commit/2045d2e9d416abe826dd87ff993838407784dccc))
+
+
+### Chores
+
+* **docs:** remove www prefix ([8667b7a](https://github.com/trycourier/courier-ruby/commit/8667b7a6f52b4559e4f941b78b724b94f393b996))
+
+## 4.6.3 (2026-01-27)
+
+Full Changelog: [v4.6.2...v4.6.3](https://github.com/trycourier/courier-ruby/compare/v4.6.2...v4.6.3)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([58351ff](https://github.com/trycourier/courier-ruby/commit/58351ffafedee9170ccedf73d79c2c87fe84ca7b))
+
+
+### Documentation
+
+* **types:** update version field description in AutomationTemplate ([df81741](https://github.com/trycourier/courier-ruby/commit/df8174149d84e67dd15ca2e54b45ac3e4682039a))
+
+## 4.6.2 (2026-01-14)
+
+Full Changelog: [v4.6.1...v4.6.2](https://github.com/trycourier/courier-ruby/compare/v4.6.1...v4.6.2)
+
+### Chores
+
+* fix typo in descriptions ([620d8d1](https://github.com/trycourier/courier-ruby/commit/620d8d14300bc3ca8a7c53ba0e6475d251773f98))
+* **internal:** regenerate SDK with no functional changes ([258dc3c](https://github.com/trycourier/courier-ruby/commit/258dc3c812e714cb593afbbba68c4f64be184741))
+* **internal:** regenerate SDK with no functional changes ([87e9439](https://github.com/trycourier/courier-ruby/commit/87e943981b53c04bb806af69a3a5293c4ffa5f5b))
+* remove custom code ([7ada104](https://github.com/trycourier/courier-ruby/commit/7ada104121a203cfcc3bbc0d05bd818bfbbcf834))
+
+## 4.6.1 (2026-01-12)
+
+Full Changelog: [v4.6.0...v4.6.1](https://github.com/trycourier/courier-ruby/compare/v4.6.0...v4.6.1)
+
+### Bug Fixes
+
+* **types:** correct rules field type to Filter in NestedFilterConfig ([3c9897c](https://github.com/trycourier/courier-ruby/commit/3c9897c45406cf07f9981a953030c43c10f224c1))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([a8e483c](https://github.com/trycourier/courier-ruby/commit/a8e483c224a1ae70128b7eb379e9356d68175d95))
+* move `cgi` into dependencies for ruby 4 ([854537a](https://github.com/trycourier/courier-ruby/commit/854537a6a4127b10ac19f8cd43f412e54c776385))
+
+## 4.6.0 (2026-01-08)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/trycourier/courier-ruby/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* **api:** remove audit_events, automations, brands, bulk, inbound, translations endpoints ([f9f04c1](https://github.com/trycourier/courier-ruby/commit/f9f04c1760b4dceb5ed966449ddb19cd4bc72182))
+
+## 4.5.0 (2025-12-29)
+
+Full Changelog: [v4.4.0...v4.5.0](https://github.com/trycourier/courier-ruby/compare/v4.4.0...v4.5.0)
+
+### Features
+
+* **api:** add slack/msteams/pagerduty/webhook/audience/list recipient types ([56278ef](https://github.com/trycourier/courier-ruby/commit/56278ef7d0582bfba2e2122f9682c1282f25109d))
+
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([7af6435](https://github.com/trycourier/courier-ruby/commit/7af6435d8426c69cb9c07d263d3363526508be7d))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([6288d57](https://github.com/trycourier/courier-ruby/commit/6288d578db512479a70098e529a26a0e29139918))
+
+## 4.4.0 (2025-12-16)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/trycourier/courier-ruby/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* Add timezone field to Delay schema ([980df61](https://github.com/trycourier/courier-ruby/commit/980df617cffc47a231bac77a4250ef4e409cb57c))
+* Update bulk API spec: make event required, document profile.email req… ([73718b3](https://github.com/trycourier/courier-ruby/commit/73718b3e6c13e0a3ac1bc5487eb07953f435a956))
+
+## 4.3.0 (2025-12-08)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/trycourier/courier-ruby/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* Fix UsersGetAllTokensResponse to return object with tokens property i… ([dad98a1](https://github.com/trycourier/courier-ruby/commit/dad98a163d391bf45510d10c10d2d7597e1af74e))
+
+## 4.2.0 (2025-12-08)
+
+Full Changelog: [v4.1.1...v4.2.0](https://github.com/trycourier/courier-ruby/compare/v4.1.1...v4.2.0)
+
+### Features
+
+* Add event_ids field to Notification schema ([cbb73f5](https://github.com/trycourier/courier-ruby/commit/cbb73f50ae03cabc7b2023b6ed337cec5e6b7ad8))
+
+
+### Bug Fixes
+
+* **client:** fix duplicate Go struct resulting from name derivations schema ([9e12a1e](https://github.com/trycourier/courier-ruby/commit/9e12a1ec6f4f230533c524e0c597159072664350))
+
+## 4.1.1 (2025-12-02)
+
+Full Changelog: [v4.1.0...v4.1.1](https://github.com/trycourier/courier-ruby/compare/v4.1.0...v4.1.1)
+
+### Chores
+
+* explicitly require "base64" gem ([0dccbc1](https://github.com/trycourier/courier-ruby/commit/0dccbc120b6772d2343f3990bd11f0ed03b736bf))
+
+## 4.1.0 (2025-11-18)
+
+Full Changelog: [v4.0.0...v4.1.0](https://github.com/trycourier/courier-ruby/compare/v4.0.0...v4.1.0)
+
+### Features
+
+* JWT scope updates ([4d36db2](https://github.com/trycourier/courier-ruby/commit/4d36db263ca5cdb2749a1f118b43021d0848cb7a))
+* NPM enabled ([4f2235d](https://github.com/trycourier/courier-ruby/commit/4f2235d54287d1792ecc6ffae986510e1deb47a4))
+* Test ([dbc83af](https://github.com/trycourier/courier-ruby/commit/dbc83af1bb3c96f874766e751e21ca051cc5d4c4))
+
+## 4.0.0 (2025-11-12)
+
+Full Changelog: [v3.4.0-alpha9...v4.0.0](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha9...v4.0.0)
+
+### Features
+
+* Spec Comment Change ([b567eac](https://github.com/trycourier/courier-ruby/commit/b567eac8556068aa9fea18a1882330e741dda479))
+* Token Prop Description Change ([cb884a1](https://github.com/trycourier/courier-ruby/commit/cb884a1830d2abaf81db27b14c60725c5792f0fa))
+
+
+### Chores
+
+* update SDK settings ([3ad8ff3](https://github.com/trycourier/courier-ruby/commit/3ad8ff378645ccd3ecdf5a3b64ccfd8694901c67))
+
+## 3.4.0-alpha9 (2025-11-07)
+
+Full Changelog: [v3.4.0-alpha8...v3.4.0-alpha9](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha8...v3.4.0-alpha9)
+
+### Bug Fixes
+
+* Better Python Samples + Updates to naming ([1d8cd06](https://github.com/trycourier/courier-ruby/commit/1d8cd06d373fa53e940cd05d26ce24005ef93955))
+
+## 3.4.0-alpha8 (2025-11-05)
+
+Full Changelog: [v3.4.0-alpha7...v3.4.0-alpha8](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha7...v3.4.0-alpha8)
+
+### Features
+
+* Attempt kick off again ([a5ffc84](https://github.com/trycourier/courier-ruby/commit/a5ffc84f9ed318eb757d6736eca3562d1d71b2e8))
+* Kick off the change (Change to user profile in descriptions) ([f4dc8ff](https://github.com/trycourier/courier-ruby/commit/f4dc8ffe56eb34a7ae471473ead69550db011aaa))
+* Organization update ([c6f7b97](https://github.com/trycourier/courier-ruby/commit/c6f7b970508aca2bd1fca5d69e83c76def40058d))
+
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([f3dfeec](https://github.com/trycourier/courier-ruby/commit/f3dfeec90dc59b454f787ef88e0b1a7b2af02ef7))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([4d9baaa](https://github.com/trycourier/courier-ruby/commit/4d9baaac7f0ac9365f648ba0a3f10edb646e70a8))
+
+## 3.4.0-alpha7 (2025-10-31)
+
+Full Changelog: [v3.4.0-alpha6...v3.4.0-alpha7](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha6...v3.4.0-alpha7)
+
+### Features
+
+* Comment adjustment to kick of build ([3f53532](https://github.com/trycourier/courier-ruby/commit/3f535324c5b114494cfd28e2570d9fb3c192b6b1))
+* handle thread interrupts in the core HTTP client ([27380fe](https://github.com/trycourier/courier-ruby/commit/27380fe7d02178679a46b849acbc5807e3dc4136))
+
+
+### Bug Fixes
+
+* Comment to kick off build ([bbdb8ce](https://github.com/trycourier/courier-ruby/commit/bbdb8cec3dec051e17a89091f2ea881897e3b532))
+
+## 3.4.0-alpha6 (2025-10-17)
+
+Full Changelog: [v3.4.0-alpha5...v3.4.0-alpha6](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha5...v3.4.0-alpha6)
+
+### Bug Fixes
+
+* Dep Warning ([3439cba](https://github.com/trycourier/courier-ruby/commit/3439cbae785d9e2198cc6af4a19e4e54e9e74c0c))
+
+## 3.4.0-alpha5 (2025-10-17)
+
+Full Changelog: [v3.4.0-alpha4...v3.4.0-alpha5](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha4...v3.4.0-alpha5)
+
+### Bug Fixes
+
+* Updated paths for each model and go example updates ([3589716](https://github.com/trycourier/courier-ruby/commit/358971631427bdec2f3c609aa0b96139ee285503))
+
+## 3.4.0-alpha4 (2025-10-16)
+
+Full Changelog: [v3.4.0-alpha3...v3.4.0-alpha4](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha3...v3.4.0-alpha4)
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([bfd4568](https://github.com/trycourier/courier-ruby/commit/bfd45688b3098e802b5dc1b0cced22900a0be21d))
+
+## 3.4.0-alpha3 (2025-10-15)
+
+Full Changelog: [v3.4.0-alpha2...v3.4.0-alpha3](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha2...v3.4.0-alpha3)
+
+### Features
+
+* Changes to spec, examples and scripts ([09593fd](https://github.com/trycourier/courier-ruby/commit/09593fd20a94ccdf207b2132466f36347e26a7b1))
+* More PHP and attempted node automerge ([b09fcca](https://github.com/trycourier/courier-ruby/commit/b09fcca1f67209aaaf4bc7295a7adf1f1b828388))
+
+
+### Bug Fixes
+
+* should not reuse buffers for `IO.copy_stream` interop ([eb3c0f3](https://github.com/trycourier/courier-ruby/commit/eb3c0f32d5999be7343beb7cdb67d10b1d1b86ad))
+
+## 3.4.0-alpha2 (2025-10-14)
+
+Full Changelog: [v3.4.0-alpha1...v3.4.0-alpha2](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha1...v3.4.0-alpha2)
+
+### Features
+
+* Kick of merge attempt ([9768acd](https://github.com/trycourier/courier-ruby/commit/9768acdb3174098916886962bdc15775092794cb))
+
+## 3.4.0-alpha1 (2025-10-10)
+
+Full Changelog: [v3.4.0-alpha0...v3.4.0-alpha1](https://github.com/trycourier/courier-ruby/compare/v3.4.0-alpha0...v3.4.0-alpha1)
+
+### Features
+
+* **api:** manual updates ([051c3c4](https://github.com/trycourier/courier-ruby/commit/051c3c4722fa39896d01d0841f4989c91aa75c45))
+* **api:** manual updates ([ea5dfb3](https://github.com/trycourier/courier-ruby/commit/ea5dfb319688c23cc97da6a6ad80d4837bae04dd))
+* **api:** manual updates ([589a36f](https://github.com/trycourier/courier-ruby/commit/589a36f974d97fa73ecdf9a2a9b335492b15b203))
+* **api:** manual updates ([373bfde](https://github.com/trycourier/courier-ruby/commit/373bfde900f61ab7d70dcf775bd6aba16559d4df))
+* **api:** manual updates ([7c80f38](https://github.com/trycourier/courier-ruby/commit/7c80f3886fee9dc87253362a3eb51fe73cb44827))
+* **api:** manual updates ([f6681a9](https://github.com/trycourier/courier-ruby/commit/f6681a932e946bce954e2636f711694339d80471))
+* **api:** manual updates ([6a77929](https://github.com/trycourier/courier-ruby/commit/6a779292f8e2479621698d89a344466d95c97eab))
+* **api:** manual updates ([ab9922d](https://github.com/trycourier/courier-ruby/commit/ab9922d111846aebe424749ae0cb9668332e3e62))
+* **api:** manual updates ([4de89e5](https://github.com/trycourier/courier-ruby/commit/4de89e5fdad38358f42a1fec4835eda07247b57e))
+* **api:** manual updates ([babe4b8](https://github.com/trycourier/courier-ruby/commit/babe4b874fe7a4b5f8b306a5ebce7be0baf877e3))
+* **api:** manual updates ([91ad238](https://github.com/trycourier/courier-ruby/commit/91ad2389821d60def82ce67ee5f42f3a7f803f1c))
+* **api:** manual updates ([f80182f](https://github.com/trycourier/courier-ruby/commit/f80182f49b5abc44e758579d1ab9b475e1f41c95))
+* **api:** manual updates ([0d85b82](https://github.com/trycourier/courier-ruby/commit/0d85b8277f8b92d4f387298a7783cbcbf3c585a2))
+* **api:** manual updates ([8d639b8](https://github.com/trycourier/courier-ruby/commit/8d639b8acc654df6242511b035f04d1995298c0b))
+* **api:** manual updates ([2af24a7](https://github.com/trycourier/courier-ruby/commit/2af24a7f27da9496ebfb49a35549483bf8560e43))
+* **api:** manual updates ([221c2cd](https://github.com/trycourier/courier-ruby/commit/221c2cdeba247e19415c225a58869b0a742e82a1))
+* **api:** manual updates ([26c6626](https://github.com/trycourier/courier-ruby/commit/26c66263d5fcd8b10199bffcd4eda41a2b7595ed))
+* **api:** manual updates ([97e07ab](https://github.com/trycourier/courier-ruby/commit/97e07ab0a708eaaaf8e413128c09cb634082c141))
+* **api:** manual updates ([e8ed384](https://github.com/trycourier/courier-ruby/commit/e8ed384bcf0bc996e047b9489a13e0f3c5d12fb7))
+* **api:** manual updates ([e08aa78](https://github.com/trycourier/courier-ruby/commit/e08aa7845992968fcadf24969611c421dd03d81a))
+* **api:** manual updates ([06e1d8b](https://github.com/trycourier/courier-ruby/commit/06e1d8b7a7cf573fd5819c17b5d6201a1e408360))
+* **api:** manual updates ([8601f07](https://github.com/trycourier/courier-ruby/commit/8601f075e4e693560ab29f4690fea6128425652e))
+* **api:** manual updates ([d4899ce](https://github.com/trycourier/courier-ruby/commit/d4899cecd40d44295accc88b24b10ae9fac9d14d))
+* **api:** manual updates ([00a8012](https://github.com/trycourier/courier-ruby/commit/00a8012e858163fb45d62e44f657af3bda6550ed))
+* **api:** manual updates ([2977a88](https://github.com/trycourier/courier-ruby/commit/2977a881d647d04429db5135adc020cf50e13c27))
+* **api:** manual updates ([8a878a0](https://github.com/trycourier/courier-ruby/commit/8a878a0e7ea0b8cce0cd54e37f221ddb5ec204d4))
+* **api:** manual updates ([d5cc23f](https://github.com/trycourier/courier-ruby/commit/d5cc23f99b5306e48ef130e144bceb1aa57a7490))
+* **api:** manual updates ([1dd87c0](https://github.com/trycourier/courier-ruby/commit/1dd87c099c7df921bc93c36005d8cde767a8687e))
+* **api:** manual updates ([9b2b74a](https://github.com/trycourier/courier-ruby/commit/9b2b74a6c40c82333762e187f002bc021942f064))
+* **api:** manual updates ([d81fc71](https://github.com/trycourier/courier-ruby/commit/d81fc71f013ad0fb7701b73ca7ed4a9843c812f4))
+* **api:** manual updates ([f358b3d](https://github.com/trycourier/courier-ruby/commit/f358b3db2d81dcfd0906f0f66511588766292c12))
+* Examples and ref polish ([3987809](https://github.com/trycourier/courier-ruby/commit/3987809dc0da164ca687fc8d6b2870842c0836f4))
+* Model sync ([7d005d6](https://github.com/trycourier/courier-ruby/commit/7d005d69c8082e43e28bf04c43455d193c110543))
+* Polish and Kick of Java Kit Gen ([2e136c1](https://github.com/trycourier/courier-ruby/commit/2e136c1bd2e9d407d8289a39f5246f7d4c1c9174))
+* Template Id ([24598ca](https://github.com/trycourier/courier-ruby/commit/24598cabff382ebc414e8e2f1c815709ebdd7caf))
+* Test Github Action ([5b988c5](https://github.com/trycourier/courier-ruby/commit/5b988c5fb80b9684ae6989361952077e90df366b))
+* Test stainless open action ([7d264c0](https://github.com/trycourier/courier-ruby/commit/7d264c0652b42286d5b3e9666c00f716e030c451))
+
+
+### Chores
+
+* configure new SDK language ([29f56f6](https://github.com/trycourier/courier-ruby/commit/29f56f69dd0a1ce4e4e894ae1432bda1da07fea1))
+* ignore linter error for tests having large collections ([59d9b7f](https://github.com/trycourier/courier-ruby/commit/59d9b7f9987c061850254e99c3713b2abb39662f))
+* update SDK settings ([0f6c8ef](https://github.com/trycourier/courier-ruby/commit/0f6c8ef4fb11a6127a57e16bbd07a547ec458cef))
+* update SDK settings ([021c76b](https://github.com/trycourier/courier-ruby/commit/021c76ba9fdedfe90ce34c90889008dff19f9df0))
+
+## 3.4.0-alpha0 (2025-10-10)
+
+Full Changelog: [v0.0.1...v3.4.0-alpha0](https://github.com/trycourier/courier-ruby/compare/v0.0.1...v3.4.0-alpha0)
+
+### Features
+
+* **api:** manual updates ([051c3c4](https://github.com/trycourier/courier-ruby/commit/051c3c4722fa39896d01d0841f4989c91aa75c45))
+* **api:** manual updates ([ea5dfb3](https://github.com/trycourier/courier-ruby/commit/ea5dfb319688c23cc97da6a6ad80d4837bae04dd))
+* **api:** manual updates ([589a36f](https://github.com/trycourier/courier-ruby/commit/589a36f974d97fa73ecdf9a2a9b335492b15b203))
+* **api:** manual updates ([373bfde](https://github.com/trycourier/courier-ruby/commit/373bfde900f61ab7d70dcf775bd6aba16559d4df))
+* **api:** manual updates ([7c80f38](https://github.com/trycourier/courier-ruby/commit/7c80f3886fee9dc87253362a3eb51fe73cb44827))
+* **api:** manual updates ([f6681a9](https://github.com/trycourier/courier-ruby/commit/f6681a932e946bce954e2636f711694339d80471))
+* **api:** manual updates ([6a77929](https://github.com/trycourier/courier-ruby/commit/6a779292f8e2479621698d89a344466d95c97eab))
+* **api:** manual updates ([ab9922d](https://github.com/trycourier/courier-ruby/commit/ab9922d111846aebe424749ae0cb9668332e3e62))
+* **api:** manual updates ([4de89e5](https://github.com/trycourier/courier-ruby/commit/4de89e5fdad38358f42a1fec4835eda07247b57e))
+* **api:** manual updates ([babe4b8](https://github.com/trycourier/courier-ruby/commit/babe4b874fe7a4b5f8b306a5ebce7be0baf877e3))
+* **api:** manual updates ([91ad238](https://github.com/trycourier/courier-ruby/commit/91ad2389821d60def82ce67ee5f42f3a7f803f1c))
+* **api:** manual updates ([f80182f](https://github.com/trycourier/courier-ruby/commit/f80182f49b5abc44e758579d1ab9b475e1f41c95))
+* **api:** manual updates ([0d85b82](https://github.com/trycourier/courier-ruby/commit/0d85b8277f8b92d4f387298a7783cbcbf3c585a2))
+* **api:** manual updates ([8d639b8](https://github.com/trycourier/courier-ruby/commit/8d639b8acc654df6242511b035f04d1995298c0b))
+* **api:** manual updates ([2af24a7](https://github.com/trycourier/courier-ruby/commit/2af24a7f27da9496ebfb49a35549483bf8560e43))
+* **api:** manual updates ([221c2cd](https://github.com/trycourier/courier-ruby/commit/221c2cdeba247e19415c225a58869b0a742e82a1))
+* **api:** manual updates ([26c6626](https://github.com/trycourier/courier-ruby/commit/26c66263d5fcd8b10199bffcd4eda41a2b7595ed))
+* **api:** manual updates ([97e07ab](https://github.com/trycourier/courier-ruby/commit/97e07ab0a708eaaaf8e413128c09cb634082c141))
+* **api:** manual updates ([e8ed384](https://github.com/trycourier/courier-ruby/commit/e8ed384bcf0bc996e047b9489a13e0f3c5d12fb7))
+* **api:** manual updates ([e08aa78](https://github.com/trycourier/courier-ruby/commit/e08aa7845992968fcadf24969611c421dd03d81a))
+* **api:** manual updates ([06e1d8b](https://github.com/trycourier/courier-ruby/commit/06e1d8b7a7cf573fd5819c17b5d6201a1e408360))
+* **api:** manual updates ([8601f07](https://github.com/trycourier/courier-ruby/commit/8601f075e4e693560ab29f4690fea6128425652e))
+* **api:** manual updates ([d4899ce](https://github.com/trycourier/courier-ruby/commit/d4899cecd40d44295accc88b24b10ae9fac9d14d))
+* **api:** manual updates ([00a8012](https://github.com/trycourier/courier-ruby/commit/00a8012e858163fb45d62e44f657af3bda6550ed))
+* **api:** manual updates ([2977a88](https://github.com/trycourier/courier-ruby/commit/2977a881d647d04429db5135adc020cf50e13c27))
+* **api:** manual updates ([8a878a0](https://github.com/trycourier/courier-ruby/commit/8a878a0e7ea0b8cce0cd54e37f221ddb5ec204d4))
+* **api:** manual updates ([d5cc23f](https://github.com/trycourier/courier-ruby/commit/d5cc23f99b5306e48ef130e144bceb1aa57a7490))
+* **api:** manual updates ([1dd87c0](https://github.com/trycourier/courier-ruby/commit/1dd87c099c7df921bc93c36005d8cde767a8687e))
+* **api:** manual updates ([9b2b74a](https://github.com/trycourier/courier-ruby/commit/9b2b74a6c40c82333762e187f002bc021942f064))
+* **api:** manual updates ([d81fc71](https://github.com/trycourier/courier-ruby/commit/d81fc71f013ad0fb7701b73ca7ed4a9843c812f4))
+* **api:** manual updates ([f358b3d](https://github.com/trycourier/courier-ruby/commit/f358b3db2d81dcfd0906f0f66511588766292c12))
+* Examples and ref polish ([3987809](https://github.com/trycourier/courier-ruby/commit/3987809dc0da164ca687fc8d6b2870842c0836f4))
+* Model sync ([7d005d6](https://github.com/trycourier/courier-ruby/commit/7d005d69c8082e43e28bf04c43455d193c110543))
+* Polish and Kick of Java Kit Gen ([2e136c1](https://github.com/trycourier/courier-ruby/commit/2e136c1bd2e9d407d8289a39f5246f7d4c1c9174))
+* Template Id ([24598ca](https://github.com/trycourier/courier-ruby/commit/24598cabff382ebc414e8e2f1c815709ebdd7caf))
+* Test Github Action ([5b988c5](https://github.com/trycourier/courier-ruby/commit/5b988c5fb80b9684ae6989361952077e90df366b))
+* Test stainless open action ([7d264c0](https://github.com/trycourier/courier-ruby/commit/7d264c0652b42286d5b3e9666c00f716e030c451))
+
+
+### Chores
+
+* configure new SDK language ([29f56f6](https://github.com/trycourier/courier-ruby/commit/29f56f69dd0a1ce4e4e894ae1432bda1da07fea1))
+* ignore linter error for tests having large collections ([59d9b7f](https://github.com/trycourier/courier-ruby/commit/59d9b7f9987c061850254e99c3713b2abb39662f))
+* update SDK settings ([0f6c8ef](https://github.com/trycourier/courier-ruby/commit/0f6c8ef4fb11a6127a57e16bbd07a547ec458cef))
+* update SDK settings ([021c76b](https://github.com/trycourier/courier-ruby/commit/021c76ba9fdedfe90ce34c90889008dff19f9df0))
