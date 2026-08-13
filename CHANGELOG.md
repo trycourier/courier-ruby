@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.26.2](https://github.com/trycourier/courier-ruby/compare/v4.26.1...v4.26.2) (2026-08-13)
+
+
+### Documentation
+
+* **api:** describe every broadcast id path parameter ([#120](https://github.com/trycourier/courier-ruby/issues/120)) ([2f4031e](https://github.com/trycourier/courier-ruby/commit/2f4031e65786588609fcf21e8cc7b42b3813eed7))
+* **api:** say what the bulk job endpoints return ([#122](https://github.com/trycourier/courier-ruby/issues/122)) ([e5f3d75](https://github.com/trycourier/courier-ruby/commit/e5f3d7576f1b682fa395d3d7ef05c7dfb69ea922))
+
 ## [4.26.1](https://github.com/trycourier/courier-ruby/compare/v4.26.0...v4.26.1) (2026-08-13)
 
 
