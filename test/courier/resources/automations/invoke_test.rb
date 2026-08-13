@@ -23,7 +23,7 @@ class Courier::Test::Resources::Automations::InvokeTest < Courier::Test::Resourc
   def test_invoke_by_template_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.automations.invoke.invoke_by_template("templateId", recipient: "recipient")
+    response = @courier.automations.invoke.invoke_by_template("templateId", recipient: "user_abc")
 
     assert_pattern do
       response => Courier::AutomationInvokeResponse

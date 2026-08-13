@@ -6,7 +6,7 @@ class Courier::Test::Resources::ProvidersTest < Courier::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.providers.create(provider: "provider")
+    response = @courier.providers.create(provider: "sendgrid")
 
     assert_pattern do
       response => Courier::Provider
@@ -50,7 +50,7 @@ class Courier::Test::Resources::ProvidersTest < Courier::Test::ResourceTest
   def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.providers.update("id", provider: "provider")
+    response = @courier.providers.update("id", provider: "sendgrid")
 
     assert_pattern do
       response => Courier::Provider

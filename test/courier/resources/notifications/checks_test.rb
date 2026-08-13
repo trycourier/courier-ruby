@@ -10,7 +10,7 @@ class Courier::Test::Resources::Notifications::ChecksTest < Courier::Test::Resou
       @courier.notifications.checks.update(
         "submissionId",
         id: "id",
-        checks: [{id: "id", status: :RESOLVED, type: :custom}]
+        checks: [{id: "abc-123", status: :RESOLVED, type: :custom}]
       )
 
     assert_pattern do

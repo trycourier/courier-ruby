@@ -79,7 +79,7 @@ class Courier::Test::Resources::Tenants::TemplatesTest < Courier::Test::Resource
       @courier.tenants.templates.replace(
         "template_id",
         tenant_id: "tenant_id",
-        template: {content: {elements: [{}], version: "version"}}
+        template: {content: {elements: [{}], version: "2022-01-01"}}
       )
 
     assert_pattern do

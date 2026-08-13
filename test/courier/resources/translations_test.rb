@@ -16,7 +16,8 @@ class Courier::Test::Resources::TranslationsTest < Courier::Test::ResourceTest
   def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.translations.update("locale", domain: "domain", body: "body")
+    response =
+      @courier.translations.update("locale", domain: "domain", body: "msgid \"Hello\"\nmsgstr \"Hola\"")
 
     assert_pattern do
       response => nil

@@ -28,7 +28,7 @@ class Courier::Test::Resources::TenantsTest < Courier::Test::ResourceTest
   def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.tenants.update("tenant_id", name: "name")
+    response = @courier.tenants.update("tenant_id", name: "Acme Corp")
 
     assert_pattern do
       response => Courier::Tenant

@@ -23,7 +23,11 @@ class Courier::Test::Resources::Lists::SubscriptionsTest < Courier::Test::Resour
   def test_add_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.lists.subscriptions.add("list_id", recipients: [{recipientId: "recipientId"}])
+    response =
+      @courier.lists.subscriptions.add(
+        "list_id",
+        recipients: [{recipientId: "user_abc"}, {recipientId: "user_def"}]
+      )
 
     assert_pattern do
       response => nil
@@ -33,7 +37,11 @@ class Courier::Test::Resources::Lists::SubscriptionsTest < Courier::Test::Resour
   def test_subscribe_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.lists.subscriptions.subscribe("list_id", recipients: [{recipientId: "recipientId"}])
+    response =
+      @courier.lists.subscriptions.subscribe(
+        "list_id",
+        recipients: [{recipientId: "user_abc"}, {recipientId: "user_def"}]
+      )
 
     assert_pattern do
       response => nil

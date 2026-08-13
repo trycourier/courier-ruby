@@ -27,7 +27,11 @@ class Courier::Test::Resources::Users::TenantsTest < Courier::Test::ResourceTest
   def test_add_multiple_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.users.tenants.add_multiple("user_id", tenants: [{tenant_id: "tenant_id"}])
+    response =
+      @courier.users.tenants.add_multiple(
+        "user_id",
+        tenants: [{tenant_id: "tenant_abc"}, {tenant_id: "tenant_def"}]
+      )
 
     assert_pattern do
       response => nil
