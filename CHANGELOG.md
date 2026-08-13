@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.26.1](https://github.com/trycourier/courier-ruby/compare/v4.26.0...v4.26.1) (2026-08-13)
+
+
+### Chores
+
+* **api:** regenerate SDK ([#115](https://github.com/trycourier/courier-ruby/issues/115)) ([27dadbf](https://github.com/trycourier/courier-ruby/commit/27dadbfd9a49b7f2fe7970d8a63f956f76d484e6))
+
+
+### Documentation
+
+* **api:** give every request body an example, and correct the archive status code ([#119](https://github.com/trycourier/courier-ruby/issues/119)) ([b4ad8e9](https://github.com/trycourier/courier-ruby/commit/b4ad8e90341bc2a7a0a34c04aeddcb60a91124e7))
+* sync README from api-spec ([#113](https://github.com/trycourier/courier-ruby/issues/113)) ([8d479fe](https://github.com/trycourier/courier-ruby/commit/8d479fe04eea80c8f307e054e78098fe7cde253e))
+
 ## 4.26.0 (2026-08-10)
 
 Full Changelog: [v4.25.0...v4.26.0](https://github.com/trycourier/courier-ruby/compare/v4.25.0...v4.26.0)
