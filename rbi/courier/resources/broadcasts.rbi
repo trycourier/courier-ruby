@@ -31,7 +31,11 @@ module Courier
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Broadcast)
       end
-      def retrieve(broadcast_id, request_options: {})
+      def retrieve(
+        # The broadcast to retrieve, identified by the `id` returned when it was created.
+        broadcast_id,
+        request_options: {}
+      )
       end
 
       # Update a broadcast's name. Content is edited via the broadcast's notification
@@ -44,6 +48,7 @@ module Courier
         ).returns(Courier::Broadcast)
       end
       def update(
+        # The broadcast to rename.
         broadcast_id,
         # New human-readable name.
         name:,
@@ -77,7 +82,11 @@ module Courier
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Broadcast)
       end
-      def archive(broadcast_id, request_options: {})
+      def archive(
+        # The broadcast to archive.
+        broadcast_id,
+        request_options: {}
+      )
       end
 
       # Cancel a broadcast's pending schedule, returning it to the draft state. Only
@@ -88,7 +97,11 @@ module Courier
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Broadcast)
       end
-      def cancel(broadcast_id, request_options: {})
+      def cancel(
+        # The broadcast to cancel.
+        broadcast_id,
+        request_options: {}
+      )
       end
 
       # Duplicate a broadcast (and its template) into a new draft named "{source name}
@@ -99,7 +112,12 @@ module Courier
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Broadcast)
       end
-      def duplicate(broadcast_id, request_options: {})
+      def duplicate(
+        # The broadcast to copy. The duplicate is created as a new draft and this
+        # broadcast is left unchanged.
+        broadcast_id,
+        request_options: {}
+      )
       end
 
       # Author the broadcast's content by replacing the draft elemental content of its
@@ -114,6 +132,7 @@ module Courier
         ).returns(Courier::NotificationContentMutationResponse)
       end
       def put_content(
+        # The broadcast whose content you want to replace.
         broadcast_id,
         # Elemental content payload. The server defaults `version` when omitted.
         content:,
@@ -134,6 +153,7 @@ module Courier
         ).returns(Courier::NotificationContentGetResponse)
       end
       def retrieve_content(
+        # The broadcast whose content you want to read.
         broadcast_id,
         # Accepts `draft`, `published`, or a version string (e.g. `v001`). Defaults to
         # `draft`.
@@ -157,6 +177,7 @@ module Courier
         ).returns(Courier::Broadcast)
       end
       def schedule(
+        # The broadcast to schedule.
         broadcast_id,
         # ID of the target list or audience.
         recipient_id:,
@@ -183,6 +204,7 @@ module Courier
         ).returns(Courier::Broadcast)
       end
       def send_(
+        # The broadcast to send.
         broadcast_id,
         # ID of the target list or audience.
         recipient_id:,

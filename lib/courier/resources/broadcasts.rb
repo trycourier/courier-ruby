@@ -35,7 +35,8 @@ module Courier
       #
       # @overload retrieve(broadcast_id, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast to retrieve, identified by the `id` returned when it was created.
+      #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Courier::Models::Broadcast]
@@ -55,7 +56,7 @@ module Courier
       #
       # @overload update(broadcast_id, name:, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast to rename.
       #
       # @param name [String] New human-readable name.
       #
@@ -106,7 +107,8 @@ module Courier
       #
       # @overload archive(broadcast_id, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast to archive.
+      #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Courier::Models::Broadcast]
@@ -126,7 +128,8 @@ module Courier
       #
       # @overload cancel(broadcast_id, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast to cancel.
+      #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Courier::Models::Broadcast]
@@ -141,12 +144,16 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::BroadcastDuplicateParams} for more details.
+      #
       # Duplicate a broadcast (and its template) into a new draft named "{source name}
       # (copy)".
       #
       # @overload duplicate(broadcast_id, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast to copy. The duplicate is created as a new draft and this broadcas
+      #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Courier::Models::Broadcast]
@@ -167,7 +174,7 @@ module Courier
       #
       # @overload put_content(broadcast_id, content:, state: nil, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast whose content you want to replace.
       #
       # @param content [Courier::Models::NotificationContentPutRequest::Content] Elemental content payload. The server defaults `version` when omitted.
       #
@@ -198,7 +205,7 @@ module Courier
       #
       # @overload retrieve_content(broadcast_id, version: nil, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast whose content you want to read.
       #
       # @param version [String] Accepts `draft`, `published`, or a version string (e.g. `v001`). Defaults to `dr
       #
@@ -228,7 +235,7 @@ module Courier
       #
       # @overload schedule(broadcast_id, recipient_id:, recipient_type:, scheduled_to:, timezone: nil, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast to schedule.
       #
       # @param recipient_id [String] ID of the target list or audience.
       #
@@ -259,7 +266,7 @@ module Courier
       #
       # @overload send_(broadcast_id, recipient_id:, recipient_type:, request_options: {})
       #
-      # @param broadcast_id [String]
+      # @param broadcast_id [String] The broadcast to send.
       #
       # @param recipient_id [String] ID of the target list or audience.
       #
