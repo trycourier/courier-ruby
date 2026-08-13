@@ -101,6 +101,16 @@ module Courier
 
   class BroadcastUpdateParams = Courier::Models::BroadcastUpdateParams
 
+  class BulkAddUsersParams = Courier::Models::BulkAddUsersParams
+
+  class BulkCreateJobParams = Courier::Models::BulkCreateJobParams
+
+  class BulkListUsersParams = Courier::Models::BulkListUsersParams
+
+  class BulkRetrieveJobParams = Courier::Models::BulkRetrieveJobParams
+
+  class BulkRunJobParams = Courier::Models::BulkRunJobParams
+
   module CancelJourneyRequest = Courier::Models::CancelJourneyRequest
 
   module CancelJourneyResponse = Courier::Models::CancelJourneyResponse
@@ -172,6 +182,10 @@ module Courier
   class FilterConfig = Courier::Models::FilterConfig
 
   class Icons = Courier::Models::Icons
+
+  class InboundBulkMessage = Courier::Models::InboundBulkMessage
+
+  class InboundBulkMessageUser = Courier::Models::InboundBulkMessageUser
 
   class InboundTrackEventParams = Courier::Models::InboundTrackEventParams
 

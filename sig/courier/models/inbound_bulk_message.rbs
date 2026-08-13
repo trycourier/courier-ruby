@@ -1,0 +1,58 @@
+module Courier
+  module Models
+    type inbound_bulk_message =
+      {
+        event: String,
+        brand: String?,
+        content: Courier::Models::InboundBulkMessage::content?,
+        data: ::Hash[Symbol, top]?,
+        locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+        override: ::Hash[Symbol, top]?,
+        template: String?
+      }
+
+    class InboundBulkMessage < Courier::Internal::Type::BaseModel
+      attr_accessor event: String
+
+      attr_accessor brand: String?
+
+      attr_accessor content: Courier::Models::InboundBulkMessage::content?
+
+      attr_accessor data: ::Hash[Symbol, top]?
+
+      attr_accessor locale: ::Hash[Symbol, ::Hash[Symbol, top]]?
+
+      attr_accessor override: ::Hash[Symbol, top]?
+
+      attr_accessor template: String?
+
+      def initialize: (
+        event: String,
+        ?brand: String?,
+        ?content: Courier::Models::InboundBulkMessage::content?,
+        ?data: ::Hash[Symbol, top]?,
+        ?locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+        ?override: ::Hash[Symbol, top]?,
+        ?template: String?
+      ) -> void
+
+      def to_hash: -> {
+        event: String,
+        brand: String?,
+        content: Courier::Models::InboundBulkMessage::content?,
+        data: ::Hash[Symbol, top]?,
+        locale: ::Hash[Symbol, ::Hash[Symbol, top]]?,
+        override: ::Hash[Symbol, top]?,
+        template: String?
+      }
+
+      type content = Courier::ElementalContentSugar | Courier::ElementalContent
+
+      module Content
+        extend Courier::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Courier::Models::InboundBulkMessage::content]
+      end
+    end
+  end
+end
