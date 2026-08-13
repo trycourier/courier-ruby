@@ -53,6 +53,9 @@ module Courier
     sig { returns(Courier::Resources::Broadcasts) }
     attr_reader :broadcasts
 
+    sig { returns(Courier::Resources::Bulk) }
+    attr_reader :bulk
+
     # Manage the logos, colors, and layout that give the templates you send a
     # consistent look.
     sig { returns(Courier::Resources::Brands) }

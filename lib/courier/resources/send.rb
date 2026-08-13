@@ -9,7 +9,8 @@ module Courier
       # {Courier::Models::SendMessageParams} for more details.
       #
       # Sends a message to one or more recipients and returns a requestId. Courier
-      # routes it to email, SMS, push, chat, or in-app based on your rules.
+      # routes it to email, SMS, push, chat, or in-app based on your rules. Use the
+      # returned requestId to look up delivery status via the Messages API.
       #
       # @overload message(message:, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
