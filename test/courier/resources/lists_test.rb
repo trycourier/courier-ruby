@@ -25,7 +25,7 @@ class Courier::Test::Resources::ListsTest < Courier::Test::ResourceTest
   def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.lists.update("list_id", name: "name")
+    response = @courier.lists.update("list_id", name: "Product Updates")
 
     assert_pattern do
       response => nil

@@ -16,7 +16,7 @@ class Courier::Test::Resources::BulkTest < Courier::Test::ResourceTest
   def test_create_job_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.bulk.create_job(message: {event: "event"})
+    response = @courier.bulk.create_job(message: {event: "welcome-series"})
 
     assert_pattern do
       response => Courier::Models::BulkCreateJobResponse

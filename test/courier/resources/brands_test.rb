@@ -52,7 +52,7 @@ class Courier::Test::Resources::BrandsTest < Courier::Test::ResourceTest
   def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.brands.update("brand_id", name: "name")
+    response = @courier.brands.update("brand_id", name: "My Brand")
 
     assert_pattern do
       response => Courier::Brand

@@ -102,7 +102,7 @@ class Courier::Test::Resources::WorkspacePreferencesTest < Courier::Test::Resour
   def test_replace_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.workspace_preferences.replace("section_id", name: "name")
+    response = @courier.workspace_preferences.replace("section_id", name: "Account Notifications")
 
     assert_pattern do
       response => Courier::WorkspacePreferenceGetResponse

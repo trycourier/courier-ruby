@@ -6,7 +6,7 @@ class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.profiles.create("user_id", profile: {foo: "bar"})
+    response = @courier.profiles.create("user_id", profile: {email: "bar", phone_number: "bar"})
 
     assert_pattern do
       response => Courier::Models::ProfileCreateResponse
@@ -39,7 +39,8 @@ class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
   def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.profiles.update("user_id", patch: [{op: "op", path: "path", value: "value"}])
+    response =
+      @courier.profiles.update("user_id", patch: [{op: "replace", path: "/email", value: "jdoe@example.com"}])
 
     assert_pattern do
       response => nil
@@ -59,7 +60,8 @@ class Courier::Test::Resources::ProfilesTest < Courier::Test::ResourceTest
   def test_replace_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.profiles.replace("user_id", profile: {foo: "bar"})
+    response =
+      @courier.profiles.replace("user_id", profile: {email: "bar", phone_number: "bar", locale: "bar"})
 
     assert_pattern do
       response => Courier::Models::ProfileReplaceResponse

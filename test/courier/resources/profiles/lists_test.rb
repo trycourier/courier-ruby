@@ -39,7 +39,7 @@ class Courier::Test::Resources::Profiles::ListsTest < Courier::Test::ResourceTes
   def test_subscribe_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.profiles.lists.subscribe("user_id", lists: [{listId: "listId"}])
+    response = @courier.profiles.lists.subscribe("user_id", lists: [{listId: "example.list.id"}])
 
     assert_pattern do
       response => Courier::Models::Profiles::ListSubscribeResponse
