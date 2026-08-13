@@ -62,9 +62,6 @@
   "release-type": "ruby",
   "version-file": "lib/courier/version.rb",
   "extra-files": [
-    {
-      "type": "ruby-readme",
-      "path": "README.md"
-    }
+    "README.md"
   ]
 }
