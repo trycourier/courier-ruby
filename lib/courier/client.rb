@@ -58,6 +58,9 @@ module Courier
     # @return [Courier::Resources::Broadcasts]
     attr_reader :broadcasts
 
+    # @return [Courier::Resources::Bulk]
+    attr_reader :bulk
+
     # Manage the logos, colors, and layout that give the templates you send a
     # consistent look.
     # @return [Courier::Resources::Brands]
@@ -187,6 +190,7 @@ module Courier
       @automations = Courier::Resources::Automations.new(client: self)
       @journeys = Courier::Resources::Journeys.new(client: self)
       @broadcasts = Courier::Resources::Broadcasts.new(client: self)
+      @bulk = Courier::Resources::Bulk.new(client: self)
       @brands = Courier::Resources::Brands.new(client: self)
       @digests = Courier::Resources::Digests.new(client: self)
       @inbound = Courier::Resources::Inbound.new(client: self)
