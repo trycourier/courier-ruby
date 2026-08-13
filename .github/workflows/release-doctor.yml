@@ -18,5 +18,6 @@ jobs:
         run: |
           bash ./bin/check-release-environment
         env:
+          RELEASE_PLEASE_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
           RUBYGEMS_HOST: ${{ secrets.COURIER_RUBYGEMS_HOST || secrets.RUBYGEMS_HOST }}
           GEM_HOST_API_KEY: ${{ secrets.COURIER_GEM_HOST_API_KEY || secrets.GEM_HOST_API_KEY }}

@@ -26,6 +26,8 @@ module Courier
 
     attr_reader broadcasts: Courier::Resources::Broadcasts
 
+    attr_reader bulk: Courier::Resources::Bulk
+
     attr_reader brands: Courier::Resources::Brands
 
     attr_reader digests: Courier::Resources::Digests
