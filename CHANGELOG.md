@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/trycourier/courier-ruby/compare/v4.26.2...v5.0.0) (2026-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** nest the AWS SNS target_arn under aws_sns on the user profile ([#123](https://github.com/trycourier/courier-ruby/issues/123))
+
+### Features
+
+* **api:** nest the AWS SNS target_arn under aws_sns on the user profile ([#123](https://github.com/trycourier/courier-ruby/issues/123)) ([fcf37c6](https://github.com/trycourier/courier-ruby/commit/fcf37c690e11ccffc8283bbd5791864b405ca20c))
+
 ## [4.26.2](https://github.com/trycourier/courier-ruby/compare/v4.26.1...v4.26.2) (2026-08-13)
 
 
