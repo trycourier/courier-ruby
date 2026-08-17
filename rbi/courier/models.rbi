@@ -7,6 +7,8 @@ module Courier
 
   Alignment = Courier::Models::Alignment
 
+  Apn = Courier::Models::Apn
+
   AssociatedNotificationListResponse =
     Courier::Models::AssociatedNotificationListResponse
 
@@ -361,8 +363,6 @@ module Courier
   NotificationContentPutRequest = Courier::Models::NotificationContentPutRequest
 
   NotificationCreateParams = Courier::Models::NotificationCreateParams
-
-  NotificationDuplicateParams = Courier::Models::NotificationDuplicateParams
 
   NotificationElementPutRequest = Courier::Models::NotificationElementPutRequest
 

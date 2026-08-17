@@ -4,7 +4,7 @@ module Courier
       {
         address: Courier::UserProfile::Address?,
         airship: Courier::AirshipProfile?,
-        apn: String?,
+        apn: Courier::Models::apn?,
         aws_sns: Courier::AwsSns?,
         birthdate: String?,
         custom: ::Hash[Symbol, top]?,
@@ -40,7 +40,7 @@ module Courier
 
       attr_accessor airship: Courier::AirshipProfile?
 
-      attr_accessor apn: String?
+      attr_accessor apn: Courier::Models::apn?
 
       attr_accessor aws_sns: Courier::AwsSns?
 
@@ -101,7 +101,7 @@ module Courier
       def initialize: (
         ?address: Courier::UserProfile::Address?,
         ?airship: Courier::AirshipProfile?,
-        ?apn: String?,
+        ?apn: Courier::Models::apn?,
         ?aws_sns: Courier::AwsSns?,
         ?birthdate: String?,
         ?custom: ::Hash[Symbol, top]?,
@@ -135,7 +135,7 @@ module Courier
       def to_hash: -> {
         address: Courier::UserProfile::Address?,
         airship: Courier::AirshipProfile?,
-        apn: String?,
+        apn: Courier::Models::apn?,
         aws_sns: Courier::AwsSns?,
         birthdate: String?,
         custom: ::Hash[Symbol, top]?,

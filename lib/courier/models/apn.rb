@@ -2,8 +2,10 @@
 
 module Courier
   module Models
-    # Expo push tokens. Supply either a single `token` or a `tokens` value.
-    module Expo
+    # Apple Push Notification device tokens. Supply either a single `token` or a
+    # `tokens` value. A bare string is rejected by the provider — the token must be
+    # wrapped in this object.
+    module Apn
       extend Courier::Internal::Type::Union
 
       variant -> { Courier::Token }

@@ -1,13 +1,23 @@
 module Courier
   module Models
-    type multiple_tokens = { tokens: ::Array[Courier::Token] }
+    type multiple_tokens = { tokens: Courier::Models::MultipleTokens::tokens }
 
     class MultipleTokens < Courier::Internal::Type::BaseModel
-      attr_accessor tokens: ::Array[Courier::Token]
+      attr_accessor tokens: Courier::Models::MultipleTokens::tokens
 
-      def initialize: (tokens: ::Array[Courier::Token]) -> void
+      def initialize: (tokens: Courier::Models::MultipleTokens::tokens) -> void
 
-      def to_hash: -> { tokens: ::Array[Courier::Token] }
+      def to_hash: -> { tokens: Courier::Models::MultipleTokens::tokens }
+
+      type tokens = String | ::Array[String]
+
+      module Tokens
+        extend Courier::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Courier::Models::MultipleTokens::tokens]
+
+        StringArray: Courier::Internal::Type::Converter
+      end
     end
   end
 end

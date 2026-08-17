@@ -14,9 +14,12 @@ module Courier
       optional :airship, -> { Courier::AirshipProfile }, nil?: true
 
       # @!attribute apn
+      #   Apple Push Notification device tokens. Supply either a single `token` or a
+      #   `tokens` value. A bare string is rejected by the provider — the token must be
+      #   wrapped in this object.
       #
-      #   @return [String, nil]
-      optional :apn, String, nil?: true
+      #   @return [Courier::Models::Token, Courier::Models::MultipleTokens, nil]
+      optional :apn, union: -> { Courier::Apn }, nil?: true
 
       # @!attribute aws_sns
       #   Routes a push notification through the AWS SNS provider. The target ARN must be
@@ -54,6 +57,7 @@ module Courier
       optional :email_verified, Courier::Internal::Type::Boolean, nil?: true
 
       # @!attribute expo
+      #   Expo push tokens. Supply either a single `token` or a `tokens` value.
       #
       #   @return [Courier::Models::Token, Courier::Models::MultipleTokens, nil]
       optional :expo, union: -> { Courier::Expo }, nil?: true
@@ -174,7 +178,7 @@ module Courier
       #
       #   @param airship [Courier::Models::AirshipProfile, nil]
       #
-      #   @param apn [String, nil]
+      #   @param apn [Courier::Models::Token, Courier::Models::MultipleTokens, nil] Apple Push Notification device tokens. Supply either a single `token` or a `toke
       #
       #   @param aws_sns [Courier::Models::AwsSns, nil] Routes a push notification through the AWS SNS provider. The target ARN must be
       #
@@ -188,7 +192,7 @@ module Courier
       #
       #   @param email_verified [Boolean, nil]
       #
-      #   @param expo [Courier::Models::Token, Courier::Models::MultipleTokens, nil]
+      #   @param expo [Courier::Models::Token, Courier::Models::MultipleTokens, nil] Expo push tokens. Supply either a single `token` or a `tokens` value.
       #
       #   @param facebook_psid [String, nil]
       #

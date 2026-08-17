@@ -6,14 +6,14 @@ module Courier
       # @api private
       #
       # @example
-      #   # `discord` is a `Courier::Discord`
-      #   case discord
-      #   when Courier::SendToChannel
-      #     puts(discord.channel_id)
-      #   when Courier::SendDirectMessage
-      #     puts(discord.user_id)
+      #   # `apn` is a `Courier::Apn`
+      #   case apn
+      #   when Courier::Token
+      #     puts(apn.token)
+      #   when Courier::MultipleTokens
+      #     puts(apn.tokens)
       #   else
-      #     puts(discord)
+      #     puts(apn)
       #   end
       module Union
         include Courier::Internal::Type::Converter

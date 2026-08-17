@@ -1,0 +1,11 @@
+module Courier
+  module Models
+    type apn = Courier::Token | Courier::MultipleTokens
+
+    module Apn
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::apn]
+    end
+  end
+end
