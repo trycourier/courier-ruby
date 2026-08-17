@@ -18,6 +18,14 @@ module Courier
       #   @return [String, nil]
       optional :apn, String, nil?: true
 
+      # @!attribute aws_sns
+      #   Routes a push notification through the AWS SNS provider. The target ARN must be
+      #   nested under `aws_sns` — a top-level `target_arn` on the profile is ignored by
+      #   the provider.
+      #
+      #   @return [Courier::Models::AwsSns, nil]
+      optional :aws_sns, -> { Courier::AwsSns }, nil?: true
+
       # @!attribute birthdate
       #
       #   @return [String, nil]
@@ -143,11 +151,6 @@ module Courier
       #   @return [String, nil]
       optional :sub, String, nil?: true
 
-      # @!attribute target_arn
-      #
-      #   @return [String, nil]
-      optional :target_arn, String, nil?: true
-
       # @!attribute updated_at
       #
       #   @return [String, nil]
@@ -163,7 +166,7 @@ module Courier
       #   @return [String, nil]
       optional :zoneinfo, String, nil?: true
 
-      # @!method initialize(address: nil, airship: nil, apn: nil, birthdate: nil, custom: nil, discord: nil, email: nil, email_verified: nil, expo: nil, facebook_psid: nil, family_name: nil, firebase_token: nil, gender: nil, given_name: nil, intercom: nil, locale: nil, middle_name: nil, ms_teams: nil, name: nil, nickname: nil, phone_number: nil, phone_number_verified: nil, picture: nil, preferred_name: nil, profile: nil, slack: nil, sub: nil, target_arn: nil, updated_at: nil, website: nil, zoneinfo: nil)
+      # @!method initialize(address: nil, airship: nil, apn: nil, aws_sns: nil, birthdate: nil, custom: nil, discord: nil, email: nil, email_verified: nil, expo: nil, facebook_psid: nil, family_name: nil, firebase_token: nil, gender: nil, given_name: nil, intercom: nil, locale: nil, middle_name: nil, ms_teams: nil, name: nil, nickname: nil, phone_number: nil, phone_number_verified: nil, picture: nil, preferred_name: nil, profile: nil, slack: nil, sub: nil, updated_at: nil, website: nil, zoneinfo: nil)
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::UserProfile} for more details.
       #
@@ -172,6 +175,8 @@ module Courier
       #   @param airship [Courier::Models::AirshipProfile, nil]
       #
       #   @param apn [String, nil]
+      #
+      #   @param aws_sns [Courier::Models::AwsSns, nil] Routes a push notification through the AWS SNS provider. The target ARN must be
       #
       #   @param birthdate [String, nil]
       #
@@ -220,8 +225,6 @@ module Courier
       #   @param slack [Courier::Models::SendToSlackChannel, Courier::Models::SendToSlackEmail, Courier::Models::SendToSlackUserID, nil]
       #
       #   @param sub [String, nil]
-      #
-      #   @param target_arn [String, nil]
       #
       #   @param updated_at [String, nil]
       #

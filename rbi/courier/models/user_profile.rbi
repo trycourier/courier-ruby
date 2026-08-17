@@ -23,6 +23,15 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :apn
 
+      # Routes a push notification through the AWS SNS provider. The target ARN must be
+      # nested under `aws_sns` — a top-level `target_arn` on the profile is ignored by
+      # the provider.
+      sig { returns(T.nilable(Courier::AwsSns)) }
+      attr_reader :aws_sns
+
+      sig { params(aws_sns: T.nilable(Courier::AwsSns::OrHash)).void }
+      attr_writer :aws_sns
+
       sig { returns(T.nilable(String)) }
       attr_accessor :birthdate
 
@@ -127,9 +136,6 @@ module Courier
       attr_accessor :sub
 
       sig { returns(T.nilable(String)) }
-      attr_accessor :target_arn
-
-      sig { returns(T.nilable(String)) }
       attr_accessor :updated_at
 
       sig { returns(T.nilable(String)) }
@@ -143,6 +149,7 @@ module Courier
           address: T.nilable(Courier::UserProfile::Address::OrHash),
           airship: T.nilable(Courier::AirshipProfile::OrHash),
           apn: T.nilable(String),
+          aws_sns: T.nilable(Courier::AwsSns::OrHash),
           birthdate: T.nilable(String),
           custom: T.nilable(T::Hash[Symbol, T.anything]),
           discord:
@@ -193,7 +200,6 @@ module Courier
               )
             ),
           sub: T.nilable(String),
-          target_arn: T.nilable(String),
           updated_at: T.nilable(String),
           website: T.nilable(String),
           zoneinfo: T.nilable(String)
@@ -203,6 +209,10 @@ module Courier
         address: nil,
         airship: nil,
         apn: nil,
+        # Routes a push notification through the AWS SNS provider. The target ARN must be
+        # nested under `aws_sns` — a top-level `target_arn` on the profile is ignored by
+        # the provider.
+        aws_sns: nil,
         birthdate: nil,
         # A free form object. Due to a limitation of the API Explorer, you can only enter
         # string key/values below, but this API accepts more complex object structures.
@@ -229,7 +239,6 @@ module Courier
         profile: nil,
         slack: nil,
         sub: nil,
-        target_arn: nil,
         updated_at: nil,
         website: nil,
         zoneinfo: nil
@@ -242,6 +251,7 @@ module Courier
             address: T.nilable(Courier::UserProfile::Address),
             airship: T.nilable(Courier::AirshipProfile),
             apn: T.nilable(String),
+            aws_sns: T.nilable(Courier::AwsSns),
             birthdate: T.nilable(String),
             custom: T.nilable(T::Hash[Symbol, T.anything]),
             discord:
@@ -286,7 +296,6 @@ module Courier
                 )
               ),
             sub: T.nilable(String),
-            target_arn: T.nilable(String),
             updated_at: T.nilable(String),
             website: T.nilable(String),
             zoneinfo: T.nilable(String)
