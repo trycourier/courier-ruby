@@ -5,6 +5,7 @@ module Courier
         address: Courier::UserProfile::Address?,
         airship: Courier::AirshipProfile?,
         apn: String?,
+        aws_sns: Courier::AwsSns?,
         birthdate: String?,
         custom: ::Hash[Symbol, top]?,
         discord: Courier::Models::discord?,
@@ -29,7 +30,6 @@ module Courier
         profile: String?,
         slack: Courier::Models::slack?,
         sub: String?,
-        target_arn: String?,
         updated_at: String?,
         website: String?,
         zoneinfo: String?
@@ -41,6 +41,8 @@ module Courier
       attr_accessor airship: Courier::AirshipProfile?
 
       attr_accessor apn: String?
+
+      attr_accessor aws_sns: Courier::AwsSns?
 
       attr_accessor birthdate: String?
 
@@ -90,8 +92,6 @@ module Courier
 
       attr_accessor sub: String?
 
-      attr_accessor target_arn: String?
-
       attr_accessor updated_at: String?
 
       attr_accessor website: String?
@@ -102,6 +102,7 @@ module Courier
         ?address: Courier::UserProfile::Address?,
         ?airship: Courier::AirshipProfile?,
         ?apn: String?,
+        ?aws_sns: Courier::AwsSns?,
         ?birthdate: String?,
         ?custom: ::Hash[Symbol, top]?,
         ?discord: Courier::Models::discord?,
@@ -126,7 +127,6 @@ module Courier
         ?profile: String?,
         ?slack: Courier::Models::slack?,
         ?sub: String?,
-        ?target_arn: String?,
         ?updated_at: String?,
         ?website: String?,
         ?zoneinfo: String?
@@ -136,6 +136,7 @@ module Courier
         address: Courier::UserProfile::Address?,
         airship: Courier::AirshipProfile?,
         apn: String?,
+        aws_sns: Courier::AwsSns?,
         birthdate: String?,
         custom: ::Hash[Symbol, top]?,
         discord: Courier::Models::discord?,
@@ -160,7 +161,6 @@ module Courier
         profile: String?,
         slack: Courier::Models::slack?,
         sub: String?,
-        target_arn: String?,
         updated_at: String?,
         website: String?,
         zoneinfo: String?

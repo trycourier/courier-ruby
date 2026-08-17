@@ -83,6 +83,8 @@ module Courier
 
   AutomationTemplateListResponse = Courier::Models::AutomationTemplateListResponse
 
+  AwsSns = Courier::Models::AwsSns
+
   BaseCheck = Courier::Models::BaseCheck
 
   BaseTemplateTenantAssociation = Courier::Models::BaseTemplateTenantAssociation

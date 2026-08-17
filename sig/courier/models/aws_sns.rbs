@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type aws_sns = { target_arn: String }
+
+    class AwsSns < Courier::Internal::Type::BaseModel
+      attr_accessor target_arn: String
+
+      def initialize: (target_arn: String) -> void
+
+      def to_hash: -> { target_arn: String }
+    end
+  end
+end
