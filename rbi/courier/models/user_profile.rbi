@@ -20,7 +20,10 @@ module Courier
       sig { params(airship: T.nilable(Courier::AirshipProfile::OrHash)).void }
       attr_writer :airship
 
-      sig { returns(T.nilable(String)) }
+      # Apple Push Notification device tokens. Supply either a single `token` or a
+      # `tokens` value. A bare string is rejected by the provider — the token must be
+      # wrapped in this object.
+      sig { returns(T.nilable(T.any(Courier::Token, Courier::MultipleTokens))) }
       attr_accessor :apn
 
       # Routes a push notification through the AWS SNS provider. The target ARN must be
@@ -53,6 +56,7 @@ module Courier
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :email_verified
 
+      # Expo push tokens. Supply either a single `token` or a `tokens` value.
       sig { returns(T.nilable(T.any(Courier::Token, Courier::MultipleTokens))) }
       attr_accessor :expo
 
@@ -148,7 +152,10 @@ module Courier
         params(
           address: T.nilable(Courier::UserProfile::Address::OrHash),
           airship: T.nilable(Courier::AirshipProfile::OrHash),
-          apn: T.nilable(String),
+          apn:
+            T.nilable(
+              T.any(Courier::Token::OrHash, Courier::MultipleTokens::OrHash)
+            ),
           aws_sns: T.nilable(Courier::AwsSns::OrHash),
           birthdate: T.nilable(String),
           custom: T.nilable(T::Hash[Symbol, T.anything]),
@@ -208,6 +215,9 @@ module Courier
       def self.new(
         address: nil,
         airship: nil,
+        # Apple Push Notification device tokens. Supply either a single `token` or a
+        # `tokens` value. A bare string is rejected by the provider — the token must be
+        # wrapped in this object.
         apn: nil,
         # Routes a push notification through the AWS SNS provider. The target ARN must be
         # nested under `aws_sns` — a top-level `target_arn` on the profile is ignored by
@@ -220,6 +230,7 @@ module Courier
         discord: nil,
         email: nil,
         email_verified: nil,
+        # Expo push tokens. Supply either a single `token` or a `tokens` value.
         expo: nil,
         facebook_psid: nil,
         family_name: nil,
@@ -250,7 +261,7 @@ module Courier
           {
             address: T.nilable(Courier::UserProfile::Address),
             airship: T.nilable(Courier::AirshipProfile),
-            apn: T.nilable(String),
+            apn: T.nilable(T.any(Courier::Token, Courier::MultipleTokens)),
             aws_sns: T.nilable(Courier::AwsSns),
             birthdate: T.nilable(String),
             custom: T.nilable(T::Hash[Symbol, T.anything]),

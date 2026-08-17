@@ -123,28 +123,6 @@ module Courier
         )
       end
 
-      # Copies a notification template within the same workspace and environment,
-      # appending " COPY" to the title. The copy is standalone and independently
-      # editable.
-      #
-      # @overload duplicate(id, request_options: {})
-      #
-      # @param id [String] Template ID (nt\_ prefix).
-      #
-      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Courier::Models::NotificationTemplateResponse]
-      #
-      # @see Courier::Models::NotificationDuplicateParams
-      def duplicate(id, params = {})
-        @client.request(
-          method: :post,
-          path: ["notifications/%1$s/duplicate", id],
-          model: Courier::NotificationTemplateResponse,
-          options: params[:request_options]
-        )
-      end
-
       # Returns a notification template's published versions, most recent first, for
       # comparison or rollback. Paged.
       #

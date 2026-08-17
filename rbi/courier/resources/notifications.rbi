@@ -99,22 +99,6 @@ module Courier
       )
       end
 
-      # Copies a notification template within the same workspace and environment,
-      # appending " COPY" to the title. The copy is standalone and independently
-      # editable.
-      sig do
-        params(
-          id: String,
-          request_options: Courier::RequestOptions::OrHash
-        ).returns(Courier::NotificationTemplateResponse)
-      end
-      def duplicate(
-        # Template ID (nt\_ prefix).
-        id,
-        request_options: {}
-      )
-      end
-
       # Returns a notification template's published versions, most recent first, for
       # comparison or rollback. Paged.
       sig do

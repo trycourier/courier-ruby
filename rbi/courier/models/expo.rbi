@@ -2,6 +2,7 @@
 
 module Courier
   module Models
+    # Expo push tokens. Supply either a single `token` or a `tokens` value.
     module Expo
       extend Courier::Internal::Type::Union
 
