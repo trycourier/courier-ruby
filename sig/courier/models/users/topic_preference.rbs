@@ -8,7 +8,9 @@ module Courier
           topic_id: String,
           topic_name: String,
           custom_routing: ::Array[Courier::Models::channel_classification]?,
-          has_custom_routing: bool?
+          has_custom_routing: bool?,
+          section_id: String,
+          section_name: String
         }
 
       class TopicPreference < Courier::Internal::Type::BaseModel
@@ -24,13 +26,23 @@ module Courier
 
         attr_accessor has_custom_routing: bool?
 
+        attr_reader section_id: String?
+
+        def section_id=: (String) -> String
+
+        attr_reader section_name: String?
+
+        def section_name=: (String) -> String
+
         def initialize: (
           default_status: Courier::Models::preference_status,
           status: Courier::Models::preference_status,
           topic_id: String,
           topic_name: String,
           ?custom_routing: ::Array[Courier::Models::channel_classification]?,
-          ?has_custom_routing: bool?
+          ?has_custom_routing: bool?,
+          ?section_id: String,
+          ?section_name: String
         ) -> void
 
         def to_hash: -> {
@@ -39,7 +51,9 @@ module Courier
           topic_id: String,
           topic_name: String,
           custom_routing: ::Array[Courier::Models::channel_classification]?,
-          has_custom_routing: bool?
+          has_custom_routing: bool?,
+          section_id: String,
+          section_name: String
         }
       end
     end
