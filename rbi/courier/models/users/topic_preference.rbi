@@ -43,6 +43,24 @@ module Courier
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :has_custom_routing
 
+        # The unique identifier of the section this topic belongs to. Always present when
+        # listing a user's preferences; omitted by the single-topic read when the topic
+        # has no resolvable section.
+        sig { returns(T.nilable(String)) }
+        attr_reader :section_id
+
+        sig { params(section_id: String).void }
+        attr_writer :section_id
+
+        # The display name of the section this topic belongs to. Always present when
+        # listing a user's preferences; omitted by the single-topic read when the topic
+        # has no resolvable section.
+        sig { returns(T.nilable(String)) }
+        attr_reader :section_name
+
+        sig { params(section_name: String).void }
+        attr_writer :section_name
+
         sig do
           params(
             default_status: Courier::PreferenceStatus::OrSymbol,
@@ -51,7 +69,9 @@ module Courier
             topic_name: String,
             custom_routing:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
-            has_custom_routing: T.nilable(T::Boolean)
+            has_custom_routing: T.nilable(T::Boolean),
+            section_id: String,
+            section_name: String
           ).returns(T.attached_class)
         end
         def self.new(
@@ -72,7 +92,15 @@ module Courier
           custom_routing: nil,
           # Whether the user has chosen specific delivery channels for this topic (listed in
           # custom_routing) rather than the topic's default routing.
-          has_custom_routing: nil
+          has_custom_routing: nil,
+          # The unique identifier of the section this topic belongs to. Always present when
+          # listing a user's preferences; omitted by the single-topic read when the topic
+          # has no resolvable section.
+          section_id: nil,
+          # The display name of the section this topic belongs to. Always present when
+          # listing a user's preferences; omitted by the single-topic read when the topic
+          # has no resolvable section.
+          section_name: nil
         )
         end
 
@@ -87,7 +115,9 @@ module Courier
                 T.nilable(
                   T::Array[Courier::ChannelClassification::TaggedSymbol]
                 ),
-              has_custom_routing: T.nilable(T::Boolean)
+              has_custom_routing: T.nilable(T::Boolean),
+              section_id: String,
+              section_name: String
             }
           )
         end

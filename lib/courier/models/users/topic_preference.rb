@@ -48,7 +48,23 @@ module Courier
         #   @return [Boolean, nil]
         optional :has_custom_routing, Courier::Internal::Type::Boolean, nil?: true
 
-        # @!method initialize(default_status:, status:, topic_id:, topic_name:, custom_routing: nil, has_custom_routing: nil)
+        # @!attribute section_id
+        #   The unique identifier of the section this topic belongs to. Always present when
+        #   listing a user's preferences; omitted by the single-topic read when the topic
+        #   has no resolvable section.
+        #
+        #   @return [String, nil]
+        optional :section_id, String
+
+        # @!attribute section_name
+        #   The display name of the section this topic belongs to. Always present when
+        #   listing a user's preferences; omitted by the single-topic read when the topic
+        #   has no resolvable section.
+        #
+        #   @return [String, nil]
+        optional :section_name, String
+
+        # @!method initialize(default_status:, status:, topic_id:, topic_name:, custom_routing: nil, has_custom_routing: nil, section_id: nil, section_name: nil)
         #   Some parameter documentations has been truncated, see
         #   {Courier::Models::Users::TopicPreference} for more details.
         #
@@ -63,6 +79,10 @@ module Courier
         #   @param custom_routing [Array<Symbol, Courier::Models::ChannelClassification>, nil] The channels the user has chosen to receive this topic on, present only when has
         #
         #   @param has_custom_routing [Boolean, nil] Whether the user has chosen specific delivery channels for this topic (listed in
+        #
+        #   @param section_id [String] The unique identifier of the section this topic belongs to. Always present when
+        #
+        #   @param section_name [String] The display name of the section this topic belongs to. Always present when listi
       end
     end
   end
