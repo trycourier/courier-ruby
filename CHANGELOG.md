@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/trycourier/courier-ruby/compare/v5.0.0...v6.0.0) (2026-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** match the spec to the backend — apn/expo token types and the phantom notifications.duplicate ([#128](https://github.com/trycourier/courier-ruby/issues/128))
+
+### Features
+
+* **api:** match the spec to the backend — apn/expo token types and the phantom notifications.duplicate ([#128](https://github.com/trycourier/courier-ruby/issues/128)) ([5034ea3](https://github.com/trycourier/courier-ruby/commit/5034ea33f5242443ce08ef9005d3d02e9f471531))
+
 ## [5.0.0](https://github.com/trycourier/courier-ruby/compare/v4.26.2...v5.0.0) (2026-08-17)
 
 
