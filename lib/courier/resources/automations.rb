@@ -10,6 +10,11 @@ module Courier
       # @return [Courier::Resources::Automations::Invoke]
       attr_reader :invoke
 
+      # Invoke a stored automation template or an ad hoc automation defined in the
+      # request.
+      # @return [Courier::Resources::Automations::Runs]
+      attr_reader :runs
+
       # Some parameter documentations has been truncated, see
       # {Courier::Models::AutomationListParams} for more details.
       #
@@ -45,6 +50,7 @@ module Courier
       def initialize(client:)
         @client = client
         @invoke = Courier::Resources::Automations::Invoke.new(client: client)
+        @runs = Courier::Resources::Automations::Runs.new(client: client)
       end
     end
   end

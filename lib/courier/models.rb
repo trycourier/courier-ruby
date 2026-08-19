@@ -79,6 +79,14 @@ module Courier
 
   AutomationListParams = Courier::Models::AutomationListParams
 
+  AutomationRunListItem = Courier::Models::AutomationRunListItem
+
+  AutomationRunListResponse = Courier::Models::AutomationRunListResponse
+
+  AutomationRunStep = Courier::Models::AutomationRunStep
+
+  AutomationRunStepsResponse = Courier::Models::AutomationRunStepsResponse
+
   Automations = Courier::Models::Automations
 
   AutomationTemplate = Courier::Models::AutomationTemplate
@@ -245,6 +253,8 @@ module Courier
 
   JourneyArchiveParams = Courier::Models::JourneyArchiveParams
 
+  JourneyAudienceTriggerNode = Courier::Models::JourneyAudienceTriggerNode
+
   JourneyCancelParams = Courier::Models::JourneyCancelParams
 
   # @type [Courier::Internal::Type::Converter]
@@ -292,6 +302,18 @@ module Courier
 
   JourneyRetrieveParams = Courier::Models::JourneyRetrieveParams
 
+  JourneyRun = Courier::Models::JourneyRun
+
+  JourneyRunListItem = Courier::Models::JourneyRunListItem
+
+  JourneyRunListResponse = Courier::Models::JourneyRunListResponse
+
+  JourneyRunResponse = Courier::Models::JourneyRunResponse
+
+  JourneyRunStep = Courier::Models::JourneyRunStep
+
+  JourneyRunStepsResponse = Courier::Models::JourneyRunStepsResponse
+
   Journeys = Courier::Models::Journeys
 
   JourneySegmentTriggerNode = Courier::Models::JourneySegmentTriggerNode
@@ -325,6 +347,8 @@ module Courier
   JourneyVersionItem = Courier::Models::JourneyVersionItem
 
   JourneyVersionsListResponse = Courier::Models::JourneyVersionsListResponse
+
+  JourneyWebhookTriggerNode = Courier::Models::JourneyWebhookTriggerNode
 
   ListDeleteParams = Courier::Models::ListDeleteParams
 

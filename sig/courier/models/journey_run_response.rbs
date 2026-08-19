@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type journey_run_response = { run: Courier::JourneyRun }
+
+    class JourneyRunResponse < Courier::Internal::Type::BaseModel
+      attr_accessor run: Courier::JourneyRun
+
+      def initialize: (run: Courier::JourneyRun) -> void
+
+      def to_hash: -> { run: Courier::JourneyRun }
+    end
+  end
+end

@@ -1,0 +1,46 @@
+module Courier
+  module Models
+    type automation_run_list_item =
+      {
+        run_id: String,
+        source: ::Array[String],
+        created_at: String,
+        status: String,
+        template_id: String
+      }
+
+    class AutomationRunListItem < Courier::Internal::Type::BaseModel
+      attr_accessor run_id: String
+
+      attr_accessor source: ::Array[String]
+
+      attr_reader created_at: String?
+
+      def created_at=: (String) -> String
+
+      attr_reader status: String?
+
+      def status=: (String) -> String
+
+      attr_reader template_id: String?
+
+      def template_id=: (String) -> String
+
+      def initialize: (
+        run_id: String,
+        source: ::Array[String],
+        ?created_at: String,
+        ?status: String,
+        ?template_id: String
+      ) -> void
+
+      def to_hash: -> {
+        run_id: String,
+        source: ::Array[String],
+        created_at: String,
+        status: String,
+        template_id: String
+      }
+    end
+  end
+end

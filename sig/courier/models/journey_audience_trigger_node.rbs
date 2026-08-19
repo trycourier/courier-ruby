@@ -1,0 +1,66 @@
+module Courier
+  module Models
+    type journey_audience_trigger_node =
+      {
+        audience_id: String,
+        trigger_type: Courier::Models::JourneyAudienceTriggerNode::trigger_type,
+        type: Courier::Models::JourneyAudienceTriggerNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field
+      }
+
+    class JourneyAudienceTriggerNode < Courier::Internal::Type::BaseModel
+      attr_accessor audience_id: String
+
+      attr_accessor trigger_type: Courier::Models::JourneyAudienceTriggerNode::trigger_type
+
+      attr_accessor type: Courier::Models::JourneyAudienceTriggerNode::type_
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      def initialize: (
+        audience_id: String,
+        trigger_type: Courier::Models::JourneyAudienceTriggerNode::trigger_type,
+        type: Courier::Models::JourneyAudienceTriggerNode::type_,
+        ?id: String,
+        ?conditions: Courier::Models::journey_conditions_field
+      ) -> void
+
+      def to_hash: -> {
+        audience_id: String,
+        trigger_type: Courier::Models::JourneyAudienceTriggerNode::trigger_type,
+        type: Courier::Models::JourneyAudienceTriggerNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field
+      }
+
+      type trigger_type = :audience
+
+      module TriggerType
+        extend Courier::Internal::Type::Enum
+
+        AUDIENCE: :audience
+
+        def self?.values: -> ::Array[Courier::Models::JourneyAudienceTriggerNode::trigger_type]
+      end
+
+      type type_ = :trigger
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        TRIGGER: :trigger
+
+        def self?.values: -> ::Array[Courier::Models::JourneyAudienceTriggerNode::type_]
+      end
+    end
+  end
+end

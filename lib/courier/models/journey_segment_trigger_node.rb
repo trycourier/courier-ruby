@@ -40,7 +40,10 @@ module Courier
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneySegmentTriggerNode} for more details.
       #
-      #   Trigger fired by a segment event (`identify`, `group`, or `track`).
+      #   Trigger fired by a segment event (`identify`, `group`, `track`, or `page`). A
+      #   trigger with no `event_id` fires on any event of its type — the only shape
+      #   `identify` and `group` can take, and the one that catches a stock
+      #   `analytics.page()` call.
       #
       #   @param request_type [Symbol, Courier::Models::JourneySegmentTriggerNode::RequestType]
       #
@@ -61,6 +64,7 @@ module Courier
         IDENTIFY = :identify
         GROUP = :group
         TRACK = :track
+        PAGE = :page
 
         # @!method self.values
         #   @return [Array<Symbol>]

@@ -1,0 +1,73 @@
+module Courier
+  module Models
+    type journey_webhook_trigger_node =
+      {
+        event_source: String,
+        trigger_type: Courier::Models::JourneyWebhookTriggerNode::trigger_type,
+        type: Courier::Models::JourneyWebhookTriggerNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field,
+        event_id: String
+      }
+
+    class JourneyWebhookTriggerNode < Courier::Internal::Type::BaseModel
+      attr_accessor event_source: String
+
+      attr_accessor trigger_type: Courier::Models::JourneyWebhookTriggerNode::trigger_type
+
+      attr_accessor type: Courier::Models::JourneyWebhookTriggerNode::type_
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader conditions: Courier::Models::journey_conditions_field?
+
+      def conditions=: (
+        Courier::Models::journey_conditions_field
+      ) -> Courier::Models::journey_conditions_field
+
+      attr_reader event_id: String?
+
+      def event_id=: (String) -> String
+
+      def initialize: (
+        event_source: String,
+        trigger_type: Courier::Models::JourneyWebhookTriggerNode::trigger_type,
+        type: Courier::Models::JourneyWebhookTriggerNode::type_,
+        ?id: String,
+        ?conditions: Courier::Models::journey_conditions_field,
+        ?event_id: String
+      ) -> void
+
+      def to_hash: -> {
+        event_source: String,
+        trigger_type: Courier::Models::JourneyWebhookTriggerNode::trigger_type,
+        type: Courier::Models::JourneyWebhookTriggerNode::type_,
+        id: String,
+        conditions: Courier::Models::journey_conditions_field,
+        event_id: String
+      }
+
+      type trigger_type = :webhook
+
+      module TriggerType
+        extend Courier::Internal::Type::Enum
+
+        WEBHOOK: :webhook
+
+        def self?.values: -> ::Array[Courier::Models::JourneyWebhookTriggerNode::trigger_type]
+      end
+
+      type type_ = :trigger
+
+      module Type
+        extend Courier::Internal::Type::Enum
+
+        TRIGGER: :trigger
+
+        def self?.values: -> ::Array[Courier::Models::JourneyWebhookTriggerNode::type_]
+      end
+    end
+  end
+end

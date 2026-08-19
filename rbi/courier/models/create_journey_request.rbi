@@ -17,6 +17,8 @@ module Courier
             T.any(
               Courier::JourneyAPIInvokeTriggerNode,
               Courier::JourneySegmentTriggerNode,
+              Courier::JourneyAudienceTriggerNode,
+              Courier::JourneyWebhookTriggerNode,
               Courier::JourneySendNode,
               Courier::JourneyDelayDurationNode,
               Courier::JourneyDelayUntilNode,
@@ -57,6 +59,8 @@ module Courier
               T.any(
                 Courier::JourneyAPIInvokeTriggerNode::OrHash,
                 Courier::JourneySegmentTriggerNode::OrHash,
+                Courier::JourneyAudienceTriggerNode::OrHash,
+                Courier::JourneyWebhookTriggerNode::OrHash,
                 Courier::JourneySendNode::OrHash,
                 Courier::JourneyDelayDurationNode::OrHash,
                 Courier::JourneyDelayUntilNode::OrHash,
@@ -93,6 +97,8 @@ module Courier
                 T.any(
                   Courier::JourneyAPIInvokeTriggerNode,
                   Courier::JourneySegmentTriggerNode,
+                  Courier::JourneyAudienceTriggerNode,
+                  Courier::JourneyWebhookTriggerNode,
                   Courier::JourneySendNode,
                   Courier::JourneyDelayDurationNode,
                   Courier::JourneyDelayUntilNode,

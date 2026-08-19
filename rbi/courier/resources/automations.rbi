@@ -10,6 +10,11 @@ module Courier
       sig { returns(Courier::Resources::Automations::Invoke) }
       attr_reader :invoke
 
+      # Invoke a stored automation template or an ad hoc automation defined in the
+      # request.
+      sig { returns(Courier::Resources::Automations::Runs) }
+      attr_reader :runs
+
       # Lists the workspace's saved automation templates, each with its id and a cursor
       # for paging to the next page of results.
       sig do
