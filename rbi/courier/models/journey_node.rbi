@@ -13,6 +13,8 @@ module Courier
           T.any(
             Courier::JourneyAPIInvokeTriggerNode,
             Courier::JourneySegmentTriggerNode,
+            Courier::JourneyAudienceTriggerNode,
+            Courier::JourneyWebhookTriggerNode,
             Courier::JourneySendNode,
             Courier::JourneyDelayDurationNode,
             Courier::JourneyDelayUntilNode,

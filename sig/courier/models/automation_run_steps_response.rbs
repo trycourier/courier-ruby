@@ -1,0 +1,14 @@
+module Courier
+  module Models
+    type automation_run_steps_response =
+      { steps: ::Array[Courier::AutomationRunStep] }
+
+    class AutomationRunStepsResponse < Courier::Internal::Type::BaseModel
+      attr_accessor steps: ::Array[Courier::AutomationRunStep]
+
+      def initialize: (steps: ::Array[Courier::AutomationRunStep]) -> void
+
+      def to_hash: -> { steps: ::Array[Courier::AutomationRunStep] }
+    end
+  end
+end

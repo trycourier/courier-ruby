@@ -1,0 +1,53 @@
+module Courier
+  module Models
+    type automation_run_step =
+      {
+        action: String,
+        status: String,
+        created_at: String,
+        message_id: String,
+        step_id: String,
+        updated_at: String
+      }
+
+    class AutomationRunStep < Courier::Internal::Type::BaseModel
+      attr_accessor action: String
+
+      attr_accessor status: String
+
+      attr_reader created_at: String?
+
+      def created_at=: (String) -> String
+
+      attr_reader message_id: String?
+
+      def message_id=: (String) -> String
+
+      attr_reader step_id: String?
+
+      def step_id=: (String) -> String
+
+      attr_reader updated_at: String?
+
+      def updated_at=: (String) -> String
+
+      def initialize: (
+        action: String,
+        status: String,
+        ?created_at: String,
+        ?message_id: String,
+        ?step_id: String,
+        ?updated_at: String
+      ) -> void
+
+      def to_hash: -> {
+        action: String,
+        status: String,
+        created_at: String,
+        message_id: String,
+        step_id: String,
+        updated_at: String
+      }
+    end
+  end
+end

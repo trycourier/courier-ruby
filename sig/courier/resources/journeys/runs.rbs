@@ -1,0 +1,29 @@
+module Courier
+  module Resources
+    class Journeys
+      class Runs
+        def retrieve: (
+          String run_id,
+          ?request_options: Courier::request_opts
+        ) -> Courier::JourneyRunResponse
+
+        def list: (
+          ?cursor: String,
+          ?end_date: String,
+          ?limit: String,
+          ?start_date: String,
+          ?status: String,
+          ?template_id: String,
+          ?request_options: Courier::request_opts
+        ) -> Courier::JourneyRunListResponse
+
+        def list_steps: (
+          String run_id,
+          ?request_options: Courier::request_opts
+        ) -> Courier::JourneyRunStepsResponse
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end

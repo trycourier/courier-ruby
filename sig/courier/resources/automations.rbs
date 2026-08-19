@@ -3,6 +3,8 @@ module Courier
     class Automations
       attr_reader invoke: Courier::Resources::Automations::Invoke
 
+      attr_reader runs: Courier::Resources::Automations::Runs
+
       def list: (
         ?cursor: String,
         ?version: Courier::Models::AutomationListParams::version,

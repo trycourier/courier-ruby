@@ -3,6 +3,8 @@ module Courier
     class Journeys
       attr_reader templates: Courier::Resources::Journeys::Templates
 
+      attr_reader runs: Courier::Resources::Journeys::Runs
+
       def create: (
         name: String,
         nodes: ::Array[Courier::Models::journey_node],

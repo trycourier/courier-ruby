@@ -57,7 +57,10 @@ module Courier
       sig { params(event_id: String).void }
       attr_writer :event_id
 
-      # Trigger fired by a segment event (`identify`, `group`, or `track`).
+      # Trigger fired by a segment event (`identify`, `group`, `track`, or `page`). A
+      # trigger with no `event_id` fires on any event of its type — the only shape
+      # `identify` and `group` can take, and the one that catches a stock
+      # `analytics.page()` call.
       sig do
         params(
           request_type:
@@ -132,6 +135,11 @@ module Courier
         TRACK =
           T.let(
             :track,
+            Courier::JourneySegmentTriggerNode::RequestType::TaggedSymbol
+          )
+        PAGE =
+          T.let(
+            :page,
             Courier::JourneySegmentTriggerNode::RequestType::TaggedSymbol
           )
 

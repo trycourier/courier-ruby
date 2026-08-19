@@ -11,8 +11,14 @@ module Courier
       # Trigger fired when the journey is invoked via the API. The optional `schema` field is a JSON Schema that validates the invocation payload.
       variant -> { Courier::JourneyAPIInvokeTriggerNode }
 
-      # Trigger fired by a segment event (`identify`, `group`, or `track`).
+      # Trigger fired by a segment event (`identify`, `group`, `track`, or `page`). A trigger with no `event_id` fires on any event of its type — the only shape `identify` and `group` can take, and the one that catches a stock `analytics.page()` call.
       variant -> { Courier::JourneySegmentTriggerNode }
+
+      # Trigger fired when a user newly matches an Audience. Leaving and re-joining the Audience re-enters the Journey. Membership is new-members-only: users already in the Audience when the Journey is published do not enter. Unlike the v2 Automations audience trigger, there is no member scope, event type, or frequency mode to configure, and `audience_id` must name one Audience — wildcards are not supported.
+      variant -> { Courier::JourneyAudienceTriggerNode }
+
+      # Trigger fired when an external system POSTs to the webhook URL minted for `event_source`. Narrow it to one event with `event_id`, or omit `event_id` to accept every event delivered to the URL.
+      variant -> { Courier::JourneyWebhookTriggerNode }
 
       # Send to the recipient. A send node sources its content from EXACTLY ONE of `message.template` (a single notification template) or `experiment` (an A/B split across weighted template variants) — supplying both, or neither, is rejected. Optionally override the recipient address, send as a tenant, delay the send, or attach `data`.
       variant -> { Courier::JourneySendNode }
@@ -344,7 +350,7 @@ module Courier
       end
 
       # @!method self.variants
-      #   @return [Array(Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyNode::JourneyAddToDigestNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode)]
+      #   @return [Array(Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneyAudienceTriggerNode, Courier::Models::JourneyWebhookTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyNode::JourneyAddToDigestNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode)]
     end
   end
 end

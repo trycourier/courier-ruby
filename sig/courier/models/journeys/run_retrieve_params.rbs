@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    module Journeys
+      type run_retrieve_params =
+        { run_id: String } & Courier::Internal::Type::request_parameters
+
+      class RunRetrieveParams < Courier::Internal::Type::BaseModel
+        extend Courier::Internal::Type::RequestParameters::Converter
+        include Courier::Internal::Type::RequestParameters
+
+        attr_accessor run_id: String
+
+        def initialize: (
+          run_id: String,
+          ?request_options: Courier::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          run_id: String,
+          request_options: Courier::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -52,6 +52,8 @@ module Courier
               T.any(
                 Courier::JourneyAPIInvokeTriggerNode::OrHash,
                 Courier::JourneySegmentTriggerNode::OrHash,
+                Courier::JourneyAudienceTriggerNode::OrHash,
+                Courier::JourneyWebhookTriggerNode::OrHash,
                 Courier::JourneySendNode::OrHash,
                 Courier::JourneyDelayDurationNode::OrHash,
                 Courier::JourneyDelayUntilNode::OrHash,

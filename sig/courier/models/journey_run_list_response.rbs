@@ -1,0 +1,34 @@
+module Courier
+  module Models
+    type journey_run_list_response =
+      {
+        runs: ::Array[Courier::JourneyRunListItem],
+        next_cursor: String,
+        prev_cursor: String
+      }
+
+    class JourneyRunListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor runs: ::Array[Courier::JourneyRunListItem]
+
+      attr_reader next_cursor: String?
+
+      def next_cursor=: (String) -> String
+
+      attr_reader prev_cursor: String?
+
+      def prev_cursor=: (String) -> String
+
+      def initialize: (
+        runs: ::Array[Courier::JourneyRunListItem],
+        ?next_cursor: String,
+        ?prev_cursor: String
+      ) -> void
+
+      def to_hash: -> {
+        runs: ::Array[Courier::JourneyRunListItem],
+        next_cursor: String,
+        prev_cursor: String
+      }
+    end
+  end
+end

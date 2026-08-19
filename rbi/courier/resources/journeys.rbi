@@ -10,6 +10,11 @@ module Courier
       sig { returns(Courier::Resources::Journeys::Templates) }
       attr_reader :templates
 
+      # Build, version, publish, invoke, and cancel multi-step notification workflows,
+      # along with the templates scoped to them.
+      sig { returns(Courier::Resources::Journeys::Runs) }
+      attr_reader :runs
+
       # Creates a journey from a set of nodes, in draft state unless you pass a
       # published state. Send nodes cannot be included until their templates exist.
       sig do
@@ -20,6 +25,8 @@ module Courier
               T.any(
                 Courier::JourneyAPIInvokeTriggerNode::OrHash,
                 Courier::JourneySegmentTriggerNode::OrHash,
+                Courier::JourneyAudienceTriggerNode::OrHash,
+                Courier::JourneyWebhookTriggerNode::OrHash,
                 Courier::JourneySendNode::OrHash,
                 Courier::JourneyDelayDurationNode::OrHash,
                 Courier::JourneyDelayUntilNode::OrHash,
@@ -260,6 +267,8 @@ module Courier
               T.any(
                 Courier::JourneyAPIInvokeTriggerNode::OrHash,
                 Courier::JourneySegmentTriggerNode::OrHash,
+                Courier::JourneyAudienceTriggerNode::OrHash,
+                Courier::JourneyWebhookTriggerNode::OrHash,
                 Courier::JourneySendNode::OrHash,
                 Courier::JourneyDelayDurationNode::OrHash,
                 Courier::JourneyDelayUntilNode::OrHash,

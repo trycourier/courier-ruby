@@ -1,0 +1,24 @@
+module Courier
+  module Models
+    type automation_run_list_response =
+      { runs: ::Array[Courier::AutomationRunListItem], next_cursor: String }
+
+    class AutomationRunListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor runs: ::Array[Courier::AutomationRunListItem]
+
+      attr_reader next_cursor: String?
+
+      def next_cursor=: (String) -> String
+
+      def initialize: (
+        runs: ::Array[Courier::AutomationRunListItem],
+        ?next_cursor: String
+      ) -> void
+
+      def to_hash: -> {
+        runs: ::Array[Courier::AutomationRunListItem],
+        next_cursor: String
+      }
+    end
+  end
+end
