@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.1.0](https://github.com/trycourier/courier-ruby/compare/v6.0.0...v6.1.0) (2026-08-19)
+
+
+### Features
+
+* **api:** add automation and journey run log endpoints ([#133](https://github.com/trycourier/courier-ruby/issues/133)) ([fe4a26c](https://github.com/trycourier/courier-ruby/commit/fe4a26c09d0e7f77e068f7767fe6bf3458827d85))
+* **api:** document section_id and section_name on a user's topic preference ([#132](https://github.com/trycourier/courier-ruby/issues/132)) ([86c3108](https://github.com/trycourier/courier-ruby/commit/86c31083552978e501795079b0c0a2a998403eed))
+
+
+### Chores
+
+* **api:** regenerate SDK ([#130](https://github.com/trycourier/courier-ruby/issues/130)) ([6743e28](https://github.com/trycourier/courier-ruby/commit/6743e288b0cbfb9e72635f411417d69593dc3311))
+
 ## [6.0.0](https://github.com/trycourier/courier-ruby/compare/v5.0.0...v6.0.0) (2026-08-17)
 
 
