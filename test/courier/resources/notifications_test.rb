@@ -60,6 +60,26 @@ class Courier::Test::Resources::NotificationsTest < Courier::Test::ResourceTest
     end
   end
 
+  def test_get_metrics
+    skip("Mock server tests are disabled")
+
+    response = @courier.notifications.get_metrics("x")
+
+    assert_pattern do
+      response => Courier::NotificationMetricsResponse
+    end
+
+    assert_pattern do
+      response => {
+        end_: Time,
+        granularity: Courier::NotificationMetricsResponse::Granularity,
+        notification_id: String,
+        series: ^(Courier::Internal::Type::ArrayOf[Courier::NotificationMetricsResponse::Series]),
+        start: Time
+      }
+    end
+  end
+
   def test_list_versions
     skip("Mock server tests are disabled")
 

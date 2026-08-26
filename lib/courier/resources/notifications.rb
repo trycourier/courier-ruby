@@ -123,6 +123,59 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::NotificationGetMetricsParams} for more details.
+      #
+      # Fetch the delivery funnel for one Notification Template as a time series — sent,
+      # delivered, opened, clicked, errors, and undeliverable — broken out per provider
+      # and channel inside each bucket. Sum the entries in a bucket for its totals;
+      # there is no bucket-level total.
+      #
+      # Choose the window absolutely with `start` and `end`, or relatively with
+      # `lookback` (an ISO 8601 duration). `start` and `end` take precedence when both
+      # are supplied, and a request carrying neither defaults to `lookback=P30D`. The
+      # window is snapped outwards onto the `granularity` grid so every bucket it
+      # overlaps is returned whole, and the snapped boundaries come back as `start` and
+      # `end` — align a chart on those rather than on what was requested. Every boundary
+      # is UTC; there is no timezone support.
+      #
+      # Every bucket in the window is returned, including the quiet ones, whose `data`
+      # array is empty, so a series is directly plottable with no gap filling
+      # client-side. An unknown template id returns `200` with an all-empty series
+      # rather than `404`, and messages sent without a Notification Template never
+      # appear here.
+      #
+      # Available in the US region only.
+      #
+      # @overload get_metrics(id, end_: nil, granularity: nil, lookback: nil, start: nil, request_options: {})
+      #
+      # @param id [String] The Notification Template to report on — its ID (`nt_` prefix) or an alias. Must
+      #
+      # @param end_ [Time] The end of the window, as an ISO 8601 timestamp with an offset. Must be supplied
+      #
+      # @param granularity [Symbol, Courier::Models::NotificationGetMetricsParams::Granularity] The size of each bucket in the series. Defaults to `DAY`. `WEEK` buckets start o
+      #
+      # @param lookback [String] The length of the window, counted back from now, as an ISO 8601 duration (`P30D`
+      #
+      # @param start [Time] The inclusive start of the window, as an ISO 8601 timestamp with an offset (`202
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::NotificationMetricsResponse]
+      #
+      # @see Courier::Models::NotificationGetMetricsParams
+      def get_metrics(id, params = {})
+        parsed, options = Courier::NotificationGetMetricsParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["notifications/%1$s/metrics", id],
+          query: query.transform_keys(end_: "end"),
+          model: Courier::NotificationMetricsResponse,
+          options: options
+        )
+      end
+
       # Returns a notification template's published versions, most recent first, for
       # comparison or rollback. Paged.
       #

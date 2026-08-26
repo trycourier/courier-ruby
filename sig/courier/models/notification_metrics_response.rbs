@@ -1,0 +1,127 @@
+module Courier
+  module Models
+    type notification_metrics_response =
+      {
+        end_: Time,
+        granularity: Courier::Models::NotificationMetricsResponse::granularity,
+        notification_id: String,
+        series: ::Array[Courier::NotificationMetricsResponse::Series],
+        start: Time
+      }
+
+    class NotificationMetricsResponse < Courier::Internal::Type::BaseModel
+      attr_accessor end_: Time
+
+      attr_accessor granularity: Courier::Models::NotificationMetricsResponse::granularity
+
+      attr_accessor notification_id: String
+
+      attr_accessor series: ::Array[Courier::NotificationMetricsResponse::Series]
+
+      attr_accessor start: Time
+
+      def initialize: (
+        end_: Time,
+        granularity: Courier::Models::NotificationMetricsResponse::granularity,
+        notification_id: String,
+        series: ::Array[Courier::NotificationMetricsResponse::Series],
+        start: Time
+      ) -> void
+
+      def to_hash: -> {
+        end_: Time,
+        granularity: Courier::Models::NotificationMetricsResponse::granularity,
+        notification_id: String,
+        series: ::Array[Courier::NotificationMetricsResponse::Series],
+        start: Time
+      }
+
+      type granularity = :HOUR | :DAY | :WEEK | :MONTH
+
+      module Granularity
+        extend Courier::Internal::Type::Enum
+
+        HOUR: :HOUR
+        DAY: :DAY
+        WEEK: :WEEK
+        MONTH: :MONTH
+
+        def self?.values: -> ::Array[Courier::Models::NotificationMetricsResponse::granularity]
+      end
+
+      type series =
+        {
+          data: ::Array[Courier::NotificationMetricsResponse::Series::Data],
+          period: Time
+        }
+
+      class Series < Courier::Internal::Type::BaseModel
+        attr_accessor data: ::Array[Courier::NotificationMetricsResponse::Series::Data]
+
+        attr_accessor period: Time
+
+        def initialize: (
+          data: ::Array[Courier::NotificationMetricsResponse::Series::Data],
+          period: Time
+        ) -> void
+
+        def to_hash: -> {
+          data: ::Array[Courier::NotificationMetricsResponse::Series::Data],
+          period: Time
+        }
+
+        type data =
+          {
+            channel: String,
+            clicked: Integer,
+            delivered: Integer,
+            errors: Integer,
+            opened: Integer,
+            provider: String,
+            sent: Integer,
+            undeliverable: Integer
+          }
+
+        class Data < Courier::Internal::Type::BaseModel
+          attr_accessor channel: String
+
+          attr_accessor clicked: Integer
+
+          attr_accessor delivered: Integer
+
+          attr_accessor errors: Integer
+
+          attr_accessor opened: Integer
+
+          attr_accessor provider: String
+
+          attr_accessor sent: Integer
+
+          attr_accessor undeliverable: Integer
+
+          def initialize: (
+            channel: String,
+            clicked: Integer,
+            delivered: Integer,
+            errors: Integer,
+            opened: Integer,
+            provider: String,
+            sent: Integer,
+            undeliverable: Integer
+          ) -> void
+
+          def to_hash: -> {
+            channel: String,
+            clicked: Integer,
+            delivered: Integer,
+            errors: Integer,
+            opened: Integer,
+            provider: String,
+            sent: Integer,
+            undeliverable: Integer
+          }
+        end
+      end
+    end
+  end
+end
