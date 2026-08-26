@@ -392,12 +392,16 @@ module Courier
 
   NotificationGetContent = Courier::Models::NotificationGetContent
 
+  NotificationGetMetricsParams = Courier::Models::NotificationGetMetricsParams
+
   NotificationListParams = Courier::Models::NotificationListParams
 
   NotificationListVersionsParams =
     Courier::Models::NotificationListVersionsParams
 
   NotificationLocalePutRequest = Courier::Models::NotificationLocalePutRequest
+
+  NotificationMetricsResponse = Courier::Models::NotificationMetricsResponse
 
   NotificationPreferenceDetails = Courier::Models::NotificationPreferenceDetails
 

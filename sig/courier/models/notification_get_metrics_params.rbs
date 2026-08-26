@@ -1,0 +1,69 @@
+module Courier
+  module Models
+    type notification_get_metrics_params =
+      {
+        id: String,
+        end_: Time,
+        granularity: Courier::Models::NotificationGetMetricsParams::granularity,
+        lookback: String,
+        start: Time
+      }
+      & Courier::Internal::Type::request_parameters
+
+    class NotificationGetMetricsParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader end_: Time?
+
+      def end_=: (Time) -> Time
+
+      attr_reader granularity: Courier::Models::NotificationGetMetricsParams::granularity?
+
+      def granularity=: (
+        Courier::Models::NotificationGetMetricsParams::granularity
+      ) -> Courier::Models::NotificationGetMetricsParams::granularity
+
+      attr_reader lookback: String?
+
+      def lookback=: (String) -> String
+
+      attr_reader start: Time?
+
+      def start=: (Time) -> Time
+
+      def initialize: (
+        id: String,
+        ?end_: Time,
+        ?granularity: Courier::Models::NotificationGetMetricsParams::granularity,
+        ?lookback: String,
+        ?start: Time,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        end_: Time,
+        granularity: Courier::Models::NotificationGetMetricsParams::granularity,
+        lookback: String,
+        start: Time,
+        request_options: Courier::RequestOptions
+      }
+
+      type granularity = :HOUR | :DAY | :WEEK | :MONTH
+
+      module Granularity
+        extend Courier::Internal::Type::Enum
+
+        HOUR: :HOUR
+        DAY: :DAY
+        WEEK: :WEEK
+        MONTH: :MONTH
+
+        def self?.values: -> ::Array[Courier::Models::NotificationGetMetricsParams::granularity]
+      end
+    end
+  end
+end
