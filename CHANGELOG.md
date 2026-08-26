@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/trycourier/courier-ruby/compare/v6.1.0...v6.2.0) (2026-08-26)
+
+
+### Features
+
+* **api:** document the template send metrics endpoint ([#134](https://github.com/trycourier/courier-ruby/issues/134)) ([cd882b5](https://github.com/trycourier/courier-ruby/commit/cd882b5a4e1b1dee40c24fd2bec65f07ed10db8a))
+
 ## [6.1.0](https://github.com/trycourier/courier-ruby/compare/v6.0.0...v6.1.0) (2026-08-19)
 
 
