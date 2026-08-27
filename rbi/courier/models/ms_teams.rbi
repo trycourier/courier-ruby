@@ -2,6 +2,8 @@
 
 module Courier
   module Models
+    # Provide at least one of `tenant_id` or `service_url`. If you provide both, they
+    # must agree.
     module MsTeams
       extend Courier::Internal::Type::Union
 

@@ -8,6 +8,8 @@ module Courier
           T.any(Courier::MsTeamsRecipient, Courier::Internal::AnyHash)
         end
 
+      # Provide at least one of `tenant_id` or `service_url`. If you provide both, they
+      # must agree.
       sig do
         returns(
           T.any(
@@ -34,7 +36,11 @@ module Courier
             )
         ).returns(T.attached_class)
       end
-      def self.new(ms_teams:)
+      def self.new(
+        # Provide at least one of `tenant_id` or `service_url`. If you provide both, they
+        # must agree.
+        ms_teams:
+      )
       end
 
       sig do

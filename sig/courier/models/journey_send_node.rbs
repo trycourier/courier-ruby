@@ -125,7 +125,9 @@ module Courier
         type to =
           {
             email_override: String,
+            ms_teams: Courier::JourneySendNodeToMsTeams,
             phone_number_override: String,
+            slack: Courier::Models::journey_send_node_to_slack,
             user_id_override: String
           }
 
@@ -134,9 +136,21 @@ module Courier
 
           def email_override=: (String) -> String
 
+          attr_reader ms_teams: Courier::JourneySendNodeToMsTeams?
+
+          def ms_teams=: (
+            Courier::JourneySendNodeToMsTeams
+          ) -> Courier::JourneySendNodeToMsTeams
+
           attr_reader phone_number_override: String?
 
           def phone_number_override=: (String) -> String
+
+          attr_reader slack: Courier::Models::journey_send_node_to_slack?
+
+          def slack=: (
+            Courier::Models::journey_send_node_to_slack
+          ) -> Courier::Models::journey_send_node_to_slack
 
           attr_reader user_id_override: String?
 
@@ -144,13 +158,17 @@ module Courier
 
           def initialize: (
             ?email_override: String,
+            ?ms_teams: Courier::JourneySendNodeToMsTeams,
             ?phone_number_override: String,
+            ?slack: Courier::Models::journey_send_node_to_slack,
             ?user_id_override: String
           ) -> void
 
           def to_hash: -> {
             email_override: String,
+            ms_teams: Courier::JourneySendNodeToMsTeams,
             phone_number_override: String,
+            slack: Courier::Models::journey_send_node_to_slack,
             user_id_override: String
           }
         end

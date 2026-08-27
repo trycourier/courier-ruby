@@ -1,0 +1,14 @@
+module Courier
+  module Models
+    type journey_send_node_to_slack =
+      Courier::JourneySendNodeToSlackChannel
+      | Courier::JourneySendNodeToSlackUserID
+      | Courier::JourneySendNodeToSlackEmail
+
+    module JourneySendNodeToSlack
+      extend Courier::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Courier::Models::journey_send_node_to_slack]
+    end
+  end
+end

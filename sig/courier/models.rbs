@@ -279,6 +279,16 @@ module Courier
 
   class JourneySendNode = Courier::Models::JourneySendNode
 
+  class JourneySendNodeToMsTeams = Courier::Models::JourneySendNodeToMsTeams
+
+  module JourneySendNodeToSlack = Courier::Models::JourneySendNodeToSlack
+
+  class JourneySendNodeToSlackChannel = Courier::Models::JourneySendNodeToSlackChannel
+
+  class JourneySendNodeToSlackEmail = Courier::Models::JourneySendNodeToSlackEmail
+
+  class JourneySendNodeToSlackUserID = Courier::Models::JourneySendNodeToSlackUserID
+
   class JourneysInvokeRequest = Courier::Models::JourneysInvokeRequest
 
   class JourneysInvokeResponse = Courier::Models::JourneysInvokeResponse

@@ -1,0 +1,64 @@
+module Courier
+  module Models
+    type journey_send_node_to_ms_teams =
+      {
+        channel_id: String,
+        channel_name: String,
+        email: String,
+        service_url: String,
+        team_id: String,
+        tenant_id: String,
+        user_id: String
+      }
+
+    class JourneySendNodeToMsTeams < Courier::Internal::Type::BaseModel
+      attr_reader channel_id: String?
+
+      def channel_id=: (String) -> String
+
+      attr_reader channel_name: String?
+
+      def channel_name=: (String) -> String
+
+      attr_reader email: String?
+
+      def email=: (String) -> String
+
+      attr_reader service_url: String?
+
+      def service_url=: (String) -> String
+
+      attr_reader team_id: String?
+
+      def team_id=: (String) -> String
+
+      attr_reader tenant_id: String?
+
+      def tenant_id=: (String) -> String
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      def initialize: (
+        ?channel_id: String,
+        ?channel_name: String,
+        ?email: String,
+        ?service_url: String,
+        ?team_id: String,
+        ?tenant_id: String,
+        ?user_id: String
+      ) -> void
+
+      def to_hash: -> {
+        channel_id: String,
+        channel_name: String,
+        email: String,
+        service_url: String,
+        team_id: String,
+        tenant_id: String,
+        user_id: String
+      }
+    end
+  end
+end

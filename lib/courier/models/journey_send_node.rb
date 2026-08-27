@@ -79,6 +79,9 @@ module Courier
         optional :template, String
 
         # @!attribute to
+        #   Recipient override for this send. Provide exactly one of `email_override`,
+        #   `phone_number_override`, `user_id_override`, `slack`, or `ms_teams` — not a
+        #   combination.
         #
         #   @return [Courier::Models::JourneySendNode::Message::To, nil]
         optional :to, -> { Courier::JourneySendNode::Message::To }
@@ -95,7 +98,7 @@ module Courier
         #
         #   @param template [String]
         #
-        #   @param to [Courier::Models::JourneySendNode::Message::To]
+        #   @param to [Courier::Models::JourneySendNode::Message::To] Recipient override for this send. Provide exactly one of `email_override`, `phon
 
         # @see Courier::Models::JourneySendNode::Message#context
         class Context < Courier::Internal::Type::BaseModel
@@ -149,19 +152,52 @@ module Courier
           #   @return [String, nil]
           optional :email_override, String
 
+          # @!attribute ms_teams
+          #   Send to a Microsoft Teams address directly, bypassing the recipient's stored
+          #   profile. Requires exactly one target: `channel_id`, `channel_name` (with
+          #   `team_id`), `user_id`, or `email`. `channel_name`, `user_id`, and `email` also
+          #   need at least one of `service_url` or `tenant_id` — if you provide both, they
+          #   must agree. `channel_id` doesn't require tenant context to publish, but provide
+          #   `service_url` or `tenant_id` anyway: sends without either have failed at
+          #   delivery in testing. `conversation_id` and `reply_to_activity_id`, available on
+          #   the send API's `MsTeams` profile, aren't supported here yet.
+          #
+          #   @return [Courier::Models::JourneySendNodeToMsTeams, nil]
+          optional :ms_teams, -> { Courier::JourneySendNodeToMsTeams }
+
           # @!attribute phone_number_override
           #
           #   @return [String, nil]
           optional :phone_number_override, String
+
+          # @!attribute slack
+          #   Send to a Slack address directly, bypassing the recipient's stored profile.
+          #   Requires exactly one of `channel`, `user_id`, or `email`.
+          #
+          #   @return [Courier::Models::JourneySendNodeToSlackChannel, Courier::Models::JourneySendNodeToSlackUserID, Courier::Models::JourneySendNodeToSlackEmail, nil]
+          optional :slack, union: -> { Courier::JourneySendNodeToSlack }
 
           # @!attribute user_id_override
           #
           #   @return [String, nil]
           optional :user_id_override, String
 
-          # @!method initialize(email_override: nil, phone_number_override: nil, user_id_override: nil)
+          # @!method initialize(email_override: nil, ms_teams: nil, phone_number_override: nil, slack: nil, user_id_override: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Courier::Models::JourneySendNode::Message::To} for more details.
+          #
+          #   Recipient override for this send. Provide exactly one of `email_override`,
+          #   `phone_number_override`, `user_id_override`, `slack`, or `ms_teams` — not a
+          #   combination.
+          #
           #   @param email_override [String]
+          #
+          #   @param ms_teams [Courier::Models::JourneySendNodeToMsTeams] Send to a Microsoft Teams address directly, bypassing the recipient's stored pro
+          #
           #   @param phone_number_override [String]
+          #
+          #   @param slack [Courier::Models::JourneySendNodeToSlackChannel, Courier::Models::JourneySendNodeToSlackUserID, Courier::Models::JourneySendNodeToSlackEmail] Send to a Slack address directly, bypassing the recipient's stored profile. Requ
+          #
           #   @param user_id_override [String]
         end
       end

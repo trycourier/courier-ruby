@@ -10,15 +10,18 @@ module Courier
 
       # @!attribute service_url
       #
-      #   @return [String]
-      required :service_url, String
+      #   @return [String, nil]
+      optional :service_url, String
 
       # @!attribute tenant_id
       #
-      #   @return [String]
-      required :tenant_id, String
+      #   @return [String, nil]
+      optional :tenant_id, String
 
-      # @!method initialize(email:, service_url:, tenant_id:)
+      # @!method initialize(email:, service_url: nil, tenant_id: nil)
+      #   Provide at least one of `tenant_id` or `service_url`. If you provide both, they
+      #   must agree.
+      #
       #   @param email [String]
       #   @param service_url [String]
       #   @param tenant_id [String]
