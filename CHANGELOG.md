@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.3.0](https://github.com/trycourier/courier-ruby/compare/v6.2.0...v6.3.0) (2026-08-27)
+
+
+### Features
+
+* **api:** document Slack and MS Teams on journey send nodes, and fix over-strict MsTeams tenant requirements [C-20302] ([#136](https://github.com/trycourier/courier-ruby/issues/136)) ([2d63cc0](https://github.com/trycourier/courier-ruby/commit/2d63cc0ab0e936625484ed6610e423e1ff04e8b5))
+
 ## [6.2.0](https://github.com/trycourier/courier-ruby/compare/v6.1.0...v6.2.0) (2026-08-26)
 
 
