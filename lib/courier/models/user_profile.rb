@@ -106,6 +106,8 @@ module Courier
       optional :middle_name, String, nil?: true
 
       # @!attribute ms_teams
+      #   Provide at least one of `tenant_id` or `service_url`. If you provide both, they
+      #   must agree.
       #
       #   @return [Courier::Models::SendToMsTeamsUserID, Courier::Models::SendToMsTeamsEmail, Courier::Models::SendToMsTeamsChannelID, Courier::Models::SendToMsTeamsConversationID, Courier::Models::SendToMsTeamsChannelName, nil]
       optional :ms_teams, union: -> { Courier::MsTeams }, nil?: true
@@ -210,7 +212,7 @@ module Courier
       #
       #   @param middle_name [String, nil]
       #
-      #   @param ms_teams [Courier::Models::SendToMsTeamsUserID, Courier::Models::SendToMsTeamsEmail, Courier::Models::SendToMsTeamsChannelID, Courier::Models::SendToMsTeamsConversationID, Courier::Models::SendToMsTeamsChannelName, nil]
+      #   @param ms_teams [Courier::Models::SendToMsTeamsUserID, Courier::Models::SendToMsTeamsEmail, Courier::Models::SendToMsTeamsChannelID, Courier::Models::SendToMsTeamsConversationID, Courier::Models::SendToMsTeamsChannelName, nil] Provide at least one of `tenant_id` or `service_url`. If you provide both, they
       #
       #   @param name [String, nil]
       #

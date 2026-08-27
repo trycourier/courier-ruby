@@ -1,25 +1,29 @@
 module Courier
   module Models
     type send_to_ms_teams_user_id =
-      { service_url: String, tenant_id: String, user_id: String }
+      { user_id: String, service_url: String, tenant_id: String }
 
     class SendToMsTeamsUserID < Courier::Internal::Type::BaseModel
-      attr_accessor service_url: String
-
-      attr_accessor tenant_id: String
-
       attr_accessor user_id: String
 
+      attr_reader service_url: String?
+
+      def service_url=: (String) -> String
+
+      attr_reader tenant_id: String?
+
+      def tenant_id=: (String) -> String
+
       def initialize: (
-        service_url: String,
-        tenant_id: String,
-        user_id: String
+        user_id: String,
+        ?service_url: String,
+        ?tenant_id: String
       ) -> void
 
       def to_hash: -> {
+        user_id: String,
         service_url: String,
-        tenant_id: String,
-        user_id: String
+        tenant_id: String
       }
     end
   end

@@ -87,6 +87,8 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :middle_name
 
+      # Provide at least one of `tenant_id` or `service_url`. If you provide both, they
+      # must agree.
       sig do
         returns(
           T.nilable(
@@ -240,6 +242,8 @@ module Courier
         intercom: nil,
         locale: nil,
         middle_name: nil,
+        # Provide at least one of `tenant_id` or `service_url`. If you provide both, they
+        # must agree.
         ms_teams: nil,
         name: nil,
         nickname: nil,

@@ -3,31 +3,35 @@ module Courier
     type send_to_ms_teams_channel_name =
       {
         channel_name: String,
-        service_url: String,
         team_id: String,
+        service_url: String,
         tenant_id: String
       }
 
     class SendToMsTeamsChannelName < Courier::Internal::Type::BaseModel
       attr_accessor channel_name: String
 
-      attr_accessor service_url: String
-
       attr_accessor team_id: String
 
-      attr_accessor tenant_id: String
+      attr_reader service_url: String?
+
+      def service_url=: (String) -> String
+
+      attr_reader tenant_id: String?
+
+      def tenant_id=: (String) -> String
 
       def initialize: (
         channel_name: String,
-        service_url: String,
         team_id: String,
-        tenant_id: String
+        ?service_url: String,
+        ?tenant_id: String
       ) -> void
 
       def to_hash: -> {
         channel_name: String,
-        service_url: String,
         team_id: String,
+        service_url: String,
         tenant_id: String
       }
     end

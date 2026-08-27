@@ -1,0 +1,18 @@
+module Courier
+  module Models
+    type journey_send_node_to_slack_email =
+      { email: String, access_token: String }
+
+    class JourneySendNodeToSlackEmail < Courier::Internal::Type::BaseModel
+      attr_accessor email: String
+
+      attr_reader access_token: String?
+
+      def access_token=: (String) -> String
+
+      def initialize: (email: String, ?access_token: String) -> void
+
+      def to_hash: -> { email: String, access_token: String }
+    end
+  end
+end
