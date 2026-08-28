@@ -1,0 +1,23 @@
+module Courier
+  module Models
+    type elemental_html_node =
+      { content: String, locales: Courier::Models::locales? }
+
+    class ElementalHTMLNode < Courier::Models::ElementalBaseNode
+      def content: -> String
+
+      def content=: (String _) -> String
+
+      def locales: -> Courier::Models::locales?
+
+      def locales=: (Courier::Models::locales? _) -> Courier::Models::locales?
+
+      def initialize: (
+        content: String,
+        ?locales: Courier::Models::locales?
+      ) -> void
+
+      def to_hash: -> { content: String, locales: Courier::Models::locales? }
+    end
+  end
+end

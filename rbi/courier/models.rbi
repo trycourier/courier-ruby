@@ -160,6 +160,8 @@ module Courier
 
   Discord = Courier::Models::Discord
 
+  ElementalActionNode = Courier::Models::ElementalActionNode
+
   ElementalActionNodeWithType = Courier::Models::ElementalActionNodeWithType
 
   ElementalBaseNode = Courier::Models::ElementalBaseNode
@@ -172,17 +174,29 @@ module Courier
 
   ElementalContentSugar = Courier::Models::ElementalContentSugar
 
+  ElementalDividerNode = Courier::Models::ElementalDividerNode
+
   ElementalDividerNodeWithType = Courier::Models::ElementalDividerNodeWithType
+
+  ElementalHTMLNode = Courier::Models::ElementalHTMLNode
 
   ElementalHTMLNodeWithType = Courier::Models::ElementalHTMLNodeWithType
 
+  ElementalImageNode = Courier::Models::ElementalImageNode
+
   ElementalImageNodeWithType = Courier::Models::ElementalImageNodeWithType
+
+  ElementalMetaNode = Courier::Models::ElementalMetaNode
 
   ElementalMetaNodeWithType = Courier::Models::ElementalMetaNodeWithType
 
   ElementalNode = Courier::Models::ElementalNode
 
+  ElementalQuoteNode = Courier::Models::ElementalQuoteNode
+
   ElementalQuoteNodeWithType = Courier::Models::ElementalQuoteNodeWithType
+
+  ElementalTextNode = Courier::Models::ElementalTextNode
 
   ElementalTextNodeWithType = Courier::Models::ElementalTextNodeWithType
 
@@ -345,6 +359,10 @@ module Courier
   Lists = Courier::Models::Lists
 
   ListUpdateParams = Courier::Models::ListUpdateParams
+
+  LocaleItem = Courier::Models::LocaleItem
+
+  Locales = T.let(Courier::Models::Locales, Courier::Internal::Type::Converter)
 
   Logo = Courier::Models::Logo
 

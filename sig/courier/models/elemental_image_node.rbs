@@ -1,0 +1,71 @@
+module Courier
+  module Models
+    type elemental_image_node =
+      {
+        src: String,
+        align: Courier::Models::alignment?,
+        alt_text: String?,
+        border_color: String?,
+        border_size: String?,
+        href: String?,
+        padding: String?,
+        width: String?
+      }
+
+    class ElementalImageNode < Courier::Models::ElementalBaseNode
+      def src: -> String
+
+      def src=: (String _) -> String
+
+      def align: -> Courier::Models::alignment?
+
+      def align=: (Courier::Models::alignment? _) -> Courier::Models::alignment?
+
+      def alt_text: -> String?
+
+      def alt_text=: (String? _) -> String?
+
+      def border_color: -> String?
+
+      def border_color=: (String? _) -> String?
+
+      def border_size: -> String?
+
+      def border_size=: (String? _) -> String?
+
+      def href: -> String?
+
+      def href=: (String? _) -> String?
+
+      def padding: -> String?
+
+      def padding=: (String? _) -> String?
+
+      def width: -> String?
+
+      def width=: (String? _) -> String?
+
+      def initialize: (
+        src: String,
+        ?align: Courier::Models::alignment?,
+        ?alt_text: String?,
+        ?border_color: String?,
+        ?border_size: String?,
+        ?href: String?,
+        ?padding: String?,
+        ?width: String?
+      ) -> void
+
+      def to_hash: -> {
+        src: String,
+        align: Courier::Models::alignment?,
+        alt_text: String?,
+        border_color: String?,
+        border_size: String?,
+        href: String?,
+        padding: String?,
+        width: String?
+      }
+    end
+  end
+end

@@ -2,13 +2,15 @@
 
 module Courier
   module Models
-    class ElementalQuoteNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalQuoteNodeWithType < Courier::Models::ElementalQuoteNode
       # @!attribute type
       #
       #   @return [Symbol, Courier::Models::ElementalQuoteNodeWithType::Type, nil]
       optional :type, enum: -> { Courier::ElementalQuoteNodeWithType::Type }
 
       # @!method initialize(type: nil)
+      #   Renders a quote block.
+      #
       #   @param type [Symbol, Courier::Models::ElementalQuoteNodeWithType::Type]
 
       module Type

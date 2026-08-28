@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class ElementalHTMLNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalHTMLNodeWithType < Courier::Models::ElementalHTMLNode
       OrHash =
         T.type_alias do
           T.any(Courier::ElementalHTMLNodeWithType, Courier::Internal::AnyHash)
@@ -18,6 +18,9 @@ module Courier
       end
       attr_writer :type
 
+      # Raw HTML string inside an Elemental document. When rendering a message, this
+      # node is turned into output only for the email channel; for other channels it
+      # produces no blocks.
       sig do
         params(
           type: Courier::ElementalHTMLNodeWithType::Type::OrSymbol

@@ -1,0 +1,17 @@
+module Courier
+  module Models
+    type locale_item = { content: String }
+
+    class LocaleItem < Courier::Internal::Type::BaseModel
+      attr_accessor content: String
+
+      def initialize: (content: String) -> void
+
+      def to_hash: -> { content: String }
+    end
+
+    type locales = ::Hash[Symbol, Courier::LocaleItem]?
+
+    Locales: Courier::Internal::Type::Converter
+  end
+end

@@ -3,7 +3,7 @@ module Courier
     type elemental_html_node_with_type =
       { type: Courier::Models::ElementalHTMLNodeWithType::type_ }
 
-    class ElementalHTMLNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalHTMLNodeWithType < Courier::Models::ElementalHTMLNode
       def `type`: -> Courier::Models::ElementalHTMLNodeWithType::type_?
 
       def type=: (

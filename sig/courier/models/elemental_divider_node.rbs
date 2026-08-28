@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type elemental_divider_node = { color: String? }
+
+    class ElementalDividerNode < Courier::Models::ElementalBaseNode
+      def color: -> String?
+
+      def color=: (String? _) -> String?
+
+      def initialize: (?color: String?) -> void
+
+      def to_hash: -> { color: String? }
+    end
+  end
+end

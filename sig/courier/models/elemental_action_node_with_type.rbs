@@ -3,7 +3,7 @@ module Courier
     type elemental_action_node_with_type =
       { type: Courier::Models::ElementalActionNodeWithType::type_ }
 
-    class ElementalActionNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalActionNodeWithType < Courier::Models::ElementalActionNode
       def `type`: -> Courier::Models::ElementalActionNodeWithType::type_?
 
       def type=: (

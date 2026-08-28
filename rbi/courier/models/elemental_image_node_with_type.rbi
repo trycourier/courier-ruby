@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class ElementalImageNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalImageNodeWithType < Courier::Models::ElementalImageNode
       OrHash =
         T.type_alias do
           T.any(Courier::ElementalImageNodeWithType, Courier::Internal::AnyHash)
@@ -18,6 +18,7 @@ module Courier
       end
       attr_writer :type
 
+      # Used to embed an image into the notification.
       sig do
         params(
           type: Courier::ElementalImageNodeWithType::Type::OrSymbol

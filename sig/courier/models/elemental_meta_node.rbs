@@ -1,0 +1,15 @@
+module Courier
+  module Models
+    type elemental_meta_node = { title: String? }
+
+    class ElementalMetaNode < Courier::Models::ElementalBaseNode
+      def title: -> String?
+
+      def title=: (String? _) -> String?
+
+      def initialize: (?title: String?) -> void
+
+      def to_hash: -> { title: String? }
+    end
+  end
+end

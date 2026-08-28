@@ -1,0 +1,112 @@
+module Courier
+  module Models
+    type elemental_action_node =
+      {
+        content: String,
+        href: String,
+        action_id: String?,
+        align: Courier::Models::alignment?,
+        background_color: String?,
+        border_radius: String?,
+        border_size: String?,
+        disable_tracking: bool?,
+        font_size: String?,
+        locales: Courier::Models::locales?,
+        padding: String?,
+        style: Courier::Models::ElementalActionNode::style?
+      }
+
+    class ElementalActionNode < Courier::Models::ElementalBaseNode
+      def content: -> String
+
+      def content=: (String _) -> String
+
+      def href: -> String
+
+      def href=: (String _) -> String
+
+      def action_id: -> String?
+
+      def action_id=: (String? _) -> String?
+
+      def align: -> Courier::Models::alignment?
+
+      def align=: (Courier::Models::alignment? _) -> Courier::Models::alignment?
+
+      def background_color: -> String?
+
+      def background_color=: (String? _) -> String?
+
+      def border_radius: -> String?
+
+      def border_radius=: (String? _) -> String?
+
+      def border_size: -> String?
+
+      def border_size=: (String? _) -> String?
+
+      def disable_tracking: -> bool?
+
+      def disable_tracking=: (bool? _) -> bool?
+
+      def font_size: -> String?
+
+      def font_size=: (String? _) -> String?
+
+      def locales: -> Courier::Models::locales?
+
+      def locales=: (Courier::Models::locales? _) -> Courier::Models::locales?
+
+      def padding: -> String?
+
+      def padding=: (String? _) -> String?
+
+      def style: -> Courier::Models::ElementalActionNode::style?
+
+      def style=: (
+        Courier::Models::ElementalActionNode::style? _
+      ) -> Courier::Models::ElementalActionNode::style?
+
+      def initialize: (
+        content: String,
+        href: String,
+        ?action_id: String?,
+        ?align: Courier::Models::alignment?,
+        ?background_color: String?,
+        ?border_radius: String?,
+        ?border_size: String?,
+        ?disable_tracking: bool?,
+        ?font_size: String?,
+        ?locales: Courier::Models::locales?,
+        ?padding: String?,
+        ?style: Courier::Models::ElementalActionNode::style?
+      ) -> void
+
+      def to_hash: -> {
+        content: String,
+        href: String,
+        action_id: String?,
+        align: Courier::Models::alignment?,
+        background_color: String?,
+        border_radius: String?,
+        border_size: String?,
+        disable_tracking: bool?,
+        font_size: String?,
+        locales: Courier::Models::locales?,
+        padding: String?,
+        style: Courier::Models::ElementalActionNode::style?
+      }
+
+      type style = :button | :link
+
+      module Style
+        extend Courier::Internal::Type::Enum
+
+        BUTTON: :button
+        LINK: :link
+
+        def self?.values: -> ::Array[Courier::Models::ElementalActionNode::style]
+      end
+    end
+  end
+end

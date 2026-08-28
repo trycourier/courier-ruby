@@ -2,13 +2,15 @@
 
 module Courier
   module Models
-    class ElementalTextNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalTextNodeWithType < Courier::Models::ElementalTextNode
       # @!attribute type
       #
       #   @return [Symbol, Courier::Models::ElementalTextNodeWithType::Type, nil]
       optional :type, enum: -> { Courier::ElementalTextNodeWithType::Type }
 
       # @!method initialize(type: nil)
+      #   Represents a body of text to be rendered inside of the notification.
+      #
       #   @param type [Symbol, Courier::Models::ElementalTextNodeWithType::Type]
 
       module Type

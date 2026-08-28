@@ -3,7 +3,7 @@ module Courier
     type elemental_divider_node_with_type =
       { type: Courier::Models::ElementalDividerNodeWithType::type_ }
 
-    class ElementalDividerNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalDividerNodeWithType < Courier::Models::ElementalDividerNode
       def `type`: -> Courier::Models::ElementalDividerNodeWithType::type_?
 
       def type=: (

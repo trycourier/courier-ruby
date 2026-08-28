@@ -3,7 +3,7 @@ module Courier
     type elemental_image_node_with_type =
       { type: Courier::Models::ElementalImageNodeWithType::type_ }
 
-    class ElementalImageNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalImageNodeWithType < Courier::Models::ElementalImageNode
       def `type`: -> Courier::Models::ElementalImageNodeWithType::type_?
 
       def type=: (

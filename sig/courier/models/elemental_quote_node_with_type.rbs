@@ -3,7 +3,7 @@ module Courier
     type elemental_quote_node_with_type =
       { type: Courier::Models::ElementalQuoteNodeWithType::type_ }
 
-    class ElementalQuoteNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalQuoteNodeWithType < Courier::Models::ElementalQuoteNode
       def `type`: -> Courier::Models::ElementalQuoteNodeWithType::type_?
 
       def type=: (

@@ -54,7 +54,7 @@ module Courier
       #   [control flow docs](https://www.courier.com/docs/platform/content/elemental/control-flow/)
       #   for more details.
       #
-      #   @param channel [String] The channel the contents of this element should be applied to. Can be `email`,
+      #   @param channel [String] The channel the contents of this element should be applied to. Can be `email`, `
       #
       #   @param font_size [String, nil] Email only. Document-level base font size (CSS px, e.g. `16px`) for body content
       #

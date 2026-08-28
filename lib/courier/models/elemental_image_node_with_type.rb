@@ -2,13 +2,15 @@
 
 module Courier
   module Models
-    class ElementalImageNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalImageNodeWithType < Courier::Models::ElementalImageNode
       # @!attribute type
       #
       #   @return [Symbol, Courier::Models::ElementalImageNodeWithType::Type, nil]
       optional :type, enum: -> { Courier::ElementalImageNodeWithType::Type }
 
       # @!method initialize(type: nil)
+      #   Used to embed an image into the notification.
+      #
       #   @param type [Symbol, Courier::Models::ElementalImageNodeWithType::Type]
 
       module Type

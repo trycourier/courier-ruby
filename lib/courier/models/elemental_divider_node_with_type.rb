@@ -2,13 +2,15 @@
 
 module Courier
   module Models
-    class ElementalDividerNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalDividerNodeWithType < Courier::Models::ElementalDividerNode
       # @!attribute type
       #
       #   @return [Symbol, Courier::Models::ElementalDividerNodeWithType::Type, nil]
       optional :type, enum: -> { Courier::ElementalDividerNodeWithType::Type }
 
       # @!method initialize(type: nil)
+      #   Renders a dividing line between elements.
+      #
       #   @param type [Symbol, Courier::Models::ElementalDividerNodeWithType::Type]
 
       module Type
