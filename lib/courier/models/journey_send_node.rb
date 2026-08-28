@@ -18,6 +18,15 @@ module Courier
       #   @return [String, nil]
       optional :id, String
 
+      # @!attribute channel
+      #   The channel this node sends through. Optional — when omitted, the field is
+      #   absent from the node, including on `GET`; nodes created before this field
+      #   existed have it unset. Setting it makes the node's channel explicit to any
+      #   client reading the journey.
+      #
+      #   @return [Symbol, Courier::Models::JourneySendNode::Channel, nil]
+      optional :channel, enum: -> { Courier::JourneySendNode::Channel }
+
       # @!attribute conditions
       #   Condition spec for a journey node. Accepts a single condition atom, an AND/OR
       #   group, or an AND/OR nested group. Omit the `conditions` property entirely to
@@ -34,7 +43,7 @@ module Courier
       #   @return [Courier::Models::JourneyExperiment, nil]
       optional :experiment, -> { Courier::JourneyExperiment }
 
-      # @!method initialize(message:, type:, id: nil, conditions: nil, experiment: nil)
+      # @!method initialize(message:, type:, id: nil, channel: nil, conditions: nil, experiment: nil)
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::JourneySendNode} for more details.
       #
@@ -49,6 +58,8 @@ module Courier
       #   @param type [Symbol, Courier::Models::JourneySendNode::Type]
       #
       #   @param id [String]
+      #
+      #   @param channel [Symbol, Courier::Models::JourneySendNode::Channel] The channel this node sends through. Optional — when omitted, the field is absen
       #
       #   @param conditions [Array<String>, Courier::Models::JourneyConditionGroup, Courier::Models::JourneyConditionNestedGroup] Condition spec for a journey node. Accepts a single condition atom, an AND/OR gr
       #
@@ -207,6 +218,26 @@ module Courier
         extend Courier::Internal::Type::Enum
 
         SEND = :send
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The channel this node sends through. Optional — when omitted, the field is
+      # absent from the node, including on `GET`; nodes created before this field
+      # existed have it unset. Setting it makes the node's channel explicit to any
+      # client reading the journey.
+      #
+      # @see Courier::Models::JourneySendNode#channel
+      module Channel
+        extend Courier::Internal::Type::Enum
+
+        EMAIL = :email
+        SMS = :sms
+        PUSH = :push
+        INBOX = :inbox
+        SLACK = :slack
+        MSTEAMS = :msteams
 
         # @!method self.values
         #   @return [Array<Symbol>]

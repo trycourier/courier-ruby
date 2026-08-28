@@ -5,6 +5,7 @@ module Courier
         message: Courier::JourneySendNode::Message,
         type: Courier::Models::JourneySendNode::type_,
         id: String,
+        channel: Courier::Models::JourneySendNode::channel,
         conditions: Courier::Models::journey_conditions_field,
         experiment: Courier::JourneyExperiment
       }
@@ -17,6 +18,12 @@ module Courier
       attr_reader id: String?
 
       def id=: (String) -> String
+
+      attr_reader channel: Courier::Models::JourneySendNode::channel?
+
+      def channel=: (
+        Courier::Models::JourneySendNode::channel
+      ) -> Courier::Models::JourneySendNode::channel
 
       attr_reader conditions: Courier::Models::journey_conditions_field?
 
@@ -34,6 +41,7 @@ module Courier
         message: Courier::JourneySendNode::Message,
         type: Courier::Models::JourneySendNode::type_,
         ?id: String,
+        ?channel: Courier::Models::JourneySendNode::channel,
         ?conditions: Courier::Models::journey_conditions_field,
         ?experiment: Courier::JourneyExperiment
       ) -> void
@@ -42,6 +50,7 @@ module Courier
         message: Courier::JourneySendNode::Message,
         type: Courier::Models::JourneySendNode::type_,
         id: String,
+        channel: Courier::Models::JourneySendNode::channel,
         conditions: Courier::Models::journey_conditions_field,
         experiment: Courier::JourneyExperiment
       }
@@ -182,6 +191,21 @@ module Courier
         SEND: :send
 
         def self?.values: -> ::Array[Courier::Models::JourneySendNode::type_]
+      end
+
+      type channel = :email | :sms | :push | :inbox | :slack | :msteams
+
+      module Channel
+        extend Courier::Internal::Type::Enum
+
+        EMAIL: :email
+        SMS: :sms
+        PUSH: :push
+        INBOX: :inbox
+        SLACK: :slack
+        MSTEAMS: :msteams
+
+        def self?.values: -> ::Array[Courier::Models::JourneySendNode::channel]
       end
     end
   end
