@@ -23,6 +23,16 @@ module Courier
       sig { params(id: String).void }
       attr_writer :id
 
+      # The channel this node sends through. Optional — when omitted, the field is
+      # absent from the node, including on `GET`; nodes created before this field
+      # existed have it unset. Setting it makes the node's channel explicit to any
+      # client reading the journey.
+      sig { returns(T.nilable(Courier::JourneySendNode::Channel::OrSymbol)) }
+      attr_reader :channel
+
+      sig { params(channel: Courier::JourneySendNode::Channel::OrSymbol).void }
+      attr_writer :channel
+
       # Condition spec for a journey node. Accepts a single condition atom, an AND/OR
       # group, or an AND/OR nested group. Omit the `conditions` property entirely to
       # express "no conditions".
@@ -70,6 +80,7 @@ module Courier
           message: Courier::JourneySendNode::Message::OrHash,
           type: Courier::JourneySendNode::Type::OrSymbol,
           id: String,
+          channel: Courier::JourneySendNode::Channel::OrSymbol,
           conditions:
             T.any(
               T::Array[String],
@@ -83,6 +94,11 @@ module Courier
         message:,
         type:,
         id: nil,
+        # The channel this node sends through. Optional — when omitted, the field is
+        # absent from the node, including on `GET`; nodes created before this field
+        # existed have it unset. Setting it makes the node's channel explicit to any
+        # client reading the journey.
+        channel: nil,
         # Condition spec for a journey node. Accepts a single condition atom, an AND/OR
         # group, or an AND/OR nested group. Omit the `conditions` property entirely to
         # express "no conditions".
@@ -100,6 +116,7 @@ module Courier
             message: Courier::JourneySendNode::Message,
             type: Courier::JourneySendNode::Type::OrSymbol,
             id: String,
+            channel: Courier::JourneySendNode::Channel::OrSymbol,
             conditions:
               T.any(
                 T::Array[String],
@@ -412,6 +429,34 @@ module Courier
         sig do
           override.returns(
             T::Array[Courier::JourneySendNode::Type::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The channel this node sends through. Optional — when omitted, the field is
+      # absent from the node, including on `GET`; nodes created before this field
+      # existed have it unset. Setting it makes the node's channel explicit to any
+      # client reading the journey.
+      module Channel
+        extend Courier::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Courier::JourneySendNode::Channel) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        EMAIL = T.let(:email, Courier::JourneySendNode::Channel::TaggedSymbol)
+        SMS = T.let(:sms, Courier::JourneySendNode::Channel::TaggedSymbol)
+        PUSH = T.let(:push, Courier::JourneySendNode::Channel::TaggedSymbol)
+        INBOX = T.let(:inbox, Courier::JourneySendNode::Channel::TaggedSymbol)
+        SLACK = T.let(:slack, Courier::JourneySendNode::Channel::TaggedSymbol)
+        MSTEAMS =
+          T.let(:msteams, Courier::JourneySendNode::Channel::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[Courier::JourneySendNode::Channel::TaggedSymbol]
           )
         end
         def self.values
