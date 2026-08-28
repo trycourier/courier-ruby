@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.1](https://github.com/trycourier/courier-ruby/compare/v6.4.0...v6.4.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **api:** give Elemental nodes their properties in every SDK ([#140](https://github.com/trycourier/courier-ruby/issues/140)) ([482b8e7](https://github.com/trycourier/courier-ruby/commit/482b8e7c3d9e2cb35f434db538504d4337d79095))
+
 ## [6.4.0](https://github.com/trycourier/courier-ruby/compare/v6.3.0...v6.4.0) (2026-08-28)
 
 
