@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class ElementalMetaNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalMetaNodeWithType < Courier::Models::ElementalMetaNode
       OrHash =
         T.type_alias do
           T.any(Courier::ElementalMetaNodeWithType, Courier::Internal::AnyHash)
@@ -18,6 +18,9 @@ module Courier
       end
       attr_writer :type
 
+      # The meta element contains information describing the notification that may be
+      # used by a particular channel or provider. One important field is the title field
+      # which will be used as the title for channels that support it.
       sig do
         params(
           type: Courier::ElementalMetaNodeWithType::Type::OrSymbol

@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class ElementalActionNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalActionNodeWithType < Courier::Models::ElementalActionNode
       OrHash =
         T.type_alias do
           T.any(
@@ -21,6 +21,7 @@ module Courier
       end
       attr_writer :type
 
+      # Allows the user to execute an action. Can be a button or a link.
       sig do
         params(
           type: Courier::ElementalActionNodeWithType::Type::OrSymbol

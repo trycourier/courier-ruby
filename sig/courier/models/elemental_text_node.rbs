@@ -1,0 +1,127 @@
+module Courier
+  module Models
+    type elemental_text_node =
+      {
+        content: String,
+        align: Courier::Models::ElementalTextNode::align,
+        bold: String?,
+        color: String?,
+        font_size: String?,
+        format_: Courier::Models::ElementalTextNode::format_?,
+        italic: String?,
+        line_height: String?,
+        locales: Courier::Models::locales?,
+        strikethrough: String?,
+        text_style: Courier::Models::text_style?,
+        underline: String?
+      }
+
+    class ElementalTextNode < Courier::Models::ElementalBaseNode
+      def content: -> String
+
+      def content=: (String _) -> String
+
+      def align: -> Courier::Models::ElementalTextNode::align?
+
+      def align=: (
+        Courier::Models::ElementalTextNode::align _
+      ) -> Courier::Models::ElementalTextNode::align
+
+      def bold: -> String?
+
+      def bold=: (String? _) -> String?
+
+      def color: -> String?
+
+      def color=: (String? _) -> String?
+
+      def font_size: -> String?
+
+      def font_size=: (String? _) -> String?
+
+      def format_: -> Courier::Models::ElementalTextNode::format_?
+
+      def format_=: (
+        Courier::Models::ElementalTextNode::format_? _
+      ) -> Courier::Models::ElementalTextNode::format_?
+
+      def italic: -> String?
+
+      def italic=: (String? _) -> String?
+
+      def line_height: -> String?
+
+      def line_height=: (String? _) -> String?
+
+      def locales: -> Courier::Models::locales?
+
+      def locales=: (Courier::Models::locales? _) -> Courier::Models::locales?
+
+      def strikethrough: -> String?
+
+      def strikethrough=: (String? _) -> String?
+
+      def text_style: -> Courier::Models::text_style?
+
+      def text_style=: (
+        Courier::Models::text_style? _
+      ) -> Courier::Models::text_style?
+
+      def underline: -> String?
+
+      def underline=: (String? _) -> String?
+
+      def initialize: (
+        content: String,
+        ?align: Courier::Models::ElementalTextNode::align,
+        ?bold: String?,
+        ?color: String?,
+        ?font_size: String?,
+        ?format_: Courier::Models::ElementalTextNode::format_?,
+        ?italic: String?,
+        ?line_height: String?,
+        ?locales: Courier::Models::locales?,
+        ?strikethrough: String?,
+        ?text_style: Courier::Models::text_style?,
+        ?underline: String?
+      ) -> void
+
+      def to_hash: -> {
+        content: String,
+        align: Courier::Models::ElementalTextNode::align,
+        bold: String?,
+        color: String?,
+        font_size: String?,
+        format_: Courier::Models::ElementalTextNode::format_?,
+        italic: String?,
+        line_height: String?,
+        locales: Courier::Models::locales?,
+        strikethrough: String?,
+        text_style: Courier::Models::text_style?,
+        underline: String?
+      }
+
+      type align = :left | :center | :right
+
+      module Align
+        extend Courier::Internal::Type::Enum
+
+        LEFT: :left
+        CENTER: :center
+        RIGHT: :right
+
+        def self?.values: -> ::Array[Courier::Models::ElementalTextNode::align]
+      end
+
+      type format_ = :markdown
+
+      module Format
+        extend Courier::Internal::Type::Enum
+
+        MARKDOWN: :markdown
+
+        def self?.values: -> ::Array[Courier::Models::ElementalTextNode::format_]
+      end
+    end
+  end
+end

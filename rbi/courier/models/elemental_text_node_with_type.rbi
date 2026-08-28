@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class ElementalTextNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalTextNodeWithType < Courier::Models::ElementalTextNode
       OrHash =
         T.type_alias do
           T.any(Courier::ElementalTextNodeWithType, Courier::Internal::AnyHash)
@@ -18,6 +18,7 @@ module Courier
       end
       attr_writer :type
 
+      # Represents a body of text to be rendered inside of the notification.
       sig do
         params(
           type: Courier::ElementalTextNodeWithType::Type::OrSymbol

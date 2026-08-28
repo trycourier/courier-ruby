@@ -1,0 +1,66 @@
+module Courier
+  module Models
+    type elemental_quote_node =
+      {
+        content: String,
+        align: Courier::Models::alignment?,
+        border_color: String?,
+        font_size: String?,
+        line_height: String?,
+        locales: Courier::Models::locales?,
+        text_style: Courier::Models::text_style
+      }
+
+    class ElementalQuoteNode < Courier::Models::ElementalBaseNode
+      def content: -> String
+
+      def content=: (String _) -> String
+
+      def align: -> Courier::Models::alignment?
+
+      def align=: (Courier::Models::alignment? _) -> Courier::Models::alignment?
+
+      def border_color: -> String?
+
+      def border_color=: (String? _) -> String?
+
+      def font_size: -> String?
+
+      def font_size=: (String? _) -> String?
+
+      def line_height: -> String?
+
+      def line_height=: (String? _) -> String?
+
+      def locales: -> Courier::Models::locales?
+
+      def locales=: (Courier::Models::locales? _) -> Courier::Models::locales?
+
+      def text_style: -> Courier::Models::text_style?
+
+      def text_style=: (
+        Courier::Models::text_style _
+      ) -> Courier::Models::text_style
+
+      def initialize: (
+        content: String,
+        ?align: Courier::Models::alignment?,
+        ?border_color: String?,
+        ?font_size: String?,
+        ?line_height: String?,
+        ?locales: Courier::Models::locales?,
+        ?text_style: Courier::Models::text_style
+      ) -> void
+
+      def to_hash: -> {
+        content: String,
+        align: Courier::Models::alignment?,
+        border_color: String?,
+        font_size: String?,
+        line_height: String?,
+        locales: Courier::Models::locales?,
+        text_style: Courier::Models::text_style
+      }
+    end
+  end
+end

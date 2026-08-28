@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class ElementalDividerNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalDividerNodeWithType < Courier::Models::ElementalDividerNode
       OrHash =
         T.type_alias do
           T.any(
@@ -23,6 +23,7 @@ module Courier
       end
       attr_writer :type
 
+      # Renders a dividing line between elements.
       sig do
         params(
           type: Courier::ElementalDividerNodeWithType::Type::OrSymbol

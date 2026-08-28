@@ -2,7 +2,7 @@
 
 module Courier
   module Models
-    class ElementalQuoteNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalQuoteNodeWithType < Courier::Models::ElementalQuoteNode
       OrHash =
         T.type_alias do
           T.any(Courier::ElementalQuoteNodeWithType, Courier::Internal::AnyHash)
@@ -18,6 +18,7 @@ module Courier
       end
       attr_writer :type
 
+      # Renders a quote block.
       sig do
         params(
           type: Courier::ElementalQuoteNodeWithType::Type::OrSymbol

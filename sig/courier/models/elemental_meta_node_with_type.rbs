@@ -3,7 +3,7 @@ module Courier
     type elemental_meta_node_with_type =
       { type: Courier::Models::ElementalMetaNodeWithType::type_ }
 
-    class ElementalMetaNodeWithType < Courier::Models::ElementalBaseNode
+    class ElementalMetaNodeWithType < Courier::Models::ElementalMetaNode
       def `type`: -> Courier::Models::ElementalMetaNodeWithType::type_?
 
       def type=: (
