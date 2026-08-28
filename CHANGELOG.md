@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.0](https://github.com/trycourier/courier-ruby/compare/v6.3.0...v6.4.0) (2026-08-28)
+
+
+### Features
+
+* **api:** document channel on journey send nodes [C-20309] ([#138](https://github.com/trycourier/courier-ruby/issues/138)) ([f758237](https://github.com/trycourier/courier-ruby/commit/f75823779abef7a0df0d9927d3aae98696eff79a))
+
 ## [6.3.0](https://github.com/trycourier/courier-ruby/compare/v6.2.0...v6.3.0) (2026-08-27)
 
 
