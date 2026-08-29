@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.2](https://github.com/trycourier/courier-ruby/compare/v6.4.1...v6.4.2) (2026-08-29)
+
+
+### Bug Fixes
+
+* **api:** correct two Elemental field names the REST API rejects ([#142](https://github.com/trycourier/courier-ruby/issues/142)) ([bdec5ab](https://github.com/trycourier/courier-ruby/commit/bdec5ab5d865fab0623582557f7a909874bdcc70))
+
 ## [6.4.1](https://github.com/trycourier/courier-ruby/compare/v6.4.0...v6.4.1) (2026-08-28)
 
 
