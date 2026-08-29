@@ -8,11 +8,6 @@ module Courier
           T.any(Courier::ElementalTextNode, Courier::Internal::AnyHash)
         end
 
-      # The text content displayed in the notification. Either this field must be
-      # specified, or the elements field
-      sig { returns(String) }
-      attr_accessor :content
-
       # Text alignment.
       sig { returns(T.nilable(Courier::ElementalTextNode::Align::OrSymbol)) }
       attr_reader :align
@@ -27,6 +22,14 @@ module Courier
       # Specifies the color of text. Can be any valid css color value
       sig { returns(T.nilable(String)) }
       attr_accessor :color
+
+      # The text content displayed in the notification. Either this field must be
+      # specified, or the elements field
+      sig { returns(T.nilable(String)) }
+      attr_reader :content
+
+      sig { params(content: String).void }
+      attr_writer :content
 
       # CSS px font size for this text block, e.g. `16px`. Overrides the size of the
       # `text_style` preset. Email only.
@@ -66,10 +69,10 @@ module Courier
       # Represents a body of text to be rendered inside of the notification.
       sig do
         params(
-          content: String,
           align: Courier::ElementalTextNode::Align::OrSymbol,
           bold: T.nilable(String),
           color: T.nilable(String),
+          content: String,
           font_size: T.nilable(String),
           format_: T.nilable(Courier::ElementalTextNode::Format::OrSymbol),
           italic: T.nilable(String),
@@ -81,15 +84,15 @@ module Courier
         ).returns(T.attached_class)
       end
       def self.new(
-        # The text content displayed in the notification. Either this field must be
-        # specified, or the elements field
-        content:,
         # Text alignment.
         align: nil,
         # Apply bold to the text
         bold: nil,
         # Specifies the color of text. Can be any valid css color value
         color: nil,
+        # The text content displayed in the notification. Either this field must be
+        # specified, or the elements field
+        content: nil,
         # CSS px font size for this text block, e.g. `16px`. Overrides the size of the
         # `text_style` preset. Email only.
         font_size: nil,
@@ -115,10 +118,10 @@ module Courier
       sig do
         override.returns(
           {
-            content: String,
             align: Courier::ElementalTextNode::Align::OrSymbol,
             bold: T.nilable(String),
             color: T.nilable(String),
+            content: String,
             font_size: T.nilable(String),
             format_: T.nilable(Courier::ElementalTextNode::Format::OrSymbol),
             italic: T.nilable(String),
