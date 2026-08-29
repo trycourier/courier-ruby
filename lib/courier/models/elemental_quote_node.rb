@@ -19,7 +19,7 @@ module Courier
       #   CSS border color property. For example, `#fff`
       #
       #   @return [String, nil]
-      optional :border_color, String, api_name: :borderColor, nil?: true
+      optional :border_color, String, nil?: true
 
       # @!attribute font_size
       #   CSS px font size for this quote block, e.g. `16px`. Overrides the size of the

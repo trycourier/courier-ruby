@@ -19,7 +19,7 @@ module Courier
       #   Alternate text for the image.
       #
       #   @return [String, nil]
-      optional :alt_text, String, api_name: :altText, nil?: true
+      optional :alt_text, String, nil?: true
 
       # @!attribute border_color
       #   CSS border color applied to the image. For example, `#ccc`
