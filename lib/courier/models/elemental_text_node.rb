@@ -3,13 +3,6 @@
 module Courier
   module Models
     class ElementalTextNode < Courier::Models::ElementalBaseNode
-      # @!attribute content
-      #   The text content displayed in the notification. Either this field must be
-      #   specified, or the elements field
-      #
-      #   @return [String]
-      required :content, String
-
       # @!attribute align
       #   Text alignment.
       #
@@ -27,6 +20,13 @@ module Courier
       #
       #   @return [String, nil]
       optional :color, String, nil?: true
+
+      # @!attribute content
+      #   The text content displayed in the notification. Either this field must be
+      #   specified, or the elements field
+      #
+      #   @return [String, nil]
+      optional :content, String
 
       # @!attribute font_size
       #   CSS px font size for this text block, e.g. `16px`. Overrides the size of the
@@ -79,19 +79,19 @@ module Courier
       #   @return [String, nil]
       optional :underline, String, nil?: true
 
-      # @!method initialize(content:, align: nil, bold: nil, color: nil, font_size: nil, format_: nil, italic: nil, line_height: nil, locales: nil, strikethrough: nil, text_style: nil, underline: nil)
+      # @!method initialize(align: nil, bold: nil, color: nil, content: nil, font_size: nil, format_: nil, italic: nil, line_height: nil, locales: nil, strikethrough: nil, text_style: nil, underline: nil)
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::ElementalTextNode} for more details.
       #
       #   Represents a body of text to be rendered inside of the notification.
-      #
-      #   @param content [String] The text content displayed in the notification. Either this
       #
       #   @param align [Symbol, Courier::Models::ElementalTextNode::Align] Text alignment.
       #
       #   @param bold [String, nil] Apply bold to the text
       #
       #   @param color [String, nil] Specifies the color of text. Can be any valid css color value
+      #
+      #   @param content [String] The text content displayed in the notification. Either this
       #
       #   @param font_size [String, nil] CSS px font size for this text block, e.g. `16px`. Overrides the size of the `te
       #
