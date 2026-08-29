@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.3](https://github.com/trycourier/courier-ruby/compare/v6.4.2...v6.4.3) (2026-08-29)
+
+
+### Bug Fixes
+
+* **api:** text content is not required ([#144](https://github.com/trycourier/courier-ruby/issues/144)) ([3fba7f9](https://github.com/trycourier/courier-ruby/commit/3fba7f95609b98f0dfa4bae6b5e384d1a30f4292))
+
 ## [6.4.2](https://github.com/trycourier/courier-ruby/compare/v6.4.1...v6.4.2) (2026-08-29)
 
 
