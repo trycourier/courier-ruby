@@ -3,6 +3,7 @@ module Courier
     type elemental_channel_node =
       {
         channel: String,
+        elements: ::Array[Courier::Models::elemental_node_non_channel]?,
         font_size: String?,
         line_height: String?,
         padding: String?,
@@ -13,6 +14,12 @@ module Courier
       def channel: -> String?
 
       def channel=: (String _) -> String
+
+      def elements: -> ::Array[Courier::Models::elemental_node_non_channel]?
+
+      def elements=: (
+        ::Array[Courier::Models::elemental_node_non_channel]? _
+      ) -> ::Array[Courier::Models::elemental_node_non_channel]?
 
       def font_size: -> String?
 
@@ -32,6 +39,7 @@ module Courier
 
       def initialize: (
         ?channel: String,
+        ?elements: ::Array[Courier::Models::elemental_node_non_channel]?,
         ?font_size: String?,
         ?line_height: String?,
         ?padding: String?,
@@ -40,6 +48,7 @@ module Courier
 
       def to_hash: -> {
         channel: String,
+        elements: ::Array[Courier::Models::elemental_node_non_channel]?,
         font_size: String?,
         line_height: String?,
         padding: String?,

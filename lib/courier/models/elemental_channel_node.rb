@@ -10,6 +10,16 @@ module Courier
       #   @return [String, nil]
       optional :channel, String
 
+      # @!attribute elements
+      #   An array of elements to apply to the channel. If `raw` has not been specified,
+      #   `elements` is `required`. Channel elements cannot nest, so these are any node
+      #   except another channel block.
+      #
+      #   @return [Array<Courier::Models::ElementalNodeNonChannel::UnionMember0, Courier::Models::ElementalNodeNonChannel::UnionMember1, Courier::Models::ElementalNodeNonChannel::UnionMember2, Courier::Models::ElementalNodeNonChannel::UnionMember3, Courier::Models::ElementalNodeNonChannel::UnionMember4, Courier::Models::ElementalNodeNonChannel::UnionMember5, Courier::Models::ElementalNodeNonChannel::UnionMember6>, nil]
+      optional :elements,
+               -> { Courier::Internal::Type::ArrayOf[union: Courier::ElementalNodeNonChannel] },
+               nil?: true
+
       # @!attribute font_size
       #   Email only. Document-level base font size (CSS px, e.g. `16px`) for body content
       #   — text, quote, list and action button labels. Heading styles (`h1`/`h2`/`h3`)
@@ -39,7 +49,7 @@ module Courier
       #   @return [Hash{Symbol=>Object}, nil]
       optional :raw, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
 
-      # @!method initialize(channel: nil, font_size: nil, line_height: nil, padding: nil, raw: nil)
+      # @!method initialize(channel: nil, elements: nil, font_size: nil, line_height: nil, padding: nil, raw: nil)
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::ElementalChannelNode} for more details.
       #
@@ -55,6 +65,8 @@ module Courier
       #   for more details.
       #
       #   @param channel [String] The channel the contents of this element should be applied to. Can be `email`, `
+      #
+      #   @param elements [Array<Courier::Models::ElementalNodeNonChannel::UnionMember0, Courier::Models::ElementalNodeNonChannel::UnionMember1, Courier::Models::ElementalNodeNonChannel::UnionMember2, Courier::Models::ElementalNodeNonChannel::UnionMember3, Courier::Models::ElementalNodeNonChannel::UnionMember4, Courier::Models::ElementalNodeNonChannel::UnionMember5, Courier::Models::ElementalNodeNonChannel::UnionMember6>, nil] An array of elements to apply to the channel. If `raw` has not been
       #
       #   @param font_size [String, nil] Email only. Document-level base font size (CSS px, e.g. `16px`) for body content
       #
