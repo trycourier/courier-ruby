@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.4](https://github.com/trycourier/courier-ruby/compare/v6.4.3...v6.4.4) (2026-09-03)
+
+
+### Documentation
+
+* **api:** document the channel-block requirement on template creation ([#146](https://github.com/trycourier/courier-ruby/issues/146)) ([95749c6](https://github.com/trycourier/courier-ruby/commit/95749c6db1bd5e1b07d28d1f59970652b5cb2c49))
+
 ## [6.4.3](https://github.com/trycourier/courier-ruby/compare/v6.4.2...v6.4.3) (2026-08-29)
 
 
