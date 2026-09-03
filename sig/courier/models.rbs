@@ -187,6 +187,8 @@ module Courier
 
   module ElementalNode = Courier::Models::ElementalNode
 
+  module ElementalNodeNonChannel = Courier::Models::ElementalNodeNonChannel
+
   class ElementalQuoteNode = Courier::Models::ElementalQuoteNode
 
   class ElementalQuoteNodeWithType = Courier::Models::ElementalQuoteNodeWithType

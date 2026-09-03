@@ -16,6 +16,28 @@ module Courier
       sig { params(channel: String).void }
       attr_writer :channel
 
+      # An array of elements to apply to the channel. If `raw` has not been specified,
+      # `elements` is `required`. Channel elements cannot nest, so these are any node
+      # except another channel block.
+      sig do
+        returns(
+          T.nilable(
+            T::Array[
+              T.any(
+                Courier::ElementalNodeNonChannel::UnionMember0,
+                Courier::ElementalNodeNonChannel::UnionMember1,
+                Courier::ElementalNodeNonChannel::UnionMember2,
+                Courier::ElementalNodeNonChannel::UnionMember3,
+                Courier::ElementalNodeNonChannel::UnionMember4,
+                Courier::ElementalNodeNonChannel::UnionMember5,
+                Courier::ElementalNodeNonChannel::UnionMember6
+              )
+            ]
+          )
+        )
+      end
+      attr_accessor :elements
+
       # Email only. Document-level base font size (CSS px, e.g. `16px`) for body content
       # — text, quote, list and action button labels. Heading styles (`h1`/`h2`/`h3`)
       # and `subtext` keep their preset sizes.
@@ -50,6 +72,20 @@ module Courier
       sig do
         params(
           channel: String,
+          elements:
+            T.nilable(
+              T::Array[
+                T.any(
+                  Courier::ElementalNodeNonChannel::UnionMember0::OrHash,
+                  Courier::ElementalNodeNonChannel::UnionMember1::OrHash,
+                  Courier::ElementalNodeNonChannel::UnionMember2::OrHash,
+                  Courier::ElementalNodeNonChannel::UnionMember3::OrHash,
+                  Courier::ElementalNodeNonChannel::UnionMember4::OrHash,
+                  Courier::ElementalNodeNonChannel::UnionMember5::OrHash,
+                  Courier::ElementalNodeNonChannel::UnionMember6::OrHash
+                )
+              ]
+            ),
           font_size: T.nilable(String),
           line_height: T.nilable(String),
           padding: T.nilable(String),
@@ -60,6 +96,10 @@ module Courier
         # The channel the contents of this element should be applied to. Can be `email`,
         # `push`, `direct_message`, `sms` or a provider such as slack
         channel: nil,
+        # An array of elements to apply to the channel. If `raw` has not been specified,
+        # `elements` is `required`. Channel elements cannot nest, so these are any node
+        # except another channel block.
+        elements: nil,
         # Email only. Document-level base font size (CSS px, e.g. `16px`) for body content
         # — text, quote, list and action button labels. Heading styles (`h1`/`h2`/`h3`)
         # and `subtext` keep their preset sizes.
@@ -80,6 +120,20 @@ module Courier
         override.returns(
           {
             channel: String,
+            elements:
+              T.nilable(
+                T::Array[
+                  T.any(
+                    Courier::ElementalNodeNonChannel::UnionMember0,
+                    Courier::ElementalNodeNonChannel::UnionMember1,
+                    Courier::ElementalNodeNonChannel::UnionMember2,
+                    Courier::ElementalNodeNonChannel::UnionMember3,
+                    Courier::ElementalNodeNonChannel::UnionMember4,
+                    Courier::ElementalNodeNonChannel::UnionMember5,
+                    Courier::ElementalNodeNonChannel::UnionMember6
+                  )
+                ]
+              ),
             font_size: T.nilable(String),
             line_height: T.nilable(String),
             padding: T.nilable(String),

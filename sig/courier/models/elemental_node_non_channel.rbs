@@ -1,0 +1,221 @@
+module Courier
+  module Models
+    type elemental_node_non_channel =
+      Courier::ElementalNodeNonChannel::UnionMember0
+      | Courier::ElementalNodeNonChannel::UnionMember1
+      | Courier::ElementalNodeNonChannel::UnionMember2
+      | Courier::ElementalNodeNonChannel::UnionMember3
+      | Courier::ElementalNodeNonChannel::UnionMember4
+      | Courier::ElementalNodeNonChannel::UnionMember5
+      | Courier::ElementalNodeNonChannel::UnionMember6
+
+    module ElementalNodeNonChannel
+      extend Courier::Internal::Type::Union
+
+      type union_member0 =
+        { type: Courier::Models::ElementalNodeNonChannel::UnionMember0::type_ }
+
+      class UnionMember0 < Courier::Models::ElementalTextNode
+        def `type`: -> Courier::Models::ElementalNodeNonChannel::UnionMember0::type_?
+
+        def type=: (
+          Courier::Models::ElementalNodeNonChannel::UnionMember0::type_ _
+        ) -> Courier::Models::ElementalNodeNonChannel::UnionMember0::type_
+
+        def initialize: (
+          ?type: Courier::Models::ElementalNodeNonChannel::UnionMember0::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: Courier::Models::ElementalNodeNonChannel::UnionMember0::type_
+        }
+
+        type type_ = :text
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          TEXT: :text
+
+          def self?.values: -> ::Array[Courier::Models::ElementalNodeNonChannel::UnionMember0::type_]
+        end
+      end
+
+      type union_member1 =
+        { type: Courier::Models::ElementalNodeNonChannel::UnionMember1::type_ }
+
+      class UnionMember1 < Courier::Models::ElementalMetaNode
+        def `type`: -> Courier::Models::ElementalNodeNonChannel::UnionMember1::type_?
+
+        def type=: (
+          Courier::Models::ElementalNodeNonChannel::UnionMember1::type_ _
+        ) -> Courier::Models::ElementalNodeNonChannel::UnionMember1::type_
+
+        def initialize: (
+          ?type: Courier::Models::ElementalNodeNonChannel::UnionMember1::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: Courier::Models::ElementalNodeNonChannel::UnionMember1::type_
+        }
+
+        type type_ = :meta
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          META: :meta
+
+          def self?.values: -> ::Array[Courier::Models::ElementalNodeNonChannel::UnionMember1::type_]
+        end
+      end
+
+      type union_member2 =
+        { type: Courier::Models::ElementalNodeNonChannel::UnionMember2::type_ }
+
+      class UnionMember2 < Courier::Models::ElementalImageNode
+        def `type`: -> Courier::Models::ElementalNodeNonChannel::UnionMember2::type_?
+
+        def type=: (
+          Courier::Models::ElementalNodeNonChannel::UnionMember2::type_ _
+        ) -> Courier::Models::ElementalNodeNonChannel::UnionMember2::type_
+
+        def initialize: (
+          ?type: Courier::Models::ElementalNodeNonChannel::UnionMember2::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: Courier::Models::ElementalNodeNonChannel::UnionMember2::type_
+        }
+
+        type type_ = :image
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          IMAGE: :image
+
+          def self?.values: -> ::Array[Courier::Models::ElementalNodeNonChannel::UnionMember2::type_]
+        end
+      end
+
+      type union_member3 =
+        { type: Courier::Models::ElementalNodeNonChannel::UnionMember3::type_ }
+
+      class UnionMember3 < Courier::Models::ElementalActionNode
+        def `type`: -> Courier::Models::ElementalNodeNonChannel::UnionMember3::type_?
+
+        def type=: (
+          Courier::Models::ElementalNodeNonChannel::UnionMember3::type_ _
+        ) -> Courier::Models::ElementalNodeNonChannel::UnionMember3::type_
+
+        def initialize: (
+          ?type: Courier::Models::ElementalNodeNonChannel::UnionMember3::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: Courier::Models::ElementalNodeNonChannel::UnionMember3::type_
+        }
+
+        type type_ = :action
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          ACTION: :action
+
+          def self?.values: -> ::Array[Courier::Models::ElementalNodeNonChannel::UnionMember3::type_]
+        end
+      end
+
+      type union_member4 =
+        { type: Courier::Models::ElementalNodeNonChannel::UnionMember4::type_ }
+
+      class UnionMember4 < Courier::Models::ElementalDividerNode
+        def `type`: -> Courier::Models::ElementalNodeNonChannel::UnionMember4::type_?
+
+        def type=: (
+          Courier::Models::ElementalNodeNonChannel::UnionMember4::type_ _
+        ) -> Courier::Models::ElementalNodeNonChannel::UnionMember4::type_
+
+        def initialize: (
+          ?type: Courier::Models::ElementalNodeNonChannel::UnionMember4::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: Courier::Models::ElementalNodeNonChannel::UnionMember4::type_
+        }
+
+        type type_ = :divider
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          DIVIDER: :divider
+
+          def self?.values: -> ::Array[Courier::Models::ElementalNodeNonChannel::UnionMember4::type_]
+        end
+      end
+
+      type union_member5 =
+        { type: Courier::Models::ElementalNodeNonChannel::UnionMember5::type_ }
+
+      class UnionMember5 < Courier::Models::ElementalQuoteNode
+        def `type`: -> Courier::Models::ElementalNodeNonChannel::UnionMember5::type_?
+
+        def type=: (
+          Courier::Models::ElementalNodeNonChannel::UnionMember5::type_ _
+        ) -> Courier::Models::ElementalNodeNonChannel::UnionMember5::type_
+
+        def initialize: (
+          ?type: Courier::Models::ElementalNodeNonChannel::UnionMember5::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: Courier::Models::ElementalNodeNonChannel::UnionMember5::type_
+        }
+
+        type type_ = :quote
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          QUOTE: :quote
+
+          def self?.values: -> ::Array[Courier::Models::ElementalNodeNonChannel::UnionMember5::type_]
+        end
+      end
+
+      type union_member6 =
+        { type: Courier::Models::ElementalNodeNonChannel::UnionMember6::type_ }
+
+      class UnionMember6 < Courier::Models::ElementalHTMLNode
+        def `type`: -> Courier::Models::ElementalNodeNonChannel::UnionMember6::type_?
+
+        def type=: (
+          Courier::Models::ElementalNodeNonChannel::UnionMember6::type_ _
+        ) -> Courier::Models::ElementalNodeNonChannel::UnionMember6::type_
+
+        def initialize: (
+          ?type: Courier::Models::ElementalNodeNonChannel::UnionMember6::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: Courier::Models::ElementalNodeNonChannel::UnionMember6::type_
+        }
+
+        type type_ = :html
+
+        module Type
+          extend Courier::Internal::Type::Enum
+
+          HTML: :html
+
+          def self?.values: -> ::Array[Courier::Models::ElementalNodeNonChannel::UnionMember6::type_]
+        end
+      end
+
+      def self?.variants: -> ::Array[Courier::Models::elemental_node_non_channel]
+    end
+  end
+end
