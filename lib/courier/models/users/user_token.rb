@@ -22,8 +22,12 @@ module Courier
         optional :device, -> { Courier::Users::UserToken::Device }, nil?: true
 
         # @!attribute expiry_date
-        #   ISO 8601 formatted date the token expires. Defaults to 2 months. Set to false to
-        #   disable expiration.
+        #   When the token expires. Accepts a date, or the boolean `false` to disable
+        #   expiration entirely. ISO 8601 is recommended (for example
+        #   `2026-10-25T00:00:00.000Z`). A value that cannot be parsed as a date is
+        #   rejected; it is not treated as "no expiration" and does not fall back to the
+        #   default. `true` is not a supported value. Omit the field to use the default,
+        #   which expires a token that has not been re-registered for 60 days.
         #
         #   @return [String, Boolean, nil]
         optional :expiry_date, union: -> { Courier::Users::UserToken::ExpiryDate }, nil?: true
@@ -50,7 +54,7 @@ module Courier
         #
         #   @param device [Courier::Models::Users::UserToken::Device, nil] Information about the device the token came from.
         #
-        #   @param expiry_date [String, Boolean, nil] ISO 8601 formatted date the token expires. Defaults to 2 months. Set to false to
+        #   @param expiry_date [String, Boolean, nil] When the token expires. Accepts a date, or the boolean `false` to disable expira
         #
         #   @param properties [Object] Properties about the token.
         #
@@ -123,8 +127,12 @@ module Courier
           #   @param platform [String, nil] The device platform i.e. android, ios, web
         end
 
-        # ISO 8601 formatted date the token expires. Defaults to 2 months. Set to false to
-        # disable expiration.
+        # When the token expires. Accepts a date, or the boolean `false` to disable
+        # expiration entirely. ISO 8601 is recommended (for example
+        # `2026-10-25T00:00:00.000Z`). A value that cannot be parsed as a date is
+        # rejected; it is not treated as "no expiration" and does not fall back to the
+        # default. `true` is not a supported value. Omit the field to use the default,
+        # which expires a token that has not been re-registered for 60 days.
         #
         # @see Courier::Models::Users::UserToken#expiry_date
         module ExpiryDate

@@ -151,7 +151,7 @@ module Courier
         #
         # @param device [Courier::Models::Users::TokenAddSingleParams::Device, nil] Body param: Information about the device the token came from.
         #
-        # @param expiry_date [String, Boolean, nil] Body param: ISO 8601 formatted date the token expires. Defaults to 2 months. Set
+        # @param expiry_date [String, Boolean, nil] Body param: When the token expires. Accepts a date, or the boolean `false` to di
         #
         # @param properties [Object] Body param: Properties about the token.
         #
