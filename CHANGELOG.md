@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.5.0](https://github.com/trycourier/courier-ruby/compare/v6.4.4...v6.5.0) (2026-09-04)
+
+
+### Features
+
+* **api:** document the expiry_date contract and allow boolean patch values ([#148](https://github.com/trycourier/courier-ruby/issues/148)) ([191cec0](https://github.com/trycourier/courier-ruby/commit/191cec0ef235a855add991f9b935c1d90e0239f8))
+
 ## [6.4.4](https://github.com/trycourier/courier-ruby/compare/v6.4.3...v6.4.4) (2026-09-03)
 
 

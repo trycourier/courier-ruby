@@ -9,7 +9,7 @@ Add the gem to your `Gemfile`:
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "trycourier", "~> 6.4.4"
+gem "trycourier", "~> 6.5.0"
 ```
 
 <!-- x-release-please-end -->
