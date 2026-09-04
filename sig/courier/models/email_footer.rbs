@@ -1,15 +1,117 @@
 module Courier
   module Models
-    type email_footer = { content: String?, inherit_default: bool? }
+    type email_footer =
+      {
+        inherit_default: bool?,
+        markdown: String?,
+        social: Courier::EmailFooter::Social?
+      }
 
     class EmailFooter < Courier::Internal::Type::BaseModel
-      attr_accessor content: String?
-
       attr_accessor inherit_default: bool?
 
-      def initialize: (?content: String?, ?inherit_default: bool?) -> void
+      attr_accessor markdown: String?
 
-      def to_hash: -> { content: String?, inherit_default: bool? }
+      attr_accessor social: Courier::EmailFooter::Social?
+
+      def initialize: (
+        ?inherit_default: bool?,
+        ?markdown: String?,
+        ?social: Courier::EmailFooter::Social?
+      ) -> void
+
+      def to_hash: -> {
+        inherit_default: bool?,
+        markdown: String?,
+        social: Courier::EmailFooter::Social?
+      }
+
+      type social =
+        {
+          facebook: Courier::EmailFooter::Social::Facebook?,
+          instagram: Courier::EmailFooter::Social::Instagram?,
+          linkedin: Courier::EmailFooter::Social::Linkedin?,
+          medium: Courier::EmailFooter::Social::Medium?,
+          twitter: Courier::EmailFooter::Social::Twitter?
+        }
+
+      class Social < Courier::Internal::Type::BaseModel
+        attr_accessor facebook: Courier::EmailFooter::Social::Facebook?
+
+        attr_accessor instagram: Courier::EmailFooter::Social::Instagram?
+
+        attr_accessor linkedin: Courier::EmailFooter::Social::Linkedin?
+
+        attr_accessor medium: Courier::EmailFooter::Social::Medium?
+
+        attr_accessor twitter: Courier::EmailFooter::Social::Twitter?
+
+        def initialize: (
+          ?facebook: Courier::EmailFooter::Social::Facebook?,
+          ?instagram: Courier::EmailFooter::Social::Instagram?,
+          ?linkedin: Courier::EmailFooter::Social::Linkedin?,
+          ?medium: Courier::EmailFooter::Social::Medium?,
+          ?twitter: Courier::EmailFooter::Social::Twitter?
+        ) -> void
+
+        def to_hash: -> {
+          facebook: Courier::EmailFooter::Social::Facebook?,
+          instagram: Courier::EmailFooter::Social::Instagram?,
+          linkedin: Courier::EmailFooter::Social::Linkedin?,
+          medium: Courier::EmailFooter::Social::Medium?,
+          twitter: Courier::EmailFooter::Social::Twitter?
+        }
+
+        type facebook = { url: String? }
+
+        class Facebook < Courier::Internal::Type::BaseModel
+          attr_accessor url: String?
+
+          def initialize: (?url: String?) -> void
+
+          def to_hash: -> { url: String? }
+        end
+
+        type instagram = { url: String? }
+
+        class Instagram < Courier::Internal::Type::BaseModel
+          attr_accessor url: String?
+
+          def initialize: (?url: String?) -> void
+
+          def to_hash: -> { url: String? }
+        end
+
+        type linkedin = { url: String? }
+
+        class Linkedin < Courier::Internal::Type::BaseModel
+          attr_accessor url: String?
+
+          def initialize: (?url: String?) -> void
+
+          def to_hash: -> { url: String? }
+        end
+
+        type medium = { url: String? }
+
+        class Medium < Courier::Internal::Type::BaseModel
+          attr_accessor url: String?
+
+          def initialize: (?url: String?) -> void
+
+          def to_hash: -> { url: String? }
+        end
+
+        type twitter = { url: String? }
+
+        class Twitter < Courier::Internal::Type::BaseModel
+          attr_accessor url: String?
+
+          def initialize: (?url: String?) -> void
+
+          def to_hash: -> { url: String? }
+        end
+      end
     end
   end
 end

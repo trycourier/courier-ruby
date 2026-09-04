@@ -43,17 +43,43 @@ module Courier
           required :path, String
 
           # @!attribute value
-          #   The value for the operation.
+          #   The value for the operation. A string for most fields; boolean `false` when
+          #   disabling token expiration via `expiry_date`, which cannot be expressed as a
+          #   string.
           #
-          #   @return [String, nil]
-          optional :value, String, nil?: true
+          #   @return [String, Boolean, Hash{Symbol=>Object}, nil]
+          optional :value, union: -> { Courier::Users::TokenUpdateParams::Patch::Value }, nil?: true
 
           # @!method initialize(op:, path:, value: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Courier::Models::Users::TokenUpdateParams::Patch} for more details.
+          #
           #   @param op [String] The operation to perform.
           #
           #   @param path [String] The JSON path specifying the part of the profile to operate on.
           #
-          #   @param value [String, nil] The value for the operation.
+          #   @param value [String, Boolean, Hash{Symbol=>Object}, nil] The value for the operation. A string for most fields; boolean `false` when disa
+
+          # The value for the operation. A string for most fields; boolean `false` when
+          # disabling token expiration via `expiry_date`, which cannot be expressed as a
+          # string.
+          #
+          # @see Courier::Models::Users::TokenUpdateParams::Patch#value
+          module Value
+            extend Courier::Internal::Type::Union
+
+            variant String
+
+            variant Courier::Internal::Type::Boolean
+
+            variant -> { Courier::Models::Users::TokenUpdateParams::Patch::Value::UnionMember2Map }
+
+            # @!method self.variants
+            #   @return [Array(String, Boolean, Hash{Symbol=>Object})]
+
+            # @type [Courier::Internal::Type::Converter]
+            UnionMember2Map = Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown]
+          end
         end
       end
     end

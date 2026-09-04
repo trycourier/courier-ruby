@@ -33,18 +33,41 @@ module Courier
           request_options: Courier::RequestOptions
         }
 
-        type patch = { op: String, path: String, value: String? }
+        type patch =
+          {
+            op: String,
+            path: String,
+            value: Courier::Models::Users::TokenUpdateParams::Patch::value?
+          }
 
         class Patch < Courier::Internal::Type::BaseModel
           attr_accessor op: String
 
           attr_accessor path: String
 
-          attr_accessor value: String?
+          attr_accessor value: Courier::Models::Users::TokenUpdateParams::Patch::value?
 
-          def initialize: (op: String, path: String, ?value: String?) -> void
+          def initialize: (
+            op: String,
+            path: String,
+            ?value: Courier::Models::Users::TokenUpdateParams::Patch::value?
+          ) -> void
 
-          def to_hash: -> { op: String, path: String, value: String? }
+          def to_hash: -> {
+            op: String,
+            path: String,
+            value: Courier::Models::Users::TokenUpdateParams::Patch::value?
+          }
+
+          type value = String | bool | ::Hash[Symbol, top]
+
+          module Value
+            extend Courier::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Courier::Models::Users::TokenUpdateParams::Patch::value]
+
+            UnionMember2Map: Courier::Internal::Type::Converter
+          end
         end
       end
     end
