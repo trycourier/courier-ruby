@@ -8,6 +8,7 @@ module Courier
           name: String,
           ?allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::allowed_preference]?,
           ?description: String?,
+          ?digest: Courier::TopicDigestRequest?,
           ?include_unsubscribe_header: bool?,
           ?routing_options: ::Array[Courier::Models::channel_classification]?,
           ?topic_data: ::Hash[Symbol, top]?,
@@ -33,6 +34,20 @@ module Courier
           ?request_options: Courier::request_opts
         ) -> nil
 
+        def delete_digest: (
+          String topic_id,
+          section_id: String,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
+        def release_digest: (
+          String topic_id,
+          section_id: String,
+          user_id: String,
+          ?tenant_id: String,
+          ?request_options: Courier::request_opts
+        ) -> nil
+
         def replace: (
           String topic_id,
           section_id: String,
@@ -40,6 +55,7 @@ module Courier
           name: String,
           ?allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicReplaceRequest::allowed_preference]?,
           ?description: String?,
+          ?digest: Courier::TopicDigestRequest?,
           ?include_unsubscribe_header: bool?,
           ?routing_options: ::Array[Courier::Models::channel_classification]?,
           ?topic_data: ::Hash[Symbol, top]?,

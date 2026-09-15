@@ -65,6 +65,15 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
+      # A topic's digest configuration.
+      sig { returns(T.nilable(Courier::TopicDigestResponse)) }
+      attr_reader :digest
+
+      sig do
+        params(digest: T.nilable(Courier::TopicDigestResponse::OrHash)).void
+      end
+      attr_writer :digest
+
       # Id of the last updater.
       sig { returns(T.nilable(String)) }
       attr_accessor :updater
@@ -87,6 +96,7 @@ module Courier
           updated: String,
           creator: T.nilable(String),
           description: T.nilable(String),
+          digest: T.nilable(Courier::TopicDigestResponse::OrHash),
           updater: T.nilable(String)
         ).returns(T.attached_class)
       end
@@ -113,6 +123,8 @@ module Courier
         creator: nil,
         # Optional description shown under the topic on the hosted preferences page.
         description: nil,
+        # A topic's digest configuration.
+        digest: nil,
         # Id of the last updater.
         updater: nil
       )
@@ -137,6 +149,7 @@ module Courier
             updated: String,
             creator: T.nilable(String),
             description: T.nilable(String),
+            digest: T.nilable(Courier::TopicDigestResponse),
             updater: T.nilable(String)
           }
         )

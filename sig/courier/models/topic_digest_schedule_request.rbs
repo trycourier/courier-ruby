@@ -1,0 +1,80 @@
+module Courier
+  module Models
+    type topic_digest_schedule_request =
+      {
+        frequency: Courier::Models::digest_frequency,
+        day_of_month: Integer,
+        day_of_week: Courier::Models::digest_day_of_week,
+        days_of_week: ::Array[Courier::Models::digest_day_of_week],
+        disabled: bool,
+        is_default: bool,
+        schedule_id: String,
+        time: String,
+        timezone: String
+      }
+
+    class TopicDigestScheduleRequest < Courier::Internal::Type::BaseModel
+      attr_accessor frequency: Courier::Models::digest_frequency
+
+      attr_reader day_of_month: Integer?
+
+      def day_of_month=: (Integer) -> Integer
+
+      attr_reader day_of_week: Courier::Models::digest_day_of_week?
+
+      def day_of_week=: (
+        Courier::Models::digest_day_of_week
+      ) -> Courier::Models::digest_day_of_week
+
+      attr_reader days_of_week: ::Array[Courier::Models::digest_day_of_week]?
+
+      def days_of_week=: (
+        ::Array[Courier::Models::digest_day_of_week]
+      ) -> ::Array[Courier::Models::digest_day_of_week]
+
+      attr_reader disabled: bool?
+
+      def disabled=: (bool) -> bool
+
+      attr_reader is_default: bool?
+
+      def is_default=: (bool) -> bool
+
+      attr_reader schedule_id: String?
+
+      def schedule_id=: (String) -> String
+
+      attr_reader time: String?
+
+      def time=: (String) -> String
+
+      attr_reader timezone: String?
+
+      def timezone=: (String) -> String
+
+      def initialize: (
+        frequency: Courier::Models::digest_frequency,
+        ?day_of_month: Integer,
+        ?day_of_week: Courier::Models::digest_day_of_week,
+        ?days_of_week: ::Array[Courier::Models::digest_day_of_week],
+        ?disabled: bool,
+        ?is_default: bool,
+        ?schedule_id: String,
+        ?time: String,
+        ?timezone: String
+      ) -> void
+
+      def to_hash: -> {
+        frequency: Courier::Models::digest_frequency,
+        day_of_month: Integer,
+        day_of_week: Courier::Models::digest_day_of_week,
+        days_of_week: ::Array[Courier::Models::digest_day_of_week],
+        disabled: bool,
+        is_default: bool,
+        schedule_id: String,
+        time: String,
+        timezone: String
+      }
+    end
+  end
+end

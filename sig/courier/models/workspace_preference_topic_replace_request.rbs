@@ -6,6 +6,7 @@ module Courier
         name: String,
         allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicReplaceRequest::allowed_preference]?,
         description: String?,
+        digest: Courier::TopicDigestRequest?,
         include_unsubscribe_header: bool?,
         routing_options: ::Array[Courier::Models::channel_classification]?,
         topic_data: ::Hash[Symbol, top]?
@@ -20,6 +21,8 @@ module Courier
 
       attr_accessor description: String?
 
+      attr_accessor digest: Courier::TopicDigestRequest?
+
       attr_accessor include_unsubscribe_header: bool?
 
       attr_accessor routing_options: ::Array[Courier::Models::channel_classification]?
@@ -31,6 +34,7 @@ module Courier
         name: String,
         ?allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicReplaceRequest::allowed_preference]?,
         ?description: String?,
+        ?digest: Courier::TopicDigestRequest?,
         ?include_unsubscribe_header: bool?,
         ?routing_options: ::Array[Courier::Models::channel_classification]?,
         ?topic_data: ::Hash[Symbol, top]?
@@ -41,6 +45,7 @@ module Courier
         name: String,
         allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicReplaceRequest::allowed_preference]?,
         description: String?,
+        digest: Courier::TopicDigestRequest?,
         include_unsubscribe_header: bool?,
         routing_options: ::Array[Courier::Models::channel_classification]?,
         topic_data: ::Hash[Symbol, top]?

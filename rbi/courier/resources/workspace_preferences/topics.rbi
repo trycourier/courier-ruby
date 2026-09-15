@@ -3,8 +3,6 @@
 module Courier
   module Resources
     class WorkspacePreferences
-      # Manage the workspace catalog of subscription topics, the sections that group
-      # them, and publishing the preference page.
       class Topics
         # Creates a subscription topic inside a workspace preference. The default status
         # sets whether users start opted in, opted out, or required.
@@ -21,6 +19,7 @@ module Courier
                 ]
               ),
             description: T.nilable(String),
+            digest: T.nilable(Courier::TopicDigestRequest::OrHash),
             include_unsubscribe_header: T.nilable(T::Boolean),
             routing_options:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
@@ -44,6 +43,14 @@ module Courier
           # Body param: Optional description shown under the topic on the hosted preferences
           # page.
           description: nil,
+          # Body param: A topic's digest configuration: the template that renders it, the
+          # cadences it delivers on, and how collected events are retained.
+          #
+          # Send `null` for the whole object to turn a digest off, which unlinks the
+          # template and removes its schedules. There is no `enabled` flag, and
+          # `schedules: []` is rejected -- both states are un-deliverable rather than merely
+          # off.
+          digest: nil,
           # Body param: Whether to include a list-unsubscribe header on emails for this
           # topic.
           include_unsubscribe_header: nil,
@@ -119,6 +126,60 @@ module Courier
         )
         end
 
+        # Turn off a topic's digest, leaving the topic itself in place. The template is
+        # unlinked and the digest's schedules are removed along with their delivery rules.
+        # Equivalent to sending `digest: null` on a topic replace.
+        sig do
+          params(
+            topic_id: String,
+            section_id: String,
+            request_options: Courier::RequestOptions::OrHash
+          ).void
+        end
+        def delete_digest(
+          # The preference topic whose digest to turn off.
+          topic_id,
+          # The preference section containing the topic.
+          section_id:,
+          request_options: {}
+        )
+        end
+
+        # Send one recipient's held digest now, instead of waiting for its schedule. Use
+        # it to preview what a digest will look like, or to let someone flush their own.
+        #
+        # Keyed on the topic because that is how a held digest is stored: one per
+        # recipient per topic, with the schedule recorded on it rather than part of its
+        # identity. To flush every recipient on a schedule instead, use
+        # `POST /digests/schedules/{schedule_id}/trigger`.
+        sig do
+          params(
+            topic_id: String,
+            section_id: String,
+            user_id: String,
+            tenant_id: String,
+            request_options: Courier::RequestOptions::OrHash
+          ).void
+        end
+        def release_digest(
+          # Path param: The preference topic whose digest to release.
+          topic_id,
+          # Path param: The preference section containing the topic.
+          section_id:,
+          # Body param: The recipient whose digest to release. Required: there is no
+          # "release everyone on this topic" form, because a whole-schedule flush already
+          # has its own endpoint and a body-shaped difference between one recipient and all
+          # of them is too easy to get wrong.
+          user_id:,
+          # Body param: The recipient's tenant, when they were sent to as part of one -- the
+          # same value returned as `tenant_id` on a digest instance and sent as
+          # `message.context.tenant_id`. It is part of the held digest's key, so a tenanted
+          # recipient cannot be found without it. Omit for an ordinary recipient.
+          tenant_id: nil,
+          request_options: {}
+        )
+        end
+
         # Replace a topic within a workspace preference. Full document replacement;
         # missing optional fields are cleared. Same 404 rules as GET.
         sig do
@@ -135,6 +196,7 @@ module Courier
                 ]
               ),
             description: T.nilable(String),
+            digest: T.nilable(Courier::TopicDigestRequest::OrHash),
             include_unsubscribe_header: T.nilable(T::Boolean),
             routing_options:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
@@ -157,6 +219,14 @@ module Courier
           # Body param: Optional description shown under the topic on the hosted preferences
           # page. Omit to clear.
           description: nil,
+          # Body param: A topic's digest configuration: the template that renders it, the
+          # cadences it delivers on, and how collected events are retained.
+          #
+          # Send `null` for the whole object to turn a digest off, which unlinks the
+          # template and removes its schedules. There is no `enabled` flag, and
+          # `schedules: []` is rejected -- both states are un-deliverable rather than merely
+          # off.
+          digest: nil,
           # Body param: Whether to include a list-unsubscribe header on emails for this
           # topic.
           include_unsubscribe_header: nil,

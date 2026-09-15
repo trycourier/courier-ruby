@@ -1,0 +1,17 @@
+module Courier
+  module Models
+    type topic_digest_release_request = { user_id: String, tenant_id: String }
+
+    class TopicDigestReleaseRequest < Courier::Internal::Type::BaseModel
+      attr_accessor user_id: String
+
+      attr_reader tenant_id: String?
+
+      def tenant_id=: (String) -> String
+
+      def initialize: (user_id: String, ?tenant_id: String) -> void
+
+      def to_hash: -> { user_id: String, tenant_id: String }
+    end
+  end
+end

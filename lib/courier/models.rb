@@ -187,6 +187,10 @@ module Courier
 
   DigestCategory = Courier::Models::DigestCategory
 
+  DigestDayOfWeek = Courier::Models::DigestDayOfWeek
+
+  DigestFrequency = Courier::Models::DigestFrequency
+
   DigestInstance = Courier::Models::DigestInstance
 
   DigestInstanceListResponse = Courier::Models::DigestInstanceListResponse
@@ -642,6 +646,18 @@ module Courier
   Timeouts = Courier::Models::Timeouts
 
   Token = Courier::Models::Token
+
+  TopicDigestCategory = Courier::Models::TopicDigestCategory
+
+  TopicDigestReleaseRequest = Courier::Models::TopicDigestReleaseRequest
+
+  TopicDigestRequest = Courier::Models::TopicDigestRequest
+
+  TopicDigestResponse = Courier::Models::TopicDigestResponse
+
+  TopicDigestScheduleRequest = Courier::Models::TopicDigestScheduleRequest
+
+  TopicDigestScheduleResponse = Courier::Models::TopicDigestScheduleResponse
 
   TranslationRetrieveParams = Courier::Models::TranslationRetrieveParams
 

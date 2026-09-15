@@ -96,6 +96,14 @@ module Courier
           end
           attr_accessor :custom_routing
 
+          # Put this recipient on one of the topic's digest schedules. Send `null` to clear
+          # the choice and return them to the topic's default. Omit to leave an existing
+          # choice alone -- unlike the routing fields, which this endpoint replaces. An id
+          # that is not an active schedule on the topic is rejected with a `400` before
+          # anything is written.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :digest_schedule_id
+
           # Set to true to route this topic to the channels in custom_routing instead of the
           # topic's default routing.
           sig { returns(T.nilable(T::Boolean)) }
@@ -106,6 +114,7 @@ module Courier
               status: Courier::PreferenceStatus::OrSymbol,
               custom_routing:
                 T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
+              digest_schedule_id: T.nilable(String),
               has_custom_routing: T.nilable(T::Boolean)
             ).returns(T.attached_class)
           end
@@ -117,6 +126,12 @@ module Courier
             # The channels to deliver this topic on when has_custom_routing is true. One or
             # more of: direct_message, email, push, sms, webhook, inbox.
             custom_routing: nil,
+            # Put this recipient on one of the topic's digest schedules. Send `null` to clear
+            # the choice and return them to the topic's default. Omit to leave an existing
+            # choice alone -- unlike the routing fields, which this endpoint replaces. An id
+            # that is not an active schedule on the topic is rejected with a `400` before
+            # anything is written.
+            digest_schedule_id: nil,
             # Set to true to route this topic to the channels in custom_routing instead of the
             # topic's default routing.
             has_custom_routing: nil
@@ -129,6 +144,7 @@ module Courier
                 status: Courier::PreferenceStatus::OrSymbol,
                 custom_routing:
                   T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
+                digest_schedule_id: T.nilable(String),
                 has_custom_routing: T.nilable(T::Boolean)
               }
             )

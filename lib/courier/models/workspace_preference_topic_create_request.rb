@@ -32,6 +32,18 @@ module Courier
       #   @return [String, nil]
       optional :description, String, nil?: true
 
+      # @!attribute digest
+      #   A topic's digest configuration: the template that renders it, the cadences it
+      #   delivers on, and how collected events are retained.
+      #
+      #   Send `null` for the whole object to turn a digest off, which unlinks the
+      #   template and removes its schedules. There is no `enabled` flag, and
+      #   `schedules: []` is rejected -- both states are un-deliverable rather than merely
+      #   off.
+      #
+      #   @return [Courier::Models::TopicDigestRequest, nil]
+      optional :digest, -> { Courier::TopicDigestRequest }, nil?: true
+
       # @!attribute include_unsubscribe_header
       #   Whether to include a list-unsubscribe header on emails for this topic.
       #
@@ -52,7 +64,7 @@ module Courier
       #   @return [Hash{Symbol=>Object}, nil]
       optional :topic_data, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown], nil?: true
 
-      # @!method initialize(default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil)
+      # @!method initialize(default_status:, name:, allowed_preferences: nil, description: nil, digest: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil)
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::WorkspacePreferenceTopicCreateRequest} for more details.
       #
@@ -65,6 +77,8 @@ module Courier
       #   @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::AllowedPreference>, nil] Preference controls a recipient may customize for this topic. Defaults to empty
       #
       #   @param description [String, nil] Optional description shown under the topic on the hosted preferences page.
+      #
+      #   @param digest [Courier::Models::TopicDigestRequest, nil] A topic's digest configuration: the template that renders it, the cadences it de
       #
       #   @param include_unsubscribe_header [Boolean, nil] Whether to include a list-unsubscribe header on emails for this topic.
       #

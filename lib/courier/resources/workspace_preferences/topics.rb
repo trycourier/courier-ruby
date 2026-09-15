@@ -3,8 +3,6 @@
 module Courier
   module Resources
     class WorkspacePreferences
-      # Manage the workspace catalog of subscription topics, the sections that group
-      # them, and publishing the preference page.
       class Topics
         # Some parameter documentations has been truncated, see
         # {Courier::Models::WorkspacePreferences::TopicCreateParams} for more details.
@@ -12,7 +10,7 @@ module Courier
         # Creates a subscription topic inside a workspace preference. The default status
         # sets whether users start opted in, opted out, or required.
         #
-        # @overload create(section_id, default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
+        # @overload create(section_id, default_status:, name:, allowed_preferences: nil, description: nil, digest: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
         #
         # @param section_id [String] Path param: Id of the workspace preference to create the topic in.
         #
@@ -23,6 +21,8 @@ module Courier
         # @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicCreateRequest::AllowedPreference>, nil] Body param: Preference controls a recipient may customize for this topic. Defaul
         #
         # @param description [String, nil] Body param: Optional description shown under the topic on the hosted preferences
+        #
+        # @param digest [Courier::Models::TopicDigestRequest, nil] Body param: A topic's digest configuration: the template that renders it, the ca
         #
         # @param include_unsubscribe_header [Boolean, nil] Body param: Whether to include a list-unsubscribe header on emails for this topi
         #
@@ -130,13 +130,84 @@ module Courier
           )
         end
 
+        # Turn off a topic's digest, leaving the topic itself in place. The template is
+        # unlinked and the digest's schedules are removed along with their delivery rules.
+        # Equivalent to sending `digest: null` on a topic replace.
+        #
+        # @overload delete_digest(topic_id, section_id:, request_options: {})
+        #
+        # @param topic_id [String] The preference topic whose digest to turn off.
+        #
+        # @param section_id [String] The preference section containing the topic.
+        #
+        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [nil]
+        #
+        # @see Courier::Models::WorkspacePreferences::TopicDeleteDigestParams
+        def delete_digest(topic_id, params)
+          parsed, options = Courier::WorkspacePreferences::TopicDeleteDigestParams.dump_request(params)
+          section_id =
+            parsed.delete(:section_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :delete,
+            path: ["preferences/sections/%1$s/topics/%2$s/digest", section_id, topic_id],
+            model: NilClass,
+            options: options
+          )
+        end
+
+        # Some parameter documentations has been truncated, see
+        # {Courier::Models::WorkspacePreferences::TopicReleaseDigestParams} for more
+        # details.
+        #
+        # Send one recipient's held digest now, instead of waiting for its schedule. Use
+        # it to preview what a digest will look like, or to let someone flush their own.
+        #
+        # Keyed on the topic because that is how a held digest is stored: one per
+        # recipient per topic, with the schedule recorded on it rather than part of its
+        # identity. To flush every recipient on a schedule instead, use
+        # `POST /digests/schedules/{schedule_id}/trigger`.
+        #
+        # @overload release_digest(topic_id, section_id:, user_id:, tenant_id: nil, request_options: {})
+        #
+        # @param topic_id [String] Path param: The preference topic whose digest to release.
+        #
+        # @param section_id [String] Path param: The preference section containing the topic.
+        #
+        # @param user_id [String] Body param: The recipient whose digest to release. Required: there is no "releas
+        #
+        # @param tenant_id [String] Body param: The recipient's tenant, when they were sent to as part of one -- the
+        #
+        # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [nil]
+        #
+        # @see Courier::Models::WorkspacePreferences::TopicReleaseDigestParams
+        def release_digest(topic_id, params)
+          parsed, options = Courier::WorkspacePreferences::TopicReleaseDigestParams.dump_request(params)
+          section_id =
+            parsed.delete(:section_id) do
+              raise ArgumentError.new("missing required path argument #{_1}")
+            end
+          @client.request(
+            method: :post,
+            path: ["preferences/sections/%1$s/topics/%2$s/digest/release", section_id, topic_id],
+            body: parsed,
+            model: NilClass,
+            options: options
+          )
+        end
+
         # Some parameter documentations has been truncated, see
         # {Courier::Models::WorkspacePreferences::TopicReplaceParams} for more details.
         #
         # Replace a topic within a workspace preference. Full document replacement;
         # missing optional fields are cleared. Same 404 rules as GET.
         #
-        # @overload replace(topic_id, section_id:, default_status:, name:, allowed_preferences: nil, description: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, request_options: {})
+        # @overload replace(topic_id, section_id:, default_status:, name:, allowed_preferences: nil, description: nil, digest: nil, include_unsubscribe_header: nil, routing_options: nil, topic_data: nil, request_options: {})
         #
         # @param topic_id [String] Path param: Id of the subscription preference topic.
         #
@@ -149,6 +220,8 @@ module Courier
         # @param allowed_preferences [Array<Symbol, Courier::Models::WorkspacePreferenceTopicReplaceRequest::AllowedPreference>, nil] Body param: Preference controls a recipient may customize. Omit to clear.
         #
         # @param description [String, nil] Body param: Optional description shown under the topic on the hosted preferences
+        #
+        # @param digest [Courier::Models::TopicDigestRequest, nil] Body param: A topic's digest configuration: the template that renders it, the ca
         #
         # @param include_unsubscribe_header [Boolean, nil] Body param: Whether to include a list-unsubscribe header on emails for this topi
         #

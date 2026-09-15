@@ -42,6 +42,7 @@ module Courier
           {
             status: Courier::Models::preference_status,
             custom_routing: ::Array[Courier::Models::channel_classification]?,
+            digest_schedule_id: String?,
             has_custom_routing: bool?
           }
 
@@ -50,17 +51,21 @@ module Courier
 
           attr_accessor custom_routing: ::Array[Courier::Models::channel_classification]?
 
+          attr_accessor digest_schedule_id: String?
+
           attr_accessor has_custom_routing: bool?
 
           def initialize: (
             status: Courier::Models::preference_status,
             ?custom_routing: ::Array[Courier::Models::channel_classification]?,
+            ?digest_schedule_id: String?,
             ?has_custom_routing: bool?
           ) -> void
 
           def to_hash: -> {
             status: Courier::Models::preference_status,
             custom_routing: ::Array[Courier::Models::channel_classification]?,
+            digest_schedule_id: String?,
             has_custom_routing: bool?
           }
         end
