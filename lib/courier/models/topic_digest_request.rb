@@ -46,8 +46,8 @@ module Courier
       #
       #   Send `null` for the whole object to turn a digest off, which unlinks the
       #   template and removes its schedules. There is no `enabled` flag, and
-      #   `schedules: []` is rejected -- both states are un-deliverable rather than merely
-      #   off.
+      #   `schedules: []` is rejected, because both states are un-deliverable rather than
+      #   merely off.
       #
       #   @param schedules [Array<Courier::Models::TopicDigestScheduleRequest>] The cadences this digest delivers on. At least one is required: a digest with no
       #

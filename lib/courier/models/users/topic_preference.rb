@@ -42,7 +42,7 @@ module Courier
                  nil?: true
 
         # @!attribute digest_schedule_id
-        #   The digest schedule this recipient is on for the topic. Omitted -- not null --
+        #   The digest schedule this recipient is on for the topic. Omitted rather than null
         #   when they have not chosen one, in which case the topic's default schedule
         #   applies. Ids come from the topic's digest configuration or from
         #   `GET /digests/schedules`.
@@ -87,7 +87,7 @@ module Courier
         #
         #   @param custom_routing [Array<Symbol, Courier::Models::ChannelClassification>, nil] The channels the user has chosen to receive this topic on, present only when has
         #
-        #   @param digest_schedule_id [String] The digest schedule this recipient is on for the topic. Omitted -- not null -- w
+        #   @param digest_schedule_id [String] The digest schedule this recipient is on for the topic. Omitted rather than null
         #
         #   @param has_custom_routing [Boolean, nil] Whether the user has chosen specific delivery channels for this topic (listed in
         #

@@ -38,7 +38,7 @@ module Courier
         end
         attr_accessor :custom_routing
 
-        # The digest schedule this recipient is on for the topic. Omitted -- not null --
+        # The digest schedule this recipient is on for the topic. Omitted rather than null
         # when they have not chosen one, in which case the topic's default schedule
         # applies. Ids come from the topic's digest configuration or from
         # `GET /digests/schedules`.
@@ -101,7 +101,7 @@ module Courier
           # has_custom_routing is true. One or more of: direct_message, email, push, sms,
           # webhook, inbox.
           custom_routing: nil,
-          # The digest schedule this recipient is on for the topic. Omitted -- not null --
+          # The digest schedule this recipient is on for the topic. Omitted rather than null
           # when they have not chosen one, in which case the topic's default schedule
           # applies. Ids come from the topic's digest configuration or from
           # `GET /digests/schedules`.
