@@ -98,7 +98,7 @@ module Courier
 
           # Put this recipient on one of the topic's digest schedules. Send `null` to clear
           # the choice and return them to the topic's default. Omit to leave an existing
-          # choice alone -- unlike the routing fields, which this endpoint replaces. An id
+          # choice alone, unlike the routing fields, which this endpoint replaces. An id
           # that is not an active schedule on the topic is rejected with a `400` before
           # anything is written.
           sig { returns(T.nilable(String)) }
@@ -128,7 +128,7 @@ module Courier
             custom_routing: nil,
             # Put this recipient on one of the topic's digest schedules. Send `null` to clear
             # the choice and return them to the topic's default. Omit to leave an existing
-            # choice alone -- unlike the routing fields, which this endpoint replaces. An id
+            # choice alone, unlike the routing fields, which this endpoint replaces. An id
             # that is not an active schedule on the topic is rejected with a `400` before
             # anything is written.
             digest_schedule_id: nil,

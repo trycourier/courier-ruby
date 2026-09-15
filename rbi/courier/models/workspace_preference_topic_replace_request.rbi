@@ -45,8 +45,8 @@ module Courier
       #
       # Send `null` for the whole object to turn a digest off, which unlinks the
       # template and removes its schedules. There is no `enabled` flag, and
-      # `schedules: []` is rejected -- both states are un-deliverable rather than merely
-      # off.
+      # `schedules: []` is rejected, because both states are un-deliverable rather than
+      # merely off.
       sig { returns(T.nilable(Courier::TopicDigestRequest)) }
       attr_reader :digest
 
@@ -105,8 +105,8 @@ module Courier
         #
         # Send `null` for the whole object to turn a digest off, which unlinks the
         # template and removes its schedules. There is no `enabled` flag, and
-        # `schedules: []` is rejected -- both states are un-deliverable rather than merely
-        # off.
+        # `schedules: []` is rejected, because both states are un-deliverable rather than
+        # merely off.
         digest: nil,
         # Whether to include a list-unsubscribe header on emails for this topic.
         include_unsubscribe_header: nil,
