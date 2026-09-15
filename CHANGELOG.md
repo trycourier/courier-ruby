@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.6.0](https://github.com/trycourier/courier-ruby/compare/v6.5.0...v6.6.0) (2026-09-15)
+
+
+### Features
+
+* **api:** digest configuration, per-recipient schedules, and release ([#154](https://github.com/trycourier/courier-ruby/issues/154)) ([abaf9f2](https://github.com/trycourier/courier-ruby/commit/abaf9f215ae6c9e6aaeb36e7313c9300da23b39b))
+
+
+### Documentation
+
+* **api:** group the topic digest endpoints under Digests, and match the docs voice ([#155](https://github.com/trycourier/courier-ruby/issues/155)) ([cb00e91](https://github.com/trycourier/courier-ruby/commit/cb00e91773b41f312db5c627ee500080da48b051))
+* **api:** stop teaching an aud_ prefix that Courier does not issue ([#152](https://github.com/trycourier/courier-ruby/issues/152)) ([1bd0f05](https://github.com/trycourier/courier-ruby/commit/1bd0f05a5e3db1e593c04046a7b20e9bdd1f64bf))
+
 ## [6.5.0](https://github.com/trycourier/courier-ruby/compare/v6.4.4...v6.5.0) (2026-09-04)
 
 
