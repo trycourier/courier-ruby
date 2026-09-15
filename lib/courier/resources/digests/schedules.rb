@@ -45,7 +45,7 @@ module Courier
         #
         # @overload release(schedule_id, request_options: {})
         #
-        # @param schedule_id [String] The ID of the digest schedule to release, in the form `sch/{uuid}`. The value mu
+        # @param schedule_id [String] The ID of the digest schedule to release. Newer schedules are `sch_01m26xfcn3end
         #
         # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
         #

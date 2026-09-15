@@ -30,6 +30,7 @@ class Courier::Test::Resources::WorkspacePreferences::TopicsTest < Courier::Test
         updated: String,
         creator: String | nil,
         description: String | nil,
+        digest: Courier::TopicDigestResponse | nil,
         updater: String | nil
       }
     end
@@ -57,6 +58,7 @@ class Courier::Test::Resources::WorkspacePreferences::TopicsTest < Courier::Test
         updated: String,
         creator: String | nil,
         description: String | nil,
+        digest: Courier::TopicDigestResponse | nil,
         updater: String | nil
       }
     end
@@ -82,6 +84,31 @@ class Courier::Test::Resources::WorkspacePreferences::TopicsTest < Courier::Test
     skip("Mock server tests are disabled")
 
     response = @courier.workspace_preferences.topics.archive("topic_id", section_id: "section_id")
+
+    assert_pattern do
+      response => nil
+    end
+  end
+
+  def test_delete_digest_required_params
+    skip("Mock server tests are disabled")
+
+    response = @courier.workspace_preferences.topics.delete_digest("topic_id", section_id: "section_id")
+
+    assert_pattern do
+      response => nil
+    end
+  end
+
+  def test_release_digest_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @courier.workspace_preferences.topics.release_digest(
+        "topic_id",
+        section_id: "section_id",
+        user_id: "user_01h1p2c3d4e5f6g7h8"
+      )
 
     assert_pattern do
       response => nil
@@ -116,6 +143,7 @@ class Courier::Test::Resources::WorkspacePreferences::TopicsTest < Courier::Test
         updated: String,
         creator: String | nil,
         description: String | nil,
+        digest: Courier::TopicDigestResponse | nil,
         updater: String | nil
       }
     end

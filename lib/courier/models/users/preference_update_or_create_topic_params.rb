@@ -58,6 +58,16 @@ module Courier
                    -> { Courier::Internal::Type::ArrayOf[enum: Courier::ChannelClassification] },
                    nil?: true
 
+          # @!attribute digest_schedule_id
+          #   Put this recipient on one of the topic's digest schedules. Send `null` to clear
+          #   the choice and return them to the topic's default. Omit to leave an existing
+          #   choice alone -- unlike the routing fields, which this endpoint replaces. An id
+          #   that is not an active schedule on the topic is rejected with a `400` before
+          #   anything is written.
+          #
+          #   @return [String, nil]
+          optional :digest_schedule_id, String, nil?: true
+
           # @!attribute has_custom_routing
           #   Set to true to route this topic to the channels in custom_routing instead of the
           #   topic's default routing.
@@ -65,7 +75,7 @@ module Courier
           #   @return [Boolean, nil]
           optional :has_custom_routing, Courier::Internal::Type::Boolean, nil?: true
 
-          # @!method initialize(status:, custom_routing: nil, has_custom_routing: nil)
+          # @!method initialize(status:, custom_routing: nil, digest_schedule_id: nil, has_custom_routing: nil)
           #   Some parameter documentations has been truncated, see
           #   {Courier::Models::Users::PreferenceUpdateOrCreateTopicParams::Topic} for more
           #   details.
@@ -73,6 +83,8 @@ module Courier
           #   @param status [Symbol, Courier::Models::PreferenceStatus] The subscription status to set: OPTED_IN or OPTED_OUT. REQUIRED is a topic-level
           #
           #   @param custom_routing [Array<Symbol, Courier::Models::ChannelClassification>, nil] The channels to deliver this topic on when has_custom_routing is true. One or mo
+          #
+          #   @param digest_schedule_id [String, nil] Put this recipient on one of the topic's digest schedules. Send `null` to clear
           #
           #   @param has_custom_routing [Boolean, nil] Set to true to route this topic to the channels in custom_routing instead of the
         end

@@ -70,13 +70,19 @@ module Courier
       #   @return [String, nil]
       optional :description, String, nil?: true
 
+      # @!attribute digest
+      #   A topic's digest configuration.
+      #
+      #   @return [Courier::Models::TopicDigestResponse, nil]
+      optional :digest, -> { Courier::TopicDigestResponse }, nil?: true
+
       # @!attribute updater
       #   Id of the last updater.
       #
       #   @return [String, nil]
       optional :updater, String, nil?: true
 
-      # @!method initialize(id:, allowed_preferences:, created:, default_status:, include_unsubscribe_header:, name:, routing_options:, topic_data:, updated:, creator: nil, description: nil, updater: nil)
+      # @!method initialize(id:, allowed_preferences:, created:, default_status:, include_unsubscribe_header:, name:, routing_options:, topic_data:, updated:, creator: nil, description: nil, digest: nil, updater: nil)
       #   A subscription preference topic in your workspace.
       #
       #   @param id [String] The preference topic id.
@@ -100,6 +106,8 @@ module Courier
       #   @param creator [String, nil] Id of the creator.
       #
       #   @param description [String, nil] Optional description shown under the topic on the hosted preferences page.
+      #
+      #   @param digest [Courier::Models::TopicDigestResponse, nil] A topic's digest configuration.
       #
       #   @param updater [String, nil] Id of the last updater.
 

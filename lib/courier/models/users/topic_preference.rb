@@ -41,6 +41,15 @@ module Courier
                  -> { Courier::Internal::Type::ArrayOf[enum: Courier::ChannelClassification] },
                  nil?: true
 
+        # @!attribute digest_schedule_id
+        #   The digest schedule this recipient is on for the topic. Omitted -- not null --
+        #   when they have not chosen one, in which case the topic's default schedule
+        #   applies. Ids come from the topic's digest configuration or from
+        #   `GET /digests/schedules`.
+        #
+        #   @return [String, nil]
+        optional :digest_schedule_id, String
+
         # @!attribute has_custom_routing
         #   Whether the user has chosen specific delivery channels for this topic (listed in
         #   custom_routing) rather than the topic's default routing.
@@ -64,7 +73,7 @@ module Courier
         #   @return [String, nil]
         optional :section_name, String
 
-        # @!method initialize(default_status:, status:, topic_id:, topic_name:, custom_routing: nil, has_custom_routing: nil, section_id: nil, section_name: nil)
+        # @!method initialize(default_status:, status:, topic_id:, topic_name:, custom_routing: nil, digest_schedule_id: nil, has_custom_routing: nil, section_id: nil, section_name: nil)
         #   Some parameter documentations has been truncated, see
         #   {Courier::Models::Users::TopicPreference} for more details.
         #
@@ -77,6 +86,8 @@ module Courier
         #   @param topic_name [String] The display name of the subscription topic, returned on reads.
         #
         #   @param custom_routing [Array<Symbol, Courier::Models::ChannelClassification>, nil] The channels the user has chosen to receive this topic on, present only when has
+        #
+        #   @param digest_schedule_id [String] The digest schedule this recipient is on for the topic. Omitted -- not null -- w
         #
         #   @param has_custom_routing [Boolean, nil] Whether the user has chosen specific delivery channels for this topic (listed in
         #

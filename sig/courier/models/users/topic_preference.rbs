@@ -8,6 +8,7 @@ module Courier
           topic_id: String,
           topic_name: String,
           custom_routing: ::Array[Courier::Models::channel_classification]?,
+          digest_schedule_id: String,
           has_custom_routing: bool?,
           section_id: String,
           section_name: String
@@ -23,6 +24,10 @@ module Courier
         attr_accessor topic_name: String
 
         attr_accessor custom_routing: ::Array[Courier::Models::channel_classification]?
+
+        attr_reader digest_schedule_id: String?
+
+        def digest_schedule_id=: (String) -> String
 
         attr_accessor has_custom_routing: bool?
 
@@ -40,6 +45,7 @@ module Courier
           topic_id: String,
           topic_name: String,
           ?custom_routing: ::Array[Courier::Models::channel_classification]?,
+          ?digest_schedule_id: String,
           ?has_custom_routing: bool?,
           ?section_id: String,
           ?section_name: String
@@ -51,6 +57,7 @@ module Courier
           topic_id: String,
           topic_name: String,
           custom_routing: ::Array[Courier::Models::channel_classification]?,
+          digest_schedule_id: String,
           has_custom_routing: bool?,
           section_id: String,
           section_name: String

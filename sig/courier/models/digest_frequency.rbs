@@ -1,0 +1,19 @@
+module Courier
+  module Models
+    type digest_frequency =
+      :instant | :daily | :weekdays | :weekly | :custom_days | :monthly
+
+    module DigestFrequency
+      extend Courier::Internal::Type::Enum
+
+      INSTANT: :instant
+      DAILY: :daily
+      WEEKDAYS: :weekdays
+      WEEKLY: :weekly
+      CUSTOM_DAYS: :custom_days
+      MONTHLY: :monthly
+
+      def self?.values: -> ::Array[Courier::Models::digest_frequency]
+    end
+  end
+end

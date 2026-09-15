@@ -38,6 +38,16 @@ module Courier
         end
         attr_accessor :custom_routing
 
+        # The digest schedule this recipient is on for the topic. Omitted -- not null --
+        # when they have not chosen one, in which case the topic's default schedule
+        # applies. Ids come from the topic's digest configuration or from
+        # `GET /digests/schedules`.
+        sig { returns(T.nilable(String)) }
+        attr_reader :digest_schedule_id
+
+        sig { params(digest_schedule_id: String).void }
+        attr_writer :digest_schedule_id
+
         # Whether the user has chosen specific delivery channels for this topic (listed in
         # custom_routing) rather than the topic's default routing.
         sig { returns(T.nilable(T::Boolean)) }
@@ -69,6 +79,7 @@ module Courier
             topic_name: String,
             custom_routing:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
+            digest_schedule_id: String,
             has_custom_routing: T.nilable(T::Boolean),
             section_id: String,
             section_name: String
@@ -90,6 +101,11 @@ module Courier
           # has_custom_routing is true. One or more of: direct_message, email, push, sms,
           # webhook, inbox.
           custom_routing: nil,
+          # The digest schedule this recipient is on for the topic. Omitted -- not null --
+          # when they have not chosen one, in which case the topic's default schedule
+          # applies. Ids come from the topic's digest configuration or from
+          # `GET /digests/schedules`.
+          digest_schedule_id: nil,
           # Whether the user has chosen specific delivery channels for this topic (listed in
           # custom_routing) rather than the topic's default routing.
           has_custom_routing: nil,
@@ -115,6 +131,7 @@ module Courier
                 T.nilable(
                   T::Array[Courier::ChannelClassification::TaggedSymbol]
                 ),
+              digest_schedule_id: String,
               has_custom_routing: T.nilable(T::Boolean),
               section_id: String,
               section_name: String

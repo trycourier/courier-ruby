@@ -13,6 +13,7 @@ module Courier
         updated: String,
         creator: String?,
         description: String?,
+        digest: Courier::TopicDigestResponse?,
         updater: String?
       }
 
@@ -39,6 +40,8 @@ module Courier
 
       attr_accessor description: String?
 
+      attr_accessor digest: Courier::TopicDigestResponse?
+
       attr_accessor updater: String?
 
       def initialize: (
@@ -53,6 +56,7 @@ module Courier
         updated: String,
         ?creator: String?,
         ?description: String?,
+        ?digest: Courier::TopicDigestResponse?,
         ?updater: String?
       ) -> void
 
@@ -68,6 +72,7 @@ module Courier
         updated: String,
         creator: String?,
         description: String?,
+        digest: Courier::TopicDigestResponse?,
         updater: String?
       }
 

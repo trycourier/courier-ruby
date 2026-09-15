@@ -40,6 +40,21 @@ module Courier
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
+      # A topic's digest configuration: the template that renders it, the cadences it
+      # delivers on, and how collected events are retained.
+      #
+      # Send `null` for the whole object to turn a digest off, which unlinks the
+      # template and removes its schedules. There is no `enabled` flag, and
+      # `schedules: []` is rejected -- both states are un-deliverable rather than merely
+      # off.
+      sig { returns(T.nilable(Courier::TopicDigestRequest)) }
+      attr_reader :digest
+
+      sig do
+        params(digest: T.nilable(Courier::TopicDigestRequest::OrHash)).void
+      end
+      attr_writer :digest
+
       # Whether to include a list-unsubscribe header on emails for this topic.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :include_unsubscribe_header
@@ -68,6 +83,7 @@ module Courier
               ]
             ),
           description: T.nilable(String),
+          digest: T.nilable(Courier::TopicDigestRequest::OrHash),
           include_unsubscribe_header: T.nilable(T::Boolean),
           routing_options:
             T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
@@ -84,6 +100,14 @@ module Courier
         # Optional description shown under the topic on the hosted preferences page. Omit
         # to clear.
         description: nil,
+        # A topic's digest configuration: the template that renders it, the cadences it
+        # delivers on, and how collected events are retained.
+        #
+        # Send `null` for the whole object to turn a digest off, which unlinks the
+        # template and removes its schedules. There is no `enabled` flag, and
+        # `schedules: []` is rejected -- both states are un-deliverable rather than merely
+        # off.
+        digest: nil,
         # Whether to include a list-unsubscribe header on emails for this topic.
         include_unsubscribe_header: nil,
         # Default channels delivered for this topic. Omit to clear.
@@ -106,6 +130,7 @@ module Courier
                 ]
               ),
             description: T.nilable(String),
+            digest: T.nilable(Courier::TopicDigestRequest),
             include_unsubscribe_header: T.nilable(T::Boolean),
             routing_options:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),

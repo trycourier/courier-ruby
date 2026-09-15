@@ -5,8 +5,6 @@ module Courier
     # Manage the workspace catalog of subscription topics, the sections that group
     # them, and publishing the preference page.
     class WorkspacePreferences
-      # Manage the workspace catalog of subscription topics, the sections that group
-      # them, and publishing the preference page.
       # @return [Courier::Resources::WorkspacePreferences::Topics]
       attr_reader :topics
 

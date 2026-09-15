@@ -1,0 +1,26 @@
+module Courier
+  module Models
+    type digest_day_of_week =
+      :sunday
+      | :monday
+      | :tuesday
+      | :wednesday
+      | :thursday
+      | :friday
+      | :saturday
+
+    module DigestDayOfWeek
+      extend Courier::Internal::Type::Enum
+
+      SUNDAY: :sunday
+      MONDAY: :monday
+      TUESDAY: :tuesday
+      WEDNESDAY: :wednesday
+      THURSDAY: :thursday
+      FRIDAY: :friday
+      SATURDAY: :saturday
+
+      def self?.values: -> ::Array[Courier::Models::digest_day_of_week]
+    end
+  end
+end
