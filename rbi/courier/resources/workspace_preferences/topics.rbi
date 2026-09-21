@@ -19,7 +19,10 @@ module Courier
                 ]
               ),
             description: T.nilable(String),
-            digest: T.nilable(Courier::TopicDigestRequest::OrHash),
+            digest:
+              T.nilable(
+                Courier::WorkspacePreferenceTopicCreateRequest::Digest::OrHash
+              ),
             include_unsubscribe_header: T.nilable(T::Boolean),
             routing_options:
               T.nilable(T::Array[Courier::ChannelClassification::OrSymbol]),
@@ -43,8 +46,13 @@ module Courier
           # Body param: Optional description shown under the topic on the hosted preferences
           # page.
           description: nil,
-          # Body param: A topic's digest configuration: the template that renders it, the
-          # cadences it delivers on, and how collected events are retained.
+          # Body param: A topic's digest, as supplied when the topic itself is created: the
+          # template that renders it, the cadences it delivers on, and how collected events
+          # are retained.
+          #
+          # Identical to `TopicDigestRequest`, which a replace uses, except that `schedules`
+          # is required — a topic being created has no stored schedules for an absent key to
+          # leave alone.
           #
           # Send `null` for the whole object to turn a digest off, which unlinks the
           # template and removes its schedules. There is no `enabled` flag, and

@@ -8,12 +8,6 @@ module Courier
           T.any(Courier::TopicDigestRequest, Courier::Internal::AnyHash)
         end
 
-      # The cadences this digest delivers on. At least one is required: a digest with no
-      # schedule collects events into an instance that can never fire. Omitting the key
-      # on a replace leaves stored schedules untouched; sending `[]` is a `400`.
-      sig { returns(T::Array[Courier::TopicDigestScheduleRequest]) }
-      attr_accessor :schedules
-
       # The notification template that renders the digest. A digest with no template
       # collects nothing, so this is required.
       sig { returns(String) }
@@ -36,6 +30,31 @@ module Courier
       end
       attr_writer :categories
 
+      # The cadences this digest delivers on.
+      #
+      # The array replaces the stored schedules wholesale, so a schedule you leave out
+      # of it is deleted along with its delivery rule. Omit the key entirely to leave
+      # the stored schedules untouched — useful for changing `template_id` or
+      # `categories` without restating every schedule.
+      #
+      # A digest must end up with at least one schedule, because one with none collects
+      # events into an instance that can never fire. So sending `[]` is always a `400`,
+      # and so is omitting the key on a topic that has no schedules stored yet.
+      #
+      # On **create** the key is required outright: a topic being created has nothing
+      # stored to leave alone, and the topic row is written before its digest, so
+      # rejecting it any later would leave the topic behind and let a retry duplicate
+      # it.
+      sig { returns(T.nilable(T::Array[Courier::TopicDigestScheduleRequest])) }
+      attr_reader :schedules
+
+      sig do
+        params(
+          schedules: T::Array[Courier::TopicDigestScheduleRequest::OrHash]
+        ).void
+      end
+      attr_writer :schedules
+
       # Whether to deliver the digest even when nothing was collected.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :trigger_empty
@@ -52,18 +71,14 @@ module Courier
       # merely off.
       sig do
         params(
-          schedules: T::Array[Courier::TopicDigestScheduleRequest::OrHash],
           template_id: String,
           audience_id: String,
           categories: T::Array[Courier::TopicDigestCategory::OrHash],
+          schedules: T::Array[Courier::TopicDigestScheduleRequest::OrHash],
           trigger_empty: T::Boolean
         ).returns(T.attached_class)
       end
       def self.new(
-        # The cadences this digest delivers on. At least one is required: a digest with no
-        # schedule collects events into an instance that can never fire. Omitting the key
-        # on a replace leaves stored schedules untouched; sending `[]` is a `400`.
-        schedules:,
         # The notification template that renders the digest. A digest with no template
         # collects nothing, so this is required.
         template_id:,
@@ -72,6 +87,22 @@ module Courier
         # Retention rules per category key. Defaults to a single `digest` category
         # retaining `FIRST`.
         categories: nil,
+        # The cadences this digest delivers on.
+        #
+        # The array replaces the stored schedules wholesale, so a schedule you leave out
+        # of it is deleted along with its delivery rule. Omit the key entirely to leave
+        # the stored schedules untouched — useful for changing `template_id` or
+        # `categories` without restating every schedule.
+        #
+        # A digest must end up with at least one schedule, because one with none collects
+        # events into an instance that can never fire. So sending `[]` is always a `400`,
+        # and so is omitting the key on a topic that has no schedules stored yet.
+        #
+        # On **create** the key is required outright: a topic being created has nothing
+        # stored to leave alone, and the topic row is written before its digest, so
+        # rejecting it any later would leave the topic behind and let a retry duplicate
+        # it.
+        schedules: nil,
         # Whether to deliver the digest even when nothing was collected.
         trigger_empty: nil
       )
@@ -80,10 +111,10 @@ module Courier
       sig do
         override.returns(
           {
-            schedules: T::Array[Courier::TopicDigestScheduleRequest],
             template_id: String,
             audience_id: String,
             categories: T::Array[Courier::TopicDigestCategory],
+            schedules: T::Array[Courier::TopicDigestScheduleRequest],
             trigger_empty: T::Boolean
           }
         )
