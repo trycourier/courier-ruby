@@ -2,16 +2,14 @@ module Courier
   module Models
     type topic_digest_request =
       {
-        schedules: ::Array[Courier::TopicDigestScheduleRequest],
         template_id: String,
         audience_id: String,
         categories: ::Array[Courier::TopicDigestCategory],
+        schedules: ::Array[Courier::TopicDigestScheduleRequest],
         trigger_empty: bool
       }
 
     class TopicDigestRequest < Courier::Internal::Type::BaseModel
-      attr_accessor schedules: ::Array[Courier::TopicDigestScheduleRequest]
-
       attr_accessor template_id: String
 
       attr_reader audience_id: String?
@@ -24,23 +22,29 @@ module Courier
         ::Array[Courier::TopicDigestCategory]
       ) -> ::Array[Courier::TopicDigestCategory]
 
+      attr_reader schedules: ::Array[Courier::TopicDigestScheduleRequest]?
+
+      def schedules=: (
+        ::Array[Courier::TopicDigestScheduleRequest]
+      ) -> ::Array[Courier::TopicDigestScheduleRequest]
+
       attr_reader trigger_empty: bool?
 
       def trigger_empty=: (bool) -> bool
 
       def initialize: (
-        schedules: ::Array[Courier::TopicDigestScheduleRequest],
         template_id: String,
         ?audience_id: String,
         ?categories: ::Array[Courier::TopicDigestCategory],
+        ?schedules: ::Array[Courier::TopicDigestScheduleRequest],
         ?trigger_empty: bool
       ) -> void
 
       def to_hash: -> {
-        schedules: ::Array[Courier::TopicDigestScheduleRequest],
         template_id: String,
         audience_id: String,
         categories: ::Array[Courier::TopicDigestCategory],
+        schedules: ::Array[Courier::TopicDigestScheduleRequest],
         trigger_empty: bool
       }
     end

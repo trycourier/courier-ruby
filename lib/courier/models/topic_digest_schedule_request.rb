@@ -71,6 +71,12 @@ module Courier
       #   `schedules` array is a full replacement, so a stored schedule absent from it is
       #   deleted along with its delivery rule.
       #
+      #   Updating by `schedule_id` replaces that schedule rather than merging into it:
+      #   any field you leave out is cleared. Two of those change delivery silently — an
+      #   omitted `timezone` reverts the schedule to UTC, and an omitted `is_default` can
+      #   leave the topic with no default schedule, which is what recipients who have not
+      #   chosen one fall back to. Restate every field you want to keep.
+      #
       #   @param frequency [Symbol, Courier::Models::DigestFrequency] How often a digest is delivered. `instant` delivers immediately without batching
       #
       #   @param day_of_month [Integer] Required when `frequency` is `monthly`.

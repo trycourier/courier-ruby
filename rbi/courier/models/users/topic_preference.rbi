@@ -40,8 +40,13 @@ module Courier
 
         # The digest schedule this recipient is on for the topic. Omitted rather than null
         # when they have not chosen one, in which case the topic's default schedule
-        # applies. Ids come from the topic's digest configuration or from
-        # `GET /digests/schedules`.
+        # applies. Ids come from the topic's digest configuration, returned on any read of
+        # the topic.
+        #
+        # Also omitted when the schedule they chose has since been deleted or disabled:
+        # the recipient is on the topic's default from that point on, which is how a send
+        # already resolves it, so the field reports what would actually be used rather
+        # than a dead id.
         sig { returns(T.nilable(String)) }
         attr_reader :digest_schedule_id
 
@@ -103,8 +108,13 @@ module Courier
           custom_routing: nil,
           # The digest schedule this recipient is on for the topic. Omitted rather than null
           # when they have not chosen one, in which case the topic's default schedule
-          # applies. Ids come from the topic's digest configuration or from
-          # `GET /digests/schedules`.
+          # applies. Ids come from the topic's digest configuration, returned on any read of
+          # the topic.
+          #
+          # Also omitted when the schedule they chose has since been deleted or disabled:
+          # the recipient is on the topic's default from that point on, which is how a send
+          # already resolves it, so the field reports what would actually be used rather
+          # than a dead id.
           digest_schedule_id: nil,
           # Whether the user has chosen specific delivery channels for this topic (listed in
           # custom_routing) rather than the topic's default routing.

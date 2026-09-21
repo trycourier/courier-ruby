@@ -8,7 +8,7 @@ module Courier
           name: String,
           ?allowed_preferences: ::Array[Courier::Models::WorkspacePreferenceTopicCreateRequest::allowed_preference]?,
           ?description: String?,
-          ?digest: Courier::TopicDigestRequest?,
+          ?digest: Courier::WorkspacePreferenceTopicCreateRequest::Digest?,
           ?include_unsubscribe_header: bool?,
           ?routing_options: ::Array[Courier::Models::channel_classification]?,
           ?topic_data: ::Hash[Symbol, top]?,

@@ -22,7 +22,7 @@ module Courier
         #
         # @param description [String, nil] Body param: Optional description shown under the topic on the hosted preferences
         #
-        # @param digest [Courier::Models::TopicDigestRequest, nil] Body param: A topic's digest configuration: the template that renders it, the ca
+        # @param digest [Courier::Models::WorkspacePreferenceTopicCreateRequest::Digest, nil] Body param: A topic's digest, as supplied when the topic itself is created: the
         #
         # @param include_unsubscribe_header [Boolean, nil] Body param: Whether to include a list-unsubscribe header on emails for this topi
         #

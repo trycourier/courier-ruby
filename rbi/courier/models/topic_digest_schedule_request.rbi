@@ -79,6 +79,12 @@ module Courier
       # existing schedule in place; omit it and one is assigned and returned. The
       # `schedules` array is a full replacement, so a stored schedule absent from it is
       # deleted along with its delivery rule.
+      #
+      # Updating by `schedule_id` replaces that schedule rather than merging into it:
+      # any field you leave out is cleared. Two of those change delivery silently — an
+      # omitted `timezone` reverts the schedule to UTC, and an omitted `is_default` can
+      # leave the topic with no default schedule, which is what recipients who have not
+      # chosen one fall back to. Restate every field you want to keep.
       sig do
         params(
           frequency: Courier::DigestFrequency::OrSymbol,
