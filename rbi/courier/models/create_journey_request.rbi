@@ -37,6 +37,17 @@ module Courier
       end
       attr_accessor :nodes
 
+      # Cancelation token stored on the journey definition. It tags every run the
+      # journey creates so that `POST /journeys/cancel` can later cancel those runs by
+      # token. Accepts a templated string such as `order-{{data.order_id}}`, which is
+      # resolved per run when the journey is invoked. On a replace, omitting this field
+      # preserves any existing token and sending a value replaces it.
+      sig { returns(T.nilable(String)) }
+      attr_reader :cancelation_token
+
+      sig { params(cancelation_token: String).void }
+      attr_writer :cancelation_token
+
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :enabled
 
@@ -75,6 +86,7 @@ module Courier
                 Courier::JourneyNode::JourneyBranchNode::OrHash
               )
             ],
+          cancelation_token: String,
           enabled: T::Boolean,
           state: Courier::JourneyState::OrSymbol
         ).returns(T.attached_class)
@@ -82,6 +94,12 @@ module Courier
       def self.new(
         name:,
         nodes:,
+        # Cancelation token stored on the journey definition. It tags every run the
+        # journey creates so that `POST /journeys/cancel` can later cancel those runs by
+        # token. Accepts a templated string such as `order-{{data.order_id}}`, which is
+        # resolved per run when the journey is invoked. On a replace, omitting this field
+        # preserves any existing token and sending a value replaces it.
+        cancelation_token: nil,
         enabled: nil,
         # Lifecycle state of a journey.
         state: nil
@@ -113,6 +131,7 @@ module Courier
                   Courier::JourneyNode::JourneyBranchNode
                 )
               ],
+            cancelation_token: String,
             enabled: T::Boolean,
             state: Courier::JourneyState::OrSymbol
           }

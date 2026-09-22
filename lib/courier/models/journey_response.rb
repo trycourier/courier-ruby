@@ -9,6 +9,14 @@ module Courier
       #   @return [String]
       required :id, String
 
+      # @!attribute cancelation_token
+      #   The journey cancelation token, or null when none is set. A token authored in the
+      #   dashboard is returned in its raw templated form, such as
+      #   `order-{{data.order_id}}`, so it can be read back and asserted.
+      #
+      #   @return [String, nil]
+      required :cancelation_token, String, nil?: true
+
       # @!attribute created
       #
       #   @return [Integer, nil]
@@ -55,10 +63,15 @@ module Courier
       #   @return [String, nil]
       required :updater, String, nil?: true
 
-      # @!method initialize(id:, created:, creator:, enabled:, name:, nodes:, published:, state:, updated:, updater:)
+      # @!method initialize(id:, cancelation_token:, created:, creator:, enabled:, name:, nodes:, published:, state:, updated:, updater:)
+      #   Some parameter documentations has been truncated, see
+      #   {Courier::Models::JourneyResponse} for more details.
+      #
       #   A journey, with its current draft or published nodes and metadata.
       #
       #   @param id [String]
+      #
+      #   @param cancelation_token [String, nil] The journey cancelation token, or null when none is set. A token authored in the
       #
       #   @param created [Integer, nil]
       #

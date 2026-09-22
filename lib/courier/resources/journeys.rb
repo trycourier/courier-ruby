@@ -21,11 +21,13 @@ module Courier
       # Creates a journey from a set of nodes, in draft state unless you pass a
       # published state. Send nodes cannot be included until their templates exist.
       #
-      # @overload create(name:, nodes:, enabled: nil, state: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
+      # @overload create(name:, nodes:, cancelation_token: nil, enabled: nil, state: nil, idempotency_key: nil, x_idempotency_expiration: nil, request_options: {})
       #
       # @param name [String] Body param
       #
       # @param nodes [Array<Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneyAudienceTriggerNode, Courier::Models::JourneyWebhookTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyNode::JourneyAddToDigestNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode>] Body param
+      #
+      # @param cancelation_token [String] Body param: Cancelation token stored on the journey definition. It tags every ru
       #
       # @param enabled [Boolean] Body param
       #
@@ -259,16 +261,21 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::JourneyReplaceParams} for more details.
+      #
       # Replaces a journey's working draft, leaving the published version live until you
       # publish. Reach for this when editing a journey already running.
       #
-      # @overload replace(template_id, name:, nodes:, enabled: nil, state: nil, request_options: {})
+      # @overload replace(template_id, name:, nodes:, cancelation_token: nil, enabled: nil, state: nil, request_options: {})
       #
       # @param template_id [String] Journey id
       #
       # @param name [String]
       #
       # @param nodes [Array<Courier::Models::JourneyAPIInvokeTriggerNode, Courier::Models::JourneySegmentTriggerNode, Courier::Models::JourneyAudienceTriggerNode, Courier::Models::JourneyWebhookTriggerNode, Courier::Models::JourneySendNode, Courier::Models::JourneyDelayDurationNode, Courier::Models::JourneyDelayUntilNode, Courier::Models::JourneyFetchGetDeleteNode, Courier::Models::JourneyFetchPostPutNode, Courier::Models::JourneyAINode, Courier::Models::JourneyThrottleStaticNode, Courier::Models::JourneyThrottleDynamicNode, Courier::Models::JourneyNode::JourneyBatchNode, Courier::Models::JourneyNode::JourneyAddToDigestNode, Courier::Models::JourneyExitNode, Courier::Models::JourneyNode::JourneyBranchNode>]
+      #
+      # @param cancelation_token [String] Cancelation token stored on the journey definition. It tags every run the journe
       #
       # @param enabled [Boolean]
       #

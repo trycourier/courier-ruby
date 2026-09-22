@@ -41,6 +41,7 @@ module Courier
                 Courier::JourneyNode::JourneyBranchNode::OrHash
               )
             ],
+          cancelation_token: String,
           enabled: T::Boolean,
           state: Courier::JourneyState::OrSymbol,
           idempotency_key: String,
@@ -53,6 +54,12 @@ module Courier
         name:,
         # Body param
         nodes:,
+        # Body param: Cancelation token stored on the journey definition. It tags every
+        # run the journey creates so that `POST /journeys/cancel` can later cancel those
+        # runs by token. Accepts a templated string such as `order-{{data.order_id}}`,
+        # which is resolved per run when the journey is invoked. On a replace, omitting
+        # this field preserves any existing token and sending a value replaces it.
+        cancelation_token: nil,
         # Body param
         enabled: nil,
         # Body param: Lifecycle state of a journey.
@@ -283,6 +290,7 @@ module Courier
                 Courier::JourneyNode::JourneyBranchNode::OrHash
               )
             ],
+          cancelation_token: String,
           enabled: T::Boolean,
           state: Courier::JourneyState::OrSymbol,
           request_options: Courier::RequestOptions::OrHash
@@ -293,6 +301,12 @@ module Courier
         template_id,
         name:,
         nodes:,
+        # Cancelation token stored on the journey definition. It tags every run the
+        # journey creates so that `POST /journeys/cancel` can later cancel those runs by
+        # token. Accepts a templated string such as `order-{{data.order_id}}`, which is
+        # resolved per run when the journey is invoked. On a replace, omitting this field
+        # preserves any existing token and sending a value replaces it.
+        cancelation_token: nil,
         enabled: nil,
         # Lifecycle state of a journey.
         state: nil,
