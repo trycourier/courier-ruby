@@ -3,6 +3,7 @@ module Courier
     type journey_response =
       {
         id: String,
+        cancelation_token: String?,
         created: Integer?,
         creator: String?,
         enabled: bool,
@@ -16,6 +17,8 @@ module Courier
 
     class JourneyResponse < Courier::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor cancelation_token: String?
 
       attr_accessor created: Integer?
 
@@ -37,6 +40,7 @@ module Courier
 
       def initialize: (
         id: String,
+        cancelation_token: String?,
         created: Integer?,
         creator: String?,
         enabled: bool,
@@ -50,6 +54,7 @@ module Courier
 
       def to_hash: -> {
         id: String,
+        cancelation_token: String?,
         created: Integer?,
         creator: String?,
         enabled: bool,

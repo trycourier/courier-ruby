@@ -19,6 +19,7 @@ class Courier::Test::Resources::JourneysTest < Courier::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        cancelation_token: String | nil,
         created: Integer | nil,
         creator: String | nil,
         enabled: Courier::Internal::Type::Boolean,
@@ -44,6 +45,7 @@ class Courier::Test::Resources::JourneysTest < Courier::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        cancelation_token: String | nil,
         created: Integer | nil,
         creator: String | nil,
         enabled: Courier::Internal::Type::Boolean,
@@ -146,6 +148,7 @@ class Courier::Test::Resources::JourneysTest < Courier::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        cancelation_token: String | nil,
         created: Integer | nil,
         creator: String | nil,
         enabled: Courier::Internal::Type::Boolean,
@@ -176,6 +179,7 @@ class Courier::Test::Resources::JourneysTest < Courier::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        cancelation_token: String | nil,
         created: Integer | nil,
         creator: String | nil,
         enabled: Courier::Internal::Type::Boolean,

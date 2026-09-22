@@ -11,6 +11,12 @@ module Courier
       sig { returns(String) }
       attr_accessor :id
 
+      # The journey cancelation token, or null when none is set. A token authored in the
+      # dashboard is returned in its raw templated form, such as
+      # `order-{{data.order_id}}`, so it can be read back and asserted.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :cancelation_token
+
       sig { returns(T.nilable(Integer)) }
       attr_accessor :created
 
@@ -43,6 +49,7 @@ module Courier
       sig do
         params(
           id: String,
+          cancelation_token: T.nilable(String),
           created: T.nilable(Integer),
           creator: T.nilable(String),
           enabled: T::Boolean,
@@ -76,6 +83,10 @@ module Courier
       end
       def self.new(
         id:,
+        # The journey cancelation token, or null when none is set. A token authored in the
+        # dashboard is returned in its raw templated form, such as
+        # `order-{{data.order_id}}`, so it can be read back and asserted.
+        cancelation_token:,
         created:,
         creator:,
         enabled:,
@@ -93,6 +104,7 @@ module Courier
         override.returns(
           {
             id: String,
+            cancelation_token: T.nilable(String),
             created: T.nilable(Integer),
             creator: T.nilable(String),
             enabled: T::Boolean,

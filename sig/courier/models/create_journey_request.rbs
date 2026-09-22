@@ -4,6 +4,7 @@ module Courier
       {
         name: String,
         nodes: ::Array[Courier::Models::journey_node],
+        cancelation_token: String,
         enabled: bool,
         state: Courier::Models::journey_state
       }
@@ -12,6 +13,10 @@ module Courier
       attr_accessor name: String
 
       attr_accessor nodes: ::Array[Courier::Models::journey_node]
+
+      attr_reader cancelation_token: String?
+
+      def cancelation_token=: (String) -> String
 
       attr_reader enabled: bool?
 
@@ -26,6 +31,7 @@ module Courier
       def initialize: (
         name: String,
         nodes: ::Array[Courier::Models::journey_node],
+        ?cancelation_token: String,
         ?enabled: bool,
         ?state: Courier::Models::journey_state
       ) -> void
@@ -33,6 +39,7 @@ module Courier
       def to_hash: -> {
         name: String,
         nodes: ::Array[Courier::Models::journey_node],
+        cancelation_token: String,
         enabled: bool,
         state: Courier::Models::journey_state
       }

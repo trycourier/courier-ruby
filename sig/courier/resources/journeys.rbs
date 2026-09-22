@@ -8,6 +8,7 @@ module Courier
       def create: (
         name: String,
         nodes: ::Array[Courier::Models::journey_node],
+        ?cancelation_token: String,
         ?enabled: bool,
         ?state: Courier::Models::journey_state,
         ?idempotency_key: String,
@@ -66,6 +67,7 @@ module Courier
         String template_id,
         name: String,
         nodes: ::Array[Courier::Models::journey_node],
+        ?cancelation_token: String,
         ?enabled: bool,
         ?state: Courier::Models::journey_state,
         ?request_options: Courier::request_opts
