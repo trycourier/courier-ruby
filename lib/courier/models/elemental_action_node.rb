@@ -73,7 +73,20 @@ module Courier
       optional :padding, String, nil?: true
 
       # @!attribute style
-      #   Defaults to `button`.
+      #   How prominent the action should be. `button` is the default, `secondary` and
+      #   `tertiary` are the other two button styles, and `link` renders as inline text
+      #   rather than a button.
+      #
+      #   Each channel draws these as closely as its medium allows. Email fills `button`,
+      #   outlines `secondary`, and underlines `tertiary`. The in-app Inbox fills
+      #   `button`, outlines `secondary`, and draws `tertiary` as a solid button. Slack
+      #   renders all three as Block Kit buttons, with `secondary` in Slack's `primary`
+      #   style and `tertiary` in its `danger` style.
+      #
+      #   `background_color` is the fill for `button`, and the border and label color for
+      #   `secondary`. For `tertiary` it colors the underline and label in email and the
+      #   fill in the Inbox. It does not apply to `link`. An Inbox theme that sets its own
+      #   action colors takes precedence over the template.
       #
       #   @return [Symbol, Courier::Models::ElementalActionNode::Style, nil]
       optional :style, enum: -> { Courier::ElementalActionNode::Style }, nil?: true
@@ -106,13 +119,28 @@ module Courier
       #
       #   @param padding [String, nil] CSS padding applied to the action button. For example, `8px 16px`
       #
-      #   @param style [Symbol, Courier::Models::ElementalActionNode::Style, nil] Defaults to `button`.
+      #   @param style [Symbol, Courier::Models::ElementalActionNode::Style, nil] How prominent the action should be. `button` is the default, `secondary` and `te
 
-      # Defaults to `button`.
+      # How prominent the action should be. `button` is the default, `secondary` and
+      # `tertiary` are the other two button styles, and `link` renders as inline text
+      # rather than a button.
+      #
+      # Each channel draws these as closely as its medium allows. Email fills `button`,
+      # outlines `secondary`, and underlines `tertiary`. The in-app Inbox fills
+      # `button`, outlines `secondary`, and draws `tertiary` as a solid button. Slack
+      # renders all three as Block Kit buttons, with `secondary` in Slack's `primary`
+      # style and `tertiary` in its `danger` style.
+      #
+      # `background_color` is the fill for `button`, and the border and label color for
+      # `secondary`. For `tertiary` it colors the underline and label in email and the
+      # fill in the Inbox. It does not apply to `link`. An Inbox theme that sets its own
+      # action colors takes precedence over the template.
       module Style
         extend Courier::Internal::Type::Enum
 
         BUTTON = :button
+        SECONDARY = :secondary
+        TERTIARY = :tertiary
         LINK = :link
 
         # @!method self.values
