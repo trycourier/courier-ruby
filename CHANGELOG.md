@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.7.0](https://github.com/trycourier/courier-ruby/compare/v6.6.0...v6.7.0) (2026-09-22)
+
+
+### Features
+
+* **api:** add cancelation_token to journey create, replace, and get ([#158](https://github.com/trycourier/courier-ruby/issues/158)) ([ec47880](https://github.com/trycourier/courier-ruby/commit/ec47880a79aaefde00dedcbdc84527ff234a99f2))
+
+
+### Documentation
+
+* **api:** correct the digest schedule contract, and make `schedules` optional ([#156](https://github.com/trycourier/courier-ruby/issues/156)) ([8578d77](https://github.com/trycourier/courier-ruby/commit/8578d77848275105865c1b29b799f2cc6621987e))
+
 ## [6.6.0](https://github.com/trycourier/courier-ruby/compare/v6.5.0...v6.6.0) (2026-09-15)
 
 
