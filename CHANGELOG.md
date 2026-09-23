@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.8.0](https://github.com/trycourier/courier-ruby/compare/v6.7.0...v6.8.0) (2026-09-23)
+
+
+### Features
+
+* **api:** publish the secondary and tertiary action styles [C-19961] ([#159](https://github.com/trycourier/courier-ruby/issues/159)) ([57cb2c8](https://github.com/trycourier/courier-ruby/commit/57cb2c80c80e9f84c140d573759d7d745e277d17))
+
 ## [6.7.0](https://github.com/trycourier/courier-ruby/compare/v6.6.0...v6.7.0) (2026-09-22)
 
 
