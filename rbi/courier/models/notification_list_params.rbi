@@ -26,11 +26,21 @@ module Courier
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :notes
 
+      # Comma-delimited list of tag names. Only templates carrying all of the listed
+      # tags are returned. Matching is case-insensitive. Filtering is applied before
+      # pagination.
+      sig { returns(T.nilable(String)) }
+      attr_reader :tags
+
+      sig { params(tags: String).void }
+      attr_writer :tags
+
       sig do
         params(
           cursor: T.nilable(String),
           event_id: String,
           notes: T.nilable(T::Boolean),
+          tags: String,
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -41,6 +51,10 @@ module Courier
         event_id: nil,
         # Include template notes in the response. Only applies to legacy templates.
         notes: nil,
+        # Comma-delimited list of tag names. Only templates carrying all of the listed
+        # tags are returned. Matching is case-insensitive. Filtering is applied before
+        # pagination.
+        tags: nil,
         request_options: {}
       )
       end
@@ -51,6 +65,7 @@ module Courier
             cursor: T.nilable(String),
             event_id: String,
             notes: T.nilable(T::Boolean),
+            tags: String,
             request_options: Courier::RequestOptions
           }
         )

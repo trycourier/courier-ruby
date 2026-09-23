@@ -21,6 +21,7 @@ module Courier
         ?cursor: String?,
         ?event_id: String,
         ?notes: bool?,
+        ?tags: String,
         ?request_options: Courier::request_opts
       ) -> Courier::Models::NotificationListResponse
 

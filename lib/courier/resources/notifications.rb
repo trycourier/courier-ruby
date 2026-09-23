@@ -84,16 +84,21 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::NotificationListParams} for more details.
+      #
       # Lists the workspace's notification templates. Each carries a name, tags, brand,
       # routing, and its draft or published state.
       #
-      # @overload list(cursor: nil, event_id: nil, notes: nil, request_options: {})
+      # @overload list(cursor: nil, event_id: nil, notes: nil, tags: nil, request_options: {})
       #
       # @param cursor [String, nil] Opaque pagination cursor from a previous response. Omit for the first page.
       #
       # @param event_id [String] Filter to templates linked to this event map ID.
       #
       # @param notes [Boolean, nil] Include template notes in the response. Only applies to legacy templates.
+      #
+      # @param tags [String] Comma-delimited list of tag names. Only templates carrying all of the listed tag
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
