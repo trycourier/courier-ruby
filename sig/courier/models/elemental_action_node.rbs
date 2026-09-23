@@ -97,12 +97,14 @@ module Courier
         style: Courier::Models::ElementalActionNode::style?
       }
 
-      type style = :button | :link
+      type style = :button | :secondary | :tertiary | :link
 
       module Style
         extend Courier::Internal::Type::Enum
 
         BUTTON: :button
+        SECONDARY: :secondary
+        TERTIARY: :tertiary
         LINK: :link
 
         def self?.values: -> ::Array[Courier::Models::ElementalActionNode::style]
