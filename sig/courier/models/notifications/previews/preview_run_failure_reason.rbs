@@ -1,0 +1,28 @@
+module Courier
+  module Models
+    module Notifications
+      module PreviewRunFailureReason = Previews::PreviewRunFailureReason
+
+      module Previews
+        type preview_run_failure_reason =
+          :TEMPLATE_NOT_SUPPORTED
+          | :NO_EMAIL_CHANNEL
+          | :RENDER_FAILED
+          | :ALL_DEVICES_UNSUPPORTED
+          | :VENDOR_ERROR
+
+        module PreviewRunFailureReason
+          extend Courier::Internal::Type::Enum
+
+          TEMPLATE_NOT_SUPPORTED: :TEMPLATE_NOT_SUPPORTED
+          NO_EMAIL_CHANNEL: :NO_EMAIL_CHANNEL
+          RENDER_FAILED: :RENDER_FAILED
+          ALL_DEVICES_UNSUPPORTED: :ALL_DEVICES_UNSUPPORTED
+          VENDOR_ERROR: :VENDOR_ERROR
+
+          def self?.values: -> ::Array[Courier::Models::Notifications::Previews::preview_run_failure_reason]
+        end
+      end
+    end
+  end
+end

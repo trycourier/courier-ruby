@@ -1,0 +1,19 @@
+module Courier
+  module Models
+    module Notifications
+      module PreviewResultFailureReason = Previews::PreviewResultFailureReason
+
+      module Previews
+        type preview_result_failure_reason = :DELIVERY_FAILED
+
+        module PreviewResultFailureReason
+          extend Courier::Internal::Type::Enum
+
+          DELIVERY_FAILED: :DELIVERY_FAILED
+
+          def self?.values: -> ::Array[Courier::Models::Notifications::Previews::preview_result_failure_reason]
+        end
+      end
+    end
+  end
+end

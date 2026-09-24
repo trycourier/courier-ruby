@@ -1,0 +1,46 @@
+module Courier
+  module Models
+    module Notifications
+      module Previews
+        type run_create_params =
+          {
+            id: String,
+            idempotency_key: String,
+            x_idempotency_expiration: String
+          }
+          & Courier::Internal::Type::request_parameters
+
+        class RunCreateParams < Courier::Models::Notifications::Previews::CreatePreviewRunRequest
+          extend Courier::Internal::Type::RequestParameters::Converter
+          include Courier::Internal::Type::RequestParameters
+
+          def id: -> String
+
+          def id=: (String _) -> String
+
+          def idempotency_key: -> String?
+
+          def idempotency_key=: (String _) -> String
+
+          def x_idempotency_expiration: -> String?
+
+          def x_idempotency_expiration=: (String _) -> String
+
+          def initialize: (
+            id: String,
+            ?idempotency_key: String,
+            ?x_idempotency_expiration: String,
+            ?request_options: Courier::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            idempotency_key: String,
+            x_idempotency_expiration: String,
+            request_options: Courier::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

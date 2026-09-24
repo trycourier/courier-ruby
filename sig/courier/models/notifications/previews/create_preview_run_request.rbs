@@ -1,0 +1,54 @@
+module Courier
+  module Models
+    module Notifications
+      module Previews
+        type create_preview_run_request =
+          {
+            data: ::Hash[Symbol, top],
+            device_ids: ::Array[String],
+            device_set_id: String,
+            locale: String,
+            template_version: String
+          }
+
+        class CreatePreviewRunRequest < Courier::Internal::Type::BaseModel
+          attr_reader data: ::Hash[Symbol, top]?
+
+          def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+          attr_reader device_ids: ::Array[String]?
+
+          def device_ids=: (::Array[String]) -> ::Array[String]
+
+          attr_reader device_set_id: String?
+
+          def device_set_id=: (String) -> String
+
+          attr_reader locale: String?
+
+          def locale=: (String) -> String
+
+          attr_reader template_version: String?
+
+          def template_version=: (String) -> String
+
+          def initialize: (
+            ?data: ::Hash[Symbol, top],
+            ?device_ids: ::Array[String],
+            ?device_set_id: String,
+            ?locale: String,
+            ?template_version: String
+          ) -> void
+
+          def to_hash: -> {
+            data: ::Hash[Symbol, top],
+            device_ids: ::Array[String],
+            device_set_id: String,
+            locale: String,
+            template_version: String
+          }
+        end
+      end
+    end
+  end
+end

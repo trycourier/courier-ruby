@@ -1,0 +1,16 @@
+module Courier
+  module Models
+    type create_device_set_request =
+      { device_ids: ::Array[String], name: String }
+
+    class CreateDeviceSetRequest < Courier::Internal::Type::BaseModel
+      attr_accessor device_ids: ::Array[String]
+
+      attr_accessor name: String
+
+      def initialize: (device_ids: ::Array[String], name: String) -> void
+
+      def to_hash: -> { device_ids: ::Array[String], name: String }
+    end
+  end
+end

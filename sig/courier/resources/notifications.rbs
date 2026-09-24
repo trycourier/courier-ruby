@@ -3,6 +3,8 @@ module Courier
     class Notifications
       attr_reader checks: Courier::Resources::Notifications::Checks
 
+      attr_reader previews: Courier::Resources::Notifications::Previews
+
       def create: (
         notification: Courier::NotificationTemplateWritePayload,
         ?state: Courier::Models::NotificationTemplateCreateRequest::state,

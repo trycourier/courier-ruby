@@ -10,6 +10,9 @@ module Courier
       sig { returns(Courier::Resources::Notifications::Checks) }
       attr_reader :checks
 
+      sig { returns(Courier::Resources::Notifications::Previews) }
+      attr_reader :previews
+
       # Create a notification template. Requires all fields in the notification object.
       # Templates are created in draft state by default.
       #

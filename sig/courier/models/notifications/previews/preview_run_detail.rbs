@@ -1,0 +1,67 @@
+module Courier
+  module Models
+    module Notifications
+      class PreviewRunDetail = Previews::PreviewRunDetail
+
+      module Previews
+        type preview_run_detail =
+          {
+            id: String,
+            created_at: String,
+            device_ids: ::Array[String],
+            results: ::Array[Courier::Notifications::Previews::PreviewResult],
+            status: Courier::Models::Notifications::Previews::preview_run_status,
+            template_id: String,
+            failure_reason: Courier::Models::Notifications::Previews::preview_run_failure_reason,
+            template_version: String
+          }
+
+        class PreviewRunDetail < Courier::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: String
+
+          attr_accessor device_ids: ::Array[String]
+
+          attr_accessor results: ::Array[Courier::Notifications::Previews::PreviewResult]
+
+          attr_accessor status: Courier::Models::Notifications::Previews::preview_run_status
+
+          attr_accessor template_id: String
+
+          attr_reader failure_reason: Courier::Models::Notifications::Previews::preview_run_failure_reason?
+
+          def failure_reason=: (
+            Courier::Models::Notifications::Previews::preview_run_failure_reason
+          ) -> Courier::Models::Notifications::Previews::preview_run_failure_reason
+
+          attr_reader template_version: String?
+
+          def template_version=: (String) -> String
+
+          def initialize: (
+            id: String,
+            created_at: String,
+            device_ids: ::Array[String],
+            results: ::Array[Courier::Notifications::Previews::PreviewResult],
+            status: Courier::Models::Notifications::Previews::preview_run_status,
+            template_id: String,
+            ?failure_reason: Courier::Models::Notifications::Previews::preview_run_failure_reason,
+            ?template_version: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: String,
+            device_ids: ::Array[String],
+            results: ::Array[Courier::Notifications::Previews::PreviewResult],
+            status: Courier::Models::Notifications::Previews::preview_run_status,
+            template_id: String,
+            failure_reason: Courier::Models::Notifications::Previews::preview_run_failure_reason,
+            template_version: String
+          }
+        end
+      end
+    end
+  end
+end

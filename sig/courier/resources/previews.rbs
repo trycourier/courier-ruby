@@ -1,0 +1,38 @@
+module Courier
+  module Resources
+    class Previews
+      def archive_device_set: (
+        String device_set_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::DeviceSet
+
+      def create_device_set: (
+        device_ids: ::Array[String],
+        name: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::DeviceSet
+
+      def list_device_sets: (
+        ?request_options: Courier::request_opts
+      ) -> Courier::DeviceSetListResponse
+
+      def list_devices: (
+        ?request_options: Courier::request_opts
+      ) -> Courier::PreviewDeviceListResponse
+
+      def retrieve_device_set: (
+        String device_set_id,
+        ?request_options: Courier::request_opts
+      ) -> Courier::DeviceSet
+
+      def update_device_set: (
+        String device_set_id,
+        device_ids: ::Array[String],
+        name: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::DeviceSet
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

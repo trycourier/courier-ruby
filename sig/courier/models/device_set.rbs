@@ -1,0 +1,47 @@
+module Courier
+  module Models
+    type device_set =
+      {
+        id: String,
+        created_at: String,
+        device_ids: ::Array[String],
+        name: String,
+        updated_at: String,
+        archived_at: String
+      }
+
+    class DeviceSet < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: String
+
+      attr_accessor device_ids: ::Array[String]
+
+      attr_accessor name: String
+
+      attr_accessor updated_at: String
+
+      attr_reader archived_at: String?
+
+      def archived_at=: (String) -> String
+
+      def initialize: (
+        id: String,
+        created_at: String,
+        device_ids: ::Array[String],
+        name: String,
+        updated_at: String,
+        ?archived_at: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: String,
+        device_ids: ::Array[String],
+        name: String,
+        updated_at: String,
+        archived_at: String
+      }
+    end
+  end
+end

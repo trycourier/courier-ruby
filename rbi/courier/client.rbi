@@ -53,6 +53,11 @@ module Courier
     sig { returns(Courier::Resources::Broadcasts) }
     attr_reader :broadcasts
 
+    # Render a template's email content on real email clients and read back the
+    # screenshots, so you can check how it looks before you send it.
+    sig { returns(Courier::Resources::Previews) }
+    attr_reader :previews
+
     sig { returns(Courier::Resources::Bulk) }
     attr_reader :bulk
 

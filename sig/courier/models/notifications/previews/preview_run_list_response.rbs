@@ -1,0 +1,31 @@
+module Courier
+  module Models
+    module Notifications
+      class PreviewRunListResponse = Previews::PreviewRunListResponse
+
+      module Previews
+        type preview_run_list_response =
+          {
+            paging: Courier::Paging,
+            results: ::Array[Courier::Notifications::Previews::PreviewRun]
+          }
+
+        class PreviewRunListResponse < Courier::Internal::Type::BaseModel
+          attr_accessor paging: Courier::Paging
+
+          attr_accessor results: ::Array[Courier::Notifications::Previews::PreviewRun]
+
+          def initialize: (
+            paging: Courier::Paging,
+            results: ::Array[Courier::Notifications::Previews::PreviewRun]
+          ) -> void
+
+          def to_hash: -> {
+            paging: Courier::Paging,
+            results: ::Array[Courier::Notifications::Previews::PreviewRun]
+          }
+        end
+      end
+    end
+  end
+end

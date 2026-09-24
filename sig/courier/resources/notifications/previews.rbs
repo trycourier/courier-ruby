@@ -1,0 +1,11 @@
+module Courier
+  module Resources
+    class Notifications
+      class Previews
+        attr_reader runs: Courier::Resources::Notifications::Previews::Runs
+
+        def initialize: (client: Courier::Client) -> void
+      end
+    end
+  end
+end

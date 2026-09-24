@@ -58,6 +58,11 @@ module Courier
     # @return [Courier::Resources::Broadcasts]
     attr_reader :broadcasts
 
+    # Render a template's email content on real email clients and read back the
+    # screenshots, so you can check how it looks before you send it.
+    # @return [Courier::Resources::Previews]
+    attr_reader :previews
+
     # @return [Courier::Resources::Bulk]
     attr_reader :bulk
 
@@ -190,6 +195,7 @@ module Courier
       @automations = Courier::Resources::Automations.new(client: self)
       @journeys = Courier::Resources::Journeys.new(client: self)
       @broadcasts = Courier::Resources::Broadcasts.new(client: self)
+      @previews = Courier::Resources::Previews.new(client: self)
       @bulk = Courier::Resources::Bulk.new(client: self)
       @brands = Courier::Resources::Brands.new(client: self)
       @digests = Courier::Resources::Digests.new(client: self)

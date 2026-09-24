@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    type preview_update_device_set_params =
+      { device_set_id: String } & Courier::Internal::Type::request_parameters
+
+    class PreviewUpdateDeviceSetParams < Courier::Models::CreateDeviceSetRequest
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      def device_set_id: -> String
+
+      def device_set_id=: (String _) -> String
+
+      def initialize: (
+        device_set_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        device_set_id: String,
+        request_options: Courier::RequestOptions
+      }
+    end
+  end
+end

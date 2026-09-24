@@ -16,9 +16,14 @@ module Courier
       end
 
       module Notifications
+        module Previews
+        end
       end
 
       module Preferences
+      end
+
+      module Previews
       end
 
       module Profiles

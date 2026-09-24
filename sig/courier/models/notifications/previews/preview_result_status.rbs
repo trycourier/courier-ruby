@@ -1,0 +1,30 @@
+module Courier
+  module Models
+    module Notifications
+      module PreviewResultStatus = Previews::PreviewResultStatus
+
+      module Previews
+        type preview_result_status =
+          :PENDING
+          | :PROCESSING
+          | :COMPLETED
+          | :UNSUPPORTED
+          | :TIMED_OUT
+          | :FAILED
+
+        module PreviewResultStatus
+          extend Courier::Internal::Type::Enum
+
+          PENDING: :PENDING
+          PROCESSING: :PROCESSING
+          COMPLETED: :COMPLETED
+          UNSUPPORTED: :UNSUPPORTED
+          TIMED_OUT: :TIMED_OUT
+          FAILED: :FAILED
+
+          def self?.values: -> ::Array[Courier::Models::Notifications::Previews::preview_result_status]
+        end
+      end
+    end
+  end
+end
