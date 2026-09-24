@@ -1,0 +1,13 @@
+module Courier
+  module Models
+    type device_set_list_response = { results: ::Array[Courier::DeviceSet] }
+
+    class DeviceSetListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor results: ::Array[Courier::DeviceSet]
+
+      def initialize: (results: ::Array[Courier::DeviceSet]) -> void
+
+      def to_hash: -> { results: ::Array[Courier::DeviceSet] }
+    end
+  end
+end

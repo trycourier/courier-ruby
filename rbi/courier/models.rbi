@@ -144,9 +144,15 @@ module Courier
 
   CreateBroadcastRequest = Courier::Models::CreateBroadcastRequest
 
+  CreateDeviceSetRequest = Courier::Models::CreateDeviceSetRequest
+
   CreateJourneyRequest = Courier::Models::CreateJourneyRequest
 
   DefaultPreferences = Courier::Models::DefaultPreferences
+
+  DeviceSet = Courier::Models::DeviceSet
+
+  DeviceSetListResponse = Courier::Models::DeviceSetListResponse
 
   DeviceType = Courier::Models::DeviceType
 
@@ -502,6 +508,23 @@ module Courier
   PreferenceLogsListResponse = Courier::Models::PreferenceLogsListResponse
 
   PreferenceStatus = Courier::Models::PreferenceStatus
+
+  PreviewArchiveDeviceSetParams = Courier::Models::PreviewArchiveDeviceSetParams
+
+  PreviewCreateDeviceSetParams = Courier::Models::PreviewCreateDeviceSetParams
+
+  PreviewDevice = Courier::Models::PreviewDevice
+
+  PreviewDeviceListResponse = Courier::Models::PreviewDeviceListResponse
+
+  PreviewListDeviceSetsParams = Courier::Models::PreviewListDeviceSetsParams
+
+  PreviewListDevicesParams = Courier::Models::PreviewListDevicesParams
+
+  PreviewRetrieveDeviceSetParams =
+    Courier::Models::PreviewRetrieveDeviceSetParams
+
+  PreviewUpdateDeviceSetParams = Courier::Models::PreviewUpdateDeviceSetParams
 
   ProfileCreateParams = Courier::Models::ProfileCreateParams
 

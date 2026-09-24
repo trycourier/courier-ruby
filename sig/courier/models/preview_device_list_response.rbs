@@ -1,0 +1,14 @@
+module Courier
+  module Models
+    type preview_device_list_response =
+      { results: ::Array[Courier::PreviewDevice] }
+
+    class PreviewDeviceListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor results: ::Array[Courier::PreviewDevice]
+
+      def initialize: (results: ::Array[Courier::PreviewDevice]) -> void
+
+      def to_hash: -> { results: ::Array[Courier::PreviewDevice] }
+    end
+  end
+end

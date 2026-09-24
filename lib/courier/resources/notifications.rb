@@ -10,6 +10,9 @@ module Courier
       # @return [Courier::Resources::Notifications::Checks]
       attr_reader :checks
 
+      # @return [Courier::Resources::Notifications::Previews]
+      attr_reader :previews
+
       # Some parameter documentations has been truncated, see
       # {Courier::Models::NotificationCreateParams} for more details.
       #
@@ -422,6 +425,7 @@ module Courier
       def initialize(client:)
         @client = client
         @checks = Courier::Resources::Notifications::Checks.new(client: client)
+        @previews = Courier::Resources::Notifications::Previews.new(client: client)
       end
     end
   end

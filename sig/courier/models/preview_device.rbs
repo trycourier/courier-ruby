@@ -1,0 +1,83 @@
+module Courier
+  module Models
+    type preview_device =
+      {
+        id: String,
+        app: String,
+        category: Courier::Models::PreviewDevice::category,
+        name: String,
+        os: String,
+        os_version: String,
+        platform: String?,
+        platform_version: String?,
+        theme: Courier::Models::PreviewDevice::theme
+      }
+
+    class PreviewDevice < Courier::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor app: String
+
+      attr_accessor category: Courier::Models::PreviewDevice::category
+
+      attr_accessor name: String
+
+      attr_accessor os: String
+
+      attr_accessor os_version: String
+
+      attr_accessor platform: String?
+
+      attr_accessor platform_version: String?
+
+      attr_accessor theme: Courier::Models::PreviewDevice::theme
+
+      def initialize: (
+        id: String,
+        app: String,
+        category: Courier::Models::PreviewDevice::category,
+        name: String,
+        os: String,
+        os_version: String,
+        platform: String?,
+        platform_version: String?,
+        theme: Courier::Models::PreviewDevice::theme
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        app: String,
+        category: Courier::Models::PreviewDevice::category,
+        name: String,
+        os: String,
+        os_version: String,
+        platform: String?,
+        platform_version: String?,
+        theme: Courier::Models::PreviewDevice::theme
+      }
+
+      type category = :webmail | :mobile | :desktop
+
+      module Category
+        extend Courier::Internal::Type::Enum
+
+        WEBMAIL: :webmail
+        MOBILE: :mobile
+        DESKTOP: :desktop
+
+        def self?.values: -> ::Array[Courier::Models::PreviewDevice::category]
+      end
+
+      type theme = :light | :dark
+
+      module Theme
+        extend Courier::Internal::Type::Enum
+
+        LIGHT: :light
+        DARK: :dark
+
+        def self?.values: -> ::Array[Courier::Models::PreviewDevice::theme]
+      end
+    end
+  end
+end

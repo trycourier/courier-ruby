@@ -1,0 +1,50 @@
+module Courier
+  module Models
+    module Notifications
+      class PreviewResult = Previews::PreviewResult
+
+      module Previews
+        type preview_result =
+          {
+            device_id: String,
+            screenshot_url: String?,
+            status: Courier::Models::Notifications::Previews::preview_result_status,
+            thumbnail_url: String?,
+            failure_reason: Courier::Models::Notifications::Previews::preview_result_failure_reason
+          }
+
+        class PreviewResult < Courier::Internal::Type::BaseModel
+          attr_accessor device_id: String
+
+          attr_accessor screenshot_url: String?
+
+          attr_accessor status: Courier::Models::Notifications::Previews::preview_result_status
+
+          attr_accessor thumbnail_url: String?
+
+          attr_reader failure_reason: Courier::Models::Notifications::Previews::preview_result_failure_reason?
+
+          def failure_reason=: (
+            Courier::Models::Notifications::Previews::preview_result_failure_reason
+          ) -> Courier::Models::Notifications::Previews::preview_result_failure_reason
+
+          def initialize: (
+            device_id: String,
+            screenshot_url: String?,
+            status: Courier::Models::Notifications::Previews::preview_result_status,
+            thumbnail_url: String?,
+            ?failure_reason: Courier::Models::Notifications::Previews::preview_result_failure_reason
+          ) -> void
+
+          def to_hash: -> {
+            device_id: String,
+            screenshot_url: String?,
+            status: Courier::Models::Notifications::Previews::preview_result_status,
+            thumbnail_url: String?,
+            failure_reason: Courier::Models::Notifications::Previews::preview_result_failure_reason
+          }
+        end
+      end
+    end
+  end
+end
