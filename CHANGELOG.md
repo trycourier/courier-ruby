@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.11.2](https://github.com/trycourier/courier-ruby/compare/v6.11.1...v6.11.2) (2026-09-24)
+
+
+### Bug Fixes
+
+* load on Ruby 3.4 and 4.0 without the base64 and cgi gems ([d26ca86](https://github.com/trycourier/courier-ruby/commit/d26ca86a4dec3493f50c633fe6656e708e87d73f))
+
 ## [6.11.1](https://github.com/trycourier/courier-ruby/compare/v6.11.0...v6.11.1) (2026-09-24)
 
 
