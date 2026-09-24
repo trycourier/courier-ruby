@@ -11,8 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    trycourier (6.11.0)
-      cgi
+    trycourier (6.11.1)
       connection_pool
 
 GEM
@@ -205,6 +204,7 @@ PLATFORMS
 
 DEPENDENCIES
   async
+  cgi
   minitest
   minitest-focus
   minitest-hooks

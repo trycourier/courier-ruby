@@ -17,6 +17,7 @@ end
 
 group :development, :test do
   gem "async"
+  gem "cgi"
   gem "minitest"
   gem "minitest-focus"
   gem "minitest-hooks"
