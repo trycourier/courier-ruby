@@ -109,6 +109,43 @@ module Courier
       end
 
       # Some parameter documentations has been truncated, see
+      # {Courier::Models::WorkspacePreferenceListLogsParams} for more details.
+      #
+      # Returns the history of preference changes in this environment, newest first.
+      # Each entry records one change a user made to one subscription topic, and carries
+      # the value before it where there was one. Supply user_id to read a single user's
+      # history instead of the whole environment.
+      #
+      # @overload list_logs(cursor: nil, limit: nil, since: nil, tenant_id: nil, user_id: nil, request_options: {})
+      #
+      # @param cursor [String] A cursor from a previous response's paging.cursor. Continue only while paging.mo
+      #
+      # @param limit [Integer] How many entries to return. Defaults to 25.
+      #
+      # @param since [String] Return only changes at or after this time, as an ISO-8601 date or date-time. A d
+      #
+      # @param tenant_id [String] Narrow to the changes this user made in one tenant context. Only valid together
+      #
+      # @param user_id [String] Return only this user's changes. Omit it to read every change in the environment
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::PreferenceLogsListResponse]
+      #
+      # @see Courier::Models::WorkspacePreferenceListLogsParams
+      def list_logs(params = {})
+        parsed, options = Courier::WorkspacePreferenceListLogsParams.dump_request(params)
+        query = Courier::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: "preferences/logs",
+          query: query,
+          model: Courier::PreferenceLogsListResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
       # {Courier::Models::WorkspacePreferencePublishParams} for more details.
       #
       # Publishes the workspace preference page, snapshotting every preference and

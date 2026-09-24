@@ -1,0 +1,46 @@
+# typed: strong
+
+module Courier
+  module Models
+    class PreferenceLogsListResponse < Courier::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(Courier::PreferenceLogsListResponse, Courier::Internal::AnyHash)
+        end
+
+      # One entry per preference change, newest first.
+      sig { returns(T::Array[Courier::PreferenceChangeLogEntry]) }
+      attr_accessor :items
+
+      sig { returns(Courier::Paging) }
+      attr_reader :paging
+
+      sig { params(paging: Courier::Paging::OrHash).void }
+      attr_writer :paging
+
+      sig do
+        params(
+          items: T::Array[Courier::PreferenceChangeLogEntry::OrHash],
+          paging: Courier::Paging::OrHash
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # One entry per preference change, newest first.
+        items:,
+        paging:
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            items: T::Array[Courier::PreferenceChangeLogEntry],
+            paging: Courier::Paging
+          }
+        )
+      end
+      def to_hash
+      end
+    end
+  end
+end

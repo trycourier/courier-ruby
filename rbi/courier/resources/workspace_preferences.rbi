@@ -90,6 +90,39 @@ module Courier
       )
       end
 
+      # Returns the history of preference changes in this environment, newest first.
+      # Each entry records one change a user made to one subscription topic, and carries
+      # the value before it where there was one. Supply user_id to read a single user's
+      # history instead of the whole environment.
+      sig do
+        params(
+          cursor: String,
+          limit: Integer,
+          since: String,
+          tenant_id: String,
+          user_id: String,
+          request_options: Courier::RequestOptions::OrHash
+        ).returns(Courier::PreferenceLogsListResponse)
+      end
+      def list_logs(
+        # A cursor from a previous response's paging.cursor. Continue only while
+        # paging.more is true; the cursor is omitted on the last page.
+        cursor: nil,
+        # How many entries to return. Defaults to 25.
+        limit: nil,
+        # Return only changes at or after this time, as an ISO-8601 date or date-time. A
+        # date alone is read as the start of that day in UTC.
+        since: nil,
+        # Narrow to the changes this user made in one tenant context. Only valid together
+        # with user_id.
+        tenant_id: nil,
+        # Return only this user's changes. Omit it to read every change in the
+        # environment.
+        user_id: nil,
+        request_options: {}
+      )
+      end
+
       # Publishes the workspace preference page, snapshotting every preference and
       # topic, and returns the page id and a preview URL.
       sig do
