@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.11.1](https://github.com/trycourier/courier-ruby/compare/v6.11.0...v6.11.1) (2026-09-24)
+
+
+### Documentation
+
+* **api:** use OpenAPI 3.0 example on the preview schemas ([#167](https://github.com/trycourier/courier-ruby/issues/167)) ([1dc8ecf](https://github.com/trycourier/courier-ruby/commit/1dc8ecf475c40ea3147b52e79204b516795a092d))
+
 ## [6.11.0](https://github.com/trycourier/courier-ruby/compare/v6.10.0...v6.11.0) (2026-09-24)
 
 
