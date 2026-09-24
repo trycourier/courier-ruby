@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.0](https://github.com/trycourier/courier-ruby/compare/v6.9.0...v6.10.0) (2026-09-24)
+
+
+### Features
+
+* **api:** add GET /preferences/logs [C-21018] ([9303520](https://github.com/trycourier/courier-ruby/commit/930352053ab0a9ca9db9b5a06b7da82ce7f6c811))
+
 ## [6.9.0](https://github.com/trycourier/courier-ruby/compare/v6.8.0...v6.9.0) (2026-09-23)
 
 
