@@ -495,6 +495,12 @@ module Courier
 
   Preference = Courier::Models::Preference
 
+  PreferenceChangeLogEntry = Courier::Models::PreferenceChangeLogEntry
+
+  PreferenceChangeLogValue = Courier::Models::PreferenceChangeLogValue
+
+  PreferenceLogsListResponse = Courier::Models::PreferenceLogsListResponse
+
   PreferenceStatus = Courier::Models::PreferenceStatus
 
   ProfileCreateParams = Courier::Models::ProfileCreateParams
@@ -681,6 +687,9 @@ module Courier
 
   WorkspacePreferenceGetResponse =
     Courier::Models::WorkspacePreferenceGetResponse
+
+  WorkspacePreferenceListLogsParams =
+    Courier::Models::WorkspacePreferenceListLogsParams
 
   WorkspacePreferenceListParams = Courier::Models::WorkspacePreferenceListParams
 

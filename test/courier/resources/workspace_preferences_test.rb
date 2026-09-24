@@ -79,6 +79,23 @@ class Courier::Test::Resources::WorkspacePreferencesTest < Courier::Test::Resour
     end
   end
 
+  def test_list_logs
+    skip("Mock server tests are disabled")
+
+    response = @courier.workspace_preferences.list_logs
+
+    assert_pattern do
+      response => Courier::PreferenceLogsListResponse
+    end
+
+    assert_pattern do
+      response => {
+        items: ^(Courier::Internal::Type::ArrayOf[Courier::PreferenceChangeLogEntry]),
+        paging: Courier::Paging
+      }
+    end
+  end
+
   def test_publish
     skip("Mock server tests are disabled")
 

@@ -1,0 +1,25 @@
+module Courier
+  module Models
+    type preference_logs_list_response =
+      {
+        items: ::Array[Courier::PreferenceChangeLogEntry],
+        paging: Courier::Paging
+      }
+
+    class PreferenceLogsListResponse < Courier::Internal::Type::BaseModel
+      attr_accessor items: ::Array[Courier::PreferenceChangeLogEntry]
+
+      attr_accessor paging: Courier::Paging
+
+      def initialize: (
+        items: ::Array[Courier::PreferenceChangeLogEntry],
+        paging: Courier::Paging
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[Courier::PreferenceChangeLogEntry],
+        paging: Courier::Paging
+      }
+    end
+  end
+end
