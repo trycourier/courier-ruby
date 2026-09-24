@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.11.0](https://github.com/trycourier/courier-ruby/compare/v6.10.0...v6.11.0) (2026-09-24)
+
+
+### Features
+
+* **api:** cross-client previews endpoints ([#165](https://github.com/trycourier/courier-ruby/issues/165)) ([0701a83](https://github.com/trycourier/courier-ruby/commit/0701a833e9b5d80ea39c8f701ae2d66b8453c165))
+
 ## [6.10.0](https://github.com/trycourier/courier-ruby/compare/v6.9.0...v6.10.0) (2026-09-24)
 
 
