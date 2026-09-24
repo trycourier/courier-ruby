@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.9.0](https://github.com/trycourier/courier-ruby/compare/v6.8.0...v6.9.0) (2026-09-23)
+
+
+### Features
+
+* **api:** filter notification templates by tag [C-21172] ([#161](https://github.com/trycourier/courier-ruby/issues/161)) ([bfdfbb0](https://github.com/trycourier/courier-ruby/commit/bfdfbb07c95e0db41b3660a0b81789d4c4e779b3))
+
 ## [6.8.0](https://github.com/trycourier/courier-ruby/compare/v6.7.0...v6.8.0) (2026-09-23)
 
 
