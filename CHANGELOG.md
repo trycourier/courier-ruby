@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.11.3](https://github.com/trycourier/courier-ruby/compare/v6.11.2...v6.11.3) (2026-09-30)
+
+
+### Documentation
+
+* **api:** remove the plan gate from the bulk preferences replace errors [C-21256] ([#171](https://github.com/trycourier/courier-ruby/issues/171)) ([f2b3213](https://github.com/trycourier/courier-ruby/commit/f2b3213389e70c2acd6eaa1e0930595740fa9860))
+
 ## [6.11.2](https://github.com/trycourier/courier-ruby/compare/v6.11.1...v6.11.2) (2026-09-24)
 
 
