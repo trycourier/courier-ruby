@@ -23,7 +23,10 @@ module Courier
       required :provider, String
 
       # @!attribute settings
-      #   Provider-specific settings (snake_case keys on the wire).
+      #   Provider-specific settings (snake_case keys on the wire). `rate_limit` is this
+      #   configuration's send rate limit,
+      #   `{ "rate": number, "period": "second" | "minute" | "hour" }`, or null for no
+      #   limit.
       #
       #   @return [Hash{Symbol=>Object}]
       required :settings, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown]
@@ -47,6 +50,9 @@ module Courier
       optional :updated, Integer, nil?: true
 
       # @!method initialize(id:, created:, provider:, settings:, title:, alias_: nil, updated: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {Courier::Models::Provider} for more details.
+      #
       #   A configured provider in the workspace.
       #
       #   @param id [String] A unique identifier for the provider configuration.
@@ -55,7 +61,7 @@ module Courier
       #
       #   @param provider [String] The provider key (e.g. "sendgrid", "twilio", "slack").
       #
-      #   @param settings [Hash{Symbol=>Object}] Provider-specific settings (snake_case keys on the wire).
+      #   @param settings [Hash{Symbol=>Object}] Provider-specific settings (snake_case keys on the wire). `rate_limit` is this c
       #
       #   @param title [String] Display title. Defaults to "Default Configuration" when not explicitly set.
       #

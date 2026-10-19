@@ -18,7 +18,10 @@ module Courier
       sig { returns(String) }
       attr_accessor :provider
 
-      # Provider-specific settings (snake_case keys on the wire).
+      # Provider-specific settings (snake_case keys on the wire). `rate_limit` is this
+      # configuration's send rate limit,
+      # `{ "rate": number, "period": "second" | "minute" | "hour" }`, or null for no
+      # limit.
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :settings
 
@@ -56,7 +59,10 @@ module Courier
         created:,
         # The provider key (e.g. "sendgrid", "twilio", "slack").
         provider:,
-        # Provider-specific settings (snake_case keys on the wire).
+        # Provider-specific settings (snake_case keys on the wire). `rate_limit` is this
+        # configuration's send rate limit,
+        # `{ "rate": number, "period": "second" | "minute" | "hour" }`, or null for no
+        # limit.
         settings:,
         # Display title. Defaults to "Default Configuration" when not explicitly set.
         title:,
