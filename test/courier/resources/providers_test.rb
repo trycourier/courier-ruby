@@ -95,4 +95,26 @@ class Courier::Test::Resources::ProvidersTest < Courier::Test::ResourceTest
       response => nil
     end
   end
+
+  def test_patch
+    skip("Mock server tests are disabled")
+
+    response = @courier.providers.patch("id")
+
+    assert_pattern do
+      response => Courier::Provider
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        created: Integer,
+        provider: String,
+        settings: ^(Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown]),
+        title: String,
+        alias_: String | nil,
+        updated: Integer | nil
+      }
+    end
+  end
 end

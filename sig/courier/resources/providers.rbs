@@ -34,6 +34,15 @@ module Courier
 
       def delete: (String id, ?request_options: Courier::request_opts) -> nil
 
+      def patch: (
+        String id,
+        ?alias_: String?,
+        ?provider: String,
+        ?settings: ::Hash[Symbol, top],
+        ?title: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Provider
+
       def initialize: (client: Courier::Client) -> void
     end
   end

@@ -149,6 +149,41 @@ module Courier
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Courier::Models::ProviderPatchParams} for more details.
+      #
+      # Updates part of a provider's configuration and keeps every field you omit.
+      # Settings merge into the stored settings key by key, and a setting sent as null
+      # is removed.
+      #
+      # @overload patch(id, alias_: nil, provider: nil, settings: nil, title: nil, request_options: {})
+      #
+      # @param id [String] A unique identifier of the provider configuration to update.
+      #
+      # @param alias_ [String, nil] Updated alias. Set to null to clear it.
+      #
+      # @param provider [String] The provider key identifying the type. Optional. When sent, it must match the st
+      #
+      # @param settings [Hash{Symbol=>Object}] Provider-specific settings (snake_case keys) to merge into the stored settings,
+      #
+      # @param title [String] Updated display title.
+      #
+      # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Courier::Models::Provider]
+      #
+      # @see Courier::Models::ProviderPatchParams
+      def patch(id, params = {})
+        parsed, options = Courier::ProviderPatchParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["providers/%1$s", id],
+          body: parsed,
+          model: Courier::Provider,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Courier::Client]
