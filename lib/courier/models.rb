@@ -569,6 +569,8 @@ module Courier
 
   ProviderListParams = Courier::Models::ProviderListParams
 
+  ProviderPatchParams = Courier::Models::ProviderPatchParams
+
   ProviderRetrieveParams = Courier::Models::ProviderRetrieveParams
 
   Providers = Courier::Models::Providers
