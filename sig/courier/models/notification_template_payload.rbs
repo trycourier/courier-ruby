@@ -7,7 +7,8 @@ module Courier
         name: String,
         routing: Courier::NotificationTemplatePayload::Routing?,
         subscription: Courier::NotificationTemplatePayload::Subscription?,
-        tags: ::Array[String]
+        tags: ::Array[String],
+        email: Courier::NotificationTemplateEmail?
       }
 
     class NotificationTemplatePayload < Courier::Internal::Type::BaseModel
@@ -23,13 +24,16 @@ module Courier
 
       attr_accessor tags: ::Array[String]
 
+      attr_accessor email: Courier::NotificationTemplateEmail?
+
       def initialize: (
         brand: Courier::NotificationTemplatePayload::Brand?,
         content: Courier::ElementalContent,
         name: String,
         routing: Courier::NotificationTemplatePayload::Routing?,
         subscription: Courier::NotificationTemplatePayload::Subscription?,
-        tags: ::Array[String]
+        tags: ::Array[String],
+        ?email: Courier::NotificationTemplateEmail?
       ) -> void
 
       def to_hash: -> {
@@ -38,7 +42,8 @@ module Courier
         name: String,
         routing: Courier::NotificationTemplatePayload::Routing?,
         subscription: Courier::NotificationTemplatePayload::Subscription?,
-        tags: ::Array[String]
+        tags: ::Array[String],
+        email: Courier::NotificationTemplateEmail?
       }
 
       type brand = { id: String }

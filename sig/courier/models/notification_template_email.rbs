@@ -1,0 +1,43 @@
+module Courier
+  module Models
+    type notification_template_email =
+      {
+        bcc: ::Array[String],
+        cc: ::Array[String],
+        from: String,
+        reply_to: String
+      }
+
+    class NotificationTemplateEmail < Courier::Internal::Type::BaseModel
+      attr_reader bcc: ::Array[String]?
+
+      def bcc=: (::Array[String]) -> ::Array[String]
+
+      attr_reader cc: ::Array[String]?
+
+      def cc=: (::Array[String]) -> ::Array[String]
+
+      attr_reader from: String?
+
+      def from=: (String) -> String
+
+      attr_reader reply_to: String?
+
+      def reply_to=: (String) -> String
+
+      def initialize: (
+        ?bcc: ::Array[String],
+        ?cc: ::Array[String],
+        ?from: String,
+        ?reply_to: String
+      ) -> void
+
+      def to_hash: -> {
+        bcc: ::Array[String],
+        cc: ::Array[String],
+        from: String,
+        reply_to: String
+      }
+    end
+  end
+end
