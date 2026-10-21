@@ -451,6 +451,8 @@ module Courier
 
   class NotificationTemplateCreateRequest = Courier::Models::NotificationTemplateCreateRequest
 
+  class NotificationTemplateEmail = Courier::Models::NotificationTemplateEmail
+
   class NotificationTemplatePayload = Courier::Models::NotificationTemplatePayload
 
   class NotificationTemplatePublishRequest = Courier::Models::NotificationTemplatePublishRequest

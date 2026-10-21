@@ -65,6 +65,25 @@ module Courier
       sig { returns(T::Array[String]) }
       attr_accessor :tags
 
+      # Email header fields for the template's email channel: the From, Reply-to, CC and
+      # BCC values set in the Studio email channel settings. Each value may use template
+      # variables, such as `{{data.cc}}`, which are resolved at send time. Reads omit
+      # `email` when no header is set, and omit each unset field. Writes treat it as
+      # optional, with three meanings. Omit it to keep the stored headers. Send null to
+      # clear all four. Send an object to replace all four: a field the object leaves
+      # out is cleared. Other email channel settings, such as the subject, are kept
+      # either way. Headers only apply while `content` has an email channel; with no
+      # email channel they are not stored.
+      sig { returns(T.nilable(Courier::NotificationTemplateEmail)) }
+      attr_reader :email
+
+      sig do
+        params(
+          email: T.nilable(Courier::NotificationTemplateEmail::OrHash)
+        ).void
+      end
+      attr_writer :email
+
       # Core template fields used in POST and PUT request bodies (nested under a
       # `notification` key) and returned at the top level in responses.
       sig do
@@ -78,7 +97,8 @@ module Courier
             T.nilable(
               Courier::NotificationTemplatePayload::Subscription::OrHash
             ),
-          tags: T::Array[String]
+          tags: T::Array[String],
+          email: T.nilable(Courier::NotificationTemplateEmail::OrHash)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -93,7 +113,17 @@ module Courier
         # Subscription topic reference, or null for none.
         subscription:,
         # Tags for categorization. Send empty array for none.
-        tags:
+        tags:,
+        # Email header fields for the template's email channel: the From, Reply-to, CC and
+        # BCC values set in the Studio email channel settings. Each value may use template
+        # variables, such as `{{data.cc}}`, which are resolved at send time. Reads omit
+        # `email` when no header is set, and omit each unset field. Writes treat it as
+        # optional, with three meanings. Omit it to keep the stored headers. Send null to
+        # clear all four. Send an object to replace all four: a field the object leaves
+        # out is cleared. Other email channel settings, such as the subject, are kept
+        # either way. Headers only apply while `content` has an email channel; with no
+        # email channel they are not stored.
+        email: nil
       )
       end
 
@@ -106,7 +136,8 @@ module Courier
             routing: T.nilable(Courier::NotificationTemplatePayload::Routing),
             subscription:
               T.nilable(Courier::NotificationTemplatePayload::Subscription),
-            tags: T::Array[String]
+            tags: T::Array[String],
+            email: T.nilable(Courier::NotificationTemplateEmail)
           }
         )
       end
