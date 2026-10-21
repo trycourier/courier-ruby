@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.12.0](https://github.com/trycourier/courier-ruby/compare/v6.11.3...v6.12.0) (2026-10-21)
+
+
+### Features
+
+* **api:** add PATCH /providers/{id} for partial provider updates [C-21790] ([#177](https://github.com/trycourier/courier-ruby/issues/177)) ([caf13e0](https://github.com/trycourier/courier-ruby/commit/caf13e064a109dc25acafab3b780f4410e141292))
+* **api:** expose email From, Reply-to, CC and BCC on notification templates [C-21709] ([#176](https://github.com/trycourier/courier-ruby/issues/176)) ([47e58ba](https://github.com/trycourier/courier-ruby/commit/47e58baa17aa96893a9f78ca59b67954a3644c6b))
+
+
+### Documentation
+
+* **api:** describe the AI node model constraint [C-21614] ([#173](https://github.com/trycourier/courier-ruby/issues/173)) ([bf4895f](https://github.com/trycourier/courier-ruby/commit/bf4895fd98558354eadbd01128e53dc32bc9c2a4))
+* **api:** document provider settings.rate_limit [C-21732] ([#175](https://github.com/trycourier/courier-ruby/issues/175)) ([d7b4ff9](https://github.com/trycourier/courier-ruby/commit/d7b4ff9f3e8d533d3d4e452d8f080cbb5f4b4823))
+
 ## [6.11.3](https://github.com/trycourier/courier-ruby/compare/v6.11.2...v6.11.3) (2026-09-30)
 
 
