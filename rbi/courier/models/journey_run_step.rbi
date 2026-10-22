@@ -12,6 +12,20 @@ module Courier
       sig { returns(String) }
       attr_accessor :action
 
+      # Why the step failed. Set when `status` is `ERROR`, `null` otherwise.
+      sig { returns(T.nilable(Courier::JourneyRunStep::Error)) }
+      attr_reader :error
+
+      sig do
+        params(error: T.nilable(Courier::JourneyRunStep::Error::OrHash)).void
+      end
+      attr_writer :error
+
+      # Why the step was skipped, e.g. `Node conditions not met`. Set when `status` is
+      # `SKIPPED`, `null` otherwise.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :skip_reason
+
       # The state of the step: the seven run statuses, plus `SKIPPED` and `COMPUTING`.
       # Not an enum — new values have been added before.
       sig { returns(String) }
@@ -52,6 +66,8 @@ module Courier
       sig do
         params(
           action: String,
+          error: T.nilable(Courier::JourneyRunStep::Error::OrHash),
+          skip_reason: T.nilable(String),
           status: String,
           created_at: String,
           message_id: String,
@@ -62,6 +78,11 @@ module Courier
       def self.new(
         # The kind of node that ran, e.g. `send`, `delay`, or `exit`.
         action:,
+        # Why the step failed. Set when `status` is `ERROR`, `null` otherwise.
+        error:,
+        # Why the step was skipped, e.g. `Node conditions not met`. Set when `status` is
+        # `SKIPPED`, `null` otherwise.
+        skip_reason:,
         # The state of the step: the seven run statuses, plus `SKIPPED` and `COMPUTING`.
         # Not an enum — new values have been added before.
         status:,
@@ -82,6 +103,8 @@ module Courier
         override.returns(
           {
             action: String,
+            error: T.nilable(Courier::JourneyRunStep::Error),
+            skip_reason: T.nilable(String),
             status: String,
             created_at: String,
             message_id: String,
@@ -91,6 +114,31 @@ module Courier
         )
       end
       def to_hash
+      end
+
+      class Error < Courier::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Courier::JourneyRunStep::Error, Courier::Internal::AnyHash)
+          end
+
+        # The reason, e.g. `Fetch failed: GET api.example.com returned 404` or
+        # `AI step timed out after 15 minutes`.
+        sig { returns(String) }
+        attr_accessor :message
+
+        # Why the step failed. Set when `status` is `ERROR`, `null` otherwise.
+        sig { params(message: String).returns(T.attached_class) }
+        def self.new(
+          # The reason, e.g. `Fetch failed: GET api.example.com returned 404` or
+          # `AI step timed out after 15 minutes`.
+          message:
+        )
+        end
+
+        sig { override.returns({ message: String }) }
+        def to_hash
+        end
       end
     end
   end

@@ -14,7 +14,7 @@ module Courier
       #   `starts with`, `ends with`, `greater than`, `greater than or equal`,
       #   `less than`, `less than or equal`, `was`, `was not`.
       #
-      #   Example: `["user.tier", "is equal", "gold"]`.
+      #   Example: `["profile.tier", "is equal", "gold"]`.
       #
       #   `was` / `was not` compare a `send_status.<nodeId>` path (referencing
       #   an earlier send node's node id) against one of `SENT`, `DELIVERED`,
@@ -29,9 +29,9 @@ module Courier
       # - Unary form (2 elements): `[path, operator]` where `operator` is
       #   one of `exists`, `does not exist`.
       #
-      #   Example: `["user.email", "exists"]`.
+      #   Example: `["profile.email", "exists"]`.
       #
-      # The first element is a non-empty dot-path. The second element is the operator (must come from one of the two operator sets above). For the binary form, the third element is the comparison value (string). Runtime validation of the operator value and arity is performed by the backend; SDKs surface this as a string list.
+      # The first element is a non-empty dot-path that starts with `data.`, `profile.`, `tenant.` (only when the trigger sets a tenant), or `send_status.<nodeId>`. The second element is the operator (must come from one of the two operator sets above). For the binary form, the third element is the comparison value (string). Runtime validation of the operator value and arity is performed by the backend; SDKs surface this as a string list.
       variant -> { Courier::JourneyConditionAtom }
 
       # A leaf condition group. Exactly one of `AND` or `OR` must be present at runtime; each is a list of `JourneyConditionAtom` tuples.
