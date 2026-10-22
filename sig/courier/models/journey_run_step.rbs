@@ -3,6 +3,8 @@ module Courier
     type journey_run_step =
       {
         action: String,
+        error: Courier::JourneyRunStep::Error?,
+        skip_reason: String?,
         status: String,
         created_at: String,
         message_id: String,
@@ -12,6 +14,10 @@ module Courier
 
     class JourneyRunStep < Courier::Internal::Type::BaseModel
       attr_accessor action: String
+
+      attr_accessor error: Courier::JourneyRunStep::Error?
+
+      attr_accessor skip_reason: String?
 
       attr_accessor status: String
 
@@ -33,6 +39,8 @@ module Courier
 
       def initialize: (
         action: String,
+        error: Courier::JourneyRunStep::Error?,
+        skip_reason: String?,
         status: String,
         ?created_at: String,
         ?message_id: String,
@@ -42,12 +50,24 @@ module Courier
 
       def to_hash: -> {
         action: String,
+        error: Courier::JourneyRunStep::Error?,
+        skip_reason: String?,
         status: String,
         created_at: String,
         message_id: String,
         node_id: String,
         updated_at: String
       }
+
+      type error = { message: String }
+
+      class Error < Courier::Internal::Type::BaseModel
+        attr_accessor message: String
+
+        def initialize: (message: String) -> void
+
+        def to_hash: -> { message: String }
+      end
     end
   end
 end
