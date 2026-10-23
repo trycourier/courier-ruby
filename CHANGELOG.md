@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.13.0](https://github.com/trycourier/courier-ruby/compare/v6.12.0...v6.13.0) (2026-10-23)
+
+
+### Features
+
+* **api:** journey run steps return error and skip_reason ([#179](https://github.com/trycourier/courier-ruby/issues/179)) ([d5a8120](https://github.com/trycourier/courier-ruby/commit/d5a8120a93e5524ea27c5c075819a9f6d2a8b9f4))
+
+
+### Chores
+
+* **api:** regenerate SDK ([#181](https://github.com/trycourier/courier-ruby/issues/181)) ([eadaf17](https://github.com/trycourier/courier-ruby/commit/eadaf17a4f75bd8d8825522d213eecb513b3c872))
+
 ## [6.12.0](https://github.com/trycourier/courier-ruby/compare/v6.11.3...v6.12.0) (2026-10-21)
 
 
