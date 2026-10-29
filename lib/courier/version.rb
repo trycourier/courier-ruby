@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Courier
-  VERSION = "6.13.0"
+  VERSION = "7.0.1"
 end
