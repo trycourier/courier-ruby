@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/trycourier/courier-ruby/compare/v7.0.0...v7.0.1) (2026-10-29)
+
+
+### Documentation
+
+* **api:** add gpt-6.1-terra to AI node model ids [C-22053] ([#184](https://github.com/trycourier/courier-ruby/issues/184)) ([c643606](https://github.com/trycourier/courier-ruby/commit/c643606819b6670d5192725a711fe80fb518bb78))
+
 ## [7.0.0](https://github.com/trycourier/courier-ruby/compare/v6.13.0...v7.0.0) (2026-10-29)
 
 
