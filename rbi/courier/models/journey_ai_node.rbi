@@ -52,8 +52,8 @@ module Courier
       # A supported AI model id. Requests with an unknown id may be rejected with a 400
       # that lists the supported ids. Supported ids: `claude-fable-5-1`,
       # `claude-opus-5-5`, `claude-sonnet-5-5`, `claude-haiku-5-5`, `gpt-6-astra`,
-      # `gpt-5.5`, `gpt-5.4`, `gpt-6.1-sol`, `gpt-5.4-mini`, `gpt-5.4-nano`,
-      # `gpt-6-luna`.
+      # `gpt-5.5`, `gpt-5.4`, `gpt-6.1-sol`, `gpt-6.1-terra`, `gpt-5.4-mini`,
+      # `gpt-5.4-nano`, `gpt-6-luna`.
       sig { returns(T.nilable(String)) }
       attr_reader :model
 
@@ -102,8 +102,8 @@ module Courier
         # A supported AI model id. Requests with an unknown id may be rejected with a 400
         # that lists the supported ids. Supported ids: `claude-fable-5-1`,
         # `claude-opus-5-5`, `claude-sonnet-5-5`, `claude-haiku-5-5`, `gpt-6-astra`,
-        # `gpt-5.5`, `gpt-5.4`, `gpt-6.1-sol`, `gpt-5.4-mini`, `gpt-5.4-nano`,
-        # `gpt-6-luna`.
+        # `gpt-5.5`, `gpt-5.4`, `gpt-6.1-sol`, `gpt-6.1-terra`, `gpt-5.4-mini`,
+        # `gpt-5.4-nano`, `gpt-6-luna`.
         model: nil,
         user_prompt: nil,
         web_search: nil
