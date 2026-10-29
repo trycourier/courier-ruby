@@ -1,13 +1,7 @@
 module Courier
   module Models
     type provider_patch_params =
-      {
-        id: String,
-        alias_: String?,
-        provider: String,
-        settings: ::Hash[Symbol, top],
-        title: String
-      }
+      { id: String, patch: ::Array[Courier::ProviderPatchParams::Patch] }
       & Courier::Internal::Type::request_parameters
 
     class ProviderPatchParams < Courier::Internal::Type::BaseModel
@@ -16,37 +10,70 @@ module Courier
 
       attr_accessor id: String
 
-      attr_accessor alias_: String?
-
-      attr_reader provider: String?
-
-      def provider=: (String) -> String
-
-      attr_reader settings: ::Hash[Symbol, top]?
-
-      def settings=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
-
-      attr_reader title: String?
-
-      def title=: (String) -> String
+      attr_accessor patch: ::Array[Courier::ProviderPatchParams::Patch]
 
       def initialize: (
         id: String,
-        ?alias_: String?,
-        ?provider: String,
-        ?settings: ::Hash[Symbol, top],
-        ?title: String,
+        patch: ::Array[Courier::ProviderPatchParams::Patch],
         ?request_options: Courier::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        alias_: String?,
-        provider: String,
-        settings: ::Hash[Symbol, top],
-        title: String,
+        patch: ::Array[Courier::ProviderPatchParams::Patch],
         request_options: Courier::RequestOptions
       }
+
+      type patch =
+        {
+          op: Courier::Models::ProviderPatchParams::Patch::op,
+          path: String,
+          from: String,
+          value: top
+        }
+
+      class Patch < Courier::Internal::Type::BaseModel
+        attr_accessor op: Courier::Models::ProviderPatchParams::Patch::op
+
+        attr_accessor path: String
+
+        attr_reader from: String?
+
+        def from=: (String) -> String
+
+        attr_reader value: top?
+
+        def value=: (top) -> top
+
+        def initialize: (
+          op: Courier::Models::ProviderPatchParams::Patch::op,
+          path: String,
+          ?from: String,
+          ?value: top
+        ) -> void
+
+        def to_hash: -> {
+          op: Courier::Models::ProviderPatchParams::Patch::op,
+          path: String,
+          from: String,
+          value: top
+        }
+
+        type op = :add | :remove | :replace | :move | :copy | :test
+
+        module Op
+          extend Courier::Internal::Type::Enum
+
+          ADD: :add
+          REMOVE: :remove
+          REPLACE: :replace
+          MOVE: :move
+          COPY: :copy
+          TEST: :test
+
+          def self?.values: -> ::Array[Courier::Models::ProviderPatchParams::Patch::op]
+        end
+      end
     end
   end
 end

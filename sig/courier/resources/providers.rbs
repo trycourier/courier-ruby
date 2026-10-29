@@ -36,10 +36,7 @@ module Courier
 
       def patch: (
         String id,
-        ?alias_: String?,
-        ?provider: String,
-        ?settings: ::Hash[Symbol, top],
-        ?title: String,
+        patch: ::Array[Courier::ProviderPatchParams::Patch],
         ?request_options: Courier::request_opts
       ) -> Courier::Provider
 

@@ -145,35 +145,27 @@ module Courier
       )
       end
 
-      # Updates part of a provider's configuration and keeps every field you omit.
-      # Settings merge into the stored settings key by key, and a setting sent as null
-      # is removed.
+      # Applies JSON Patch (RFC 6902) operations to a provider configuration and keeps
+      # every field the operations don't touch. Paths address the provider as it is
+      # returned: /title, /alias and /settings/<key>. The operations apply in order, and
+      # if one fails, nothing is saved.
       sig do
         params(
           id: String,
-          alias_: T.nilable(String),
-          provider: String,
-          settings: T::Hash[Symbol, T.anything],
-          title: String,
+          patch: T::Array[Courier::ProviderPatchParams::Patch::OrHash],
           request_options: Courier::RequestOptions::OrHash
         ).returns(Courier::Provider)
       end
       def patch(
         # A unique identifier of the provider configuration to update.
         id,
-        # Updated alias. Set to null to clear it.
-        alias_: nil,
-        # The provider key identifying the type. Optional. When sent, it must match the
-        # stored provider, otherwise the request returns a 400.
-        provider: nil,
-        # Provider-specific settings (snake_case keys) to merge into the stored settings,
-        # using JSON Merge Patch (RFC 7396). Each key you send replaces the stored value,
-        # a key set to null is removed, nested objects merge recursively, and arrays
-        # replace the stored value. Keys you omit keep their stored values. Set
-        # `rate_limit` to null to remove this configuration's send rate limit.
-        settings: nil,
-        # Updated display title.
-        title: nil,
+        # Operations to apply, in order. Paths address the provider as it is returned:
+        # `/title`, `/alias`, `/provider`, and `/settings/<key>` with the snake_case
+        # setting keys, including nested paths such as `/settings/rate_limit/rate`. If any
+        # operation fails, for example a `test`, nothing is saved and the request returns
+        # a 400. The result can't change `provider`, remove `title`, or add other
+        # top-level fields. Removing `/alias` clears it.
+        patch:,
         request_options: {}
       )
       end
