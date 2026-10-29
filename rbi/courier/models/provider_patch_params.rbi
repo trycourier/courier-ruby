@@ -14,61 +14,31 @@ module Courier
       sig { returns(String) }
       attr_accessor :id
 
-      # Updated alias. Set to null to clear it.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :alias_
-
-      # The provider key identifying the type. Optional. When sent, it must match the
-      # stored provider, otherwise the request returns a 400.
-      sig { returns(T.nilable(String)) }
-      attr_reader :provider
-
-      sig { params(provider: String).void }
-      attr_writer :provider
-
-      # Provider-specific settings (snake_case keys) to merge into the stored settings,
-      # using JSON Merge Patch (RFC 7396). Each key you send replaces the stored value,
-      # a key set to null is removed, nested objects merge recursively, and arrays
-      # replace the stored value. Keys you omit keep their stored values. Set
-      # `rate_limit` to null to remove this configuration's send rate limit.
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-      attr_reader :settings
-
-      sig { params(settings: T::Hash[Symbol, T.anything]).void }
-      attr_writer :settings
-
-      # Updated display title.
-      sig { returns(T.nilable(String)) }
-      attr_reader :title
-
-      sig { params(title: String).void }
-      attr_writer :title
+      # Operations to apply, in order. Paths address the provider as it is returned:
+      # `/title`, `/alias`, `/provider`, and `/settings/<key>` with the snake_case
+      # setting keys, including nested paths such as `/settings/rate_limit/rate`. If any
+      # operation fails, for example a `test`, nothing is saved and the request returns
+      # a 400. The result can't change `provider`, remove `title`, or add other
+      # top-level fields. Removing `/alias` clears it.
+      sig { returns(T::Array[Courier::ProviderPatchParams::Patch]) }
+      attr_accessor :patch
 
       sig do
         params(
           id: String,
-          alias_: T.nilable(String),
-          provider: String,
-          settings: T::Hash[Symbol, T.anything],
-          title: String,
+          patch: T::Array[Courier::ProviderPatchParams::Patch::OrHash],
           request_options: Courier::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         id:,
-        # Updated alias. Set to null to clear it.
-        alias_: nil,
-        # The provider key identifying the type. Optional. When sent, it must match the
-        # stored provider, otherwise the request returns a 400.
-        provider: nil,
-        # Provider-specific settings (snake_case keys) to merge into the stored settings,
-        # using JSON Merge Patch (RFC 7396). Each key you send replaces the stored value,
-        # a key set to null is removed, nested objects merge recursively, and arrays
-        # replace the stored value. Keys you omit keep their stored values. Set
-        # `rate_limit` to null to remove this configuration's send rate limit.
-        settings: nil,
-        # Updated display title.
-        title: nil,
+        # Operations to apply, in order. Paths address the provider as it is returned:
+        # `/title`, `/alias`, `/provider`, and `/settings/<key>` with the snake_case
+        # setting keys, including nested paths such as `/settings/rate_limit/rate`. If any
+        # operation fails, for example a `test`, nothing is saved and the request returns
+        # a 400. The result can't change `provider`, remove `title`, or add other
+        # top-level fields. Removing `/alias` clears it.
+        patch:,
         request_options: {}
       )
       end
@@ -77,15 +47,116 @@ module Courier
         override.returns(
           {
             id: String,
-            alias_: T.nilable(String),
-            provider: String,
-            settings: T::Hash[Symbol, T.anything],
-            title: String,
+            patch: T::Array[Courier::ProviderPatchParams::Patch],
             request_options: Courier::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      class Patch < Courier::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Courier::ProviderPatchParams::Patch,
+              Courier::Internal::AnyHash
+            )
+          end
+
+        # The operation to perform.
+        sig { returns(Courier::ProviderPatchParams::Patch::Op::OrSymbol) }
+        attr_accessor :op
+
+        # JSON Pointer to the field to operate on, such as `/settings/api_key`.
+        sig { returns(String) }
+        attr_accessor :path
+
+        # JSON Pointer to the source field for `move` and `copy`.
+        sig { returns(T.nilable(String)) }
+        attr_reader :from
+
+        sig { params(from: String).void }
+        attr_writer :from
+
+        # The value for `add`, `replace` and `test`. Any JSON value.
+        sig { returns(T.nilable(T.anything)) }
+        attr_reader :value
+
+        sig { params(value: T.anything).void }
+        attr_writer :value
+
+        # One JSON Patch (RFC 6902) operation.
+        sig do
+          params(
+            op: Courier::ProviderPatchParams::Patch::Op::OrSymbol,
+            path: String,
+            from: String,
+            value: T.anything
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The operation to perform.
+          op:,
+          # JSON Pointer to the field to operate on, such as `/settings/api_key`.
+          path:,
+          # JSON Pointer to the source field for `move` and `copy`.
+          from: nil,
+          # The value for `add`, `replace` and `test`. Any JSON value.
+          value: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              op: Courier::ProviderPatchParams::Patch::Op::OrSymbol,
+              path: String,
+              from: String,
+              value: T.anything
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The operation to perform.
+        module Op
+          extend Courier::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Courier::ProviderPatchParams::Patch::Op)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          ADD =
+            T.let(:add, Courier::ProviderPatchParams::Patch::Op::TaggedSymbol)
+          REMOVE =
+            T.let(
+              :remove,
+              Courier::ProviderPatchParams::Patch::Op::TaggedSymbol
+            )
+          REPLACE =
+            T.let(
+              :replace,
+              Courier::ProviderPatchParams::Patch::Op::TaggedSymbol
+            )
+          MOVE =
+            T.let(:move, Courier::ProviderPatchParams::Patch::Op::TaggedSymbol)
+          COPY =
+            T.let(:copy, Courier::ProviderPatchParams::Patch::Op::TaggedSymbol)
+          TEST =
+            T.let(:test, Courier::ProviderPatchParams::Patch::Op::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[Courier::ProviderPatchParams::Patch::Op::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
       end
     end
   end

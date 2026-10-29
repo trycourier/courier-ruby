@@ -96,10 +96,14 @@ class Courier::Test::Resources::ProvidersTest < Courier::Test::ResourceTest
     end
   end
 
-  def test_patch
+  def test_patch_required_params
     skip("Mock server tests are disabled")
 
-    response = @courier.providers.patch("id")
+    response =
+      @courier.providers.patch(
+        "id",
+        patch: [{op: :replace, path: "/title"}, {op: :replace, path: "/settings/api_key"}]
+      )
 
     assert_pattern do
       response => Courier::Provider

@@ -152,28 +152,23 @@ module Courier
       # Some parameter documentations has been truncated, see
       # {Courier::Models::ProviderPatchParams} for more details.
       #
-      # Updates part of a provider's configuration and keeps every field you omit.
-      # Settings merge into the stored settings key by key, and a setting sent as null
-      # is removed.
+      # Applies JSON Patch (RFC 6902) operations to a provider configuration and keeps
+      # every field the operations don't touch. Paths address the provider as it is
+      # returned: /title, /alias and /settings/<key>. The operations apply in order, and
+      # if one fails, nothing is saved.
       #
-      # @overload patch(id, alias_: nil, provider: nil, settings: nil, title: nil, request_options: {})
+      # @overload patch(id, patch:, request_options: {})
       #
       # @param id [String] A unique identifier of the provider configuration to update.
       #
-      # @param alias_ [String, nil] Updated alias. Set to null to clear it.
-      #
-      # @param provider [String] The provider key identifying the type. Optional. When sent, it must match the st
-      #
-      # @param settings [Hash{Symbol=>Object}] Provider-specific settings (snake_case keys) to merge into the stored settings,
-      #
-      # @param title [String] Updated display title.
+      # @param patch [Array<Courier::Models::ProviderPatchParams::Patch>] Operations to apply, in order. Paths address the provider as it is returned: `/t
       #
       # @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Courier::Models::Provider]
       #
       # @see Courier::Models::ProviderPatchParams
-      def patch(id, params = {})
+      def patch(id, params)
         parsed, options = Courier::ProviderPatchParams.dump_request(params)
         @client.request(
           method: :patch,

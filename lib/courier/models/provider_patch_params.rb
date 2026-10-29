@@ -12,50 +12,80 @@ module Courier
       #   @return [String]
       required :id, String
 
-      # @!attribute alias_
-      #   Updated alias. Set to null to clear it.
+      # @!attribute patch
+      #   Operations to apply, in order. Paths address the provider as it is returned:
+      #   `/title`, `/alias`, `/provider`, and `/settings/<key>` with the snake_case
+      #   setting keys, including nested paths such as `/settings/rate_limit/rate`. If any
+      #   operation fails, for example a `test`, nothing is saved and the request returns
+      #   a 400. The result can't change `provider`, remove `title`, or add other
+      #   top-level fields. Removing `/alias` clears it.
       #
-      #   @return [String, nil]
-      optional :alias_, String, api_name: :alias, nil?: true
+      #   @return [Array<Courier::Models::ProviderPatchParams::Patch>]
+      required :patch, -> { Courier::Internal::Type::ArrayOf[Courier::ProviderPatchParams::Patch] }
 
-      # @!attribute provider
-      #   The provider key identifying the type. Optional. When sent, it must match the
-      #   stored provider, otherwise the request returns a 400.
-      #
-      #   @return [String, nil]
-      optional :provider, String
-
-      # @!attribute settings
-      #   Provider-specific settings (snake_case keys) to merge into the stored settings,
-      #   using JSON Merge Patch (RFC 7396). Each key you send replaces the stored value,
-      #   a key set to null is removed, nested objects merge recursively, and arrays
-      #   replace the stored value. Keys you omit keep their stored values. Set
-      #   `rate_limit` to null to remove this configuration's send rate limit.
-      #
-      #   @return [Hash{Symbol=>Object}, nil]
-      optional :settings, Courier::Internal::Type::HashOf[Courier::Internal::Type::Unknown]
-
-      # @!attribute title
-      #   Updated display title.
-      #
-      #   @return [String, nil]
-      optional :title, String
-
-      # @!method initialize(id:, alias_: nil, provider: nil, settings: nil, title: nil, request_options: {})
+      # @!method initialize(id:, patch:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Courier::Models::ProviderPatchParams} for more details.
       #
       #   @param id [String]
       #
-      #   @param alias_ [String, nil] Updated alias. Set to null to clear it.
-      #
-      #   @param provider [String] The provider key identifying the type. Optional. When sent, it must match the st
-      #
-      #   @param settings [Hash{Symbol=>Object}] Provider-specific settings (snake_case keys) to merge into the stored settings,
-      #
-      #   @param title [String] Updated display title.
+      #   @param patch [Array<Courier::Models::ProviderPatchParams::Patch>] Operations to apply, in order. Paths address the provider as it is returned: `/t
       #
       #   @param request_options [Courier::RequestOptions, Hash{Symbol=>Object}]
+
+      class Patch < Courier::Internal::Type::BaseModel
+        # @!attribute op
+        #   The operation to perform.
+        #
+        #   @return [Symbol, Courier::Models::ProviderPatchParams::Patch::Op]
+        required :op, enum: -> { Courier::ProviderPatchParams::Patch::Op }
+
+        # @!attribute path
+        #   JSON Pointer to the field to operate on, such as `/settings/api_key`.
+        #
+        #   @return [String]
+        required :path, String
+
+        # @!attribute from
+        #   JSON Pointer to the source field for `move` and `copy`.
+        #
+        #   @return [String, nil]
+        optional :from, String
+
+        # @!attribute value
+        #   The value for `add`, `replace` and `test`. Any JSON value.
+        #
+        #   @return [Object, nil]
+        optional :value, Courier::Internal::Type::Unknown
+
+        # @!method initialize(op:, path:, from: nil, value: nil)
+        #   One JSON Patch (RFC 6902) operation.
+        #
+        #   @param op [Symbol, Courier::Models::ProviderPatchParams::Patch::Op] The operation to perform.
+        #
+        #   @param path [String] JSON Pointer to the field to operate on, such as `/settings/api_key`.
+        #
+        #   @param from [String] JSON Pointer to the source field for `move` and `copy`.
+        #
+        #   @param value [Object] The value for `add`, `replace` and `test`. Any JSON value.
+
+        # The operation to perform.
+        #
+        # @see Courier::Models::ProviderPatchParams::Patch#op
+        module Op
+          extend Courier::Internal::Type::Enum
+
+          ADD = :add
+          REMOVE = :remove
+          REPLACE = :replace
+          MOVE = :move
+          COPY = :copy
+          TEST = :test
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
     end
   end
 end
