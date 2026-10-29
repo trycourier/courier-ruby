@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/trycourier/courier-ruby/compare/v6.13.0...v7.0.0) (2026-10-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** PATCH /providers/{id} takes JSON Patch operations [C-22022] ([#182](https://github.com/trycourier/courier-ruby/issues/182))
+
+### Features
+
+* **api:** PATCH /providers/{id} takes JSON Patch operations [C-22022] ([#182](https://github.com/trycourier/courier-ruby/issues/182)) ([1f14f3f](https://github.com/trycourier/courier-ruby/commit/1f14f3f8011a1a237fdd067a77e64f0499530685))
+
 ## [6.13.0](https://github.com/trycourier/courier-ruby/compare/v6.12.0...v6.13.0) (2026-10-23)
 
 
