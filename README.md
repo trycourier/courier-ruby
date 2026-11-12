@@ -30,7 +30,7 @@ response = courier.send_.message(
   message: {to: {user_id: "your_user_id"}, template: "your_template_id", data: {foo: "bar"}}
 )
 
-puts(response.requestId)
+puts(response.request_id)
 ```
 
 The client reads `COURIER_API_KEY` from your environment automatically.
