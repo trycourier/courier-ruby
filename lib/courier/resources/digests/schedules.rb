@@ -14,7 +14,7 @@ module Courier
         #
         # @overload list_instances(schedule_id, cursor: nil, limit: nil, request_options: {})
         #
-        # @param schedule_id [String] The ID of the digest schedule, in the form `sch/{uuid}`. The value must be URL-e
+        # @param schedule_id [String] The ID of the digest schedule. Newer schedules are `sch_01m26xfcn3endt3nxy4e2kx2
         #
         # @param cursor [String] A cursor token from a previous response, used to fetch the next page of results.
         #
