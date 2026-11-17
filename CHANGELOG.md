@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.0.1](https://github.com/trycourier/courier-ruby/compare/v7.0.0...v7.0.1) (2026-11-17)
+
+
+### Chores
+
+* **api:** regenerate SDK ([#189](https://github.com/trycourier/courier-ruby/issues/189)) ([7302382](https://github.com/trycourier/courier-ruby/commit/730238238d3841c45c6baaa37cc8f9a99b510099))
+
+
+### Documentation
+
+* **api:** add gpt-6.1-terra to AI node model ids [C-22053] ([#184](https://github.com/trycourier/courier-ruby/issues/184)) ([c643606](https://github.com/trycourier/courier-ruby/commit/c643606819b6670d5192725a711fe80fb518bb78))
+* **api:** list both digest schedule id formats on the instances endpoint ([#190](https://github.com/trycourier/courier-ruby/issues/190)) ([0cae27b](https://github.com/trycourier/courier-ruby/commit/0cae27b3ff4e92ff070a13659323d223a58fe457))
+* **api:** list Claude Fable 5.2 as a JourneyAINode model [C-22567] ([#191](https://github.com/trycourier/courier-ruby/issues/191)) ([3ea9437](https://github.com/trycourier/courier-ruby/commit/3ea94373924e027544f4d15d073ed1510d63f576))
+
 ## [7.0.0](https://github.com/trycourier/courier-ruby/compare/v6.13.0...v7.0.0) (2026-10-29)
 
 
