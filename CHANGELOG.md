@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.1.0](https://github.com/trycourier/courier-ruby/compare/v7.0.1...v7.1.0) (2026-11-19)
+
+
+### Features
+
+* **api:** add POST /feedback for agent and tool feedback [C-22903] ([#194](https://github.com/trycourier/courier-ruby/issues/194)) ([9262636](https://github.com/trycourier/courier-ruby/commit/9262636826acf67891ca9dd20e827fcbced766a2))
+
+
+### Documentation
+
+* **api:** list GPT-6.2 Astra and Sol as JourneyAINode models [C-22881] ([#192](https://github.com/trycourier/courier-ruby/issues/192)) ([5c82073](https://github.com/trycourier/courier-ruby/commit/5c8207336c576955e1cbafddb6b827aeb7b96fe7))
+
 ## [7.0.1](https://github.com/trycourier/courier-ruby/compare/v7.0.0...v7.0.1) (2026-11-17)
 
 
