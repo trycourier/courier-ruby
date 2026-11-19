@@ -1,0 +1,105 @@
+module Courier
+  module Models
+    type feedback_create_params =
+      {
+        category: Courier::Models::FeedbackCreateParams::category,
+        description: String,
+        surface: Courier::Models::FeedbackCreateParams::surface,
+        title: String,
+        expected_behavior: String,
+        harness: String,
+        location: String,
+        model: String,
+        request_id: String
+      }
+      & Courier::Internal::Type::request_parameters
+
+    class FeedbackCreateParams < Courier::Internal::Type::BaseModel
+      extend Courier::Internal::Type::RequestParameters::Converter
+      include Courier::Internal::Type::RequestParameters
+
+      attr_accessor category: Courier::Models::FeedbackCreateParams::category
+
+      attr_accessor description: String
+
+      attr_accessor surface: Courier::Models::FeedbackCreateParams::surface
+
+      attr_accessor title: String
+
+      attr_reader expected_behavior: String?
+
+      def expected_behavior=: (String) -> String
+
+      attr_reader harness: String?
+
+      def harness=: (String) -> String
+
+      attr_reader location: String?
+
+      def location=: (String) -> String
+
+      attr_reader model: String?
+
+      def model=: (String) -> String
+
+      attr_reader request_id: String?
+
+      def request_id=: (String) -> String
+
+      def initialize: (
+        category: Courier::Models::FeedbackCreateParams::category,
+        description: String,
+        surface: Courier::Models::FeedbackCreateParams::surface,
+        title: String,
+        ?expected_behavior: String,
+        ?harness: String,
+        ?location: String,
+        ?model: String,
+        ?request_id: String,
+        ?request_options: Courier::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        category: Courier::Models::FeedbackCreateParams::category,
+        description: String,
+        surface: Courier::Models::FeedbackCreateParams::surface,
+        title: String,
+        expected_behavior: String,
+        harness: String,
+        location: String,
+        model: String,
+        request_id: String,
+        request_options: Courier::RequestOptions
+      }
+
+      type category =
+        :possible_bug | :confusing_behavior | :feature_request | :other
+
+      module Category
+        extend Courier::Internal::Type::Enum
+
+        POSSIBLE_BUG: :possible_bug
+        CONFUSING_BEHAVIOR: :confusing_behavior
+        FEATURE_REQUEST: :feature_request
+        OTHER: :other
+
+        def self?.values: -> ::Array[Courier::Models::FeedbackCreateParams::category]
+      end
+
+      type surface = :api | :sdk | :mcp | :ui | :docs | :other
+
+      module Surface
+        extend Courier::Internal::Type::Enum
+
+        API: :api
+        SDK: :sdk
+        MCP: :mcp
+        UI: :ui
+        DOCS: :docs
+        OTHER: :other
+
+        def self?.values: -> ::Array[Courier::Models::FeedbackCreateParams::surface]
+      end
+    end
+  end
+end

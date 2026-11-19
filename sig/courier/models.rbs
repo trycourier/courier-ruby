@@ -217,6 +217,8 @@ module Courier
 
   module Expo = Courier::Models::Expo
 
+  class FeedbackCreateParams = Courier::Models::FeedbackCreateParams
+
   class FilterConfig = Courier::Models::FilterConfig
 
   class Icons = Courier::Models::Icons

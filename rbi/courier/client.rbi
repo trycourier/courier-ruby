@@ -69,6 +69,11 @@ module Courier
     sig { returns(Courier::Resources::Digests) }
     attr_reader :digests
 
+    # Report suspected bugs, confusing behavior and missing features in Courier, from
+    # an AI agent, a developer tool or by hand.
+    sig { returns(Courier::Resources::Feedback) }
+    attr_reader :feedback
+
     # Record an inbound event that triggers the journeys and automations mapped to it.
     sig { returns(Courier::Resources::Inbound) }
     attr_reader :inbound
