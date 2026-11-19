@@ -222,6 +222,8 @@ module Courier
 
   Expo = Courier::Models::Expo
 
+  FeedbackCreateParams = Courier::Models::FeedbackCreateParams
+
   FilterConfig = Courier::Models::FilterConfig
 
   Icons = Courier::Models::Icons

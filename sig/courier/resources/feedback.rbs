@@ -1,0 +1,20 @@
+module Courier
+  module Resources
+    class Feedback
+      def create: (
+        category: Courier::Models::FeedbackCreateParams::category,
+        description: String,
+        surface: Courier::Models::FeedbackCreateParams::surface,
+        title: String,
+        ?expected_behavior: String,
+        ?harness: String,
+        ?location: String,
+        ?model: String,
+        ?request_id: String,
+        ?request_options: Courier::request_opts
+      ) -> Courier::Models::FeedbackCreateResponse
+
+      def initialize: (client: Courier::Client) -> void
+    end
+  end
+end

@@ -74,6 +74,11 @@ module Courier
     # @return [Courier::Resources::Digests]
     attr_reader :digests
 
+    # Report suspected bugs, confusing behavior and missing features in Courier, from
+    # an AI agent, a developer tool or by hand.
+    # @return [Courier::Resources::Feedback]
+    attr_reader :feedback
+
     # Record an inbound event that triggers the journeys and automations mapped to it.
     # @return [Courier::Resources::Inbound]
     attr_reader :inbound
@@ -199,6 +204,7 @@ module Courier
       @bulk = Courier::Resources::Bulk.new(client: self)
       @brands = Courier::Resources::Brands.new(client: self)
       @digests = Courier::Resources::Digests.new(client: self)
+      @feedback = Courier::Resources::Feedback.new(client: self)
       @inbound = Courier::Resources::Inbound.new(client: self)
       @lists = Courier::Resources::Lists.new(client: self)
       @messages = Courier::Resources::Messages.new(client: self)

@@ -34,6 +34,8 @@ module Courier
 
     attr_reader digests: Courier::Resources::Digests
 
+    attr_reader feedback: Courier::Resources::Feedback
+
     attr_reader inbound: Courier::Resources::Inbound
 
     attr_reader lists: Courier::Resources::Lists
