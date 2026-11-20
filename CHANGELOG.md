@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.1](https://github.com/trycourier/courier-ruby/compare/v7.1.0...v7.1.1) (2026-11-20)
+
+
+### Chores
+
+* add context7.json to claim the Context7 library ([#195](https://github.com/trycourier/courier-ruby/issues/195)) ([7e29524](https://github.com/trycourier/courier-ruby/commit/7e29524170d3f7ddc7bbe588e77d5ff0f4a1c0c4))
+
 ## [7.1.0](https://github.com/trycourier/courier-ruby/compare/v7.0.1...v7.1.0) (2026-11-19)
 
 
