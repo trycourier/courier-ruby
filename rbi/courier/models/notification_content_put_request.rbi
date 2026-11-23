@@ -82,6 +82,28 @@ module Courier
         end
         attr_accessor :elements
 
+        # How template variables read the data sent with the message. Under `strict`, data
+        # fields are read only through the `data.` prefix, as in `{{data.name}}`. Under
+        # `default`, `data` is spread onto the root, so `{{name}}` resolves and
+        # `{{data.name}}` renders as an empty string. This request replaces the stored
+        # content, so omitting `scope` resets it to `default`.
+        sig do
+          returns(
+            T.nilable(
+              Courier::NotificationContentPutRequest::Content::Scope::OrSymbol
+            )
+          )
+        end
+        attr_reader :scope
+
+        sig do
+          params(
+            scope:
+              Courier::NotificationContentPutRequest::Content::Scope::OrSymbol
+          ).void
+        end
+        attr_writer :scope
+
         # Content version identifier (e.g., `2022-01-01`). Optional; server defaults when
         # omitted.
         sig { returns(T.nilable(String)) }
@@ -106,11 +128,19 @@ module Courier
                   Courier::ElementalHTMLNodeWithType::OrHash
                 )
               ],
+            scope:
+              Courier::NotificationContentPutRequest::Content::Scope::OrSymbol,
             version: String
           ).returns(T.attached_class)
         end
         def self.new(
           elements:,
+          # How template variables read the data sent with the message. Under `strict`, data
+          # fields are read only through the `data.` prefix, as in `{{data.name}}`. Under
+          # `default`, `data` is spread onto the root, so `{{name}}` resolves and
+          # `{{data.name}}` renders as an empty string. This request replaces the stored
+          # content, so omitting `scope` resets it to `default`.
+          scope: nil,
           # Content version identifier (e.g., `2022-01-01`). Optional; server defaults when
           # omitted.
           version: nil
@@ -133,11 +163,52 @@ module Courier
                     Courier::ElementalHTMLNodeWithType
                   )
                 ],
+              scope:
+                Courier::NotificationContentPutRequest::Content::Scope::OrSymbol,
               version: String
             }
           )
         end
         def to_hash
+        end
+
+        # How template variables read the data sent with the message. Under `strict`, data
+        # fields are read only through the `data.` prefix, as in `{{data.name}}`. Under
+        # `default`, `data` is spread onto the root, so `{{name}}` resolves and
+        # `{{data.name}}` renders as an empty string. This request replaces the stored
+        # content, so omitting `scope` resets it to `default`.
+        module Scope
+          extend Courier::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Courier::NotificationContentPutRequest::Content::Scope
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          DEFAULT =
+            T.let(
+              :default,
+              Courier::NotificationContentPutRequest::Content::Scope::TaggedSymbol
+            )
+          STRICT =
+            T.let(
+              :strict,
+              Courier::NotificationContentPutRequest::Content::Scope::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Courier::NotificationContentPutRequest::Content::Scope::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

@@ -1,22 +1,45 @@
 module Courier
   module Models
     type elemental_content =
-      { elements: ::Array[Courier::Models::elemental_node], version: String }
+      {
+        elements: ::Array[Courier::Models::elemental_node],
+        version: String,
+        scope: Courier::Models::ElementalContent::scope
+      }
 
     class ElementalContent < Courier::Internal::Type::BaseModel
       attr_accessor elements: ::Array[Courier::Models::elemental_node]
 
       attr_accessor version: String
 
+      attr_reader scope: Courier::Models::ElementalContent::scope?
+
+      def scope=: (
+        Courier::Models::ElementalContent::scope
+      ) -> Courier::Models::ElementalContent::scope
+
       def initialize: (
         elements: ::Array[Courier::Models::elemental_node],
-        version: String
+        version: String,
+        ?scope: Courier::Models::ElementalContent::scope
       ) -> void
 
       def to_hash: -> {
         elements: ::Array[Courier::Models::elemental_node],
-        version: String
+        version: String,
+        scope: Courier::Models::ElementalContent::scope
       }
+
+      type scope = :default | :strict
+
+      module Scope
+        extend Courier::Internal::Type::Enum
+
+        DEFAULT: :default
+        STRICT: :strict
+
+        def self?.values: -> ::Array[Courier::Models::ElementalContent::scope]
+      end
     end
   end
 end
