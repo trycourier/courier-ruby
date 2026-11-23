@@ -26,10 +26,20 @@ module Courier
       }
 
       type content =
-        { elements: ::Array[Courier::Models::elemental_node], version: String }
+        {
+          elements: ::Array[Courier::Models::elemental_node],
+          scope: Courier::Models::NotificationContentPutRequest::Content::scope,
+          version: String
+        }
 
       class Content < Courier::Internal::Type::BaseModel
         attr_accessor elements: ::Array[Courier::Models::elemental_node]
+
+        attr_reader scope: Courier::Models::NotificationContentPutRequest::Content::scope?
+
+        def scope=: (
+          Courier::Models::NotificationContentPutRequest::Content::scope
+        ) -> Courier::Models::NotificationContentPutRequest::Content::scope
 
         attr_reader version: String?
 
@@ -37,13 +47,26 @@ module Courier
 
         def initialize: (
           elements: ::Array[Courier::Models::elemental_node],
+          ?scope: Courier::Models::NotificationContentPutRequest::Content::scope,
           ?version: String
         ) -> void
 
         def to_hash: -> {
           elements: ::Array[Courier::Models::elemental_node],
+          scope: Courier::Models::NotificationContentPutRequest::Content::scope,
           version: String
         }
+
+        type scope = :default | :strict
+
+        module Scope
+          extend Courier::Internal::Type::Enum
+
+          DEFAULT: :default
+          STRICT: :strict
+
+          def self?.values: -> ::Array[Courier::Models::NotificationContentPutRequest::Content::scope]
+        end
       end
     end
   end
