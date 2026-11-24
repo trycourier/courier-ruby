@@ -96,32 +96,15 @@ module Courier
         #   @return [Symbol, Courier::Models::JourneyTemplateGetResponse::Content::Version]
         required :version, enum: -> { Courier::JourneyTemplateGetResponse::Content::Version }
 
-        # @!attribute scope
-        #
-        #   @return [Symbol, Courier::Models::JourneyTemplateGetResponse::Content::Scope, nil]
-        optional :scope, enum: -> { Courier::JourneyTemplateGetResponse::Content::Scope }
-
-        # @!method initialize(elements:, version:, scope: nil)
+        # @!method initialize(elements:, version:)
         #   @param elements [Array<Courier::Models::ElementalTextNodeWithType, Courier::Models::ElementalMetaNodeWithType, Courier::Models::ElementalChannelNodeWithType, Courier::Models::ElementalImageNodeWithType, Courier::Models::ElementalActionNodeWithType, Courier::Models::ElementalDividerNodeWithType, Courier::Models::ElementalQuoteNodeWithType, Courier::Models::ElementalHTMLNodeWithType>]
         #   @param version [Symbol, Courier::Models::JourneyTemplateGetResponse::Content::Version]
-        #   @param scope [Symbol, Courier::Models::JourneyTemplateGetResponse::Content::Scope]
 
         # @see Courier::Models::JourneyTemplateGetResponse::Content#version
         module Version
           extend Courier::Internal::Type::Enum
 
           VERSION_2022_01_01 = :"2022-01-01"
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # @see Courier::Models::JourneyTemplateGetResponse::Content#scope
-        module Scope
-          extend Courier::Internal::Type::Enum
-
-          DEFAULT = :default
-          STRICT = :strict
 
           # @!method self.values
           #   @return [Array<Symbol>]

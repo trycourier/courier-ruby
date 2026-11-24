@@ -90,32 +90,15 @@ module Courier
           #   @return [Symbol, Courier::Models::JourneyTemplateCreateRequest::Notification::Content::Version]
           required :version, enum: -> { Courier::JourneyTemplateCreateRequest::Notification::Content::Version }
 
-          # @!attribute scope
-          #
-          #   @return [Symbol, Courier::Models::JourneyTemplateCreateRequest::Notification::Content::Scope, nil]
-          optional :scope, enum: -> { Courier::JourneyTemplateCreateRequest::Notification::Content::Scope }
-
-          # @!method initialize(elements:, version:, scope: nil)
+          # @!method initialize(elements:, version:)
           #   @param elements [Array<Courier::Models::ElementalTextNodeWithType, Courier::Models::ElementalMetaNodeWithType, Courier::Models::ElementalChannelNodeWithType, Courier::Models::ElementalImageNodeWithType, Courier::Models::ElementalActionNodeWithType, Courier::Models::ElementalDividerNodeWithType, Courier::Models::ElementalQuoteNodeWithType, Courier::Models::ElementalHTMLNodeWithType>]
           #   @param version [Symbol, Courier::Models::JourneyTemplateCreateRequest::Notification::Content::Version]
-          #   @param scope [Symbol, Courier::Models::JourneyTemplateCreateRequest::Notification::Content::Scope]
 
           # @see Courier::Models::JourneyTemplateCreateRequest::Notification::Content#version
           module Version
             extend Courier::Internal::Type::Enum
 
             VERSION_2022_01_01 = :"2022-01-01"
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # @see Courier::Models::JourneyTemplateCreateRequest::Notification::Content#scope
-          module Scope
-            extend Courier::Internal::Type::Enum
-
-            DEFAULT = :default
-            STRICT = :strict
 
             # @!method self.values
             #   @return [Array<Symbol>]

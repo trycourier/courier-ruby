@@ -12,8 +12,8 @@ module Courier
       # @!attribute content
       #   Elemental content definition.
       #
-      #   @return [Courier::Models::ElementalContent]
-      required :content, -> { Courier::ElementalContent }
+      #   @return [Courier::Models::NotificationTemplateContent]
+      required :content, -> { Courier::NotificationTemplateContent }
 
       # @!attribute name
       #   Display name for the template.
@@ -62,7 +62,7 @@ module Courier
       #
       #   @param brand [Courier::Models::NotificationTemplatePayload::Brand, nil] Brand reference, or null for no brand.
       #
-      #   @param content [Courier::Models::ElementalContent] Elemental content definition.
+      #   @param content [Courier::Models::NotificationTemplateContent] Elemental content definition.
       #
       #   @param name [String] Display name for the template.
       #

@@ -72,8 +72,7 @@ module Courier
         type content =
           {
             elements: ::Array[Courier::Models::elemental_node],
-            version: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::version,
-            scope: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::scope
+            version: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::version
           }
 
         class Content < Courier::Internal::Type::BaseModel
@@ -81,22 +80,14 @@ module Courier
 
           attr_accessor version: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::version
 
-          attr_reader scope: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::scope?
-
-          def scope=: (
-            Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::scope
-          ) -> Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::scope
-
           def initialize: (
             elements: ::Array[Courier::Models::elemental_node],
-            version: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::version,
-            ?scope: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::scope
+            version: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::version
           ) -> void
 
           def to_hash: -> {
             elements: ::Array[Courier::Models::elemental_node],
-            version: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::version,
-            scope: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::scope
+            version: Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::version
           }
 
           type version = :"2022-01-01"
@@ -107,17 +98,6 @@ module Courier
             VERSION_2022_01_01: :"2022-01-01"
 
             def self?.values: -> ::Array[Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::version]
-          end
-
-          type scope = :default | :strict
-
-          module Scope
-            extend Courier::Internal::Type::Enum
-
-            DEFAULT: :default
-            STRICT: :strict
-
-            def self?.values: -> ::Array[Courier::Models::JourneyTemplateReplaceRequest::Notification::Content::scope]
           end
         end
 

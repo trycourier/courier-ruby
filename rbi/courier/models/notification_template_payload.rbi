@@ -23,10 +23,10 @@ module Courier
       attr_writer :brand
 
       # Elemental content definition.
-      sig { returns(Courier::ElementalContent) }
+      sig { returns(Courier::NotificationTemplateContent) }
       attr_reader :content
 
-      sig { params(content: Courier::ElementalContent::OrHash).void }
+      sig { params(content: Courier::NotificationTemplateContent::OrHash).void }
       attr_writer :content
 
       # Display name for the template.
@@ -89,7 +89,7 @@ module Courier
       sig do
         params(
           brand: T.nilable(Courier::NotificationTemplatePayload::Brand::OrHash),
-          content: Courier::ElementalContent::OrHash,
+          content: Courier::NotificationTemplateContent::OrHash,
           name: String,
           routing:
             T.nilable(Courier::NotificationTemplatePayload::Routing::OrHash),
@@ -131,7 +131,7 @@ module Courier
         override.returns(
           {
             brand: T.nilable(Courier::NotificationTemplatePayload::Brand),
-            content: Courier::ElementalContent,
+            content: Courier::NotificationTemplateContent,
             name: String,
             routing: T.nilable(Courier::NotificationTemplatePayload::Routing),
             subscription:
