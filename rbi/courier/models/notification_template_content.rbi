@@ -1,0 +1,88 @@
+# typed: strong
+
+module Courier
+  module Models
+    class NotificationTemplateContent < Courier::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(
+            Courier::NotificationTemplateContent,
+            Courier::Internal::AnyHash
+          )
+        end
+
+      sig do
+        returns(
+          T::Array[
+            T.any(
+              Courier::ElementalTextNodeWithType,
+              Courier::ElementalMetaNodeWithType,
+              Courier::ElementalChannelNodeWithType,
+              Courier::ElementalImageNodeWithType,
+              Courier::ElementalActionNodeWithType,
+              Courier::ElementalDividerNodeWithType,
+              Courier::ElementalQuoteNodeWithType,
+              Courier::ElementalHTMLNodeWithType
+            )
+          ]
+        )
+      end
+      attr_accessor :elements
+
+      # For example, "2022-01-01"
+      sig { returns(String) }
+      attr_accessor :version
+
+      # Elemental content of a notification template. Template variables read the data
+      # sent with the message through the `data.` prefix, as in `{{data.name}}`, and the
+      # recipient's profile through `profile.`.
+      sig do
+        params(
+          elements:
+            T::Array[
+              T.any(
+                Courier::ElementalTextNodeWithType::OrHash,
+                Courier::ElementalMetaNodeWithType::OrHash,
+                Courier::ElementalChannelNodeWithType::OrHash,
+                Courier::ElementalImageNodeWithType::OrHash,
+                Courier::ElementalActionNodeWithType::OrHash,
+                Courier::ElementalDividerNodeWithType::OrHash,
+                Courier::ElementalQuoteNodeWithType::OrHash,
+                Courier::ElementalHTMLNodeWithType::OrHash
+              )
+            ],
+          version: String
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        elements:,
+        # For example, "2022-01-01"
+        version:
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            elements:
+              T::Array[
+                T.any(
+                  Courier::ElementalTextNodeWithType,
+                  Courier::ElementalMetaNodeWithType,
+                  Courier::ElementalChannelNodeWithType,
+                  Courier::ElementalImageNodeWithType,
+                  Courier::ElementalActionNodeWithType,
+                  Courier::ElementalDividerNodeWithType,
+                  Courier::ElementalQuoteNodeWithType,
+                  Courier::ElementalHTMLNodeWithType
+                )
+              ],
+            version: String
+          }
+        )
+      end
+      def to_hash
+      end
+    end
+  end
+end

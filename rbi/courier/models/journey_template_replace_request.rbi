@@ -212,23 +212,6 @@ module Courier
           attr_accessor :version
 
           sig do
-            returns(
-              T.nilable(
-                Courier::JourneyTemplateReplaceRequest::Notification::Content::Scope::OrSymbol
-              )
-            )
-          end
-          attr_reader :scope
-
-          sig do
-            params(
-              scope:
-                Courier::JourneyTemplateReplaceRequest::Notification::Content::Scope::OrSymbol
-            ).void
-          end
-          attr_writer :scope
-
-          sig do
             params(
               elements:
                 T::Array[
@@ -244,12 +227,10 @@ module Courier
                   )
                 ],
               version:
-                Courier::JourneyTemplateReplaceRequest::Notification::Content::Version::OrSymbol,
-              scope:
-                Courier::JourneyTemplateReplaceRequest::Notification::Content::Scope::OrSymbol
+                Courier::JourneyTemplateReplaceRequest::Notification::Content::Version::OrSymbol
             ).returns(T.attached_class)
           end
-          def self.new(elements:, version:, scope: nil)
+          def self.new(elements:, version:)
           end
 
           sig do
@@ -269,9 +250,7 @@ module Courier
                     )
                   ],
                 version:
-                  Courier::JourneyTemplateReplaceRequest::Notification::Content::Version::OrSymbol,
-                scope:
-                  Courier::JourneyTemplateReplaceRequest::Notification::Content::Scope::OrSymbol
+                  Courier::JourneyTemplateReplaceRequest::Notification::Content::Version::OrSymbol
               }
             )
           end
@@ -300,40 +279,6 @@ module Courier
               override.returns(
                 T::Array[
                   Courier::JourneyTemplateReplaceRequest::Notification::Content::Version::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-
-          module Scope
-            extend Courier::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Courier::JourneyTemplateReplaceRequest::Notification::Content::Scope
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            DEFAULT =
-              T.let(
-                :default,
-                Courier::JourneyTemplateReplaceRequest::Notification::Content::Scope::TaggedSymbol
-              )
-            STRICT =
-              T.let(
-                :strict,
-                Courier::JourneyTemplateReplaceRequest::Notification::Content::Scope::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Courier::JourneyTemplateReplaceRequest::Notification::Content::Scope::TaggedSymbol
                 ]
               )
             end

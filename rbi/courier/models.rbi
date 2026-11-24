@@ -466,6 +466,8 @@ module Courier
 
   NotificationTemplateAlias = Courier::Models::NotificationTemplateAlias
 
+  NotificationTemplateContent = Courier::Models::NotificationTemplateContent
+
   NotificationTemplateCreateRequest =
     Courier::Models::NotificationTemplateCreateRequest
 

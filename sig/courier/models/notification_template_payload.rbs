@@ -3,7 +3,7 @@ module Courier
     type notification_template_payload =
       {
         brand: Courier::NotificationTemplatePayload::Brand?,
-        content: Courier::ElementalContent,
+        content: Courier::NotificationTemplateContent,
         name: String,
         routing: Courier::NotificationTemplatePayload::Routing?,
         subscription: Courier::NotificationTemplatePayload::Subscription?,
@@ -14,7 +14,7 @@ module Courier
     class NotificationTemplatePayload < Courier::Internal::Type::BaseModel
       attr_accessor brand: Courier::NotificationTemplatePayload::Brand?
 
-      attr_accessor content: Courier::ElementalContent
+      attr_accessor content: Courier::NotificationTemplateContent
 
       attr_accessor name: String
 
@@ -28,7 +28,7 @@ module Courier
 
       def initialize: (
         brand: Courier::NotificationTemplatePayload::Brand?,
-        content: Courier::ElementalContent,
+        content: Courier::NotificationTemplateContent,
         name: String,
         routing: Courier::NotificationTemplatePayload::Routing?,
         subscription: Courier::NotificationTemplatePayload::Subscription?,
@@ -38,7 +38,7 @@ module Courier
 
       def to_hash: -> {
         brand: Courier::NotificationTemplatePayload::Brand?,
-        content: Courier::ElementalContent,
+        content: Courier::NotificationTemplateContent,
         name: String,
         routing: Courier::NotificationTemplatePayload::Routing?,
         subscription: Courier::NotificationTemplatePayload::Subscription?,

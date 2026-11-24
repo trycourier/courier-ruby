@@ -167,22 +167,6 @@ module Courier
         attr_accessor :version
 
         sig do
-          returns(
-            T.nilable(
-              Courier::JourneyTemplateGetResponse::Content::Scope::TaggedSymbol
-            )
-          )
-        end
-        attr_reader :scope
-
-        sig do
-          params(
-            scope: Courier::JourneyTemplateGetResponse::Content::Scope::OrSymbol
-          ).void
-        end
-        attr_writer :scope
-
-        sig do
           params(
             elements:
               T::Array[
@@ -198,11 +182,10 @@ module Courier
                 )
               ],
             version:
-              Courier::JourneyTemplateGetResponse::Content::Version::OrSymbol,
-            scope: Courier::JourneyTemplateGetResponse::Content::Scope::OrSymbol
+              Courier::JourneyTemplateGetResponse::Content::Version::OrSymbol
           ).returns(T.attached_class)
         end
-        def self.new(elements:, version:, scope: nil)
+        def self.new(elements:, version:)
         end
 
         sig do
@@ -210,9 +193,7 @@ module Courier
             {
               elements: T::Array[Courier::ElementalNode::Variants],
               version:
-                Courier::JourneyTemplateGetResponse::Content::Version::TaggedSymbol,
-              scope:
-                Courier::JourneyTemplateGetResponse::Content::Scope::TaggedSymbol
+                Courier::JourneyTemplateGetResponse::Content::Version::TaggedSymbol
             }
           )
         end
@@ -241,37 +222,6 @@ module Courier
             override.returns(
               T::Array[
                 Courier::JourneyTemplateGetResponse::Content::Version::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        module Scope
-          extend Courier::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Courier::JourneyTemplateGetResponse::Content::Scope)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          DEFAULT =
-            T.let(
-              :default,
-              Courier::JourneyTemplateGetResponse::Content::Scope::TaggedSymbol
-            )
-          STRICT =
-            T.let(
-              :strict,
-              Courier::JourneyTemplateGetResponse::Content::Scope::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Courier::JourneyTemplateGetResponse::Content::Scope::TaggedSymbol
               ]
             )
           end
