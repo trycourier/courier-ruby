@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.0](https://github.com/trycourier/courier-ruby/compare/v7.2.0...v7.3.0) (2026-11-24)
+
+
+### Features
+
+* **api:** remove `scope` from v2 notification, journey and broadcast template content ([#199](https://github.com/trycourier/courier-ruby/issues/199)) ([305abc3](https://github.com/trycourier/courier-ruby/commit/305abc3c0282396976e417637c845878804764c8))
+
 ## [7.2.0](https://github.com/trycourier/courier-ruby/compare/v7.1.0...v7.2.0) (2026-11-23)
 
 
