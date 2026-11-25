@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.1](https://github.com/trycourier/courier-ruby/compare/v7.3.0...v7.3.1) (2026-11-25)
+
+
+### Chores
+
+* **api:** regenerate SDK ([#201](https://github.com/trycourier/courier-ruby/issues/201)) ([8711723](https://github.com/trycourier/courier-ruby/commit/87117231dc0b3c1719730cec907e5eef1dc304f6))
+
 ## [7.3.0](https://github.com/trycourier/courier-ruby/compare/v7.2.0...v7.3.0) (2026-11-24)
 
 
